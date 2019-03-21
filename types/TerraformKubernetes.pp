@@ -6,15 +6,33 @@ type TerraformKubernetes = TypeSet[{
   name => 'TerraformKubernetes',
   version => '0.1.0',
   types => {
+    GenericHandler => {
+      functions => {
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
+        'delete' => Callable[String],
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
+      }
+    },
     Kubernetes_cluster_role_binding => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['role_ref'],
-          'providedAttributes' => ['kubernetes_cluster_role_binding_id']
+          'immutableAttributes' => ['role_ref']
         }
       },
       attributes => {
         'kubernetes_cluster_role_binding_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -25,10 +43,16 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_cluster_role_bindingHandler => {
       functions => {
-        'create' => Callable[Optional[Kubernetes_cluster_role_binding], Tuple[Optional[Kubernetes_cluster_role_binding]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Kubernetes_cluster_role_binding]],
-        'update' => Callable[String, Optional[Kubernetes_cluster_role_binding]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Kubernetes_cluster_role_binding_metadata_1 => {
@@ -80,11 +104,16 @@ type TerraformKubernetes = TypeSet[{
     Kubernetes_config_map => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['kubernetes_config_map_id', 'data']
+          'providedAttributes' => ['data']
         }
       },
       attributes => {
         'kubernetes_config_map_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -97,10 +126,16 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_config_mapHandler => {
       functions => {
-        'create' => Callable[Optional[Kubernetes_config_map], Tuple[Optional[Kubernetes_config_map]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Kubernetes_config_map]],
-        'update' => Callable[String, Optional[Kubernetes_config_map]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Kubernetes_config_map_metadata_3 => {
@@ -144,13 +179,13 @@ type TerraformKubernetes = TypeSet[{
       }
     },
     Kubernetes_deployment => {
-      annotations => {
-        Lyra::Resource => {
-          'providedAttributes' => ['kubernetes_deployment_id']
-        }
-      },
       attributes => {
         'kubernetes_deployment_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -160,10 +195,16 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_deploymentHandler => {
       functions => {
-        'create' => Callable[Optional[Kubernetes_deployment], Tuple[Optional[Kubernetes_deployment]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Kubernetes_deployment]],
-        'update' => Callable[String, Optional[Kubernetes_deployment]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Kubernetes_deployment_metadata_4 => {
@@ -2279,13 +2320,13 @@ type TerraformKubernetes = TypeSet[{
       }
     },
     Kubernetes_horizontal_pod_autoscaler => {
-      annotations => {
-        Lyra::Resource => {
-          'providedAttributes' => ['kubernetes_horizontal_pod_autoscaler_id']
-        }
-      },
       attributes => {
         'kubernetes_horizontal_pod_autoscaler_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2295,10 +2336,16 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_horizontal_pod_autoscalerHandler => {
       functions => {
-        'create' => Callable[Optional[Kubernetes_horizontal_pod_autoscaler], Tuple[Optional[Kubernetes_horizontal_pod_autoscaler]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Kubernetes_horizontal_pod_autoscaler]],
-        'update' => Callable[String, Optional[Kubernetes_horizontal_pod_autoscaler]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Kubernetes_horizontal_pod_autoscaler_metadata_127 => {
@@ -2368,11 +2415,16 @@ type TerraformKubernetes = TypeSet[{
     Kubernetes_limit_range => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['kubernetes_limit_range_id', 'spec']
+          'providedAttributes' => ['spec']
         }
       },
       attributes => {
         'kubernetes_limit_range_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2385,10 +2437,16 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_limit_rangeHandler => {
       functions => {
-        'create' => Callable[Optional[Kubernetes_limit_range], Tuple[Optional[Kubernetes_limit_range]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Kubernetes_limit_range]],
-        'update' => Callable[String, Optional[Kubernetes_limit_range]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Kubernetes_limit_range_metadata_130 => {
@@ -2468,13 +2526,13 @@ type TerraformKubernetes = TypeSet[{
       }
     },
     Kubernetes_namespace => {
-      annotations => {
-        Lyra::Resource => {
-          'providedAttributes' => ['kubernetes_namespace_id']
-        }
-      },
       attributes => {
         'kubernetes_namespace_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2483,10 +2541,16 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_namespaceHandler => {
       functions => {
-        'create' => Callable[Optional[Kubernetes_namespace], Tuple[Optional[Kubernetes_namespace]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Kubernetes_namespace]],
-        'update' => Callable[String, Optional[Kubernetes_namespace]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Kubernetes_namespace_metadata_133 => {
@@ -2526,13 +2590,13 @@ type TerraformKubernetes = TypeSet[{
       }
     },
     Kubernetes_network_policy => {
-      annotations => {
-        Lyra::Resource => {
-          'providedAttributes' => ['kubernetes_network_policy_id']
-        }
-      },
       attributes => {
         'kubernetes_network_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2542,10 +2606,16 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_network_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Kubernetes_network_policy], Tuple[Optional[Kubernetes_network_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Kubernetes_network_policy]],
-        'update' => Callable[String, Optional[Kubernetes_network_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Kubernetes_network_policy_metadata_134 => {
@@ -2847,13 +2917,13 @@ type TerraformKubernetes = TypeSet[{
       }
     },
     Kubernetes_persistent_volume => {
-      annotations => {
-        Lyra::Resource => {
-          'providedAttributes' => ['kubernetes_persistent_volume_id']
-        }
-      },
       attributes => {
         'kubernetes_persistent_volume_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2863,21 +2933,32 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_persistent_volumeHandler => {
       functions => {
-        'create' => Callable[Optional[Kubernetes_persistent_volume], Tuple[Optional[Kubernetes_persistent_volume]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Kubernetes_persistent_volume]],
-        'update' => Callable[String, Optional[Kubernetes_persistent_volume]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Kubernetes_persistent_volume_claim => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['spec'],
-          'providedAttributes' => ['kubernetes_persistent_volume_claim_id', 'wait_until_bound']
+          'providedAttributes' => ['wait_until_bound']
         }
       },
       attributes => {
         'kubernetes_persistent_volume_claim_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2891,10 +2972,16 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_persistent_volume_claimHandler => {
       functions => {
-        'create' => Callable[Optional[Kubernetes_persistent_volume_claim], Tuple[Optional[Kubernetes_persistent_volume_claim]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Kubernetes_persistent_volume_claim]],
-        'update' => Callable[String, Optional[Kubernetes_persistent_volume_claim]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Kubernetes_persistent_volume_claim_metadata_183 => {
@@ -3475,13 +3562,13 @@ type TerraformKubernetes = TypeSet[{
       }
     },
     Kubernetes_pod => {
-      annotations => {
-        Lyra::Resource => {
-          'providedAttributes' => ['kubernetes_pod_id']
-        }
-      },
       attributes => {
         'kubernetes_pod_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -3491,10 +3578,16 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_podHandler => {
       functions => {
-        'create' => Callable[Optional[Kubernetes_pod], Tuple[Optional[Kubernetes_pod]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Kubernetes_pod]],
-        'update' => Callable[String, Optional[Kubernetes_pod]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Kubernetes_pod_metadata_188 => {
@@ -5479,13 +5572,13 @@ type TerraformKubernetes = TypeSet[{
       }
     },
     Kubernetes_replication_controller => {
-      annotations => {
-        Lyra::Resource => {
-          'providedAttributes' => ['kubernetes_replication_controller_id']
-        }
-      },
       attributes => {
         'kubernetes_replication_controller_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -5495,10 +5588,16 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_replication_controllerHandler => {
       functions => {
-        'create' => Callable[Optional[Kubernetes_replication_controller], Tuple[Optional[Kubernetes_replication_controller]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Kubernetes_replication_controller]],
-        'update' => Callable[String, Optional[Kubernetes_replication_controller]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Kubernetes_replication_controller_metadata_304 => {
@@ -9488,11 +9587,16 @@ type TerraformKubernetes = TypeSet[{
     Kubernetes_resource_quota => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['kubernetes_resource_quota_id', 'spec']
+          'providedAttributes' => ['spec']
         }
       },
       attributes => {
         'kubernetes_resource_quota_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9505,10 +9609,16 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_resource_quotaHandler => {
       functions => {
-        'create' => Callable[Optional[Kubernetes_resource_quota], Tuple[Optional[Kubernetes_resource_quota]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Kubernetes_resource_quota]],
-        'update' => Callable[String, Optional[Kubernetes_resource_quota]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Kubernetes_resource_quota_metadata_537 => {
@@ -9564,13 +9674,13 @@ type TerraformKubernetes = TypeSet[{
       }
     },
     Kubernetes_role => {
-      annotations => {
-        Lyra::Resource => {
-          'providedAttributes' => ['kubernetes_role_id']
-        }
-      },
       attributes => {
         'kubernetes_role_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9580,21 +9690,31 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_roleHandler => {
       functions => {
-        'create' => Callable[Optional[Kubernetes_role], Tuple[Optional[Kubernetes_role]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Kubernetes_role]],
-        'update' => Callable[String, Optional[Kubernetes_role]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Kubernetes_role_binding => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['role_ref'],
-          'providedAttributes' => ['kubernetes_role_binding_id']
+          'immutableAttributes' => ['role_ref']
         }
       },
       attributes => {
         'kubernetes_role_binding_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9605,10 +9725,16 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_role_bindingHandler => {
       functions => {
-        'create' => Callable[Optional[Kubernetes_role_binding], Tuple[Optional[Kubernetes_role_binding]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Kubernetes_role_binding]],
-        'update' => Callable[String, Optional[Kubernetes_role_binding]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Kubernetes_role_binding_metadata_541 => {
@@ -9716,11 +9842,16 @@ type TerraformKubernetes = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['type'],
-          'providedAttributes' => ['kubernetes_secret_id', 'data', 'type']
+          'providedAttributes' => ['data', 'type']
         }
       },
       attributes => {
         'kubernetes_secret_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9737,10 +9868,16 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_secretHandler => {
       functions => {
-        'create' => Callable[Optional[Kubernetes_secret], Tuple[Optional[Kubernetes_secret]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Kubernetes_secret]],
-        'update' => Callable[String, Optional[Kubernetes_secret]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Kubernetes_secret_metadata_543 => {
@@ -9786,11 +9923,16 @@ type TerraformKubernetes = TypeSet[{
     Kubernetes_service => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['kubernetes_service_id', 'load_balancer_ingress']
+          'providedAttributes' => ['load_balancer_ingress']
         }
       },
       attributes => {
         'kubernetes_service_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9804,20 +9946,31 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_serviceHandler => {
       functions => {
-        'create' => Callable[Optional[Kubernetes_service], Tuple[Optional[Kubernetes_service]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Kubernetes_service]],
-        'update' => Callable[String, Optional[Kubernetes_service]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Kubernetes_service_account => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['kubernetes_service_account_id', 'automount_service_account_token', 'default_secret_name', 'image_pull_secret', 'secret']
+          'providedAttributes' => ['automount_service_account_token', 'default_secret_name', 'image_pull_secret', 'secret']
         }
       },
       attributes => {
         'kubernetes_service_account_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9842,10 +9995,16 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_service_accountHandler => {
       functions => {
-        'create' => Callable[Optional[Kubernetes_service_account], Tuple[Optional[Kubernetes_service_account]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Kubernetes_service_account]],
-        'update' => Callable[String, Optional[Kubernetes_service_account]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Kubernetes_service_account_image_pull_secret_548 => {
@@ -10020,12 +10179,16 @@ type TerraformKubernetes = TypeSet[{
     Kubernetes_stateful_set => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['spec'],
-          'providedAttributes' => ['kubernetes_stateful_set_id']
+          'immutableAttributes' => ['spec']
         }
       },
       attributes => {
         'kubernetes_stateful_set_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10035,10 +10198,16 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_stateful_setHandler => {
       functions => {
-        'create' => Callable[Optional[Kubernetes_stateful_set], Tuple[Optional[Kubernetes_stateful_set]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Kubernetes_stateful_set]],
-        'update' => Callable[String, Optional[Kubernetes_stateful_set]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Kubernetes_stateful_set_metadata_551 => {
@@ -12250,11 +12419,16 @@ type TerraformKubernetes = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['parameters', 'storage_provisioner'],
-          'providedAttributes' => ['kubernetes_storage_class_id', 'parameters', 'reclaim_policy', 'volume_binding_mode']
+          'providedAttributes' => ['parameters', 'reclaim_policy', 'volume_binding_mode']
         }
       },
       attributes => {
         'kubernetes_storage_class_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -12276,10 +12450,16 @@ type TerraformKubernetes = TypeSet[{
     },
     Kubernetes_storage_classHandler => {
       functions => {
-        'create' => Callable[Optional[Kubernetes_storage_class], Tuple[Optional[Kubernetes_storage_class]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Kubernetes_storage_class]],
-        'update' => Callable[String, Optional[Kubernetes_storage_class]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Kubernetes_storage_class_metadata_680 => {

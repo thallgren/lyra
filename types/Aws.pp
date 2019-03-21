@@ -475,10 +475,23 @@ type Aws = TypeSet[{
         CapacityReservationSpecificationResponse => {
           attributes => {
             'capacityReservationPreference' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'enum' => 'CapacityReservationPreference',
+                  'locationName' => 'capacityReservationPreference',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'capacityReservationTarget' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'capacityReservationTarget',
+                  'type' => 'structure'
+                }
+              },
               'type' => Optional[CapacityReservationTargetResponse],
               'value' => undef
             }
@@ -495,6 +508,12 @@ type Aws = TypeSet[{
         CapacityReservationTargetResponse => {
           attributes => {
             'capacityReservationId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'capacityReservationId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -511,10 +530,22 @@ type Aws = TypeSet[{
         CpuOptions => {
           attributes => {
             'coreCount' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'coreCount',
+                  'type' => 'integer'
+                }
+              },
               'type' => Optional[Integer],
               'value' => undef
             },
             'threadsPerCore' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'threadsPerCore',
+                  'type' => 'integer'
+                }
+              },
               'type' => Optional[Integer],
               'value' => undef
             }
@@ -531,18 +562,43 @@ type Aws = TypeSet[{
         EbsInstanceBlockDevice => {
           attributes => {
             'attachTime' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'attachTime',
+                  'type' => 'timestamp'
+                }
+              },
               'type' => Optional[Timestamp],
               'value' => undef
             },
             'deleteOnTermination' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'deleteOnTermination',
+                  'type' => 'boolean'
+                }
+              },
               'type' => Optional[Boolean],
               'value' => undef
             },
             'status' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'enum' => 'AttachmentStatus',
+                  'locationName' => 'status',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'volumeId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'volumeId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -559,18 +615,42 @@ type Aws = TypeSet[{
         ElasticGpuAssociation => {
           attributes => {
             'elasticGpuAssociationId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'elasticGpuAssociationId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'elasticGpuAssociationState' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'elasticGpuAssociationState',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'elasticGpuAssociationTime' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'elasticGpuAssociationTime',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'elasticGpuId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'elasticGpuId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -587,18 +667,42 @@ type Aws = TypeSet[{
         ElasticInferenceAcceleratorAssociation => {
           attributes => {
             'elasticInferenceAcceleratorArn' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'elasticInferenceAcceleratorArn',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'elasticInferenceAcceleratorAssociationId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'elasticInferenceAcceleratorAssociationId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'elasticInferenceAcceleratorAssociationState' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'elasticInferenceAcceleratorAssociationState',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'elasticInferenceAcceleratorAssociationTime' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'elasticInferenceAcceleratorAssociationTime',
+                  'type' => 'timestamp'
+                }
+              },
               'type' => Optional[Timestamp],
               'value' => undef
             }
@@ -615,10 +719,22 @@ type Aws = TypeSet[{
         GroupIdentifier => {
           attributes => {
             'groupId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'groupId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'groupName' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'groupName',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -635,6 +751,12 @@ type Aws = TypeSet[{
         HibernationOptions => {
           attributes => {
             'configured' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'configured',
+                  'type' => 'boolean'
+                }
+              },
               'type' => Optional[Boolean],
               'value' => undef
             }
@@ -651,10 +773,22 @@ type Aws = TypeSet[{
         IamInstanceProfile => {
           attributes => {
             'arn' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'arn',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'id' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'id',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -671,158 +805,459 @@ type Aws = TypeSet[{
         Instance => {
           attributes => {
             'amiLaunchIndex' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'amiLaunchIndex',
+                  'type' => 'integer'
+                }
+              },
               'type' => Optional[Integer],
               'value' => undef
             },
             'architecture' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'enum' => 'ArchitectureValues',
+                  'locationName' => 'architecture',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
-            'blockDeviceMappings' => Array[Optional[InstanceBlockDeviceMapping]],
+            'blockDeviceMappings' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'blockDeviceMapping',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[InstanceBlockDeviceMapping]]
+            },
             'capacityReservationId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'capacityReservationId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'capacityReservationSpecification' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'capacityReservationSpecification',
+                  'type' => 'structure'
+                }
+              },
               'type' => Optional[CapacityReservationSpecificationResponse],
               'value' => undef
             },
             'clientToken' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'clientToken',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'cpuOptions' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'cpuOptions',
+                  'type' => 'structure'
+                }
+              },
               'type' => Optional[CpuOptions],
               'value' => undef
             },
             'ebsOptimized' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'ebsOptimized',
+                  'type' => 'boolean'
+                }
+              },
               'type' => Optional[Boolean],
               'value' => undef
             },
-            'elasticGpuAssociations' => Array[Optional[ElasticGpuAssociation]],
-            'elasticInferenceAcceleratorAssociations' => Array[Optional[ElasticInferenceAcceleratorAssociation]],
+            'elasticGpuAssociations' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'elasticGpuAssociationSet',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[ElasticGpuAssociation]]
+            },
+            'elasticInferenceAcceleratorAssociations' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'elasticInferenceAcceleratorAssociationSet',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[ElasticInferenceAcceleratorAssociation]]
+            },
             'enaSupport' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'enaSupport',
+                  'type' => 'boolean'
+                }
+              },
               'type' => Optional[Boolean],
               'value' => undef
             },
             'hibernationOptions' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'hibernationOptions',
+                  'type' => 'structure'
+                }
+              },
               'type' => Optional[HibernationOptions],
               'value' => undef
             },
             'hypervisor' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'enum' => 'HypervisorType',
+                  'locationName' => 'hypervisor',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'iamInstanceProfile' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'iamInstanceProfile',
+                  'type' => 'structure'
+                }
+              },
               'type' => Optional[IamInstanceProfile],
               'value' => undef
             },
             'imageId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'imageId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'instanceId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'instanceId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'instanceLifecycle' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'enum' => 'InstanceLifecycleType',
+                  'locationName' => 'instanceLifecycle',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'instanceType' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'enum' => 'InstanceType',
+                  'locationName' => 'instanceType',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'kernelId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'kernelId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'keyName' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'keyName',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'launchTime' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'launchTime',
+                  'type' => 'timestamp'
+                }
+              },
               'type' => Optional[Timestamp],
               'value' => undef
             },
-            'licenses' => Array[Optional[LicenseConfiguration]],
+            'licenses' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'licenseSet',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[LicenseConfiguration]]
+            },
             'monitoring' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'monitoring',
+                  'type' => 'structure'
+                }
+              },
               'type' => Optional[Monitoring],
               'value' => undef
             },
-            'networkInterfaces' => Array[Optional[InstanceNetworkInterface]],
+            'networkInterfaces' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'networkInterfaceSet',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[InstanceNetworkInterface]]
+            },
             'placement' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'placement',
+                  'type' => 'structure'
+                }
+              },
               'type' => Optional[Placement],
               'value' => undef
             },
             'platform' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'enum' => 'PlatformValues',
+                  'locationName' => 'platform',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'privateDnsName' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'privateDnsName',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'privateIpAddress' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'privateIpAddress',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
-            'productCodes' => Array[Optional[ProductCode]],
+            'productCodes' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'productCodes',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[ProductCode]]
+            },
             'publicDnsName' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'dnsName',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'publicIpAddress' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'ipAddress',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'ramdiskId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'ramdiskId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'rootDeviceName' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'rootDeviceName',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'rootDeviceType' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'enum' => 'DeviceType',
+                  'locationName' => 'rootDeviceType',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
-            'securityGroups' => Array[Optional[GroupIdentifier]],
+            'securityGroups' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'groupSet',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[GroupIdentifier]]
+            },
             'sourceDestCheck' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'sourceDestCheck',
+                  'type' => 'boolean'
+                }
+              },
               'type' => Optional[Boolean],
               'value' => undef
             },
             'spotInstanceRequestId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'spotInstanceRequestId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'sriovNetSupport' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'sriovNetSupport',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'state' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'instanceState',
+                  'type' => 'structure'
+                }
+              },
               'type' => Optional[InstanceState],
               'value' => undef
             },
             'stateReason' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'stateReason',
+                  'type' => 'structure'
+                }
+              },
               'type' => Optional[StateReason],
               'value' => undef
             },
             'stateTransitionReason' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'reason',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'subnetId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'subnetId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
-            'tags' => Array[Optional[Tag]],
+            'tags' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'tagSet',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[Tag]]
+            },
             'virtualizationType' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'enum' => 'VirtualizationType',
+                  'locationName' => 'virtualizationType',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'vpcId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'vpcId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -839,10 +1274,22 @@ type Aws = TypeSet[{
         InstanceBlockDeviceMapping => {
           attributes => {
             'deviceName' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'deviceName',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'ebs' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'ebs',
+                  'type' => 'structure'
+                }
+              },
               'type' => Optional[EbsInstanceBlockDevice],
               'value' => undef
             }
@@ -859,6 +1306,12 @@ type Aws = TypeSet[{
         InstanceIpv6Address => {
           attributes => {
             'ipv6Address' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'ipv6Address',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -875,53 +1328,153 @@ type Aws = TypeSet[{
         InstanceNetworkInterface => {
           attributes => {
             'association' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'association',
+                  'type' => 'structure'
+                }
+              },
               'type' => Optional[InstanceNetworkInterfaceAssociation],
               'value' => undef
             },
             'attachment' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'attachment',
+                  'type' => 'structure'
+                }
+              },
               'type' => Optional[InstanceNetworkInterfaceAttachment],
               'value' => undef
             },
             'description' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'description',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
-            'groups' => Array[Optional[GroupIdentifier]],
-            'ipv6Addresses' => Array[Optional[InstanceIpv6Address]],
+            'groups' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'groupSet',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[GroupIdentifier]]
+            },
+            'ipv6Addresses' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'ipv6AddressesSet',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[InstanceIpv6Address]]
+            },
             'macAddress' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'macAddress',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'networkInterfaceId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'networkInterfaceId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'ownerId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'ownerId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'privateDnsName' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'privateDnsName',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'privateIpAddress' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'privateIpAddress',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
-            'privateIpAddresses' => Array[Optional[InstancePrivateIpAddress]],
+            'privateIpAddresses' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'privateIpAddressesSet',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[InstancePrivateIpAddress]]
+            },
             'sourceDestCheck' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'sourceDestCheck',
+                  'type' => 'boolean'
+                }
+              },
               'type' => Optional[Boolean],
               'value' => undef
             },
             'status' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'enum' => 'NetworkInterfaceStatus',
+                  'locationName' => 'status',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'subnetId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'subnetId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'vpcId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'vpcId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -938,14 +1491,32 @@ type Aws = TypeSet[{
         InstanceNetworkInterfaceAssociation => {
           attributes => {
             'ipOwnerId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'ipOwnerId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'publicDnsName' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'publicDnsName',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'publicIp' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'publicIp',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -962,22 +1533,53 @@ type Aws = TypeSet[{
         InstanceNetworkInterfaceAttachment => {
           attributes => {
             'attachTime' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'attachTime',
+                  'type' => 'timestamp'
+                }
+              },
               'type' => Optional[Timestamp],
               'value' => undef
             },
             'attachmentId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'attachmentId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'deleteOnTermination' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'deleteOnTermination',
+                  'type' => 'boolean'
+                }
+              },
               'type' => Optional[Boolean],
               'value' => undef
             },
             'deviceIndex' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'deviceIndex',
+                  'type' => 'integer'
+                }
+              },
               'type' => Optional[Integer],
               'value' => undef
             },
             'status' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'enum' => 'AttachmentStatus',
+                  'locationName' => 'status',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -994,18 +1596,42 @@ type Aws = TypeSet[{
         InstancePrivateIpAddress => {
           attributes => {
             'association' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'association',
+                  'type' => 'structure'
+                }
+              },
               'type' => Optional[InstanceNetworkInterfaceAssociation],
               'value' => undef
             },
             'primary' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'primary',
+                  'type' => 'boolean'
+                }
+              },
               'type' => Optional[Boolean],
               'value' => undef
             },
             'privateDnsName' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'privateDnsName',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'privateIpAddress' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'privateIpAddress',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -1022,10 +1648,23 @@ type Aws = TypeSet[{
         InstanceState => {
           attributes => {
             'code' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'code',
+                  'type' => 'integer'
+                }
+              },
               'type' => Optional[Integer],
               'value' => undef
             },
             'name' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'enum' => 'InstanceStateName',
+                  'locationName' => 'name',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -1041,16 +1680,46 @@ type Aws = TypeSet[{
         },
         InternetGateway => {
           attributes => {
-            'attachments' => Array[Optional[InternetGatewayAttachment]],
+            'attachments' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'attachmentSet',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[InternetGatewayAttachment]]
+            },
             'internetGatewayId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'internetGatewayId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'ownerId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'ownerId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
-            'tags' => Array[Optional[Tag]]
+            'tags' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'tagSet',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[Tag]]
+            }
           },
           functions => {
             'goString' => Callable[
@@ -1064,10 +1733,23 @@ type Aws = TypeSet[{
         InternetGatewayAttachment => {
           attributes => {
             'state' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'enum' => 'AttachmentStatus',
+                  'locationName' => 'state',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'vpcId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'vpcId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -1084,21 +1766,75 @@ type Aws = TypeSet[{
         IpPermission => {
           attributes => {
             'fromPort' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'fromPort',
+                  'type' => 'integer'
+                }
+              },
               'type' => Optional[Integer],
               'value' => undef
             },
             'ipProtocol' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'ipProtocol',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
-            'ipRanges' => Array[Optional[IpRange]],
-            'ipv6Ranges' => Array[Optional[Ipv6Range]],
-            'prefixListIds' => Array[Optional[PrefixListId]],
+            'ipRanges' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'ipRanges',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[IpRange]]
+            },
+            'ipv6Ranges' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'ipv6Ranges',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[Ipv6Range]]
+            },
+            'prefixListIds' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'prefixListIds',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[PrefixListId]]
+            },
             'toPort' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'toPort',
+                  'type' => 'integer'
+                }
+              },
               'type' => Optional[Integer],
               'value' => undef
             },
-            'userIdGroupPairs' => Array[Optional[UserIdGroupPair]]
+            'userIdGroupPairs' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'groups',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[UserIdGroupPair]]
+            }
           },
           functions => {
             'goString' => Callable[
@@ -1112,10 +1848,22 @@ type Aws = TypeSet[{
         IpRange => {
           attributes => {
             'cidrIp' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'cidrIp',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'description' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'description',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -1132,10 +1880,22 @@ type Aws = TypeSet[{
         Ipv6Range => {
           attributes => {
             'cidrIpv6' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'cidrIpv6',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'description' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'description',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -1152,6 +1912,12 @@ type Aws = TypeSet[{
         LicenseConfiguration => {
           attributes => {
             'licenseConfigurationArn' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'licenseConfigurationArn',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -1168,6 +1934,13 @@ type Aws = TypeSet[{
         Monitoring => {
           attributes => {
             'state' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'enum' => 'MonitoringState',
+                  'locationName' => 'state',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -1184,30 +1957,73 @@ type Aws = TypeSet[{
         Placement => {
           attributes => {
             'affinity' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'affinity',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'availabilityZone' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'availabilityZone',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'groupName' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'groupName',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'hostId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'hostId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'partitionNumber' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'partitionNumber',
+                  'type' => 'integer'
+                }
+              },
               'type' => Optional[Integer],
               'value' => undef
             },
             'spreadDomain' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'spreadDomain',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'tenancy' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'enum' => 'Tenancy',
+                  'locationName' => 'tenancy',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -1224,10 +2040,22 @@ type Aws = TypeSet[{
         PrefixListId => {
           attributes => {
             'description' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'description',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'prefixListId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'prefixListId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -1244,10 +2072,23 @@ type Aws = TypeSet[{
         ProductCode => {
           attributes => {
             'productCodeId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'productCode',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'productCodeType' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'enum' => 'ProductCodeValues',
+                  'locationName' => 'type',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -1264,6 +2105,12 @@ type Aws = TypeSet[{
         PropagatingVgw => {
           attributes => {
             'gatewayId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'gatewayId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -1280,54 +2127,134 @@ type Aws = TypeSet[{
         Route => {
           attributes => {
             'destinationCidrBlock' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'destinationCidrBlock',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'destinationIpv6CidrBlock' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'destinationIpv6CidrBlock',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'destinationPrefixListId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'destinationPrefixListId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'egressOnlyInternetGatewayId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'egressOnlyInternetGatewayId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'gatewayId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'gatewayId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'instanceId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'instanceId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'instanceOwnerId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'instanceOwnerId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'natGatewayId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'natGatewayId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'networkInterfaceId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'networkInterfaceId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'origin' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'enum' => 'RouteOrigin',
+                  'locationName' => 'origin',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'state' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'enum' => 'RouteState',
+                  'locationName' => 'state',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'transitGatewayId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'transitGatewayId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'vpcPeeringConnectionId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'vpcPeeringConnectionId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -1343,19 +2270,73 @@ type Aws = TypeSet[{
         },
         RouteTable => {
           attributes => {
-            'associations' => Array[Optional[RouteTableAssociation]],
+            'associations' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'associationSet',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[RouteTableAssociation]]
+            },
             'ownerId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'ownerId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
-            'propagatingVgws' => Array[Optional[PropagatingVgw]],
+            'propagatingVgws' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'propagatingVgwSet',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[PropagatingVgw]]
+            },
             'routeTableId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'routeTableId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
-            'routes' => Array[Optional[Route]],
-            'tags' => Array[Optional[Tag]],
+            'routes' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'routeSet',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[Route]]
+            },
+            'tags' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'tagSet',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[Tag]]
+            },
             'vpcId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'vpcId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -1372,18 +2353,42 @@ type Aws = TypeSet[{
         RouteTableAssociation => {
           attributes => {
             'main' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'main',
+                  'type' => 'boolean'
+                }
+              },
               'type' => Optional[Boolean],
               'value' => undef
             },
             'routeTableAssociationId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'routeTableAssociationId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'routeTableId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'routeTableId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'subnetId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'subnetId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -1400,25 +2405,82 @@ type Aws = TypeSet[{
         SecurityGroup => {
           attributes => {
             'description' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'groupDescription',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'groupId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'groupId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'groupName' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'groupName',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
-            'ipPermissions' => Array[Optional[IpPermission]],
-            'ipPermissionsEgress' => Array[Optional[IpPermission]],
+            'ipPermissions' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'ipPermissions',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[IpPermission]]
+            },
+            'ipPermissionsEgress' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'ipPermissionsEgress',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[IpPermission]]
+            },
             'ownerId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'ownerId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
-            'tags' => Array[Optional[Tag]],
+            'tags' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'tagSet',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[Tag]]
+            },
             'vpcId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'vpcId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -1435,10 +2497,22 @@ type Aws = TypeSet[{
         StateReason => {
           attributes => {
             'code' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'code',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'message' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'message',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -1455,52 +2529,143 @@ type Aws = TypeSet[{
         Subnet => {
           attributes => {
             'assignIpv6AddressOnCreation' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'assignIpv6AddressOnCreation',
+                  'type' => 'boolean'
+                }
+              },
               'type' => Optional[Boolean],
               'value' => undef
             },
             'availabilityZone' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'availabilityZone',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'availabilityZoneId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'availabilityZoneId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'availableIpAddressCount' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'availableIpAddressCount',
+                  'type' => 'integer'
+                }
+              },
               'type' => Optional[Integer],
               'value' => undef
             },
             'cidrBlock' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'cidrBlock',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'defaultForAz' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'defaultForAz',
+                  'type' => 'boolean'
+                }
+              },
               'type' => Optional[Boolean],
               'value' => undef
             },
-            'ipv6CidrBlockAssociationSet' => Array[Optional[SubnetIpv6CidrBlockAssociation]],
+            'ipv6CidrBlockAssociationSet' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'ipv6CidrBlockAssociationSet',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[SubnetIpv6CidrBlockAssociation]]
+            },
             'mapPublicIpOnLaunch' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'mapPublicIpOnLaunch',
+                  'type' => 'boolean'
+                }
+              },
               'type' => Optional[Boolean],
               'value' => undef
             },
             'ownerId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'ownerId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'state' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'enum' => 'SubnetState',
+                  'locationName' => 'state',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'subnetArn' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'subnetArn',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'subnetId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'subnetId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
-            'tags' => Array[Optional[Tag]],
+            'tags' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'tagSet',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[Tag]]
+            },
             'vpcId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'vpcId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -1517,10 +2682,23 @@ type Aws = TypeSet[{
         SubnetCidrBlockState => {
           attributes => {
             'state' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'enum' => 'SubnetCidrBlockStateCode',
+                  'locationName' => 'state',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'statusMessage' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'statusMessage',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -1537,14 +2715,32 @@ type Aws = TypeSet[{
         SubnetIpv6CidrBlockAssociation => {
           attributes => {
             'associationId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'associationId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'ipv6CidrBlock' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'ipv6CidrBlock',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'ipv6CidrBlockState' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'ipv6CidrBlockState',
+                  'type' => 'structure'
+                }
+              },
               'type' => Optional[SubnetCidrBlockState],
               'value' => undef
             }
@@ -1561,10 +2757,22 @@ type Aws = TypeSet[{
         Tag => {
           attributes => {
             'key' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'key',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'value' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'value',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -1581,30 +2789,72 @@ type Aws = TypeSet[{
         UserIdGroupPair => {
           attributes => {
             'description' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'description',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'groupId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'groupId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'groupName' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'groupName',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'peeringStatus' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'peeringStatus',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'userId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'userId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'vpcId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'vpcId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'vpcPeeringConnectionId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'vpcPeeringConnectionId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -1621,33 +2871,104 @@ type Aws = TypeSet[{
         Vpc => {
           attributes => {
             'cidrBlock' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'cidrBlock',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
-            'cidrBlockAssociationSet' => Array[Optional[VpcCidrBlockAssociation]],
+            'cidrBlockAssociationSet' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'cidrBlockAssociationSet',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[VpcCidrBlockAssociation]]
+            },
             'dhcpOptionsId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'dhcpOptionsId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'instanceTenancy' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'enum' => 'Tenancy',
+                  'locationName' => 'instanceTenancy',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
-            'ipv6CidrBlockAssociationSet' => Array[Optional[VpcIpv6CidrBlockAssociation]],
+            'ipv6CidrBlockAssociationSet' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'ipv6CidrBlockAssociationSet',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[VpcIpv6CidrBlockAssociation]]
+            },
             'isDefault' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'isDefault',
+                  'type' => 'boolean'
+                }
+              },
               'type' => Optional[Boolean],
               'value' => undef
             },
             'ownerId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'ownerId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'state' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'enum' => 'VpcState',
+                  'locationName' => 'state',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
-            'tags' => Array[Optional[Tag]],
+            'tags' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'tagSet',
+                  'locationNameList' => 'item',
+                  'type' => 'list'
+                }
+              },
+              'type' => Array[Optional[Tag]]
+            },
             'vpcId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'vpcId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -1664,14 +2985,32 @@ type Aws = TypeSet[{
         VpcCidrBlockAssociation => {
           attributes => {
             'associationId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'associationId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'cidrBlock' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'cidrBlock',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'cidrBlockState' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'cidrBlockState',
+                  'type' => 'structure'
+                }
+              },
               'type' => Optional[VpcCidrBlockState],
               'value' => undef
             }
@@ -1688,10 +3027,23 @@ type Aws = TypeSet[{
         VpcCidrBlockState => {
           attributes => {
             'state' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'enum' => 'VpcCidrBlockStateCode',
+                  'locationName' => 'state',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'statusMessage' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'statusMessage',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             }
@@ -1708,14 +3060,32 @@ type Aws = TypeSet[{
         VpcIpv6CidrBlockAssociation => {
           attributes => {
             'associationId' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'associationId',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'ipv6CidrBlock' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'ipv6CidrBlock',
+                  'type' => 'string'
+                }
+              },
               'type' => Optional[String],
               'value' => undef
             },
             'ipv6CidrBlockState' => {
+              'annotations' => {
+                TagsAnnotation => {
+                  'locationName' => 'ipv6CidrBlockState',
+                  'type' => 'structure'
+                }
+              },
               'type' => Optional[VpcCidrBlockState],
               'value' => undef
             }

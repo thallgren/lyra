@@ -10,11 +10,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['domain_name', 'subject_alternative_names', 'validation_method'],
-          'providedAttributes' => ['aws_acm_certificate_id', 'arn', 'certificate_body', 'certificate_chain', 'domain_name', 'domain_validation_options', 'private_key', 'subject_alternative_names', 'tags', 'validation_emails', 'validation_method']
+          'providedAttributes' => ['arn', 'certificate_body', 'certificate_chain', 'domain_name', 'domain_validation_options', 'private_key', 'subject_alternative_names', 'tags', 'validation_emails', 'validation_method']
         }
       },
       attributes => {
         'aws_acm_certificate_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -62,10 +67,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_acm_certificateHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_acm_certificate], Tuple[Optional[Aws_acm_certificate]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_acm_certificate]],
-        'update' => Callable[String, Optional[Aws_acm_certificate]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_acm_certificate_domain_validation_options_1 => {
@@ -92,11 +103,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['certificate_arn', 'validation_record_fqdns'],
-          'providedAttributes' => ['aws_acm_certificate_validation_id', 'validation_record_fqdns']
+          'providedAttributes' => ['validation_record_fqdns']
         }
       },
       attributes => {
         'aws_acm_certificate_validation_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -109,20 +125,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_acm_certificate_validationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_acm_certificate_validation], Tuple[Optional[Aws_acm_certificate_validation]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_acm_certificate_validation]],
-        'update' => Callable[String, Optional[Aws_acm_certificate_validation]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_acmpca_certificate_authority => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_acmpca_certificate_authority_id', 'arn', 'certificate', 'certificate_chain', 'certificate_signing_request', 'enabled', 'not_after', 'not_before', 'revocation_configuration', 'serial', 'status', 'tags', 'type']
+          'providedAttributes' => ['arn', 'certificate', 'certificate_chain', 'certificate_signing_request', 'enabled', 'not_after', 'not_before', 'revocation_configuration', 'serial', 'status', 'tags', 'type']
         }
       },
       attributes => {
         'aws_acmpca_certificate_authority_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -179,10 +206,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_acmpca_certificate_authorityHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_acmpca_certificate_authority], Tuple[Optional[Aws_acmpca_certificate_authority]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_acmpca_certificate_authority]],
-        'update' => Callable[String, Optional[Aws_acmpca_certificate_authority]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_acmpca_certificate_authority_certificate_authority_configuration_2 => {
@@ -277,11 +310,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['internal', 'load_balancer_type', 'name', 'name_prefix', 'subnet_mapping'],
-          'providedAttributes' => ['aws_alb_id', 'access_logs', 'arn', 'arn_suffix', 'dns_name', 'enable_cross_zone_load_balancing', 'enable_deletion_protection', 'enable_http2', 'idle_timeout', 'internal', 'ip_address_type', 'load_balancer_type', 'name', 'name_prefix', 'security_groups', 'subnet_mapping', 'subnets', 'tags', 'vpc_id', 'zone_id']
+          'providedAttributes' => ['access_logs', 'arn', 'arn_suffix', 'dns_name', 'enable_cross_zone_load_balancing', 'enable_deletion_protection', 'enable_http2', 'idle_timeout', 'internal', 'ip_address_type', 'load_balancer_type', 'name', 'name_prefix', 'security_groups', 'subnet_mapping', 'subnets', 'tags', 'vpc_id', 'zone_id']
         }
       },
       attributes => {
         'aws_alb_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -365,10 +403,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_albHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_alb], Tuple[Optional[Aws_alb]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_alb]],
-        'update' => Callable[String, Optional[Aws_alb]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_alb_access_logs_6 => {
@@ -388,11 +432,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['load_balancer_arn'],
-          'providedAttributes' => ['aws_alb_listener_id', 'arn', 'certificate_arn', 'protocol', 'ssl_policy']
+          'providedAttributes' => ['arn', 'certificate_arn', 'protocol', 'ssl_policy']
         }
       },
       attributes => {
         'aws_alb_listener_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -419,21 +468,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_alb_listenerHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_alb_listener], Tuple[Optional[Aws_alb_listener]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_alb_listener]],
-        'update' => Callable[String, Optional[Aws_alb_listener]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_alb_listener_certificate => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['certificate_arn', 'listener_arn'],
-          'providedAttributes' => ['aws_alb_listener_certificate_id']
+          'immutableAttributes' => ['certificate_arn', 'listener_arn']
         }
       },
       attributes => {
         'aws_alb_listener_certificate_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -443,10 +502,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_alb_listener_certificateHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_alb_listener_certificate], Tuple[Optional[Aws_alb_listener_certificate]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_alb_listener_certificate]],
-        'update' => Callable[String, Optional[Aws_alb_listener_certificate]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_alb_listener_default_action_8 => {
@@ -577,11 +642,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['listener_arn', 'priority'],
-          'providedAttributes' => ['aws_alb_listener_rule_id', 'arn', 'priority']
+          'providedAttributes' => ['arn', 'priority']
         }
       },
       attributes => {
         'aws_alb_listener_rule_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -600,10 +670,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_alb_listener_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_alb_listener_rule], Tuple[Optional[Aws_alb_listener_rule]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_alb_listener_rule]],
-        'update' => Callable[String, Optional[Aws_alb_listener_rule]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_alb_listener_rule_action_13 => {
@@ -755,11 +831,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'name_prefix', 'port', 'protocol', 'target_type', 'vpc_id'],
-          'providedAttributes' => ['aws_alb_target_group_id', 'arn', 'arn_suffix', 'deregistration_delay', 'health_check', 'name', 'name_prefix', 'port', 'protocol', 'proxy_protocol_v2', 'slow_start', 'stickiness', 'tags', 'target_type', 'vpc_id']
+          'providedAttributes' => ['arn', 'arn_suffix', 'deregistration_delay', 'health_check', 'name', 'name_prefix', 'port', 'protocol', 'proxy_protocol_v2', 'slow_start', 'stickiness', 'tags', 'target_type', 'vpc_id']
         }
       },
       attributes => {
         'aws_alb_target_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -823,21 +904,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_alb_target_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_alb_target_group], Tuple[Optional[Aws_alb_target_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_alb_target_group]],
-        'update' => Callable[String, Optional[Aws_alb_target_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_alb_target_group_attachment => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['availability_zone', 'port', 'target_group_arn', 'target_id'],
-          'providedAttributes' => ['aws_alb_target_group_attachment_id', 'availability_zone', 'port']
+          'providedAttributes' => ['availability_zone', 'port']
         }
       },
       attributes => {
         'aws_alb_target_group_attachment_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -855,10 +947,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_alb_target_group_attachmentHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_alb_target_group_attachment], Tuple[Optional[Aws_alb_target_group_attachment]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_alb_target_group_attachment]],
-        'update' => Callable[String, Optional[Aws_alb_target_group_attachment]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_alb_target_group_health_check_19 => {
@@ -914,11 +1012,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['architecture', 'ena_support', 'ephemeral_block_device', 'image_location', 'kernel_id', 'manage_ebs_snapshots', 'name', 'ramdisk_id', 'root_device_name', 'sriov_net_support', 'virtualization_type'],
-          'providedAttributes' => ['aws_ami_id', 'architecture', 'description', 'ebs_block_device', 'ena_support', 'ephemeral_block_device', 'image_location', 'kernel_id', 'manage_ebs_snapshots', 'ramdisk_id', 'root_device_name', 'root_snapshot_id', 'sriov_net_support', 'tags', 'virtualization_type']
+          'providedAttributes' => ['architecture', 'description', 'ebs_block_device', 'ena_support', 'ephemeral_block_device', 'image_location', 'kernel_id', 'manage_ebs_snapshots', 'ramdisk_id', 'root_device_name', 'root_snapshot_id', 'sriov_net_support', 'tags', 'virtualization_type']
         }
       },
       attributes => {
         'aws_ami_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -983,21 +1086,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_amiHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ami], Tuple[Optional[Aws_ami]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ami]],
-        'update' => Callable[String, Optional[Aws_ami]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ami_copy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['encrypted', 'ephemeral_block_device', 'kms_key_id', 'manage_ebs_snapshots', 'name', 'source_ami_id', 'source_ami_region'],
-          'providedAttributes' => ['aws_ami_copy_id', 'architecture', 'description', 'ebs_block_device', 'ena_support', 'encrypted', 'ephemeral_block_device', 'image_location', 'kernel_id', 'kms_key_id', 'manage_ebs_snapshots', 'ramdisk_id', 'root_device_name', 'root_snapshot_id', 'sriov_net_support', 'tags', 'virtualization_type']
+          'providedAttributes' => ['architecture', 'description', 'ebs_block_device', 'ena_support', 'encrypted', 'ephemeral_block_device', 'image_location', 'kernel_id', 'kms_key_id', 'manage_ebs_snapshots', 'ramdisk_id', 'root_device_name', 'root_snapshot_id', 'sriov_net_support', 'tags', 'virtualization_type']
         }
       },
       attributes => {
         'aws_ami_copy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1072,10 +1186,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_ami_copyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ami_copy], Tuple[Optional[Aws_ami_copy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ami_copy]],
-        'update' => Callable[String, Optional[Aws_ami_copy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ami_copy_ebs_block_device_23 => {
@@ -1161,11 +1281,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['ephemeral_block_device', 'manage_ebs_snapshots', 'name', 'snapshot_without_reboot', 'source_instance_id'],
-          'providedAttributes' => ['aws_ami_from_instance_id', 'architecture', 'description', 'ebs_block_device', 'ena_support', 'ephemeral_block_device', 'image_location', 'kernel_id', 'manage_ebs_snapshots', 'ramdisk_id', 'root_device_name', 'root_snapshot_id', 'snapshot_without_reboot', 'sriov_net_support', 'tags', 'virtualization_type']
+          'providedAttributes' => ['architecture', 'description', 'ebs_block_device', 'ena_support', 'ephemeral_block_device', 'image_location', 'kernel_id', 'manage_ebs_snapshots', 'ramdisk_id', 'root_device_name', 'root_snapshot_id', 'snapshot_without_reboot', 'sriov_net_support', 'tags', 'virtualization_type']
         }
       },
       attributes => {
         'aws_ami_from_instance_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1235,10 +1360,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_ami_from_instanceHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ami_from_instance], Tuple[Optional[Aws_ami_from_instance]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ami_from_instance]],
-        'update' => Callable[String, Optional[Aws_ami_from_instance]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ami_from_instance_ebs_block_device_25 => {
@@ -1288,12 +1419,16 @@ type TerraformAws = TypeSet[{
     Aws_ami_launch_permission => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['account_id', 'image_id'],
-          'providedAttributes' => ['aws_ami_launch_permission_id']
+          'immutableAttributes' => ['account_id', 'image_id']
         }
       },
       attributes => {
         'aws_ami_launch_permission_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1303,20 +1438,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_ami_launch_permissionHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ami_launch_permission], Tuple[Optional[Aws_ami_launch_permission]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ami_launch_permission]],
-        'update' => Callable[String, Optional[Aws_ami_launch_permission]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_api_gateway_account => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_api_gateway_account_id', 'cloudwatch_role_arn', 'throttle_settings']
+          'providedAttributes' => ['cloudwatch_role_arn', 'throttle_settings']
         }
       },
       attributes => {
         'aws_api_gateway_account_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1332,10 +1478,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_accountHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_api_gateway_account], Tuple[Optional[Aws_api_gateway_account]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_api_gateway_account]],
-        'update' => Callable[String, Optional[Aws_api_gateway_account]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_api_gateway_account_throttle_settings_27 => {
@@ -1354,11 +1506,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'value'],
-          'providedAttributes' => ['aws_api_gateway_api_key_id', 'created_date', 'description', 'enabled', 'last_updated_date', 'stage_key', 'value']
+          'providedAttributes' => ['created_date', 'description', 'enabled', 'last_updated_date', 'stage_key', 'value']
         }
       },
       attributes => {
         'aws_api_gateway_api_key_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1391,10 +1548,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_api_keyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_api_gateway_api_key], Tuple[Optional[Aws_api_gateway_api_key]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_api_gateway_api_key]],
-        'update' => Callable[String, Optional[Aws_api_gateway_api_key]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_api_gateway_api_key_stage_key_28 => {
@@ -1407,11 +1570,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['rest_api_id'],
-          'providedAttributes' => ['aws_api_gateway_authorizer_id', 'authorizer_credentials', 'authorizer_result_ttl_in_seconds', 'authorizer_uri', 'identity_source', 'identity_validation_expression', 'provider_arns', 'type']
+          'providedAttributes' => ['authorizer_credentials', 'authorizer_result_ttl_in_seconds', 'authorizer_uri', 'identity_source', 'identity_validation_expression', 'provider_arns', 'type']
         }
       },
       attributes => {
         'aws_api_gateway_authorizer_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1449,21 +1617,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_authorizerHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_api_gateway_authorizer], Tuple[Optional[Aws_api_gateway_authorizer]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_api_gateway_authorizer]],
-        'update' => Callable[String, Optional[Aws_api_gateway_authorizer]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_api_gateway_base_path_mapping => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['api_id', 'base_path', 'domain_name', 'stage_name'],
-          'providedAttributes' => ['aws_api_gateway_base_path_mapping_id', 'base_path', 'stage_name']
+          'providedAttributes' => ['base_path', 'stage_name']
         }
       },
       attributes => {
         'aws_api_gateway_base_path_mapping_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1481,20 +1660,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_base_path_mappingHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_api_gateway_base_path_mapping], Tuple[Optional[Aws_api_gateway_base_path_mapping]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_api_gateway_base_path_mapping]],
-        'update' => Callable[String, Optional[Aws_api_gateway_base_path_mapping]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_api_gateway_client_certificate => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_api_gateway_client_certificate_id', 'created_date', 'description', 'expiration_date', 'pem_encoded_certificate']
+          'providedAttributes' => ['created_date', 'description', 'expiration_date', 'pem_encoded_certificate']
         }
       },
       attributes => {
         'aws_api_gateway_client_certificate_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1518,21 +1708,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_client_certificateHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_api_gateway_client_certificate], Tuple[Optional[Aws_api_gateway_client_certificate]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_api_gateway_client_certificate]],
-        'update' => Callable[String, Optional[Aws_api_gateway_client_certificate]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_api_gateway_deployment => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['rest_api_id', 'stage_description', 'stage_name', 'variables'],
-          'providedAttributes' => ['aws_api_gateway_deployment_id', 'created_date', 'description', 'execution_arn', 'invoke_url', 'stage_description', 'variables']
+          'providedAttributes' => ['created_date', 'description', 'execution_arn', 'invoke_url', 'stage_description', 'variables']
         }
       },
       attributes => {
         'aws_api_gateway_deployment_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1566,21 +1767,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_deploymentHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_api_gateway_deployment], Tuple[Optional[Aws_api_gateway_deployment]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_api_gateway_deployment]],
-        'update' => Callable[String, Optional[Aws_api_gateway_deployment]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_api_gateway_documentation_part => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['location', 'rest_api_id'],
-          'providedAttributes' => ['aws_api_gateway_documentation_part_id']
+          'immutableAttributes' => ['location', 'rest_api_id']
         }
       },
       attributes => {
         'aws_api_gateway_documentation_part_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1591,10 +1802,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_documentation_partHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_api_gateway_documentation_part], Tuple[Optional[Aws_api_gateway_documentation_part]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_api_gateway_documentation_part]],
-        'update' => Callable[String, Optional[Aws_api_gateway_documentation_part]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_api_gateway_documentation_part_location_29 => {
@@ -1622,11 +1839,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['rest_api_id', 'version'],
-          'providedAttributes' => ['aws_api_gateway_documentation_version_id', 'description']
+          'providedAttributes' => ['description']
         }
       },
       attributes => {
         'aws_api_gateway_documentation_version_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1640,21 +1862,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_documentation_versionHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_api_gateway_documentation_version], Tuple[Optional[Aws_api_gateway_documentation_version]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_api_gateway_documentation_version]],
-        'update' => Callable[String, Optional[Aws_api_gateway_documentation_version]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_api_gateway_domain_name => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['certificate_body', 'certificate_chain', 'certificate_private_key', 'domain_name'],
-          'providedAttributes' => ['aws_api_gateway_domain_name_id', 'certificate_arn', 'certificate_body', 'certificate_chain', 'certificate_name', 'certificate_private_key', 'certificate_upload_date', 'cloudfront_domain_name', 'cloudfront_zone_id', 'endpoint_configuration', 'regional_certificate_arn', 'regional_certificate_name', 'regional_domain_name', 'regional_zone_id']
+          'providedAttributes' => ['certificate_arn', 'certificate_body', 'certificate_chain', 'certificate_name', 'certificate_private_key', 'certificate_upload_date', 'cloudfront_domain_name', 'cloudfront_zone_id', 'endpoint_configuration', 'regional_certificate_arn', 'regional_certificate_name', 'regional_domain_name', 'regional_zone_id']
         }
       },
       attributes => {
         'aws_api_gateway_domain_name_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1715,10 +1948,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_domain_nameHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_api_gateway_domain_name], Tuple[Optional[Aws_api_gateway_domain_name]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_api_gateway_domain_name]],
-        'update' => Callable[String, Optional[Aws_api_gateway_domain_name]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_api_gateway_domain_name_endpoint_configuration_30 => {
@@ -1730,11 +1969,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['response_type', 'rest_api_id'],
-          'providedAttributes' => ['aws_api_gateway_gateway_response_id', 'response_parameters', 'response_templates', 'status_code']
+          'providedAttributes' => ['response_parameters', 'response_templates', 'status_code']
         }
       },
       attributes => {
         'aws_api_gateway_gateway_response_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1756,21 +2000,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_gateway_responseHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_api_gateway_gateway_response], Tuple[Optional[Aws_api_gateway_gateway_response]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_api_gateway_gateway_response]],
-        'update' => Callable[String, Optional[Aws_api_gateway_gateway_response]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_api_gateway_integration => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['credentials', 'http_method', 'integration_http_method', 'passthrough_behavior', 'resource_id', 'rest_api_id', 'type'],
-          'providedAttributes' => ['aws_api_gateway_integration_id', 'cache_key_parameters', 'cache_namespace', 'connection_id', 'connection_type', 'content_handling', 'credentials', 'integration_http_method', 'passthrough_behavior', 'request_parameters', 'request_parameters_in_json', 'request_templates', 'timeout_milliseconds', 'uri']
+          'providedAttributes' => ['cache_key_parameters', 'cache_namespace', 'connection_id', 'connection_type', 'content_handling', 'credentials', 'integration_http_method', 'passthrough_behavior', 'request_parameters', 'request_parameters_in_json', 'request_templates', 'timeout_milliseconds', 'uri']
         }
       },
       attributes => {
         'aws_api_gateway_integration_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1834,21 +2089,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_integrationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_api_gateway_integration], Tuple[Optional[Aws_api_gateway_integration]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_api_gateway_integration]],
-        'update' => Callable[String, Optional[Aws_api_gateway_integration]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_api_gateway_integration_response => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['http_method', 'resource_id', 'rest_api_id'],
-          'providedAttributes' => ['aws_api_gateway_integration_response_id', 'content_handling', 'response_parameters', 'response_parameters_in_json', 'response_templates', 'selection_pattern']
+          'providedAttributes' => ['content_handling', 'response_parameters', 'response_parameters_in_json', 'response_templates', 'selection_pattern']
         }
       },
       attributes => {
         'aws_api_gateway_integration_response_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1880,21 +2146,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_integration_responseHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_api_gateway_integration_response], Tuple[Optional[Aws_api_gateway_integration_response]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_api_gateway_integration_response]],
-        'update' => Callable[String, Optional[Aws_api_gateway_integration_response]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_api_gateway_method => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['http_method', 'resource_id', 'rest_api_id'],
-          'providedAttributes' => ['aws_api_gateway_method_id', 'api_key_required', 'authorization_scopes', 'authorizer_id', 'request_models', 'request_parameters', 'request_parameters_in_json', 'request_validator_id']
+          'providedAttributes' => ['api_key_required', 'authorization_scopes', 'authorizer_id', 'request_models', 'request_parameters', 'request_parameters_in_json', 'request_validator_id']
         }
       },
       attributes => {
         'aws_api_gateway_method_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1934,21 +2211,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_methodHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_api_gateway_method], Tuple[Optional[Aws_api_gateway_method]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_api_gateway_method]],
-        'update' => Callable[String, Optional[Aws_api_gateway_method]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_api_gateway_method_response => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['http_method', 'resource_id', 'rest_api_id'],
-          'providedAttributes' => ['aws_api_gateway_method_response_id', 'response_models', 'response_parameters', 'response_parameters_in_json']
+          'providedAttributes' => ['response_models', 'response_parameters', 'response_parameters_in_json']
         }
       },
       attributes => {
         'aws_api_gateway_method_response_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1972,21 +2260,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_method_responseHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_api_gateway_method_response], Tuple[Optional[Aws_api_gateway_method_response]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_api_gateway_method_response]],
-        'update' => Callable[String, Optional[Aws_api_gateway_method_response]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_api_gateway_method_settings => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['method_path', 'rest_api_id', 'stage_name'],
-          'providedAttributes' => ['aws_api_gateway_method_settings_id']
+          'immutableAttributes' => ['method_path', 'rest_api_id', 'stage_name']
         }
       },
       attributes => {
         'aws_api_gateway_method_settings_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1998,10 +2296,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_method_settingsHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_api_gateway_method_settings], Tuple[Optional[Aws_api_gateway_method_settings]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_api_gateway_method_settings]],
-        'update' => Callable[String, Optional[Aws_api_gateway_method_settings]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_api_gateway_method_settings_settings_31 => {
@@ -2052,11 +2356,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['content_type', 'name', 'rest_api_id'],
-          'providedAttributes' => ['aws_api_gateway_model_id', 'description', 'schema']
+          'providedAttributes' => ['description', 'schema']
         }
       },
       attributes => {
         'aws_api_gateway_model_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2075,21 +2384,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_modelHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_api_gateway_model], Tuple[Optional[Aws_api_gateway_model]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_api_gateway_model]],
-        'update' => Callable[String, Optional[Aws_api_gateway_model]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_api_gateway_request_validator => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['rest_api_id'],
-          'providedAttributes' => ['aws_api_gateway_request_validator_id', 'validate_request_body', 'validate_request_parameters']
+          'providedAttributes' => ['validate_request_body', 'validate_request_parameters']
         }
       },
       attributes => {
         'aws_api_gateway_request_validator_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2107,21 +2427,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_request_validatorHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_api_gateway_request_validator], Tuple[Optional[Aws_api_gateway_request_validator]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_api_gateway_request_validator]],
-        'update' => Callable[String, Optional[Aws_api_gateway_request_validator]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_api_gateway_resource => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['rest_api_id'],
-          'providedAttributes' => ['aws_api_gateway_resource_id', 'path']
+          'providedAttributes' => ['path']
         }
       },
       attributes => {
         'aws_api_gateway_resource_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2136,20 +2467,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_resourceHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_api_gateway_resource], Tuple[Optional[Aws_api_gateway_resource]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_api_gateway_resource]],
-        'update' => Callable[String, Optional[Aws_api_gateway_resource]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_api_gateway_rest_api => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_api_gateway_rest_api_id', 'api_key_source', 'binary_media_types', 'body', 'created_date', 'description', 'endpoint_configuration', 'execution_arn', 'minimum_compression_size', 'policy', 'root_resource_id']
+          'providedAttributes' => ['api_key_source', 'binary_media_types', 'body', 'created_date', 'description', 'endpoint_configuration', 'execution_arn', 'minimum_compression_size', 'policy', 'root_resource_id']
         }
       },
       attributes => {
         'aws_api_gateway_rest_api_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2198,10 +2540,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_rest_apiHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_api_gateway_rest_api], Tuple[Optional[Aws_api_gateway_rest_api]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_api_gateway_rest_api]],
-        'update' => Callable[String, Optional[Aws_api_gateway_rest_api]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_api_gateway_rest_api_endpoint_configuration_32 => {
@@ -2213,11 +2561,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['rest_api_id', 'stage_name'],
-          'providedAttributes' => ['aws_api_gateway_stage_id', 'access_log_settings', 'cache_cluster_enabled', 'cache_cluster_size', 'client_certificate_id', 'description', 'documentation_version', 'execution_arn', 'invoke_url', 'tags', 'variables', 'xray_tracing_enabled']
+          'providedAttributes' => ['access_log_settings', 'cache_cluster_enabled', 'cache_cluster_size', 'client_certificate_id', 'description', 'documentation_version', 'execution_arn', 'invoke_url', 'tags', 'variables', 'xray_tracing_enabled']
         }
       },
       attributes => {
         'aws_api_gateway_stage_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2272,10 +2625,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_stageHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_api_gateway_stage], Tuple[Optional[Aws_api_gateway_stage]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_api_gateway_stage]],
-        'update' => Callable[String, Optional[Aws_api_gateway_stage]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_api_gateway_stage_access_log_settings_33 => {
@@ -2287,11 +2646,16 @@ type TerraformAws = TypeSet[{
     Aws_api_gateway_usage_plan => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_api_gateway_usage_plan_id', 'api_stages', 'description', 'product_code', 'quota_settings', 'throttle_settings']
+          'providedAttributes' => ['api_stages', 'description', 'product_code', 'quota_settings', 'throttle_settings']
         }
       },
       attributes => {
         'aws_api_gateway_usage_plan_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2320,10 +2684,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_usage_planHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_api_gateway_usage_plan], Tuple[Optional[Aws_api_gateway_usage_plan]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_api_gateway_usage_plan]],
-        'update' => Callable[String, Optional[Aws_api_gateway_usage_plan]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_api_gateway_usage_plan_api_stages_34 => {
@@ -2336,11 +2706,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['key_id', 'key_type', 'usage_plan_id'],
-          'providedAttributes' => ['aws_api_gateway_usage_plan_key_id', 'name', 'value']
+          'providedAttributes' => ['name', 'value']
         }
       },
       attributes => {
         'aws_api_gateway_usage_plan_key_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2359,10 +2734,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_usage_plan_keyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_api_gateway_usage_plan_key], Tuple[Optional[Aws_api_gateway_usage_plan_key]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_api_gateway_usage_plan_key]],
-        'update' => Callable[String, Optional[Aws_api_gateway_usage_plan_key]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_api_gateway_usage_plan_quota_settings_35 => {
@@ -2391,11 +2772,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['target_arns'],
-          'providedAttributes' => ['aws_api_gateway_vpc_link_id', 'description']
+          'providedAttributes' => ['description']
         }
       },
       attributes => {
         'aws_api_gateway_vpc_link_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2409,21 +2795,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_api_gateway_vpc_linkHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_api_gateway_vpc_link], Tuple[Optional[Aws_api_gateway_vpc_link]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_api_gateway_vpc_link]],
-        'update' => Callable[String, Optional[Aws_api_gateway_vpc_link]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_app_cookie_stickiness_policy => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['cookie_name', 'lb_port', 'load_balancer', 'name'],
-          'providedAttributes' => ['aws_app_cookie_stickiness_policy_id']
+          'immutableAttributes' => ['cookie_name', 'lb_port', 'load_balancer', 'name']
         }
       },
       attributes => {
         'aws_app_cookie_stickiness_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2435,21 +2831,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_app_cookie_stickiness_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_app_cookie_stickiness_policy], Tuple[Optional[Aws_app_cookie_stickiness_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_app_cookie_stickiness_policy]],
-        'update' => Callable[String, Optional[Aws_app_cookie_stickiness_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_appautoscaling_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['alarms', 'name', 'scalable_dimension', 'service_namespace'],
-          'providedAttributes' => ['aws_appautoscaling_policy_id', 'adjustment_type', 'alarms', 'arn', 'cooldown', 'metric_aggregation_type', 'min_adjustment_magnitude', 'policy_type', 'step_adjustment', 'step_scaling_policy_configuration', 'target_tracking_scaling_policy_configuration']
+          'providedAttributes' => ['adjustment_type', 'alarms', 'arn', 'cooldown', 'metric_aggregation_type', 'min_adjustment_magnitude', 'policy_type', 'step_adjustment', 'step_scaling_policy_configuration', 'target_tracking_scaling_policy_configuration']
         }
       },
       attributes => {
         'aws_appautoscaling_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2501,10 +2908,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_appautoscaling_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_appautoscaling_policy], Tuple[Optional[Aws_appautoscaling_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_appautoscaling_policy]],
-        'update' => Callable[String, Optional[Aws_appautoscaling_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_appautoscaling_policy_step_adjustment_37 => {
@@ -2616,11 +3029,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['end_time', 'name', 'resource_id', 'scalable_dimension', 'scalable_target_action', 'schedule', 'service_namespace', 'start_time'],
-          'providedAttributes' => ['aws_appautoscaling_scheduled_action_id', 'arn', 'end_time', 'scalable_dimension', 'scalable_target_action', 'schedule', 'start_time']
+          'providedAttributes' => ['arn', 'end_time', 'scalable_dimension', 'scalable_target_action', 'schedule', 'start_time']
         }
       },
       attributes => {
         'aws_appautoscaling_scheduled_action_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2655,10 +3073,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_appautoscaling_scheduled_actionHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_appautoscaling_scheduled_action], Tuple[Optional[Aws_appautoscaling_scheduled_action]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_appautoscaling_scheduled_action]],
-        'update' => Callable[String, Optional[Aws_appautoscaling_scheduled_action]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_appautoscaling_scheduled_action_scalable_target_action_44 => {
@@ -2677,11 +3101,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['resource_id', 'scalable_dimension', 'service_namespace'],
-          'providedAttributes' => ['aws_appautoscaling_target_id', 'role_arn']
+          'providedAttributes' => ['role_arn']
         }
       },
       attributes => {
         'aws_appautoscaling_target_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2698,21 +3127,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_appautoscaling_targetHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_appautoscaling_target], Tuple[Optional[Aws_appautoscaling_target]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_appautoscaling_target]],
-        'update' => Callable[String, Optional[Aws_appautoscaling_target]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_appmesh_mesh => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_appmesh_mesh_id', 'arn', 'created_date', 'last_updated_date']
+          'providedAttributes' => ['arn', 'created_date', 'last_updated_date']
         }
       },
       attributes => {
         'aws_appmesh_mesh_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2733,21 +3173,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_appmesh_meshHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_appmesh_mesh], Tuple[Optional[Aws_appmesh_mesh]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_appmesh_mesh]],
-        'update' => Callable[String, Optional[Aws_appmesh_mesh]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_appmesh_route => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['mesh_name', 'name', 'virtual_router_name'],
-          'providedAttributes' => ['aws_appmesh_route_id', 'arn', 'created_date', 'last_updated_date']
+          'providedAttributes' => ['arn', 'created_date', 'last_updated_date']
         }
       },
       attributes => {
         'aws_appmesh_route_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2771,10 +3222,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_appmesh_routeHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_appmesh_route], Tuple[Optional[Aws_appmesh_route]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_appmesh_route]],
-        'update' => Callable[String, Optional[Aws_appmesh_route]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_appmesh_route_spec_45 => {
@@ -2811,11 +3268,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['mesh_name', 'name'],
-          'providedAttributes' => ['aws_appmesh_virtual_node_id', 'arn', 'created_date', 'last_updated_date']
+          'providedAttributes' => ['arn', 'created_date', 'last_updated_date']
         }
       },
       attributes => {
         'aws_appmesh_virtual_node_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2838,10 +3300,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_appmesh_virtual_nodeHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_appmesh_virtual_node], Tuple[Optional[Aws_appmesh_virtual_node]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_appmesh_virtual_node]],
-        'update' => Callable[String, Optional[Aws_appmesh_virtual_node]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_appmesh_virtual_node_spec_50 => {
@@ -2885,11 +3353,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['mesh_name', 'name'],
-          'providedAttributes' => ['aws_appmesh_virtual_router_id', 'arn', 'created_date', 'last_updated_date']
+          'providedAttributes' => ['arn', 'created_date', 'last_updated_date']
         }
       },
       attributes => {
         'aws_appmesh_virtual_router_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2912,10 +3385,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_appmesh_virtual_routerHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_appmesh_virtual_router], Tuple[Optional[Aws_appmesh_virtual_router]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_appmesh_virtual_router]],
-        'update' => Callable[String, Optional[Aws_appmesh_virtual_router]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_appmesh_virtual_router_spec_55 => {
@@ -2926,11 +3405,16 @@ type TerraformAws = TypeSet[{
     Aws_appsync_api_key => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_appsync_api_key_id', 'description', 'expires', 'key']
+          'providedAttributes' => ['description', 'expires', 'key']
         }
       },
       attributes => {
         'aws_appsync_api_key_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2951,20 +3435,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_appsync_api_keyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_appsync_api_key], Tuple[Optional[Aws_appsync_api_key]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_appsync_api_key]],
-        'update' => Callable[String, Optional[Aws_appsync_api_key]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_appsync_datasource => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_appsync_datasource_id', 'arn', 'description', 'dynamodb_config', 'elasticsearch_config', 'http_config', 'lambda_config', 'service_role_arn']
+          'providedAttributes' => ['arn', 'description', 'dynamodb_config', 'elasticsearch_config', 'http_config', 'lambda_config', 'service_role_arn']
         }
       },
       attributes => {
         'aws_appsync_datasource_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -3003,10 +3498,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_appsync_datasourceHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_appsync_datasource], Tuple[Optional[Aws_appsync_datasource]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_appsync_datasource]],
-        'update' => Callable[String, Optional[Aws_appsync_datasource]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_appsync_datasource_dynamodb_config_56 => {
@@ -3044,11 +3545,16 @@ type TerraformAws = TypeSet[{
     Aws_appsync_graphql_api => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_appsync_graphql_api_id', 'arn', 'log_config', 'openid_connect_config', 'uris', 'user_pool_config']
+          'providedAttributes' => ['arn', 'log_config', 'openid_connect_config', 'uris', 'user_pool_config']
         }
       },
       attributes => {
         'aws_appsync_graphql_api_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -3078,10 +3584,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_appsync_graphql_apiHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_appsync_graphql_api], Tuple[Optional[Aws_appsync_graphql_api]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_appsync_graphql_api]],
-        'update' => Callable[String, Optional[Aws_appsync_graphql_api]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_appsync_graphql_api_log_config_60 => {
@@ -3125,11 +3637,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bucket', 'name'],
-          'providedAttributes' => ['aws_athena_database_id', 'encryption_configuration', 'force_destroy']
+          'providedAttributes' => ['encryption_configuration', 'force_destroy']
         }
       },
       attributes => {
         'aws_athena_database_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -3147,10 +3664,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_athena_databaseHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_athena_database], Tuple[Optional[Aws_athena_database]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_athena_database]],
-        'update' => Callable[String, Optional[Aws_athena_database]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_athena_database_encryption_configuration_63 => {
@@ -3166,11 +3689,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['database', 'description', 'name', 'query'],
-          'providedAttributes' => ['aws_athena_named_query_id', 'description']
+          'providedAttributes' => ['description']
         }
       },
       attributes => {
         'aws_athena_named_query_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -3185,21 +3713,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_athena_named_queryHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_athena_named_query], Tuple[Optional[Aws_athena_named_query]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_athena_named_query]],
-        'update' => Callable[String, Optional[Aws_athena_named_query]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_autoscaling_attachment => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['alb_target_group_arn', 'autoscaling_group_name', 'elb'],
-          'providedAttributes' => ['aws_autoscaling_attachment_id', 'alb_target_group_arn', 'elb']
+          'providedAttributes' => ['alb_target_group_arn', 'elb']
         }
       },
       attributes => {
         'aws_autoscaling_attachment_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -3216,21 +3755,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_autoscaling_attachmentHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_autoscaling_attachment], Tuple[Optional[Aws_autoscaling_attachment]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_autoscaling_attachment]],
-        'update' => Callable[String, Optional[Aws_autoscaling_attachment]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_autoscaling_group => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'name_prefix'],
-          'providedAttributes' => ['aws_autoscaling_group_id', 'arn', 'availability_zones', 'default_cooldown', 'desired_capacity', 'enabled_metrics', 'force_delete', 'health_check_grace_period', 'health_check_type', 'initial_lifecycle_hook', 'launch_configuration', 'launch_template', 'load_balancers', 'metrics_granularity', 'min_elb_capacity', 'mixed_instances_policy', 'name', 'name_prefix', 'placement_group', 'protect_from_scale_in', 'service_linked_role_arn', 'suspended_processes', 'tag', 'tags', 'target_group_arns', 'termination_policies', 'vpc_zone_identifier', 'wait_for_capacity_timeout', 'wait_for_elb_capacity']
+          'providedAttributes' => ['arn', 'availability_zones', 'default_cooldown', 'desired_capacity', 'enabled_metrics', 'force_delete', 'health_check_grace_period', 'health_check_type', 'initial_lifecycle_hook', 'launch_configuration', 'launch_template', 'load_balancers', 'metrics_granularity', 'min_elb_capacity', 'mixed_instances_policy', 'name', 'name_prefix', 'placement_group', 'protect_from_scale_in', 'service_linked_role_arn', 'suspended_processes', 'tag', 'tags', 'target_group_arns', 'termination_policies', 'vpc_zone_identifier', 'wait_for_capacity_timeout', 'wait_for_elb_capacity']
         }
       },
       attributes => {
         'aws_autoscaling_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -3352,10 +3902,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_autoscaling_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_autoscaling_group], Tuple[Optional[Aws_autoscaling_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_autoscaling_group]],
-        'update' => Callable[String, Optional[Aws_autoscaling_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_autoscaling_group_initial_lifecycle_hook_64 => {
@@ -3481,11 +4037,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_autoscaling_lifecycle_hook_id', 'default_result', 'heartbeat_timeout', 'notification_metadata', 'notification_target_arn', 'role_arn']
+          'providedAttributes' => ['default_result', 'heartbeat_timeout', 'notification_metadata', 'notification_target_arn', 'role_arn']
         }
       },
       attributes => {
         'aws_autoscaling_lifecycle_hook_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -3516,21 +4077,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_autoscaling_lifecycle_hookHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_autoscaling_lifecycle_hook], Tuple[Optional[Aws_autoscaling_lifecycle_hook]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_autoscaling_lifecycle_hook]],
-        'update' => Callable[String, Optional[Aws_autoscaling_lifecycle_hook]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_autoscaling_notification => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['topic_arn'],
-          'providedAttributes' => ['aws_autoscaling_notification_id']
+          'immutableAttributes' => ['topic_arn']
         }
       },
       attributes => {
         'aws_autoscaling_notification_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -3541,21 +4112,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_autoscaling_notificationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_autoscaling_notification], Tuple[Optional[Aws_autoscaling_notification]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_autoscaling_notification]],
-        'update' => Callable[String, Optional[Aws_autoscaling_notification]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_autoscaling_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['autoscaling_group_name', 'name'],
-          'providedAttributes' => ['aws_autoscaling_policy_id', 'adjustment_type', 'arn', 'cooldown', 'estimated_instance_warmup', 'metric_aggregation_type', 'min_adjustment_magnitude', 'min_adjustment_step', 'policy_type', 'scaling_adjustment', 'step_adjustment', 'target_tracking_configuration']
+          'providedAttributes' => ['adjustment_type', 'arn', 'cooldown', 'estimated_instance_warmup', 'metric_aggregation_type', 'min_adjustment_magnitude', 'min_adjustment_step', 'policy_type', 'scaling_adjustment', 'step_adjustment', 'target_tracking_configuration']
         }
       },
       attributes => {
         'aws_autoscaling_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -3609,10 +4191,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_autoscaling_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_autoscaling_policy], Tuple[Optional[Aws_autoscaling_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_autoscaling_policy]],
-        'update' => Callable[String, Optional[Aws_autoscaling_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_autoscaling_policy_step_adjustment_72 => {
@@ -3679,11 +4267,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['autoscaling_group_name', 'scheduled_action_name'],
-          'providedAttributes' => ['aws_autoscaling_schedule_id', 'arn', 'desired_capacity', 'end_time', 'max_size', 'min_size', 'recurrence', 'start_time']
+          'providedAttributes' => ['arn', 'desired_capacity', 'end_time', 'max_size', 'min_size', 'recurrence', 'start_time']
         }
       },
       attributes => {
         'aws_autoscaling_schedule_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -3721,21 +4314,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_autoscaling_scheduleHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_autoscaling_schedule], Tuple[Optional[Aws_autoscaling_schedule]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_autoscaling_schedule]],
-        'update' => Callable[String, Optional[Aws_autoscaling_schedule]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_batch_compute_environment => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['compute_environment_name', 'type'],
-          'providedAttributes' => ['aws_batch_compute_environment_id', 'arn', 'compute_resources', 'ecc_cluster_arn', 'ecs_cluster_arn', 'state', 'status', 'status_reason']
+          'providedAttributes' => ['arn', 'compute_resources', 'ecc_cluster_arn', 'ecs_cluster_arn', 'state', 'status', 'status_reason']
         }
       },
       attributes => {
         'aws_batch_compute_environment_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -3774,10 +4378,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_batch_compute_environmentHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_batch_compute_environment], Tuple[Optional[Aws_batch_compute_environment]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_batch_compute_environment]],
-        'update' => Callable[String, Optional[Aws_batch_compute_environment]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_batch_compute_environment_compute_resources_77 => {
@@ -3819,11 +4429,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['container_properties', 'name', 'parameters', 'retry_strategy', 'timeout', 'type'],
-          'providedAttributes' => ['aws_batch_job_definition_id', 'arn', 'container_properties', 'parameters', 'retry_strategy', 'revision', 'timeout']
+          'providedAttributes' => ['arn', 'container_properties', 'parameters', 'retry_strategy', 'revision', 'timeout']
         }
       },
       attributes => {
         'aws_batch_job_definition_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -3857,10 +4472,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_batch_job_definitionHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_batch_job_definition], Tuple[Optional[Aws_batch_job_definition]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_batch_job_definition]],
-        'update' => Callable[String, Optional[Aws_batch_job_definition]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_batch_job_definition_retry_strategy_78 => {
@@ -3882,11 +4503,16 @@ type TerraformAws = TypeSet[{
     Aws_batch_job_queue => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_batch_job_queue_id', 'arn']
+          'providedAttributes' => ['arn']
         }
       },
       attributes => {
         'aws_batch_job_queue_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -3902,21 +4528,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_batch_job_queueHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_batch_job_queue], Tuple[Optional[Aws_batch_job_queue]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_batch_job_queue]],
-        'update' => Callable[String, Optional[Aws_batch_job_queue]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_budgets_budget => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['account_id', 'name', 'name_prefix'],
-          'providedAttributes' => ['aws_budgets_budget_id', 'account_id', 'cost_filters', 'cost_types', 'name', 'name_prefix', 'time_period_end']
+          'providedAttributes' => ['account_id', 'cost_filters', 'cost_types', 'name', 'name_prefix', 'time_period_end']
         }
       },
       attributes => {
         'aws_budgets_budget_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -3953,10 +4590,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_budgets_budgetHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_budgets_budget], Tuple[Optional[Aws_budgets_budget]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_budgets_budget]],
-        'update' => Callable[String, Optional[Aws_budgets_budget]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_budgets_budget_cost_types_80 => {
@@ -4011,11 +4654,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['automatic_stop_time_minutes', 'instance_type', 'owner_arn', 'subnet_id'],
-          'providedAttributes' => ['aws_cloud9_environment_ec2_id', 'arn', 'automatic_stop_time_minutes', 'description', 'owner_arn', 'subnet_id', 'type']
+          'providedAttributes' => ['arn', 'automatic_stop_time_minutes', 'description', 'owner_arn', 'subnet_id', 'type']
         }
       },
       attributes => {
         'aws_cloud9_environment_ec2_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -4049,21 +4697,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloud9_environment_ec2Handler => {
       functions => {
-        'create' => Callable[Optional[Aws_cloud9_environment_ec2], Tuple[Optional[Aws_cloud9_environment_ec2]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cloud9_environment_ec2]],
-        'update' => Callable[String, Optional[Aws_cloud9_environment_ec2]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_cloudformation_stack => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['disable_rollback', 'name', 'on_failure', 'timeout_in_minutes'],
-          'providedAttributes' => ['aws_cloudformation_stack_id', 'capabilities', 'disable_rollback', 'iam_role_arn', 'notification_arns', 'on_failure', 'outputs', 'parameters', 'policy_body', 'policy_url', 'tags', 'template_body', 'template_url', 'timeout_in_minutes']
+          'providedAttributes' => ['capabilities', 'disable_rollback', 'iam_role_arn', 'notification_arns', 'on_failure', 'outputs', 'parameters', 'policy_body', 'policy_url', 'tags', 'template_body', 'template_url', 'timeout_in_minutes']
         }
       },
       attributes => {
         'aws_cloudformation_stack_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -4124,20 +4783,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudformation_stackHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_cloudformation_stack], Tuple[Optional[Aws_cloudformation_stack]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cloudformation_stack]],
-        'update' => Callable[String, Optional[Aws_cloudformation_stack]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_cloudfront_distribution => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_cloudfront_distribution_id', 'active_trusted_signers', 'aliases', 'arn', 'cache_behavior', 'caller_reference', 'comment', 'custom_error_response', 'default_root_object', 'domain_name', 'etag', 'hosted_zone_id', 'http_version', 'in_progress_validation_batches', 'is_ipv6_enabled', 'last_modified_time', 'logging_config', 'ordered_cache_behavior', 'price_class', 'retain_on_delete', 'status', 'tags', 'web_acl_id']
+          'providedAttributes' => ['active_trusted_signers', 'aliases', 'arn', 'cache_behavior', 'caller_reference', 'comment', 'custom_error_response', 'default_root_object', 'domain_name', 'etag', 'hosted_zone_id', 'http_version', 'in_progress_validation_batches', 'is_ipv6_enabled', 'last_modified_time', 'logging_config', 'ordered_cache_behavior', 'price_class', 'retain_on_delete', 'status', 'tags', 'web_acl_id']
         }
       },
       attributes => {
         'aws_cloudfront_distribution_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -4238,10 +4908,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudfront_distributionHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_cloudfront_distribution], Tuple[Optional[Aws_cloudfront_distribution]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cloudfront_distribution]],
-        'update' => Callable[String, Optional[Aws_cloudfront_distribution]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_cloudfront_distribution_cache_behavior_81 => {
@@ -4588,11 +5264,16 @@ type TerraformAws = TypeSet[{
     Aws_cloudfront_origin_access_identity => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_cloudfront_origin_access_identity_id', 'caller_reference', 'cloudfront_access_identity_path', 'comment', 'etag', 'iam_arn', 's3_canonical_user_id']
+          'providedAttributes' => ['caller_reference', 'cloudfront_access_identity_path', 'comment', 'etag', 'iam_arn', 's3_canonical_user_id']
         }
       },
       attributes => {
         'aws_cloudfront_origin_access_identity_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -4624,21 +5305,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudfront_origin_access_identityHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_cloudfront_origin_access_identity], Tuple[Optional[Aws_cloudfront_origin_access_identity]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cloudfront_origin_access_identity]],
-        'update' => Callable[String, Optional[Aws_cloudfront_origin_access_identity]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_cloudfront_public_key => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['encoded_key', 'name', 'name_prefix'],
-          'providedAttributes' => ['aws_cloudfront_public_key_id', 'caller_reference', 'comment', 'etag', 'name', 'name_prefix']
+          'providedAttributes' => ['caller_reference', 'comment', 'etag', 'name', 'name_prefix']
         }
       },
       attributes => {
         'aws_cloudfront_public_key_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -4667,21 +5359,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudfront_public_keyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_cloudfront_public_key], Tuple[Optional[Aws_cloudfront_public_key]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cloudfront_public_key]],
-        'update' => Callable[String, Optional[Aws_cloudfront_public_key]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_cloudhsm_v2_cluster => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['hsm_type', 'source_backup_identifier', 'subnet_ids'],
-          'providedAttributes' => ['aws_cloudhsm_v2_cluster_id', 'cluster_certificates', 'cluster_id', 'cluster_state', 'security_group_id', 'source_backup_identifier', 'tags', 'vpc_id']
+          'providedAttributes' => ['cluster_certificates', 'cluster_id', 'cluster_state', 'security_group_id', 'source_backup_identifier', 'tags', 'vpc_id']
         }
       },
       attributes => {
         'aws_cloudhsm_v2_cluster_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -4719,10 +5422,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudhsm_v2_clusterHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_cloudhsm_v2_cluster], Tuple[Optional[Aws_cloudhsm_v2_cluster]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cloudhsm_v2_cluster]],
-        'update' => Callable[String, Optional[Aws_cloudhsm_v2_cluster]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_cloudhsm_v2_cluster_cluster_certificates_102 => {
@@ -4753,11 +5462,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['availability_zone', 'cluster_id', 'ip_address', 'subnet_id'],
-          'providedAttributes' => ['aws_cloudhsm_v2_hsm_id', 'availability_zone', 'hsm_eni_id', 'hsm_id', 'hsm_state', 'ip_address', 'subnet_id']
+          'providedAttributes' => ['availability_zone', 'hsm_eni_id', 'hsm_id', 'hsm_state', 'ip_address', 'subnet_id']
         }
       },
       attributes => {
         'aws_cloudhsm_v2_hsm_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -4790,21 +5504,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudhsm_v2_hsmHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_cloudhsm_v2_hsm], Tuple[Optional[Aws_cloudhsm_v2_hsm]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cloudhsm_v2_hsm]],
-        'update' => Callable[String, Optional[Aws_cloudhsm_v2_hsm]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_cloudtrail => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_cloudtrail_id', 'arn', 'cloud_watch_logs_group_arn', 'cloud_watch_logs_role_arn', 'enable_log_file_validation', 'enable_logging', 'event_selector', 'home_region', 'include_global_service_events', 'is_multi_region_trail', 'is_organization_trail', 'kms_key_id', 's3_key_prefix', 'sns_topic_name', 'tags']
+          'providedAttributes' => ['arn', 'cloud_watch_logs_group_arn', 'cloud_watch_logs_role_arn', 'enable_log_file_validation', 'enable_logging', 'event_selector', 'home_region', 'include_global_service_events', 'is_multi_region_trail', 'is_organization_trail', 'kms_key_id', 's3_key_prefix', 'sns_topic_name', 'tags']
         }
       },
       attributes => {
         'aws_cloudtrail_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -4870,10 +5595,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudtrailHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_cloudtrail], Tuple[Optional[Aws_cloudtrail]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cloudtrail]],
-        'update' => Callable[String, Optional[Aws_cloudtrail]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_cloudtrail_event_selector_103 => {
@@ -4901,11 +5632,16 @@ type TerraformAws = TypeSet[{
     Aws_cloudwatch_dashboard => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_cloudwatch_dashboard_id', 'dashboard_arn']
+          'providedAttributes' => ['dashboard_arn']
         }
       },
       attributes => {
         'aws_cloudwatch_dashboard_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -4919,21 +5655,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudwatch_dashboardHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_cloudwatch_dashboard], Tuple[Optional[Aws_cloudwatch_dashboard]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cloudwatch_dashboard]],
-        'update' => Callable[String, Optional[Aws_cloudwatch_dashboard]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_cloudwatch_event_permission => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['statement_id'],
-          'providedAttributes' => ['aws_cloudwatch_event_permission_id', 'action', 'condition']
+          'providedAttributes' => ['action', 'condition']
         }
       },
       attributes => {
         'aws_cloudwatch_event_permission_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -4951,10 +5698,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudwatch_event_permissionHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_cloudwatch_event_permission], Tuple[Optional[Aws_cloudwatch_event_permission]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cloudwatch_event_permission]],
-        'update' => Callable[String, Optional[Aws_cloudwatch_event_permission]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_cloudwatch_event_permission_condition_105 => {
@@ -4968,11 +5721,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'name_prefix'],
-          'providedAttributes' => ['aws_cloudwatch_event_rule_id', 'arn', 'description', 'event_pattern', 'is_enabled', 'name', 'name_prefix', 'role_arn', 'schedule_expression']
+          'providedAttributes' => ['arn', 'description', 'event_pattern', 'is_enabled', 'name', 'name_prefix', 'role_arn', 'schedule_expression']
         }
       },
       attributes => {
         'aws_cloudwatch_event_rule_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -5012,21 +5770,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudwatch_event_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_cloudwatch_event_rule], Tuple[Optional[Aws_cloudwatch_event_rule]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cloudwatch_event_rule]],
-        'update' => Callable[String, Optional[Aws_cloudwatch_event_rule]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_cloudwatch_event_target => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['rule', 'target_id'],
-          'providedAttributes' => ['aws_cloudwatch_event_target_id', 'batch_target', 'ecs_target', 'input', 'input_path', 'input_transformer', 'kinesis_target', 'role_arn', 'run_command_targets', 'sqs_target', 'target_id']
+          'providedAttributes' => ['batch_target', 'ecs_target', 'input', 'input_path', 'input_transformer', 'kinesis_target', 'role_arn', 'run_command_targets', 'sqs_target', 'target_id']
         }
       },
       attributes => {
         'aws_cloudwatch_event_target_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -5076,10 +5845,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudwatch_event_targetHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_cloudwatch_event_target], Tuple[Optional[Aws_cloudwatch_event_target]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cloudwatch_event_target]],
-        'update' => Callable[String, Optional[Aws_cloudwatch_event_target]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_cloudwatch_event_target_batch_target_106 => {
@@ -5169,11 +5944,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_cloudwatch_log_destination_id', 'arn']
+          'providedAttributes' => ['arn']
         }
       },
       attributes => {
         'aws_cloudwatch_log_destination_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -5188,21 +5968,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudwatch_log_destinationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_cloudwatch_log_destination], Tuple[Optional[Aws_cloudwatch_log_destination]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cloudwatch_log_destination]],
-        'update' => Callable[String, Optional[Aws_cloudwatch_log_destination]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_cloudwatch_log_destination_policy => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['destination_name'],
-          'providedAttributes' => ['aws_cloudwatch_log_destination_policy_id']
+          'immutableAttributes' => ['destination_name']
         }
       },
       attributes => {
         'aws_cloudwatch_log_destination_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -5212,21 +6002,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudwatch_log_destination_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_cloudwatch_log_destination_policy], Tuple[Optional[Aws_cloudwatch_log_destination_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cloudwatch_log_destination_policy]],
-        'update' => Callable[String, Optional[Aws_cloudwatch_log_destination_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_cloudwatch_log_group => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'name_prefix'],
-          'providedAttributes' => ['aws_cloudwatch_log_group_id', 'arn', 'kms_key_id', 'name', 'name_prefix', 'retention_in_days', 'tags']
+          'providedAttributes' => ['arn', 'kms_key_id', 'name', 'name_prefix', 'retention_in_days', 'tags']
         }
       },
       attributes => {
         'aws_cloudwatch_log_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -5258,21 +6059,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudwatch_log_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_cloudwatch_log_group], Tuple[Optional[Aws_cloudwatch_log_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cloudwatch_log_group]],
-        'update' => Callable[String, Optional[Aws_cloudwatch_log_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_cloudwatch_log_metric_filter => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['log_group_name', 'name'],
-          'providedAttributes' => ['aws_cloudwatch_log_metric_filter_id']
+          'immutableAttributes' => ['log_group_name', 'name']
         }
       },
       attributes => {
         'aws_cloudwatch_log_metric_filter_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -5284,10 +6095,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudwatch_log_metric_filterHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_cloudwatch_log_metric_filter], Tuple[Optional[Aws_cloudwatch_log_metric_filter]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cloudwatch_log_metric_filter]],
-        'update' => Callable[String, Optional[Aws_cloudwatch_log_metric_filter]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_cloudwatch_log_metric_filter_metric_transformation_113 => {
@@ -5304,12 +6121,16 @@ type TerraformAws = TypeSet[{
     Aws_cloudwatch_log_resource_policy => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['policy_name'],
-          'providedAttributes' => ['aws_cloudwatch_log_resource_policy_id']
+          'immutableAttributes' => ['policy_name']
         }
       },
       attributes => {
         'aws_cloudwatch_log_resource_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -5319,21 +6140,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudwatch_log_resource_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_cloudwatch_log_resource_policy], Tuple[Optional[Aws_cloudwatch_log_resource_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cloudwatch_log_resource_policy]],
-        'update' => Callable[String, Optional[Aws_cloudwatch_log_resource_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_cloudwatch_log_stream => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['log_group_name', 'name'],
-          'providedAttributes' => ['aws_cloudwatch_log_stream_id', 'arn']
+          'providedAttributes' => ['arn']
         }
       },
       attributes => {
         'aws_cloudwatch_log_stream_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -5347,21 +6179,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudwatch_log_streamHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_cloudwatch_log_stream], Tuple[Optional[Aws_cloudwatch_log_stream]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cloudwatch_log_stream]],
-        'update' => Callable[String, Optional[Aws_cloudwatch_log_stream]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_cloudwatch_log_subscription_filter => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['destination_arn', 'log_group_name', 'name'],
-          'providedAttributes' => ['aws_cloudwatch_log_subscription_filter_id', 'distribution', 'role_arn']
+          'providedAttributes' => ['distribution', 'role_arn']
         }
       },
       attributes => {
         'aws_cloudwatch_log_subscription_filter_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -5381,21 +6224,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudwatch_log_subscription_filterHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_cloudwatch_log_subscription_filter], Tuple[Optional[Aws_cloudwatch_log_subscription_filter]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cloudwatch_log_subscription_filter]],
-        'update' => Callable[String, Optional[Aws_cloudwatch_log_subscription_filter]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_cloudwatch_metric_alarm => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['alarm_name'],
-          'providedAttributes' => ['aws_cloudwatch_metric_alarm_id', 'actions_enabled', 'alarm_actions', 'alarm_description', 'arn', 'datapoints_to_alarm', 'dimensions', 'evaluate_low_sample_count_percentiles', 'extended_statistic', 'insufficient_data_actions', 'ok_actions', 'statistic', 'treat_missing_data', 'unit']
+          'providedAttributes' => ['actions_enabled', 'alarm_actions', 'alarm_description', 'arn', 'datapoints_to_alarm', 'dimensions', 'evaluate_low_sample_count_percentiles', 'extended_statistic', 'insufficient_data_actions', 'ok_actions', 'statistic', 'treat_missing_data', 'unit']
         }
       },
       attributes => {
         'aws_cloudwatch_metric_alarm_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -5462,21 +6316,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_cloudwatch_metric_alarmHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_cloudwatch_metric_alarm], Tuple[Optional[Aws_cloudwatch_metric_alarm]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cloudwatch_metric_alarm]],
-        'update' => Callable[String, Optional[Aws_cloudwatch_metric_alarm]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_codebuild_project => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_codebuild_project_id', 'arn', 'badge_enabled', 'badge_url', 'build_timeout', 'cache', 'description', 'encryption_key', 'secondary_artifacts', 'secondary_sources', 'tags', 'timeout', 'vpc_config']
+          'providedAttributes' => ['arn', 'badge_enabled', 'badge_url', 'build_timeout', 'cache', 'description', 'encryption_key', 'secondary_artifacts', 'secondary_sources', 'tags', 'timeout', 'vpc_config']
         }
       },
       attributes => {
         'aws_codebuild_project_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -5537,10 +6402,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_codebuild_projectHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_codebuild_project], Tuple[Optional[Aws_codebuild_project]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_codebuild_project]],
-        'update' => Callable[String, Optional[Aws_codebuild_project]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_codebuild_project_artifacts_114 => {
@@ -5731,11 +6602,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project_name'],
-          'providedAttributes' => ['aws_codebuild_webhook_id', 'branch_filter', 'payload_url', 'secret', 'url']
+          'providedAttributes' => ['branch_filter', 'payload_url', 'secret', 'url']
         }
       },
       attributes => {
         'aws_codebuild_webhook_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -5760,21 +6636,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_codebuild_webhookHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_codebuild_webhook], Tuple[Optional[Aws_codebuild_webhook]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_codebuild_webhook]],
-        'update' => Callable[String, Optional[Aws_codebuild_webhook]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_codecommit_repository => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['repository_name'],
-          'providedAttributes' => ['aws_codecommit_repository_id', 'arn', 'clone_url_http', 'clone_url_ssh', 'default_branch', 'description', 'repository_id']
+          'providedAttributes' => ['arn', 'clone_url_http', 'clone_url_ssh', 'default_branch', 'description', 'repository_id']
         }
       },
       attributes => {
         'aws_codecommit_repository_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -5807,21 +6694,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_codecommit_repositoryHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_codecommit_repository], Tuple[Optional[Aws_codecommit_repository]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_codecommit_repository]],
-        'update' => Callable[String, Optional[Aws_codecommit_repository]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_codecommit_trigger => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['repository_name', 'trigger'],
-          'providedAttributes' => ['aws_codecommit_trigger_id', 'configuration_id']
+          'providedAttributes' => ['configuration_id']
         }
       },
       attributes => {
         'aws_codecommit_trigger_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -5835,10 +6733,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_codecommit_triggerHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_codecommit_trigger], Tuple[Optional[Aws_codecommit_trigger]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_codecommit_trigger]],
-        'update' => Callable[String, Optional[Aws_codecommit_trigger]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_codecommit_trigger_trigger_124 => {
@@ -5860,11 +6764,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['compute_platform', 'name'],
-          'providedAttributes' => ['aws_codedeploy_app_id', 'compute_platform', 'unique_id']
+          'providedAttributes' => ['compute_platform', 'unique_id']
         }
       },
       attributes => {
         'aws_codedeploy_app_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -5881,21 +6790,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_codedeploy_appHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_codedeploy_app], Tuple[Optional[Aws_codedeploy_app]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_codedeploy_app]],
-        'update' => Callable[String, Optional[Aws_codedeploy_app]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_codedeploy_deployment_config => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['compute_platform', 'deployment_config_name', 'minimum_healthy_hosts', 'traffic_routing_config'],
-          'providedAttributes' => ['aws_codedeploy_deployment_config_id', 'compute_platform', 'deployment_config_id', 'minimum_healthy_hosts', 'traffic_routing_config']
+          'providedAttributes' => ['compute_platform', 'deployment_config_id', 'minimum_healthy_hosts', 'traffic_routing_config']
         }
       },
       attributes => {
         'aws_codedeploy_deployment_config_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -5920,10 +6840,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_codedeploy_deployment_configHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_codedeploy_deployment_config], Tuple[Optional[Aws_codedeploy_deployment_config]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_codedeploy_deployment_config]],
-        'update' => Callable[String, Optional[Aws_codedeploy_deployment_config]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_codedeploy_deployment_config_minimum_healthy_hosts_125 => {
@@ -5982,11 +6908,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['deployment_group_name'],
-          'providedAttributes' => ['aws_codedeploy_deployment_group_id', 'alarm_configuration', 'auto_rollback_configuration', 'autoscaling_groups', 'blue_green_deployment_config', 'deployment_config_name', 'deployment_style', 'ec2_tag_filter', 'ec2_tag_set', 'ecs_service', 'load_balancer_info', 'on_premises_instance_tag_filter', 'trigger_configuration']
+          'providedAttributes' => ['alarm_configuration', 'auto_rollback_configuration', 'autoscaling_groups', 'blue_green_deployment_config', 'deployment_config_name', 'deployment_style', 'ec2_tag_filter', 'ec2_tag_set', 'ecs_service', 'load_balancer_info', 'on_premises_instance_tag_filter', 'trigger_configuration']
         }
       },
       attributes => {
         'aws_codedeploy_deployment_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -6045,10 +6976,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_codedeploy_deployment_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_codedeploy_deployment_group], Tuple[Optional[Aws_codedeploy_deployment_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_codedeploy_deployment_group]],
-        'update' => Callable[String, Optional[Aws_codedeploy_deployment_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_codedeploy_deployment_group_alarm_configuration_129 => {
@@ -6269,11 +7206,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_codepipeline_id', 'arn']
+          'providedAttributes' => ['arn']
         }
       },
       attributes => {
         'aws_codepipeline_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -6289,10 +7231,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_codepipelineHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_codepipeline], Tuple[Optional[Aws_codepipeline]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_codepipeline]],
-        'update' => Callable[String, Optional[Aws_codepipeline]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_codepipeline_artifact_store_149 => {
@@ -6350,11 +7298,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['authentication', 'authentication_configuration', 'filter', 'name', 'target_action', 'target_pipeline'],
-          'providedAttributes' => ['aws_codepipeline_webhook_id', 'authentication_configuration', 'url']
+          'providedAttributes' => ['authentication_configuration', 'url']
         }
       },
       attributes => {
         'aws_codepipeline_webhook_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -6375,10 +7328,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_codepipeline_webhookHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_codepipeline_webhook], Tuple[Optional[Aws_codepipeline_webhook]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_codepipeline_webhook]],
-        'update' => Callable[String, Optional[Aws_codepipeline_webhook]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_codepipeline_webhook_authentication_configuration_153 => {
@@ -6403,11 +7362,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['developer_provider_name', 'identity_pool_name'],
-          'providedAttributes' => ['aws_cognito_identity_pool_id', 'allow_unauthenticated_identities', 'arn', 'cognito_identity_providers', 'developer_provider_name', 'openid_connect_provider_arns', 'saml_provider_arns', 'supported_login_providers']
+          'providedAttributes' => ['allow_unauthenticated_identities', 'arn', 'cognito_identity_providers', 'developer_provider_name', 'openid_connect_provider_arns', 'saml_provider_arns', 'supported_login_providers']
         }
       },
       attributes => {
         'aws_cognito_identity_pool_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -6444,10 +7408,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_cognito_identity_poolHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_cognito_identity_pool], Tuple[Optional[Aws_cognito_identity_pool]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cognito_identity_pool]],
-        'update' => Callable[String, Optional[Aws_cognito_identity_pool]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_cognito_identity_pool_cognito_identity_providers_155 => {
@@ -6470,11 +7440,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['identity_pool_id', 'roles'],
-          'providedAttributes' => ['aws_cognito_identity_pool_roles_attachment_id', 'role_mapping']
+          'providedAttributes' => ['role_mapping']
         }
       },
       attributes => {
         'aws_cognito_identity_pool_roles_attachment_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -6488,10 +7463,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_cognito_identity_pool_roles_attachmentHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_cognito_identity_pool_roles_attachment], Tuple[Optional[Aws_cognito_identity_pool_roles_attachment]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cognito_identity_pool_roles_attachment]],
-        'update' => Callable[String, Optional[Aws_cognito_identity_pool_roles_attachment]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_cognito_identity_pool_roles_attachment_role_mapping_156 => {
@@ -6520,11 +7501,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['user_pool_id'],
-          'providedAttributes' => ['aws_cognito_identity_provider_id', 'attribute_mapping', 'idp_identifiers']
+          'providedAttributes' => ['attribute_mapping', 'idp_identifiers']
         }
       },
       attributes => {
         'aws_cognito_identity_provider_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -6544,21 +7530,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_cognito_identity_providerHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_cognito_identity_provider], Tuple[Optional[Aws_cognito_identity_provider]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cognito_identity_provider]],
-        'update' => Callable[String, Optional[Aws_cognito_identity_provider]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_cognito_resource_server => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['identifier', 'name', 'user_pool_id'],
-          'providedAttributes' => ['aws_cognito_resource_server_id', 'scope', 'scope_identifiers']
+          'providedAttributes' => ['scope', 'scope_identifiers']
         }
       },
       attributes => {
         'aws_cognito_resource_server_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -6577,10 +7574,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_cognito_resource_serverHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_cognito_resource_server], Tuple[Optional[Aws_cognito_resource_server]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cognito_resource_server]],
-        'update' => Callable[String, Optional[Aws_cognito_resource_server]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_cognito_resource_server_scope_158 => {
@@ -6593,11 +7596,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'user_pool_id'],
-          'providedAttributes' => ['aws_cognito_user_group_id', 'description', 'precedence', 'role_arn']
+          'providedAttributes' => ['description', 'precedence', 'role_arn']
         }
       },
       attributes => {
         'aws_cognito_user_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -6619,21 +7627,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_cognito_user_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_cognito_user_group], Tuple[Optional[Aws_cognito_user_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cognito_user_group]],
-        'update' => Callable[String, Optional[Aws_cognito_user_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_cognito_user_pool => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['alias_attributes', 'name', 'schema', 'username_attributes'],
-          'providedAttributes' => ['aws_cognito_user_pool_id', 'admin_create_user_config', 'alias_attributes', 'arn', 'auto_verified_attributes', 'creation_date', 'device_configuration', 'email_configuration', 'email_verification_message', 'email_verification_subject', 'endpoint', 'lambda_config', 'last_modified_date', 'mfa_configuration', 'password_policy', 'schema', 'sms_authentication_message', 'sms_configuration', 'sms_verification_message', 'tags', 'username_attributes', 'verification_message_template']
+          'providedAttributes' => ['admin_create_user_config', 'alias_attributes', 'arn', 'auto_verified_attributes', 'creation_date', 'device_configuration', 'email_configuration', 'email_verification_message', 'email_verification_subject', 'endpoint', 'lambda_config', 'last_modified_date', 'mfa_configuration', 'password_policy', 'schema', 'sms_authentication_message', 'sms_configuration', 'sms_verification_message', 'tags', 'username_attributes', 'verification_message_template']
         }
       },
       attributes => {
         'aws_cognito_user_pool_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -6726,10 +7745,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_cognito_user_poolHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_cognito_user_pool], Tuple[Optional[Aws_cognito_user_pool]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cognito_user_pool]],
-        'update' => Callable[String, Optional[Aws_cognito_user_pool]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_cognito_user_pool_admin_create_user_config_159 => {
@@ -6768,11 +7793,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['generate_secret', 'user_pool_id'],
-          'providedAttributes' => ['aws_cognito_user_pool_client_id', 'allowed_oauth_flows', 'allowed_oauth_flows_user_pool_client', 'allowed_oauth_scopes', 'callback_urls', 'client_secret', 'default_redirect_uri', 'explicit_auth_flows', 'generate_secret', 'logout_urls', 'read_attributes', 'refresh_token_validity', 'supported_identity_providers', 'write_attributes']
+          'providedAttributes' => ['allowed_oauth_flows', 'allowed_oauth_flows_user_pool_client', 'allowed_oauth_scopes', 'callback_urls', 'client_secret', 'default_redirect_uri', 'explicit_auth_flows', 'generate_secret', 'logout_urls', 'read_attributes', 'refresh_token_validity', 'supported_identity_providers', 'write_attributes']
         }
       },
       attributes => {
         'aws_cognito_user_pool_client_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -6834,10 +7864,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_cognito_user_pool_clientHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_cognito_user_pool_client], Tuple[Optional[Aws_cognito_user_pool_client]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cognito_user_pool_client]],
-        'update' => Callable[String, Optional[Aws_cognito_user_pool_client]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_cognito_user_pool_device_configuration_161 => {
@@ -6856,11 +7892,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['certificate_arn', 'domain', 'user_pool_id'],
-          'providedAttributes' => ['aws_cognito_user_pool_domain_id', 'aws_account_id', 'certificate_arn', 'cloudfront_distribution_arn', 's3_bucket', 'version']
+          'providedAttributes' => ['aws_account_id', 'certificate_arn', 'cloudfront_distribution_arn', 's3_bucket', 'version']
         }
       },
       attributes => {
         'aws_cognito_user_pool_domain_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -6890,10 +7931,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_cognito_user_pool_domainHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_cognito_user_pool_domain], Tuple[Optional[Aws_cognito_user_pool_domain]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_cognito_user_pool_domain]],
-        'update' => Callable[String, Optional[Aws_cognito_user_pool_domain]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_cognito_user_pool_email_configuration_162 => {
@@ -7064,11 +8111,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['account_id', 'region'],
-          'providedAttributes' => ['aws_config_aggregate_authorization_id', 'arn']
+          'providedAttributes' => ['arn']
         }
       },
       attributes => {
         'aws_config_aggregate_authorization_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7082,20 +8134,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_config_aggregate_authorizationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_config_aggregate_authorization], Tuple[Optional[Aws_config_aggregate_authorization]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_config_aggregate_authorization]],
-        'update' => Callable[String, Optional[Aws_config_aggregate_authorization]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_config_config_rule => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_config_config_rule_id', 'arn', 'description', 'input_parameters', 'maximum_execution_frequency', 'rule_id', 'scope']
+          'providedAttributes' => ['arn', 'description', 'input_parameters', 'maximum_execution_frequency', 'rule_id', 'scope']
         }
       },
       attributes => {
         'aws_config_config_rule_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7129,10 +8192,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_config_config_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_config_config_rule], Tuple[Optional[Aws_config_config_rule]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_config_config_rule]],
-        'update' => Callable[String, Optional[Aws_config_config_rule]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_config_config_rule_scope_170 => {
@@ -7185,11 +8254,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_config_configuration_aggregator_id', 'account_aggregation_source', 'arn', 'organization_aggregation_source']
+          'providedAttributes' => ['account_aggregation_source', 'arn', 'organization_aggregation_source']
         }
       },
       attributes => {
         'aws_config_configuration_aggregator_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7210,10 +8284,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_config_configuration_aggregatorHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_config_configuration_aggregator], Tuple[Optional[Aws_config_configuration_aggregator]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_config_configuration_aggregator]],
-        'update' => Callable[String, Optional[Aws_config_configuration_aggregator]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_config_configuration_aggregator_account_aggregation_source_173 => {
@@ -7246,11 +8326,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_config_configuration_recorder_id', 'name', 'recording_group']
+          'providedAttributes' => ['name', 'recording_group']
         }
       },
       attributes => {
         'aws_config_configuration_recorder_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7267,10 +8352,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_config_configuration_recorderHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_config_configuration_recorder], Tuple[Optional[Aws_config_configuration_recorder]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_config_configuration_recorder]],
-        'update' => Callable[String, Optional[Aws_config_configuration_recorder]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_config_configuration_recorder_recording_group_175 => {
@@ -7290,13 +8381,13 @@ type TerraformAws = TypeSet[{
       }
     },
     Aws_config_configuration_recorder_status => {
-      annotations => {
-        Lyra::Resource => {
-          'providedAttributes' => ['aws_config_configuration_recorder_status_id']
-        }
-      },
       attributes => {
         'aws_config_configuration_recorder_status_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7306,21 +8397,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_config_configuration_recorder_statusHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_config_configuration_recorder_status], Tuple[Optional[Aws_config_configuration_recorder_status]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_config_configuration_recorder_status]],
-        'update' => Callable[String, Optional[Aws_config_configuration_recorder_status]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_config_delivery_channel => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_config_delivery_channel_id', 'name', 's3_key_prefix', 'snapshot_delivery_properties', 'sns_topic_arn']
+          'providedAttributes' => ['name', 's3_key_prefix', 'snapshot_delivery_properties', 'sns_topic_arn']
         }
       },
       attributes => {
         'aws_config_delivery_channel_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7345,10 +8447,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_config_delivery_channelHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_config_delivery_channel], Tuple[Optional[Aws_config_delivery_channel]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_config_delivery_channel]],
-        'update' => Callable[String, Optional[Aws_config_delivery_channel]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_config_delivery_channel_snapshot_delivery_properties_176 => {
@@ -7363,11 +8471,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bgp_asn', 'ip_address', 'type'],
-          'providedAttributes' => ['aws_customer_gateway_id', 'tags']
+          'providedAttributes' => ['tags']
         }
       },
       attributes => {
         'aws_customer_gateway_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7382,21 +8495,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_customer_gatewayHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_customer_gateway], Tuple[Optional[Aws_customer_gateway]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_customer_gateway]],
-        'update' => Callable[String, Optional[Aws_customer_gateway]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_datasync_agent => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['activation_key', 'ip_address'],
-          'providedAttributes' => ['aws_datasync_agent_id', 'activation_key', 'arn', 'ip_address', 'name', 'tags']
+          'providedAttributes' => ['activation_key', 'arn', 'ip_address', 'name', 'tags']
         }
       },
       attributes => {
         'aws_datasync_agent_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7424,21 +8548,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_datasync_agentHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_datasync_agent], Tuple[Optional[Aws_datasync_agent]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_datasync_agent]],
-        'update' => Callable[String, Optional[Aws_datasync_agent]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_datasync_location_efs => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['ec2_config', 'efs_file_system_arn', 'subdirectory'],
-          'providedAttributes' => ['aws_datasync_location_efs_id', 'arn', 'subdirectory', 'tags', 'uri']
+          'providedAttributes' => ['arn', 'subdirectory', 'tags', 'uri']
         }
       },
       attributes => {
         'aws_datasync_location_efs_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7464,10 +8599,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_datasync_location_efsHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_datasync_location_efs], Tuple[Optional[Aws_datasync_location_efs]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_datasync_location_efs]],
-        'update' => Callable[String, Optional[Aws_datasync_location_efs]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_datasync_location_efs_ec2_config_177 => {
@@ -7480,11 +8621,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['on_prem_config', 'server_hostname', 'subdirectory'],
-          'providedAttributes' => ['aws_datasync_location_nfs_id', 'arn', 'tags', 'uri']
+          'providedAttributes' => ['arn', 'tags', 'uri']
         }
       },
       attributes => {
         'aws_datasync_location_nfs_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7507,10 +8653,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_datasync_location_nfsHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_datasync_location_nfs], Tuple[Optional[Aws_datasync_location_nfs]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_datasync_location_nfs]],
-        'update' => Callable[String, Optional[Aws_datasync_location_nfs]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_datasync_location_nfs_on_prem_config_178 => {
@@ -7522,11 +8674,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['s3_bucket_arn', 's3_config', 'subdirectory'],
-          'providedAttributes' => ['aws_datasync_location_s3_id', 'arn', 'tags', 'uri']
+          'providedAttributes' => ['arn', 'tags', 'uri']
         }
       },
       attributes => {
         'aws_datasync_location_s3_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7549,10 +8706,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_datasync_location_s3Handler => {
       functions => {
-        'create' => Callable[Optional[Aws_datasync_location_s3], Tuple[Optional[Aws_datasync_location_s3]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_datasync_location_s3]],
-        'update' => Callable[String, Optional[Aws_datasync_location_s3]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_datasync_location_s3_s3_config_179 => {
@@ -7564,11 +8727,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['cloudwatch_log_group_arn', 'destination_location_arn', 'source_location_arn'],
-          'providedAttributes' => ['aws_datasync_task_id', 'arn', 'cloudwatch_log_group_arn', 'name', 'options', 'tags']
+          'providedAttributes' => ['arn', 'cloudwatch_log_group_arn', 'name', 'options', 'tags']
         }
       },
       attributes => {
         'aws_datasync_task_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7598,10 +8766,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_datasync_taskHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_datasync_task], Tuple[Optional[Aws_datasync_task]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_datasync_task]],
-        'update' => Callable[String, Optional[Aws_datasync_task]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_datasync_task_options_180 => {
@@ -7648,11 +8822,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['availability_zones', 'cluster_name', 'iam_role_arn', 'node_type', 'subnet_group_name'],
-          'providedAttributes' => ['aws_dax_cluster_id', 'arn', 'availability_zones', 'cluster_address', 'configuration_endpoint', 'description', 'maintenance_window', 'nodes', 'notification_topic_arn', 'parameter_group_name', 'port', 'security_group_ids', 'server_side_encryption', 'subnet_group_name', 'tags']
+          'providedAttributes' => ['arn', 'availability_zones', 'cluster_address', 'configuration_endpoint', 'description', 'maintenance_window', 'nodes', 'notification_topic_arn', 'parameter_group_name', 'port', 'security_group_ids', 'server_side_encryption', 'subnet_group_name', 'tags']
         }
       },
       attributes => {
         'aws_dax_cluster_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7720,10 +8899,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_dax_clusterHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_dax_cluster], Tuple[Optional[Aws_dax_cluster]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_dax_cluster]],
-        'update' => Callable[String, Optional[Aws_dax_cluster]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_dax_cluster_nodes_181 => {
@@ -7758,11 +8943,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name'],
-          'providedAttributes' => ['aws_dax_parameter_group_id', 'description', 'parameters']
+          'providedAttributes' => ['description', 'parameters']
         }
       },
       attributes => {
         'aws_dax_parameter_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7779,10 +8969,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_dax_parameter_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_dax_parameter_group], Tuple[Optional[Aws_dax_parameter_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_dax_parameter_group]],
-        'update' => Callable[String, Optional[Aws_dax_parameter_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_dax_parameter_group_parameters_183 => {
@@ -7795,11 +8991,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_dax_subnet_group_id', 'description', 'vpc_id']
+          'providedAttributes' => ['description', 'vpc_id']
         }
       },
       attributes => {
         'aws_dax_subnet_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7817,21 +9018,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_dax_subnet_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_dax_subnet_group], Tuple[Optional[Aws_dax_subnet_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_dax_subnet_group]],
-        'update' => Callable[String, Optional[Aws_dax_subnet_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_db_cluster_snapshot => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['db_cluster_identifier', 'db_cluster_snapshot_identifier'],
-          'providedAttributes' => ['aws_db_cluster_snapshot_id', 'allocated_storage', 'availability_zones', 'db_cluster_snapshot_arn', 'engine', 'engine_version', 'kms_key_id', 'license_model', 'port', 'snapshot_type', 'source_db_cluster_snapshot_arn', 'status', 'storage_encrypted', 'vpc_id']
+          'providedAttributes' => ['allocated_storage', 'availability_zones', 'db_cluster_snapshot_arn', 'engine', 'engine_version', 'kms_key_id', 'license_model', 'port', 'snapshot_type', 'source_db_cluster_snapshot_arn', 'status', 'storage_encrypted', 'vpc_id']
         }
       },
       attributes => {
         'aws_db_cluster_snapshot_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7893,21 +9105,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_db_cluster_snapshotHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_db_cluster_snapshot], Tuple[Optional[Aws_db_cluster_snapshot]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_db_cluster_snapshot]],
-        'update' => Callable[String, Optional[Aws_db_cluster_snapshot]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_db_event_subscription => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'name_prefix'],
-          'providedAttributes' => ['aws_db_event_subscription_id', 'arn', 'customer_aws_id', 'enabled', 'event_categories', 'name', 'name_prefix', 'source_ids', 'source_type', 'tags']
+          'providedAttributes' => ['arn', 'customer_aws_id', 'enabled', 'event_categories', 'name', 'name_prefix', 'source_ids', 'source_type', 'tags']
         }
       },
       attributes => {
         'aws_db_event_subscription_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7952,21 +9175,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_db_event_subscriptionHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_db_event_subscription], Tuple[Optional[Aws_db_event_subscription]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_db_event_subscription]],
-        'update' => Callable[String, Optional[Aws_db_event_subscription]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_db_instance => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['availability_zone', 'character_set_name', 'engine', 'identifier', 'identifier_prefix', 'kms_key_id', 'name', 'snapshot_identifier', 'storage_encrypted', 'timezone', 'username'],
-          'providedAttributes' => ['aws_db_instance_id', 'address', 'allocated_storage', 'allow_major_version_upgrade', 'apply_immediately', 'arn', 'auto_minor_version_upgrade', 'availability_zone', 'backup_retention_period', 'backup_window', 'ca_cert_identifier', 'character_set_name', 'copy_tags_to_snapshot', 'db_subnet_group_name', 'deletion_protection', 'domain', 'domain_iam_role_name', 'enabled_cloudwatch_logs_exports', 'endpoint', 'engine', 'engine_version', 'final_snapshot_identifier', 'hosted_zone_id', 'iam_database_authentication_enabled', 'identifier', 'identifier_prefix', 'iops', 'kms_key_id', 'license_model', 'maintenance_window', 'monitoring_interval', 'monitoring_role_arn', 'multi_az', 'name', 'option_group_name', 'parameter_group_name', 'password', 'port', 'publicly_accessible', 'replicas', 'replicate_source_db', 'resource_id', 's3_import', 'security_group_names', 'skip_final_snapshot', 'snapshot_identifier', 'status', 'storage_encrypted', 'storage_type', 'tags', 'timezone', 'username', 'vpc_security_group_ids']
+          'providedAttributes' => ['address', 'allocated_storage', 'allow_major_version_upgrade', 'apply_immediately', 'arn', 'auto_minor_version_upgrade', 'availability_zone', 'backup_retention_period', 'backup_window', 'ca_cert_identifier', 'character_set_name', 'copy_tags_to_snapshot', 'db_subnet_group_name', 'deletion_protection', 'domain', 'domain_iam_role_name', 'enabled_cloudwatch_logs_exports', 'endpoint', 'engine', 'engine_version', 'final_snapshot_identifier', 'hosted_zone_id', 'iam_database_authentication_enabled', 'identifier', 'identifier_prefix', 'iops', 'kms_key_id', 'license_model', 'maintenance_window', 'monitoring_interval', 'monitoring_role_arn', 'multi_az', 'name', 'option_group_name', 'parameter_group_name', 'password', 'port', 'publicly_accessible', 'replicas', 'replicate_source_db', 'resource_id', 's3_import', 'security_group_names', 'skip_final_snapshot', 'snapshot_identifier', 'status', 'storage_encrypted', 'storage_type', 'tags', 'timezone', 'username', 'vpc_security_group_ids']
         }
       },
       attributes => {
         'aws_db_instance_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8183,10 +9417,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_db_instanceHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_db_instance], Tuple[Optional[Aws_db_instance]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_db_instance]],
-        'update' => Callable[String, Optional[Aws_db_instance]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_db_instance_s3_import_184 => {
@@ -8205,11 +9445,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['engine_name', 'major_engine_version', 'name', 'name_prefix', 'option_group_description'],
-          'providedAttributes' => ['aws_db_option_group_id', 'arn', 'name', 'name_prefix', 'option', 'option_group_description', 'tags']
+          'providedAttributes' => ['arn', 'name', 'name_prefix', 'option', 'option_group_description', 'tags']
         }
       },
       attributes => {
         'aws_db_option_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8243,10 +9488,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_db_option_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_db_option_group], Tuple[Optional[Aws_db_option_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_db_option_group]],
-        'update' => Callable[String, Optional[Aws_db_option_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_db_option_group_option_185 => {
@@ -8284,11 +9535,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'family', 'name', 'name_prefix'],
-          'providedAttributes' => ['aws_db_parameter_group_id', 'arn', 'description', 'name', 'name_prefix', 'parameter', 'tags']
+          'providedAttributes' => ['arn', 'description', 'name', 'name_prefix', 'parameter', 'tags']
         }
       },
       attributes => {
         'aws_db_parameter_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8321,10 +9577,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_db_parameter_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_db_parameter_group], Tuple[Optional[Aws_db_parameter_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_db_parameter_group]],
-        'update' => Callable[String, Optional[Aws_db_parameter_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_db_parameter_group_parameter_187 => {
@@ -8341,11 +9603,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name'],
-          'providedAttributes' => ['aws_db_security_group_id', 'arn', 'description', 'tags']
+          'providedAttributes' => ['arn', 'description', 'tags']
         }
       },
       attributes => {
         'aws_db_security_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8367,10 +9634,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_db_security_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_db_security_group], Tuple[Optional[Aws_db_security_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_db_security_group]],
-        'update' => Callable[String, Optional[Aws_db_security_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_db_security_group_ingress_188 => {
@@ -8397,11 +9670,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['db_instance_identifier', 'db_snapshot_identifier'],
-          'providedAttributes' => ['aws_db_snapshot_id', 'allocated_storage', 'availability_zone', 'db_snapshot_arn', 'encrypted', 'engine', 'engine_version', 'iops', 'kms_key_id', 'license_model', 'option_group_name', 'port', 'snapshot_type', 'source_db_snapshot_identifier', 'source_region', 'status', 'storage_type', 'tags', 'vpc_id']
+          'providedAttributes' => ['allocated_storage', 'availability_zone', 'db_snapshot_arn', 'encrypted', 'engine', 'engine_version', 'iops', 'kms_key_id', 'license_model', 'option_group_name', 'port', 'snapshot_type', 'source_db_snapshot_identifier', 'source_region', 'status', 'storage_type', 'tags', 'vpc_id']
         }
       },
       attributes => {
         'aws_db_snapshot_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8483,21 +9761,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_db_snapshotHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_db_snapshot], Tuple[Optional[Aws_db_snapshot]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_db_snapshot]],
-        'update' => Callable[String, Optional[Aws_db_snapshot]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_db_subnet_group => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'name_prefix'],
-          'providedAttributes' => ['aws_db_subnet_group_id', 'arn', 'description', 'name', 'name_prefix', 'tags']
+          'providedAttributes' => ['arn', 'description', 'name', 'name_prefix', 'tags']
         }
       },
       attributes => {
         'aws_db_subnet_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8526,21 +9815,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_db_subnet_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_db_subnet_group], Tuple[Optional[Aws_db_subnet_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_db_subnet_group]],
-        'update' => Callable[String, Optional[Aws_db_subnet_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_default_network_acl => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['default_network_acl_id'],
-          'providedAttributes' => ['aws_default_network_acl_id', 'egress', 'ingress', 'owner_id', 'subnet_ids', 'tags', 'vpc_id']
+          'providedAttributes' => ['egress', 'ingress', 'owner_id', 'subnet_ids', 'tags', 'vpc_id']
         }
       },
       attributes => {
         'aws_default_network_acl_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8573,10 +9873,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_default_network_aclHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_default_network_acl], Tuple[Optional[Aws_default_network_acl]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_default_network_acl]],
-        'update' => Callable[String, Optional[Aws_default_network_acl]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_default_network_acl_egress_189 => {
@@ -8633,11 +9939,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['default_route_table_id'],
-          'providedAttributes' => ['aws_default_route_table_id', 'owner_id', 'propagating_vgws', 'route', 'tags', 'vpc_id']
+          'providedAttributes' => ['owner_id', 'propagating_vgws', 'route', 'tags', 'vpc_id']
         }
       },
       attributes => {
         'aws_default_route_table_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8666,10 +9977,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_default_route_tableHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_default_route_table], Tuple[Optional[Aws_default_route_table]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_default_route_table]],
-        'update' => Callable[String, Optional[Aws_default_route_table]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_default_route_table_route_191 => {
@@ -8716,11 +10033,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['vpc_id'],
-          'providedAttributes' => ['aws_default_security_group_id', 'arn', 'egress', 'ingress', 'name', 'owner_id', 'revoke_rules_on_delete', 'tags', 'vpc_id']
+          'providedAttributes' => ['arn', 'egress', 'ingress', 'name', 'owner_id', 'revoke_rules_on_delete', 'tags', 'vpc_id']
         }
       },
       attributes => {
         'aws_default_security_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8760,10 +10082,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_default_security_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_default_security_group], Tuple[Optional[Aws_default_security_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_default_security_group]],
-        'update' => Callable[String, Optional[Aws_default_security_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_default_security_group_egress_192 => {
@@ -8831,11 +10159,16 @@ type TerraformAws = TypeSet[{
     Aws_default_subnet => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_default_subnet_id', 'arn', 'assign_ipv6_address_on_creation', 'availability_zone_id', 'cidr_block', 'ipv6_cidr_block', 'ipv6_cidr_block_association_id', 'map_public_ip_on_launch', 'owner_id', 'tags', 'vpc_id']
+          'providedAttributes' => ['arn', 'assign_ipv6_address_on_creation', 'availability_zone_id', 'cidr_block', 'ipv6_cidr_block', 'ipv6_cidr_block_association_id', 'map_public_ip_on_launch', 'owner_id', 'tags', 'vpc_id']
         }
       },
       attributes => {
         'aws_default_subnet_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8884,20 +10217,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_default_subnetHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_default_subnet], Tuple[Optional[Aws_default_subnet]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_default_subnet]],
-        'update' => Callable[String, Optional[Aws_default_subnet]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_default_vpc => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_default_vpc_id', 'arn', 'assign_generated_ipv6_cidr_block', 'cidr_block', 'default_network_acl_id', 'default_route_table_id', 'default_security_group_id', 'dhcp_options_id', 'enable_classiclink', 'enable_classiclink_dns_support', 'enable_dns_hostnames', 'enable_dns_support', 'instance_tenancy', 'ipv6_association_id', 'ipv6_cidr_block', 'main_route_table_id', 'owner_id', 'tags']
+          'providedAttributes' => ['arn', 'assign_generated_ipv6_cidr_block', 'cidr_block', 'default_network_acl_id', 'default_route_table_id', 'default_security_group_id', 'dhcp_options_id', 'enable_classiclink', 'enable_classiclink_dns_support', 'enable_dns_hostnames', 'enable_dns_support', 'instance_tenancy', 'ipv6_association_id', 'ipv6_cidr_block', 'main_route_table_id', 'owner_id', 'tags']
         }
       },
       attributes => {
         'aws_default_vpc_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8973,21 +10317,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_default_vpcHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_default_vpc], Tuple[Optional[Aws_default_vpc]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_default_vpc]],
-        'update' => Callable[String, Optional[Aws_default_vpc]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_default_vpc_dhcp_options => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['netbios_name_servers', 'netbios_node_type'],
-          'providedAttributes' => ['aws_default_vpc_dhcp_options_id', 'domain_name', 'domain_name_servers', 'netbios_name_servers', 'netbios_node_type', 'ntp_servers', 'owner_id', 'tags']
+          'providedAttributes' => ['domain_name', 'domain_name_servers', 'netbios_name_servers', 'netbios_node_type', 'ntp_servers', 'owner_id', 'tags']
         }
       },
       attributes => {
         'aws_default_vpc_dhcp_options_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9023,20 +10378,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_default_vpc_dhcp_optionsHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_default_vpc_dhcp_options], Tuple[Optional[Aws_default_vpc_dhcp_options]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_default_vpc_dhcp_options]],
-        'update' => Callable[String, Optional[Aws_default_vpc_dhcp_options]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_devicefarm_project => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_devicefarm_project_id', 'arn']
+          'providedAttributes' => ['arn']
         }
       },
       attributes => {
         'aws_devicefarm_project_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9049,21 +10415,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_devicefarm_projectHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_devicefarm_project], Tuple[Optional[Aws_devicefarm_project]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_devicefarm_project]],
-        'update' => Callable[String, Optional[Aws_devicefarm_project]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_directory_service_conditional_forwarder => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['directory_id', 'remote_domain_name'],
-          'providedAttributes' => ['aws_directory_service_conditional_forwarder_id']
+          'immutableAttributes' => ['directory_id', 'remote_domain_name']
         }
       },
       attributes => {
         'aws_directory_service_conditional_forwarder_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9074,21 +10450,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_directory_service_conditional_forwarderHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_directory_service_conditional_forwarder], Tuple[Optional[Aws_directory_service_conditional_forwarder]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_directory_service_conditional_forwarder]],
-        'update' => Callable[String, Optional[Aws_directory_service_conditional_forwarder]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_directory_service_directory => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['alias', 'connect_settings', 'description', 'edition', 'name', 'password', 'short_name', 'size', 'type', 'vpc_settings'],
-          'providedAttributes' => ['aws_directory_service_directory_id', 'access_url', 'alias', 'connect_settings', 'description', 'dns_ip_addresses', 'edition', 'enable_sso', 'security_group_id', 'short_name', 'size', 'tags', 'type', 'vpc_settings']
+          'providedAttributes' => ['access_url', 'alias', 'connect_settings', 'description', 'dns_ip_addresses', 'edition', 'enable_sso', 'security_group_id', 'short_name', 'size', 'tags', 'type', 'vpc_settings']
         }
       },
       attributes => {
         'aws_directory_service_directory_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9150,10 +10537,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_directory_service_directoryHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_directory_service_directory], Tuple[Optional[Aws_directory_service_directory]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_directory_service_directory]],
-        'update' => Callable[String, Optional[Aws_directory_service_directory]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_directory_service_directory_connect_settings_194 => {
@@ -9173,11 +10566,16 @@ type TerraformAws = TypeSet[{
     Aws_dlm_lifecycle_policy => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_dlm_lifecycle_policy_id', 'state']
+          'providedAttributes' => ['state']
         }
       },
       attributes => {
         'aws_dlm_lifecycle_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9192,10 +10590,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_dlm_lifecycle_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_dlm_lifecycle_policy], Tuple[Optional[Aws_dlm_lifecycle_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_dlm_lifecycle_policy]],
-        'update' => Callable[String, Optional[Aws_dlm_lifecycle_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_dlm_lifecycle_policy_policy_details_196 => {
@@ -9242,11 +10646,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['certificate_id', 'certificate_pem', 'certificate_wallet'],
-          'providedAttributes' => ['aws_dms_certificate_id', 'certificate_arn', 'certificate_pem', 'certificate_wallet']
+          'providedAttributes' => ['certificate_arn', 'certificate_pem', 'certificate_wallet']
         }
       },
       attributes => {
         'aws_dms_certificate_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9267,21 +10676,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_dms_certificateHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_dms_certificate], Tuple[Optional[Aws_dms_certificate]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_dms_certificate]],
-        'update' => Callable[String, Optional[Aws_dms_certificate]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_dms_endpoint => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['endpoint_id', 'kms_key_arn'],
-          'providedAttributes' => ['aws_dms_endpoint_id', 'certificate_arn', 'database_name', 'endpoint_arn', 'extra_connection_attributes', 'kms_key_arn', 'mongodb_settings', 'password', 'port', 's3_settings', 'server_name', 'service_access_role', 'ssl_mode', 'tags', 'username']
+          'providedAttributes' => ['certificate_arn', 'database_name', 'endpoint_arn', 'extra_connection_attributes', 'kms_key_arn', 'mongodb_settings', 'password', 'port', 's3_settings', 'server_name', 'service_access_role', 'ssl_mode', 'tags', 'username']
         }
       },
       attributes => {
         'aws_dms_endpoint_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9348,10 +10768,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_dms_endpointHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_dms_endpoint], Tuple[Optional[Aws_dms_endpoint]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_dms_endpoint]],
-        'update' => Callable[String, Optional[Aws_dms_endpoint]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_dms_endpoint_mongodb_settings_200 => {
@@ -9418,11 +10844,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['availability_zone', 'kms_key_arn', 'publicly_accessible', 'replication_instance_id', 'replication_subnet_group_id'],
-          'providedAttributes' => ['aws_dms_replication_instance_id', 'allocated_storage', 'apply_immediately', 'auto_minor_version_upgrade', 'availability_zone', 'engine_version', 'kms_key_arn', 'multi_az', 'preferred_maintenance_window', 'publicly_accessible', 'replication_instance_arn', 'replication_instance_private_ips', 'replication_instance_public_ips', 'replication_subnet_group_id', 'tags', 'vpc_security_group_ids']
+          'providedAttributes' => ['allocated_storage', 'apply_immediately', 'auto_minor_version_upgrade', 'availability_zone', 'engine_version', 'kms_key_arn', 'multi_az', 'preferred_maintenance_window', 'publicly_accessible', 'replication_instance_arn', 'replication_instance_private_ips', 'replication_instance_public_ips', 'replication_subnet_group_id', 'tags', 'vpc_security_group_ids']
         }
       },
       attributes => {
         'aws_dms_replication_instance_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9492,21 +10923,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_dms_replication_instanceHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_dms_replication_instance], Tuple[Optional[Aws_dms_replication_instance]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_dms_replication_instance]],
-        'update' => Callable[String, Optional[Aws_dms_replication_instance]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_dms_replication_subnet_group => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['replication_subnet_group_id'],
-          'providedAttributes' => ['aws_dms_replication_subnet_group_id', 'replication_subnet_group_arn', 'tags', 'vpc_id']
+          'providedAttributes' => ['replication_subnet_group_arn', 'tags', 'vpc_id']
         }
       },
       attributes => {
         'aws_dms_replication_subnet_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9529,21 +10971,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_dms_replication_subnet_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_dms_replication_subnet_group], Tuple[Optional[Aws_dms_replication_subnet_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_dms_replication_subnet_group]],
-        'update' => Callable[String, Optional[Aws_dms_replication_subnet_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_dms_replication_task => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['replication_instance_arn', 'replication_task_id', 'source_endpoint_arn', 'target_endpoint_arn'],
-          'providedAttributes' => ['aws_dms_replication_task_id', 'cdc_start_time', 'replication_task_arn', 'replication_task_settings', 'tags']
+          'providedAttributes' => ['cdc_start_time', 'replication_task_arn', 'replication_task_settings', 'tags']
         }
       },
       attributes => {
         'aws_dms_replication_task_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9573,21 +11026,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_dms_replication_taskHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_dms_replication_task], Tuple[Optional[Aws_dms_replication_task]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_dms_replication_task]],
-        'update' => Callable[String, Optional[Aws_dms_replication_task]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_docdb_cluster_parameter_group => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'family', 'name', 'name_prefix'],
-          'providedAttributes' => ['aws_docdb_cluster_parameter_group_id', 'arn', 'description', 'name', 'name_prefix', 'parameter', 'tags']
+          'providedAttributes' => ['arn', 'description', 'name', 'name_prefix', 'parameter', 'tags']
         }
       },
       attributes => {
         'aws_docdb_cluster_parameter_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9620,10 +11084,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_docdb_cluster_parameter_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_docdb_cluster_parameter_group], Tuple[Optional[Aws_docdb_cluster_parameter_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_docdb_cluster_parameter_group]],
-        'update' => Callable[String, Optional[Aws_docdb_cluster_parameter_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_docdb_cluster_parameter_group_parameter_202 => {
@@ -9640,11 +11110,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'name_prefix'],
-          'providedAttributes' => ['aws_docdb_subnet_group_id', 'arn', 'description', 'name', 'name_prefix', 'tags']
+          'providedAttributes' => ['arn', 'description', 'name', 'name_prefix', 'tags']
         }
       },
       attributes => {
         'aws_docdb_subnet_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9673,21 +11148,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_docdb_subnet_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_docdb_subnet_group], Tuple[Optional[Aws_docdb_subnet_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_docdb_subnet_group]],
-        'update' => Callable[String, Optional[Aws_docdb_subnet_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_dx_bgp_peer => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['address_family', 'amazon_address', 'bgp_asn', 'bgp_auth_key', 'customer_address', 'virtual_interface_id'],
-          'providedAttributes' => ['aws_dx_bgp_peer_id', 'amazon_address', 'bgp_auth_key', 'bgp_status', 'customer_address']
+          'providedAttributes' => ['amazon_address', 'bgp_auth_key', 'bgp_status', 'customer_address']
         }
       },
       attributes => {
         'aws_dx_bgp_peer_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9714,21 +11200,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_dx_bgp_peerHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_dx_bgp_peer], Tuple[Optional[Aws_dx_bgp_peer]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_dx_bgp_peer]],
-        'update' => Callable[String, Optional[Aws_dx_bgp_peer]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_dx_connection => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bandwidth', 'location', 'name'],
-          'providedAttributes' => ['aws_dx_connection_id', 'arn', 'jumbo_frame_capable', 'tags']
+          'providedAttributes' => ['arn', 'jumbo_frame_capable', 'tags']
         }
       },
       attributes => {
         'aws_dx_connection_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9751,21 +11248,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_dx_connectionHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_dx_connection], Tuple[Optional[Aws_dx_connection]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_dx_connection]],
-        'update' => Callable[String, Optional[Aws_dx_connection]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_dx_connection_association => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['connection_id', 'lag_id'],
-          'providedAttributes' => ['aws_dx_connection_association_id']
+          'immutableAttributes' => ['connection_id', 'lag_id']
         }
       },
       attributes => {
         'aws_dx_connection_association_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9775,21 +11282,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_dx_connection_associationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_dx_connection_association], Tuple[Optional[Aws_dx_connection_association]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_dx_connection_association]],
-        'update' => Callable[String, Optional[Aws_dx_connection_association]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_dx_gateway => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['amazon_side_asn', 'name'],
-          'providedAttributes' => ['aws_dx_gateway_id']
+          'immutableAttributes' => ['amazon_side_asn', 'name']
         }
       },
       attributes => {
         'aws_dx_gateway_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9799,21 +11316,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_dx_gatewayHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_dx_gateway], Tuple[Optional[Aws_dx_gateway]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_dx_gateway]],
-        'update' => Callable[String, Optional[Aws_dx_gateway]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_dx_gateway_association => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['dx_gateway_id', 'vpn_gateway_id'],
-          'providedAttributes' => ['aws_dx_gateway_association_id']
+          'immutableAttributes' => ['dx_gateway_id', 'vpn_gateway_id']
         }
       },
       attributes => {
         'aws_dx_gateway_association_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9823,21 +11350,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_dx_gateway_associationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_dx_gateway_association], Tuple[Optional[Aws_dx_gateway_association]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_dx_gateway_association]],
-        'update' => Callable[String, Optional[Aws_dx_gateway_association]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_dx_hosted_private_virtual_interface => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['address_family', 'amazon_address', 'bgp_asn', 'bgp_auth_key', 'connection_id', 'customer_address', 'mtu', 'name', 'owner_account_id', 'vlan'],
-          'providedAttributes' => ['aws_dx_hosted_private_virtual_interface_id', 'amazon_address', 'arn', 'bgp_auth_key', 'customer_address', 'jumbo_frame_capable', 'mtu']
+          'providedAttributes' => ['amazon_address', 'arn', 'bgp_auth_key', 'customer_address', 'jumbo_frame_capable', 'mtu']
         }
       },
       attributes => {
         'aws_dx_hosted_private_virtual_interface_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9875,21 +11413,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_dx_hosted_private_virtual_interfaceHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_dx_hosted_private_virtual_interface], Tuple[Optional[Aws_dx_hosted_private_virtual_interface]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_dx_hosted_private_virtual_interface]],
-        'update' => Callable[String, Optional[Aws_dx_hosted_private_virtual_interface]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_dx_hosted_private_virtual_interface_accepter => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['dx_gateway_id', 'virtual_interface_id', 'vpn_gateway_id'],
-          'providedAttributes' => ['aws_dx_hosted_private_virtual_interface_accepter_id', 'arn', 'dx_gateway_id', 'tags', 'vpn_gateway_id']
+          'providedAttributes' => ['arn', 'dx_gateway_id', 'tags', 'vpn_gateway_id']
         }
       },
       attributes => {
         'aws_dx_hosted_private_virtual_interface_accepter_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9914,21 +11463,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_dx_hosted_private_virtual_interface_accepterHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_dx_hosted_private_virtual_interface_accepter], Tuple[Optional[Aws_dx_hosted_private_virtual_interface_accepter]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_dx_hosted_private_virtual_interface_accepter]],
-        'update' => Callable[String, Optional[Aws_dx_hosted_private_virtual_interface_accepter]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_dx_hosted_public_virtual_interface => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['address_family', 'amazon_address', 'bgp_asn', 'bgp_auth_key', 'connection_id', 'customer_address', 'name', 'owner_account_id', 'route_filter_prefixes', 'vlan'],
-          'providedAttributes' => ['aws_dx_hosted_public_virtual_interface_id', 'amazon_address', 'arn', 'bgp_auth_key', 'customer_address']
+          'providedAttributes' => ['amazon_address', 'arn', 'bgp_auth_key', 'customer_address']
         }
       },
       attributes => {
         'aws_dx_hosted_public_virtual_interface_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9959,21 +11519,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_dx_hosted_public_virtual_interfaceHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_dx_hosted_public_virtual_interface], Tuple[Optional[Aws_dx_hosted_public_virtual_interface]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_dx_hosted_public_virtual_interface]],
-        'update' => Callable[String, Optional[Aws_dx_hosted_public_virtual_interface]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_dx_hosted_public_virtual_interface_accepter => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['virtual_interface_id'],
-          'providedAttributes' => ['aws_dx_hosted_public_virtual_interface_accepter_id', 'arn', 'tags']
+          'providedAttributes' => ['arn', 'tags']
         }
       },
       attributes => {
         'aws_dx_hosted_public_virtual_interface_accepter_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9990,21 +11561,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_dx_hosted_public_virtual_interface_accepterHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_dx_hosted_public_virtual_interface_accepter], Tuple[Optional[Aws_dx_hosted_public_virtual_interface_accepter]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_dx_hosted_public_virtual_interface_accepter]],
-        'update' => Callable[String, Optional[Aws_dx_hosted_public_virtual_interface_accepter]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_dx_lag => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['connections_bandwidth', 'location', 'number_of_connections'],
-          'providedAttributes' => ['aws_dx_lag_id', 'arn', 'force_destroy', 'number_of_connections', 'tags']
+          'providedAttributes' => ['arn', 'force_destroy', 'number_of_connections', 'tags']
         }
       },
       attributes => {
         'aws_dx_lag_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10031,21 +11613,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_dx_lagHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_dx_lag], Tuple[Optional[Aws_dx_lag]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_dx_lag]],
-        'update' => Callable[String, Optional[Aws_dx_lag]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_dx_private_virtual_interface => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['address_family', 'amazon_address', 'bgp_asn', 'bgp_auth_key', 'connection_id', 'customer_address', 'dx_gateway_id', 'name', 'vlan', 'vpn_gateway_id'],
-          'providedAttributes' => ['aws_dx_private_virtual_interface_id', 'amazon_address', 'arn', 'bgp_auth_key', 'customer_address', 'dx_gateway_id', 'jumbo_frame_capable', 'mtu', 'tags', 'vpn_gateway_id']
+          'providedAttributes' => ['amazon_address', 'arn', 'bgp_auth_key', 'customer_address', 'dx_gateway_id', 'jumbo_frame_capable', 'mtu', 'tags', 'vpn_gateway_id']
         }
       },
       attributes => {
         'aws_dx_private_virtual_interface_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10094,21 +11687,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_dx_private_virtual_interfaceHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_dx_private_virtual_interface], Tuple[Optional[Aws_dx_private_virtual_interface]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_dx_private_virtual_interface]],
-        'update' => Callable[String, Optional[Aws_dx_private_virtual_interface]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_dx_public_virtual_interface => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['address_family', 'amazon_address', 'bgp_asn', 'bgp_auth_key', 'connection_id', 'customer_address', 'name', 'route_filter_prefixes', 'vlan'],
-          'providedAttributes' => ['aws_dx_public_virtual_interface_id', 'amazon_address', 'arn', 'bgp_auth_key', 'customer_address', 'tags']
+          'providedAttributes' => ['amazon_address', 'arn', 'bgp_auth_key', 'customer_address', 'tags']
         }
       },
       attributes => {
         'aws_dx_public_virtual_interface_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10142,21 +11746,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_dx_public_virtual_interfaceHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_dx_public_virtual_interface], Tuple[Optional[Aws_dx_public_virtual_interface]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_dx_public_virtual_interface]],
-        'update' => Callable[String, Optional[Aws_dx_public_virtual_interface]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_dynamodb_global_table => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_dynamodb_global_table_id', 'arn']
+          'providedAttributes' => ['arn']
         }
       },
       attributes => {
         'aws_dynamodb_global_table_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10170,10 +11785,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_dynamodb_global_tableHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_dynamodb_global_table], Tuple[Optional[Aws_dynamodb_global_table]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_dynamodb_global_table]],
-        'update' => Callable[String, Optional[Aws_dynamodb_global_table]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_dynamodb_global_table_replica_203 => {
@@ -10185,11 +11806,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['hash_key', 'local_secondary_index', 'name', 'range_key'],
-          'providedAttributes' => ['aws_dynamodb_table_id', 'arn', 'billing_mode', 'global_secondary_index', 'local_secondary_index', 'point_in_time_recovery', 'range_key', 'read_capacity', 'server_side_encryption', 'stream_arn', 'stream_enabled', 'stream_label', 'stream_view_type', 'tags', 'ttl', 'write_capacity']
+          'providedAttributes' => ['arn', 'billing_mode', 'global_secondary_index', 'local_secondary_index', 'point_in_time_recovery', 'range_key', 'read_capacity', 'server_side_encryption', 'stream_arn', 'stream_enabled', 'stream_label', 'stream_view_type', 'tags', 'ttl', 'write_capacity']
         }
       },
       attributes => {
         'aws_dynamodb_table_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10260,10 +11886,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_dynamodb_tableHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_dynamodb_table], Tuple[Optional[Aws_dynamodb_table]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_dynamodb_table]],
-        'update' => Callable[String, Optional[Aws_dynamodb_table]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_dynamodb_table_attribute_204 => {
@@ -10299,11 +11931,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['hash_key', 'range_key', 'table_name'],
-          'providedAttributes' => ['aws_dynamodb_table_item_id', 'range_key']
+          'providedAttributes' => ['range_key']
         }
       },
       attributes => {
         'aws_dynamodb_table_item_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10318,10 +11955,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_dynamodb_table_itemHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_dynamodb_table_item], Tuple[Optional[Aws_dynamodb_table_item]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_dynamodb_table_item]],
-        'update' => Callable[String, Optional[Aws_dynamodb_table_item]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_dynamodb_table_local_secondary_index_206 => {
@@ -10355,11 +11998,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'tags', 'volume_id'],
-          'providedAttributes' => ['aws_ebs_snapshot_id', 'data_encryption_key_id', 'description', 'encrypted', 'kms_key_id', 'owner_alias', 'owner_id', 'tags', 'volume_size']
+          'providedAttributes' => ['data_encryption_key_id', 'description', 'encrypted', 'kms_key_id', 'owner_alias', 'owner_id', 'tags', 'volume_size']
         }
       },
       attributes => {
         'aws_ebs_snapshot_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10400,21 +12048,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_ebs_snapshotHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ebs_snapshot], Tuple[Optional[Aws_ebs_snapshot]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ebs_snapshot]],
-        'update' => Callable[String, Optional[Aws_ebs_snapshot]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ebs_snapshot_copy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'encrypted', 'kms_key_id', 'source_region', 'source_snapshot_id', 'tags'],
-          'providedAttributes' => ['aws_ebs_snapshot_copy_id', 'data_encryption_key_id', 'description', 'encrypted', 'kms_key_id', 'owner_alias', 'owner_id', 'tags', 'volume_id', 'volume_size']
+          'providedAttributes' => ['data_encryption_key_id', 'description', 'encrypted', 'kms_key_id', 'owner_alias', 'owner_id', 'tags', 'volume_id', 'volume_size']
         }
       },
       attributes => {
         'aws_ebs_snapshot_copy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10460,21 +12119,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_ebs_snapshot_copyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ebs_snapshot_copy], Tuple[Optional[Aws_ebs_snapshot_copy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ebs_snapshot_copy]],
-        'update' => Callable[String, Optional[Aws_ebs_snapshot_copy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ebs_volume => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['availability_zone', 'encrypted', 'kms_key_id', 'snapshot_id'],
-          'providedAttributes' => ['aws_ebs_volume_id', 'arn', 'encrypted', 'iops', 'kms_key_id', 'size', 'snapshot_id', 'tags', 'type']
+          'providedAttributes' => ['arn', 'encrypted', 'iops', 'kms_key_id', 'size', 'snapshot_id', 'tags', 'type']
         }
       },
       attributes => {
         'aws_ebs_volume_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10515,21 +12185,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_ebs_volumeHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ebs_volume], Tuple[Optional[Aws_ebs_volume]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ebs_volume]],
-        'update' => Callable[String, Optional[Aws_ebs_volume]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ec2_capacity_reservation => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['availability_zone', 'ebs_optimized', 'ephemeral_storage', 'instance_match_criteria', 'instance_platform', 'instance_type', 'tenancy'],
-          'providedAttributes' => ['aws_ec2_capacity_reservation_id', 'ebs_optimized', 'end_date', 'end_date_type', 'ephemeral_storage', 'instance_match_criteria', 'tags', 'tenancy']
+          'providedAttributes' => ['ebs_optimized', 'end_date', 'end_date_type', 'ephemeral_storage', 'instance_match_criteria', 'tags', 'tenancy']
         }
       },
       attributes => {
         'aws_ec2_capacity_reservation_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10569,21 +12250,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_ec2_capacity_reservationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ec2_capacity_reservation], Tuple[Optional[Aws_ec2_capacity_reservation]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ec2_capacity_reservation]],
-        'update' => Callable[String, Optional[Aws_ec2_capacity_reservation]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ec2_fleet => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['launch_template_config', 'replace_unhealthy_instances', 'tags', 'terminate_instances_with_expiration', 'type'],
-          'providedAttributes' => ['aws_ec2_fleet_id', 'excess_capacity_termination_policy', 'on_demand_options', 'replace_unhealthy_instances', 'spot_options', 'tags', 'terminate_instances', 'terminate_instances_with_expiration', 'type']
+          'providedAttributes' => ['excess_capacity_termination_policy', 'on_demand_options', 'replace_unhealthy_instances', 'spot_options', 'tags', 'terminate_instances', 'terminate_instances_with_expiration', 'type']
         }
       },
       attributes => {
         'aws_ec2_fleet_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10625,10 +12317,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_ec2_fleetHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ec2_fleet], Tuple[Optional[Aws_ec2_fleet]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ec2_fleet]],
-        'update' => Callable[String, Optional[Aws_ec2_fleet]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ec2_fleet_launch_template_config_210 => {
@@ -10723,11 +12421,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['amazon_side_asn', 'auto_accept_shared_attachments', 'default_route_table_association', 'default_route_table_propagation', 'description', 'dns_support', 'vpn_ecmp_support'],
-          'providedAttributes' => ['aws_ec2_transit_gateway_id', 'amazon_side_asn', 'arn', 'association_default_route_table_id', 'auto_accept_shared_attachments', 'default_route_table_association', 'default_route_table_propagation', 'description', 'dns_support', 'owner_id', 'propagation_default_route_table_id', 'tags', 'vpn_ecmp_support']
+          'providedAttributes' => ['amazon_side_asn', 'arn', 'association_default_route_table_id', 'auto_accept_shared_attachments', 'default_route_table_association', 'default_route_table_propagation', 'description', 'dns_support', 'owner_id', 'propagation_default_route_table_id', 'tags', 'vpn_ecmp_support']
         }
       },
       attributes => {
         'aws_ec2_transit_gateway_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10783,21 +12486,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_ec2_transit_gatewayHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ec2_transit_gateway], Tuple[Optional[Aws_ec2_transit_gateway]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ec2_transit_gateway]],
-        'update' => Callable[String, Optional[Aws_ec2_transit_gateway]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ec2_transit_gateway_route => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['destination_cidr_block', 'transit_gateway_attachment_id', 'transit_gateway_route_table_id'],
-          'providedAttributes' => ['aws_ec2_transit_gateway_route_id']
+          'immutableAttributes' => ['destination_cidr_block', 'transit_gateway_attachment_id', 'transit_gateway_route_table_id']
         }
       },
       attributes => {
         'aws_ec2_transit_gateway_route_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10808,21 +12521,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_ec2_transit_gateway_routeHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ec2_transit_gateway_route], Tuple[Optional[Aws_ec2_transit_gateway_route]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ec2_transit_gateway_route]],
-        'update' => Callable[String, Optional[Aws_ec2_transit_gateway_route]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ec2_transit_gateway_route_table => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['transit_gateway_id'],
-          'providedAttributes' => ['aws_ec2_transit_gateway_route_table_id', 'default_association_route_table', 'default_propagation_route_table', 'tags']
+          'providedAttributes' => ['default_association_route_table', 'default_propagation_route_table', 'tags']
         }
       },
       attributes => {
         'aws_ec2_transit_gateway_route_table_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10843,21 +12567,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_ec2_transit_gateway_route_tableHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ec2_transit_gateway_route_table], Tuple[Optional[Aws_ec2_transit_gateway_route_table]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ec2_transit_gateway_route_table]],
-        'update' => Callable[String, Optional[Aws_ec2_transit_gateway_route_table]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ec2_transit_gateway_route_table_association => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['transit_gateway_attachment_id', 'transit_gateway_route_table_id'],
-          'providedAttributes' => ['aws_ec2_transit_gateway_route_table_association_id', 'resource_id', 'resource_type']
+          'providedAttributes' => ['resource_id', 'resource_type']
         }
       },
       attributes => {
         'aws_ec2_transit_gateway_route_table_association_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10875,21 +12610,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_ec2_transit_gateway_route_table_associationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ec2_transit_gateway_route_table_association], Tuple[Optional[Aws_ec2_transit_gateway_route_table_association]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ec2_transit_gateway_route_table_association]],
-        'update' => Callable[String, Optional[Aws_ec2_transit_gateway_route_table_association]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ec2_transit_gateway_route_table_propagation => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['transit_gateway_attachment_id', 'transit_gateway_route_table_id'],
-          'providedAttributes' => ['aws_ec2_transit_gateway_route_table_propagation_id', 'resource_id', 'resource_type']
+          'providedAttributes' => ['resource_id', 'resource_type']
         }
       },
       attributes => {
         'aws_ec2_transit_gateway_route_table_propagation_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10907,21 +12653,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_ec2_transit_gateway_route_table_propagationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ec2_transit_gateway_route_table_propagation], Tuple[Optional[Aws_ec2_transit_gateway_route_table_propagation]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ec2_transit_gateway_route_table_propagation]],
-        'update' => Callable[String, Optional[Aws_ec2_transit_gateway_route_table_propagation]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ec2_transit_gateway_vpc_attachment => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['transit_gateway_id', 'vpc_id'],
-          'providedAttributes' => ['aws_ec2_transit_gateway_vpc_attachment_id', 'dns_support', 'ipv6_support', 'tags', 'transit_gateway_default_route_table_association', 'transit_gateway_default_route_table_propagation', 'vpc_owner_id']
+          'providedAttributes' => ['dns_support', 'ipv6_support', 'tags', 'transit_gateway_default_route_table_association', 'transit_gateway_default_route_table_propagation', 'vpc_owner_id']
         }
       },
       attributes => {
         'aws_ec2_transit_gateway_vpc_attachment_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10956,21 +12713,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_ec2_transit_gateway_vpc_attachmentHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ec2_transit_gateway_vpc_attachment], Tuple[Optional[Aws_ec2_transit_gateway_vpc_attachment]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ec2_transit_gateway_vpc_attachment]],
-        'update' => Callable[String, Optional[Aws_ec2_transit_gateway_vpc_attachment]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ecr_lifecycle_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['policy', 'repository'],
-          'providedAttributes' => ['aws_ecr_lifecycle_policy_id', 'registry_id']
+          'providedAttributes' => ['registry_id']
         }
       },
       attributes => {
         'aws_ecr_lifecycle_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10984,21 +12752,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_ecr_lifecycle_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ecr_lifecycle_policy], Tuple[Optional[Aws_ecr_lifecycle_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ecr_lifecycle_policy]],
-        'update' => Callable[String, Optional[Aws_ecr_lifecycle_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ecr_repository => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_ecr_repository_id', 'arn', 'registry_id', 'repository_url', 'tags']
+          'providedAttributes' => ['arn', 'registry_id', 'repository_url', 'tags']
         }
       },
       attributes => {
         'aws_ecr_repository_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -11023,21 +12802,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_ecr_repositoryHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ecr_repository], Tuple[Optional[Aws_ecr_repository]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ecr_repository]],
-        'update' => Callable[String, Optional[Aws_ecr_repository]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ecr_repository_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['repository'],
-          'providedAttributes' => ['aws_ecr_repository_policy_id', 'registry_id']
+          'providedAttributes' => ['registry_id']
         }
       },
       attributes => {
         'aws_ecr_repository_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -11051,21 +12841,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_ecr_repository_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ecr_repository_policy], Tuple[Optional[Aws_ecr_repository_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ecr_repository_policy]],
-        'update' => Callable[String, Optional[Aws_ecr_repository_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ecs_cluster => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_ecs_cluster_id', 'arn', 'tags']
+          'providedAttributes' => ['arn', 'tags']
         }
       },
       attributes => {
         'aws_ecs_cluster_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -11082,21 +12883,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_ecs_clusterHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ecs_cluster], Tuple[Optional[Aws_ecs_cluster]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ecs_cluster]],
-        'update' => Callable[String, Optional[Aws_ecs_cluster]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ecs_service => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['cluster', 'iam_role', 'launch_type', 'load_balancer', 'name', 'ordered_placement_strategy', 'placement_constraints', 'placement_strategy', 'propagate_tags', 'scheduling_strategy', 'service_registries'],
-          'providedAttributes' => ['aws_ecs_service_id', 'cluster', 'deployment_controller', 'deployment_maximum_percent', 'deployment_minimum_healthy_percent', 'desired_count', 'enable_ecs_managed_tags', 'health_check_grace_period_seconds', 'iam_role', 'launch_type', 'load_balancer', 'network_configuration', 'ordered_placement_strategy', 'placement_constraints', 'placement_strategy', 'platform_version', 'propagate_tags', 'scheduling_strategy', 'service_registries', 'tags']
+          'providedAttributes' => ['cluster', 'deployment_controller', 'deployment_maximum_percent', 'deployment_minimum_healthy_percent', 'desired_count', 'enable_ecs_managed_tags', 'health_check_grace_period_seconds', 'iam_role', 'launch_type', 'load_balancer', 'network_configuration', 'ordered_placement_strategy', 'placement_constraints', 'placement_strategy', 'platform_version', 'propagate_tags', 'scheduling_strategy', 'service_registries', 'tags']
         }
       },
       attributes => {
         'aws_ecs_service_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -11182,10 +12994,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_ecs_serviceHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ecs_service], Tuple[Optional[Aws_ecs_service]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ecs_service]],
-        'update' => Callable[String, Optional[Aws_ecs_service]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ecs_service_deployment_controller_216 => {
@@ -11271,11 +13089,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['container_definitions', 'cpu', 'execution_role_arn', 'family', 'ipc_mode', 'memory', 'network_mode', 'pid_mode', 'placement_constraints', 'requires_compatibilities', 'task_role_arn', 'volume'],
-          'providedAttributes' => ['aws_ecs_task_definition_id', 'arn', 'cpu', 'execution_role_arn', 'ipc_mode', 'memory', 'network_mode', 'pid_mode', 'placement_constraints', 'requires_compatibilities', 'revision', 'tags', 'task_role_arn', 'volume']
+          'providedAttributes' => ['arn', 'cpu', 'execution_role_arn', 'ipc_mode', 'memory', 'network_mode', 'pid_mode', 'placement_constraints', 'requires_compatibilities', 'revision', 'tags', 'task_role_arn', 'volume']
         }
       },
       attributes => {
         'aws_ecs_task_definition_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -11337,10 +13160,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_ecs_task_definitionHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ecs_task_definition], Tuple[Optional[Aws_ecs_task_definition]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ecs_task_definition]],
-        'update' => Callable[String, Optional[Aws_ecs_task_definition]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ecs_task_definition_placement_constraints_223 => {
@@ -11393,11 +13222,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['creation_token', 'encrypted', 'kms_key_id', 'performance_mode'],
-          'providedAttributes' => ['aws_efs_file_system_id', 'arn', 'creation_token', 'dns_name', 'encrypted', 'kms_key_id', 'performance_mode', 'provisioned_throughput_in_mibps', 'reference_name', 'tags', 'throughput_mode']
+          'providedAttributes' => ['arn', 'creation_token', 'dns_name', 'encrypted', 'kms_key_id', 'performance_mode', 'provisioned_throughput_in_mibps', 'reference_name', 'tags', 'throughput_mode']
         }
       },
       attributes => {
         'aws_efs_file_system_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -11445,21 +13279,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_efs_file_systemHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_efs_file_system], Tuple[Optional[Aws_efs_file_system]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_efs_file_system]],
-        'update' => Callable[String, Optional[Aws_efs_file_system]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_efs_mount_target => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['file_system_id', 'ip_address', 'subnet_id'],
-          'providedAttributes' => ['aws_efs_mount_target_id', 'dns_name', 'file_system_arn', 'ip_address', 'network_interface_id', 'security_groups']
+          'providedAttributes' => ['dns_name', 'file_system_arn', 'ip_address', 'network_interface_id', 'security_groups']
         }
       },
       attributes => {
         'aws_efs_mount_target_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -11489,21 +13334,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_efs_mount_targetHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_efs_mount_target], Tuple[Optional[Aws_efs_mount_target]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_efs_mount_target]],
-        'update' => Callable[String, Optional[Aws_efs_mount_target]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_egress_only_internet_gateway => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['vpc_id'],
-          'providedAttributes' => ['aws_egress_only_internet_gateway_id']
+          'immutableAttributes' => ['vpc_id']
         }
       },
       attributes => {
         'aws_egress_only_internet_gateway_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -11512,21 +13367,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_egress_only_internet_gatewayHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_egress_only_internet_gateway], Tuple[Optional[Aws_egress_only_internet_gateway]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_egress_only_internet_gateway]],
-        'update' => Callable[String, Optional[Aws_egress_only_internet_gateway]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_eip => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['public_ipv4_pool', 'vpc'],
-          'providedAttributes' => ['aws_eip_id', 'allocation_id', 'associate_with_private_ip', 'association_id', 'domain', 'instance', 'network_interface', 'private_ip', 'public_ip', 'public_ipv4_pool', 'tags', 'vpc']
+          'providedAttributes' => ['allocation_id', 'associate_with_private_ip', 'association_id', 'domain', 'instance', 'network_interface', 'private_ip', 'public_ip', 'public_ipv4_pool', 'tags', 'vpc']
         }
       },
       attributes => {
         'aws_eip_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -11578,21 +13444,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_eipHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_eip], Tuple[Optional[Aws_eip]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_eip]],
-        'update' => Callable[String, Optional[Aws_eip]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_eip_association => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['allocation_id', 'allow_reassociation', 'instance_id', 'network_interface_id', 'private_ip_address', 'public_ip'],
-          'providedAttributes' => ['aws_eip_association_id', 'allocation_id', 'allow_reassociation', 'instance_id', 'network_interface_id', 'private_ip_address', 'public_ip']
+          'providedAttributes' => ['allocation_id', 'allow_reassociation', 'instance_id', 'network_interface_id', 'private_ip_address', 'public_ip']
         }
       },
       attributes => {
         'aws_eip_association_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -11624,21 +13501,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_eip_associationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_eip_association], Tuple[Optional[Aws_eip_association]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_eip_association]],
-        'update' => Callable[String, Optional[Aws_eip_association]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_eks_cluster => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'role_arn', 'vpc_config'],
-          'providedAttributes' => ['aws_eks_cluster_id', 'arn', 'certificate_authority', 'created_at', 'endpoint', 'platform_version', 'version']
+          'providedAttributes' => ['arn', 'certificate_authority', 'created_at', 'endpoint', 'platform_version', 'version']
         }
       },
       attributes => {
         'aws_eks_cluster_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -11673,10 +13561,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_eks_clusterHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_eks_cluster], Tuple[Optional[Aws_eks_cluster]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_eks_cluster]],
-        'update' => Callable[String, Optional[Aws_eks_cluster]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_eks_cluster_certificate_authority_226 => {
@@ -11704,11 +13598,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_elastic_beanstalk_application_id', 'appversion_lifecycle', 'description']
+          'providedAttributes' => ['appversion_lifecycle', 'description']
         }
       },
       attributes => {
         'aws_elastic_beanstalk_application_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -11725,10 +13624,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_elastic_beanstalk_applicationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_elastic_beanstalk_application], Tuple[Optional[Aws_elastic_beanstalk_application]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_elastic_beanstalk_application]],
-        'update' => Callable[String, Optional[Aws_elastic_beanstalk_application]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_elastic_beanstalk_application_appversion_lifecycle_228 => {
@@ -11752,11 +13657,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['application', 'bucket', 'key', 'name'],
-          'providedAttributes' => ['aws_elastic_beanstalk_application_version_id', 'description', 'force_delete']
+          'providedAttributes' => ['description', 'force_delete']
         }
       },
       attributes => {
         'aws_elastic_beanstalk_application_version_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -11776,21 +13686,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_elastic_beanstalk_application_versionHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_elastic_beanstalk_application_version], Tuple[Optional[Aws_elastic_beanstalk_application_version]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_elastic_beanstalk_application_version]],
-        'update' => Callable[String, Optional[Aws_elastic_beanstalk_application_version]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_elastic_beanstalk_configuration_template => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['application', 'environment_id', 'name', 'solution_stack_name'],
-          'providedAttributes' => ['aws_elastic_beanstalk_configuration_template_id', 'description', 'environment_id', 'setting', 'solution_stack_name']
+          'providedAttributes' => ['description', 'environment_id', 'setting', 'solution_stack_name']
         }
       },
       attributes => {
         'aws_elastic_beanstalk_configuration_template_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -11816,10 +13737,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_elastic_beanstalk_configuration_templateHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_elastic_beanstalk_configuration_template], Tuple[Optional[Aws_elastic_beanstalk_configuration_template]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_elastic_beanstalk_configuration_template]],
-        'update' => Callable[String, Optional[Aws_elastic_beanstalk_configuration_template]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_elastic_beanstalk_configuration_template_setting_229 => {
@@ -11837,11 +13764,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['cname_prefix', 'name', 'tier'],
-          'providedAttributes' => ['aws_elastic_beanstalk_environment_id', 'all_settings', 'arn', 'autoscaling_groups', 'cname', 'cname_prefix', 'description', 'instances', 'launch_configurations', 'load_balancers', 'platform_arn', 'poll_interval', 'queues', 'setting', 'solution_stack_name', 'tags', 'template_name', 'tier', 'triggers', 'version_label', 'wait_for_ready_timeout']
+          'providedAttributes' => ['all_settings', 'arn', 'autoscaling_groups', 'cname', 'cname_prefix', 'description', 'instances', 'launch_configurations', 'load_balancers', 'platform_arn', 'poll_interval', 'queues', 'setting', 'solution_stack_name', 'tags', 'template_name', 'tier', 'triggers', 'version_label', 'wait_for_ready_timeout']
         }
       },
       attributes => {
         'aws_elastic_beanstalk_environment_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -11931,10 +13863,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_elastic_beanstalk_environmentHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_elastic_beanstalk_environment], Tuple[Optional[Aws_elastic_beanstalk_environment]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_elastic_beanstalk_environment]],
-        'update' => Callable[String, Optional[Aws_elastic_beanstalk_environment]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_elastic_beanstalk_environment_all_settings_230 => {
@@ -11963,11 +13901,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['availability_zone', 'availability_zones', 'cluster_id', 'engine', 'port', 'replication_group_id', 'security_group_names', 'snapshot_arns', 'snapshot_name', 'subnet_group_name'],
-          'providedAttributes' => ['aws_elasticache_cluster_id', 'apply_immediately', 'availability_zone', 'availability_zones', 'az_mode', 'cache_nodes', 'cluster_address', 'configuration_endpoint', 'engine', 'engine_version', 'maintenance_window', 'node_type', 'notification_topic_arn', 'num_cache_nodes', 'parameter_group_name', 'port', 'preferred_availability_zones', 'replication_group_id', 'security_group_ids', 'security_group_names', 'snapshot_arns', 'snapshot_name', 'snapshot_retention_limit', 'snapshot_window', 'subnet_group_name', 'tags']
+          'providedAttributes' => ['apply_immediately', 'availability_zone', 'availability_zones', 'az_mode', 'cache_nodes', 'cluster_address', 'configuration_endpoint', 'engine', 'engine_version', 'maintenance_window', 'node_type', 'notification_topic_arn', 'num_cache_nodes', 'parameter_group_name', 'port', 'preferred_availability_zones', 'replication_group_id', 'security_group_ids', 'security_group_names', 'snapshot_arns', 'snapshot_name', 'snapshot_retention_limit', 'snapshot_window', 'subnet_group_name', 'tags']
         }
       },
       attributes => {
         'aws_elasticache_cluster_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -12076,10 +14019,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_elasticache_clusterHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_elasticache_cluster], Tuple[Optional[Aws_elasticache_cluster]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_elasticache_cluster]],
-        'update' => Callable[String, Optional[Aws_elasticache_cluster]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_elasticache_cluster_cache_nodes_232 => {
@@ -12106,11 +14055,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'family', 'name'],
-          'providedAttributes' => ['aws_elasticache_parameter_group_id', 'description', 'parameter']
+          'providedAttributes' => ['description', 'parameter']
         }
       },
       attributes => {
         'aws_elasticache_parameter_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -12128,10 +14082,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_elasticache_parameter_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_elasticache_parameter_group], Tuple[Optional[Aws_elasticache_parameter_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_elasticache_parameter_group]],
-        'update' => Callable[String, Optional[Aws_elasticache_parameter_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_elasticache_parameter_group_parameter_233 => {
@@ -12144,11 +14104,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['at_rest_encryption_enabled', 'auth_token', 'availability_zones', 'engine', 'port', 'replication_group_id', 'security_group_names', 'snapshot_arns', 'snapshot_name', 'subnet_group_name', 'transit_encryption_enabled'],
-          'providedAttributes' => ['aws_elasticache_replication_group_id', 'apply_immediately', 'at_rest_encryption_enabled', 'auth_token', 'auto_minor_version_upgrade', 'automatic_failover_enabled', 'availability_zones', 'cluster_mode', 'configuration_endpoint_address', 'engine', 'engine_version', 'maintenance_window', 'member_clusters', 'node_type', 'notification_topic_arn', 'number_cache_clusters', 'parameter_group_name', 'port', 'primary_endpoint_address', 'security_group_ids', 'security_group_names', 'snapshot_arns', 'snapshot_name', 'snapshot_retention_limit', 'snapshot_window', 'subnet_group_name', 'tags', 'transit_encryption_enabled']
+          'providedAttributes' => ['apply_immediately', 'at_rest_encryption_enabled', 'auth_token', 'auto_minor_version_upgrade', 'automatic_failover_enabled', 'availability_zones', 'cluster_mode', 'configuration_endpoint_address', 'engine', 'engine_version', 'maintenance_window', 'member_clusters', 'node_type', 'notification_topic_arn', 'number_cache_clusters', 'parameter_group_name', 'port', 'primary_endpoint_address', 'security_group_ids', 'security_group_names', 'snapshot_arns', 'snapshot_name', 'snapshot_retention_limit', 'snapshot_window', 'subnet_group_name', 'tags', 'transit_encryption_enabled']
         }
       },
       attributes => {
         'aws_elasticache_replication_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -12266,10 +14231,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_elasticache_replication_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_elasticache_replication_group], Tuple[Optional[Aws_elasticache_replication_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_elasticache_replication_group]],
-        'update' => Callable[String, Optional[Aws_elasticache_replication_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_elasticache_replication_group_cluster_mode_234 => {
@@ -12282,11 +14253,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'security_group_names'],
-          'providedAttributes' => ['aws_elasticache_security_group_id', 'description']
+          'providedAttributes' => ['description']
         }
       },
       attributes => {
         'aws_elasticache_security_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -12300,21 +14276,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_elasticache_security_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_elasticache_security_group], Tuple[Optional[Aws_elasticache_security_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_elasticache_security_group]],
-        'update' => Callable[String, Optional[Aws_elasticache_security_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_elasticache_subnet_group => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_elasticache_subnet_group_id', 'description']
+          'providedAttributes' => ['description']
         }
       },
       attributes => {
         'aws_elasticache_subnet_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -12328,21 +14315,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_elasticache_subnet_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_elasticache_subnet_group], Tuple[Optional[Aws_elasticache_subnet_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_elasticache_subnet_group]],
-        'update' => Callable[String, Optional[Aws_elasticache_subnet_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_elasticsearch_domain => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['domain_name', 'vpc_options'],
-          'providedAttributes' => ['aws_elasticsearch_domain_id', 'access_policies', 'advanced_options', 'arn', 'cluster_config', 'cognito_options', 'domain_id', 'ebs_options', 'elasticsearch_version', 'encrypt_at_rest', 'endpoint', 'kibana_endpoint', 'log_publishing_options', 'node_to_node_encryption', 'snapshot_options', 'tags', 'vpc_options']
+          'providedAttributes' => ['access_policies', 'advanced_options', 'arn', 'cluster_config', 'cognito_options', 'domain_id', 'ebs_options', 'elasticsearch_version', 'encrypt_at_rest', 'endpoint', 'kibana_endpoint', 'log_publishing_options', 'node_to_node_encryption', 'snapshot_options', 'tags', 'vpc_options']
         }
       },
       attributes => {
         'aws_elasticsearch_domain_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -12415,10 +14413,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_elasticsearch_domainHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_elasticsearch_domain], Tuple[Optional[Aws_elasticsearch_domain]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_elasticsearch_domain]],
-        'update' => Callable[String, Optional[Aws_elasticsearch_domain]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_elasticsearch_domain_cluster_config_235 => {
@@ -12502,13 +14506,13 @@ type TerraformAws = TypeSet[{
       }
     },
     Aws_elasticsearch_domain_policy => {
-      annotations => {
-        Lyra::Resource => {
-          'providedAttributes' => ['aws_elasticsearch_domain_policy_id']
-        }
-      },
       attributes => {
         'aws_elasticsearch_domain_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -12518,10 +14522,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_elasticsearch_domain_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_elasticsearch_domain_policy], Tuple[Optional[Aws_elasticsearch_domain_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_elasticsearch_domain_policy]],
-        'update' => Callable[String, Optional[Aws_elasticsearch_domain_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_elasticsearch_domain_snapshot_options_241 => {
@@ -12553,11 +14563,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_elastictranscoder_pipeline_id', 'arn', 'aws_kms_key_arn', 'content_config', 'content_config_permissions', 'name', 'notifications', 'output_bucket', 'thumbnail_config', 'thumbnail_config_permissions']
+          'providedAttributes' => ['arn', 'aws_kms_key_arn', 'content_config', 'content_config_permissions', 'name', 'notifications', 'output_bucket', 'thumbnail_config', 'thumbnail_config_permissions']
         }
       },
       attributes => {
         'aws_elastictranscoder_pipeline_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -12603,10 +14618,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_elastictranscoder_pipelineHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_elastictranscoder_pipeline], Tuple[Optional[Aws_elastictranscoder_pipeline]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_elastictranscoder_pipeline]],
-        'update' => Callable[String, Optional[Aws_elastictranscoder_pipeline]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_elastictranscoder_pipeline_content_config_243 => {
@@ -12689,11 +14710,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['audio', 'audio_codec_options', 'container', 'description', 'name', 'thumbnails', 'video', 'video_codec_options', 'video_watermarks'],
-          'providedAttributes' => ['aws_elastictranscoder_preset_id', 'arn', 'audio', 'audio_codec_options', 'description', 'name', 'thumbnails', 'type', 'video', 'video_codec_options', 'video_watermarks']
+          'providedAttributes' => ['arn', 'audio', 'audio_codec_options', 'description', 'name', 'thumbnails', 'type', 'video', 'video_codec_options', 'video_watermarks']
         }
       },
       attributes => {
         'aws_elastictranscoder_preset_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -12742,10 +14768,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_elastictranscoder_presetHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_elastictranscoder_preset], Tuple[Optional[Aws_elastictranscoder_preset]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_elastictranscoder_preset]],
-        'update' => Callable[String, Optional[Aws_elastictranscoder_preset]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_elastictranscoder_preset_audio_248 => {
@@ -12932,11 +14964,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['internal', 'name', 'name_prefix'],
-          'providedAttributes' => ['aws_elb_id', 'access_logs', 'arn', 'availability_zones', 'connection_draining', 'connection_draining_timeout', 'cross_zone_load_balancing', 'dns_name', 'health_check', 'idle_timeout', 'instances', 'internal', 'name', 'name_prefix', 'security_groups', 'source_security_group', 'source_security_group_id', 'subnets', 'tags', 'zone_id']
+          'providedAttributes' => ['access_logs', 'arn', 'availability_zones', 'connection_draining', 'connection_draining_timeout', 'cross_zone_load_balancing', 'dns_name', 'health_check', 'idle_timeout', 'instances', 'internal', 'name', 'name_prefix', 'security_groups', 'source_security_group', 'source_security_group_id', 'subnets', 'tags', 'zone_id']
         }
       },
       attributes => {
         'aws_elb_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -13021,10 +15058,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_elbHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_elb], Tuple[Optional[Aws_elb]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_elb]],
-        'update' => Callable[String, Optional[Aws_elb]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_elb_access_logs_253 => {
@@ -13047,12 +15090,16 @@ type TerraformAws = TypeSet[{
     Aws_elb_attachment => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['elb', 'instance'],
-          'providedAttributes' => ['aws_elb_attachment_id']
+          'immutableAttributes' => ['elb', 'instance']
         }
       },
       attributes => {
         'aws_elb_attachment_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -13062,10 +15109,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_elb_attachmentHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_elb_attachment], Tuple[Optional[Aws_elb_attachment]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_elb_attachment]],
-        'update' => Callable[String, Optional[Aws_elb_attachment]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_elb_health_check_254 => {
@@ -13093,11 +15146,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['additional_info', 'applications', 'autoscaling_role', 'bootstrap_action', 'configurations', 'configurations_json', 'core_instance_type', 'custom_ami_id', 'ebs_root_volume_size', 'ec2_attributes', 'instance_group', 'keep_job_flow_alive_when_no_steps', 'kerberos_attributes', 'log_uri', 'master_instance_type', 'name', 'release_label', 'scale_down_behavior', 'security_configuration', 'service_role', 'step'],
-          'providedAttributes' => ['aws_emr_cluster_id', 'additional_info', 'applications', 'autoscaling_role', 'bootstrap_action', 'cluster_state', 'configurations', 'configurations_json', 'core_instance_count', 'core_instance_type', 'custom_ami_id', 'ebs_root_volume_size', 'ec2_attributes', 'instance_group', 'keep_job_flow_alive_when_no_steps', 'kerberos_attributes', 'log_uri', 'master_instance_type', 'master_public_dns', 'scale_down_behavior', 'security_configuration', 'step', 'tags', 'termination_protection', 'visible_to_all_users']
+          'providedAttributes' => ['additional_info', 'applications', 'autoscaling_role', 'bootstrap_action', 'cluster_state', 'configurations', 'configurations_json', 'core_instance_count', 'core_instance_type', 'custom_ami_id', 'ebs_root_volume_size', 'ec2_attributes', 'instance_group', 'keep_job_flow_alive_when_no_steps', 'kerberos_attributes', 'log_uri', 'master_instance_type', 'master_public_dns', 'scale_down_behavior', 'security_configuration', 'step', 'tags', 'termination_protection', 'visible_to_all_users']
         }
       },
       attributes => {
         'aws_emr_cluster_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -13204,10 +15262,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_emr_clusterHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_emr_cluster], Tuple[Optional[Aws_emr_cluster]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_emr_cluster]],
-        'update' => Callable[String, Optional[Aws_emr_cluster]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_emr_cluster_bootstrap_action_256 => {
@@ -13343,11 +15407,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['cluster_id', 'ebs_config', 'ebs_optimized', 'instance_type', 'name'],
-          'providedAttributes' => ['aws_emr_instance_group_id', 'ebs_config', 'ebs_optimized', 'instance_count', 'name', 'running_instance_count', 'status']
+          'providedAttributes' => ['ebs_config', 'ebs_optimized', 'instance_count', 'name', 'running_instance_count', 'status']
         }
       },
       attributes => {
         'aws_emr_instance_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -13381,10 +15450,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_emr_instance_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_emr_instance_group], Tuple[Optional[Aws_emr_instance_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_emr_instance_group]],
-        'update' => Callable[String, Optional[Aws_emr_instance_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_emr_instance_group_ebs_config_263 => {
@@ -13405,11 +15480,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['configuration', 'name', 'name_prefix'],
-          'providedAttributes' => ['aws_emr_security_configuration_id', 'creation_date', 'name', 'name_prefix']
+          'providedAttributes' => ['creation_date', 'name', 'name_prefix']
         }
       },
       attributes => {
         'aws_emr_security_configuration_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -13430,21 +15510,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_emr_security_configurationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_emr_security_configuration], Tuple[Optional[Aws_emr_security_configuration]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_emr_security_configuration]],
-        'update' => Callable[String, Optional[Aws_emr_security_configuration]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_flow_log => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['eni_id', 'iam_role_arn', 'log_destination', 'log_destination_type', 'log_group_name', 'subnet_id', 'traffic_type', 'vpc_id'],
-          'providedAttributes' => ['aws_flow_log_id', 'eni_id', 'iam_role_arn', 'log_destination', 'log_destination_type', 'log_group_name', 'subnet_id', 'vpc_id']
+          'providedAttributes' => ['eni_id', 'iam_role_arn', 'log_destination', 'log_destination_type', 'log_group_name', 'subnet_id', 'vpc_id']
         }
       },
       attributes => {
         'aws_flow_log_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -13481,20 +15572,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_flow_logHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_flow_log], Tuple[Optional[Aws_flow_log]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_flow_log]],
-        'update' => Callable[String, Optional[Aws_flow_log]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_gamelift_alias => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_gamelift_alias_id', 'arn', 'description']
+          'providedAttributes' => ['arn', 'description']
         }
       },
       attributes => {
         'aws_gamelift_alias_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -13512,10 +15614,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_gamelift_aliasHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_gamelift_alias], Tuple[Optional[Aws_gamelift_alias]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_gamelift_alias]],
-        'update' => Callable[String, Optional[Aws_gamelift_alias]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_gamelift_alias_routing_strategy_264 => {
@@ -13535,11 +15643,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['operating_system', 'storage_location'],
-          'providedAttributes' => ['aws_gamelift_build_id', 'version']
+          'providedAttributes' => ['version']
         }
       },
       attributes => {
         'aws_gamelift_build_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -13554,10 +15667,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_gamelift_buildHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_gamelift_build], Tuple[Optional[Aws_gamelift_build]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_gamelift_build]],
-        'update' => Callable[String, Optional[Aws_gamelift_build]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_gamelift_build_storage_location_265 => {
@@ -13571,11 +15690,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['build_id', 'ec2_instance_type'],
-          'providedAttributes' => ['aws_gamelift_fleet_id', 'arn', 'description', 'ec2_inbound_permission', 'log_paths', 'metric_groups', 'new_game_session_protection_policy', 'operating_system', 'resource_creation_limit_policy', 'runtime_configuration']
+          'providedAttributes' => ['arn', 'description', 'ec2_inbound_permission', 'log_paths', 'metric_groups', 'new_game_session_protection_policy', 'operating_system', 'resource_creation_limit_policy', 'runtime_configuration']
         }
       },
       attributes => {
         'aws_gamelift_fleet_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -13622,10 +15746,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_gamelift_fleetHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_gamelift_fleet], Tuple[Optional[Aws_gamelift_fleet]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_gamelift_fleet]],
-        'update' => Callable[String, Optional[Aws_gamelift_fleet]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_gamelift_fleet_ec2_inbound_permission_266 => {
@@ -13678,11 +15808,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_gamelift_game_session_queue_id', 'arn', 'destinations', 'player_latency_policy', 'timeout_in_seconds']
+          'providedAttributes' => ['arn', 'destinations', 'player_latency_policy', 'timeout_in_seconds']
         }
       },
       attributes => {
         'aws_gamelift_game_session_queue_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -13707,10 +15842,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_gamelift_game_session_queueHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_gamelift_game_session_queue], Tuple[Optional[Aws_gamelift_game_session_queue]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_gamelift_game_session_queue]],
-        'update' => Callable[String, Optional[Aws_gamelift_game_session_queue]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_gamelift_game_session_queue_player_latency_policy_270 => {
@@ -13726,11 +15867,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_glacier_vault_id', 'access_policy', 'arn', 'location', 'notification', 'tags']
+          'providedAttributes' => ['access_policy', 'arn', 'location', 'notification', 'tags']
         }
       },
       attributes => {
         'aws_glacier_vault_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -13759,21 +15905,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_glacier_vaultHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_glacier_vault], Tuple[Optional[Aws_glacier_vault]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_glacier_vault]],
-        'update' => Callable[String, Optional[Aws_glacier_vault]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_glacier_vault_lock => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['complete_lock', 'policy', 'vault_name'],
-          'providedAttributes' => ['aws_glacier_vault_lock_id', 'ignore_deletion_error']
+          'providedAttributes' => ['ignore_deletion_error']
         }
       },
       attributes => {
         'aws_glacier_vault_lock_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -13788,10 +15945,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_glacier_vault_lockHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_glacier_vault_lock], Tuple[Optional[Aws_glacier_vault_lock]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_glacier_vault_lock]],
-        'update' => Callable[String, Optional[Aws_glacier_vault_lock]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_glacier_vault_notification_271 => {
@@ -13803,11 +15966,16 @@ type TerraformAws = TypeSet[{
     Aws_globalaccelerator_accelerator => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_globalaccelerator_accelerator_id', 'attributes', 'enabled', 'ip_address_type', 'ip_sets']
+          'providedAttributes' => ['attributes', 'enabled', 'ip_address_type', 'ip_sets']
         }
       },
       attributes => {
         'aws_globalaccelerator_accelerator_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -13832,10 +16000,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_globalaccelerator_acceleratorHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_globalaccelerator_accelerator], Tuple[Optional[Aws_globalaccelerator_accelerator]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_globalaccelerator_accelerator]],
-        'update' => Callable[String, Optional[Aws_globalaccelerator_accelerator]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_globalaccelerator_accelerator_attributes_272 => {
@@ -13870,11 +16044,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['catalog_id', 'name'],
-          'providedAttributes' => ['aws_glue_catalog_database_id', 'catalog_id', 'description', 'location_uri', 'parameters']
+          'providedAttributes' => ['catalog_id', 'description', 'location_uri', 'parameters']
         }
       },
       attributes => {
         'aws_glue_catalog_database_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -13899,21 +16078,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_glue_catalog_databaseHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_glue_catalog_database], Tuple[Optional[Aws_glue_catalog_database]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_glue_catalog_database]],
-        'update' => Callable[String, Optional[Aws_glue_catalog_database]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_glue_catalog_table => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['catalog_id', 'database_name', 'name'],
-          'providedAttributes' => ['aws_glue_catalog_table_id', 'catalog_id', 'description', 'owner', 'parameters', 'partition_keys', 'retention', 'storage_descriptor', 'table_type', 'view_expanded_text', 'view_original_text']
+          'providedAttributes' => ['catalog_id', 'description', 'owner', 'parameters', 'partition_keys', 'retention', 'storage_descriptor', 'table_type', 'view_expanded_text', 'view_original_text']
         }
       },
       attributes => {
         'aws_glue_catalog_table_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -13963,10 +16153,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_glue_catalog_tableHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_glue_catalog_table], Tuple[Optional[Aws_glue_catalog_table]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_glue_catalog_table]],
-        'update' => Callable[String, Optional[Aws_glue_catalog_table]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_glue_catalog_table_partition_keys_274 => {
@@ -14089,11 +16285,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_glue_classifier_id', 'grok_classifier', 'json_classifier', 'xml_classifier']
+          'providedAttributes' => ['grok_classifier', 'json_classifier', 'xml_classifier']
         }
       },
       attributes => {
         'aws_glue_classifier_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -14114,10 +16315,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_glue_classifierHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_glue_classifier], Tuple[Optional[Aws_glue_classifier]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_glue_classifier]],
-        'update' => Callable[String, Optional[Aws_glue_classifier]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_glue_classifier_grok_classifier_280 => {
@@ -14145,11 +16352,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['catalog_id', 'name'],
-          'providedAttributes' => ['aws_glue_connection_id', 'catalog_id', 'connection_type', 'description', 'match_criteria', 'physical_connection_requirements']
+          'providedAttributes' => ['catalog_id', 'connection_type', 'description', 'match_criteria', 'physical_connection_requirements']
         }
       },
       attributes => {
         'aws_glue_connection_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -14179,10 +16391,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_glue_connectionHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_glue_connection], Tuple[Optional[Aws_glue_connection]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_glue_connection]],
-        'update' => Callable[String, Optional[Aws_glue_connection]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_glue_connection_physical_connection_requirements_283 => {
@@ -14205,11 +16423,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['database_name', 'name'],
-          'providedAttributes' => ['aws_glue_crawler_id', 'classifiers', 'configuration', 'description', 'dynamodb_target', 'jdbc_target', 's3_target', 'schedule', 'schema_change_policy', 'security_configuration', 'table_prefix']
+          'providedAttributes' => ['classifiers', 'configuration', 'description', 'dynamodb_target', 'jdbc_target', 's3_target', 'schedule', 'schema_change_policy', 'security_configuration', 'table_prefix']
         }
       },
       attributes => {
         'aws_glue_crawler_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -14260,10 +16483,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_glue_crawlerHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_glue_crawler], Tuple[Optional[Aws_glue_crawler]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_glue_crawler]],
-        'update' => Callable[String, Optional[Aws_glue_crawler]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_glue_crawler_dynamodb_target_284 => {
@@ -14306,11 +16535,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_glue_job_id', 'allocated_capacity', 'connections', 'default_arguments', 'description', 'execution_property', 'max_retries', 'security_configuration', 'timeout']
+          'providedAttributes' => ['allocated_capacity', 'connections', 'default_arguments', 'description', 'execution_property', 'max_retries', 'security_configuration', 'timeout']
         }
       },
       attributes => {
         'aws_glue_job_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -14353,10 +16587,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_glue_jobHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_glue_job], Tuple[Optional[Aws_glue_job]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_glue_job]],
-        'update' => Callable[String, Optional[Aws_glue_job]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_glue_job_command_288 => {
@@ -14379,12 +16619,16 @@ type TerraformAws = TypeSet[{
     Aws_glue_security_configuration => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['encryption_configuration', 'name'],
-          'providedAttributes' => ['aws_glue_security_configuration_id']
+          'immutableAttributes' => ['encryption_configuration', 'name']
         }
       },
       attributes => {
         'aws_glue_security_configuration_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -14394,10 +16638,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_glue_security_configurationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_glue_security_configuration], Tuple[Optional[Aws_glue_security_configuration]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_glue_security_configuration]],
-        'update' => Callable[String, Optional[Aws_glue_security_configuration]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_glue_security_configuration_encryption_configuration_290 => {
@@ -14447,11 +16697,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'type'],
-          'providedAttributes' => ['aws_glue_trigger_id', 'description', 'enabled', 'predicate', 'schedule']
+          'providedAttributes' => ['description', 'enabled', 'predicate', 'schedule']
         }
       },
       attributes => {
         'aws_glue_trigger_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -14478,10 +16733,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_glue_triggerHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_glue_trigger], Tuple[Optional[Aws_glue_trigger]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_glue_trigger]],
-        'update' => Callable[String, Optional[Aws_glue_trigger]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_glue_trigger_actions_294 => {
@@ -14519,11 +16780,16 @@ type TerraformAws = TypeSet[{
     Aws_guardduty_detector => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_guardduty_detector_id', 'account_id', 'enable', 'finding_publishing_frequency']
+          'providedAttributes' => ['account_id', 'enable', 'finding_publishing_frequency']
         }
       },
       attributes => {
         'aws_guardduty_detector_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -14543,21 +16809,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_guardduty_detectorHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_guardduty_detector], Tuple[Optional[Aws_guardduty_detector]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_guardduty_detector]],
-        'update' => Callable[String, Optional[Aws_guardduty_detector]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_guardduty_ipset => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['detector_id', 'format'],
-          'providedAttributes' => ['aws_guardduty_ipset_id']
+          'immutableAttributes' => ['detector_id', 'format']
         }
       },
       attributes => {
         'aws_guardduty_ipset_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -14570,21 +16846,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_guardduty_ipsetHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_guardduty_ipset], Tuple[Optional[Aws_guardduty_ipset]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_guardduty_ipset]],
-        'update' => Callable[String, Optional[Aws_guardduty_ipset]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_guardduty_member => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['account_id', 'detector_id', 'disable_email_notification', 'email', 'invitation_message'],
-          'providedAttributes' => ['aws_guardduty_member_id', 'disable_email_notification', 'invitation_message', 'invite', 'relationship_status']
+          'providedAttributes' => ['disable_email_notification', 'invitation_message', 'invite', 'relationship_status']
         }
       },
       attributes => {
         'aws_guardduty_member_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -14611,21 +16898,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_guardduty_memberHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_guardduty_member], Tuple[Optional[Aws_guardduty_member]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_guardduty_member]],
-        'update' => Callable[String, Optional[Aws_guardduty_member]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_guardduty_threatintelset => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['detector_id', 'format'],
-          'providedAttributes' => ['aws_guardduty_threatintelset_id']
+          'immutableAttributes' => ['detector_id', 'format']
         }
       },
       attributes => {
         'aws_guardduty_threatintelset_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -14638,21 +16935,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_guardduty_threatintelsetHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_guardduty_threatintelset], Tuple[Optional[Aws_guardduty_threatintelset]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_guardduty_threatintelset]],
-        'update' => Callable[String, Optional[Aws_guardduty_threatintelset]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iam_access_key => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['pgp_key', 'user'],
-          'providedAttributes' => ['aws_iam_access_key_id', 'encrypted_secret', 'key_fingerprint', 'pgp_key', 'secret', 'ses_smtp_password', 'status']
+          'providedAttributes' => ['encrypted_secret', 'key_fingerprint', 'pgp_key', 'secret', 'ses_smtp_password', 'status']
         }
       },
       attributes => {
         'aws_iam_access_key_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -14685,21 +16993,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_access_keyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iam_access_key], Tuple[Optional[Aws_iam_access_key]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iam_access_key]],
-        'update' => Callable[String, Optional[Aws_iam_access_key]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iam_account_alias => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['account_alias'],
-          'providedAttributes' => ['aws_iam_account_alias_id']
+          'immutableAttributes' => ['account_alias']
         }
       },
       attributes => {
         'aws_iam_account_alias_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -14708,20 +17026,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_account_aliasHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iam_account_alias], Tuple[Optional[Aws_iam_account_alias]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iam_account_alias]],
-        'update' => Callable[String, Optional[Aws_iam_account_alias]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iam_account_password_policy => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_iam_account_password_policy_id', 'allow_users_to_change_password', 'expire_passwords', 'hard_expiry', 'max_password_age', 'minimum_password_length', 'password_reuse_prevention', 'require_lowercase_characters', 'require_numbers', 'require_symbols', 'require_uppercase_characters']
+          'providedAttributes' => ['allow_users_to_change_password', 'expire_passwords', 'hard_expiry', 'max_password_age', 'minimum_password_length', 'password_reuse_prevention', 'require_lowercase_characters', 'require_numbers', 'require_symbols', 'require_uppercase_characters']
         }
       },
       attributes => {
         'aws_iam_account_password_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -14769,20 +17098,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_account_password_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iam_account_password_policy], Tuple[Optional[Aws_iam_account_password_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iam_account_password_policy]],
-        'update' => Callable[String, Optional[Aws_iam_account_password_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iam_group => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_iam_group_id', 'arn', 'path', 'unique_id']
+          'providedAttributes' => ['arn', 'path', 'unique_id']
         }
       },
       attributes => {
         'aws_iam_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -14803,21 +17143,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iam_group], Tuple[Optional[Aws_iam_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iam_group]],
-        'update' => Callable[String, Optional[Aws_iam_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iam_group_membership => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['group', 'name'],
-          'providedAttributes' => ['aws_iam_group_membership_id']
+          'immutableAttributes' => ['group', 'name']
         }
       },
       attributes => {
         'aws_iam_group_membership_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -14828,21 +17178,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_group_membershipHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iam_group_membership], Tuple[Optional[Aws_iam_group_membership]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iam_group_membership]],
-        'update' => Callable[String, Optional[Aws_iam_group_membership]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iam_group_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['group', 'name', 'name_prefix'],
-          'providedAttributes' => ['aws_iam_group_policy_id', 'name', 'name_prefix']
+          'providedAttributes' => ['name', 'name_prefix']
         }
       },
       attributes => {
         'aws_iam_group_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -14860,21 +17221,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_group_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iam_group_policy], Tuple[Optional[Aws_iam_group_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iam_group_policy]],
-        'update' => Callable[String, Optional[Aws_iam_group_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iam_group_policy_attachment => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['group', 'policy_arn'],
-          'providedAttributes' => ['aws_iam_group_policy_attachment_id']
+          'immutableAttributes' => ['group', 'policy_arn']
         }
       },
       attributes => {
         'aws_iam_group_policy_attachment_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -14884,21 +17255,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_group_policy_attachmentHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iam_group_policy_attachment], Tuple[Optional[Aws_iam_group_policy_attachment]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iam_group_policy_attachment]],
-        'update' => Callable[String, Optional[Aws_iam_group_policy_attachment]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iam_instance_profile => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'name_prefix', 'path'],
-          'providedAttributes' => ['aws_iam_instance_profile_id', 'arn', 'create_date', 'name', 'name_prefix', 'path', 'role', 'roles', 'unique_id']
+          'providedAttributes' => ['arn', 'create_date', 'name', 'name_prefix', 'path', 'role', 'roles', 'unique_id']
         }
       },
       attributes => {
         'aws_iam_instance_profile_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -14938,21 +17320,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_instance_profileHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iam_instance_profile], Tuple[Optional[Aws_iam_instance_profile]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iam_instance_profile]],
-        'update' => Callable[String, Optional[Aws_iam_instance_profile]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iam_openid_connect_provider => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['client_id_list', 'url'],
-          'providedAttributes' => ['aws_iam_openid_connect_provider_id', 'arn']
+          'providedAttributes' => ['arn']
         }
       },
       attributes => {
         'aws_iam_openid_connect_provider_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -14967,21 +17360,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_openid_connect_providerHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iam_openid_connect_provider], Tuple[Optional[Aws_iam_openid_connect_provider]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iam_openid_connect_provider]],
-        'update' => Callable[String, Optional[Aws_iam_openid_connect_provider]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iam_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'name_prefix', 'path'],
-          'providedAttributes' => ['aws_iam_policy_id', 'arn', 'description', 'name', 'name_prefix', 'path']
+          'providedAttributes' => ['arn', 'description', 'name', 'name_prefix', 'path']
         }
       },
       attributes => {
         'aws_iam_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -15010,21 +17414,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iam_policy], Tuple[Optional[Aws_iam_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iam_policy]],
-        'update' => Callable[String, Optional[Aws_iam_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iam_policy_attachment => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'policy_arn'],
-          'providedAttributes' => ['aws_iam_policy_attachment_id', 'groups', 'roles', 'users']
+          'providedAttributes' => ['groups', 'roles', 'users']
         }
       },
       attributes => {
         'aws_iam_policy_attachment_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -15046,21 +17461,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_policy_attachmentHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iam_policy_attachment], Tuple[Optional[Aws_iam_policy_attachment]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iam_policy_attachment]],
-        'update' => Callable[String, Optional[Aws_iam_policy_attachment]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iam_role => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'name_prefix', 'path'],
-          'providedAttributes' => ['aws_iam_role_id', 'arn', 'create_date', 'description', 'force_detach_policies', 'max_session_duration', 'name', 'name_prefix', 'path', 'permissions_boundary', 'tags', 'unique_id']
+          'providedAttributes' => ['arn', 'create_date', 'description', 'force_detach_policies', 'max_session_duration', 'name', 'name_prefix', 'path', 'permissions_boundary', 'tags', 'unique_id']
         }
       },
       attributes => {
         'aws_iam_role_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -15113,21 +17539,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_roleHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iam_role], Tuple[Optional[Aws_iam_role]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iam_role]],
-        'update' => Callable[String, Optional[Aws_iam_role]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iam_role_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'name_prefix', 'role'],
-          'providedAttributes' => ['aws_iam_role_policy_id', 'name', 'name_prefix']
+          'providedAttributes' => ['name', 'name_prefix']
         }
       },
       attributes => {
         'aws_iam_role_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -15145,21 +17582,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_role_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iam_role_policy], Tuple[Optional[Aws_iam_role_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iam_role_policy]],
-        'update' => Callable[String, Optional[Aws_iam_role_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iam_role_policy_attachment => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['policy_arn', 'role'],
-          'providedAttributes' => ['aws_iam_role_policy_attachment_id']
+          'immutableAttributes' => ['policy_arn', 'role']
         }
       },
       attributes => {
         'aws_iam_role_policy_attachment_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -15169,21 +17616,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_role_policy_attachmentHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iam_role_policy_attachment], Tuple[Optional[Aws_iam_role_policy_attachment]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iam_role_policy_attachment]],
-        'update' => Callable[String, Optional[Aws_iam_role_policy_attachment]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iam_saml_provider => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_iam_saml_provider_id', 'arn', 'valid_until']
+          'providedAttributes' => ['arn', 'valid_until']
         }
       },
       attributes => {
         'aws_iam_saml_provider_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -15201,21 +17659,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_saml_providerHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iam_saml_provider], Tuple[Optional[Aws_iam_saml_provider]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iam_saml_provider]],
-        'update' => Callable[String, Optional[Aws_iam_saml_provider]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iam_server_certificate => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['certificate_body', 'certificate_chain', 'name', 'name_prefix', 'path', 'private_key'],
-          'providedAttributes' => ['aws_iam_server_certificate_id', 'arn', 'certificate_chain', 'name', 'name_prefix', 'path']
+          'providedAttributes' => ['arn', 'certificate_chain', 'name', 'name_prefix', 'path']
         }
       },
       attributes => {
         'aws_iam_server_certificate_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -15245,21 +17714,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_server_certificateHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iam_server_certificate], Tuple[Optional[Aws_iam_server_certificate]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iam_server_certificate]],
-        'update' => Callable[String, Optional[Aws_iam_server_certificate]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iam_service_linked_role => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['aws_service_name', 'custom_suffix'],
-          'providedAttributes' => ['aws_iam_service_linked_role_id', 'arn', 'create_date', 'custom_suffix', 'description', 'name', 'path', 'unique_id']
+          'providedAttributes' => ['arn', 'create_date', 'custom_suffix', 'description', 'name', 'path', 'unique_id']
         }
       },
       attributes => {
         'aws_iam_service_linked_role_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -15296,20 +17776,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_service_linked_roleHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iam_service_linked_role], Tuple[Optional[Aws_iam_service_linked_role]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iam_service_linked_role]],
-        'update' => Callable[String, Optional[Aws_iam_service_linked_role]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iam_user => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_iam_user_id', 'arn', 'force_destroy', 'path', 'permissions_boundary', 'tags', 'unique_id']
+          'providedAttributes' => ['arn', 'force_destroy', 'path', 'permissions_boundary', 'tags', 'unique_id']
         }
       },
       attributes => {
         'aws_iam_user_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -15342,21 +17833,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_userHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iam_user], Tuple[Optional[Aws_iam_user]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iam_user]],
-        'update' => Callable[String, Optional[Aws_iam_user]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iam_user_group_membership => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['user'],
-          'providedAttributes' => ['aws_iam_user_group_membership_id']
+          'immutableAttributes' => ['user']
         }
       },
       attributes => {
         'aws_iam_user_group_membership_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -15366,20 +17867,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_user_group_membershipHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iam_user_group_membership], Tuple[Optional[Aws_iam_user_group_membership]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iam_user_group_membership]],
-        'update' => Callable[String, Optional[Aws_iam_user_group_membership]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iam_user_login_profile => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_iam_user_login_profile_id', 'encrypted_password', 'key_fingerprint', 'password_length', 'password_reset_required']
+          'providedAttributes' => ['encrypted_password', 'key_fingerprint', 'password_length', 'password_reset_required']
         }
       },
       attributes => {
         'aws_iam_user_login_profile_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -15405,21 +17917,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_user_login_profileHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iam_user_login_profile], Tuple[Optional[Aws_iam_user_login_profile]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iam_user_login_profile]],
-        'update' => Callable[String, Optional[Aws_iam_user_login_profile]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iam_user_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'name_prefix', 'user'],
-          'providedAttributes' => ['aws_iam_user_policy_id', 'name', 'name_prefix']
+          'providedAttributes' => ['name', 'name_prefix']
         }
       },
       attributes => {
         'aws_iam_user_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -15437,21 +17960,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_user_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iam_user_policy], Tuple[Optional[Aws_iam_user_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iam_user_policy]],
-        'update' => Callable[String, Optional[Aws_iam_user_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iam_user_policy_attachment => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['policy_arn', 'user'],
-          'providedAttributes' => ['aws_iam_user_policy_attachment_id']
+          'immutableAttributes' => ['policy_arn', 'user']
         }
       },
       attributes => {
         'aws_iam_user_policy_attachment_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -15461,21 +17994,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_user_policy_attachmentHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iam_user_policy_attachment], Tuple[Optional[Aws_iam_user_policy_attachment]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iam_user_policy_attachment]],
-        'update' => Callable[String, Optional[Aws_iam_user_policy_attachment]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iam_user_ssh_key => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['encoding', 'public_key', 'username'],
-          'providedAttributes' => ['aws_iam_user_ssh_key_id', 'fingerprint', 'ssh_public_key_id', 'status']
+          'providedAttributes' => ['fingerprint', 'ssh_public_key_id', 'status']
         }
       },
       attributes => {
         'aws_iam_user_ssh_key_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -15498,21 +18042,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_iam_user_ssh_keyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iam_user_ssh_key], Tuple[Optional[Aws_iam_user_ssh_key]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iam_user_ssh_key]],
-        'update' => Callable[String, Optional[Aws_iam_user_ssh_key]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_inspector_assessment_target => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_inspector_assessment_target_id', 'arn', 'resource_group_arn']
+          'providedAttributes' => ['arn', 'resource_group_arn']
         }
       },
       attributes => {
         'aws_inspector_assessment_target_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -15529,21 +18084,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_inspector_assessment_targetHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_inspector_assessment_target], Tuple[Optional[Aws_inspector_assessment_target]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_inspector_assessment_target]],
-        'update' => Callable[String, Optional[Aws_inspector_assessment_target]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_inspector_assessment_template => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['arn', 'duration', 'name', 'rules_package_arns', 'target_arn'],
-          'providedAttributes' => ['aws_inspector_assessment_template_id', 'arn']
+          'providedAttributes' => ['arn']
         }
       },
       attributes => {
         'aws_inspector_assessment_template_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -15559,21 +18125,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_inspector_assessment_templateHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_inspector_assessment_template], Tuple[Optional[Aws_inspector_assessment_template]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_inspector_assessment_template]],
-        'update' => Callable[String, Optional[Aws_inspector_assessment_template]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_inspector_resource_group => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['tags'],
-          'providedAttributes' => ['aws_inspector_resource_group_id', 'arn']
+          'providedAttributes' => ['arn']
         }
       },
       attributes => {
         'aws_inspector_resource_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -15586,21 +18163,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_inspector_resource_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_inspector_resource_group], Tuple[Optional[Aws_inspector_resource_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_inspector_resource_group]],
-        'update' => Callable[String, Optional[Aws_inspector_resource_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_instance => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['ami', 'associate_public_ip_address', 'availability_zone', 'cpu_core_count', 'cpu_threads_per_core', 'ebs_optimized', 'ephemeral_block_device', 'host_id', 'ipv6_address_count', 'ipv6_addresses', 'key_name', 'placement_group', 'private_ip', 'security_groups', 'subnet_id', 'tenancy', 'user_data', 'user_data_base64'],
-          'providedAttributes' => ['aws_instance_id', 'arn', 'associate_public_ip_address', 'availability_zone', 'block_device', 'cpu_core_count', 'cpu_threads_per_core', 'credit_specification', 'disable_api_termination', 'ebs_block_device', 'ebs_optimized', 'ephemeral_block_device', 'get_password_data', 'host_id', 'iam_instance_profile', 'instance_initiated_shutdown_behavior', 'instance_state', 'ipv6_address_count', 'ipv6_addresses', 'key_name', 'monitoring', 'network_interface', 'network_interface_id', 'password_data', 'placement_group', 'primary_network_interface_id', 'private_dns', 'private_ip', 'public_dns', 'public_ip', 'root_block_device', 'security_groups', 'source_dest_check', 'subnet_id', 'tags', 'tenancy', 'user_data', 'user_data_base64', 'volume_tags', 'vpc_security_group_ids']
+          'providedAttributes' => ['arn', 'associate_public_ip_address', 'availability_zone', 'block_device', 'cpu_core_count', 'cpu_threads_per_core', 'credit_specification', 'disable_api_termination', 'ebs_block_device', 'ebs_optimized', 'ephemeral_block_device', 'get_password_data', 'host_id', 'iam_instance_profile', 'instance_initiated_shutdown_behavior', 'instance_state', 'ipv6_address_count', 'ipv6_addresses', 'key_name', 'monitoring', 'network_interface', 'network_interface_id', 'password_data', 'placement_group', 'primary_network_interface_id', 'private_dns', 'private_ip', 'public_dns', 'public_ip', 'root_block_device', 'security_groups', 'source_dest_check', 'subnet_id', 'tags', 'tenancy', 'user_data', 'user_data_base64', 'volume_tags', 'vpc_security_group_ids']
         }
       },
       attributes => {
         'aws_instance_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -15766,10 +18354,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_instanceHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_instance], Tuple[Optional[Aws_instance]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_instance]],
-        'update' => Callable[String, Optional[Aws_instance]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_instance_credit_specification_297 => {
@@ -15863,11 +18457,16 @@ type TerraformAws = TypeSet[{
     Aws_internet_gateway => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_internet_gateway_id', 'owner_id', 'tags', 'vpc_id']
+          'providedAttributes' => ['owner_id', 'tags', 'vpc_id']
         }
       },
       attributes => {
         'aws_internet_gateway_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -15887,21 +18486,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_internet_gatewayHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_internet_gateway], Tuple[Optional[Aws_internet_gateway]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_internet_gateway]],
-        'update' => Callable[String, Optional[Aws_internet_gateway]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iot_certificate => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['csr'],
-          'providedAttributes' => ['aws_iot_certificate_id', 'arn']
+          'providedAttributes' => ['arn']
         }
       },
       attributes => {
         'aws_iot_certificate_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -15915,20 +18525,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_iot_certificateHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iot_certificate], Tuple[Optional[Aws_iot_certificate]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iot_certificate]],
-        'update' => Callable[String, Optional[Aws_iot_certificate]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iot_policy => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_iot_policy_id', 'arn', 'default_version_id']
+          'providedAttributes' => ['arn', 'default_version_id']
         }
       },
       attributes => {
         'aws_iot_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -15946,21 +18567,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_iot_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iot_policy], Tuple[Optional[Aws_iot_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iot_policy]],
-        'update' => Callable[String, Optional[Aws_iot_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iot_policy_attachment => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['policy', 'target'],
-          'providedAttributes' => ['aws_iot_policy_attachment_id']
+          'immutableAttributes' => ['policy', 'target']
         }
       },
       attributes => {
         'aws_iot_policy_attachment_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -15970,21 +18601,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_iot_policy_attachmentHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iot_policy_attachment], Tuple[Optional[Aws_iot_policy_attachment]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iot_policy_attachment]],
-        'update' => Callable[String, Optional[Aws_iot_policy_attachment]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iot_thing => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_iot_thing_id', 'arn', 'attributes', 'default_client_id', 'thing_type_name', 'version']
+          'providedAttributes' => ['arn', 'attributes', 'default_client_id', 'thing_type_name', 'version']
         }
       },
       attributes => {
         'aws_iot_thing_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -16013,21 +18655,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_iot_thingHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iot_thing], Tuple[Optional[Aws_iot_thing]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iot_thing]],
-        'update' => Callable[String, Optional[Aws_iot_thing]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iot_thing_principal_attachment => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['principal', 'thing'],
-          'providedAttributes' => ['aws_iot_thing_principal_attachment_id']
+          'immutableAttributes' => ['principal', 'thing']
         }
       },
       attributes => {
         'aws_iot_thing_principal_attachment_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -16037,21 +18689,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_iot_thing_principal_attachmentHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iot_thing_principal_attachment], Tuple[Optional[Aws_iot_thing_principal_attachment]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iot_thing_principal_attachment]],
-        'update' => Callable[String, Optional[Aws_iot_thing_principal_attachment]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iot_thing_type => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_iot_thing_type_id', 'arn', 'deprecated', 'properties']
+          'providedAttributes' => ['arn', 'deprecated', 'properties']
         }
       },
       attributes => {
         'aws_iot_thing_type_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -16072,10 +18735,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_iot_thing_typeHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iot_thing_type], Tuple[Optional[Aws_iot_thing_type]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iot_thing_type]],
-        'update' => Callable[String, Optional[Aws_iot_thing_type]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iot_thing_type_properties_302 => {
@@ -16093,11 +18762,16 @@ type TerraformAws = TypeSet[{
     Aws_iot_topic_rule => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_iot_topic_rule_id', 'arn', 'cloudwatch_alarm', 'cloudwatch_metric', 'description', 'dynamodb', 'elasticsearch', 'firehose', 'kinesis', 'lambda', 'republish', 's3', 'sns', 'sqs']
+          'providedAttributes' => ['arn', 'cloudwatch_alarm', 'cloudwatch_metric', 'description', 'dynamodb', 'elasticsearch', 'firehose', 'kinesis', 'lambda', 'republish', 's3', 'sns', 'sqs']
         }
       },
       attributes => {
         'aws_iot_topic_rule_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -16161,10 +18835,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_iot_topic_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_iot_topic_rule], Tuple[Optional[Aws_iot_topic_rule]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_iot_topic_rule]],
-        'update' => Callable[String, Optional[Aws_iot_topic_rule]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_iot_topic_rule_cloudwatch_alarm_303 => {
@@ -16278,11 +18958,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['key_name', 'key_name_prefix', 'public_key'],
-          'providedAttributes' => ['aws_key_pair_id', 'fingerprint', 'key_name', 'key_name_prefix']
+          'providedAttributes' => ['fingerprint', 'key_name', 'key_name_prefix']
         }
       },
       attributes => {
         'aws_key_pair_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -16303,21 +18988,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_key_pairHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_key_pair], Tuple[Optional[Aws_key_pair]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_key_pair]],
-        'update' => Callable[String, Optional[Aws_key_pair]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_kinesis_analytics_application => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_kinesis_analytics_application_id', 'arn', 'cloudwatch_logging_options', 'code', 'create_timestamp', 'description', 'inputs', 'last_update_timestamp', 'outputs', 'reference_data_sources', 'status', 'version']
+          'providedAttributes' => ['arn', 'cloudwatch_logging_options', 'code', 'create_timestamp', 'description', 'inputs', 'last_update_timestamp', 'outputs', 'reference_data_sources', 'status', 'version']
         }
       },
       attributes => {
         'aws_kinesis_analytics_application_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -16370,10 +19066,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_kinesis_analytics_applicationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_kinesis_analytics_application], Tuple[Optional[Aws_kinesis_analytics_application]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_kinesis_analytics_application]],
-        'update' => Callable[String, Optional[Aws_kinesis_analytics_application]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_kinesis_analytics_application_cloudwatch_logging_options_314 => {
@@ -16636,11 +19338,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['destination', 'kinesis_source_configuration', 'name'],
-          'providedAttributes' => ['aws_kinesis_firehose_delivery_stream_id', 'arn', 'destination_id', 'elasticsearch_configuration', 'extended_s3_configuration', 'kinesis_source_configuration', 'redshift_configuration', 's3_configuration', 'splunk_configuration', 'tags', 'version_id']
+          'providedAttributes' => ['arn', 'destination_id', 'elasticsearch_configuration', 'extended_s3_configuration', 'kinesis_source_configuration', 'redshift_configuration', 's3_configuration', 'splunk_configuration', 'tags', 'version_id']
         }
       },
       attributes => {
         'aws_kinesis_firehose_delivery_stream_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -16690,10 +19397,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_kinesis_firehose_delivery_streamHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_kinesis_firehose_delivery_stream], Tuple[Optional[Aws_kinesis_firehose_delivery_stream]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_kinesis_firehose_delivery_stream]],
-        'update' => Callable[String, Optional[Aws_kinesis_firehose_delivery_stream]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341 => {
@@ -17332,11 +20045,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_kinesis_stream_id', 'arn', 'encryption_type', 'kms_key_id', 'retention_period', 'shard_level_metrics', 'tags']
+          'providedAttributes' => ['arn', 'encryption_type', 'kms_key_id', 'retention_period', 'shard_level_metrics', 'tags']
         }
       },
       attributes => {
         'aws_kinesis_stream_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -17370,21 +20088,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_kinesis_streamHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_kinesis_stream], Tuple[Optional[Aws_kinesis_stream]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_kinesis_stream]],
-        'update' => Callable[String, Optional[Aws_kinesis_stream]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_kms_alias => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'name_prefix'],
-          'providedAttributes' => ['aws_kms_alias_id', 'arn', 'name', 'name_prefix', 'target_key_arn']
+          'providedAttributes' => ['arn', 'name', 'name_prefix', 'target_key_arn']
         }
       },
       attributes => {
         'aws_kms_alias_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -17409,21 +20138,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_kms_aliasHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_kms_alias], Tuple[Optional[Aws_kms_alias]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_kms_alias]],
-        'update' => Callable[String, Optional[Aws_kms_alias]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_kms_grant => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['constraints', 'grant_creation_tokens', 'grantee_principal', 'key_id', 'name', 'operations', 'retire_on_delete', 'retiring_principal'],
-          'providedAttributes' => ['aws_kms_grant_id', 'constraints', 'grant_creation_tokens', 'grant_id', 'grant_token', 'name', 'retire_on_delete', 'retiring_principal']
+          'providedAttributes' => ['constraints', 'grant_creation_tokens', 'grant_id', 'grant_token', 'name', 'retire_on_delete', 'retiring_principal']
         }
       },
       attributes => {
         'aws_kms_grant_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -17462,10 +20202,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_kms_grantHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_kms_grant], Tuple[Optional[Aws_kms_grant]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_kms_grant]],
-        'update' => Callable[String, Optional[Aws_kms_grant]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_kms_grant_constraints_378 => {
@@ -17484,11 +20230,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['key_usage'],
-          'providedAttributes' => ['aws_kms_key_id', 'arn', 'deletion_window_in_days', 'description', 'enable_key_rotation', 'is_enabled', 'key_id', 'key_usage', 'policy', 'tags']
+          'providedAttributes' => ['arn', 'deletion_window_in_days', 'description', 'enable_key_rotation', 'is_enabled', 'key_id', 'key_usage', 'policy', 'tags']
         }
       },
       attributes => {
         'aws_kms_key_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -17532,21 +20283,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_kms_keyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_kms_key], Tuple[Optional[Aws_kms_key]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_kms_key]],
-        'update' => Callable[String, Optional[Aws_kms_key]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_lambda_alias => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_lambda_alias_id', 'arn', 'description', 'invoke_arn', 'routing_config']
+          'providedAttributes' => ['arn', 'description', 'invoke_arn', 'routing_config']
         }
       },
       attributes => {
         'aws_lambda_alias_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -17573,10 +20335,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_lambda_aliasHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_lambda_alias], Tuple[Optional[Aws_lambda_alias]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_lambda_alias]],
-        'update' => Callable[String, Optional[Aws_lambda_alias]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_lambda_alias_routing_config_379 => {
@@ -17591,11 +20359,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['event_source_arn', 'starting_position', 'starting_position_timestamp'],
-          'providedAttributes' => ['aws_lambda_event_source_mapping_id', 'batch_size', 'enabled', 'function_arn', 'last_modified', 'last_processing_result', 'starting_position', 'starting_position_timestamp', 'state', 'state_transition_reason', 'uuid']
+          'providedAttributes' => ['batch_size', 'enabled', 'function_arn', 'last_modified', 'last_processing_result', 'starting_position', 'starting_position_timestamp', 'state', 'state_transition_reason', 'uuid']
         }
       },
       attributes => {
         'aws_lambda_event_source_mapping_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -17645,21 +20418,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_lambda_event_source_mappingHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_lambda_event_source_mapping], Tuple[Optional[Aws_lambda_event_source_mapping]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_lambda_event_source_mapping]],
-        'update' => Callable[String, Optional[Aws_lambda_event_source_mapping]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_lambda_function => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['function_name'],
-          'providedAttributes' => ['aws_lambda_function_id', 'arn', 'dead_letter_config', 'description', 'environment', 'filename', 'invoke_arn', 'kms_key_arn', 'last_modified', 'layers', 'memory_size', 'publish', 'qualified_arn', 'reserved_concurrent_executions', 's3_bucket', 's3_key', 's3_object_version', 'source_code_hash', 'source_code_size', 'tags', 'timeout', 'tracing_config', 'version', 'vpc_config']
+          'providedAttributes' => ['arn', 'dead_letter_config', 'description', 'environment', 'filename', 'invoke_arn', 'kms_key_arn', 'last_modified', 'layers', 'memory_size', 'publish', 'qualified_arn', 'reserved_concurrent_executions', 's3_bucket', 's3_key', 's3_object_version', 'source_code_hash', 'source_code_size', 'tags', 'timeout', 'tracing_config', 'version', 'vpc_config']
         }
       },
       attributes => {
         'aws_lambda_function_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -17763,10 +20547,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_lambda_functionHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_lambda_function], Tuple[Optional[Aws_lambda_function]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_lambda_function]],
-        'update' => Callable[String, Optional[Aws_lambda_function]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_lambda_function_dead_letter_config_380 => {
@@ -17801,11 +20591,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['compatible_runtimes', 'description', 'filename', 'layer_name', 'license_info', 's3_bucket', 's3_key', 's3_object_version', 'source_code_hash'],
-          'providedAttributes' => ['aws_lambda_layer_version_id', 'arn', 'compatible_runtimes', 'created_date', 'description', 'filename', 'layer_arn', 'license_info', 's3_bucket', 's3_key', 's3_object_version', 'source_code_hash', 'source_code_size', 'version']
+          'providedAttributes' => ['arn', 'compatible_runtimes', 'created_date', 'description', 'filename', 'layer_arn', 'license_info', 's3_bucket', 's3_key', 's3_object_version', 'source_code_hash', 'source_code_size', 'version']
         }
       },
       attributes => {
         'aws_lambda_layer_version_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -17866,21 +20661,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_lambda_layer_versionHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_lambda_layer_version], Tuple[Optional[Aws_lambda_layer_version]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_lambda_layer_version]],
-        'update' => Callable[String, Optional[Aws_lambda_layer_version]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_lambda_permission => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['action', 'event_source_token', 'function_name', 'principal', 'qualifier', 'source_account', 'source_arn', 'statement_id', 'statement_id_prefix'],
-          'providedAttributes' => ['aws_lambda_permission_id', 'event_source_token', 'qualifier', 'source_account', 'source_arn', 'statement_id', 'statement_id_prefix']
+          'providedAttributes' => ['event_source_token', 'qualifier', 'source_account', 'source_arn', 'statement_id', 'statement_id_prefix']
         }
       },
       attributes => {
         'aws_lambda_permission_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -17915,21 +20721,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_lambda_permissionHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_lambda_permission], Tuple[Optional[Aws_lambda_permission]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_lambda_permission]],
-        'update' => Callable[String, Optional[Aws_lambda_permission]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_launch_configuration => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['associate_public_ip_address', 'ebs_optimized', 'enable_monitoring', 'ephemeral_block_device', 'iam_instance_profile', 'image_id', 'instance_type', 'key_name', 'name', 'name_prefix', 'placement_tenancy', 'security_groups', 'spot_price', 'user_data', 'user_data_base64', 'vpc_classic_link_id', 'vpc_classic_link_security_groups'],
-          'providedAttributes' => ['aws_launch_configuration_id', 'associate_public_ip_address', 'ebs_block_device', 'ebs_optimized', 'enable_monitoring', 'ephemeral_block_device', 'iam_instance_profile', 'key_name', 'name', 'name_prefix', 'placement_tenancy', 'root_block_device', 'security_groups', 'spot_price', 'user_data', 'user_data_base64', 'vpc_classic_link_id', 'vpc_classic_link_security_groups']
+          'providedAttributes' => ['associate_public_ip_address', 'ebs_block_device', 'ebs_optimized', 'enable_monitoring', 'ephemeral_block_device', 'iam_instance_profile', 'key_name', 'name', 'name_prefix', 'placement_tenancy', 'root_block_device', 'security_groups', 'spot_price', 'user_data', 'user_data_base64', 'vpc_classic_link_id', 'vpc_classic_link_security_groups']
         }
       },
       attributes => {
         'aws_launch_configuration_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -18007,10 +20824,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_launch_configurationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_launch_configuration], Tuple[Optional[Aws_launch_configuration]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_launch_configuration]],
-        'update' => Callable[String, Optional[Aws_launch_configuration]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_launch_configuration_ebs_block_device_384 => {
@@ -18076,11 +20899,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'name_prefix'],
-          'providedAttributes' => ['aws_launch_template_id', 'arn', 'block_device_mappings', 'capacity_reservation_specification', 'credit_specification', 'default_version', 'description', 'disable_api_termination', 'ebs_optimized', 'elastic_gpu_specifications', 'iam_instance_profile', 'image_id', 'instance_initiated_shutdown_behavior', 'instance_market_options', 'instance_type', 'kernel_id', 'key_name', 'latest_version', 'license_specification', 'monitoring', 'name', 'name_prefix', 'network_interfaces', 'placement', 'ram_disk_id', 'security_group_names', 'tag_specifications', 'tags', 'user_data', 'vpc_security_group_ids']
+          'providedAttributes' => ['arn', 'block_device_mappings', 'capacity_reservation_specification', 'credit_specification', 'default_version', 'description', 'disable_api_termination', 'ebs_optimized', 'elastic_gpu_specifications', 'iam_instance_profile', 'image_id', 'instance_initiated_shutdown_behavior', 'instance_market_options', 'instance_type', 'kernel_id', 'key_name', 'latest_version', 'license_specification', 'monitoring', 'name', 'name_prefix', 'network_interfaces', 'placement', 'ram_disk_id', 'security_group_names', 'tag_specifications', 'tags', 'user_data', 'vpc_security_group_ids']
         }
       },
       attributes => {
         'aws_launch_template_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -18204,10 +21032,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_launch_templateHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_launch_template], Tuple[Optional[Aws_launch_template]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_launch_template]],
-        'update' => Callable[String, Optional[Aws_launch_template]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_launch_template_block_device_mappings_387 => {
@@ -18452,11 +21286,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['internal', 'load_balancer_type', 'name', 'name_prefix', 'subnet_mapping'],
-          'providedAttributes' => ['aws_lb_id', 'access_logs', 'arn', 'arn_suffix', 'dns_name', 'enable_cross_zone_load_balancing', 'enable_deletion_protection', 'enable_http2', 'idle_timeout', 'internal', 'ip_address_type', 'load_balancer_type', 'name', 'name_prefix', 'security_groups', 'subnet_mapping', 'subnets', 'tags', 'vpc_id', 'zone_id']
+          'providedAttributes' => ['access_logs', 'arn', 'arn_suffix', 'dns_name', 'enable_cross_zone_load_balancing', 'enable_deletion_protection', 'enable_http2', 'idle_timeout', 'internal', 'ip_address_type', 'load_balancer_type', 'name', 'name_prefix', 'security_groups', 'subnet_mapping', 'subnets', 'tags', 'vpc_id', 'zone_id']
         }
       },
       attributes => {
         'aws_lb_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -18540,10 +21379,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_lbHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_lb], Tuple[Optional[Aws_lb]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_lb]],
-        'update' => Callable[String, Optional[Aws_lb]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_lb_access_logs_401 => {
@@ -18563,11 +21408,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['cookie_expiration_period', 'lb_port', 'load_balancer', 'name'],
-          'providedAttributes' => ['aws_lb_cookie_stickiness_policy_id', 'cookie_expiration_period']
+          'providedAttributes' => ['cookie_expiration_period']
         }
       },
       attributes => {
         'aws_lb_cookie_stickiness_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -18582,21 +21432,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_lb_cookie_stickiness_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_lb_cookie_stickiness_policy], Tuple[Optional[Aws_lb_cookie_stickiness_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_lb_cookie_stickiness_policy]],
-        'update' => Callable[String, Optional[Aws_lb_cookie_stickiness_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_lb_listener => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['load_balancer_arn'],
-          'providedAttributes' => ['aws_lb_listener_id', 'arn', 'certificate_arn', 'protocol', 'ssl_policy']
+          'providedAttributes' => ['arn', 'certificate_arn', 'protocol', 'ssl_policy']
         }
       },
       attributes => {
         'aws_lb_listener_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -18623,21 +21484,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_lb_listenerHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_lb_listener], Tuple[Optional[Aws_lb_listener]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_lb_listener]],
-        'update' => Callable[String, Optional[Aws_lb_listener]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_lb_listener_certificate => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['certificate_arn', 'listener_arn'],
-          'providedAttributes' => ['aws_lb_listener_certificate_id']
+          'immutableAttributes' => ['certificate_arn', 'listener_arn']
         }
       },
       attributes => {
         'aws_lb_listener_certificate_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -18647,10 +21518,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_lb_listener_certificateHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_lb_listener_certificate], Tuple[Optional[Aws_lb_listener_certificate]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_lb_listener_certificate]],
-        'update' => Callable[String, Optional[Aws_lb_listener_certificate]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_lb_listener_default_action_403 => {
@@ -18781,11 +21658,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['listener_arn', 'priority'],
-          'providedAttributes' => ['aws_lb_listener_rule_id', 'arn', 'priority']
+          'providedAttributes' => ['arn', 'priority']
         }
       },
       attributes => {
         'aws_lb_listener_rule_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -18804,10 +21686,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_lb_listener_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_lb_listener_rule], Tuple[Optional[Aws_lb_listener_rule]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_lb_listener_rule]],
-        'update' => Callable[String, Optional[Aws_lb_listener_rule]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_lb_listener_rule_action_408 => {
@@ -18950,11 +21838,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['attribute', 'lb_port', 'load_balancer', 'name'],
-          'providedAttributes' => ['aws_lb_ssl_negotiation_policy_id', 'attribute']
+          'providedAttributes' => ['attribute']
         }
       },
       attributes => {
         'aws_lb_ssl_negotiation_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -18969,10 +21862,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_lb_ssl_negotiation_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_lb_ssl_negotiation_policy], Tuple[Optional[Aws_lb_ssl_negotiation_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_lb_ssl_negotiation_policy]],
-        'update' => Callable[String, Optional[Aws_lb_ssl_negotiation_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_lb_ssl_negotiation_policy_attribute_414 => {
@@ -18994,11 +21893,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'name_prefix', 'port', 'protocol', 'target_type', 'vpc_id'],
-          'providedAttributes' => ['aws_lb_target_group_id', 'arn', 'arn_suffix', 'deregistration_delay', 'health_check', 'name', 'name_prefix', 'port', 'protocol', 'proxy_protocol_v2', 'slow_start', 'stickiness', 'tags', 'target_type', 'vpc_id']
+          'providedAttributes' => ['arn', 'arn_suffix', 'deregistration_delay', 'health_check', 'name', 'name_prefix', 'port', 'protocol', 'proxy_protocol_v2', 'slow_start', 'stickiness', 'tags', 'target_type', 'vpc_id']
         }
       },
       attributes => {
         'aws_lb_target_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -19062,21 +21966,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_lb_target_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_lb_target_group], Tuple[Optional[Aws_lb_target_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_lb_target_group]],
-        'update' => Callable[String, Optional[Aws_lb_target_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_lb_target_group_attachment => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['availability_zone', 'port', 'target_group_arn', 'target_id'],
-          'providedAttributes' => ['aws_lb_target_group_attachment_id', 'availability_zone', 'port']
+          'providedAttributes' => ['availability_zone', 'port']
         }
       },
       attributes => {
         'aws_lb_target_group_attachment_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -19094,10 +22009,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_lb_target_group_attachmentHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_lb_target_group_attachment], Tuple[Optional[Aws_lb_target_group_attachment]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_lb_target_group_attachment]],
-        'update' => Callable[String, Optional[Aws_lb_target_group_attachment]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_lb_target_group_health_check_415 => {
@@ -19152,12 +22073,16 @@ type TerraformAws = TypeSet[{
     Aws_licensemanager_association => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['license_configuration_arn', 'resource_arn'],
-          'providedAttributes' => ['aws_licensemanager_association_id']
+          'immutableAttributes' => ['license_configuration_arn', 'resource_arn']
         }
       },
       attributes => {
         'aws_licensemanager_association_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -19167,21 +22092,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_licensemanager_associationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_licensemanager_association], Tuple[Optional[Aws_licensemanager_association]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_licensemanager_association]],
-        'update' => Callable[String, Optional[Aws_licensemanager_association]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_licensemanager_license_configuration => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['license_counting_type', 'license_rules'],
-          'providedAttributes' => ['aws_licensemanager_license_configuration_id', 'description', 'license_count', 'license_count_hard_limit', 'license_rules', 'tags']
+          'providedAttributes' => ['description', 'license_count', 'license_count_hard_limit', 'license_rules', 'tags']
         }
       },
       attributes => {
         'aws_licensemanager_license_configuration_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -19211,21 +22147,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_licensemanager_license_configurationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_licensemanager_license_configuration], Tuple[Optional[Aws_licensemanager_license_configuration]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_licensemanager_license_configuration]],
-        'update' => Callable[String, Optional[Aws_licensemanager_license_configuration]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_lightsail_domain => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['domain_name'],
-          'providedAttributes' => ['aws_lightsail_domain_id', 'arn']
+          'providedAttributes' => ['arn']
         }
       },
       attributes => {
         'aws_lightsail_domain_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -19238,21 +22185,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_lightsail_domainHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_lightsail_domain], Tuple[Optional[Aws_lightsail_domain]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_lightsail_domain]],
-        'update' => Callable[String, Optional[Aws_lightsail_domain]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_lightsail_instance => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['availability_zone', 'blueprint_id', 'bundle_id', 'key_pair_name', 'name', 'user_data'],
-          'providedAttributes' => ['aws_lightsail_instance_id', 'arn', 'cpu_count', 'created_at', 'ipv6_address', 'is_static_ip', 'key_pair_name', 'private_ip_address', 'public_ip_address', 'ram_size', 'user_data', 'username']
+          'providedAttributes' => ['arn', 'cpu_count', 'created_at', 'ipv6_address', 'is_static_ip', 'key_pair_name', 'private_ip_address', 'public_ip_address', 'ram_size', 'user_data', 'username']
         }
       },
       attributes => {
         'aws_lightsail_instance_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -19308,21 +22266,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_lightsail_instanceHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_lightsail_instance], Tuple[Optional[Aws_lightsail_instance]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_lightsail_instance]],
-        'update' => Callable[String, Optional[Aws_lightsail_instance]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_lightsail_key_pair => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'name_prefix', 'pgp_key', 'public_key'],
-          'providedAttributes' => ['aws_lightsail_key_pair_id', 'arn', 'encrypted_fingerprint', 'encrypted_private_key', 'fingerprint', 'name', 'name_prefix', 'pgp_key', 'private_key', 'public_key']
+          'providedAttributes' => ['arn', 'encrypted_fingerprint', 'encrypted_private_key', 'fingerprint', 'name', 'name_prefix', 'pgp_key', 'private_key', 'public_key']
         }
       },
       attributes => {
         'aws_lightsail_key_pair_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -19366,21 +22335,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_lightsail_key_pairHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_lightsail_key_pair], Tuple[Optional[Aws_lightsail_key_pair]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_lightsail_key_pair]],
-        'update' => Callable[String, Optional[Aws_lightsail_key_pair]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_lightsail_static_ip => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_lightsail_static_ip_id', 'arn', 'ip_address', 'support_code']
+          'providedAttributes' => ['arn', 'ip_address', 'support_code']
         }
       },
       attributes => {
         'aws_lightsail_static_ip_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -19401,21 +22381,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_lightsail_static_ipHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_lightsail_static_ip], Tuple[Optional[Aws_lightsail_static_ip]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_lightsail_static_ip]],
-        'update' => Callable[String, Optional[Aws_lightsail_static_ip]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_lightsail_static_ip_attachment => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['instance_name', 'static_ip_name'],
-          'providedAttributes' => ['aws_lightsail_static_ip_attachment_id']
+          'immutableAttributes' => ['instance_name', 'static_ip_name']
         }
       },
       attributes => {
         'aws_lightsail_static_ip_attachment_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -19425,20 +22415,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_lightsail_static_ip_attachmentHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_lightsail_static_ip_attachment], Tuple[Optional[Aws_lightsail_static_ip_attachment]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_lightsail_static_ip_attachment]],
-        'update' => Callable[String, Optional[Aws_lightsail_static_ip_attachment]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_load_balancer_backend_server_policy => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_load_balancer_backend_server_policy_id', 'policy_names']
+          'providedAttributes' => ['policy_names']
         }
       },
       attributes => {
         'aws_load_balancer_backend_server_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -19452,20 +22453,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_load_balancer_backend_server_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_load_balancer_backend_server_policy], Tuple[Optional[Aws_load_balancer_backend_server_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_load_balancer_backend_server_policy]],
-        'update' => Callable[String, Optional[Aws_load_balancer_backend_server_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_load_balancer_listener_policy => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_load_balancer_listener_policy_id', 'policy_names']
+          'providedAttributes' => ['policy_names']
         }
       },
       attributes => {
         'aws_load_balancer_listener_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -19479,21 +22491,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_load_balancer_listener_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_load_balancer_listener_policy], Tuple[Optional[Aws_load_balancer_listener_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_load_balancer_listener_policy]],
-        'update' => Callable[String, Optional[Aws_load_balancer_listener_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_load_balancer_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['load_balancer_name', 'policy_name', 'policy_type_name'],
-          'providedAttributes' => ['aws_load_balancer_policy_id', 'policy_attribute']
+          'providedAttributes' => ['policy_attribute']
         }
       },
       attributes => {
         'aws_load_balancer_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -19508,10 +22531,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_load_balancer_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_load_balancer_policy], Tuple[Optional[Aws_load_balancer_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_load_balancer_policy]],
-        'update' => Callable[String, Optional[Aws_load_balancer_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_load_balancer_policy_policy_attribute_417 => {
@@ -19529,12 +22558,16 @@ type TerraformAws = TypeSet[{
     Aws_macie_member_account_association => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['member_account_id'],
-          'providedAttributes' => ['aws_macie_member_account_association_id']
+          'immutableAttributes' => ['member_account_id']
         }
       },
       attributes => {
         'aws_macie_member_account_association_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -19543,21 +22576,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_macie_member_account_associationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_macie_member_account_association], Tuple[Optional[Aws_macie_member_account_association]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_macie_member_account_association]],
-        'update' => Callable[String, Optional[Aws_macie_member_account_association]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_macie_s3_bucket_association => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bucket_name', 'member_account_id', 'prefix'],
-          'providedAttributes' => ['aws_macie_s3_bucket_association_id', 'classification_type', 'member_account_id', 'prefix']
+          'providedAttributes' => ['classification_type', 'member_account_id', 'prefix']
         }
       },
       attributes => {
         'aws_macie_s3_bucket_association_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -19578,10 +22622,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_macie_s3_bucket_associationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_macie_s3_bucket_association], Tuple[Optional[Aws_macie_s3_bucket_association]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_macie_s3_bucket_association]],
-        'update' => Callable[String, Optional[Aws_macie_s3_bucket_association]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_macie_s3_bucket_association_classification_type_418 => {
@@ -19599,11 +22649,16 @@ type TerraformAws = TypeSet[{
     Aws_main_route_table_association => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_main_route_table_association_id', 'original_route_table_id']
+          'providedAttributes' => ['original_route_table_id']
         }
       },
       attributes => {
         'aws_main_route_table_association_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -19617,21 +22672,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_main_route_table_associationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_main_route_table_association], Tuple[Optional[Aws_main_route_table_association]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_main_route_table_association]],
-        'update' => Callable[String, Optional[Aws_main_route_table_association]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_media_package_channel => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['channel_id'],
-          'providedAttributes' => ['aws_media_package_channel_id', 'arn', 'description', 'hls_ingest']
+          'providedAttributes' => ['arn', 'description', 'hls_ingest']
         }
       },
       attributes => {
         'aws_media_package_channel_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -19652,10 +22718,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_media_package_channelHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_media_package_channel], Tuple[Optional[Aws_media_package_channel]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_media_package_channel]],
-        'update' => Callable[String, Optional[Aws_media_package_channel]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_media_package_channel_hls_ingest_419 => {
@@ -19686,11 +22758,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_media_store_container_id', 'arn', 'endpoint']
+          'providedAttributes' => ['arn', 'endpoint']
         }
       },
       attributes => {
         'aws_media_store_container_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -19707,21 +22784,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_media_store_containerHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_media_store_container], Tuple[Optional[Aws_media_store_container]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_media_store_container]],
-        'update' => Callable[String, Optional[Aws_media_store_container]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_media_store_container_policy => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['container_name'],
-          'providedAttributes' => ['aws_media_store_container_policy_id']
+          'immutableAttributes' => ['container_name']
         }
       },
       attributes => {
         'aws_media_store_container_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -19731,21 +22818,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_media_store_container_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_media_store_container_policy], Tuple[Optional[Aws_media_store_container_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_media_store_container_policy]],
-        'update' => Callable[String, Optional[Aws_media_store_container_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_mq_broker => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['auto_minor_version_upgrade', 'broker_name', 'deployment_mode', 'engine_type', 'engine_version', 'host_instance_type', 'maintenance_window_start_time', 'publicly_accessible', 'security_groups', 'subnet_ids'],
-          'providedAttributes' => ['aws_mq_broker_id', 'apply_immediately', 'arn', 'auto_minor_version_upgrade', 'configuration', 'deployment_mode', 'instances', 'logs', 'maintenance_window_start_time', 'publicly_accessible', 'subnet_ids', 'tags']
+          'providedAttributes' => ['apply_immediately', 'arn', 'auto_minor_version_upgrade', 'configuration', 'deployment_mode', 'instances', 'logs', 'maintenance_window_start_time', 'publicly_accessible', 'subnet_ids', 'tags']
         }
       },
       attributes => {
         'aws_mq_broker_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -19803,10 +22901,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_mq_brokerHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_mq_broker], Tuple[Optional[Aws_mq_broker]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_mq_broker]],
-        'update' => Callable[String, Optional[Aws_mq_broker]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_mq_broker_configuration_421 => {
@@ -19874,11 +22978,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['engine_type', 'engine_version', 'name'],
-          'providedAttributes' => ['aws_mq_configuration_id', 'arn', 'description', 'latest_revision', 'tags']
+          'providedAttributes' => ['arn', 'description', 'latest_revision', 'tags']
         }
       },
       attributes => {
         'aws_mq_configuration_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -19906,21 +23015,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_mq_configurationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_mq_configuration], Tuple[Optional[Aws_mq_configuration]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_mq_configuration]],
-        'update' => Callable[String, Optional[Aws_mq_configuration]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_nat_gateway => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['allocation_id', 'subnet_id'],
-          'providedAttributes' => ['aws_nat_gateway_id', 'network_interface_id', 'private_ip', 'public_ip', 'tags']
+          'providedAttributes' => ['network_interface_id', 'private_ip', 'public_ip', 'tags']
         }
       },
       attributes => {
         'aws_nat_gateway_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -19946,21 +23066,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_nat_gatewayHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_nat_gateway], Tuple[Optional[Aws_nat_gateway]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_nat_gateway]],
-        'update' => Callable[String, Optional[Aws_nat_gateway]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_neptune_cluster => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['availability_zones', 'cluster_identifier', 'cluster_identifier_prefix', 'engine', 'engine_version', 'kms_key_arn', 'neptune_subnet_group_name', 'port', 'storage_encrypted'],
-          'providedAttributes' => ['aws_neptune_cluster_id', 'apply_immediately', 'arn', 'availability_zones', 'backup_retention_period', 'cluster_identifier', 'cluster_identifier_prefix', 'cluster_members', 'cluster_resource_id', 'endpoint', 'engine', 'engine_version', 'final_snapshot_identifier', 'hosted_zone_id', 'iam_database_authentication_enabled', 'iam_roles', 'kms_key_arn', 'neptune_cluster_parameter_group_name', 'neptune_subnet_group_name', 'port', 'preferred_backup_window', 'preferred_maintenance_window', 'reader_endpoint', 'replication_source_identifier', 'skip_final_snapshot', 'snapshot_identifier', 'storage_encrypted', 'tags', 'vpc_security_group_ids']
+          'providedAttributes' => ['apply_immediately', 'arn', 'availability_zones', 'backup_retention_period', 'cluster_identifier', 'cluster_identifier_prefix', 'cluster_members', 'cluster_resource_id', 'endpoint', 'engine', 'engine_version', 'final_snapshot_identifier', 'hosted_zone_id', 'iam_database_authentication_enabled', 'iam_roles', 'kms_key_arn', 'neptune_cluster_parameter_group_name', 'neptune_subnet_group_name', 'port', 'preferred_backup_window', 'preferred_maintenance_window', 'reader_endpoint', 'replication_source_identifier', 'skip_final_snapshot', 'snapshot_identifier', 'storage_encrypted', 'tags', 'vpc_security_group_ids']
         }
       },
       attributes => {
         'aws_neptune_cluster_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -20080,21 +23211,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_neptune_clusterHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_neptune_cluster], Tuple[Optional[Aws_neptune_cluster]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_neptune_cluster]],
-        'update' => Callable[String, Optional[Aws_neptune_cluster]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_neptune_cluster_instance => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['availability_zone', 'cluster_identifier', 'engine', 'engine_version', 'identifier', 'identifier_prefix', 'neptune_subnet_group_name', 'port', 'publicly_accessible'],
-          'providedAttributes' => ['aws_neptune_cluster_instance_id', 'address', 'apply_immediately', 'arn', 'auto_minor_version_upgrade', 'availability_zone', 'dbi_resource_id', 'endpoint', 'engine', 'engine_version', 'identifier', 'identifier_prefix', 'kms_key_arn', 'neptune_parameter_group_name', 'neptune_subnet_group_name', 'port', 'preferred_backup_window', 'preferred_maintenance_window', 'promotion_tier', 'publicly_accessible', 'storage_encrypted', 'tags', 'writer']
+          'providedAttributes' => ['address', 'apply_immediately', 'arn', 'auto_minor_version_upgrade', 'availability_zone', 'dbi_resource_id', 'endpoint', 'engine', 'engine_version', 'identifier', 'identifier_prefix', 'kms_key_arn', 'neptune_parameter_group_name', 'neptune_subnet_group_name', 'port', 'preferred_backup_window', 'preferred_maintenance_window', 'promotion_tier', 'publicly_accessible', 'storage_encrypted', 'tags', 'writer']
         }
       },
       attributes => {
         'aws_neptune_cluster_instance_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -20192,21 +23334,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_neptune_cluster_instanceHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_neptune_cluster_instance], Tuple[Optional[Aws_neptune_cluster_instance]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_neptune_cluster_instance]],
-        'update' => Callable[String, Optional[Aws_neptune_cluster_instance]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_neptune_cluster_parameter_group => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'family', 'name', 'name_prefix'],
-          'providedAttributes' => ['aws_neptune_cluster_parameter_group_id', 'arn', 'description', 'name', 'name_prefix', 'parameter', 'tags']
+          'providedAttributes' => ['arn', 'description', 'name', 'name_prefix', 'parameter', 'tags']
         }
       },
       attributes => {
         'aws_neptune_cluster_parameter_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -20239,10 +23392,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_neptune_cluster_parameter_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_neptune_cluster_parameter_group], Tuple[Optional[Aws_neptune_cluster_parameter_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_neptune_cluster_parameter_group]],
-        'update' => Callable[String, Optional[Aws_neptune_cluster_parameter_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_neptune_cluster_parameter_group_parameter_426 => {
@@ -20259,11 +23418,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['db_cluster_identifier', 'db_cluster_snapshot_identifier'],
-          'providedAttributes' => ['aws_neptune_cluster_snapshot_id', 'allocated_storage', 'availability_zones', 'db_cluster_snapshot_arn', 'engine', 'engine_version', 'kms_key_id', 'license_model', 'port', 'snapshot_type', 'source_db_cluster_snapshot_arn', 'status', 'storage_encrypted', 'vpc_id']
+          'providedAttributes' => ['allocated_storage', 'availability_zones', 'db_cluster_snapshot_arn', 'engine', 'engine_version', 'kms_key_id', 'license_model', 'port', 'snapshot_type', 'source_db_cluster_snapshot_arn', 'status', 'storage_encrypted', 'vpc_id']
         }
       },
       attributes => {
         'aws_neptune_cluster_snapshot_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -20325,21 +23489,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_neptune_cluster_snapshotHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_neptune_cluster_snapshot], Tuple[Optional[Aws_neptune_cluster_snapshot]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_neptune_cluster_snapshot]],
-        'update' => Callable[String, Optional[Aws_neptune_cluster_snapshot]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_neptune_event_subscription => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'name_prefix'],
-          'providedAttributes' => ['aws_neptune_event_subscription_id', 'arn', 'customer_aws_id', 'enabled', 'event_categories', 'name', 'name_prefix', 'source_ids', 'source_type', 'tags']
+          'providedAttributes' => ['arn', 'customer_aws_id', 'enabled', 'event_categories', 'name', 'name_prefix', 'source_ids', 'source_type', 'tags']
         }
       },
       attributes => {
         'aws_neptune_event_subscription_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -20384,21 +23559,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_neptune_event_subscriptionHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_neptune_event_subscription], Tuple[Optional[Aws_neptune_event_subscription]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_neptune_event_subscription]],
-        'update' => Callable[String, Optional[Aws_neptune_event_subscription]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_neptune_parameter_group => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'family', 'name'],
-          'providedAttributes' => ['aws_neptune_parameter_group_id', 'arn', 'description', 'parameter', 'tags']
+          'providedAttributes' => ['arn', 'description', 'parameter', 'tags']
         }
       },
       attributes => {
         'aws_neptune_parameter_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -20424,10 +23610,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_neptune_parameter_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_neptune_parameter_group], Tuple[Optional[Aws_neptune_parameter_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_neptune_parameter_group]],
-        'update' => Callable[String, Optional[Aws_neptune_parameter_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_neptune_parameter_group_parameter_427 => {
@@ -20444,11 +23636,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'name_prefix'],
-          'providedAttributes' => ['aws_neptune_subnet_group_id', 'arn', 'description', 'name', 'name_prefix', 'tags']
+          'providedAttributes' => ['arn', 'description', 'name', 'name_prefix', 'tags']
         }
       },
       attributes => {
         'aws_neptune_subnet_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -20477,21 +23674,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_neptune_subnet_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_neptune_subnet_group], Tuple[Optional[Aws_neptune_subnet_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_neptune_subnet_group]],
-        'update' => Callable[String, Optional[Aws_neptune_subnet_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_network_acl => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['subnet_id', 'vpc_id'],
-          'providedAttributes' => ['aws_network_acl_id', 'egress', 'ingress', 'owner_id', 'subnet_id', 'subnet_ids', 'tags']
+          'providedAttributes' => ['egress', 'ingress', 'owner_id', 'subnet_id', 'subnet_ids', 'tags']
         }
       },
       attributes => {
         'aws_network_acl_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -20524,10 +23732,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_network_aclHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_network_acl], Tuple[Optional[Aws_network_acl]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_network_acl]],
-        'update' => Callable[String, Optional[Aws_network_acl]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_network_acl_egress_428 => {
@@ -20584,11 +23798,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['cidr_block', 'egress', 'from_port', 'icmp_code', 'icmp_type', 'ipv6_cidr_block', 'network_acl_id', 'protocol', 'rule_action', 'rule_number', 'to_port'],
-          'providedAttributes' => ['aws_network_acl_rule_id', 'cidr_block', 'egress', 'from_port', 'icmp_code', 'icmp_type', 'ipv6_cidr_block', 'to_port']
+          'providedAttributes' => ['cidr_block', 'egress', 'from_port', 'icmp_code', 'icmp_type', 'ipv6_cidr_block', 'to_port']
         }
       },
       attributes => {
         'aws_network_acl_rule_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -20628,21 +23847,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_network_acl_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_network_acl_rule], Tuple[Optional[Aws_network_acl_rule]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_network_acl_rule]],
-        'update' => Callable[String, Optional[Aws_network_acl_rule]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_network_interface => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['subnet_id'],
-          'providedAttributes' => ['aws_network_interface_id', 'attachment', 'description', 'private_dns_name', 'private_ip', 'private_ips', 'private_ips_count', 'security_groups', 'source_dest_check', 'tags']
+          'providedAttributes' => ['attachment', 'description', 'private_dns_name', 'private_ip', 'private_ips', 'private_ips_count', 'security_groups', 'source_dest_check', 'tags']
         }
       },
       attributes => {
         'aws_network_interface_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -20687,21 +23917,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_network_interfaceHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_network_interface], Tuple[Optional[Aws_network_interface]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_network_interface]],
-        'update' => Callable[String, Optional[Aws_network_interface]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_network_interface_attachment => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['device_index', 'instance_id', 'network_interface_id'],
-          'providedAttributes' => ['aws_network_interface_attachment_id', 'attachment_id', 'status']
+          'providedAttributes' => ['attachment_id', 'status']
         }
       },
       attributes => {
         'aws_network_interface_attachment_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -20720,10 +23961,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_network_interface_attachmentHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_network_interface_attachment], Tuple[Optional[Aws_network_interface_attachment]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_network_interface_attachment]],
-        'update' => Callable[String, Optional[Aws_network_interface_attachment]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_network_interface_attachment_430 => {
@@ -20739,12 +23986,16 @@ type TerraformAws = TypeSet[{
     Aws_network_interface_sg_attachment => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['network_interface_id', 'security_group_id'],
-          'providedAttributes' => ['aws_network_interface_sg_attachment_id']
+          'immutableAttributes' => ['network_interface_id', 'security_group_id']
         }
       },
       attributes => {
         'aws_network_interface_sg_attachment_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -20754,21 +24005,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_network_interface_sg_attachmentHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_network_interface_sg_attachment], Tuple[Optional[Aws_network_interface_sg_attachment]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_network_interface_sg_attachment]],
-        'update' => Callable[String, Optional[Aws_network_interface_sg_attachment]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_opsworks_application => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['short_name'],
-          'providedAttributes' => ['aws_opsworks_application_id', 'app_source', 'auto_bundle_on_deploy', 'aws_flow_ruby_settings', 'data_source_arn', 'data_source_database_name', 'data_source_type', 'description', 'document_root', 'domains', 'enable_ssl', 'environment', 'rails_env', 'short_name', 'ssl_configuration']
+          'providedAttributes' => ['app_source', 'auto_bundle_on_deploy', 'aws_flow_ruby_settings', 'data_source_arn', 'data_source_database_name', 'data_source_type', 'description', 'document_root', 'domains', 'enable_ssl', 'environment', 'rails_env', 'short_name', 'ssl_configuration']
         }
       },
       attributes => {
         'aws_opsworks_application_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -20835,10 +24097,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_applicationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_opsworks_application], Tuple[Optional[Aws_opsworks_application]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_opsworks_application]],
-        'update' => Callable[String, Optional[Aws_opsworks_application]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_opsworks_application_app_source_431 => {
@@ -20890,11 +24158,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['stack_id'],
-          'providedAttributes' => ['aws_opsworks_custom_layer_id', 'auto_assign_elastic_ips', 'auto_assign_public_ips', 'auto_healing', 'custom_configure_recipes', 'custom_deploy_recipes', 'custom_instance_profile_arn', 'custom_json', 'custom_security_group_ids', 'custom_setup_recipes', 'custom_shutdown_recipes', 'custom_undeploy_recipes', 'drain_elb_on_shutdown', 'ebs_volume', 'elastic_load_balancer', 'install_updates_on_boot', 'instance_shutdown_timeout', 'system_packages', 'use_ebs_optimized_instances']
+          'providedAttributes' => ['auto_assign_elastic_ips', 'auto_assign_public_ips', 'auto_healing', 'custom_configure_recipes', 'custom_deploy_recipes', 'custom_instance_profile_arn', 'custom_json', 'custom_security_group_ids', 'custom_setup_recipes', 'custom_shutdown_recipes', 'custom_undeploy_recipes', 'drain_elb_on_shutdown', 'ebs_volume', 'elastic_load_balancer', 'install_updates_on_boot', 'instance_shutdown_timeout', 'system_packages', 'use_ebs_optimized_instances']
         }
       },
       attributes => {
         'aws_opsworks_custom_layer_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -20977,10 +24250,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_custom_layerHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_opsworks_custom_layer], Tuple[Optional[Aws_opsworks_custom_layer]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_opsworks_custom_layer]],
-        'update' => Callable[String, Optional[Aws_opsworks_custom_layer]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_opsworks_custom_layer_ebs_volume_434 => {
@@ -21006,11 +24285,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['stack_id'],
-          'providedAttributes' => ['aws_opsworks_ganglia_layer_id', 'auto_assign_elastic_ips', 'auto_assign_public_ips', 'auto_healing', 'custom_configure_recipes', 'custom_deploy_recipes', 'custom_instance_profile_arn', 'custom_json', 'custom_security_group_ids', 'custom_setup_recipes', 'custom_shutdown_recipes', 'custom_undeploy_recipes', 'drain_elb_on_shutdown', 'ebs_volume', 'elastic_load_balancer', 'install_updates_on_boot', 'instance_shutdown_timeout', 'name', 'system_packages', 'url', 'use_ebs_optimized_instances', 'username']
+          'providedAttributes' => ['auto_assign_elastic_ips', 'auto_assign_public_ips', 'auto_healing', 'custom_configure_recipes', 'custom_deploy_recipes', 'custom_instance_profile_arn', 'custom_json', 'custom_security_group_ids', 'custom_setup_recipes', 'custom_shutdown_recipes', 'custom_undeploy_recipes', 'drain_elb_on_shutdown', 'ebs_volume', 'elastic_load_balancer', 'install_updates_on_boot', 'instance_shutdown_timeout', 'name', 'system_packages', 'url', 'use_ebs_optimized_instances', 'username']
         }
       },
       attributes => {
         'aws_opsworks_ganglia_layer_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -21104,10 +24388,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_ganglia_layerHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_opsworks_ganglia_layer], Tuple[Optional[Aws_opsworks_ganglia_layer]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_opsworks_ganglia_layer]],
-        'update' => Callable[String, Optional[Aws_opsworks_ganglia_layer]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_opsworks_ganglia_layer_ebs_volume_435 => {
@@ -21133,11 +24423,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['stack_id'],
-          'providedAttributes' => ['aws_opsworks_haproxy_layer_id', 'auto_assign_elastic_ips', 'auto_assign_public_ips', 'auto_healing', 'custom_configure_recipes', 'custom_deploy_recipes', 'custom_instance_profile_arn', 'custom_json', 'custom_security_group_ids', 'custom_setup_recipes', 'custom_shutdown_recipes', 'custom_undeploy_recipes', 'drain_elb_on_shutdown', 'ebs_volume', 'elastic_load_balancer', 'healthcheck_method', 'healthcheck_url', 'install_updates_on_boot', 'instance_shutdown_timeout', 'name', 'stats_enabled', 'stats_url', 'stats_user', 'system_packages', 'use_ebs_optimized_instances']
+          'providedAttributes' => ['auto_assign_elastic_ips', 'auto_assign_public_ips', 'auto_healing', 'custom_configure_recipes', 'custom_deploy_recipes', 'custom_instance_profile_arn', 'custom_json', 'custom_security_group_ids', 'custom_setup_recipes', 'custom_shutdown_recipes', 'custom_undeploy_recipes', 'drain_elb_on_shutdown', 'ebs_volume', 'elastic_load_balancer', 'healthcheck_method', 'healthcheck_url', 'install_updates_on_boot', 'instance_shutdown_timeout', 'name', 'stats_enabled', 'stats_url', 'stats_user', 'system_packages', 'use_ebs_optimized_instances']
         }
       },
       attributes => {
         'aws_opsworks_haproxy_layer_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -21243,10 +24538,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_haproxy_layerHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_opsworks_haproxy_layer], Tuple[Optional[Aws_opsworks_haproxy_layer]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_opsworks_haproxy_layer]],
-        'update' => Callable[String, Optional[Aws_opsworks_haproxy_layer]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_opsworks_haproxy_layer_ebs_volume_436 => {
@@ -21272,11 +24573,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['ami_id', 'availability_zone', 'ebs_block_device', 'ebs_optimized', 'ephemeral_block_device', 'hostname', 'os', 'root_block_device', 'root_device_type', 'stack_id', 'subnet_id', 'tenancy', 'virtualization_type'],
-          'providedAttributes' => ['aws_opsworks_instance_id', 'agent_version', 'ami_id', 'architecture', 'auto_scaling_type', 'availability_zone', 'created_at', 'delete_ebs', 'delete_eip', 'ebs_block_device', 'ebs_optimized', 'ec2_instance_id', 'ecs_cluster_arn', 'elastic_ip', 'ephemeral_block_device', 'hostname', 'infrastructure_class', 'install_updates_on_boot', 'instance_profile_arn', 'instance_type', 'last_service_error_id', 'os', 'platform', 'private_dns', 'private_ip', 'public_dns', 'public_ip', 'registered_by', 'reported_agent_version', 'reported_os_family', 'reported_os_name', 'reported_os_version', 'root_block_device', 'root_device_type', 'root_device_volume_id', 'security_group_ids', 'ssh_host_dsa_key_fingerprint', 'ssh_host_rsa_key_fingerprint', 'ssh_key_name', 'state', 'status', 'subnet_id', 'tenancy', 'virtualization_type']
+          'providedAttributes' => ['agent_version', 'ami_id', 'architecture', 'auto_scaling_type', 'availability_zone', 'created_at', 'delete_ebs', 'delete_eip', 'ebs_block_device', 'ebs_optimized', 'ec2_instance_id', 'ecs_cluster_arn', 'elastic_ip', 'ephemeral_block_device', 'hostname', 'infrastructure_class', 'install_updates_on_boot', 'instance_profile_arn', 'instance_type', 'last_service_error_id', 'os', 'platform', 'private_dns', 'private_ip', 'public_dns', 'public_ip', 'registered_by', 'reported_agent_version', 'reported_os_family', 'reported_os_name', 'reported_os_version', 'root_block_device', 'root_device_type', 'root_device_volume_id', 'security_group_ids', 'ssh_host_dsa_key_fingerprint', 'ssh_host_rsa_key_fingerprint', 'ssh_key_name', 'state', 'status', 'subnet_id', 'tenancy', 'virtualization_type']
         }
       },
       attributes => {
         'aws_opsworks_instance_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -21458,10 +24764,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_instanceHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_opsworks_instance], Tuple[Optional[Aws_opsworks_instance]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_opsworks_instance]],
-        'update' => Callable[String, Optional[Aws_opsworks_instance]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_opsworks_instance_ebs_block_device_437 => {
@@ -21519,11 +24831,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['stack_id'],
-          'providedAttributes' => ['aws_opsworks_java_app_layer_id', 'app_server', 'app_server_version', 'auto_assign_elastic_ips', 'auto_assign_public_ips', 'auto_healing', 'custom_configure_recipes', 'custom_deploy_recipes', 'custom_instance_profile_arn', 'custom_json', 'custom_security_group_ids', 'custom_setup_recipes', 'custom_shutdown_recipes', 'custom_undeploy_recipes', 'drain_elb_on_shutdown', 'ebs_volume', 'elastic_load_balancer', 'install_updates_on_boot', 'instance_shutdown_timeout', 'jvm_options', 'jvm_type', 'jvm_version', 'name', 'system_packages', 'use_ebs_optimized_instances']
+          'providedAttributes' => ['app_server', 'app_server_version', 'auto_assign_elastic_ips', 'auto_assign_public_ips', 'auto_healing', 'custom_configure_recipes', 'custom_deploy_recipes', 'custom_instance_profile_arn', 'custom_json', 'custom_security_group_ids', 'custom_setup_recipes', 'custom_shutdown_recipes', 'custom_undeploy_recipes', 'drain_elb_on_shutdown', 'ebs_volume', 'elastic_load_balancer', 'install_updates_on_boot', 'instance_shutdown_timeout', 'jvm_options', 'jvm_type', 'jvm_version', 'name', 'system_packages', 'use_ebs_optimized_instances']
         }
       },
       attributes => {
         'aws_opsworks_java_app_layer_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -21628,10 +24945,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_java_app_layerHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_opsworks_java_app_layer], Tuple[Optional[Aws_opsworks_java_app_layer]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_opsworks_java_app_layer]],
-        'update' => Callable[String, Optional[Aws_opsworks_java_app_layer]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_opsworks_java_app_layer_ebs_volume_440 => {
@@ -21657,11 +24980,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['stack_id'],
-          'providedAttributes' => ['aws_opsworks_memcached_layer_id', 'allocated_memory', 'auto_assign_elastic_ips', 'auto_assign_public_ips', 'auto_healing', 'custom_configure_recipes', 'custom_deploy_recipes', 'custom_instance_profile_arn', 'custom_json', 'custom_security_group_ids', 'custom_setup_recipes', 'custom_shutdown_recipes', 'custom_undeploy_recipes', 'drain_elb_on_shutdown', 'ebs_volume', 'elastic_load_balancer', 'install_updates_on_boot', 'instance_shutdown_timeout', 'name', 'system_packages', 'use_ebs_optimized_instances']
+          'providedAttributes' => ['allocated_memory', 'auto_assign_elastic_ips', 'auto_assign_public_ips', 'auto_healing', 'custom_configure_recipes', 'custom_deploy_recipes', 'custom_instance_profile_arn', 'custom_json', 'custom_security_group_ids', 'custom_setup_recipes', 'custom_shutdown_recipes', 'custom_undeploy_recipes', 'drain_elb_on_shutdown', 'ebs_volume', 'elastic_load_balancer', 'install_updates_on_boot', 'instance_shutdown_timeout', 'name', 'system_packages', 'use_ebs_optimized_instances']
         }
       },
       attributes => {
         'aws_opsworks_memcached_layer_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -21750,10 +25078,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_memcached_layerHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_opsworks_memcached_layer], Tuple[Optional[Aws_opsworks_memcached_layer]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_opsworks_memcached_layer]],
-        'update' => Callable[String, Optional[Aws_opsworks_memcached_layer]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_opsworks_memcached_layer_ebs_volume_441 => {
@@ -21779,11 +25113,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['stack_id'],
-          'providedAttributes' => ['aws_opsworks_mysql_layer_id', 'auto_assign_elastic_ips', 'auto_assign_public_ips', 'auto_healing', 'custom_configure_recipes', 'custom_deploy_recipes', 'custom_instance_profile_arn', 'custom_json', 'custom_security_group_ids', 'custom_setup_recipes', 'custom_shutdown_recipes', 'custom_undeploy_recipes', 'drain_elb_on_shutdown', 'ebs_volume', 'elastic_load_balancer', 'install_updates_on_boot', 'instance_shutdown_timeout', 'name', 'root_password', 'root_password_on_all_instances', 'system_packages', 'use_ebs_optimized_instances']
+          'providedAttributes' => ['auto_assign_elastic_ips', 'auto_assign_public_ips', 'auto_healing', 'custom_configure_recipes', 'custom_deploy_recipes', 'custom_instance_profile_arn', 'custom_json', 'custom_security_group_ids', 'custom_setup_recipes', 'custom_shutdown_recipes', 'custom_undeploy_recipes', 'drain_elb_on_shutdown', 'ebs_volume', 'elastic_load_balancer', 'install_updates_on_boot', 'instance_shutdown_timeout', 'name', 'root_password', 'root_password_on_all_instances', 'system_packages', 'use_ebs_optimized_instances']
         }
       },
       attributes => {
         'aws_opsworks_mysql_layer_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -21876,10 +25215,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_mysql_layerHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_opsworks_mysql_layer], Tuple[Optional[Aws_opsworks_mysql_layer]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_opsworks_mysql_layer]],
-        'update' => Callable[String, Optional[Aws_opsworks_mysql_layer]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_opsworks_mysql_layer_ebs_volume_442 => {
@@ -21905,11 +25250,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['stack_id'],
-          'providedAttributes' => ['aws_opsworks_nodejs_app_layer_id', 'auto_assign_elastic_ips', 'auto_assign_public_ips', 'auto_healing', 'custom_configure_recipes', 'custom_deploy_recipes', 'custom_instance_profile_arn', 'custom_json', 'custom_security_group_ids', 'custom_setup_recipes', 'custom_shutdown_recipes', 'custom_undeploy_recipes', 'drain_elb_on_shutdown', 'ebs_volume', 'elastic_load_balancer', 'install_updates_on_boot', 'instance_shutdown_timeout', 'name', 'nodejs_version', 'system_packages', 'use_ebs_optimized_instances']
+          'providedAttributes' => ['auto_assign_elastic_ips', 'auto_assign_public_ips', 'auto_healing', 'custom_configure_recipes', 'custom_deploy_recipes', 'custom_instance_profile_arn', 'custom_json', 'custom_security_group_ids', 'custom_setup_recipes', 'custom_shutdown_recipes', 'custom_undeploy_recipes', 'drain_elb_on_shutdown', 'ebs_volume', 'elastic_load_balancer', 'install_updates_on_boot', 'instance_shutdown_timeout', 'name', 'nodejs_version', 'system_packages', 'use_ebs_optimized_instances']
         }
       },
       attributes => {
         'aws_opsworks_nodejs_app_layer_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -21998,10 +25348,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_nodejs_app_layerHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_opsworks_nodejs_app_layer], Tuple[Optional[Aws_opsworks_nodejs_app_layer]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_opsworks_nodejs_app_layer]],
-        'update' => Callable[String, Optional[Aws_opsworks_nodejs_app_layer]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_opsworks_nodejs_app_layer_ebs_volume_443 => {
@@ -22026,11 +25382,16 @@ type TerraformAws = TypeSet[{
     Aws_opsworks_permission => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_opsworks_permission_id', 'allow_ssh', 'allow_sudo', 'level', 'stack_id']
+          'providedAttributes' => ['allow_ssh', 'allow_sudo', 'level', 'stack_id']
         }
       },
       attributes => {
         'aws_opsworks_permission_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -22055,21 +25416,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_permissionHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_opsworks_permission], Tuple[Optional[Aws_opsworks_permission]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_opsworks_permission]],
-        'update' => Callable[String, Optional[Aws_opsworks_permission]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_opsworks_php_app_layer => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['stack_id'],
-          'providedAttributes' => ['aws_opsworks_php_app_layer_id', 'auto_assign_elastic_ips', 'auto_assign_public_ips', 'auto_healing', 'custom_configure_recipes', 'custom_deploy_recipes', 'custom_instance_profile_arn', 'custom_json', 'custom_security_group_ids', 'custom_setup_recipes', 'custom_shutdown_recipes', 'custom_undeploy_recipes', 'drain_elb_on_shutdown', 'ebs_volume', 'elastic_load_balancer', 'install_updates_on_boot', 'instance_shutdown_timeout', 'name', 'system_packages', 'use_ebs_optimized_instances']
+          'providedAttributes' => ['auto_assign_elastic_ips', 'auto_assign_public_ips', 'auto_healing', 'custom_configure_recipes', 'custom_deploy_recipes', 'custom_instance_profile_arn', 'custom_json', 'custom_security_group_ids', 'custom_setup_recipes', 'custom_shutdown_recipes', 'custom_undeploy_recipes', 'drain_elb_on_shutdown', 'ebs_volume', 'elastic_load_balancer', 'install_updates_on_boot', 'instance_shutdown_timeout', 'name', 'system_packages', 'use_ebs_optimized_instances']
         }
       },
       attributes => {
         'aws_opsworks_php_app_layer_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -22154,10 +25526,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_php_app_layerHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_opsworks_php_app_layer], Tuple[Optional[Aws_opsworks_php_app_layer]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_opsworks_php_app_layer]],
-        'update' => Callable[String, Optional[Aws_opsworks_php_app_layer]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_opsworks_php_app_layer_ebs_volume_444 => {
@@ -22183,11 +25561,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['stack_id'],
-          'providedAttributes' => ['aws_opsworks_rails_app_layer_id', 'app_server', 'auto_assign_elastic_ips', 'auto_assign_public_ips', 'auto_healing', 'bundler_version', 'custom_configure_recipes', 'custom_deploy_recipes', 'custom_instance_profile_arn', 'custom_json', 'custom_security_group_ids', 'custom_setup_recipes', 'custom_shutdown_recipes', 'custom_undeploy_recipes', 'drain_elb_on_shutdown', 'ebs_volume', 'elastic_load_balancer', 'install_updates_on_boot', 'instance_shutdown_timeout', 'manage_bundler', 'name', 'passenger_version', 'ruby_version', 'rubygems_version', 'system_packages', 'use_ebs_optimized_instances']
+          'providedAttributes' => ['app_server', 'auto_assign_elastic_ips', 'auto_assign_public_ips', 'auto_healing', 'bundler_version', 'custom_configure_recipes', 'custom_deploy_recipes', 'custom_instance_profile_arn', 'custom_json', 'custom_security_group_ids', 'custom_setup_recipes', 'custom_shutdown_recipes', 'custom_undeploy_recipes', 'drain_elb_on_shutdown', 'ebs_volume', 'elastic_load_balancer', 'install_updates_on_boot', 'instance_shutdown_timeout', 'manage_bundler', 'name', 'passenger_version', 'ruby_version', 'rubygems_version', 'system_packages', 'use_ebs_optimized_instances']
         }
       },
       attributes => {
         'aws_opsworks_rails_app_layer_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -22296,10 +25679,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_rails_app_layerHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_opsworks_rails_app_layer], Tuple[Optional[Aws_opsworks_rails_app_layer]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_opsworks_rails_app_layer]],
-        'update' => Callable[String, Optional[Aws_opsworks_rails_app_layer]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_opsworks_rails_app_layer_ebs_volume_445 => {
@@ -22324,12 +25713,16 @@ type TerraformAws = TypeSet[{
     Aws_opsworks_rds_db_instance => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['rds_db_instance_arn', 'stack_id'],
-          'providedAttributes' => ['aws_opsworks_rds_db_instance_id']
+          'immutableAttributes' => ['rds_db_instance_arn', 'stack_id']
         }
       },
       attributes => {
         'aws_opsworks_rds_db_instance_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -22341,21 +25734,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_rds_db_instanceHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_opsworks_rds_db_instance], Tuple[Optional[Aws_opsworks_rds_db_instance]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_opsworks_rds_db_instance]],
-        'update' => Callable[String, Optional[Aws_opsworks_rds_db_instance]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_opsworks_stack => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['region', 'service_role_arn', 'vpc_id'],
-          'providedAttributes' => ['aws_opsworks_stack_id', 'agent_version', 'arn', 'berkshelf_version', 'color', 'configuration_manager_name', 'configuration_manager_version', 'custom_cookbooks_source', 'custom_json', 'default_availability_zone', 'default_os', 'default_root_device_type', 'default_ssh_key_name', 'default_subnet_id', 'hostname_theme', 'manage_berkshelf', 'stack_endpoint', 'tags', 'use_custom_cookbooks', 'use_opsworks_security_groups', 'vpc_id']
+          'providedAttributes' => ['agent_version', 'arn', 'berkshelf_version', 'color', 'configuration_manager_name', 'configuration_manager_version', 'custom_cookbooks_source', 'custom_json', 'default_availability_zone', 'default_os', 'default_root_device_type', 'default_ssh_key_name', 'default_subnet_id', 'hostname_theme', 'manage_berkshelf', 'stack_endpoint', 'tags', 'use_custom_cookbooks', 'use_opsworks_security_groups', 'vpc_id']
         }
       },
       attributes => {
         'aws_opsworks_stack_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -22447,10 +25851,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_stackHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_opsworks_stack], Tuple[Optional[Aws_opsworks_stack]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_opsworks_stack]],
-        'update' => Callable[String, Optional[Aws_opsworks_stack]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_opsworks_stack_custom_cookbooks_source_446 => {
@@ -22479,11 +25889,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['stack_id'],
-          'providedAttributes' => ['aws_opsworks_static_web_layer_id', 'auto_assign_elastic_ips', 'auto_assign_public_ips', 'auto_healing', 'custom_configure_recipes', 'custom_deploy_recipes', 'custom_instance_profile_arn', 'custom_json', 'custom_security_group_ids', 'custom_setup_recipes', 'custom_shutdown_recipes', 'custom_undeploy_recipes', 'drain_elb_on_shutdown', 'ebs_volume', 'elastic_load_balancer', 'install_updates_on_boot', 'instance_shutdown_timeout', 'name', 'system_packages', 'use_ebs_optimized_instances']
+          'providedAttributes' => ['auto_assign_elastic_ips', 'auto_assign_public_ips', 'auto_healing', 'custom_configure_recipes', 'custom_deploy_recipes', 'custom_instance_profile_arn', 'custom_json', 'custom_security_group_ids', 'custom_setup_recipes', 'custom_shutdown_recipes', 'custom_undeploy_recipes', 'drain_elb_on_shutdown', 'ebs_volume', 'elastic_load_balancer', 'install_updates_on_boot', 'instance_shutdown_timeout', 'name', 'system_packages', 'use_ebs_optimized_instances']
         }
       },
       attributes => {
         'aws_opsworks_static_web_layer_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -22568,10 +25983,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_static_web_layerHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_opsworks_static_web_layer], Tuple[Optional[Aws_opsworks_static_web_layer]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_opsworks_static_web_layer]],
-        'update' => Callable[String, Optional[Aws_opsworks_static_web_layer]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_opsworks_static_web_layer_ebs_volume_447 => {
@@ -22597,11 +26018,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['user_arn'],
-          'providedAttributes' => ['aws_opsworks_user_profile_id', 'allow_self_management', 'ssh_public_key']
+          'providedAttributes' => ['allow_self_management', 'ssh_public_key']
         }
       },
       attributes => {
         'aws_opsworks_user_profile_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -22619,21 +26045,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_opsworks_user_profileHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_opsworks_user_profile], Tuple[Optional[Aws_opsworks_user_profile]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_opsworks_user_profile]],
-        'update' => Callable[String, Optional[Aws_opsworks_user_profile]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_organizations_account => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['email', 'iam_user_access_to_billing', 'name', 'role_name'],
-          'providedAttributes' => ['aws_organizations_account_id', 'arn', 'iam_user_access_to_billing', 'joined_method', 'joined_timestamp', 'role_name', 'status']
+          'providedAttributes' => ['arn', 'iam_user_access_to_billing', 'joined_method', 'joined_timestamp', 'role_name', 'status']
         }
       },
       attributes => {
         'aws_organizations_account_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -22667,21 +26104,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_organizations_accountHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_organizations_account], Tuple[Optional[Aws_organizations_account]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_organizations_account]],
-        'update' => Callable[String, Optional[Aws_organizations_account]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_organizations_organization => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['feature_set'],
-          'providedAttributes' => ['aws_organizations_organization_id', 'arn', 'aws_service_access_principals', 'feature_set', 'master_account_arn', 'master_account_email', 'master_account_id']
+          'providedAttributes' => ['arn', 'aws_service_access_principals', 'feature_set', 'master_account_arn', 'master_account_email', 'master_account_id']
         }
       },
       attributes => {
         'aws_organizations_organization_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -22713,21 +26161,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_organizations_organizationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_organizations_organization], Tuple[Optional[Aws_organizations_organization]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_organizations_organization]],
-        'update' => Callable[String, Optional[Aws_organizations_organization]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_organizations_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['type'],
-          'providedAttributes' => ['aws_organizations_policy_id', 'arn', 'description', 'type']
+          'providedAttributes' => ['arn', 'description', 'type']
         }
       },
       attributes => {
         'aws_organizations_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -22749,21 +26208,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_organizations_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_organizations_policy], Tuple[Optional[Aws_organizations_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_organizations_policy]],
-        'update' => Callable[String, Optional[Aws_organizations_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_organizations_policy_attachment => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['policy_id', 'target_id'],
-          'providedAttributes' => ['aws_organizations_policy_attachment_id']
+          'immutableAttributes' => ['policy_id', 'target_id']
         }
       },
       attributes => {
         'aws_organizations_policy_attachment_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -22773,21 +26242,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_organizations_policy_attachmentHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_organizations_policy_attachment], Tuple[Optional[Aws_organizations_policy_attachment]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_organizations_policy_attachment]],
-        'update' => Callable[String, Optional[Aws_organizations_policy_attachment]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_pinpoint_adm_channel => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['application_id'],
-          'providedAttributes' => ['aws_pinpoint_adm_channel_id', 'enabled']
+          'providedAttributes' => ['enabled']
         }
       },
       attributes => {
         'aws_pinpoint_adm_channel_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -22802,21 +26282,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_pinpoint_adm_channelHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_pinpoint_adm_channel], Tuple[Optional[Aws_pinpoint_adm_channel]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_pinpoint_adm_channel]],
-        'update' => Callable[String, Optional[Aws_pinpoint_adm_channel]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_pinpoint_apns_channel => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['application_id'],
-          'providedAttributes' => ['aws_pinpoint_apns_channel_id', 'bundle_id', 'certificate', 'default_authentication_method', 'enabled', 'private_key', 'team_id', 'token_key', 'token_key_id']
+          'providedAttributes' => ['bundle_id', 'certificate', 'default_authentication_method', 'enabled', 'private_key', 'team_id', 'token_key', 'token_key_id']
         }
       },
       attributes => {
         'aws_pinpoint_apns_channel_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -22857,21 +26348,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_pinpoint_apns_channelHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_pinpoint_apns_channel], Tuple[Optional[Aws_pinpoint_apns_channel]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_pinpoint_apns_channel]],
-        'update' => Callable[String, Optional[Aws_pinpoint_apns_channel]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_pinpoint_apns_sandbox_channel => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['application_id'],
-          'providedAttributes' => ['aws_pinpoint_apns_sandbox_channel_id', 'bundle_id', 'certificate', 'default_authentication_method', 'enabled', 'private_key', 'team_id', 'token_key', 'token_key_id']
+          'providedAttributes' => ['bundle_id', 'certificate', 'default_authentication_method', 'enabled', 'private_key', 'team_id', 'token_key', 'token_key_id']
         }
       },
       attributes => {
         'aws_pinpoint_apns_sandbox_channel_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -22912,21 +26414,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_pinpoint_apns_sandbox_channelHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_pinpoint_apns_sandbox_channel], Tuple[Optional[Aws_pinpoint_apns_sandbox_channel]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_pinpoint_apns_sandbox_channel]],
-        'update' => Callable[String, Optional[Aws_pinpoint_apns_sandbox_channel]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_pinpoint_apns_voip_channel => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['application_id'],
-          'providedAttributes' => ['aws_pinpoint_apns_voip_channel_id', 'bundle_id', 'certificate', 'default_authentication_method', 'enabled', 'private_key', 'team_id', 'token_key', 'token_key_id']
+          'providedAttributes' => ['bundle_id', 'certificate', 'default_authentication_method', 'enabled', 'private_key', 'team_id', 'token_key', 'token_key_id']
         }
       },
       attributes => {
         'aws_pinpoint_apns_voip_channel_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -22967,21 +26480,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_pinpoint_apns_voip_channelHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_pinpoint_apns_voip_channel], Tuple[Optional[Aws_pinpoint_apns_voip_channel]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_pinpoint_apns_voip_channel]],
-        'update' => Callable[String, Optional[Aws_pinpoint_apns_voip_channel]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_pinpoint_apns_voip_sandbox_channel => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['application_id'],
-          'providedAttributes' => ['aws_pinpoint_apns_voip_sandbox_channel_id', 'bundle_id', 'certificate', 'default_authentication_method', 'enabled', 'private_key', 'team_id', 'token_key', 'token_key_id']
+          'providedAttributes' => ['bundle_id', 'certificate', 'default_authentication_method', 'enabled', 'private_key', 'team_id', 'token_key', 'token_key_id']
         }
       },
       attributes => {
         'aws_pinpoint_apns_voip_sandbox_channel_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -23022,21 +26546,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_pinpoint_apns_voip_sandbox_channelHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_pinpoint_apns_voip_sandbox_channel], Tuple[Optional[Aws_pinpoint_apns_voip_sandbox_channel]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_pinpoint_apns_voip_sandbox_channel]],
-        'update' => Callable[String, Optional[Aws_pinpoint_apns_voip_sandbox_channel]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_pinpoint_app => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'name_prefix'],
-          'providedAttributes' => ['aws_pinpoint_app_id', 'application_id', 'campaign_hook', 'limits', 'name', 'name_prefix', 'quiet_time']
+          'providedAttributes' => ['application_id', 'campaign_hook', 'limits', 'name', 'name_prefix', 'quiet_time']
         }
       },
       attributes => {
         'aws_pinpoint_app_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -23068,10 +26603,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_pinpoint_appHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_pinpoint_app], Tuple[Optional[Aws_pinpoint_app]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_pinpoint_app]],
-        'update' => Callable[String, Optional[Aws_pinpoint_app]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_pinpoint_app_campaign_hook_448 => {
@@ -23126,11 +26667,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['application_id'],
-          'providedAttributes' => ['aws_pinpoint_baidu_channel_id', 'enabled']
+          'providedAttributes' => ['enabled']
         }
       },
       attributes => {
         'aws_pinpoint_baidu_channel_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -23145,21 +26691,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_pinpoint_baidu_channelHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_pinpoint_baidu_channel], Tuple[Optional[Aws_pinpoint_baidu_channel]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_pinpoint_baidu_channel]],
-        'update' => Callable[String, Optional[Aws_pinpoint_baidu_channel]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_pinpoint_email_channel => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['application_id'],
-          'providedAttributes' => ['aws_pinpoint_email_channel_id', 'enabled', 'messages_per_second']
+          'providedAttributes' => ['enabled', 'messages_per_second']
         }
       },
       attributes => {
         'aws_pinpoint_email_channel_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -23179,21 +26736,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_pinpoint_email_channelHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_pinpoint_email_channel], Tuple[Optional[Aws_pinpoint_email_channel]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_pinpoint_email_channel]],
-        'update' => Callable[String, Optional[Aws_pinpoint_email_channel]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_pinpoint_event_stream => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['application_id'],
-          'providedAttributes' => ['aws_pinpoint_event_stream_id']
+          'immutableAttributes' => ['application_id']
         }
       },
       attributes => {
         'aws_pinpoint_event_stream_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -23204,21 +26771,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_pinpoint_event_streamHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_pinpoint_event_stream], Tuple[Optional[Aws_pinpoint_event_stream]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_pinpoint_event_stream]],
-        'update' => Callable[String, Optional[Aws_pinpoint_event_stream]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_pinpoint_gcm_channel => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['application_id'],
-          'providedAttributes' => ['aws_pinpoint_gcm_channel_id', 'enabled']
+          'providedAttributes' => ['enabled']
         }
       },
       attributes => {
         'aws_pinpoint_gcm_channel_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -23232,21 +26810,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_pinpoint_gcm_channelHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_pinpoint_gcm_channel], Tuple[Optional[Aws_pinpoint_gcm_channel]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_pinpoint_gcm_channel]],
-        'update' => Callable[String, Optional[Aws_pinpoint_gcm_channel]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_pinpoint_sms_channel => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['application_id'],
-          'providedAttributes' => ['aws_pinpoint_sms_channel_id', 'enabled', 'promotional_messages_per_second', 'sender_id', 'short_code', 'transactional_messages_per_second']
+          'providedAttributes' => ['enabled', 'promotional_messages_per_second', 'sender_id', 'short_code', 'transactional_messages_per_second']
         }
       },
       attributes => {
         'aws_pinpoint_sms_channel_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -23275,21 +26864,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_pinpoint_sms_channelHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_pinpoint_sms_channel], Tuple[Optional[Aws_pinpoint_sms_channel]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_pinpoint_sms_channel]],
-        'update' => Callable[String, Optional[Aws_pinpoint_sms_channel]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_placement_group => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['name', 'strategy'],
-          'providedAttributes' => ['aws_placement_group_id']
+          'immutableAttributes' => ['name', 'strategy']
         }
       },
       attributes => {
         'aws_placement_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -23299,20 +26898,26 @@ type TerraformAws = TypeSet[{
     },
     Aws_placement_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_placement_group], Tuple[Optional[Aws_placement_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_placement_group]],
-        'update' => Callable[String, Optional[Aws_placement_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_proxy_protocol_policy => {
-      annotations => {
-        Lyra::Resource => {
-          'providedAttributes' => ['aws_proxy_protocol_policy_id']
-        }
-      },
       attributes => {
         'aws_proxy_protocol_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -23322,20 +26927,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_proxy_protocol_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_proxy_protocol_policy], Tuple[Optional[Aws_proxy_protocol_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_proxy_protocol_policy]],
-        'update' => Callable[String, Optional[Aws_proxy_protocol_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ram_resource_share => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_ram_resource_share_id', 'allow_external_principals', 'tags']
+          'providedAttributes' => ['allow_external_principals', 'tags']
         }
       },
       attributes => {
         'aws_ram_resource_share_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -23352,21 +26968,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_ram_resource_shareHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ram_resource_share], Tuple[Optional[Aws_ram_resource_share]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ram_resource_share]],
-        'update' => Callable[String, Optional[Aws_ram_resource_share]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_rds_cluster => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['availability_zones', 'cluster_identifier', 'cluster_identifier_prefix', 'database_name', 'db_subnet_group_name', 'engine', 'engine_mode', 'kms_key_id', 'master_username', 'port', 'source_region', 'storage_encrypted'],
-          'providedAttributes' => ['aws_rds_cluster_id', 'apply_immediately', 'arn', 'availability_zones', 'backtrack_window', 'backup_retention_period', 'cluster_identifier', 'cluster_identifier_prefix', 'cluster_members', 'cluster_resource_id', 'database_name', 'db_cluster_parameter_group_name', 'db_subnet_group_name', 'deletion_protection', 'enabled_cloudwatch_logs_exports', 'endpoint', 'engine', 'engine_mode', 'engine_version', 'final_snapshot_identifier', 'global_cluster_identifier', 'hosted_zone_id', 'iam_database_authentication_enabled', 'iam_roles', 'kms_key_id', 'master_password', 'master_username', 'port', 'preferred_backup_window', 'preferred_maintenance_window', 'reader_endpoint', 'replication_source_identifier', 's3_import', 'scaling_configuration', 'skip_final_snapshot', 'snapshot_identifier', 'source_region', 'storage_encrypted', 'tags', 'vpc_security_group_ids']
+          'providedAttributes' => ['apply_immediately', 'arn', 'availability_zones', 'backtrack_window', 'backup_retention_period', 'cluster_identifier', 'cluster_identifier_prefix', 'cluster_members', 'cluster_resource_id', 'database_name', 'db_cluster_parameter_group_name', 'db_subnet_group_name', 'deletion_protection', 'enabled_cloudwatch_logs_exports', 'endpoint', 'engine', 'engine_mode', 'engine_version', 'final_snapshot_identifier', 'global_cluster_identifier', 'hosted_zone_id', 'iam_database_authentication_enabled', 'iam_roles', 'kms_key_id', 'master_password', 'master_username', 'port', 'preferred_backup_window', 'preferred_maintenance_window', 'reader_endpoint', 'replication_source_identifier', 's3_import', 'scaling_configuration', 'skip_final_snapshot', 'snapshot_identifier', 'source_region', 'storage_encrypted', 'tags', 'vpc_security_group_ids']
         }
       },
       attributes => {
         'aws_rds_cluster_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -23530,21 +27157,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_rds_clusterHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_rds_cluster], Tuple[Optional[Aws_rds_cluster]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_rds_cluster]],
-        'update' => Callable[String, Optional[Aws_rds_cluster]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_rds_cluster_endpoint => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['cluster_endpoint_identifier', 'cluster_identifier'],
-          'providedAttributes' => ['aws_rds_cluster_endpoint_id', 'arn', 'endpoint', 'excluded_members', 'static_members']
+          'providedAttributes' => ['arn', 'endpoint', 'excluded_members', 'static_members']
         }
       },
       attributes => {
         'aws_rds_cluster_endpoint_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -23571,21 +27209,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_rds_cluster_endpointHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_rds_cluster_endpoint], Tuple[Optional[Aws_rds_cluster_endpoint]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_rds_cluster_endpoint]],
-        'update' => Callable[String, Optional[Aws_rds_cluster_endpoint]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_rds_cluster_instance => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['availability_zone', 'cluster_identifier', 'db_subnet_group_name', 'engine', 'engine_version', 'identifier', 'identifier_prefix'],
-          'providedAttributes' => ['aws_rds_cluster_instance_id', 'apply_immediately', 'arn', 'auto_minor_version_upgrade', 'availability_zone', 'copy_tags_to_snapshot', 'db_parameter_group_name', 'db_subnet_group_name', 'dbi_resource_id', 'endpoint', 'engine', 'engine_version', 'identifier', 'identifier_prefix', 'kms_key_id', 'monitoring_interval', 'monitoring_role_arn', 'performance_insights_enabled', 'performance_insights_kms_key_id', 'port', 'preferred_backup_window', 'preferred_maintenance_window', 'promotion_tier', 'publicly_accessible', 'storage_encrypted', 'tags', 'writer']
+          'providedAttributes' => ['apply_immediately', 'arn', 'auto_minor_version_upgrade', 'availability_zone', 'copy_tags_to_snapshot', 'db_parameter_group_name', 'db_subnet_group_name', 'dbi_resource_id', 'endpoint', 'engine', 'engine_version', 'identifier', 'identifier_prefix', 'kms_key_id', 'monitoring_interval', 'monitoring_role_arn', 'performance_insights_enabled', 'performance_insights_kms_key_id', 'port', 'preferred_backup_window', 'preferred_maintenance_window', 'promotion_tier', 'publicly_accessible', 'storage_encrypted', 'tags', 'writer']
         }
       },
       attributes => {
         'aws_rds_cluster_instance_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -23699,21 +27348,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_rds_cluster_instanceHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_rds_cluster_instance], Tuple[Optional[Aws_rds_cluster_instance]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_rds_cluster_instance]],
-        'update' => Callable[String, Optional[Aws_rds_cluster_instance]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_rds_cluster_parameter_group => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'family', 'name', 'name_prefix'],
-          'providedAttributes' => ['aws_rds_cluster_parameter_group_id', 'arn', 'description', 'name', 'name_prefix', 'parameter', 'tags']
+          'providedAttributes' => ['arn', 'description', 'name', 'name_prefix', 'parameter', 'tags']
         }
       },
       attributes => {
         'aws_rds_cluster_parameter_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -23746,10 +27406,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_rds_cluster_parameter_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_rds_cluster_parameter_group], Tuple[Optional[Aws_rds_cluster_parameter_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_rds_cluster_parameter_group]],
-        'update' => Callable[String, Optional[Aws_rds_cluster_parameter_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_rds_cluster_parameter_group_parameter_453 => {
@@ -23798,11 +27464,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['database_name', 'engine', 'engine_version', 'global_cluster_identifier', 'storage_encrypted'],
-          'providedAttributes' => ['aws_rds_global_cluster_id', 'arn', 'database_name', 'deletion_protection', 'engine', 'engine_version', 'global_cluster_resource_id', 'storage_encrypted']
+          'providedAttributes' => ['arn', 'database_name', 'deletion_protection', 'engine', 'engine_version', 'global_cluster_resource_id', 'storage_encrypted']
         }
       },
       attributes => {
         'aws_rds_global_cluster_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -23839,21 +27510,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_rds_global_clusterHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_rds_global_cluster], Tuple[Optional[Aws_rds_global_cluster]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_rds_global_cluster]],
-        'update' => Callable[String, Optional[Aws_rds_global_cluster]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_redshift_cluster => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['availability_zone', 'cluster_identifier', 'cluster_subnet_group_name', 'master_username', 'snapshot_cluster_identifier', 'snapshot_identifier'],
-          'providedAttributes' => ['aws_redshift_cluster_id', 'allow_version_upgrade', 'automated_snapshot_retention_period', 'availability_zone', 'bucket_name', 'cluster_parameter_group_name', 'cluster_public_key', 'cluster_revision_number', 'cluster_security_groups', 'cluster_subnet_group_name', 'cluster_type', 'cluster_version', 'database_name', 'dns_name', 'elastic_ip', 'enable_logging', 'encrypted', 'endpoint', 'enhanced_vpc_routing', 'final_snapshot_identifier', 'iam_roles', 'kms_key_id', 'logging', 'master_password', 'master_username', 'number_of_nodes', 'owner_account', 'port', 'preferred_maintenance_window', 'publicly_accessible', 's3_key_prefix', 'skip_final_snapshot', 'snapshot_cluster_identifier', 'snapshot_copy', 'snapshot_identifier', 'tags', 'vpc_security_group_ids']
+          'providedAttributes' => ['allow_version_upgrade', 'automated_snapshot_retention_period', 'availability_zone', 'bucket_name', 'cluster_parameter_group_name', 'cluster_public_key', 'cluster_revision_number', 'cluster_security_groups', 'cluster_subnet_group_name', 'cluster_type', 'cluster_version', 'database_name', 'dns_name', 'elastic_ip', 'enable_logging', 'encrypted', 'endpoint', 'enhanced_vpc_routing', 'final_snapshot_identifier', 'iam_roles', 'kms_key_id', 'logging', 'master_password', 'master_username', 'number_of_nodes', 'owner_account', 'port', 'preferred_maintenance_window', 'publicly_accessible', 's3_key_prefix', 'skip_final_snapshot', 'snapshot_cluster_identifier', 'snapshot_copy', 'snapshot_identifier', 'tags', 'vpc_security_group_ids']
         }
       },
       attributes => {
         'aws_redshift_cluster_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -24007,10 +27689,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_redshift_clusterHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_redshift_cluster], Tuple[Optional[Aws_redshift_cluster]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_redshift_cluster]],
-        'update' => Callable[String, Optional[Aws_redshift_cluster]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_redshift_cluster_logging_454 => {
@@ -24043,11 +27731,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'tags'],
-          'providedAttributes' => ['aws_redshift_event_subscription_id', 'customer_aws_id', 'enabled', 'event_categories', 'severity', 'source_ids', 'source_type', 'status', 'tags']
+          'providedAttributes' => ['customer_aws_id', 'enabled', 'event_categories', 'severity', 'source_ids', 'source_type', 'status', 'tags']
         }
       },
       attributes => {
         'aws_redshift_event_subscription_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -24089,21 +27782,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_redshift_event_subscriptionHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_redshift_event_subscription], Tuple[Optional[Aws_redshift_event_subscription]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_redshift_event_subscription]],
-        'update' => Callable[String, Optional[Aws_redshift_event_subscription]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_redshift_parameter_group => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'family', 'name'],
-          'providedAttributes' => ['aws_redshift_parameter_group_id', 'description', 'parameter']
+          'providedAttributes' => ['description', 'parameter']
         }
       },
       attributes => {
         'aws_redshift_parameter_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -24121,10 +27825,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_redshift_parameter_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_redshift_parameter_group], Tuple[Optional[Aws_redshift_parameter_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_redshift_parameter_group]],
-        'update' => Callable[String, Optional[Aws_redshift_parameter_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_redshift_parameter_group_parameter_456 => {
@@ -24137,11 +27847,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name'],
-          'providedAttributes' => ['aws_redshift_security_group_id', 'description']
+          'providedAttributes' => ['description']
         }
       },
       attributes => {
         'aws_redshift_security_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -24155,10 +27870,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_redshift_security_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_redshift_security_group], Tuple[Optional[Aws_redshift_security_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_redshift_security_group]],
-        'update' => Callable[String, Optional[Aws_redshift_security_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_redshift_security_group_ingress_457 => {
@@ -24181,11 +27902,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['kms_key_id', 'snapshot_copy_grant_name', 'tags'],
-          'providedAttributes' => ['aws_redshift_snapshot_copy_grant_id', 'kms_key_id', 'tags']
+          'providedAttributes' => ['kms_key_id', 'tags']
         }
       },
       attributes => {
         'aws_redshift_snapshot_copy_grant_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -24202,21 +27928,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_redshift_snapshot_copy_grantHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_redshift_snapshot_copy_grant], Tuple[Optional[Aws_redshift_snapshot_copy_grant]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_redshift_snapshot_copy_grant]],
-        'update' => Callable[String, Optional[Aws_redshift_snapshot_copy_grant]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_redshift_subnet_group => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_redshift_subnet_group_id', 'description', 'tags']
+          'providedAttributes' => ['description', 'tags']
         }
       },
       attributes => {
         'aws_redshift_subnet_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -24234,21 +27971,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_redshift_subnet_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_redshift_subnet_group], Tuple[Optional[Aws_redshift_subnet_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_redshift_subnet_group]],
-        'update' => Callable[String, Optional[Aws_redshift_subnet_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_resourcegroups_group => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_resourcegroups_group_id', 'arn', 'description']
+          'providedAttributes' => ['arn', 'description']
         }
       },
       attributes => {
         'aws_resourcegroups_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -24266,10 +28014,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_resourcegroups_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_resourcegroups_group], Tuple[Optional[Aws_resourcegroups_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_resourcegroups_group]],
-        'update' => Callable[String, Optional[Aws_resourcegroups_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_resourcegroups_group_resource_query_458 => {
@@ -24285,11 +28039,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['destination_cidr_block', 'destination_ipv6_cidr_block', 'route_table_id'],
-          'providedAttributes' => ['aws_route_id', 'destination_cidr_block', 'destination_ipv6_cidr_block', 'destination_prefix_list_id', 'egress_only_gateway_id', 'gateway_id', 'instance_id', 'instance_owner_id', 'nat_gateway_id', 'network_interface_id', 'origin', 'state', 'transit_gateway_id', 'vpc_peering_connection_id']
+          'providedAttributes' => ['destination_cidr_block', 'destination_ipv6_cidr_block', 'destination_prefix_list_id', 'egress_only_gateway_id', 'gateway_id', 'instance_id', 'instance_owner_id', 'nat_gateway_id', 'network_interface_id', 'origin', 'state', 'transit_gateway_id', 'vpc_peering_connection_id']
         }
       },
       attributes => {
         'aws_route_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -24352,11 +28111,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['reference_name'],
-          'providedAttributes' => ['aws_route53_delegation_set_id', 'name_servers', 'reference_name']
+          'providedAttributes' => ['name_servers', 'reference_name']
         }
       },
       attributes => {
         'aws_route53_delegation_set_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -24372,21 +28136,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_route53_delegation_setHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_route53_delegation_set], Tuple[Optional[Aws_route53_delegation_set]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_route53_delegation_set]],
-        'update' => Callable[String, Optional[Aws_route53_delegation_set]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_route53_health_check => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['ip_address', 'measure_latency', 'reference_name', 'request_interval', 'type'],
-          'providedAttributes' => ['aws_route53_health_check_id', 'child_health_threshold', 'child_healthchecks', 'cloudwatch_alarm_name', 'cloudwatch_alarm_region', 'enable_sni', 'failure_threshold', 'fqdn', 'insufficient_data_health_status', 'invert_healthcheck', 'ip_address', 'measure_latency', 'port', 'reference_name', 'regions', 'request_interval', 'resource_path', 'search_string', 'tags']
+          'providedAttributes' => ['child_health_threshold', 'child_healthchecks', 'cloudwatch_alarm_name', 'cloudwatch_alarm_region', 'enable_sni', 'failure_threshold', 'fqdn', 'insufficient_data_health_status', 'invert_healthcheck', 'ip_address', 'measure_latency', 'port', 'reference_name', 'regions', 'request_interval', 'resource_path', 'search_string', 'tags']
         }
       },
       attributes => {
         'aws_route53_health_check_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -24467,21 +28242,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_route53_health_checkHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_route53_health_check], Tuple[Optional[Aws_route53_health_check]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_route53_health_check]],
-        'update' => Callable[String, Optional[Aws_route53_health_check]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_route53_query_log => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['cloudwatch_log_group_arn', 'zone_id'],
-          'providedAttributes' => ['aws_route53_query_log_id']
+          'immutableAttributes' => ['cloudwatch_log_group_arn', 'zone_id']
         }
       },
       attributes => {
         'aws_route53_query_log_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -24491,21 +28276,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_route53_query_logHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_route53_query_log], Tuple[Optional[Aws_route53_query_log]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_route53_query_log]],
-        'update' => Callable[String, Optional[Aws_route53_query_log]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_route53_record => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'zone_id'],
-          'providedAttributes' => ['aws_route53_record_id', 'alias', 'allow_overwrite', 'failover', 'failover_routing_policy', 'fqdn', 'geolocation_routing_policy', 'health_check_id', 'latency_routing_policy', 'multivalue_answer_routing_policy', 'records', 'set_identifier', 'ttl', 'weight', 'weighted_routing_policy']
+          'providedAttributes' => ['alias', 'allow_overwrite', 'failover', 'failover_routing_policy', 'fqdn', 'geolocation_routing_policy', 'health_check_id', 'latency_routing_policy', 'multivalue_answer_routing_policy', 'records', 'set_identifier', 'ttl', 'weight', 'weighted_routing_policy']
         }
       },
       attributes => {
         'aws_route53_record_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -24572,10 +28368,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_route53_recordHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_route53_record], Tuple[Optional[Aws_route53_record]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_route53_record]],
-        'update' => Callable[String, Optional[Aws_route53_record]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_route53_record_alias_459 => {
@@ -24620,11 +28422,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['delegation_set_id', 'name', 'vpc_id', 'vpc_region'],
-          'providedAttributes' => ['aws_route53_zone_id', 'comment', 'delegation_set_id', 'force_destroy', 'name_servers', 'tags', 'vpc', 'vpc_id', 'vpc_region', 'zone_id']
+          'providedAttributes' => ['comment', 'delegation_set_id', 'force_destroy', 'name_servers', 'tags', 'vpc', 'vpc_id', 'vpc_region', 'zone_id']
         }
       },
       attributes => {
         'aws_route53_zone_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -24669,20 +28476,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_route53_zoneHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_route53_zone], Tuple[Optional[Aws_route53_zone]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_route53_zone]],
-        'update' => Callable[String, Optional[Aws_route53_zone]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_route53_zone_association => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_route53_zone_association_id', 'vpc_region']
+          'providedAttributes' => ['vpc_region']
         }
       },
       attributes => {
         'aws_route53_zone_association_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -24696,10 +28514,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_route53_zone_associationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_route53_zone_association], Tuple[Optional[Aws_route53_zone_association]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_route53_zone_association]],
-        'update' => Callable[String, Optional[Aws_route53_zone_association]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_route53_zone_vpc_464 => {
@@ -24713,21 +28537,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_routeHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_route], Tuple[Optional[Aws_route]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_route]],
-        'update' => Callable[String, Optional[Aws_route]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_route_table => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['vpc_id'],
-          'providedAttributes' => ['aws_route_table_id', 'owner_id', 'propagating_vgws', 'route', 'tags']
+          'providedAttributes' => ['owner_id', 'propagating_vgws', 'route', 'tags']
         }
       },
       attributes => {
         'aws_route_table_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -24752,21 +28587,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_route_tableHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_route_table], Tuple[Optional[Aws_route_table]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_route_table]],
-        'update' => Callable[String, Optional[Aws_route_table]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_route_table_association => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['subnet_id'],
-          'providedAttributes' => ['aws_route_table_association_id']
+          'immutableAttributes' => ['subnet_id']
         }
       },
       attributes => {
         'aws_route_table_association_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -24776,10 +28621,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_route_table_associationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_route_table_association], Tuple[Optional[Aws_route_table_association]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_route_table_association]],
-        'update' => Callable[String, Optional[Aws_route_table_association]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_route_table_route_465 => {
@@ -24826,11 +28677,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['account_id'],
-          'providedAttributes' => ['aws_s3_account_public_access_block_id', 'account_id', 'block_public_acls', 'block_public_policy', 'ignore_public_acls', 'restrict_public_buckets']
+          'providedAttributes' => ['account_id', 'block_public_acls', 'block_public_policy', 'ignore_public_acls', 'restrict_public_buckets']
         }
       },
       attributes => {
         'aws_s3_account_public_access_block_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -24858,21 +28714,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_s3_account_public_access_blockHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_s3_account_public_access_block], Tuple[Optional[Aws_s3_account_public_access_block]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_s3_account_public_access_block]],
-        'update' => Callable[String, Optional[Aws_s3_account_public_access_block]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_s3_bucket => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bucket', 'bucket_prefix'],
-          'providedAttributes' => ['aws_s3_bucket_id', 'acceleration_status', 'acl', 'arn', 'bucket', 'bucket_domain_name', 'bucket_prefix', 'bucket_regional_domain_name', 'cors_rule', 'force_destroy', 'hosted_zone_id', 'lifecycle_rule', 'logging', 'object_lock_configuration', 'policy', 'region', 'replication_configuration', 'request_payer', 'server_side_encryption_configuration', 'tags', 'versioning', 'website', 'website_domain', 'website_endpoint']
+          'providedAttributes' => ['acceleration_status', 'acl', 'arn', 'bucket', 'bucket_domain_name', 'bucket_prefix', 'bucket_regional_domain_name', 'cors_rule', 'force_destroy', 'hosted_zone_id', 'lifecycle_rule', 'logging', 'object_lock_configuration', 'policy', 'region', 'replication_configuration', 'request_payer', 'server_side_encryption_configuration', 'tags', 'versioning', 'website', 'website_domain', 'website_endpoint']
         }
       },
       attributes => {
         'aws_s3_bucket_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -24972,10 +28839,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_s3_bucketHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_s3_bucket], Tuple[Optional[Aws_s3_bucket]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_s3_bucket]],
-        'update' => Callable[String, Optional[Aws_s3_bucket]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_s3_bucket_cors_rule_466 => {
@@ -25000,11 +28873,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bucket', 'name'],
-          'providedAttributes' => ['aws_s3_bucket_inventory_id', 'enabled', 'filter', 'optional_fields']
+          'providedAttributes' => ['enabled', 'filter', 'optional_fields']
         }
       },
       attributes => {
         'aws_s3_bucket_inventory_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -25029,10 +28907,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_s3_bucket_inventoryHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_s3_bucket_inventory], Tuple[Optional[Aws_s3_bucket_inventory]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_s3_bucket_inventory]],
-        'update' => Callable[String, Optional[Aws_s3_bucket_inventory]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_s3_bucket_inventory_destination_488 => {
@@ -25186,11 +29070,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bucket', 'name'],
-          'providedAttributes' => ['aws_s3_bucket_metric_id', 'filter']
+          'providedAttributes' => ['filter']
         }
       },
       attributes => {
         'aws_s3_bucket_metric_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -25204,10 +29093,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_s3_bucket_metricHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_s3_bucket_metric], Tuple[Optional[Aws_s3_bucket_metric]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_s3_bucket_metric]],
-        'update' => Callable[String, Optional[Aws_s3_bucket_metric]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_s3_bucket_metric_filter_495 => {
@@ -25226,11 +29121,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bucket'],
-          'providedAttributes' => ['aws_s3_bucket_notification_id', 'lambda_function', 'queue', 'topic']
+          'providedAttributes' => ['lambda_function', 'queue', 'topic']
         }
       },
       attributes => {
         'aws_s3_bucket_notification_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -25251,10 +29151,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_s3_bucket_notificationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_s3_bucket_notification], Tuple[Optional[Aws_s3_bucket_notification]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_s3_bucket_notification]],
-        'update' => Callable[String, Optional[Aws_s3_bucket_notification]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_s3_bucket_notification_lambda_function_496 => {
@@ -25318,11 +29224,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bucket', 'key'],
-          'providedAttributes' => ['aws_s3_bucket_object_id', 'acl', 'cache_control', 'content', 'content_base64', 'content_disposition', 'content_encoding', 'content_language', 'content_type', 'etag', 'kms_key_id', 'server_side_encryption', 'source', 'storage_class', 'tags', 'version_id', 'website_redirect']
+          'providedAttributes' => ['acl', 'cache_control', 'content', 'content_base64', 'content_disposition', 'content_encoding', 'content_language', 'content_type', 'etag', 'kms_key_id', 'server_side_encryption', 'source', 'storage_class', 'tags', 'version_id', 'website_redirect']
         }
       },
       attributes => {
         'aws_s3_bucket_object_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -25396,10 +29307,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_s3_bucket_objectHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_s3_bucket_object], Tuple[Optional[Aws_s3_bucket_object]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_s3_bucket_object]],
-        'update' => Callable[String, Optional[Aws_s3_bucket_object]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_s3_bucket_object_lock_configuration_473 => {
@@ -25432,12 +29349,16 @@ type TerraformAws = TypeSet[{
     Aws_s3_bucket_policy => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['bucket'],
-          'providedAttributes' => ['aws_s3_bucket_policy_id']
+          'immutableAttributes' => ['bucket']
         }
       },
       attributes => {
         'aws_s3_bucket_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -25447,21 +29368,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_s3_bucket_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_s3_bucket_policy], Tuple[Optional[Aws_s3_bucket_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_s3_bucket_policy]],
-        'update' => Callable[String, Optional[Aws_s3_bucket_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_s3_bucket_public_access_block => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bucket'],
-          'providedAttributes' => ['aws_s3_bucket_public_access_block_id', 'block_public_acls', 'block_public_policy', 'ignore_public_acls', 'restrict_public_buckets']
+          'providedAttributes' => ['block_public_acls', 'block_public_policy', 'ignore_public_acls', 'restrict_public_buckets']
         }
       },
       attributes => {
         'aws_s3_bucket_public_access_block_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -25486,10 +29418,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_s3_bucket_public_access_blockHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_s3_bucket_public_access_block], Tuple[Optional[Aws_s3_bucket_public_access_block]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_s3_bucket_public_access_block]],
-        'update' => Callable[String, Optional[Aws_s3_bucket_public_access_block]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_s3_bucket_replication_configuration_476 => {
@@ -25630,11 +29568,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['kms_key_id', 'name', 'security_groups', 'subnet_id'],
-          'providedAttributes' => ['aws_sagemaker_notebook_instance_id', 'arn', 'kms_key_id', 'security_groups', 'subnet_id', 'tags']
+          'providedAttributes' => ['arn', 'kms_key_id', 'security_groups', 'subnet_id', 'tags']
         }
       },
       attributes => {
         'aws_sagemaker_notebook_instance_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -25665,21 +29608,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_sagemaker_notebook_instanceHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_sagemaker_notebook_instance], Tuple[Optional[Aws_sagemaker_notebook_instance]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_sagemaker_notebook_instance]],
-        'update' => Callable[String, Optional[Aws_sagemaker_notebook_instance]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_secretsmanager_secret => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'name_prefix'],
-          'providedAttributes' => ['aws_secretsmanager_secret_id', 'arn', 'description', 'kms_key_id', 'name', 'name_prefix', 'policy', 'recovery_window_in_days', 'rotation_enabled', 'rotation_lambda_arn', 'rotation_rules', 'tags']
+          'providedAttributes' => ['arn', 'description', 'kms_key_id', 'name', 'name_prefix', 'policy', 'recovery_window_in_days', 'rotation_enabled', 'rotation_lambda_arn', 'rotation_rules', 'tags']
         }
       },
       attributes => {
         'aws_secretsmanager_secret_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -25731,10 +29685,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_secretsmanager_secretHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_secretsmanager_secret], Tuple[Optional[Aws_secretsmanager_secret]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_secretsmanager_secret]],
-        'update' => Callable[String, Optional[Aws_secretsmanager_secret]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_secretsmanager_secret_rotation_rules_499 => {
@@ -25746,11 +29706,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['secret_binary', 'secret_id', 'secret_string'],
-          'providedAttributes' => ['aws_secretsmanager_secret_version_id', 'arn', 'secret_binary', 'secret_string', 'version_id', 'version_stages']
+          'providedAttributes' => ['arn', 'secret_binary', 'secret_string', 'version_id', 'version_stages']
         }
       },
       attributes => {
         'aws_secretsmanager_secret_version_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -25779,21 +29744,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_secretsmanager_secret_versionHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_secretsmanager_secret_version], Tuple[Optional[Aws_secretsmanager_secret_version]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_secretsmanager_secret_version]],
-        'update' => Callable[String, Optional[Aws_secretsmanager_secret_version]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_security_group => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'name_prefix', 'vpc_id'],
-          'providedAttributes' => ['aws_security_group_id', 'arn', 'description', 'egress', 'ingress', 'name', 'name_prefix', 'owner_id', 'revoke_rules_on_delete', 'tags', 'vpc_id']
+          'providedAttributes' => ['arn', 'description', 'egress', 'ingress', 'name', 'name_prefix', 'owner_id', 'revoke_rules_on_delete', 'tags', 'vpc_id']
         }
       },
       attributes => {
         'aws_security_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -25841,10 +29817,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_security_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_security_group], Tuple[Optional[Aws_security_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_security_group]],
-        'update' => Callable[String, Optional[Aws_security_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_security_group_egress_500 => {
@@ -25913,11 +29895,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['cidr_blocks', 'from_port', 'ipv6_cidr_blocks', 'prefix_list_ids', 'protocol', 'security_group_id', 'self', 'source_security_group_id', 'to_port', 'type'],
-          'providedAttributes' => ['aws_security_group_rule_id', 'cidr_blocks', 'description', 'ipv6_cidr_blocks', 'prefix_list_ids', 'self', 'source_security_group_id']
+          'providedAttributes' => ['cidr_blocks', 'description', 'ipv6_cidr_blocks', 'prefix_list_ids', 'self', 'source_security_group_id']
         }
       },
       attributes => {
         'aws_security_group_rule_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -25954,20 +29941,26 @@ type TerraformAws = TypeSet[{
     },
     Aws_security_group_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_security_group_rule], Tuple[Optional[Aws_security_group_rule]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_security_group_rule]],
-        'update' => Callable[String, Optional[Aws_security_group_rule]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_securityhub_account => {
-      annotations => {
-        Lyra::Resource => {
-          'providedAttributes' => ['aws_securityhub_account_id']
-        }
-      },
       attributes => {
         'aws_securityhub_account_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         }
@@ -25975,21 +29968,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_securityhub_accountHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_securityhub_account], Tuple[Optional[Aws_securityhub_account]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_securityhub_account]],
-        'update' => Callable[String, Optional[Aws_securityhub_account]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_securityhub_product_subscription => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['product_arn'],
-          'providedAttributes' => ['aws_securityhub_product_subscription_id', 'arn']
+          'providedAttributes' => ['arn']
         }
       },
       attributes => {
         'aws_securityhub_product_subscription_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -26002,21 +30006,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_securityhub_product_subscriptionHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_securityhub_product_subscription], Tuple[Optional[Aws_securityhub_product_subscription]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_securityhub_product_subscription]],
-        'update' => Callable[String, Optional[Aws_securityhub_product_subscription]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_securityhub_standards_subscription => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['standards_arn'],
-          'providedAttributes' => ['aws_securityhub_standards_subscription_id']
+          'immutableAttributes' => ['standards_arn']
         }
       },
       attributes => {
         'aws_securityhub_standards_subscription_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -26025,21 +30039,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_securityhub_standards_subscriptionHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_securityhub_standards_subscription], Tuple[Optional[Aws_securityhub_standards_subscription]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_securityhub_standards_subscription]],
-        'update' => Callable[String, Optional[Aws_securityhub_standards_subscription]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_service_discovery_http_namespace => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name'],
-          'providedAttributes' => ['aws_service_discovery_http_namespace_id', 'arn', 'description']
+          'providedAttributes' => ['arn', 'description']
         }
       },
       attributes => {
         'aws_service_discovery_http_namespace_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -26056,21 +30081,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_service_discovery_http_namespaceHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_service_discovery_http_namespace], Tuple[Optional[Aws_service_discovery_http_namespace]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_service_discovery_http_namespace]],
-        'update' => Callable[String, Optional[Aws_service_discovery_http_namespace]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_service_discovery_private_dns_namespace => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'vpc'],
-          'providedAttributes' => ['aws_service_discovery_private_dns_namespace_id', 'arn', 'description', 'hosted_zone']
+          'providedAttributes' => ['arn', 'description', 'hosted_zone']
         }
       },
       attributes => {
         'aws_service_discovery_private_dns_namespace_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -26092,21 +30128,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_service_discovery_private_dns_namespaceHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_service_discovery_private_dns_namespace], Tuple[Optional[Aws_service_discovery_private_dns_namespace]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_service_discovery_private_dns_namespace]],
-        'update' => Callable[String, Optional[Aws_service_discovery_private_dns_namespace]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_service_discovery_public_dns_namespace => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name'],
-          'providedAttributes' => ['aws_service_discovery_public_dns_namespace_id', 'arn', 'description', 'hosted_zone']
+          'providedAttributes' => ['arn', 'description', 'hosted_zone']
         }
       },
       attributes => {
         'aws_service_discovery_public_dns_namespace_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -26127,21 +30174,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_service_discovery_public_dns_namespaceHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_service_discovery_public_dns_namespace], Tuple[Optional[Aws_service_discovery_public_dns_namespace]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_service_discovery_public_dns_namespace]],
-        'update' => Callable[String, Optional[Aws_service_discovery_public_dns_namespace]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_service_discovery_service => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['health_check_custom_config', 'name'],
-          'providedAttributes' => ['aws_service_discovery_service_id', 'arn', 'description', 'health_check_config', 'health_check_custom_config']
+          'providedAttributes' => ['arn', 'description', 'health_check_config', 'health_check_custom_config']
         }
       },
       attributes => {
         'aws_service_discovery_service_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -26167,10 +30225,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_service_discovery_serviceHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_service_discovery_service], Tuple[Optional[Aws_service_discovery_service]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_service_discovery_service]],
-        'update' => Callable[String, Optional[Aws_service_discovery_service]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_service_discovery_service_dns_config_502 => {
@@ -26216,11 +30280,16 @@ type TerraformAws = TypeSet[{
     Aws_servicecatalog_portfolio => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_servicecatalog_portfolio_id', 'arn', 'created_time', 'description', 'provider_name', 'tags']
+          'providedAttributes' => ['arn', 'created_time', 'description', 'provider_name', 'tags']
         }
       },
       attributes => {
         'aws_servicecatalog_portfolio_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -26249,20 +30318,26 @@ type TerraformAws = TypeSet[{
     },
     Aws_servicecatalog_portfolioHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_servicecatalog_portfolio], Tuple[Optional[Aws_servicecatalog_portfolio]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_servicecatalog_portfolio]],
-        'update' => Callable[String, Optional[Aws_servicecatalog_portfolio]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ses_active_receipt_rule_set => {
-      annotations => {
-        Lyra::Resource => {
-          'providedAttributes' => ['aws_ses_active_receipt_rule_set_id']
-        }
-      },
       attributes => {
         'aws_ses_active_receipt_rule_set_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -26271,21 +30346,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_ses_active_receipt_rule_setHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ses_active_receipt_rule_set], Tuple[Optional[Aws_ses_active_receipt_rule_set]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ses_active_receipt_rule_set]],
-        'update' => Callable[String, Optional[Aws_ses_active_receipt_rule_set]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ses_configuration_set => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_ses_configuration_set_id']
+          'immutableAttributes' => ['name']
         }
       },
       attributes => {
         'aws_ses_configuration_set_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -26294,21 +30379,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_ses_configuration_setHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ses_configuration_set], Tuple[Optional[Aws_ses_configuration_set]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ses_configuration_set]],
-        'update' => Callable[String, Optional[Aws_ses_configuration_set]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ses_domain_dkim => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['domain'],
-          'providedAttributes' => ['aws_ses_domain_dkim_id', 'dkim_tokens']
+          'providedAttributes' => ['dkim_tokens']
         }
       },
       attributes => {
         'aws_ses_domain_dkim_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -26321,21 +30417,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_ses_domain_dkimHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ses_domain_dkim], Tuple[Optional[Aws_ses_domain_dkim]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ses_domain_dkim]],
-        'update' => Callable[String, Optional[Aws_ses_domain_dkim]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ses_domain_identity => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['domain'],
-          'providedAttributes' => ['aws_ses_domain_identity_id', 'arn', 'verification_token']
+          'providedAttributes' => ['arn', 'verification_token']
         }
       },
       attributes => {
         'aws_ses_domain_identity_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -26352,21 +30459,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_ses_domain_identityHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ses_domain_identity], Tuple[Optional[Aws_ses_domain_identity]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ses_domain_identity]],
-        'update' => Callable[String, Optional[Aws_ses_domain_identity]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ses_domain_identity_verification => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['domain'],
-          'providedAttributes' => ['aws_ses_domain_identity_verification_id', 'arn']
+          'providedAttributes' => ['arn']
         }
       },
       attributes => {
         'aws_ses_domain_identity_verification_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -26379,21 +30497,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_ses_domain_identity_verificationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ses_domain_identity_verification], Tuple[Optional[Aws_ses_domain_identity_verification]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ses_domain_identity_verification]],
-        'update' => Callable[String, Optional[Aws_ses_domain_identity_verification]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ses_domain_mail_from => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['domain'],
-          'providedAttributes' => ['aws_ses_domain_mail_from_id', 'behavior_on_mx_failure']
+          'providedAttributes' => ['behavior_on_mx_failure']
         }
       },
       attributes => {
         'aws_ses_domain_mail_from_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -26407,21 +30536,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_ses_domain_mail_fromHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ses_domain_mail_from], Tuple[Optional[Aws_ses_domain_mail_from]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ses_domain_mail_from]],
-        'update' => Callable[String, Optional[Aws_ses_domain_mail_from]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ses_event_destination => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['cloudwatch_destination', 'configuration_set_name', 'enabled', 'kinesis_destination', 'matching_types', 'name', 'sns_destination'],
-          'providedAttributes' => ['aws_ses_event_destination_id', 'cloudwatch_destination', 'enabled', 'kinesis_destination', 'sns_destination']
+          'providedAttributes' => ['cloudwatch_destination', 'enabled', 'kinesis_destination', 'sns_destination']
         }
       },
       attributes => {
         'aws_ses_event_destination_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -26448,10 +30588,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_ses_event_destinationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ses_event_destination], Tuple[Optional[Aws_ses_event_destination]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ses_event_destination]],
-        'update' => Callable[String, Optional[Aws_ses_event_destination]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ses_event_destination_cloudwatch_destination_506 => {
@@ -26476,11 +30622,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['identity', 'notification_type'],
-          'providedAttributes' => ['aws_ses_identity_notification_topic_id', 'topic_arn']
+          'providedAttributes' => ['topic_arn']
         }
       },
       attributes => {
         'aws_ses_identity_notification_topic_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -26494,21 +30645,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_ses_identity_notification_topicHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ses_identity_notification_topic], Tuple[Optional[Aws_ses_identity_notification_topic]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ses_identity_notification_topic]],
-        'update' => Callable[String, Optional[Aws_ses_identity_notification_topic]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ses_receipt_filter => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['cidr', 'name', 'policy'],
-          'providedAttributes' => ['aws_ses_receipt_filter_id']
+          'immutableAttributes' => ['cidr', 'name', 'policy']
         }
       },
       attributes => {
         'aws_ses_receipt_filter_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -26519,21 +30680,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_ses_receipt_filterHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ses_receipt_filter], Tuple[Optional[Aws_ses_receipt_filter]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ses_receipt_filter]],
-        'update' => Callable[String, Optional[Aws_ses_receipt_filter]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ses_receipt_rule => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'rule_set_name'],
-          'providedAttributes' => ['aws_ses_receipt_rule_id', 'add_header_action', 'after', 'bounce_action', 'enabled', 'lambda_action', 'recipients', 's3_action', 'scan_enabled', 'sns_action', 'stop_action', 'tls_policy', 'workmail_action']
+          'providedAttributes' => ['add_header_action', 'after', 'bounce_action', 'enabled', 'lambda_action', 'recipients', 's3_action', 'scan_enabled', 'sns_action', 'stop_action', 'tls_policy', 'workmail_action']
         }
       },
       attributes => {
         'aws_ses_receipt_rule_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -26591,10 +30763,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_ses_receipt_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ses_receipt_rule], Tuple[Optional[Aws_ses_receipt_rule]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ses_receipt_rule]],
-        'update' => Callable[String, Optional[Aws_ses_receipt_rule]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ses_receipt_rule_add_header_action_509 => {
@@ -26655,12 +30833,16 @@ type TerraformAws = TypeSet[{
     Aws_ses_receipt_rule_set => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['rule_set_name'],
-          'providedAttributes' => ['aws_ses_receipt_rule_set_id']
+          'immutableAttributes' => ['rule_set_name']
         }
       },
       attributes => {
         'aws_ses_receipt_rule_set_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -26669,10 +30851,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_ses_receipt_rule_setHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ses_receipt_rule_set], Tuple[Optional[Aws_ses_receipt_rule_set]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ses_receipt_rule_set]],
-        'update' => Callable[String, Optional[Aws_ses_receipt_rule_set]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ses_receipt_rule_sns_action_513 => {
@@ -26705,11 +30893,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_ses_template_id', 'html', 'subject', 'text']
+          'providedAttributes' => ['html', 'subject', 'text']
         }
       },
       attributes => {
         'aws_ses_template_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -26730,21 +30923,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_ses_templateHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ses_template], Tuple[Optional[Aws_ses_template]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ses_template]],
-        'update' => Callable[String, Optional[Aws_ses_template]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_sfn_activity => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_sfn_activity_id', 'creation_date', 'tags']
+          'providedAttributes' => ['creation_date', 'tags']
         }
       },
       attributes => {
         'aws_sfn_activity_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -26761,21 +30965,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_sfn_activityHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_sfn_activity], Tuple[Optional[Aws_sfn_activity]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_sfn_activity]],
-        'update' => Callable[String, Optional[Aws_sfn_activity]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_sfn_state_machine => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_sfn_state_machine_id', 'creation_date', 'status', 'tags']
+          'providedAttributes' => ['creation_date', 'status', 'tags']
         }
       },
       attributes => {
         'aws_sfn_state_machine_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -26798,21 +31013,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_sfn_state_machineHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_sfn_state_machine], Tuple[Optional[Aws_sfn_state_machine]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_sfn_state_machine]],
-        'update' => Callable[String, Optional[Aws_sfn_state_machine]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_simpledb_domain => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_simpledb_domain_id']
+          'immutableAttributes' => ['name']
         }
       },
       attributes => {
         'aws_simpledb_domain_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -26821,21 +31046,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_simpledb_domainHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_simpledb_domain], Tuple[Optional[Aws_simpledb_domain]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_simpledb_domain]],
-        'update' => Callable[String, Optional[Aws_simpledb_domain]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_snapshot_create_volume_permission => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['account_id', 'snapshot_id'],
-          'providedAttributes' => ['aws_snapshot_create_volume_permission_id']
+          'immutableAttributes' => ['account_id', 'snapshot_id']
         }
       },
       attributes => {
         'aws_snapshot_create_volume_permission_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -26845,21 +31080,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_snapshot_create_volume_permissionHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_snapshot_create_volume_permission], Tuple[Optional[Aws_snapshot_create_volume_permission]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_snapshot_create_volume_permission]],
-        'update' => Callable[String, Optional[Aws_snapshot_create_volume_permission]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_sns_platform_application => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'platform'],
-          'providedAttributes' => ['aws_sns_platform_application_id', 'arn', 'event_delivery_failure_topic_arn', 'event_endpoint_created_topic_arn', 'event_endpoint_deleted_topic_arn', 'event_endpoint_updated_topic_arn', 'failure_feedback_role_arn', 'platform_principal', 'success_feedback_role_arn', 'success_feedback_sample_rate']
+          'providedAttributes' => ['arn', 'event_delivery_failure_topic_arn', 'event_endpoint_created_topic_arn', 'event_endpoint_deleted_topic_arn', 'event_endpoint_updated_topic_arn', 'failure_feedback_role_arn', 'platform_principal', 'success_feedback_role_arn', 'success_feedback_sample_rate']
         }
       },
       attributes => {
         'aws_sns_platform_application_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -26906,20 +31152,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_sns_platform_applicationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_sns_platform_application], Tuple[Optional[Aws_sns_platform_application]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_sns_platform_application]],
-        'update' => Callable[String, Optional[Aws_sns_platform_application]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_sns_sms_preferences => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_sns_sms_preferences_id', 'default_sender_id', 'default_sms_type', 'delivery_status_iam_role_arn', 'delivery_status_success_sampling_rate', 'monthly_spend_limit', 'usage_report_s3_bucket']
+          'providedAttributes' => ['default_sender_id', 'default_sms_type', 'delivery_status_iam_role_arn', 'delivery_status_success_sampling_rate', 'monthly_spend_limit', 'usage_report_s3_bucket']
         }
       },
       attributes => {
         'aws_sns_sms_preferences_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -26951,21 +31208,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_sns_sms_preferencesHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_sns_sms_preferences], Tuple[Optional[Aws_sns_sms_preferences]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_sns_sms_preferences]],
-        'update' => Callable[String, Optional[Aws_sns_sms_preferences]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_sns_topic => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'name_prefix'],
-          'providedAttributes' => ['aws_sns_topic_id', 'application_failure_feedback_role_arn', 'application_success_feedback_role_arn', 'application_success_feedback_sample_rate', 'arn', 'delivery_policy', 'display_name', 'http_failure_feedback_role_arn', 'http_success_feedback_role_arn', 'http_success_feedback_sample_rate', 'kms_master_key_id', 'lambda_failure_feedback_role_arn', 'lambda_success_feedback_role_arn', 'lambda_success_feedback_sample_rate', 'name', 'name_prefix', 'policy', 'sqs_failure_feedback_role_arn', 'sqs_success_feedback_role_arn', 'sqs_success_feedback_sample_rate']
+          'providedAttributes' => ['application_failure_feedback_role_arn', 'application_success_feedback_role_arn', 'application_success_feedback_sample_rate', 'arn', 'delivery_policy', 'display_name', 'http_failure_feedback_role_arn', 'http_success_feedback_role_arn', 'http_success_feedback_sample_rate', 'kms_master_key_id', 'lambda_failure_feedback_role_arn', 'lambda_success_feedback_role_arn', 'lambda_success_feedback_sample_rate', 'name', 'name_prefix', 'policy', 'sqs_failure_feedback_role_arn', 'sqs_success_feedback_role_arn', 'sqs_success_feedback_sample_rate']
         }
       },
       attributes => {
         'aws_sns_topic_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -27049,21 +31317,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_sns_topicHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_sns_topic], Tuple[Optional[Aws_sns_topic]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_sns_topic]],
-        'update' => Callable[String, Optional[Aws_sns_topic]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_sns_topic_policy => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['arn'],
-          'providedAttributes' => ['aws_sns_topic_policy_id']
+          'immutableAttributes' => ['arn']
         }
       },
       attributes => {
         'aws_sns_topic_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -27073,21 +31351,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_sns_topic_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_sns_topic_policy], Tuple[Optional[Aws_sns_topic_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_sns_topic_policy]],
-        'update' => Callable[String, Optional[Aws_sns_topic_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_sns_topic_subscription => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['endpoint', 'protocol', 'topic_arn'],
-          'providedAttributes' => ['aws_sns_topic_subscription_id', 'arn', 'confirmation_timeout_in_minutes', 'delivery_policy', 'endpoint_auto_confirms', 'filter_policy', 'raw_message_delivery']
+          'providedAttributes' => ['arn', 'confirmation_timeout_in_minutes', 'delivery_policy', 'endpoint_auto_confirms', 'filter_policy', 'raw_message_delivery']
         }
       },
       attributes => {
         'aws_sns_topic_subscription_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -27122,21 +31411,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_sns_topic_subscriptionHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_sns_topic_subscription], Tuple[Optional[Aws_sns_topic_subscription]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_sns_topic_subscription]],
-        'update' => Callable[String, Optional[Aws_sns_topic_subscription]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_spot_datafeed_subscription => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bucket', 'prefix'],
-          'providedAttributes' => ['aws_spot_datafeed_subscription_id', 'prefix']
+          'providedAttributes' => ['prefix']
         }
       },
       attributes => {
         'aws_spot_datafeed_subscription_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -27149,21 +31449,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_spot_datafeed_subscriptionHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_spot_datafeed_subscription], Tuple[Optional[Aws_spot_datafeed_subscription]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_spot_datafeed_subscription]],
-        'update' => Callable[String, Optional[Aws_spot_datafeed_subscription]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_spot_fleet_request => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['allocation_strategy', 'fleet_type', 'iam_fleet_role', 'instance_interruption_behaviour', 'instance_pools_to_use_count', 'launch_specification', 'load_balancers', 'replace_unhealthy_instances', 'spot_price', 'target_group_arns', 'terminate_instances_with_expiration', 'valid_from', 'valid_until'],
-          'providedAttributes' => ['aws_spot_fleet_request_id', 'allocation_strategy', 'client_token', 'excess_capacity_termination_policy', 'fleet_type', 'instance_interruption_behaviour', 'instance_pools_to_use_count', 'load_balancers', 'replace_unhealthy_instances', 'spot_price', 'spot_request_state', 'target_group_arns', 'terminate_instances_with_expiration', 'valid_from', 'valid_until', 'wait_for_fulfillment']
+          'providedAttributes' => ['allocation_strategy', 'client_token', 'excess_capacity_termination_policy', 'fleet_type', 'instance_interruption_behaviour', 'instance_pools_to_use_count', 'load_balancers', 'replace_unhealthy_instances', 'spot_price', 'spot_request_state', 'target_group_arns', 'terminate_instances_with_expiration', 'valid_from', 'valid_until', 'wait_for_fulfillment']
         }
       },
       attributes => {
         'aws_spot_fleet_request_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -27234,10 +31545,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_spot_fleet_requestHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_spot_fleet_request], Tuple[Optional[Aws_spot_fleet_request]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_spot_fleet_request]],
-        'update' => Callable[String, Optional[Aws_spot_fleet_request]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_spot_fleet_request_launch_specification_516 => {
@@ -27377,11 +31694,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['ami', 'arn', 'associate_public_ip_address', 'availability_zone', 'block_device', 'block_duration_minutes', 'cpu_core_count', 'cpu_threads_per_core', 'credit_specification', 'disable_api_termination', 'ebs_block_device', 'ebs_optimized', 'ephemeral_block_device', 'get_password_data', 'host_id', 'iam_instance_profile', 'instance_initiated_shutdown_behavior', 'instance_interruption_behaviour', 'instance_state', 'instance_type', 'ipv6_address_count', 'ipv6_addresses', 'key_name', 'launch_group', 'monitoring', 'network_interface', 'network_interface_id', 'password_data', 'placement_group', 'primary_network_interface_id', 'private_dns', 'private_ip', 'public_dns', 'public_ip', 'root_block_device', 'security_groups', 'source_dest_check', 'spot_price', 'subnet_id', 'tenancy', 'user_data', 'user_data_base64', 'valid_from', 'valid_until', 'vpc_security_group_ids'],
-          'providedAttributes' => ['aws_spot_instance_request_id', 'arn', 'associate_public_ip_address', 'availability_zone', 'block_device', 'block_duration_minutes', 'cpu_core_count', 'cpu_threads_per_core', 'credit_specification', 'disable_api_termination', 'ebs_block_device', 'ebs_optimized', 'ephemeral_block_device', 'get_password_data', 'host_id', 'iam_instance_profile', 'instance_initiated_shutdown_behavior', 'instance_interruption_behaviour', 'instance_state', 'ipv6_address_count', 'ipv6_addresses', 'key_name', 'launch_group', 'monitoring', 'network_interface', 'network_interface_id', 'password_data', 'placement_group', 'primary_network_interface_id', 'private_dns', 'private_ip', 'public_dns', 'public_ip', 'root_block_device', 'security_groups', 'source_dest_check', 'spot_bid_status', 'spot_instance_id', 'spot_price', 'spot_request_state', 'spot_type', 'subnet_id', 'tags', 'tenancy', 'user_data', 'user_data_base64', 'valid_from', 'valid_until', 'volume_tags', 'vpc_security_group_ids', 'wait_for_fulfillment']
+          'providedAttributes' => ['arn', 'associate_public_ip_address', 'availability_zone', 'block_device', 'block_duration_minutes', 'cpu_core_count', 'cpu_threads_per_core', 'credit_specification', 'disable_api_termination', 'ebs_block_device', 'ebs_optimized', 'ephemeral_block_device', 'get_password_data', 'host_id', 'iam_instance_profile', 'instance_initiated_shutdown_behavior', 'instance_interruption_behaviour', 'instance_state', 'ipv6_address_count', 'ipv6_addresses', 'key_name', 'launch_group', 'monitoring', 'network_interface', 'network_interface_id', 'password_data', 'placement_group', 'primary_network_interface_id', 'private_dns', 'private_ip', 'public_dns', 'public_ip', 'root_block_device', 'security_groups', 'source_dest_check', 'spot_bid_status', 'spot_instance_id', 'spot_price', 'spot_request_state', 'spot_type', 'subnet_id', 'tags', 'tenancy', 'user_data', 'user_data_base64', 'valid_from', 'valid_until', 'volume_tags', 'vpc_security_group_ids', 'wait_for_fulfillment']
         }
       },
       attributes => {
         'aws_spot_instance_request_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -27591,10 +31913,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_spot_instance_requestHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_spot_instance_request], Tuple[Optional[Aws_spot_instance_request]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_spot_instance_request]],
-        'update' => Callable[String, Optional[Aws_spot_instance_request]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_spot_instance_request_credit_specification_520 => {
@@ -27689,11 +32017,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['fifo_queue', 'name', 'name_prefix'],
-          'providedAttributes' => ['aws_sqs_queue_id', 'arn', 'content_based_deduplication', 'delay_seconds', 'fifo_queue', 'kms_data_key_reuse_period_seconds', 'kms_master_key_id', 'max_message_size', 'message_retention_seconds', 'name', 'name_prefix', 'policy', 'receive_wait_time_seconds', 'redrive_policy', 'tags', 'visibility_timeout_seconds']
+          'providedAttributes' => ['arn', 'content_based_deduplication', 'delay_seconds', 'fifo_queue', 'kms_data_key_reuse_period_seconds', 'kms_master_key_id', 'max_message_size', 'message_retention_seconds', 'name', 'name_prefix', 'policy', 'receive_wait_time_seconds', 'redrive_policy', 'tags', 'visibility_timeout_seconds']
         }
       },
       attributes => {
         'aws_sqs_queue_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -27761,21 +32094,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_sqs_queueHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_sqs_queue], Tuple[Optional[Aws_sqs_queue]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_sqs_queue]],
-        'update' => Callable[String, Optional[Aws_sqs_queue]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_sqs_queue_policy => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['queue_url'],
-          'providedAttributes' => ['aws_sqs_queue_policy_id']
+          'immutableAttributes' => ['queue_url']
         }
       },
       attributes => {
         'aws_sqs_queue_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -27785,21 +32128,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_sqs_queue_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_sqs_queue_policy], Tuple[Optional[Aws_sqs_queue_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_sqs_queue_policy]],
-        'update' => Callable[String, Optional[Aws_sqs_queue_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ssm_activation => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'expiration_date', 'iam_role', 'name', 'registration_limit'],
-          'providedAttributes' => ['aws_ssm_activation_id', 'activation_code', 'description', 'expiration_date', 'expired', 'name', 'registration_count', 'registration_limit']
+          'providedAttributes' => ['activation_code', 'description', 'expiration_date', 'expired', 'name', 'registration_count', 'registration_limit']
         }
       },
       attributes => {
         'aws_ssm_activation_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -27836,21 +32190,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_ssm_activationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ssm_activation], Tuple[Optional[Aws_ssm_activation]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ssm_activation]],
-        'update' => Callable[String, Optional[Aws_ssm_activation]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ssm_association => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['instance_id', 'name'],
-          'providedAttributes' => ['aws_ssm_association_id', 'association_id', 'association_name', 'document_version', 'instance_id', 'output_location', 'parameters', 'schedule_expression', 'targets']
+          'providedAttributes' => ['association_id', 'association_name', 'document_version', 'instance_id', 'output_location', 'parameters', 'schedule_expression', 'targets']
         }
       },
       attributes => {
         'aws_ssm_association_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -27891,10 +32256,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_ssm_associationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ssm_association], Tuple[Optional[Aws_ssm_association]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ssm_association]],
-        'update' => Callable[String, Optional[Aws_ssm_association]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ssm_association_output_location_525 => {
@@ -27915,11 +32286,16 @@ type TerraformAws = TypeSet[{
     Aws_ssm_document => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_ssm_document_id', 'arn', 'created_date', 'default_version', 'description', 'document_format', 'hash', 'hash_type', 'latest_version', 'owner', 'parameter', 'permissions', 'platform_types', 'schema_version', 'status', 'tags']
+          'providedAttributes' => ['arn', 'created_date', 'default_version', 'description', 'document_format', 'hash', 'hash_type', 'latest_version', 'owner', 'parameter', 'permissions', 'platform_types', 'schema_version', 'status', 'tags']
         }
       },
       attributes => {
         'aws_ssm_document_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -27990,10 +32366,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_ssm_documentHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ssm_document], Tuple[Optional[Aws_ssm_document]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ssm_document]],
-        'update' => Callable[String, Optional[Aws_ssm_document]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ssm_document_parameter_527 => {
@@ -28019,11 +32401,16 @@ type TerraformAws = TypeSet[{
     Aws_ssm_maintenance_window => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_ssm_maintenance_window_id', 'allow_unassociated_targets', 'enabled', 'end_date', 'schedule_timezone', 'start_date']
+          'providedAttributes' => ['allow_unassociated_targets', 'enabled', 'end_date', 'schedule_timezone', 'start_date']
         }
       },
       attributes => {
         'aws_ssm_maintenance_window_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -28055,21 +32442,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_ssm_maintenance_windowHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ssm_maintenance_window], Tuple[Optional[Aws_ssm_maintenance_window]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ssm_maintenance_window]],
-        'update' => Callable[String, Optional[Aws_ssm_maintenance_window]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ssm_maintenance_window_target => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['resource_type', 'window_id'],
-          'providedAttributes' => ['aws_ssm_maintenance_window_target_id', 'owner_information']
+          'providedAttributes' => ['owner_information']
         }
       },
       attributes => {
         'aws_ssm_maintenance_window_target_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -28084,10 +32482,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_ssm_maintenance_window_targetHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ssm_maintenance_window_target], Tuple[Optional[Aws_ssm_maintenance_window_target]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ssm_maintenance_window_target]],
-        'update' => Callable[String, Optional[Aws_ssm_maintenance_window_target]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ssm_maintenance_window_target_targets_528 => {
@@ -28100,11 +32504,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'logging_info', 'max_concurrency', 'max_errors', 'name', 'priority', 'service_role_arn', 'targets', 'task_arn', 'task_parameters', 'task_type', 'window_id'],
-          'providedAttributes' => ['aws_ssm_maintenance_window_task_id', 'description', 'logging_info', 'name', 'priority', 'task_parameters']
+          'providedAttributes' => ['description', 'logging_info', 'name', 'priority', 'task_parameters']
         }
       },
       attributes => {
         'aws_ssm_maintenance_window_task_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -28139,10 +32548,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_ssm_maintenance_window_taskHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ssm_maintenance_window_task], Tuple[Optional[Aws_ssm_maintenance_window_task]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ssm_maintenance_window_task]],
-        'update' => Callable[String, Optional[Aws_ssm_maintenance_window_task]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ssm_maintenance_window_task_logging_info_529 => {
@@ -28171,11 +32586,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_ssm_parameter_id', 'allowed_pattern', 'arn', 'description', 'key_id', 'overwrite', 'tags']
+          'providedAttributes' => ['allowed_pattern', 'arn', 'description', 'key_id', 'overwrite', 'tags']
         }
       },
       attributes => {
         'aws_ssm_parameter_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -28210,21 +32630,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_ssm_parameterHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ssm_parameter], Tuple[Optional[Aws_ssm_parameter]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ssm_parameter]],
-        'update' => Callable[String, Optional[Aws_ssm_parameter]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ssm_patch_baseline => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['operating_system'],
-          'providedAttributes' => ['aws_ssm_patch_baseline_id', 'approval_rule', 'approved_patches', 'approved_patches_compliance_level', 'description', 'global_filter', 'operating_system', 'rejected_patches']
+          'providedAttributes' => ['approval_rule', 'approved_patches', 'approved_patches_compliance_level', 'description', 'global_filter', 'operating_system', 'rejected_patches']
         }
       },
       attributes => {
         'aws_ssm_patch_baseline_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -28261,10 +32692,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_ssm_patch_baselineHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ssm_patch_baseline], Tuple[Optional[Aws_ssm_patch_baseline]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ssm_patch_baseline]],
-        'update' => Callable[String, Optional[Aws_ssm_patch_baseline]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ssm_patch_baseline_approval_rule_532 => {
@@ -28296,12 +32733,16 @@ type TerraformAws = TypeSet[{
     Aws_ssm_patch_group => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['baseline_id', 'patch_group'],
-          'providedAttributes' => ['aws_ssm_patch_group_id']
+          'immutableAttributes' => ['baseline_id', 'patch_group']
         }
       },
       attributes => {
         'aws_ssm_patch_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -28311,21 +32752,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_ssm_patch_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ssm_patch_group], Tuple[Optional[Aws_ssm_patch_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ssm_patch_group]],
-        'update' => Callable[String, Optional[Aws_ssm_patch_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ssm_resource_data_sync => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['name', 's3_destination'],
-          'providedAttributes' => ['aws_ssm_resource_data_sync_id']
+          'immutableAttributes' => ['name', 's3_destination']
         }
       },
       attributes => {
         'aws_ssm_resource_data_sync_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -28335,10 +32786,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_ssm_resource_data_syncHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_ssm_resource_data_sync], Tuple[Optional[Aws_ssm_resource_data_sync]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_ssm_resource_data_sync]],
-        'update' => Callable[String, Optional[Aws_ssm_resource_data_sync]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_ssm_resource_data_sync_s3_destination_535 => {
@@ -28362,12 +32819,16 @@ type TerraformAws = TypeSet[{
     Aws_storagegateway_cache => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['disk_id', 'gateway_arn'],
-          'providedAttributes' => ['aws_storagegateway_cache_id']
+          'immutableAttributes' => ['disk_id', 'gateway_arn']
         }
       },
       attributes => {
         'aws_storagegateway_cache_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -28377,21 +32838,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_storagegateway_cacheHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_storagegateway_cache], Tuple[Optional[Aws_storagegateway_cache]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_storagegateway_cache]],
-        'update' => Callable[String, Optional[Aws_storagegateway_cache]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_storagegateway_cached_iscsi_volume => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['gateway_arn', 'network_interface_id', 'snapshot_id', 'source_volume_arn', 'target_name', 'volume_size_in_bytes'],
-          'providedAttributes' => ['aws_storagegateway_cached_iscsi_volume_id', 'arn', 'chap_enabled', 'lun_number', 'network_interface_port', 'snapshot_id', 'source_volume_arn', 'target_arn', 'volume_arn', 'volume_id']
+          'providedAttributes' => ['arn', 'chap_enabled', 'lun_number', 'network_interface_port', 'snapshot_id', 'source_volume_arn', 'target_arn', 'volume_arn', 'volume_id']
         }
       },
       attributes => {
         'aws_storagegateway_cached_iscsi_volume_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -28439,21 +32911,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_storagegateway_cached_iscsi_volumeHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_storagegateway_cached_iscsi_volume], Tuple[Optional[Aws_storagegateway_cached_iscsi_volume]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_storagegateway_cached_iscsi_volume]],
-        'update' => Callable[String, Optional[Aws_storagegateway_cached_iscsi_volume]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_storagegateway_gateway => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['activation_key', 'gateway_ip_address', 'gateway_type', 'medium_changer_type', 'tape_drive_type'],
-          'providedAttributes' => ['aws_storagegateway_gateway_id', 'activation_key', 'arn', 'gateway_id', 'gateway_ip_address', 'gateway_type', 'medium_changer_type', 'smb_active_directory_settings', 'smb_guest_password', 'tape_drive_type']
+          'providedAttributes' => ['activation_key', 'arn', 'gateway_id', 'gateway_ip_address', 'gateway_type', 'medium_changer_type', 'smb_active_directory_settings', 'smb_guest_password', 'tape_drive_type']
         }
       },
       attributes => {
         'aws_storagegateway_gateway_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -28499,10 +32982,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_storagegateway_gatewayHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_storagegateway_gateway], Tuple[Optional[Aws_storagegateway_gateway]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_storagegateway_gateway]],
-        'update' => Callable[String, Optional[Aws_storagegateway_gateway]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_storagegateway_gateway_smb_active_directory_settings_536 => {
@@ -28516,11 +33005,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['gateway_arn', 'location_arn', 'role_arn'],
-          'providedAttributes' => ['aws_storagegateway_nfs_file_share_id', 'arn', 'default_storage_class', 'fileshare_id', 'guess_mime_type_enabled', 'kms_encrypted', 'kms_key_arn', 'nfs_file_share_defaults', 'object_acl', 'read_only', 'requester_pays', 'squash']
+          'providedAttributes' => ['arn', 'default_storage_class', 'fileshare_id', 'guess_mime_type_enabled', 'kms_encrypted', 'kms_key_arn', 'nfs_file_share_defaults', 'object_acl', 'read_only', 'requester_pays', 'squash']
         }
       },
       attributes => {
         'aws_storagegateway_nfs_file_share_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -28576,10 +33070,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_storagegateway_nfs_file_shareHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_storagegateway_nfs_file_share], Tuple[Optional[Aws_storagegateway_nfs_file_share]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_storagegateway_nfs_file_share]],
-        'update' => Callable[String, Optional[Aws_storagegateway_nfs_file_share]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_storagegateway_nfs_file_share_nfs_file_share_defaults_537 => {
@@ -28606,11 +33106,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['authentication', 'gateway_arn', 'location_arn', 'role_arn'],
-          'providedAttributes' => ['aws_storagegateway_smb_file_share_id', 'arn', 'authentication', 'default_storage_class', 'fileshare_id', 'guess_mime_type_enabled', 'invalid_user_list', 'kms_encrypted', 'kms_key_arn', 'object_acl', 'read_only', 'requester_pays', 'valid_user_list']
+          'providedAttributes' => ['arn', 'authentication', 'default_storage_class', 'fileshare_id', 'guess_mime_type_enabled', 'invalid_user_list', 'kms_encrypted', 'kms_key_arn', 'object_acl', 'read_only', 'requester_pays', 'valid_user_list']
         }
       },
       attributes => {
         'aws_storagegateway_smb_file_share_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -28669,21 +33174,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_storagegateway_smb_file_shareHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_storagegateway_smb_file_share], Tuple[Optional[Aws_storagegateway_smb_file_share]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_storagegateway_smb_file_share]],
-        'update' => Callable[String, Optional[Aws_storagegateway_smb_file_share]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_storagegateway_upload_buffer => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['disk_id', 'gateway_arn'],
-          'providedAttributes' => ['aws_storagegateway_upload_buffer_id']
+          'immutableAttributes' => ['disk_id', 'gateway_arn']
         }
       },
       attributes => {
         'aws_storagegateway_upload_buffer_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -28693,21 +33208,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_storagegateway_upload_bufferHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_storagegateway_upload_buffer], Tuple[Optional[Aws_storagegateway_upload_buffer]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_storagegateway_upload_buffer]],
-        'update' => Callable[String, Optional[Aws_storagegateway_upload_buffer]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_storagegateway_working_storage => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['disk_id', 'gateway_arn'],
-          'providedAttributes' => ['aws_storagegateway_working_storage_id']
+          'immutableAttributes' => ['disk_id', 'gateway_arn']
         }
       },
       attributes => {
         'aws_storagegateway_working_storage_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -28717,21 +33242,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_storagegateway_working_storageHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_storagegateway_working_storage], Tuple[Optional[Aws_storagegateway_working_storage]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_storagegateway_working_storage]],
-        'update' => Callable[String, Optional[Aws_storagegateway_working_storage]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_subnet => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['availability_zone', 'availability_zone_id', 'cidr_block', 'vpc_id'],
-          'providedAttributes' => ['aws_subnet_id', 'arn', 'assign_ipv6_address_on_creation', 'availability_zone', 'availability_zone_id', 'ipv6_cidr_block', 'ipv6_cidr_block_association_id', 'map_public_ip_on_launch', 'owner_id', 'tags']
+          'providedAttributes' => ['arn', 'assign_ipv6_address_on_creation', 'availability_zone', 'availability_zone_id', 'ipv6_cidr_block', 'ipv6_cidr_block_association_id', 'map_public_ip_on_launch', 'owner_id', 'tags']
         }
       },
       attributes => {
         'aws_subnet_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -28777,21 +33313,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_subnetHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_subnet], Tuple[Optional[Aws_subnet]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_subnet]],
-        'update' => Callable[String, Optional[Aws_subnet]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_swf_domain => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'name_prefix', 'workflow_execution_retention_period_in_days'],
-          'providedAttributes' => ['aws_swf_domain_id', 'description', 'name', 'name_prefix']
+          'providedAttributes' => ['description', 'name', 'name_prefix']
         }
       },
       attributes => {
         'aws_swf_domain_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -28812,21 +33359,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_swf_domainHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_swf_domain], Tuple[Optional[Aws_swf_domain]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_swf_domain]],
-        'update' => Callable[String, Optional[Aws_swf_domain]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_transfer_server => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['identity_provider_type'],
-          'providedAttributes' => ['aws_transfer_server_id', 'arn', 'endpoint', 'force_destroy', 'identity_provider_type', 'invocation_role', 'logging_role', 'tags', 'url']
+          'providedAttributes' => ['arn', 'endpoint', 'force_destroy', 'identity_provider_type', 'invocation_role', 'logging_role', 'tags', 'url']
         }
       },
       attributes => {
         'aws_transfer_server_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -28866,21 +33424,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_transfer_serverHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_transfer_server], Tuple[Optional[Aws_transfer_server]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_transfer_server]],
-        'update' => Callable[String, Optional[Aws_transfer_server]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_transfer_ssh_key => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['body', 'server_id', 'user_name'],
-          'providedAttributes' => ['aws_transfer_ssh_key_id']
+          'immutableAttributes' => ['body', 'server_id', 'user_name']
         }
       },
       attributes => {
         'aws_transfer_ssh_key_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -28891,21 +33459,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_transfer_ssh_keyHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_transfer_ssh_key], Tuple[Optional[Aws_transfer_ssh_key]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_transfer_ssh_key]],
-        'update' => Callable[String, Optional[Aws_transfer_ssh_key]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_transfer_user => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['server_id', 'user_name'],
-          'providedAttributes' => ['aws_transfer_user_id', 'arn', 'home_directory', 'policy', 'tags']
+          'providedAttributes' => ['arn', 'home_directory', 'policy', 'tags']
         }
       },
       attributes => {
         'aws_transfer_user_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -28932,21 +33511,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_transfer_userHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_transfer_user], Tuple[Optional[Aws_transfer_user]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_transfer_user]],
-        'update' => Callable[String, Optional[Aws_transfer_user]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_volume_attachment => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['device_name', 'instance_id', 'volume_id'],
-          'providedAttributes' => ['aws_volume_attachment_id', 'force_detach', 'skip_destroy']
+          'providedAttributes' => ['force_detach', 'skip_destroy']
         }
       },
       attributes => {
         'aws_volume_attachment_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -28965,21 +33555,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_volume_attachmentHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_volume_attachment], Tuple[Optional[Aws_volume_attachment]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_volume_attachment]],
-        'update' => Callable[String, Optional[Aws_volume_attachment]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_vpc => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['cidr_block'],
-          'providedAttributes' => ['aws_vpc_id', 'arn', 'assign_generated_ipv6_cidr_block', 'default_network_acl_id', 'default_route_table_id', 'default_security_group_id', 'dhcp_options_id', 'enable_classiclink', 'enable_classiclink_dns_support', 'enable_dns_hostnames', 'enable_dns_support', 'instance_tenancy', 'ipv6_association_id', 'ipv6_cidr_block', 'main_route_table_id', 'owner_id', 'tags']
+          'providedAttributes' => ['arn', 'assign_generated_ipv6_cidr_block', 'default_network_acl_id', 'default_route_table_id', 'default_security_group_id', 'dhcp_options_id', 'enable_classiclink', 'enable_classiclink_dns_support', 'enable_dns_hostnames', 'enable_dns_support', 'instance_tenancy', 'ipv6_association_id', 'ipv6_cidr_block', 'main_route_table_id', 'owner_id', 'tags']
         }
       },
       attributes => {
         'aws_vpc_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -29052,21 +33653,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpcHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_vpc], Tuple[Optional[Aws_vpc]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_vpc]],
-        'update' => Callable[String, Optional[Aws_vpc]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_vpc_dhcp_options => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['domain_name', 'domain_name_servers', 'netbios_name_servers', 'netbios_node_type', 'ntp_servers'],
-          'providedAttributes' => ['aws_vpc_dhcp_options_id', 'domain_name', 'domain_name_servers', 'netbios_name_servers', 'netbios_node_type', 'ntp_servers', 'owner_id', 'tags']
+          'providedAttributes' => ['domain_name', 'domain_name_servers', 'netbios_name_servers', 'netbios_node_type', 'ntp_servers', 'owner_id', 'tags']
         }
       },
       attributes => {
         'aws_vpc_dhcp_options_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -29102,20 +33714,26 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpc_dhcp_optionsHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_vpc_dhcp_options], Tuple[Optional[Aws_vpc_dhcp_options]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_vpc_dhcp_options]],
-        'update' => Callable[String, Optional[Aws_vpc_dhcp_options]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_vpc_dhcp_options_association => {
-      annotations => {
-        Lyra::Resource => {
-          'providedAttributes' => ['aws_vpc_dhcp_options_association_id']
-        }
-      },
       attributes => {
         'aws_vpc_dhcp_options_association_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -29125,21 +33743,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpc_dhcp_options_associationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_vpc_dhcp_options_association], Tuple[Optional[Aws_vpc_dhcp_options_association]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_vpc_dhcp_options_association]],
-        'update' => Callable[String, Optional[Aws_vpc_dhcp_options_association]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_vpc_endpoint => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['service_name', 'vpc_endpoint_type', 'vpc_id'],
-          'providedAttributes' => ['aws_vpc_endpoint_id', 'auto_accept', 'cidr_blocks', 'dns_entry', 'network_interface_ids', 'policy', 'prefix_list_id', 'private_dns_enabled', 'route_table_ids', 'security_group_ids', 'state', 'subnet_ids', 'vpc_endpoint_type']
+          'providedAttributes' => ['auto_accept', 'cidr_blocks', 'dns_entry', 'network_interface_ids', 'policy', 'prefix_list_id', 'private_dns_enabled', 'route_table_ids', 'security_group_ids', 'state', 'subnet_ids', 'vpc_endpoint_type']
         }
       },
       attributes => {
         'aws_vpc_endpoint_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -29197,21 +33826,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpc_endpointHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_vpc_endpoint], Tuple[Optional[Aws_vpc_endpoint]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_vpc_endpoint]],
-        'update' => Callable[String, Optional[Aws_vpc_endpoint]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_vpc_endpoint_connection_notification => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['vpc_endpoint_id', 'vpc_endpoint_service_id'],
-          'providedAttributes' => ['aws_vpc_endpoint_connection_notification_id', 'notification_type', 'state', 'vpc_endpoint_id', 'vpc_endpoint_service_id']
+          'providedAttributes' => ['notification_type', 'state', 'vpc_endpoint_id', 'vpc_endpoint_service_id']
         }
       },
       attributes => {
         'aws_vpc_endpoint_connection_notification_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -29237,10 +33877,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpc_endpoint_connection_notificationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_vpc_endpoint_connection_notification], Tuple[Optional[Aws_vpc_endpoint_connection_notification]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_vpc_endpoint_connection_notification]],
-        'update' => Callable[String, Optional[Aws_vpc_endpoint_connection_notification]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_vpc_endpoint_dns_entry_538 => {
@@ -29258,12 +33904,16 @@ type TerraformAws = TypeSet[{
     Aws_vpc_endpoint_route_table_association => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['route_table_id', 'vpc_endpoint_id'],
-          'providedAttributes' => ['aws_vpc_endpoint_route_table_association_id']
+          'immutableAttributes' => ['route_table_id', 'vpc_endpoint_id']
         }
       },
       attributes => {
         'aws_vpc_endpoint_route_table_association_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -29273,20 +33923,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpc_endpoint_route_table_associationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_vpc_endpoint_route_table_association], Tuple[Optional[Aws_vpc_endpoint_route_table_association]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_vpc_endpoint_route_table_association]],
-        'update' => Callable[String, Optional[Aws_vpc_endpoint_route_table_association]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_vpc_endpoint_service => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['aws_vpc_endpoint_service_id', 'allowed_principals', 'availability_zones', 'base_endpoint_dns_names', 'private_dns_name', 'service_name', 'service_type', 'state']
+          'providedAttributes' => ['allowed_principals', 'availability_zones', 'base_endpoint_dns_names', 'private_dns_name', 'service_name', 'service_type', 'state']
         }
       },
       attributes => {
         'aws_vpc_endpoint_service_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -29324,21 +33985,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpc_endpoint_serviceHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_vpc_endpoint_service], Tuple[Optional[Aws_vpc_endpoint_service]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_vpc_endpoint_service]],
-        'update' => Callable[String, Optional[Aws_vpc_endpoint_service]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_vpc_endpoint_service_allowed_principal => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['principal_arn', 'vpc_endpoint_service_id'],
-          'providedAttributes' => ['aws_vpc_endpoint_service_allowed_principal_id']
+          'immutableAttributes' => ['principal_arn', 'vpc_endpoint_service_id']
         }
       },
       attributes => {
         'aws_vpc_endpoint_service_allowed_principal_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -29348,21 +34019,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpc_endpoint_service_allowed_principalHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_vpc_endpoint_service_allowed_principal], Tuple[Optional[Aws_vpc_endpoint_service_allowed_principal]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_vpc_endpoint_service_allowed_principal]],
-        'update' => Callable[String, Optional[Aws_vpc_endpoint_service_allowed_principal]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_vpc_endpoint_subnet_association => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['subnet_id', 'vpc_endpoint_id'],
-          'providedAttributes' => ['aws_vpc_endpoint_subnet_association_id']
+          'immutableAttributes' => ['subnet_id', 'vpc_endpoint_id']
         }
       },
       attributes => {
         'aws_vpc_endpoint_subnet_association_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -29372,21 +34053,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpc_endpoint_subnet_associationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_vpc_endpoint_subnet_association], Tuple[Optional[Aws_vpc_endpoint_subnet_association]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_vpc_endpoint_subnet_association]],
-        'update' => Callable[String, Optional[Aws_vpc_endpoint_subnet_association]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_vpc_ipv4_cidr_block_association => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['cidr_block', 'vpc_id'],
-          'providedAttributes' => ['aws_vpc_ipv4_cidr_block_association_id']
+          'immutableAttributes' => ['cidr_block', 'vpc_id']
         }
       },
       attributes => {
         'aws_vpc_ipv4_cidr_block_association_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -29396,21 +34087,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpc_ipv4_cidr_block_associationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_vpc_ipv4_cidr_block_association], Tuple[Optional[Aws_vpc_ipv4_cidr_block_association]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_vpc_ipv4_cidr_block_association]],
-        'update' => Callable[String, Optional[Aws_vpc_ipv4_cidr_block_association]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_vpc_peering_connection => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['peer_owner_id', 'peer_region', 'peer_vpc_id', 'vpc_id'],
-          'providedAttributes' => ['aws_vpc_peering_connection_id', 'accept_status', 'accepter', 'auto_accept', 'peer_owner_id', 'peer_region', 'requester', 'tags']
+          'providedAttributes' => ['accept_status', 'accepter', 'auto_accept', 'peer_owner_id', 'peer_region', 'requester', 'tags']
         }
       },
       attributes => {
         'aws_vpc_peering_connection_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -29448,21 +34150,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpc_peering_connectionHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_vpc_peering_connection], Tuple[Optional[Aws_vpc_peering_connection]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_vpc_peering_connection]],
-        'update' => Callable[String, Optional[Aws_vpc_peering_connection]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_vpc_peering_connection_accepter => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['vpc_peering_connection_id'],
-          'providedAttributes' => ['aws_vpc_peering_connection_accepter_id', 'accept_status', 'accepter', 'auto_accept', 'peer_owner_id', 'peer_region', 'peer_vpc_id', 'requester', 'tags', 'vpc_id']
+          'providedAttributes' => ['accept_status', 'accepter', 'auto_accept', 'peer_owner_id', 'peer_region', 'peer_vpc_id', 'requester', 'tags', 'vpc_id']
         }
       },
       attributes => {
         'aws_vpc_peering_connection_accepter_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -29507,10 +34220,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpc_peering_connection_accepterHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_vpc_peering_connection_accepter], Tuple[Optional[Aws_vpc_peering_connection_accepter]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_vpc_peering_connection_accepter]],
-        'update' => Callable[String, Optional[Aws_vpc_peering_connection_accepter]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_vpc_peering_connection_accepter_539 => {
@@ -29565,11 +34284,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['vpc_peering_connection_id'],
-          'providedAttributes' => ['aws_vpc_peering_connection_options_id', 'accepter', 'requester']
+          'providedAttributes' => ['accepter', 'requester']
         }
       },
       attributes => {
         'aws_vpc_peering_connection_options_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -29586,10 +34310,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpc_peering_connection_optionsHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_vpc_peering_connection_options], Tuple[Optional[Aws_vpc_peering_connection_options]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_vpc_peering_connection_options]],
-        'update' => Callable[String, Optional[Aws_vpc_peering_connection_options]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_vpc_peering_connection_options_accepter_543 => {
@@ -29644,11 +34374,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['customer_gateway_id', 'static_routes_only', 'transit_gateway_id', 'tunnel1_inside_cidr', 'tunnel1_preshared_key', 'tunnel2_inside_cidr', 'tunnel2_preshared_key', 'type', 'vpn_gateway_id'],
-          'providedAttributes' => ['aws_vpn_connection_id', 'customer_gateway_configuration', 'routes', 'static_routes_only', 'tags', 'transit_gateway_id', 'tunnel1_address', 'tunnel1_bgp_asn', 'tunnel1_bgp_holdtime', 'tunnel1_cgw_inside_address', 'tunnel1_inside_cidr', 'tunnel1_preshared_key', 'tunnel1_vgw_inside_address', 'tunnel2_address', 'tunnel2_bgp_asn', 'tunnel2_bgp_holdtime', 'tunnel2_cgw_inside_address', 'tunnel2_inside_cidr', 'tunnel2_preshared_key', 'tunnel2_vgw_inside_address', 'vgw_telemetry', 'vpn_gateway_id']
+          'providedAttributes' => ['customer_gateway_configuration', 'routes', 'static_routes_only', 'tags', 'transit_gateway_id', 'tunnel1_address', 'tunnel1_bgp_asn', 'tunnel1_bgp_holdtime', 'tunnel1_cgw_inside_address', 'tunnel1_inside_cidr', 'tunnel1_preshared_key', 'tunnel1_vgw_inside_address', 'tunnel2_address', 'tunnel2_bgp_asn', 'tunnel2_bgp_holdtime', 'tunnel2_cgw_inside_address', 'tunnel2_inside_cidr', 'tunnel2_preshared_key', 'tunnel2_vgw_inside_address', 'vgw_telemetry', 'vpn_gateway_id']
         }
       },
       attributes => {
         'aws_vpn_connection_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -29742,21 +34477,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpn_connectionHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_vpn_connection], Tuple[Optional[Aws_vpn_connection]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_vpn_connection]],
-        'update' => Callable[String, Optional[Aws_vpn_connection]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_vpn_connection_route => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['destination_cidr_block', 'vpn_connection_id'],
-          'providedAttributes' => ['aws_vpn_connection_route_id']
+          'immutableAttributes' => ['destination_cidr_block', 'vpn_connection_id']
         }
       },
       attributes => {
         'aws_vpn_connection_route_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -29766,10 +34511,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpn_connection_routeHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_vpn_connection_route], Tuple[Optional[Aws_vpn_connection_route]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_vpn_connection_route]],
-        'update' => Callable[String, Optional[Aws_vpn_connection_route]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_vpn_connection_routes_545 => {
@@ -29816,11 +34567,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['amazon_side_asn', 'availability_zone'],
-          'providedAttributes' => ['aws_vpn_gateway_id', 'amazon_side_asn', 'availability_zone', 'tags', 'vpc_id']
+          'providedAttributes' => ['amazon_side_asn', 'availability_zone', 'tags', 'vpc_id']
         }
       },
       attributes => {
         'aws_vpn_gateway_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -29844,21 +34600,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpn_gatewayHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_vpn_gateway], Tuple[Optional[Aws_vpn_gateway]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_vpn_gateway]],
-        'update' => Callable[String, Optional[Aws_vpn_gateway]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_vpn_gateway_attachment => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['vpc_id', 'vpn_gateway_id'],
-          'providedAttributes' => ['aws_vpn_gateway_attachment_id']
+          'immutableAttributes' => ['vpc_id', 'vpn_gateway_id']
         }
       },
       attributes => {
         'aws_vpn_gateway_attachment_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -29868,21 +34634,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpn_gateway_attachmentHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_vpn_gateway_attachment], Tuple[Optional[Aws_vpn_gateway_attachment]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_vpn_gateway_attachment]],
-        'update' => Callable[String, Optional[Aws_vpn_gateway_attachment]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_vpn_gateway_route_propagation => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['route_table_id', 'vpn_gateway_id'],
-          'providedAttributes' => ['aws_vpn_gateway_route_propagation_id']
+          'immutableAttributes' => ['route_table_id', 'vpn_gateway_id']
         }
       },
       attributes => {
         'aws_vpn_gateway_route_propagation_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -29892,21 +34668,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_vpn_gateway_route_propagationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_vpn_gateway_route_propagation], Tuple[Optional[Aws_vpn_gateway_route_propagation]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_vpn_gateway_route_propagation]],
-        'update' => Callable[String, Optional[Aws_vpn_gateway_route_propagation]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_waf_byte_match_set => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_waf_byte_match_set_id', 'byte_match_tuples']
+          'providedAttributes' => ['byte_match_tuples']
         }
       },
       attributes => {
         'aws_waf_byte_match_set_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -29919,10 +34706,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_waf_byte_match_setHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_waf_byte_match_set], Tuple[Optional[Aws_waf_byte_match_set]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_waf_byte_match_set]],
-        'update' => Callable[String, Optional[Aws_waf_byte_match_set]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_waf_byte_match_set_byte_match_tuples_547 => {
@@ -29949,11 +34742,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_waf_geo_match_set_id', 'geo_match_constraint']
+          'providedAttributes' => ['geo_match_constraint']
         }
       },
       attributes => {
         'aws_waf_geo_match_set_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -29966,10 +34764,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_waf_geo_match_setHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_waf_geo_match_set], Tuple[Optional[Aws_waf_geo_match_set]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_waf_geo_match_set]],
-        'update' => Callable[String, Optional[Aws_waf_geo_match_set]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_waf_geo_match_set_geo_match_constraint_549 => {
@@ -29982,11 +34786,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_waf_ipset_id', 'arn', 'ip_set_descriptors']
+          'providedAttributes' => ['arn', 'ip_set_descriptors']
         }
       },
       attributes => {
         'aws_waf_ipset_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -30003,10 +34812,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_waf_ipsetHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_waf_ipset], Tuple[Optional[Aws_waf_ipset]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_waf_ipset]],
-        'update' => Callable[String, Optional[Aws_waf_ipset]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_waf_ipset_ip_set_descriptors_550 => {
@@ -30019,11 +34834,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['metric_name', 'name'],
-          'providedAttributes' => ['aws_waf_rate_based_rule_id', 'predicates']
+          'providedAttributes' => ['predicates']
         }
       },
       attributes => {
         'aws_waf_rate_based_rule_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -30039,10 +34859,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_waf_rate_based_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_waf_rate_based_rule], Tuple[Optional[Aws_waf_rate_based_rule]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_waf_rate_based_rule]],
-        'update' => Callable[String, Optional[Aws_waf_rate_based_rule]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_waf_rate_based_rule_predicates_551 => {
@@ -30056,11 +34882,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_waf_regex_match_set_id', 'regex_match_tuple']
+          'providedAttributes' => ['regex_match_tuple']
         }
       },
       attributes => {
         'aws_waf_regex_match_set_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -30073,10 +34904,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_waf_regex_match_setHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_waf_regex_match_set], Tuple[Optional[Aws_waf_regex_match_set]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_waf_regex_match_set]],
-        'update' => Callable[String, Optional[Aws_waf_regex_match_set]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_waf_regex_match_set_regex_match_tuple_552 => {
@@ -30099,11 +34936,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_waf_regex_pattern_set_id', 'regex_pattern_strings']
+          'providedAttributes' => ['regex_pattern_strings']
         }
       },
       attributes => {
         'aws_waf_regex_pattern_set_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -30116,21 +34958,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_waf_regex_pattern_setHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_waf_regex_pattern_set], Tuple[Optional[Aws_waf_regex_pattern_set]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_waf_regex_pattern_set]],
-        'update' => Callable[String, Optional[Aws_waf_regex_pattern_set]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_waf_rule => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['metric_name', 'name'],
-          'providedAttributes' => ['aws_waf_rule_id', 'predicates']
+          'providedAttributes' => ['predicates']
         }
       },
       attributes => {
         'aws_waf_rule_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -30144,21 +34997,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_waf_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_waf_rule], Tuple[Optional[Aws_waf_rule]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_waf_rule]],
-        'update' => Callable[String, Optional[Aws_waf_rule]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_waf_rule_group => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['metric_name', 'name'],
-          'providedAttributes' => ['aws_waf_rule_group_id', 'activated_rule']
+          'providedAttributes' => ['activated_rule']
         }
       },
       attributes => {
         'aws_waf_rule_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -30172,10 +35036,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_waf_rule_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_waf_rule_group], Tuple[Optional[Aws_waf_rule_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_waf_rule_group]],
-        'update' => Callable[String, Optional[Aws_waf_rule_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_waf_rule_group_activated_rule_555 => {
@@ -30205,11 +35075,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_waf_size_constraint_set_id', 'size_constraints']
+          'providedAttributes' => ['size_constraints']
         }
       },
       attributes => {
         'aws_waf_size_constraint_set_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -30222,10 +35097,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_waf_size_constraint_setHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_waf_size_constraint_set], Tuple[Optional[Aws_waf_size_constraint_set]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_waf_size_constraint_set]],
-        'update' => Callable[String, Optional[Aws_waf_size_constraint_set]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_waf_size_constraint_set_size_constraints_557 => {
@@ -30249,11 +35130,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_waf_sql_injection_match_set_id', 'sql_injection_match_tuples']
+          'providedAttributes' => ['sql_injection_match_tuples']
         }
       },
       attributes => {
         'aws_waf_sql_injection_match_set_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -30266,10 +35152,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_waf_sql_injection_match_setHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_waf_sql_injection_match_set], Tuple[Optional[Aws_waf_sql_injection_match_set]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_waf_sql_injection_match_set]],
-        'update' => Callable[String, Optional[Aws_waf_sql_injection_match_set]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_waf_sql_injection_match_set_sql_injection_match_tuples_559 => {
@@ -30291,11 +35183,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['metric_name', 'name'],
-          'providedAttributes' => ['aws_waf_web_acl_id', 'rules']
+          'providedAttributes' => ['rules']
         }
       },
       attributes => {
         'aws_waf_web_acl_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -30310,10 +35207,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_waf_web_aclHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_waf_web_acl], Tuple[Optional[Aws_waf_web_acl]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_waf_web_acl]],
-        'update' => Callable[String, Optional[Aws_waf_web_acl]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_waf_web_acl_default_action_561 => {
@@ -30353,11 +35256,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_waf_xss_match_set_id', 'xss_match_tuples']
+          'providedAttributes' => ['xss_match_tuples']
         }
       },
       attributes => {
         'aws_waf_xss_match_set_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -30370,10 +35278,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_waf_xss_match_setHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_waf_xss_match_set], Tuple[Optional[Aws_waf_xss_match_set]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_waf_xss_match_set]],
-        'update' => Callable[String, Optional[Aws_waf_xss_match_set]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_waf_xss_match_set_xss_match_tuples_565 => {
@@ -30395,11 +35309,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_wafregional_byte_match_set_id', 'byte_match_tuple', 'byte_match_tuples']
+          'providedAttributes' => ['byte_match_tuple', 'byte_match_tuples']
         }
       },
       attributes => {
         'aws_wafregional_byte_match_set_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -30416,10 +35335,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_wafregional_byte_match_setHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_wafregional_byte_match_set], Tuple[Optional[Aws_wafregional_byte_match_set]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_wafregional_byte_match_set]],
-        'update' => Callable[String, Optional[Aws_wafregional_byte_match_set]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_wafregional_byte_match_set_byte_match_tuple_567 => {
@@ -30466,11 +35391,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_wafregional_geo_match_set_id', 'geo_match_constraint']
+          'providedAttributes' => ['geo_match_constraint']
         }
       },
       attributes => {
         'aws_wafregional_geo_match_set_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -30483,10 +35413,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_wafregional_geo_match_setHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_wafregional_geo_match_set], Tuple[Optional[Aws_wafregional_geo_match_set]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_wafregional_geo_match_set]],
-        'update' => Callable[String, Optional[Aws_wafregional_geo_match_set]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_wafregional_geo_match_set_geo_match_constraint_571 => {
@@ -30499,11 +35435,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_wafregional_ipset_id', 'arn', 'ip_set_descriptor']
+          'providedAttributes' => ['arn', 'ip_set_descriptor']
         }
       },
       attributes => {
         'aws_wafregional_ipset_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -30520,10 +35461,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_wafregional_ipsetHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_wafregional_ipset], Tuple[Optional[Aws_wafregional_ipset]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_wafregional_ipset]],
-        'update' => Callable[String, Optional[Aws_wafregional_ipset]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_wafregional_ipset_ip_set_descriptor_572 => {
@@ -30536,11 +35483,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['metric_name', 'name'],
-          'providedAttributes' => ['aws_wafregional_rate_based_rule_id', 'predicate']
+          'providedAttributes' => ['predicate']
         }
       },
       attributes => {
         'aws_wafregional_rate_based_rule_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -30556,10 +35508,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_wafregional_rate_based_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_wafregional_rate_based_rule], Tuple[Optional[Aws_wafregional_rate_based_rule]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_wafregional_rate_based_rule]],
-        'update' => Callable[String, Optional[Aws_wafregional_rate_based_rule]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_wafregional_rate_based_rule_predicate_573 => {
@@ -30573,11 +35531,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_wafregional_regex_match_set_id', 'regex_match_tuple']
+          'providedAttributes' => ['regex_match_tuple']
         }
       },
       attributes => {
         'aws_wafregional_regex_match_set_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -30590,10 +35553,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_wafregional_regex_match_setHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_wafregional_regex_match_set], Tuple[Optional[Aws_wafregional_regex_match_set]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_wafregional_regex_match_set]],
-        'update' => Callable[String, Optional[Aws_wafregional_regex_match_set]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_wafregional_regex_match_set_regex_match_tuple_574 => {
@@ -30616,11 +35585,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_wafregional_regex_pattern_set_id', 'regex_pattern_strings']
+          'providedAttributes' => ['regex_pattern_strings']
         }
       },
       attributes => {
         'aws_wafregional_regex_pattern_set_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -30633,21 +35607,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_wafregional_regex_pattern_setHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_wafregional_regex_pattern_set], Tuple[Optional[Aws_wafregional_regex_pattern_set]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_wafregional_regex_pattern_set]],
-        'update' => Callable[String, Optional[Aws_wafregional_regex_pattern_set]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_wafregional_rule => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['metric_name', 'name'],
-          'providedAttributes' => ['aws_wafregional_rule_id', 'predicate']
+          'providedAttributes' => ['predicate']
         }
       },
       attributes => {
         'aws_wafregional_rule_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -30661,21 +35646,32 @@ type TerraformAws = TypeSet[{
     },
     Aws_wafregional_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_wafregional_rule], Tuple[Optional[Aws_wafregional_rule]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_wafregional_rule]],
-        'update' => Callable[String, Optional[Aws_wafregional_rule]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_wafregional_rule_group => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['metric_name', 'name'],
-          'providedAttributes' => ['aws_wafregional_rule_group_id', 'activated_rule']
+          'providedAttributes' => ['activated_rule']
         }
       },
       attributes => {
         'aws_wafregional_rule_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -30689,10 +35685,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_wafregional_rule_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_wafregional_rule_group], Tuple[Optional[Aws_wafregional_rule_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_wafregional_rule_group]],
-        'update' => Callable[String, Optional[Aws_wafregional_rule_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_wafregional_rule_group_activated_rule_577 => {
@@ -30722,11 +35724,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_wafregional_size_constraint_set_id', 'size_constraints']
+          'providedAttributes' => ['size_constraints']
         }
       },
       attributes => {
         'aws_wafregional_size_constraint_set_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -30739,10 +35746,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_wafregional_size_constraint_setHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_wafregional_size_constraint_set], Tuple[Optional[Aws_wafregional_size_constraint_set]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_wafregional_size_constraint_set]],
-        'update' => Callable[String, Optional[Aws_wafregional_size_constraint_set]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_wafregional_size_constraint_set_size_constraints_579 => {
@@ -30766,11 +35779,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_wafregional_sql_injection_match_set_id', 'sql_injection_match_tuple']
+          'providedAttributes' => ['sql_injection_match_tuple']
         }
       },
       attributes => {
         'aws_wafregional_sql_injection_match_set_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -30783,10 +35801,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_wafregional_sql_injection_match_setHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_wafregional_sql_injection_match_set], Tuple[Optional[Aws_wafregional_sql_injection_match_set]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_wafregional_sql_injection_match_set]],
-        'update' => Callable[String, Optional[Aws_wafregional_sql_injection_match_set]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_wafregional_sql_injection_match_set_sql_injection_match_tuple_581 => {
@@ -30808,11 +35832,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['metric_name', 'name'],
-          'providedAttributes' => ['aws_wafregional_web_acl_id', 'rule']
+          'providedAttributes' => ['rule']
         }
       },
       attributes => {
         'aws_wafregional_web_acl_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -30827,21 +35856,31 @@ type TerraformAws = TypeSet[{
     },
     Aws_wafregional_web_aclHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_wafregional_web_acl], Tuple[Optional[Aws_wafregional_web_acl]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_wafregional_web_acl]],
-        'update' => Callable[String, Optional[Aws_wafregional_web_acl]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_wafregional_web_acl_association => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['resource_arn', 'web_acl_id'],
-          'providedAttributes' => ['aws_wafregional_web_acl_association_id']
+          'immutableAttributes' => ['resource_arn', 'web_acl_id']
         }
       },
       attributes => {
         'aws_wafregional_web_acl_association_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -30851,10 +35890,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_wafregional_web_acl_associationHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_wafregional_web_acl_association], Tuple[Optional[Aws_wafregional_web_acl_association]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_wafregional_web_acl_association]],
-        'update' => Callable[String, Optional[Aws_wafregional_web_acl_association]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_wafregional_web_acl_default_action_583 => {
@@ -30894,11 +35939,16 @@ type TerraformAws = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['aws_wafregional_xss_match_set_id', 'xss_match_tuple']
+          'providedAttributes' => ['xss_match_tuple']
         }
       },
       attributes => {
         'aws_wafregional_xss_match_set_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -30911,10 +35961,16 @@ type TerraformAws = TypeSet[{
     },
     Aws_wafregional_xss_match_setHandler => {
       functions => {
-        'create' => Callable[Optional[Aws_wafregional_xss_match_set], Tuple[Optional[Aws_wafregional_xss_match_set]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Aws_wafregional_xss_match_set]],
-        'update' => Callable[String, Optional[Aws_wafregional_xss_match_set]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Aws_wafregional_xss_match_set_xss_match_tuple_587 => {
@@ -30930,6 +35986,20 @@ type TerraformAws = TypeSet[{
           'value' => undef
         },
         'type' => String
+      }
+    },
+    GenericHandler => {
+      functions => {
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
+        'delete' => Callable[String],
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     }
   }

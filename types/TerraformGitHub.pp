@@ -6,15 +6,34 @@ type TerraformGitHub = TypeSet[{
   name => 'TerraformGitHub',
   version => '0.1.0',
   types => {
+    GenericHandler => {
+      functions => {
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
+        'delete' => Callable[String],
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
+      }
+    },
     Github_branch_protection => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['branch', 'repository'],
-          'providedAttributes' => ['github_branch_protection_id', 'enforce_admins', 'etag', 'required_pull_request_reviews', 'required_status_checks', 'restrictions']
+          'providedAttributes' => ['enforce_admins', 'etag', 'required_pull_request_reviews', 'required_status_checks', 'restrictions']
         }
       },
       attributes => {
         'github_branch_protection_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -44,10 +63,16 @@ type TerraformGitHub = TypeSet[{
     },
     Github_branch_protectionHandler => {
       functions => {
-        'create' => Callable[Optional[Github_branch_protection], Tuple[Optional[Github_branch_protection]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Github_branch_protection]],
-        'update' => Callable[String, Optional[Github_branch_protection]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Github_branch_protection_required_pull_request_reviews_1 => {
@@ -106,11 +131,16 @@ type TerraformGitHub = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['repository'],
-          'providedAttributes' => ['github_issue_label_id', 'description', 'etag', 'url']
+          'providedAttributes' => ['description', 'etag', 'url']
         }
       },
       attributes => {
         'github_issue_label_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -133,21 +163,32 @@ type TerraformGitHub = TypeSet[{
     },
     Github_issue_labelHandler => {
       functions => {
-        'create' => Callable[Optional[Github_issue_label], Tuple[Optional[Github_issue_label]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Github_issue_label]],
-        'update' => Callable[String, Optional[Github_issue_label]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Github_membership => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['username'],
-          'providedAttributes' => ['github_membership_id', 'etag', 'role']
+          'providedAttributes' => ['etag', 'role']
         }
       },
       attributes => {
         'github_membership_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -164,20 +205,31 @@ type TerraformGitHub = TypeSet[{
     },
     Github_membershipHandler => {
       functions => {
-        'create' => Callable[Optional[Github_membership], Tuple[Optional[Github_membership]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Github_membership]],
-        'update' => Callable[String, Optional[Github_membership]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Github_organization_project => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['github_organization_project_id', 'body', 'etag', 'url']
+          'providedAttributes' => ['body', 'etag', 'url']
         }
       },
       attributes => {
         'github_organization_project_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -198,21 +250,32 @@ type TerraformGitHub = TypeSet[{
     },
     Github_organization_projectHandler => {
       functions => {
-        'create' => Callable[Optional[Github_organization_project], Tuple[Optional[Github_organization_project]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Github_organization_project]],
-        'update' => Callable[String, Optional[Github_organization_project]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Github_organization_webhook => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['github_organization_webhook_id', 'active', 'configuration', 'etag', 'url']
+          'providedAttributes' => ['active', 'configuration', 'etag', 'url']
         }
       },
       attributes => {
         'github_organization_webhook_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -238,10 +301,16 @@ type TerraformGitHub = TypeSet[{
     },
     Github_organization_webhookHandler => {
       functions => {
-        'create' => Callable[Optional[Github_organization_webhook], Tuple[Optional[Github_organization_webhook]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Github_organization_webhook]],
-        'update' => Callable[String, Optional[Github_organization_webhook]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Github_organization_webhook_configuration_4 => {
@@ -265,11 +334,16 @@ type TerraformGitHub = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project_id'],
-          'providedAttributes' => ['github_project_column_id', 'etag']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {
         'github_project_column_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -283,21 +357,32 @@ type TerraformGitHub = TypeSet[{
     },
     Github_project_columnHandler => {
       functions => {
-        'create' => Callable[Optional[Github_project_column], Tuple[Optional[Github_project_column]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Github_project_column]],
-        'update' => Callable[String, Optional[Github_project_column]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Github_repository => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['auto_init', 'gitignore_template', 'license_template', 'name'],
-          'providedAttributes' => ['github_repository_id', 'allow_merge_commit', 'allow_rebase_merge', 'allow_squash_merge', 'archived', 'auto_init', 'default_branch', 'description', 'etag', 'full_name', 'git_clone_url', 'gitignore_template', 'has_downloads', 'has_issues', 'has_projects', 'has_wiki', 'homepage_url', 'html_url', 'http_clone_url', 'license_template', 'private', 'ssh_clone_url', 'svn_url', 'topics']
+          'providedAttributes' => ['allow_merge_commit', 'allow_rebase_merge', 'allow_squash_merge', 'archived', 'auto_init', 'default_branch', 'description', 'etag', 'full_name', 'git_clone_url', 'gitignore_template', 'has_downloads', 'has_issues', 'has_projects', 'has_wiki', 'homepage_url', 'html_url', 'http_clone_url', 'license_template', 'private', 'ssh_clone_url', 'svn_url', 'topics']
         }
       },
       attributes => {
         'github_repository_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -398,21 +483,32 @@ type TerraformGitHub = TypeSet[{
     },
     Github_repositoryHandler => {
       functions => {
-        'create' => Callable[Optional[Github_repository], Tuple[Optional[Github_repository]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Github_repository]],
-        'update' => Callable[String, Optional[Github_repository]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Github_repository_collaborator => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['permission', 'repository', 'username'],
-          'providedAttributes' => ['github_repository_collaborator_id', 'permission']
+          'providedAttributes' => ['permission']
         }
       },
       attributes => {
         'github_repository_collaborator_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -426,21 +522,32 @@ type TerraformGitHub = TypeSet[{
     },
     Github_repository_collaboratorHandler => {
       functions => {
-        'create' => Callable[Optional[Github_repository_collaborator], Tuple[Optional[Github_repository_collaborator]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Github_repository_collaborator]],
-        'update' => Callable[String, Optional[Github_repository_collaborator]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Github_repository_deploy_key => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['key', 'read_only', 'repository', 'title'],
-          'providedAttributes' => ['github_repository_deploy_key_id', 'etag', 'read_only']
+          'providedAttributes' => ['etag', 'read_only']
         }
       },
       attributes => {
         'github_repository_deploy_key_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -459,21 +566,32 @@ type TerraformGitHub = TypeSet[{
     },
     Github_repository_deploy_keyHandler => {
       functions => {
-        'create' => Callable[Optional[Github_repository_deploy_key], Tuple[Optional[Github_repository_deploy_key]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Github_repository_deploy_key]],
-        'update' => Callable[String, Optional[Github_repository_deploy_key]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Github_repository_project => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['repository'],
-          'providedAttributes' => ['github_repository_project_id', 'body', 'etag', 'url']
+          'providedAttributes' => ['body', 'etag', 'url']
         }
       },
       attributes => {
         'github_repository_project_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -495,21 +613,32 @@ type TerraformGitHub = TypeSet[{
     },
     Github_repository_projectHandler => {
       functions => {
-        'create' => Callable[Optional[Github_repository_project], Tuple[Optional[Github_repository_project]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Github_repository_project]],
-        'update' => Callable[String, Optional[Github_repository_project]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Github_repository_webhook => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'repository'],
-          'providedAttributes' => ['github_repository_webhook_id', 'active', 'configuration', 'etag', 'url']
+          'providedAttributes' => ['active', 'configuration', 'etag', 'url']
         }
       },
       attributes => {
         'github_repository_webhook_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -536,10 +665,16 @@ type TerraformGitHub = TypeSet[{
     },
     Github_repository_webhookHandler => {
       functions => {
-        'create' => Callable[Optional[Github_repository_webhook], Tuple[Optional[Github_repository_webhook]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Github_repository_webhook]],
-        'update' => Callable[String, Optional[Github_repository_webhook]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Github_repository_webhook_configuration_5 => {
@@ -562,11 +697,16 @@ type TerraformGitHub = TypeSet[{
     Github_team => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['github_team_id', 'description', 'etag', 'ldap_dn', 'parent_team_id', 'privacy', 'slug']
+          'providedAttributes' => ['description', 'etag', 'ldap_dn', 'parent_team_id', 'privacy', 'slug']
         }
       },
       attributes => {
         'github_team_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -599,21 +739,32 @@ type TerraformGitHub = TypeSet[{
     },
     Github_teamHandler => {
       functions => {
-        'create' => Callable[Optional[Github_team], Tuple[Optional[Github_team]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Github_team]],
-        'update' => Callable[String, Optional[Github_team]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Github_team_membership => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['team_id', 'username'],
-          'providedAttributes' => ['github_team_membership_id', 'etag', 'role']
+          'providedAttributes' => ['etag', 'role']
         }
       },
       attributes => {
         'github_team_membership_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -631,21 +782,32 @@ type TerraformGitHub = TypeSet[{
     },
     Github_team_membershipHandler => {
       functions => {
-        'create' => Callable[Optional[Github_team_membership], Tuple[Optional[Github_team_membership]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Github_team_membership]],
-        'update' => Callable[String, Optional[Github_team_membership]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Github_team_repository => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['repository', 'team_id'],
-          'providedAttributes' => ['github_team_repository_id', 'etag', 'permission']
+          'providedAttributes' => ['etag', 'permission']
         }
       },
       attributes => {
         'github_team_repository_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -663,21 +825,32 @@ type TerraformGitHub = TypeSet[{
     },
     Github_team_repositoryHandler => {
       functions => {
-        'create' => Callable[Optional[Github_team_repository], Tuple[Optional[Github_team_repository]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Github_team_repository]],
-        'update' => Callable[String, Optional[Github_team_repository]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Github_user_gpg_key => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['armored_public_key'],
-          'providedAttributes' => ['github_user_gpg_key_id', 'etag', 'key_id']
+          'providedAttributes' => ['etag', 'key_id']
         }
       },
       attributes => {
         'github_user_gpg_key_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -694,21 +867,32 @@ type TerraformGitHub = TypeSet[{
     },
     Github_user_gpg_keyHandler => {
       functions => {
-        'create' => Callable[Optional[Github_user_gpg_key], Tuple[Optional[Github_user_gpg_key]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Github_user_gpg_key]],
-        'update' => Callable[String, Optional[Github_user_gpg_key]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Github_user_ssh_key => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['key', 'title'],
-          'providedAttributes' => ['github_user_ssh_key_id', 'etag', 'url']
+          'providedAttributes' => ['etag', 'url']
         }
       },
       attributes => {
         'github_user_ssh_key_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -726,10 +910,16 @@ type TerraformGitHub = TypeSet[{
     },
     Github_user_ssh_keyHandler => {
       functions => {
-        'create' => Callable[Optional[Github_user_ssh_key], Tuple[Optional[Github_user_ssh_key]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Github_user_ssh_key]],
-        'update' => Callable[String, Optional[Github_user_ssh_key]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     }
   }

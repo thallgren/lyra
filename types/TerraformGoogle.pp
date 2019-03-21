@@ -6,15 +6,34 @@ type TerraformGoogle = TypeSet[{
   name => 'TerraformGoogle',
   version => '0.1.0',
   types => {
+    GenericHandler => {
+      functions => {
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
+        'delete' => Callable[String],
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
+      }
+    },
     Google_app_engine_application => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project'],
-          'providedAttributes' => ['google_app_engine_application_id', 'auth_domain', 'code_bucket', 'default_bucket', 'default_hostname', 'feature_settings', 'gcr_domain', 'name', 'project', 'serving_status', 'url_dispatch_rule']
+          'providedAttributes' => ['auth_domain', 'code_bucket', 'default_bucket', 'default_hostname', 'feature_settings', 'gcr_domain', 'name', 'project', 'serving_status', 'url_dispatch_rule']
         }
       },
       attributes => {
         'google_app_engine_application_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -63,10 +82,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_app_engine_applicationHandler => {
       functions => {
-        'create' => Callable[Optional[Google_app_engine_application], Tuple[Optional[Google_app_engine_application]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_app_engine_application]],
-        'update' => Callable[String, Optional[Google_app_engine_application]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_app_engine_application_feature_settings_1 => {
@@ -97,11 +122,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['dataset_id', 'location', 'project'],
-          'providedAttributes' => ['google_bigquery_dataset_id', 'access', 'creation_time', 'default_table_expiration_ms', 'description', 'etag', 'friendly_name', 'labels', 'last_modified_time', 'location', 'project', 'self_link']
+          'providedAttributes' => ['access', 'creation_time', 'default_table_expiration_ms', 'description', 'etag', 'friendly_name', 'labels', 'last_modified_time', 'location', 'project', 'self_link']
         }
       },
       attributes => {
         'google_bigquery_dataset_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -154,10 +184,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_bigquery_datasetHandler => {
       functions => {
-        'create' => Callable[Optional[Google_bigquery_dataset], Tuple[Optional[Google_bigquery_dataset]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_bigquery_dataset]],
-        'update' => Callable[String, Optional[Google_bigquery_dataset]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_bigquery_dataset_access_3 => {
@@ -199,11 +235,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['dataset_id', 'project', 'table_id'],
-          'providedAttributes' => ['google_bigquery_table_id', 'creation_time', 'description', 'etag', 'expiration_time', 'friendly_name', 'labels', 'last_modified_time', 'location', 'num_bytes', 'num_long_term_bytes', 'num_rows', 'project', 'schema', 'self_link', 'time_partitioning', 'type', 'view']
+          'providedAttributes' => ['creation_time', 'description', 'etag', 'expiration_time', 'friendly_name', 'labels', 'last_modified_time', 'location', 'num_bytes', 'num_long_term_bytes', 'num_rows', 'project', 'schema', 'self_link', 'time_partitioning', 'type', 'view']
         }
       },
       attributes => {
         'google_bigquery_table_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -281,10 +322,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_bigquery_tableHandler => {
       functions => {
-        'create' => Callable[Optional[Google_bigquery_table], Tuple[Optional[Google_bigquery_table]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_bigquery_table]],
-        'update' => Callable[String, Optional[Google_bigquery_table]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_bigquery_table_time_partitioning_5 => {
@@ -313,11 +360,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['display_name', 'instance_type', 'name', 'project', 'zone'],
-          'providedAttributes' => ['google_bigtable_instance_id', 'cluster', 'cluster_id', 'display_name', 'instance_type', 'num_nodes', 'project', 'storage_type', 'zone']
+          'providedAttributes' => ['cluster', 'cluster_id', 'display_name', 'instance_type', 'num_nodes', 'project', 'storage_type', 'zone']
         }
       },
       attributes => {
         'google_bigtable_instance_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -358,10 +410,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_bigtable_instanceHandler => {
       functions => {
-        'create' => Callable[Optional[Google_bigtable_instance], Tuple[Optional[Google_bigtable_instance]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_bigtable_instance]],
-        'update' => Callable[String, Optional[Google_bigtable_instance]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_bigtable_instance_cluster_7 => {
@@ -388,11 +446,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['instance_name', 'name', 'project', 'split_keys'],
-          'providedAttributes' => ['google_bigtable_table_id', 'project', 'split_keys']
+          'providedAttributes' => ['project', 'split_keys']
         }
       },
       attributes => {
         'google_bigtable_table_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -410,21 +473,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_bigtable_tableHandler => {
       functions => {
-        'create' => Callable[Optional[Google_bigtable_table], Tuple[Optional[Google_bigtable_table]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_bigtable_table]],
-        'update' => Callable[String, Optional[Google_bigtable_table]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_billing_account_iam_binding => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['billing_account_id', 'role'],
-          'providedAttributes' => ['google_billing_account_iam_binding_id', 'etag']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {
         'google_billing_account_iam_binding_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -439,21 +513,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_billing_account_iam_bindingHandler => {
       functions => {
-        'create' => Callable[Optional[Google_billing_account_iam_binding], Tuple[Optional[Google_billing_account_iam_binding]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_billing_account_iam_binding]],
-        'update' => Callable[String, Optional[Google_billing_account_iam_binding]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_billing_account_iam_member => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['billing_account_id', 'member', 'role'],
-          'providedAttributes' => ['google_billing_account_iam_member_id', 'etag']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {
         'google_billing_account_iam_member_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -468,21 +553,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_billing_account_iam_memberHandler => {
       functions => {
-        'create' => Callable[Optional[Google_billing_account_iam_member], Tuple[Optional[Google_billing_account_iam_member]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_billing_account_iam_member]],
-        'update' => Callable[String, Optional[Google_billing_account_iam_member]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_billing_account_iam_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['billing_account_id'],
-          'providedAttributes' => ['google_billing_account_iam_policy_id', 'etag']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {
         'google_billing_account_iam_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -496,21 +592,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_billing_account_iam_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Google_billing_account_iam_policy], Tuple[Optional[Google_billing_account_iam_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_billing_account_iam_policy]],
-        'update' => Callable[String, Optional[Google_billing_account_iam_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_binary_authorization_attestor => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['google_binary_authorization_attestor_id', 'description', 'project']
+          'providedAttributes' => ['description', 'project']
         }
       },
       attributes => {
         'google_binary_authorization_attestor_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -528,10 +635,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_binary_authorization_attestorHandler => {
       functions => {
-        'create' => Callable[Optional[Google_binary_authorization_attestor], Tuple[Optional[Google_binary_authorization_attestor]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_binary_authorization_attestor]],
-        'update' => Callable[String, Optional[Google_binary_authorization_attestor]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_binary_authorization_attestor_attestation_authority_note_8 => {
@@ -564,11 +677,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project'],
-          'providedAttributes' => ['google_binary_authorization_policy_id', 'admission_whitelist_patterns', 'cluster_admission_rules', 'description', 'project']
+          'providedAttributes' => ['admission_whitelist_patterns', 'cluster_admission_rules', 'description', 'project']
         }
       },
       attributes => {
         'google_binary_authorization_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -593,10 +711,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_binary_authorization_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Google_binary_authorization_policy], Tuple[Optional[Google_binary_authorization_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_binary_authorization_policy]],
-        'update' => Callable[String, Optional[Google_binary_authorization_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_binary_authorization_policy_admission_whitelist_patterns_10 => {
@@ -638,11 +762,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['build', 'description', 'filename', 'project', 'substitutions', 'trigger_template'],
-          'providedAttributes' => ['google_cloudbuild_trigger_id', 'build', 'description', 'filename', 'project', 'substitutions', 'trigger_template']
+          'providedAttributes' => ['build', 'description', 'filename', 'project', 'substitutions', 'trigger_template']
         }
       },
       attributes => {
         'google_cloudbuild_trigger_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -674,10 +803,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_cloudbuild_triggerHandler => {
       functions => {
-        'create' => Callable[Optional[Google_cloudbuild_trigger], Tuple[Optional[Google_cloudbuild_trigger]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_cloudbuild_trigger]],
-        'update' => Callable[String, Optional[Google_cloudbuild_trigger]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_cloudbuild_trigger_build_13 => {
@@ -740,11 +875,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['entry_point', 'name', 'project', 'region', 'trigger_http'],
-          'providedAttributes' => ['google_cloudfunctions_function_id', 'available_memory_mb', 'description', 'entry_point', 'environment_variables', 'event_trigger', 'https_trigger_url', 'labels', 'project', 'region', 'retry_on_failure', 'runtime', 'timeout', 'trigger_bucket', 'trigger_http', 'trigger_topic']
+          'providedAttributes' => ['available_memory_mb', 'description', 'entry_point', 'environment_variables', 'event_trigger', 'https_trigger_url', 'labels', 'project', 'region', 'retry_on_failure', 'runtime', 'timeout', 'trigger_bucket', 'trigger_http', 'trigger_topic']
         }
       },
       attributes => {
         'google_cloudfunctions_function_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -815,10 +955,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_cloudfunctions_functionHandler => {
       functions => {
-        'create' => Callable[Optional[Google_cloudfunctions_function], Tuple[Optional[Google_cloudfunctions_function]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_cloudfunctions_function]],
-        'update' => Callable[String, Optional[Google_cloudfunctions_function]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_cloudfunctions_function_event_trigger_16 => {
@@ -840,11 +986,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project', 'region'],
-          'providedAttributes' => ['google_cloudiot_registry_id', 'credentials', 'event_notification_config', 'http_config', 'mqtt_config', 'project', 'region', 'state_notification_config']
+          'providedAttributes' => ['credentials', 'event_notification_config', 'http_config', 'mqtt_config', 'project', 'region', 'state_notification_config']
         }
       },
       attributes => {
         'google_cloudiot_registry_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -881,10 +1032,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_cloudiot_registryHandler => {
       functions => {
-        'create' => Callable[Optional[Google_cloudiot_registry], Tuple[Optional[Google_cloudiot_registry]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_cloudiot_registry]],
-        'update' => Callable[String, Optional[Google_cloudiot_registry]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_cloudiot_registry_credentials_18 => {
@@ -899,11 +1056,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project', 'region'],
-          'providedAttributes' => ['google_composer_environment_id', 'config', 'labels', 'project', 'region']
+          'providedAttributes' => ['config', 'labels', 'project', 'region']
         }
       },
       attributes => {
         'google_composer_environment_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -928,10 +1090,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_composer_environmentHandler => {
       functions => {
-        'create' => Callable[Optional[Google_composer_environment], Tuple[Optional[Google_composer_environment]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_composer_environment]],
-        'update' => Callable[String, Optional[Google_composer_environment]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_composer_environment_config_19 => {
@@ -1022,11 +1190,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['address', 'address_type', 'description', 'name', 'network_tier', 'project', 'region', 'subnetwork'],
-          'providedAttributes' => ['google_compute_address_id', 'address', 'address_type', 'creation_timestamp', 'description', 'label_fingerprint', 'labels', 'network_tier', 'project', 'region', 'self_link', 'subnetwork', 'users']
+          'providedAttributes' => ['address', 'address_type', 'creation_timestamp', 'description', 'label_fingerprint', 'labels', 'network_tier', 'project', 'region', 'self_link', 'subnetwork', 'users']
         }
       },
       attributes => {
         'google_compute_address_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1083,21 +1256,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_addressHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_address], Tuple[Optional[Google_compute_address]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_address]],
-        'update' => Callable[String, Optional[Google_compute_address]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_attached_disk => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['device_name', 'disk', 'instance', 'mode', 'project', 'zone'],
-          'providedAttributes' => ['google_compute_attached_disk_id', 'device_name', 'mode', 'project', 'zone']
+          'providedAttributes' => ['device_name', 'mode', 'project', 'zone']
         }
       },
       attributes => {
         'google_compute_attached_disk_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1123,21 +1307,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_attached_diskHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_attached_disk], Tuple[Optional[Google_compute_attached_disk]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_attached_disk]],
-        'update' => Callable[String, Optional[Google_compute_attached_disk]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_autoscaler => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project', 'zone'],
-          'providedAttributes' => ['google_compute_autoscaler_id', 'creation_timestamp', 'description', 'project', 'self_link', 'zone']
+          'providedAttributes' => ['creation_timestamp', 'description', 'project', 'self_link', 'zone']
         }
       },
       attributes => {
         'google_compute_autoscaler_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1168,10 +1363,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_autoscalerHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_autoscaler], Tuple[Optional[Google_compute_autoscaler]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_autoscaler]],
-        'update' => Callable[String, Optional[Google_compute_autoscaler]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_autoscaler_autoscaling_policy_22 => {
@@ -1217,11 +1418,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['google_compute_backend_bucket_id', 'creation_timestamp', 'description', 'enable_cdn', 'project', 'self_link']
+          'providedAttributes' => ['creation_timestamp', 'description', 'enable_cdn', 'project', 'self_link']
         }
       },
       attributes => {
         'google_compute_backend_bucket_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1251,21 +1457,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_backend_bucketHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_backend_bucket], Tuple[Optional[Google_compute_backend_bucket]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_backend_bucket]],
-        'update' => Callable[String, Optional[Google_compute_backend_bucket]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_backend_service => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project', 'region'],
-          'providedAttributes' => ['google_compute_backend_service_id', 'backend', 'cdn_policy', 'connection_draining_timeout_sec', 'custom_request_headers', 'description', 'enable_cdn', 'fingerprint', 'iap', 'port_name', 'project', 'protocol', 'region', 'security_policy', 'self_link', 'session_affinity', 'timeout_sec']
+          'providedAttributes' => ['backend', 'cdn_policy', 'connection_draining_timeout_sec', 'custom_request_headers', 'description', 'enable_cdn', 'fingerprint', 'iap', 'port_name', 'project', 'protocol', 'region', 'security_policy', 'self_link', 'session_affinity', 'timeout_sec']
         }
       },
       attributes => {
         'google_compute_backend_service_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1339,10 +1556,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_backend_serviceHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_backend_service], Tuple[Optional[Google_compute_backend_service]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_backend_service]],
-        'update' => Callable[String, Optional[Google_compute_backend_service]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_backend_service_backend_26 => {
@@ -1427,11 +1650,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'disk_encryption_key', 'image', 'name', 'project', 'snapshot', 'source_image_encryption_key', 'source_snapshot_encryption_key', 'type', 'zone'],
-          'providedAttributes' => ['google_compute_disk_id', 'creation_timestamp', 'description', 'disk_encryption_key', 'disk_encryption_key_raw', 'disk_encryption_key_sha256', 'image', 'label_fingerprint', 'labels', 'last_attach_timestamp', 'last_detach_timestamp', 'project', 'self_link', 'size', 'snapshot', 'source_image_encryption_key', 'source_image_id', 'source_snapshot_encryption_key', 'source_snapshot_id', 'type', 'users', 'zone']
+          'providedAttributes' => ['creation_timestamp', 'description', 'disk_encryption_key', 'disk_encryption_key_raw', 'disk_encryption_key_sha256', 'image', 'label_fingerprint', 'labels', 'last_attach_timestamp', 'last_detach_timestamp', 'project', 'self_link', 'size', 'snapshot', 'source_image_encryption_key', 'source_image_id', 'source_snapshot_encryption_key', 'source_snapshot_id', 'type', 'users', 'zone']
         }
       },
       attributes => {
         'google_compute_disk_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1524,10 +1752,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_diskHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_disk], Tuple[Optional[Google_compute_disk]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_disk]],
-        'update' => Callable[String, Optional[Google_compute_disk]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_disk_disk_encryption_key_30 => {
@@ -1570,11 +1804,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['google_compute_firewall_id', 'allow', 'creation_timestamp', 'deny', 'description', 'destination_ranges', 'direction', 'disabled', 'enable_logging', 'priority', 'project', 'self_link', 'source_ranges', 'source_service_accounts', 'source_tags', 'target_service_accounts', 'target_tags']
+          'providedAttributes' => ['allow', 'creation_timestamp', 'deny', 'description', 'destination_ranges', 'direction', 'disabled', 'enable_logging', 'priority', 'project', 'self_link', 'source_ranges', 'source_service_accounts', 'source_tags', 'target_service_accounts', 'target_tags']
         }
       },
       attributes => {
         'google_compute_firewall_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1648,10 +1887,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_firewallHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_firewall], Tuple[Optional[Google_compute_firewall]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_firewall]],
-        'update' => Callable[String, Optional[Google_compute_firewall]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_firewall_allow_33 => {
@@ -1676,11 +1921,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['backend_service', 'description', 'ip_address', 'ip_protocol', 'ip_version', 'load_balancing_scheme', 'name', 'network', 'network_tier', 'port_range', 'ports', 'project', 'region', 'service_label', 'subnetwork'],
-          'providedAttributes' => ['google_compute_forwarding_rule_id', 'backend_service', 'creation_timestamp', 'description', 'ip_address', 'ip_protocol', 'ip_version', 'label_fingerprint', 'labels', 'load_balancing_scheme', 'network', 'network_tier', 'port_range', 'ports', 'project', 'region', 'self_link', 'service_label', 'service_name', 'subnetwork', 'target']
+          'providedAttributes' => ['backend_service', 'creation_timestamp', 'description', 'ip_address', 'ip_protocol', 'ip_version', 'label_fingerprint', 'labels', 'load_balancing_scheme', 'network', 'network_tier', 'port_range', 'ports', 'project', 'region', 'self_link', 'service_label', 'service_name', 'subnetwork', 'target']
         }
       },
       attributes => {
         'google_compute_forwarding_rule_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1769,21 +2019,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_forwarding_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_forwarding_rule], Tuple[Optional[Google_compute_forwarding_rule]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_forwarding_rule]],
-        'update' => Callable[String, Optional[Google_compute_forwarding_rule]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_global_address => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['address_type', 'description', 'ip_version', 'name', 'network', 'prefix_length', 'project', 'purpose'],
-          'providedAttributes' => ['google_compute_global_address_id', 'address', 'address_type', 'creation_timestamp', 'description', 'ip_version', 'label_fingerprint', 'labels', 'network', 'prefix_length', 'project', 'purpose', 'self_link']
+          'providedAttributes' => ['address', 'address_type', 'creation_timestamp', 'description', 'ip_version', 'label_fingerprint', 'labels', 'network', 'prefix_length', 'project', 'purpose', 'self_link']
         }
       },
       attributes => {
         'google_compute_global_address_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1840,21 +2101,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_global_addressHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_global_address], Tuple[Optional[Google_compute_global_address]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_global_address]],
-        'update' => Callable[String, Optional[Google_compute_global_address]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_global_forwarding_rule => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'ip_address', 'ip_protocol', 'ip_version', 'name', 'port_range', 'project', 'region'],
-          'providedAttributes' => ['google_compute_global_forwarding_rule_id', 'description', 'ip_address', 'ip_protocol', 'ip_version', 'label_fingerprint', 'labels', 'port_range', 'project', 'region', 'self_link']
+          'providedAttributes' => ['description', 'ip_address', 'ip_protocol', 'ip_version', 'label_fingerprint', 'labels', 'port_range', 'project', 'region', 'self_link']
         }
       },
       attributes => {
         'google_compute_global_forwarding_rule_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1904,21 +2176,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_global_forwarding_ruleHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_global_forwarding_rule], Tuple[Optional[Google_compute_global_forwarding_rule]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_global_forwarding_rule]],
-        'update' => Callable[String, Optional[Google_compute_global_forwarding_rule]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_health_check => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['google_compute_health_check_id', 'check_interval_sec', 'creation_timestamp', 'description', 'healthy_threshold', 'http_health_check', 'https_health_check', 'project', 'self_link', 'ssl_health_check', 'tcp_health_check', 'timeout_sec', 'type', 'unhealthy_threshold']
+          'providedAttributes' => ['check_interval_sec', 'creation_timestamp', 'description', 'healthy_threshold', 'http_health_check', 'https_health_check', 'project', 'self_link', 'ssl_health_check', 'tcp_health_check', 'timeout_sec', 'type', 'unhealthy_threshold']
         }
       },
       attributes => {
         'google_compute_health_check_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -1979,10 +2262,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_health_checkHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_health_check], Tuple[Optional[Google_compute_health_check]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_health_check]],
-        'update' => Callable[String, Optional[Google_compute_health_check]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_health_check_http_health_check_35 => {
@@ -2077,11 +2366,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['google_compute_http_health_check_id', 'check_interval_sec', 'creation_timestamp', 'description', 'healthy_threshold', 'host', 'port', 'project', 'request_path', 'self_link', 'timeout_sec', 'unhealthy_threshold']
+          'providedAttributes' => ['check_interval_sec', 'creation_timestamp', 'description', 'healthy_threshold', 'host', 'port', 'project', 'request_path', 'self_link', 'timeout_sec', 'unhealthy_threshold']
         }
       },
       attributes => {
         'google_compute_http_health_check_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2134,21 +2428,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_http_health_checkHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_http_health_check], Tuple[Optional[Google_compute_http_health_check]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_http_health_check]],
-        'update' => Callable[String, Optional[Google_compute_http_health_check]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_https_health_check => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['google_compute_https_health_check_id', 'check_interval_sec', 'creation_timestamp', 'description', 'healthy_threshold', 'host', 'port', 'project', 'request_path', 'self_link', 'timeout_sec', 'unhealthy_threshold']
+          'providedAttributes' => ['check_interval_sec', 'creation_timestamp', 'description', 'healthy_threshold', 'host', 'port', 'project', 'request_path', 'self_link', 'timeout_sec', 'unhealthy_threshold']
         }
       },
       attributes => {
         'google_compute_https_health_check_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2201,21 +2506,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_https_health_checkHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_https_health_check], Tuple[Optional[Google_compute_https_health_check]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_https_health_check]],
-        'update' => Callable[String, Optional[Google_compute_https_health_check]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_image => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'family', 'licenses', 'name', 'project', 'raw_disk', 'source_disk'],
-          'providedAttributes' => ['google_compute_image_id', 'create_timeout', 'description', 'family', 'label_fingerprint', 'labels', 'licenses', 'project', 'raw_disk', 'self_link', 'source_disk']
+          'providedAttributes' => ['create_timeout', 'description', 'family', 'label_fingerprint', 'labels', 'licenses', 'project', 'raw_disk', 'self_link', 'source_disk']
         }
       },
       attributes => {
         'google_compute_image_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2264,10 +2580,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_imageHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_image], Tuple[Optional[Google_compute_image]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_image]],
-        'update' => Callable[String, Optional[Google_compute_image]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_image_raw_disk_39 => {
@@ -2287,11 +2609,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['boot_disk', 'can_ip_forward', 'description', 'disk', 'guest_accelerator', 'metadata_startup_script', 'name', 'network', 'network_interface', 'project', 'scratch_disk', 'zone'],
-          'providedAttributes' => ['google_compute_instance_id', 'allow_stopping_for_update', 'attached_disk', 'can_ip_forward', 'cpu_platform', 'create_timeout', 'deletion_protection', 'description', 'disk', 'guest_accelerator', 'instance_id', 'label_fingerprint', 'labels', 'metadata', 'metadata_fingerprint', 'metadata_startup_script', 'min_cpu_platform', 'network', 'project', 'scheduling', 'scratch_disk', 'self_link', 'service_account', 'tags', 'tags_fingerprint', 'zone']
+          'providedAttributes' => ['allow_stopping_for_update', 'attached_disk', 'can_ip_forward', 'cpu_platform', 'create_timeout', 'deletion_protection', 'description', 'disk', 'guest_accelerator', 'instance_id', 'label_fingerprint', 'labels', 'metadata', 'metadata_fingerprint', 'metadata_startup_script', 'min_cpu_platform', 'network', 'project', 'scheduling', 'scratch_disk', 'self_link', 'service_account', 'tags', 'tags_fingerprint', 'zone']
         }
       },
       attributes => {
         'google_compute_instance_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2403,10 +2730,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_instanceHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_instance], Tuple[Optional[Google_compute_instance]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_instance]],
-        'update' => Callable[String, Optional[Google_compute_instance]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_instance_attached_disk_40 => {
@@ -2518,11 +2851,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['boot_disk', 'can_ip_forward', 'description', 'guest_accelerator', 'metadata_startup_script', 'name', 'network_interface', 'project', 'scratch_disk', 'source_instance_template', 'zone'],
-          'providedAttributes' => ['google_compute_instance_from_template_id', 'allow_stopping_for_update', 'attached_disk', 'boot_disk', 'can_ip_forward', 'cpu_platform', 'deletion_protection', 'description', 'guest_accelerator', 'instance_id', 'label_fingerprint', 'labels', 'machine_type', 'metadata', 'metadata_fingerprint', 'metadata_startup_script', 'min_cpu_platform', 'network_interface', 'project', 'scheduling', 'scratch_disk', 'self_link', 'service_account', 'tags', 'tags_fingerprint', 'zone']
+          'providedAttributes' => ['allow_stopping_for_update', 'attached_disk', 'boot_disk', 'can_ip_forward', 'cpu_platform', 'deletion_protection', 'description', 'guest_accelerator', 'instance_id', 'label_fingerprint', 'labels', 'machine_type', 'metadata', 'metadata_fingerprint', 'metadata_startup_script', 'min_cpu_platform', 'network_interface', 'project', 'scheduling', 'scratch_disk', 'self_link', 'service_account', 'tags', 'tags_fingerprint', 'zone']
         }
       },
       attributes => {
         'google_compute_instance_from_template_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2632,10 +2970,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_instance_from_templateHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_instance_from_template], Tuple[Optional[Google_compute_instance_from_template]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_instance_from_template]],
-        'update' => Callable[String, Optional[Google_compute_instance_from_template]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_instance_from_template_attached_disk_52 => {
@@ -2811,11 +3155,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'network', 'project', 'zone'],
-          'providedAttributes' => ['google_compute_instance_group_id', 'description', 'instances', 'named_port', 'network', 'project', 'self_link', 'size', 'zone']
+          'providedAttributes' => ['description', 'instances', 'named_port', 'network', 'project', 'self_link', 'size', 'zone']
         }
       },
       attributes => {
         'google_compute_instance_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2856,21 +3205,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_instance_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_instance_group], Tuple[Optional[Google_compute_instance_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_instance_group]],
-        'update' => Callable[String, Optional[Google_compute_instance_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_instance_group_manager => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['base_instance_name', 'description', 'name', 'project', 'zone'],
-          'providedAttributes' => ['google_compute_instance_group_manager_id', 'auto_healing_policies', 'description', 'fingerprint', 'instance_group', 'instance_template', 'named_port', 'project', 'rolling_update_policy', 'self_link', 'target_pools', 'target_size', 'update_strategy', 'version', 'wait_for_instances', 'zone']
+          'providedAttributes' => ['auto_healing_policies', 'description', 'fingerprint', 'instance_group', 'instance_template', 'named_port', 'project', 'rolling_update_policy', 'self_link', 'target_pools', 'target_size', 'update_strategy', 'version', 'wait_for_instances', 'zone']
         }
       },
       attributes => {
         'google_compute_instance_group_manager_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -2940,10 +3300,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_instance_group_managerHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_instance_group_manager], Tuple[Optional[Google_compute_instance_group_manager]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_instance_group_manager]],
-        'update' => Callable[String, Optional[Google_compute_instance_group_manager]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_instance_group_manager_auto_healing_policies_63 => {
@@ -3141,11 +3507,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['automatic_restart', 'can_ip_forward', 'description', 'disk', 'guest_accelerator', 'instance_description', 'labels', 'machine_type', 'metadata', 'metadata_startup_script', 'min_cpu_platform', 'name', 'name_prefix', 'network_interface', 'on_host_maintenance', 'project', 'region', 'scheduling', 'service_account', 'tags'],
-          'providedAttributes' => ['google_compute_instance_template_id', 'automatic_restart', 'can_ip_forward', 'description', 'guest_accelerator', 'instance_description', 'labels', 'metadata', 'metadata_fingerprint', 'metadata_startup_script', 'min_cpu_platform', 'name', 'name_prefix', 'network_interface', 'on_host_maintenance', 'project', 'region', 'scheduling', 'self_link', 'service_account', 'tags', 'tags_fingerprint']
+          'providedAttributes' => ['automatic_restart', 'can_ip_forward', 'description', 'guest_accelerator', 'instance_description', 'labels', 'metadata', 'metadata_fingerprint', 'metadata_startup_script', 'min_cpu_platform', 'name', 'name_prefix', 'network_interface', 'on_host_maintenance', 'project', 'region', 'scheduling', 'self_link', 'service_account', 'tags', 'tags_fingerprint']
         }
       },
       attributes => {
         'google_compute_instance_template_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -3239,10 +3610,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_instance_templateHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_instance_template], Tuple[Optional[Google_compute_instance_template]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_instance_template]],
-        'update' => Callable[String, Optional[Google_compute_instance_template]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_instance_template_disk_68 => {
@@ -3397,11 +3774,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'interconnect', 'name', 'project', 'region', 'router'],
-          'providedAttributes' => ['google_compute_interconnect_attachment_id', 'cloud_router_ip_address', 'creation_timestamp', 'customer_router_ip_address', 'description', 'google_reference_id', 'private_interconnect_info', 'project', 'region', 'self_link']
+          'providedAttributes' => ['cloud_router_ip_address', 'creation_timestamp', 'customer_router_ip_address', 'description', 'google_reference_id', 'private_interconnect_info', 'project', 'region', 'self_link']
         }
       },
       attributes => {
         'google_compute_interconnect_attachment_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -3448,10 +3830,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_interconnect_attachmentHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_interconnect_attachment], Tuple[Optional[Google_compute_interconnect_attachment]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_interconnect_attachment]],
-        'update' => Callable[String, Optional[Google_compute_interconnect_attachment]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_interconnect_attachment_private_interconnect_info_76 => {
@@ -3466,11 +3854,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['auto_create_subnetworks', 'description', 'ipv4_range', 'name', 'project'],
-          'providedAttributes' => ['google_compute_network_id', 'auto_create_subnetworks', 'description', 'gateway_ipv4', 'ipv4_range', 'project', 'routing_mode', 'self_link']
+          'providedAttributes' => ['auto_create_subnetworks', 'description', 'gateway_ipv4', 'ipv4_range', 'project', 'routing_mode', 'self_link']
         }
       },
       attributes => {
         'google_compute_network_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -3507,21 +3900,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_networkHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_network], Tuple[Optional[Google_compute_network]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_network]],
-        'update' => Callable[String, Optional[Google_compute_network]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_network_peering => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['auto_create_routes', 'name', 'network', 'peer_network'],
-          'providedAttributes' => ['google_compute_network_peering_id', 'auto_create_routes', 'state', 'state_details']
+          'providedAttributes' => ['auto_create_routes', 'state', 'state_details']
         }
       },
       attributes => {
         'google_compute_network_peering_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -3544,21 +3948,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_network_peeringHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_network_peering], Tuple[Optional[Google_compute_network_peering]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_network_peering]],
-        'update' => Callable[String, Optional[Google_compute_network_peering]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_project_metadata => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project'],
-          'providedAttributes' => ['google_compute_project_metadata_id', 'project']
+          'providedAttributes' => ['project']
         }
       },
       attributes => {
         'google_compute_project_metadata_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -3571,21 +3986,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_project_metadataHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_project_metadata], Tuple[Optional[Google_compute_project_metadata]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_project_metadata]],
-        'update' => Callable[String, Optional[Google_compute_project_metadata]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_project_metadata_item => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['key', 'project'],
-          'providedAttributes' => ['google_compute_project_metadata_item_id', 'project']
+          'providedAttributes' => ['project']
         }
       },
       attributes => {
         'google_compute_project_metadata_item_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -3599,21 +4025,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_project_metadata_itemHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_project_metadata_item], Tuple[Optional[Google_compute_project_metadata_item]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_project_metadata_item]],
-        'update' => Callable[String, Optional[Google_compute_project_metadata_item]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_region_autoscaler => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project', 'region'],
-          'providedAttributes' => ['google_compute_region_autoscaler_id', 'creation_timestamp', 'description', 'project', 'region', 'self_link']
+          'providedAttributes' => ['creation_timestamp', 'description', 'project', 'region', 'self_link']
         }
       },
       attributes => {
         'google_compute_region_autoscaler_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -3644,10 +4081,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_region_autoscalerHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_region_autoscaler], Tuple[Optional[Google_compute_region_autoscaler]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_region_autoscaler]],
-        'update' => Callable[String, Optional[Google_compute_region_autoscaler]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_region_autoscaler_autoscaling_policy_77 => {
@@ -3693,11 +4136,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project', 'region'],
-          'providedAttributes' => ['google_compute_region_backend_service_id', 'backend', 'connection_draining_timeout_sec', 'description', 'fingerprint', 'project', 'protocol', 'region', 'self_link', 'session_affinity', 'timeout_sec']
+          'providedAttributes' => ['backend', 'connection_draining_timeout_sec', 'description', 'fingerprint', 'project', 'protocol', 'region', 'self_link', 'session_affinity', 'timeout_sec']
         }
       },
       attributes => {
         'google_compute_region_backend_service_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -3747,10 +4195,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_region_backend_serviceHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_region_backend_service], Tuple[Optional[Google_compute_region_backend_service]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_region_backend_service]],
-        'update' => Callable[String, Optional[Google_compute_region_backend_service]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_region_backend_service_backend_81 => {
@@ -3769,11 +4223,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'disk_encryption_key', 'name', 'project', 'region', 'replica_zones', 'snapshot', 'source_snapshot_encryption_key', 'type'],
-          'providedAttributes' => ['google_compute_region_disk_id', 'creation_timestamp', 'description', 'disk_encryption_key', 'label_fingerprint', 'labels', 'last_attach_timestamp', 'last_detach_timestamp', 'project', 'region', 'self_link', 'size', 'snapshot', 'source_snapshot_encryption_key', 'source_snapshot_id', 'type', 'users']
+          'providedAttributes' => ['creation_timestamp', 'description', 'disk_encryption_key', 'label_fingerprint', 'labels', 'last_attach_timestamp', 'last_detach_timestamp', 'project', 'region', 'self_link', 'size', 'snapshot', 'source_snapshot_encryption_key', 'source_snapshot_id', 'type', 'users']
         }
       },
       attributes => {
         'google_compute_region_disk_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -3847,10 +4306,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_region_diskHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_region_disk], Tuple[Optional[Google_compute_region_disk]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_region_disk]],
-        'update' => Callable[String, Optional[Google_compute_region_disk]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_region_disk_disk_encryption_key_82 => {
@@ -3881,11 +4346,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['base_instance_name', 'description', 'distribution_policy_zones', 'name', 'project', 'region'],
-          'providedAttributes' => ['google_compute_region_instance_group_manager_id', 'auto_healing_policies', 'description', 'distribution_policy_zones', 'fingerprint', 'instance_group', 'instance_template', 'named_port', 'project', 'rolling_update_policy', 'self_link', 'target_pools', 'target_size', 'update_strategy', 'version', 'wait_for_instances']
+          'providedAttributes' => ['auto_healing_policies', 'description', 'distribution_policy_zones', 'fingerprint', 'instance_group', 'instance_template', 'named_port', 'project', 'rolling_update_policy', 'self_link', 'target_pools', 'target_size', 'update_strategy', 'version', 'wait_for_instances']
         }
       },
       attributes => {
         'google_compute_region_instance_group_manager_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -3956,10 +4426,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_region_instance_group_managerHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_region_instance_group_manager], Tuple[Optional[Google_compute_region_instance_group_manager]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_region_instance_group_manager]],
-        'update' => Callable[String, Optional[Google_compute_region_instance_group_manager]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_region_instance_group_manager_auto_healing_policies_84 => {
@@ -4026,11 +4502,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'dest_range', 'name', 'network', 'next_hop_gateway', 'next_hop_instance', 'next_hop_instance_zone', 'next_hop_ip', 'next_hop_vpn_tunnel', 'priority', 'project', 'tags'],
-          'providedAttributes' => ['google_compute_route_id', 'description', 'next_hop_gateway', 'next_hop_instance', 'next_hop_instance_zone', 'next_hop_ip', 'next_hop_network', 'next_hop_vpn_tunnel', 'priority', 'project', 'self_link', 'tags']
+          'providedAttributes' => ['description', 'next_hop_gateway', 'next_hop_instance', 'next_hop_instance_zone', 'next_hop_ip', 'next_hop_network', 'next_hop_vpn_tunnel', 'priority', 'project', 'self_link', 'tags']
         }
       },
       attributes => {
         'google_compute_route_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -4085,21 +4566,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_routeHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_route], Tuple[Optional[Google_compute_route]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_route]],
-        'update' => Callable[String, Optional[Google_compute_route]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_router => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'network', 'project', 'region'],
-          'providedAttributes' => ['google_compute_router_id', 'bgp', 'creation_timestamp', 'description', 'project', 'region', 'self_link']
+          'providedAttributes' => ['bgp', 'creation_timestamp', 'description', 'project', 'region', 'self_link']
         }
       },
       attributes => {
         'google_compute_router_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -4133,10 +4625,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_routerHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_router], Tuple[Optional[Google_compute_router]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_router]],
-        'update' => Callable[String, Optional[Google_compute_router]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_router_bgp_89 => {
@@ -4172,11 +4670,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['ip_range', 'name', 'project', 'region', 'router', 'vpn_tunnel'],
-          'providedAttributes' => ['google_compute_router_interface_id', 'ip_range', 'project', 'region']
+          'providedAttributes' => ['ip_range', 'project', 'region']
         }
       },
       attributes => {
         'google_compute_router_interface_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -4199,21 +4702,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_router_interfaceHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_router_interface], Tuple[Optional[Google_compute_router_interface]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_router_interface]],
-        'update' => Callable[String, Optional[Google_compute_router_interface]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_router_nat => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['icmp_idle_timeout_sec', 'min_ports_per_vm', 'name', 'nat_ip_allocate_option', 'nat_ips', 'project', 'region', 'router', 'source_subnetwork_ip_ranges_to_nat', 'subnetwork', 'tcp_established_idle_timeout_sec', 'tcp_transitory_idle_timeout_sec', 'udp_idle_timeout_sec'],
-          'providedAttributes' => ['google_compute_router_nat_id', 'icmp_idle_timeout_sec', 'min_ports_per_vm', 'nat_ips', 'project', 'region', 'source_subnetwork_ip_ranges_to_nat', 'subnetwork', 'tcp_established_idle_timeout_sec', 'tcp_transitory_idle_timeout_sec', 'udp_idle_timeout_sec']
+          'providedAttributes' => ['icmp_idle_timeout_sec', 'min_ports_per_vm', 'nat_ips', 'project', 'region', 'source_subnetwork_ip_ranges_to_nat', 'subnetwork', 'tcp_established_idle_timeout_sec', 'tcp_transitory_idle_timeout_sec', 'udp_idle_timeout_sec']
         }
       },
       attributes => {
         'google_compute_router_nat_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -4264,10 +4778,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_router_natHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_router_nat], Tuple[Optional[Google_compute_router_nat]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_router_nat]],
-        'update' => Callable[String, Optional[Google_compute_router_nat]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_router_nat_subnetwork_91 => {
@@ -4287,11 +4807,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['advertised_route_priority', 'interface', 'name', 'peer_asn', 'peer_ip_address', 'project', 'region', 'router'],
-          'providedAttributes' => ['google_compute_router_peer_id', 'advertised_route_priority', 'ip_address', 'peer_ip_address', 'project', 'region']
+          'providedAttributes' => ['advertised_route_priority', 'ip_address', 'peer_ip_address', 'project', 'region']
         }
       },
       attributes => {
         'google_compute_router_peer_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -4323,21 +4848,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_router_peerHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_router_peer], Tuple[Optional[Google_compute_router_peer]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_router_peer]],
-        'update' => Callable[String, Optional[Google_compute_router_peer]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_security_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['google_compute_security_policy_id', 'description', 'fingerprint', 'project', 'rule', 'self_link']
+          'providedAttributes' => ['description', 'fingerprint', 'project', 'rule', 'self_link']
         }
       },
       attributes => {
         'google_compute_security_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -4366,10 +4902,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_security_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_security_policy], Tuple[Optional[Google_compute_security_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_security_policy]],
-        'update' => Callable[String, Optional[Google_compute_security_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_security_policy_rule_92 => {
@@ -4401,12 +4943,16 @@ type TerraformGoogle = TypeSet[{
     Google_compute_shared_vpc_host_project => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['project'],
-          'providedAttributes' => ['google_compute_shared_vpc_host_project_id']
+          'immutableAttributes' => ['project']
         }
       },
       attributes => {
         'google_compute_shared_vpc_host_project_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -4415,21 +4961,31 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_shared_vpc_host_projectHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_shared_vpc_host_project], Tuple[Optional[Google_compute_shared_vpc_host_project]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_shared_vpc_host_project]],
-        'update' => Callable[String, Optional[Google_compute_shared_vpc_host_project]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_shared_vpc_service_project => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['host_project', 'service_project'],
-          'providedAttributes' => ['google_compute_shared_vpc_service_project_id']
+          'immutableAttributes' => ['host_project', 'service_project']
         }
       },
       attributes => {
         'google_compute_shared_vpc_service_project_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -4439,21 +4995,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_shared_vpc_service_projectHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_shared_vpc_service_project], Tuple[Optional[Google_compute_shared_vpc_service_project]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_shared_vpc_service_project]],
-        'update' => Callable[String, Optional[Google_compute_shared_vpc_service_project]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_snapshot => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'project', 'source_disk', 'zone'],
-          'providedAttributes' => ['google_compute_snapshot_id', 'creation_timestamp', 'description', 'disk_size_gb', 'label_fingerprint', 'labels', 'licenses', 'project', 'self_link', 'snapshot_encryption_key', 'snapshot_encryption_key_raw', 'snapshot_encryption_key_sha256', 'snapshot_id', 'source_disk_encryption_key', 'source_disk_encryption_key_raw', 'source_disk_encryption_key_sha256', 'source_disk_link', 'storage_bytes', 'zone']
+          'providedAttributes' => ['creation_timestamp', 'description', 'disk_size_gb', 'label_fingerprint', 'labels', 'licenses', 'project', 'self_link', 'snapshot_encryption_key', 'snapshot_encryption_key_raw', 'snapshot_encryption_key_sha256', 'snapshot_id', 'source_disk_encryption_key', 'source_disk_encryption_key_raw', 'source_disk_encryption_key_sha256', 'source_disk_link', 'storage_bytes', 'zone']
         }
       },
       attributes => {
         'google_compute_snapshot_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -4535,10 +5102,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_snapshotHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_snapshot], Tuple[Optional[Google_compute_snapshot]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_snapshot]],
-        'update' => Callable[String, Optional[Google_compute_snapshot]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_snapshot_snapshot_encryption_key_95 => {
@@ -4565,11 +5138,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['certificate', 'description', 'name', 'name_prefix', 'private_key', 'project'],
-          'providedAttributes' => ['google_compute_ssl_certificate_id', 'certificate_id', 'creation_timestamp', 'description', 'name', 'name_prefix', 'project', 'self_link']
+          'providedAttributes' => ['certificate_id', 'creation_timestamp', 'description', 'name', 'name_prefix', 'project', 'self_link']
         }
       },
       attributes => {
         'google_compute_ssl_certificate_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -4607,21 +5185,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_ssl_certificateHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_ssl_certificate], Tuple[Optional[Google_compute_ssl_certificate]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_ssl_certificate]],
-        'update' => Callable[String, Optional[Google_compute_ssl_certificate]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_ssl_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'project'],
-          'providedAttributes' => ['google_compute_ssl_policy_id', 'creation_timestamp', 'custom_features', 'description', 'enabled_features', 'fingerprint', 'min_tls_version', 'profile', 'project', 'self_link']
+          'providedAttributes' => ['creation_timestamp', 'custom_features', 'description', 'enabled_features', 'fingerprint', 'min_tls_version', 'profile', 'project', 'self_link']
         }
       },
       attributes => {
         'google_compute_ssl_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -4666,21 +5255,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_ssl_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_ssl_policy], Tuple[Optional[Google_compute_ssl_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_ssl_policy]],
-        'update' => Callable[String, Optional[Google_compute_ssl_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_subnetwork => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'network', 'project', 'region'],
-          'providedAttributes' => ['google_compute_subnetwork_id', 'creation_timestamp', 'description', 'enable_flow_logs', 'fingerprint', 'gateway_address', 'private_ip_google_access', 'project', 'region', 'secondary_ip_range', 'self_link']
+          'providedAttributes' => ['creation_timestamp', 'description', 'enable_flow_logs', 'fingerprint', 'gateway_address', 'private_ip_google_access', 'project', 'region', 'secondary_ip_range', 'self_link']
         }
       },
       attributes => {
         'google_compute_subnetwork_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -4731,21 +5331,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_subnetworkHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_subnetwork], Tuple[Optional[Google_compute_subnetwork]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_subnetwork]],
-        'update' => Callable[String, Optional[Google_compute_subnetwork]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_subnetwork_iam_binding => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project', 'region', 'role', 'subnetwork'],
-          'providedAttributes' => ['google_compute_subnetwork_iam_binding_id', 'etag', 'project', 'region']
+          'providedAttributes' => ['etag', 'project', 'region']
         }
       },
       attributes => {
         'google_compute_subnetwork_iam_binding_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -4768,21 +5379,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_subnetwork_iam_bindingHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_subnetwork_iam_binding], Tuple[Optional[Google_compute_subnetwork_iam_binding]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_subnetwork_iam_binding]],
-        'update' => Callable[String, Optional[Google_compute_subnetwork_iam_binding]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_subnetwork_iam_member => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['member', 'project', 'region', 'role', 'subnetwork'],
-          'providedAttributes' => ['google_compute_subnetwork_iam_member_id', 'etag', 'project', 'region']
+          'providedAttributes' => ['etag', 'project', 'region']
         }
       },
       attributes => {
         'google_compute_subnetwork_iam_member_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -4805,21 +5427,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_subnetwork_iam_memberHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_subnetwork_iam_member], Tuple[Optional[Google_compute_subnetwork_iam_member]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_subnetwork_iam_member]],
-        'update' => Callable[String, Optional[Google_compute_subnetwork_iam_member]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_subnetwork_iam_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project', 'region', 'subnetwork'],
-          'providedAttributes' => ['google_compute_subnetwork_iam_policy_id', 'etag', 'project', 'region']
+          'providedAttributes' => ['etag', 'project', 'region']
         }
       },
       attributes => {
         'google_compute_subnetwork_iam_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -4841,10 +5474,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_subnetwork_iam_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_subnetwork_iam_policy], Tuple[Optional[Google_compute_subnetwork_iam_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_subnetwork_iam_policy]],
-        'update' => Callable[String, Optional[Google_compute_subnetwork_iam_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_subnetwork_secondary_ip_range_97 => {
@@ -4857,11 +5496,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'project'],
-          'providedAttributes' => ['google_compute_target_http_proxy_id', 'creation_timestamp', 'description', 'project', 'proxy_id', 'self_link']
+          'providedAttributes' => ['creation_timestamp', 'description', 'project', 'proxy_id', 'self_link']
         }
       },
       attributes => {
         'google_compute_target_http_proxy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -4891,21 +5535,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_target_http_proxyHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_target_http_proxy], Tuple[Optional[Google_compute_target_http_proxy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_target_http_proxy]],
-        'update' => Callable[String, Optional[Google_compute_target_http_proxy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_target_https_proxy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'project'],
-          'providedAttributes' => ['google_compute_target_https_proxy_id', 'creation_timestamp', 'description', 'project', 'proxy_id', 'quic_override', 'self_link', 'ssl_policy']
+          'providedAttributes' => ['creation_timestamp', 'description', 'project', 'proxy_id', 'quic_override', 'self_link', 'ssl_policy']
         }
       },
       attributes => {
         'google_compute_target_https_proxy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -4944,21 +5599,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_target_https_proxyHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_target_https_proxy], Tuple[Optional[Google_compute_target_https_proxy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_target_https_proxy]],
-        'update' => Callable[String, Optional[Google_compute_target_https_proxy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_target_pool => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'failover_ratio', 'name', 'project', 'region', 'session_affinity'],
-          'providedAttributes' => ['google_compute_target_pool_id', 'backup_pool', 'description', 'failover_ratio', 'health_checks', 'instances', 'project', 'region', 'self_link', 'session_affinity']
+          'providedAttributes' => ['backup_pool', 'description', 'failover_ratio', 'health_checks', 'instances', 'project', 'region', 'self_link', 'session_affinity']
         }
       },
       attributes => {
         'google_compute_target_pool_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -5003,21 +5669,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_target_poolHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_target_pool], Tuple[Optional[Google_compute_target_pool]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_target_pool]],
-        'update' => Callable[String, Optional[Google_compute_target_pool]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_target_ssl_proxy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'project'],
-          'providedAttributes' => ['google_compute_target_ssl_proxy_id', 'creation_timestamp', 'description', 'project', 'proxy_header', 'proxy_id', 'self_link', 'ssl_policy']
+          'providedAttributes' => ['creation_timestamp', 'description', 'project', 'proxy_header', 'proxy_id', 'self_link', 'ssl_policy']
         }
       },
       attributes => {
         'google_compute_target_ssl_proxy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -5056,21 +5733,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_target_ssl_proxyHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_target_ssl_proxy], Tuple[Optional[Google_compute_target_ssl_proxy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_target_ssl_proxy]],
-        'update' => Callable[String, Optional[Google_compute_target_ssl_proxy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_target_tcp_proxy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'project'],
-          'providedAttributes' => ['google_compute_target_tcp_proxy_id', 'creation_timestamp', 'description', 'project', 'proxy_header', 'proxy_id', 'self_link']
+          'providedAttributes' => ['creation_timestamp', 'description', 'project', 'proxy_header', 'proxy_id', 'self_link']
         }
       },
       attributes => {
         'google_compute_target_tcp_proxy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -5104,21 +5792,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_target_tcp_proxyHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_target_tcp_proxy], Tuple[Optional[Google_compute_target_tcp_proxy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_target_tcp_proxy]],
-        'update' => Callable[String, Optional[Google_compute_target_tcp_proxy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_url_map => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['google_compute_url_map_id', 'description', 'fingerprint', 'host_rule', 'map_id', 'path_matcher', 'project', 'self_link', 'test']
+          'providedAttributes' => ['description', 'fingerprint', 'host_rule', 'map_id', 'path_matcher', 'project', 'self_link', 'test']
         }
       },
       attributes => {
         'google_compute_url_map_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -5160,10 +5859,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_url_mapHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_url_map], Tuple[Optional[Google_compute_url_map]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_url_map]],
-        'update' => Callable[String, Optional[Google_compute_url_map]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_url_map_host_rule_98 => {
@@ -5211,11 +5916,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'network', 'project', 'region'],
-          'providedAttributes' => ['google_compute_vpn_gateway_id', 'creation_timestamp', 'description', 'project', 'region', 'self_link']
+          'providedAttributes' => ['creation_timestamp', 'description', 'project', 'region', 'self_link']
         }
       },
       attributes => {
         'google_compute_vpn_gateway_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -5245,21 +5955,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_vpn_gatewayHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_vpn_gateway], Tuple[Optional[Google_compute_vpn_gateway]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_vpn_gateway]],
-        'update' => Callable[String, Optional[Google_compute_vpn_gateway]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_compute_vpn_tunnel => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'ike_version', 'local_traffic_selector', 'name', 'peer_ip', 'project', 'region', 'remote_traffic_selector', 'router', 'shared_secret', 'target_vpn_gateway'],
-          'providedAttributes' => ['google_compute_vpn_tunnel_id', 'creation_timestamp', 'description', 'detailed_status', 'ike_version', 'label_fingerprint', 'labels', 'local_traffic_selector', 'project', 'region', 'remote_traffic_selector', 'router', 'self_link', 'shared_secret_hash']
+          'providedAttributes' => ['creation_timestamp', 'description', 'detailed_status', 'ike_version', 'label_fingerprint', 'labels', 'local_traffic_selector', 'project', 'region', 'remote_traffic_selector', 'router', 'self_link', 'shared_secret_hash']
         }
       },
       attributes => {
         'google_compute_vpn_tunnel_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -5323,21 +6044,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_compute_vpn_tunnelHandler => {
       functions => {
-        'create' => Callable[Optional[Google_compute_vpn_tunnel], Tuple[Optional[Google_compute_vpn_tunnel]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_compute_vpn_tunnel]],
-        'update' => Callable[String, Optional[Google_compute_vpn_tunnel]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_container_analysis_note => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['google_container_analysis_note_id', 'project']
+          'providedAttributes' => ['project']
         }
       },
       attributes => {
         'google_container_analysis_note_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -5351,10 +6083,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_container_analysis_noteHandler => {
       functions => {
-        'create' => Callable[Optional[Google_container_analysis_note], Tuple[Optional[Google_container_analysis_note]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_container_analysis_note]],
-        'update' => Callable[String, Optional[Google_container_analysis_note]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_container_analysis_note_attestation_authority_102 => {
@@ -5371,11 +6109,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['cluster_ipv4_cidr', 'description', 'enable_kubernetes_alpha', 'enable_tpu', 'initial_node_count', 'ip_allocation_policy', 'master_ipv4_cidr_block', 'name', 'network', 'node_config', 'node_pool', 'private_cluster', 'project', 'region', 'subnetwork', 'zone'],
-          'providedAttributes' => ['google_container_cluster_id', 'additional_zones', 'addons_config', 'cluster_autoscaling', 'cluster_ipv4_cidr', 'description', 'enable_binary_authorization', 'enable_kubernetes_alpha', 'enable_legacy_abac', 'enable_tpu', 'endpoint', 'initial_node_count', 'instance_group_urls', 'ip_allocation_policy', 'logging_service', 'maintenance_policy', 'master_auth', 'master_authorized_networks_config', 'master_ipv4_cidr_block', 'master_version', 'min_master_version', 'monitoring_service', 'network', 'network_policy', 'node_config', 'node_pool', 'node_version', 'pod_security_policy_config', 'private_cluster', 'private_cluster_config', 'project', 'region', 'remove_default_node_pool', 'resource_labels', 'subnetwork', 'zone']
+          'providedAttributes' => ['additional_zones', 'addons_config', 'cluster_autoscaling', 'cluster_ipv4_cidr', 'description', 'enable_binary_authorization', 'enable_kubernetes_alpha', 'enable_legacy_abac', 'enable_tpu', 'endpoint', 'initial_node_count', 'instance_group_urls', 'ip_allocation_policy', 'logging_service', 'maintenance_policy', 'master_auth', 'master_authorized_networks_config', 'master_ipv4_cidr_block', 'master_version', 'min_master_version', 'monitoring_service', 'network', 'network_policy', 'node_config', 'node_pool', 'node_version', 'pod_security_policy_config', 'private_cluster', 'private_cluster_config', 'project', 'region', 'remove_default_node_pool', 'resource_labels', 'subnetwork', 'zone']
         }
       },
       attributes => {
         'google_container_cluster_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -5524,10 +6267,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_container_clusterHandler => {
       functions => {
-        'create' => Callable[Optional[Google_container_cluster], Tuple[Optional[Google_container_cluster]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_container_cluster]],
-        'update' => Callable[String, Optional[Google_container_cluster]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_container_cluster_addons_config_104 => {
@@ -5961,11 +6710,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['cluster', 'initial_node_count', 'max_pods_per_node', 'name', 'name_prefix', 'node_config', 'project', 'region', 'zone'],
-          'providedAttributes' => ['google_container_node_pool_id', 'autoscaling', 'initial_node_count', 'instance_group_urls', 'management', 'max_pods_per_node', 'name', 'name_prefix', 'node_config', 'node_count', 'project', 'region', 'version', 'zone']
+          'providedAttributes' => ['autoscaling', 'initial_node_count', 'instance_group_urls', 'management', 'max_pods_per_node', 'name', 'name_prefix', 'node_config', 'node_count', 'project', 'region', 'version', 'zone']
         }
       },
       attributes => {
         'google_container_node_pool_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -6026,10 +6780,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_container_node_poolHandler => {
       functions => {
-        'create' => Callable[Optional[Google_container_node_pool], Tuple[Optional[Google_container_node_pool]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_container_node_pool]],
-        'update' => Callable[String, Optional[Google_container_node_pool]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_container_node_pool_autoscaling_132 => {
@@ -6136,11 +6896,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['max_workers', 'name', 'on_delete', 'parameters', 'project', 'region', 'temp_gcs_location', 'template_gcs_path', 'zone'],
-          'providedAttributes' => ['google_dataflow_job_id', 'max_workers', 'on_delete', 'parameters', 'project', 'region', 'state', 'zone']
+          'providedAttributes' => ['max_workers', 'on_delete', 'parameters', 'project', 'region', 'state', 'zone']
         }
       },
       attributes => {
         'google_dataflow_job_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -6179,21 +6944,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_dataflow_jobHandler => {
       functions => {
-        'create' => Callable[Optional[Google_dataflow_job], Tuple[Optional[Google_dataflow_job]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_dataflow_job]],
-        'update' => Callable[String, Optional[Google_dataflow_job]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_dataproc_cluster => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project', 'region'],
-          'providedAttributes' => ['google_dataproc_cluster_id', 'cluster_config', 'labels', 'project', 'region']
+          'providedAttributes' => ['cluster_config', 'labels', 'project', 'region']
         }
       },
       attributes => {
         'google_dataproc_cluster_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -6218,10 +6994,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_dataproc_clusterHandler => {
       functions => {
-        'create' => Callable[Optional[Google_dataproc_cluster], Tuple[Optional[Google_dataproc_cluster]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_dataproc_cluster]],
-        'update' => Callable[String, Optional[Google_dataproc_cluster]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_dataproc_cluster_cluster_config_138 => {
@@ -6425,11 +7207,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['hadoop_config', 'hive_config', 'labels', 'pig_config', 'project', 'pyspark_config', 'region', 'scheduling', 'spark_config', 'sparksql_config'],
-          'providedAttributes' => ['google_dataproc_job_id', 'driver_controls_files_uri', 'driver_output_resource_uri', 'force_delete', 'hadoop_config', 'hive_config', 'labels', 'pig_config', 'project', 'pyspark_config', 'reference', 'region', 'scheduling', 'spark_config', 'sparksql_config', 'status']
+          'providedAttributes' => ['driver_controls_files_uri', 'driver_output_resource_uri', 'force_delete', 'hadoop_config', 'hive_config', 'labels', 'pig_config', 'project', 'pyspark_config', 'reference', 'region', 'scheduling', 'spark_config', 'sparksql_config', 'status']
         }
       },
       attributes => {
         'google_dataproc_job_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -6498,10 +7285,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_dataproc_jobHandler => {
       functions => {
-        'create' => Callable[Optional[Google_dataproc_job], Tuple[Optional[Google_dataproc_job]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_dataproc_job]],
-        'update' => Callable[String, Optional[Google_dataproc_job]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_dataproc_job_hadoop_config_148 => {
@@ -6786,11 +7579,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['dns_name', 'name', 'project'],
-          'providedAttributes' => ['google_dns_managed_zone_id', 'description', 'labels', 'name_servers', 'project']
+          'providedAttributes' => ['description', 'labels', 'name_servers', 'project']
         }
       },
       attributes => {
         'google_dns_managed_zone_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -6816,21 +7614,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_dns_managed_zoneHandler => {
       functions => {
-        'create' => Callable[Optional[Google_dns_managed_zone], Tuple[Optional[Google_dns_managed_zone]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_dns_managed_zone]],
-        'update' => Callable[String, Optional[Google_dns_managed_zone]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_dns_record_set => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['managed_zone', 'name', 'project'],
-          'providedAttributes' => ['google_dns_record_set_id', 'project']
+          'providedAttributes' => ['project']
         }
       },
       attributes => {
         'google_dns_record_set_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -6847,21 +7656,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_dns_record_setHandler => {
       functions => {
-        'create' => Callable[Optional[Google_dns_record_set], Tuple[Optional[Google_dns_record_set]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_dns_record_set]],
-        'update' => Callable[String, Optional[Google_dns_record_set]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_endpoints_service => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project', 'service_name'],
-          'providedAttributes' => ['google_endpoints_service_id', 'apis', 'config_id', 'dns_address', 'endpoints', 'grpc_config', 'openapi_config', 'project', 'protoc_output', 'protoc_output_base64']
+          'providedAttributes' => ['apis', 'config_id', 'dns_address', 'endpoints', 'grpc_config', 'openapi_config', 'project', 'protoc_output', 'protoc_output_base64']
         }
       },
       attributes => {
         'google_endpoints_service_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -6906,10 +7726,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_endpoints_serviceHandler => {
       functions => {
-        'create' => Callable[Optional[Google_endpoints_service], Tuple[Optional[Google_endpoints_service]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_endpoints_service]],
-        'update' => Callable[String, Optional[Google_endpoints_service]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_endpoints_service_apis_163 => {
@@ -6968,11 +7794,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['networks', 'project', 'tier', 'zone'],
-          'providedAttributes' => ['google_filestore_instance_id', 'create_time', 'description', 'etag', 'labels', 'project']
+          'providedAttributes' => ['create_time', 'description', 'etag', 'labels', 'project']
         }
       },
       attributes => {
         'google_filestore_instance_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7005,10 +7836,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_filestore_instanceHandler => {
       functions => {
-        'create' => Callable[Optional[Google_filestore_instance], Tuple[Optional[Google_filestore_instance]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_filestore_instance]],
-        'update' => Callable[String, Optional[Google_filestore_instance]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_filestore_instance_file_shares_166 => {
@@ -7034,11 +7871,16 @@ type TerraformGoogle = TypeSet[{
     Google_folder => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['google_folder_id', 'create_time', 'lifecycle_state', 'name']
+          'providedAttributes' => ['create_time', 'lifecycle_state', 'name']
         }
       },
       attributes => {
         'google_folder_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7060,21 +7902,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_folderHandler => {
       functions => {
-        'create' => Callable[Optional[Google_folder], Tuple[Optional[Google_folder]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_folder]],
-        'update' => Callable[String, Optional[Google_folder]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_folder_iam_binding => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['folder', 'role'],
-          'providedAttributes' => ['google_folder_iam_binding_id', 'etag']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {
         'google_folder_iam_binding_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7089,21 +7942,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_folder_iam_bindingHandler => {
       functions => {
-        'create' => Callable[Optional[Google_folder_iam_binding], Tuple[Optional[Google_folder_iam_binding]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_folder_iam_binding]],
-        'update' => Callable[String, Optional[Google_folder_iam_binding]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_folder_iam_member => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['folder', 'member', 'role'],
-          'providedAttributes' => ['google_folder_iam_member_id', 'etag']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {
         'google_folder_iam_member_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7118,21 +7982,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_folder_iam_memberHandler => {
       functions => {
-        'create' => Callable[Optional[Google_folder_iam_member], Tuple[Optional[Google_folder_iam_member]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_folder_iam_member]],
-        'update' => Callable[String, Optional[Google_folder_iam_member]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_folder_iam_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['folder'],
-          'providedAttributes' => ['google_folder_iam_policy_id', 'etag']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {
         'google_folder_iam_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7146,21 +8021,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_folder_iam_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Google_folder_iam_policy], Tuple[Optional[Google_folder_iam_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_folder_iam_policy]],
-        'update' => Callable[String, Optional[Google_folder_iam_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_folder_organization_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['constraint', 'folder'],
-          'providedAttributes' => ['google_folder_organization_policy_id', 'boolean_policy', 'etag', 'list_policy', 'restore_policy', 'update_time', 'version']
+          'providedAttributes' => ['boolean_policy', 'etag', 'list_policy', 'restore_policy', 'update_time', 'version']
         }
       },
       attributes => {
         'google_folder_organization_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7194,10 +8080,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_folder_organization_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Google_folder_organization_policy], Tuple[Optional[Google_folder_organization_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_folder_organization_policy]],
-        'update' => Callable[String, Optional[Google_folder_organization_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_folder_organization_policy_boolean_policy_168 => {
@@ -7254,11 +8146,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['key_ring', 'name'],
-          'providedAttributes' => ['google_kms_crypto_key_id', 'rotation_period', 'self_link']
+          'providedAttributes' => ['rotation_period', 'self_link']
         }
       },
       attributes => {
         'google_kms_crypto_key_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7276,21 +8173,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_kms_crypto_keyHandler => {
       functions => {
-        'create' => Callable[Optional[Google_kms_crypto_key], Tuple[Optional[Google_kms_crypto_key]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_kms_crypto_key]],
-        'update' => Callable[String, Optional[Google_kms_crypto_key]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_kms_crypto_key_iam_binding => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['crypto_key_id', 'role'],
-          'providedAttributes' => ['google_kms_crypto_key_iam_binding_id', 'etag']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {
         'google_kms_crypto_key_iam_binding_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7305,21 +8213,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_kms_crypto_key_iam_bindingHandler => {
       functions => {
-        'create' => Callable[Optional[Google_kms_crypto_key_iam_binding], Tuple[Optional[Google_kms_crypto_key_iam_binding]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_kms_crypto_key_iam_binding]],
-        'update' => Callable[String, Optional[Google_kms_crypto_key_iam_binding]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_kms_crypto_key_iam_member => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['crypto_key_id', 'member', 'role'],
-          'providedAttributes' => ['google_kms_crypto_key_iam_member_id', 'etag']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {
         'google_kms_crypto_key_iam_member_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7334,21 +8253,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_kms_crypto_key_iam_memberHandler => {
       functions => {
-        'create' => Callable[Optional[Google_kms_crypto_key_iam_member], Tuple[Optional[Google_kms_crypto_key_iam_member]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_kms_crypto_key_iam_member]],
-        'update' => Callable[String, Optional[Google_kms_crypto_key_iam_member]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_kms_key_ring => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'project'],
-          'providedAttributes' => ['google_kms_key_ring_id', 'project', 'self_link']
+          'providedAttributes' => ['project', 'self_link']
         }
       },
       attributes => {
         'google_kms_key_ring_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7366,21 +8296,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_kms_key_ringHandler => {
       functions => {
-        'create' => Callable[Optional[Google_kms_key_ring], Tuple[Optional[Google_kms_key_ring]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_kms_key_ring]],
-        'update' => Callable[String, Optional[Google_kms_key_ring]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_kms_key_ring_iam_binding => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['key_ring_id', 'role'],
-          'providedAttributes' => ['google_kms_key_ring_iam_binding_id', 'etag']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {
         'google_kms_key_ring_iam_binding_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7395,21 +8336,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_kms_key_ring_iam_bindingHandler => {
       functions => {
-        'create' => Callable[Optional[Google_kms_key_ring_iam_binding], Tuple[Optional[Google_kms_key_ring_iam_binding]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_kms_key_ring_iam_binding]],
-        'update' => Callable[String, Optional[Google_kms_key_ring_iam_binding]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_kms_key_ring_iam_member => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['key_ring_id', 'member', 'role'],
-          'providedAttributes' => ['google_kms_key_ring_iam_member_id', 'etag']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {
         'google_kms_key_ring_iam_member_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7424,21 +8376,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_kms_key_ring_iam_memberHandler => {
       functions => {
-        'create' => Callable[Optional[Google_kms_key_ring_iam_member], Tuple[Optional[Google_kms_key_ring_iam_member]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_kms_key_ring_iam_member]],
-        'update' => Callable[String, Optional[Google_kms_key_ring_iam_member]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_kms_key_ring_iam_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['key_ring_id'],
-          'providedAttributes' => ['google_kms_key_ring_iam_policy_id', 'etag']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {
         'google_kms_key_ring_iam_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7452,21 +8415,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_kms_key_ring_iam_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Google_kms_key_ring_iam_policy], Tuple[Optional[Google_kms_key_ring_iam_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_kms_key_ring_iam_policy]],
-        'update' => Callable[String, Optional[Google_kms_key_ring_iam_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_logging_billing_account_exclusion => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['billing_account', 'name'],
-          'providedAttributes' => ['google_logging_billing_account_exclusion_id', 'description', 'disabled']
+          'providedAttributes' => ['description', 'disabled']
         }
       },
       attributes => {
         'google_logging_billing_account_exclusion_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7485,21 +8459,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_logging_billing_account_exclusionHandler => {
       functions => {
-        'create' => Callable[Optional[Google_logging_billing_account_exclusion], Tuple[Optional[Google_logging_billing_account_exclusion]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_logging_billing_account_exclusion]],
-        'update' => Callable[String, Optional[Google_logging_billing_account_exclusion]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_logging_billing_account_sink => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['billing_account', 'name'],
-          'providedAttributes' => ['google_logging_billing_account_sink_id', 'filter', 'writer_identity']
+          'providedAttributes' => ['filter', 'writer_identity']
         }
       },
       attributes => {
         'google_logging_billing_account_sink_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7518,21 +8503,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_logging_billing_account_sinkHandler => {
       functions => {
-        'create' => Callable[Optional[Google_logging_billing_account_sink], Tuple[Optional[Google_logging_billing_account_sink]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_logging_billing_account_sink]],
-        'update' => Callable[String, Optional[Google_logging_billing_account_sink]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_logging_folder_exclusion => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['folder', 'name'],
-          'providedAttributes' => ['google_logging_folder_exclusion_id', 'description', 'disabled']
+          'providedAttributes' => ['description', 'disabled']
         }
       },
       attributes => {
         'google_logging_folder_exclusion_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7551,21 +8547,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_logging_folder_exclusionHandler => {
       functions => {
-        'create' => Callable[Optional[Google_logging_folder_exclusion], Tuple[Optional[Google_logging_folder_exclusion]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_logging_folder_exclusion]],
-        'update' => Callable[String, Optional[Google_logging_folder_exclusion]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_logging_folder_sink => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['folder', 'include_children', 'name'],
-          'providedAttributes' => ['google_logging_folder_sink_id', 'filter', 'include_children', 'writer_identity']
+          'providedAttributes' => ['filter', 'include_children', 'writer_identity']
         }
       },
       attributes => {
         'google_logging_folder_sink_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7588,21 +8595,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_logging_folder_sinkHandler => {
       functions => {
-        'create' => Callable[Optional[Google_logging_folder_sink], Tuple[Optional[Google_logging_folder_sink]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_logging_folder_sink]],
-        'update' => Callable[String, Optional[Google_logging_folder_sink]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_logging_organization_exclusion => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'org_id'],
-          'providedAttributes' => ['google_logging_organization_exclusion_id', 'description', 'disabled']
+          'providedAttributes' => ['description', 'disabled']
         }
       },
       attributes => {
         'google_logging_organization_exclusion_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7621,21 +8639,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_logging_organization_exclusionHandler => {
       functions => {
-        'create' => Callable[Optional[Google_logging_organization_exclusion], Tuple[Optional[Google_logging_organization_exclusion]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_logging_organization_exclusion]],
-        'update' => Callable[String, Optional[Google_logging_organization_exclusion]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_logging_organization_sink => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['include_children', 'name'],
-          'providedAttributes' => ['google_logging_organization_sink_id', 'filter', 'include_children', 'writer_identity']
+          'providedAttributes' => ['filter', 'include_children', 'writer_identity']
         }
       },
       attributes => {
         'google_logging_organization_sink_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7658,21 +8687,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_logging_organization_sinkHandler => {
       functions => {
-        'create' => Callable[Optional[Google_logging_organization_sink], Tuple[Optional[Google_logging_organization_sink]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_logging_organization_sink]],
-        'update' => Callable[String, Optional[Google_logging_organization_sink]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_logging_project_exclusion => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['google_logging_project_exclusion_id', 'description', 'disabled', 'project']
+          'providedAttributes' => ['description', 'disabled', 'project']
         }
       },
       attributes => {
         'google_logging_project_exclusion_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7694,21 +8734,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_logging_project_exclusionHandler => {
       functions => {
-        'create' => Callable[Optional[Google_logging_project_exclusion], Tuple[Optional[Google_logging_project_exclusion]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_logging_project_exclusion]],
-        'update' => Callable[String, Optional[Google_logging_project_exclusion]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_logging_project_sink => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project', 'unique_writer_identity'],
-          'providedAttributes' => ['google_logging_project_sink_id', 'filter', 'project', 'unique_writer_identity', 'writer_identity']
+          'providedAttributes' => ['filter', 'project', 'unique_writer_identity', 'writer_identity']
         }
       },
       attributes => {
         'google_logging_project_sink_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7734,21 +8785,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_logging_project_sinkHandler => {
       functions => {
-        'create' => Callable[Optional[Google_logging_project_sink], Tuple[Optional[Google_logging_project_sink]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_logging_project_sink]],
-        'update' => Callable[String, Optional[Google_logging_project_sink]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_monitoring_alert_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project'],
-          'providedAttributes' => ['google_monitoring_alert_policy_id', 'creation_record', 'labels', 'name', 'notification_channels', 'project']
+          'providedAttributes' => ['creation_record', 'labels', 'name', 'notification_channels', 'project']
         }
       },
       attributes => {
         'google_monitoring_alert_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7780,10 +8842,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_monitoring_alert_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Google_monitoring_alert_policy], Tuple[Optional[Google_monitoring_alert_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_monitoring_alert_policy]],
-        'update' => Callable[String, Optional[Google_monitoring_alert_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_monitoring_alert_policy_conditions_173 => {
@@ -7950,11 +9018,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project'],
-          'providedAttributes' => ['google_monitoring_group_id', 'is_cluster', 'name', 'parent_name', 'project']
+          'providedAttributes' => ['is_cluster', 'name', 'parent_name', 'project']
         }
       },
       attributes => {
         'google_monitoring_group_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -7980,21 +9053,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_monitoring_groupHandler => {
       functions => {
-        'create' => Callable[Optional[Google_monitoring_group], Tuple[Optional[Google_monitoring_group]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_monitoring_group]],
-        'update' => Callable[String, Optional[Google_monitoring_group]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_monitoring_notification_channel => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project'],
-          'providedAttributes' => ['google_monitoring_notification_channel_id', 'description', 'enabled', 'labels', 'name', 'project', 'user_labels', 'verification_status']
+          'providedAttributes' => ['description', 'enabled', 'labels', 'name', 'project', 'user_labels', 'verification_status']
         }
       },
       attributes => {
         'google_monitoring_notification_channel_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8032,21 +9116,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_monitoring_notification_channelHandler => {
       functions => {
-        'create' => Callable[Optional[Google_monitoring_notification_channel], Tuple[Optional[Google_monitoring_notification_channel]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_monitoring_notification_channel]],
-        'update' => Callable[String, Optional[Google_monitoring_notification_channel]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_monitoring_uptime_check_config => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project'],
-          'providedAttributes' => ['google_monitoring_uptime_check_config_id', 'content_matchers', 'http_check', 'internal_checkers', 'is_internal', 'monitored_resource', 'name', 'period', 'project', 'resource_group', 'selected_regions', 'tcp_check']
+          'providedAttributes' => ['content_matchers', 'http_check', 'internal_checkers', 'is_internal', 'monitored_resource', 'name', 'period', 'project', 'resource_group', 'selected_regions', 'tcp_check']
         }
       },
       attributes => {
         'google_monitoring_uptime_check_config_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8100,10 +9195,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_monitoring_uptime_check_configHandler => {
       functions => {
-        'create' => Callable[Optional[Google_monitoring_uptime_check_config], Tuple[Optional[Google_monitoring_uptime_check_config]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_monitoring_uptime_check_config]],
-        'update' => Callable[String, Optional[Google_monitoring_uptime_check_config]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_monitoring_uptime_check_config_content_matchers_182 => {
@@ -8205,11 +9306,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['org_id', 'role'],
-          'providedAttributes' => ['google_organization_iam_binding_id', 'etag']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {
         'google_organization_iam_binding_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8224,21 +9330,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_organization_iam_bindingHandler => {
       functions => {
-        'create' => Callable[Optional[Google_organization_iam_binding], Tuple[Optional[Google_organization_iam_binding]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_organization_iam_binding]],
-        'update' => Callable[String, Optional[Google_organization_iam_binding]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_organization_iam_custom_role => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['org_id', 'role_id'],
-          'providedAttributes' => ['google_organization_iam_custom_role_id', 'deleted', 'description', 'stage']
+          'providedAttributes' => ['deleted', 'description', 'stage']
         }
       },
       attributes => {
         'google_organization_iam_custom_role_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8262,21 +9379,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_organization_iam_custom_roleHandler => {
       functions => {
-        'create' => Callable[Optional[Google_organization_iam_custom_role], Tuple[Optional[Google_organization_iam_custom_role]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_organization_iam_custom_role]],
-        'update' => Callable[String, Optional[Google_organization_iam_custom_role]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_organization_iam_member => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['member', 'org_id', 'role'],
-          'providedAttributes' => ['google_organization_iam_member_id', 'etag']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {
         'google_organization_iam_member_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8291,21 +9419,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_organization_iam_memberHandler => {
       functions => {
-        'create' => Callable[Optional[Google_organization_iam_member], Tuple[Optional[Google_organization_iam_member]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_organization_iam_member]],
-        'update' => Callable[String, Optional[Google_organization_iam_member]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_organization_iam_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['org_id'],
-          'providedAttributes' => ['google_organization_iam_policy_id', 'etag']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {
         'google_organization_iam_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8319,21 +9458,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_organization_iam_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Google_organization_iam_policy], Tuple[Optional[Google_organization_iam_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_organization_iam_policy]],
-        'update' => Callable[String, Optional[Google_organization_iam_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_organization_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['constraint', 'org_id'],
-          'providedAttributes' => ['google_organization_policy_id', 'boolean_policy', 'etag', 'list_policy', 'restore_policy', 'update_time', 'version']
+          'providedAttributes' => ['boolean_policy', 'etag', 'list_policy', 'restore_policy', 'update_time', 'version']
         }
       },
       attributes => {
         'google_organization_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8367,10 +9517,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_organization_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Google_organization_policy], Tuple[Optional[Google_organization_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_organization_policy]],
-        'update' => Callable[String, Optional[Google_organization_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_organization_policy_boolean_policy_189 => {
@@ -8427,11 +9583,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project_id'],
-          'providedAttributes' => ['google_project_id', 'app_engine', 'auto_create_network', 'billing_account', 'folder_id', 'labels', 'number', 'org_id', 'policy_data', 'policy_etag', 'skip_delete']
+          'providedAttributes' => ['app_engine', 'auto_create_network', 'billing_account', 'folder_id', 'labels', 'number', 'org_id', 'policy_data', 'policy_etag', 'skip_delete']
         }
       },
       attributes => {
         'google_project_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8481,10 +9642,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_projectHandler => {
       functions => {
-        'create' => Callable[Optional[Google_project], Tuple[Optional[Google_project]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_project]],
-        'update' => Callable[String, Optional[Google_project]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_project_app_engine_194 => {
@@ -8559,11 +9726,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project', 'role'],
-          'providedAttributes' => ['google_project_iam_binding_id', 'etag', 'project']
+          'providedAttributes' => ['etag', 'project']
         }
       },
       attributes => {
         'google_project_iam_binding_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8581,21 +9753,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_project_iam_bindingHandler => {
       functions => {
-        'create' => Callable[Optional[Google_project_iam_binding], Tuple[Optional[Google_project_iam_binding]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_project_iam_binding]],
-        'update' => Callable[String, Optional[Google_project_iam_binding]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_project_iam_custom_role => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project', 'role_id'],
-          'providedAttributes' => ['google_project_iam_custom_role_id', 'deleted', 'description', 'project', 'stage']
+          'providedAttributes' => ['deleted', 'description', 'project', 'stage']
         }
       },
       attributes => {
         'google_project_iam_custom_role_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8622,21 +9805,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_project_iam_custom_roleHandler => {
       functions => {
-        'create' => Callable[Optional[Google_project_iam_custom_role], Tuple[Optional[Google_project_iam_custom_role]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_project_iam_custom_role]],
-        'update' => Callable[String, Optional[Google_project_iam_custom_role]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_project_iam_member => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['member', 'project', 'role'],
-          'providedAttributes' => ['google_project_iam_member_id', 'etag', 'project']
+          'providedAttributes' => ['etag', 'project']
         }
       },
       attributes => {
         'google_project_iam_member_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8654,21 +9848,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_project_iam_memberHandler => {
       functions => {
-        'create' => Callable[Optional[Google_project_iam_member], Tuple[Optional[Google_project_iam_member]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_project_iam_member]],
-        'update' => Callable[String, Optional[Google_project_iam_member]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_project_iam_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project'],
-          'providedAttributes' => ['google_project_iam_policy_id', 'authoritative', 'disable_project', 'etag', 'project', 'restore_policy']
+          'providedAttributes' => ['authoritative', 'disable_project', 'etag', 'project', 'restore_policy']
         }
       },
       attributes => {
         'google_project_iam_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8697,21 +9902,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_project_iam_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Google_project_iam_policy], Tuple[Optional[Google_project_iam_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_project_iam_policy]],
-        'update' => Callable[String, Optional[Google_project_iam_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_project_organization_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['constraint', 'project'],
-          'providedAttributes' => ['google_project_organization_policy_id', 'boolean_policy', 'etag', 'list_policy', 'restore_policy', 'update_time', 'version']
+          'providedAttributes' => ['boolean_policy', 'etag', 'list_policy', 'restore_policy', 'update_time', 'version']
         }
       },
       attributes => {
         'google_project_organization_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8745,10 +9961,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_project_organization_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Google_project_organization_policy], Tuple[Optional[Google_project_organization_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_project_organization_policy]],
-        'update' => Callable[String, Optional[Google_project_organization_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_project_organization_policy_boolean_policy_197 => {
@@ -8805,11 +10027,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project', 'service'],
-          'providedAttributes' => ['google_project_service_id', 'disable_on_destroy', 'project']
+          'providedAttributes' => ['disable_on_destroy', 'project']
         }
       },
       attributes => {
         'google_project_service_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8826,21 +10053,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_project_serviceHandler => {
       functions => {
-        'create' => Callable[Optional[Google_project_service], Tuple[Optional[Google_project_service]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_project_service]],
-        'update' => Callable[String, Optional[Google_project_service]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_project_services => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project'],
-          'providedAttributes' => ['google_project_services_id', 'disable_on_destroy', 'project']
+          'providedAttributes' => ['disable_on_destroy', 'project']
         }
       },
       attributes => {
         'google_project_services_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8857,21 +10095,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_project_servicesHandler => {
       functions => {
-        'create' => Callable[Optional[Google_project_services], Tuple[Optional[Google_project_services]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_project_services]],
-        'update' => Callable[String, Optional[Google_project_services]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_project_usage_export_bucket => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bucket_name', 'prefix', 'project'],
-          'providedAttributes' => ['google_project_usage_export_bucket_id', 'prefix', 'project']
+          'providedAttributes' => ['prefix', 'project']
         }
       },
       attributes => {
         'google_project_usage_export_bucket_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8888,21 +10137,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_project_usage_export_bucketHandler => {
       functions => {
-        'create' => Callable[Optional[Google_project_usage_export_bucket], Tuple[Optional[Google_project_usage_export_bucket]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_project_usage_export_bucket]],
-        'update' => Callable[String, Optional[Google_project_usage_export_bucket]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_pubsub_subscription => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['ack_deadline_seconds', 'name', 'project', 'topic'],
-          'providedAttributes' => ['google_pubsub_subscription_id', 'ack_deadline_seconds', 'path', 'project', 'push_config']
+          'providedAttributes' => ['ack_deadline_seconds', 'path', 'project', 'push_config']
         }
       },
       attributes => {
         'google_pubsub_subscription_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8928,21 +10188,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_pubsub_subscriptionHandler => {
       functions => {
-        'create' => Callable[Optional[Google_pubsub_subscription], Tuple[Optional[Google_pubsub_subscription]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_pubsub_subscription]],
-        'update' => Callable[String, Optional[Google_pubsub_subscription]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_pubsub_subscription_iam_binding => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project', 'role', 'subscription'],
-          'providedAttributes' => ['google_pubsub_subscription_iam_binding_id', 'etag', 'project']
+          'providedAttributes' => ['etag', 'project']
         }
       },
       attributes => {
         'google_pubsub_subscription_iam_binding_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8961,21 +10232,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_pubsub_subscription_iam_bindingHandler => {
       functions => {
-        'create' => Callable[Optional[Google_pubsub_subscription_iam_binding], Tuple[Optional[Google_pubsub_subscription_iam_binding]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_pubsub_subscription_iam_binding]],
-        'update' => Callable[String, Optional[Google_pubsub_subscription_iam_binding]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_pubsub_subscription_iam_member => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['member', 'project', 'role', 'subscription'],
-          'providedAttributes' => ['google_pubsub_subscription_iam_member_id', 'etag', 'project']
+          'providedAttributes' => ['etag', 'project']
         }
       },
       attributes => {
         'google_pubsub_subscription_iam_member_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -8994,21 +10276,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_pubsub_subscription_iam_memberHandler => {
       functions => {
-        'create' => Callable[Optional[Google_pubsub_subscription_iam_member], Tuple[Optional[Google_pubsub_subscription_iam_member]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_pubsub_subscription_iam_member]],
-        'update' => Callable[String, Optional[Google_pubsub_subscription_iam_member]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_pubsub_subscription_iam_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project', 'subscription'],
-          'providedAttributes' => ['google_pubsub_subscription_iam_policy_id', 'etag', 'project']
+          'providedAttributes' => ['etag', 'project']
         }
       },
       attributes => {
         'google_pubsub_subscription_iam_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9026,10 +10319,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_pubsub_subscription_iam_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Google_pubsub_subscription_iam_policy], Tuple[Optional[Google_pubsub_subscription_iam_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_pubsub_subscription_iam_policy]],
-        'update' => Callable[String, Optional[Google_pubsub_subscription_iam_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_pubsub_subscription_push_config_202 => {
@@ -9045,11 +10344,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['google_pubsub_topic_id', 'project']
+          'providedAttributes' => ['project']
         }
       },
       attributes => {
         'google_pubsub_topic_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9062,21 +10366,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_pubsub_topicHandler => {
       functions => {
-        'create' => Callable[Optional[Google_pubsub_topic], Tuple[Optional[Google_pubsub_topic]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_pubsub_topic]],
-        'update' => Callable[String, Optional[Google_pubsub_topic]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_pubsub_topic_iam_binding => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project', 'role', 'topic'],
-          'providedAttributes' => ['google_pubsub_topic_iam_binding_id', 'etag', 'project']
+          'providedAttributes' => ['etag', 'project']
         }
       },
       attributes => {
         'google_pubsub_topic_iam_binding_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9095,21 +10410,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_pubsub_topic_iam_bindingHandler => {
       functions => {
-        'create' => Callable[Optional[Google_pubsub_topic_iam_binding], Tuple[Optional[Google_pubsub_topic_iam_binding]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_pubsub_topic_iam_binding]],
-        'update' => Callable[String, Optional[Google_pubsub_topic_iam_binding]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_pubsub_topic_iam_member => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['member', 'project', 'role', 'topic'],
-          'providedAttributes' => ['google_pubsub_topic_iam_member_id', 'etag', 'project']
+          'providedAttributes' => ['etag', 'project']
         }
       },
       attributes => {
         'google_pubsub_topic_iam_member_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9128,21 +10454,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_pubsub_topic_iam_memberHandler => {
       functions => {
-        'create' => Callable[Optional[Google_pubsub_topic_iam_member], Tuple[Optional[Google_pubsub_topic_iam_member]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_pubsub_topic_iam_member]],
-        'update' => Callable[String, Optional[Google_pubsub_topic_iam_member]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_pubsub_topic_iam_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project', 'topic'],
-          'providedAttributes' => ['google_pubsub_topic_iam_policy_id', 'etag', 'project']
+          'providedAttributes' => ['etag', 'project']
         }
       },
       attributes => {
         'google_pubsub_topic_iam_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9160,21 +10497,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_pubsub_topic_iam_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Google_pubsub_topic_iam_policy], Tuple[Optional[Google_pubsub_topic_iam_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_pubsub_topic_iam_policy]],
-        'update' => Callable[String, Optional[Google_pubsub_topic_iam_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_redis_instance => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['alternative_location_id', 'authorized_network', 'location_id', 'name', 'project', 'redis_version', 'region', 'reserved_ip_range', 'tier'],
-          'providedAttributes' => ['google_redis_instance_id', 'alternative_location_id', 'authorized_network', 'create_time', 'current_location_id', 'display_name', 'host', 'labels', 'location_id', 'port', 'project', 'redis_configs', 'redis_version', 'region', 'reserved_ip_range', 'tier']
+          'providedAttributes' => ['alternative_location_id', 'authorized_network', 'create_time', 'current_location_id', 'display_name', 'host', 'labels', 'location_id', 'port', 'project', 'redis_configs', 'redis_version', 'region', 'reserved_ip_range', 'tier']
         }
       },
       attributes => {
         'google_redis_instance_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9244,21 +10592,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_redis_instanceHandler => {
       functions => {
-        'create' => Callable[Optional[Google_redis_instance], Tuple[Optional[Google_redis_instance]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_redis_instance]],
-        'update' => Callable[String, Optional[Google_redis_instance]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_resource_manager_lien => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['origin', 'parent', 'reason', 'restrictions'],
-          'providedAttributes' => ['google_resource_manager_lien_id', 'create_time', 'name']
+          'providedAttributes' => ['create_time', 'name']
         }
       },
       attributes => {
         'google_resource_manager_lien_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9278,21 +10637,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_resource_manager_lienHandler => {
       functions => {
-        'create' => Callable[Optional[Google_resource_manager_lien], Tuple[Optional[Google_resource_manager_lien]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_resource_manager_lien]],
-        'update' => Callable[String, Optional[Google_resource_manager_lien]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_runtimeconfig_config => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['google_runtimeconfig_config_id', 'description', 'project']
+          'providedAttributes' => ['description', 'project']
         }
       },
       attributes => {
         'google_runtimeconfig_config_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9309,21 +10679,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_runtimeconfig_configHandler => {
       functions => {
-        'create' => Callable[Optional[Google_runtimeconfig_config], Tuple[Optional[Google_runtimeconfig_config]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_runtimeconfig_config]],
-        'update' => Callable[String, Optional[Google_runtimeconfig_config]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_runtimeconfig_variable => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'parent', 'project'],
-          'providedAttributes' => ['google_runtimeconfig_variable_id', 'project', 'text', 'update_time', 'value']
+          'providedAttributes' => ['project', 'text', 'update_time', 'value']
         }
       },
       attributes => {
         'google_runtimeconfig_variable_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9349,21 +10730,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_runtimeconfig_variableHandler => {
       functions => {
-        'create' => Callable[Optional[Google_runtimeconfig_variable], Tuple[Optional[Google_runtimeconfig_variable]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_runtimeconfig_variable]],
-        'update' => Callable[String, Optional[Google_runtimeconfig_variable]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_service_account => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['account_id', 'project'],
-          'providedAttributes' => ['google_service_account_id', 'display_name', 'email', 'name', 'policy_data', 'project', 'unique_id']
+          'providedAttributes' => ['display_name', 'email', 'name', 'policy_data', 'project', 'unique_id']
         }
       },
       attributes => {
         'google_service_account_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9396,21 +10788,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_service_accountHandler => {
       functions => {
-        'create' => Callable[Optional[Google_service_account], Tuple[Optional[Google_service_account]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_service_account]],
-        'update' => Callable[String, Optional[Google_service_account]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_service_account_iam_binding => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['role', 'service_account_id'],
-          'providedAttributes' => ['google_service_account_iam_binding_id', 'etag']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {
         'google_service_account_iam_binding_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9425,21 +10828,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_service_account_iam_bindingHandler => {
       functions => {
-        'create' => Callable[Optional[Google_service_account_iam_binding], Tuple[Optional[Google_service_account_iam_binding]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_service_account_iam_binding]],
-        'update' => Callable[String, Optional[Google_service_account_iam_binding]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_service_account_iam_member => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['member', 'role', 'service_account_id'],
-          'providedAttributes' => ['google_service_account_iam_member_id', 'etag']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {
         'google_service_account_iam_member_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9454,21 +10868,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_service_account_iam_memberHandler => {
       functions => {
-        'create' => Callable[Optional[Google_service_account_iam_member], Tuple[Optional[Google_service_account_iam_member]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_service_account_iam_member]],
-        'update' => Callable[String, Optional[Google_service_account_iam_member]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_service_account_iam_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['service_account_id'],
-          'providedAttributes' => ['google_service_account_iam_policy_id', 'etag']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {
         'google_service_account_iam_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9482,21 +10907,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_service_account_iam_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Google_service_account_iam_policy], Tuple[Optional[Google_service_account_iam_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_service_account_iam_policy]],
-        'update' => Callable[String, Optional[Google_service_account_iam_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_service_account_key => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['key_algorithm', 'name', 'pgp_key', 'private_key_type', 'public_key', 'public_key_type', 'service_account_id'],
-          'providedAttributes' => ['google_service_account_key_id', 'key_algorithm', 'name', 'pgp_key', 'private_key', 'private_key_encrypted', 'private_key_fingerprint', 'private_key_type', 'public_key', 'public_key_type', 'valid_after', 'valid_before']
+          'providedAttributes' => ['key_algorithm', 'name', 'pgp_key', 'private_key', 'private_key_encrypted', 'private_key_fingerprint', 'private_key_type', 'public_key', 'public_key_type', 'valid_after', 'valid_before']
         }
       },
       attributes => {
         'google_service_account_key_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9549,21 +10985,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_service_account_keyHandler => {
       functions => {
-        'create' => Callable[Optional[Google_service_account_key], Tuple[Optional[Google_service_account_key]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_service_account_key]],
-        'update' => Callable[String, Optional[Google_service_account_key]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_sourcerepo_repository => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['google_sourcerepo_repository_id', 'project', 'size', 'url']
+          'providedAttributes' => ['project', 'size', 'url']
         }
       },
       attributes => {
         'google_sourcerepo_repository_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9584,21 +11031,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_sourcerepo_repositoryHandler => {
       functions => {
-        'create' => Callable[Optional[Google_sourcerepo_repository], Tuple[Optional[Google_sourcerepo_repository]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_sourcerepo_repository]],
-        'update' => Callable[String, Optional[Google_sourcerepo_repository]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_spanner_database => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['ddl', 'instance', 'name', 'project'],
-          'providedAttributes' => ['google_spanner_database_id', 'ddl', 'project', 'state']
+          'providedAttributes' => ['ddl', 'project', 'state']
         }
       },
       attributes => {
         'google_spanner_database_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9620,21 +11078,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_spanner_databaseHandler => {
       functions => {
-        'create' => Callable[Optional[Google_spanner_database], Tuple[Optional[Google_spanner_database]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_spanner_database]],
-        'update' => Callable[String, Optional[Google_spanner_database]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_spanner_database_iam_binding => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['database', 'instance', 'project', 'role'],
-          'providedAttributes' => ['google_spanner_database_iam_binding_id', 'etag', 'project']
+          'providedAttributes' => ['etag', 'project']
         }
       },
       attributes => {
         'google_spanner_database_iam_binding_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9654,21 +11123,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_spanner_database_iam_bindingHandler => {
       functions => {
-        'create' => Callable[Optional[Google_spanner_database_iam_binding], Tuple[Optional[Google_spanner_database_iam_binding]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_spanner_database_iam_binding]],
-        'update' => Callable[String, Optional[Google_spanner_database_iam_binding]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_spanner_database_iam_member => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['database', 'instance', 'member', 'project', 'role'],
-          'providedAttributes' => ['google_spanner_database_iam_member_id', 'etag', 'project']
+          'providedAttributes' => ['etag', 'project']
         }
       },
       attributes => {
         'google_spanner_database_iam_member_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9688,21 +11168,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_spanner_database_iam_memberHandler => {
       functions => {
-        'create' => Callable[Optional[Google_spanner_database_iam_member], Tuple[Optional[Google_spanner_database_iam_member]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_spanner_database_iam_member]],
-        'update' => Callable[String, Optional[Google_spanner_database_iam_member]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_spanner_database_iam_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['database', 'instance', 'project'],
-          'providedAttributes' => ['google_spanner_database_iam_policy_id', 'etag', 'project']
+          'providedAttributes' => ['etag', 'project']
         }
       },
       attributes => {
         'google_spanner_database_iam_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9721,21 +11212,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_spanner_database_iam_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Google_spanner_database_iam_policy], Tuple[Optional[Google_spanner_database_iam_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_spanner_database_iam_policy]],
-        'update' => Callable[String, Optional[Google_spanner_database_iam_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_spanner_instance => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['config', 'name', 'project'],
-          'providedAttributes' => ['google_spanner_instance_id', 'labels', 'name', 'num_nodes', 'project', 'state']
+          'providedAttributes' => ['labels', 'name', 'num_nodes', 'project', 'state']
         }
       },
       attributes => {
         'google_spanner_instance_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9765,21 +11267,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_spanner_instanceHandler => {
       functions => {
-        'create' => Callable[Optional[Google_spanner_instance], Tuple[Optional[Google_spanner_instance]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_spanner_instance]],
-        'update' => Callable[String, Optional[Google_spanner_instance]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_spanner_instance_iam_binding => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['instance', 'project', 'role'],
-          'providedAttributes' => ['google_spanner_instance_iam_binding_id', 'etag', 'project']
+          'providedAttributes' => ['etag', 'project']
         }
       },
       attributes => {
         'google_spanner_instance_iam_binding_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9798,21 +11311,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_spanner_instance_iam_bindingHandler => {
       functions => {
-        'create' => Callable[Optional[Google_spanner_instance_iam_binding], Tuple[Optional[Google_spanner_instance_iam_binding]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_spanner_instance_iam_binding]],
-        'update' => Callable[String, Optional[Google_spanner_instance_iam_binding]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_spanner_instance_iam_member => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['instance', 'member', 'project', 'role'],
-          'providedAttributes' => ['google_spanner_instance_iam_member_id', 'etag', 'project']
+          'providedAttributes' => ['etag', 'project']
         }
       },
       attributes => {
         'google_spanner_instance_iam_member_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9831,21 +11355,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_spanner_instance_iam_memberHandler => {
       functions => {
-        'create' => Callable[Optional[Google_spanner_instance_iam_member], Tuple[Optional[Google_spanner_instance_iam_member]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_spanner_instance_iam_member]],
-        'update' => Callable[String, Optional[Google_spanner_instance_iam_member]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_spanner_instance_iam_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['instance', 'project'],
-          'providedAttributes' => ['google_spanner_instance_iam_policy_id', 'etag', 'project']
+          'providedAttributes' => ['etag', 'project']
         }
       },
       attributes => {
         'google_spanner_instance_iam_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9863,21 +11398,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_spanner_instance_iam_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Google_spanner_instance_iam_policy], Tuple[Optional[Google_spanner_instance_iam_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_spanner_instance_iam_policy]],
-        'update' => Callable[String, Optional[Google_spanner_instance_iam_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_sql_database => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['instance', 'name', 'project'],
-          'providedAttributes' => ['google_sql_database_id', 'charset', 'collation', 'project', 'self_link']
+          'providedAttributes' => ['charset', 'collation', 'project', 'self_link']
         }
       },
       attributes => {
         'google_sql_database_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9903,21 +11449,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_sql_databaseHandler => {
       functions => {
-        'create' => Callable[Optional[Google_sql_database], Tuple[Optional[Google_sql_database]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_sql_database]],
-        'update' => Callable[String, Optional[Google_sql_database]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_sql_database_instance => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['database_version', 'master_instance_name', 'name', 'project', 'region'],
-          'providedAttributes' => ['google_sql_database_instance_id', 'connection_name', 'database_version', 'first_ip_address', 'ip_address', 'master_instance_name', 'name', 'project', 'region', 'replica_configuration', 'self_link', 'server_ca_cert', 'service_account_email_address']
+          'providedAttributes' => ['connection_name', 'database_version', 'first_ip_address', 'ip_address', 'master_instance_name', 'name', 'project', 'region', 'replica_configuration', 'self_link', 'server_ca_cert', 'service_account_email_address']
         }
       },
       attributes => {
         'google_sql_database_instance_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -9974,10 +11531,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_sql_database_instanceHandler => {
       functions => {
-        'create' => Callable[Optional[Google_sql_database_instance], Tuple[Optional[Google_sql_database_instance]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_sql_database_instance]],
-        'update' => Callable[String, Optional[Google_sql_database_instance]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_sql_database_instance_ip_address_203 => {
@@ -10229,11 +11792,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['common_name', 'instance'],
-          'providedAttributes' => ['google_sql_ssl_cert_id', 'cert', 'cert_serial_number', 'create_time', 'expiration_time', 'private_key', 'server_ca_cert', 'sha1_fingerprint']
+          'providedAttributes' => ['cert', 'cert_serial_number', 'create_time', 'expiration_time', 'private_key', 'server_ca_cert', 'sha1_fingerprint']
         }
       },
       attributes => {
         'google_sql_ssl_cert_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10271,21 +11839,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_sql_ssl_certHandler => {
       functions => {
-        'create' => Callable[Optional[Google_sql_ssl_cert], Tuple[Optional[Google_sql_ssl_cert]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_sql_ssl_cert]],
-        'update' => Callable[String, Optional[Google_sql_ssl_cert]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_sql_user => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['host', 'instance', 'name', 'project'],
-          'providedAttributes' => ['google_sql_user_id', 'host', 'password', 'project']
+          'providedAttributes' => ['host', 'password', 'project']
         }
       },
       attributes => {
         'google_sql_user_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10307,21 +11886,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_sql_userHandler => {
       functions => {
-        'create' => Callable[Optional[Google_sql_user], Tuple[Optional[Google_sql_user]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_sql_user]],
-        'update' => Callable[String, Optional[Google_sql_user]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_storage_bucket => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'predefined_acl', 'project', 'storage_class'],
-          'providedAttributes' => ['google_storage_bucket_id', 'cors', 'encryption', 'force_destroy', 'labels', 'lifecycle_rule', 'location', 'logging', 'predefined_acl', 'project', 'self_link', 'storage_class', 'url', 'versioning', 'website']
+          'providedAttributes' => ['cors', 'encryption', 'force_destroy', 'labels', 'lifecycle_rule', 'location', 'logging', 'predefined_acl', 'project', 'self_link', 'storage_class', 'url', 'versioning', 'website']
         }
       },
       attributes => {
         'google_storage_bucket_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10386,21 +11976,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_storage_bucketHandler => {
       functions => {
-        'create' => Callable[Optional[Google_storage_bucket], Tuple[Optional[Google_storage_bucket]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_storage_bucket]],
-        'update' => Callable[String, Optional[Google_storage_bucket]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_storage_bucket_acl => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bucket', 'predefined_acl'],
-          'providedAttributes' => ['google_storage_bucket_acl_id', 'default_acl', 'predefined_acl', 'role_entity']
+          'providedAttributes' => ['default_acl', 'predefined_acl', 'role_entity']
         }
       },
       attributes => {
         'google_storage_bucket_acl_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10421,10 +12022,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_storage_bucket_aclHandler => {
       functions => {
-        'create' => Callable[Optional[Google_storage_bucket_acl], Tuple[Optional[Google_storage_bucket_acl]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_storage_bucket_acl]],
-        'update' => Callable[String, Optional[Google_storage_bucket_acl]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_storage_bucket_cors_213 => {
@@ -10456,11 +12063,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bucket', 'role'],
-          'providedAttributes' => ['google_storage_bucket_iam_binding_id', 'etag']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {
         'google_storage_bucket_iam_binding_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10475,21 +12087,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_storage_bucket_iam_bindingHandler => {
       functions => {
-        'create' => Callable[Optional[Google_storage_bucket_iam_binding], Tuple[Optional[Google_storage_bucket_iam_binding]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_storage_bucket_iam_binding]],
-        'update' => Callable[String, Optional[Google_storage_bucket_iam_binding]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_storage_bucket_iam_member => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bucket', 'member', 'role'],
-          'providedAttributes' => ['google_storage_bucket_iam_member_id', 'etag']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {
         'google_storage_bucket_iam_member_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10504,21 +12127,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_storage_bucket_iam_memberHandler => {
       functions => {
-        'create' => Callable[Optional[Google_storage_bucket_iam_member], Tuple[Optional[Google_storage_bucket_iam_member]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_storage_bucket_iam_member]],
-        'update' => Callable[String, Optional[Google_storage_bucket_iam_member]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_storage_bucket_iam_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bucket'],
-          'providedAttributes' => ['google_storage_bucket_iam_policy_id', 'etag']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {
         'google_storage_bucket_iam_policy_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10532,10 +12166,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_storage_bucket_iam_policyHandler => {
       functions => {
-        'create' => Callable[Optional[Google_storage_bucket_iam_policy], Tuple[Optional[Google_storage_bucket_iam_policy]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_storage_bucket_iam_policy]],
-        'update' => Callable[String, Optional[Google_storage_bucket_iam_policy]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_storage_bucket_lifecycle_rule_215 => {
@@ -10590,11 +12230,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bucket', 'cache_control', 'content', 'content_disposition', 'content_encoding', 'content_language', 'content_type', 'detect_md5hash', 'name', 'predefined_acl', 'source', 'storage_class'],
-          'providedAttributes' => ['google_storage_bucket_object_id', 'cache_control', 'content', 'content_disposition', 'content_encoding', 'content_language', 'content_type', 'crc32c', 'detect_md5hash', 'md5hash', 'predefined_acl', 'source', 'storage_class']
+          'providedAttributes' => ['cache_control', 'content', 'content_disposition', 'content_encoding', 'content_language', 'content_type', 'crc32c', 'detect_md5hash', 'md5hash', 'predefined_acl', 'source', 'storage_class']
         }
       },
       attributes => {
         'google_storage_bucket_object_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10652,10 +12297,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_storage_bucket_objectHandler => {
       functions => {
-        'create' => Callable[Optional[Google_storage_bucket_object], Tuple[Optional[Google_storage_bucket_object]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_storage_bucket_object]],
-        'update' => Callable[String, Optional[Google_storage_bucket_object]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_storage_bucket_versioning_219 => {
@@ -10681,11 +12332,16 @@ type TerraformGoogle = TypeSet[{
     Google_storage_default_object_access_control => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['google_storage_default_object_access_control_id', 'domain', 'email', 'entity_id', 'generation', 'object', 'project_team']
+          'providedAttributes' => ['domain', 'email', 'entity_id', 'generation', 'object', 'project_team']
         }
       },
       attributes => {
         'google_storage_default_object_access_control_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10720,10 +12376,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_storage_default_object_access_controlHandler => {
       functions => {
-        'create' => Callable[Optional[Google_storage_default_object_access_control], Tuple[Optional[Google_storage_default_object_access_control]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_storage_default_object_access_control]],
-        'update' => Callable[String, Optional[Google_storage_default_object_access_control]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_storage_default_object_access_control_project_team_221 => {
@@ -10742,11 +12404,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bucket'],
-          'providedAttributes' => ['google_storage_default_object_acl_id', 'role_entity']
+          'providedAttributes' => ['role_entity']
         }
       },
       attributes => {
         'google_storage_default_object_acl_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10759,21 +12426,32 @@ type TerraformGoogle = TypeSet[{
     },
     Google_storage_default_object_aclHandler => {
       functions => {
-        'create' => Callable[Optional[Google_storage_default_object_acl], Tuple[Optional[Google_storage_default_object_acl]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_storage_default_object_acl]],
-        'update' => Callable[String, Optional[Google_storage_default_object_acl]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_storage_notification => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bucket', 'custom_attributes', 'event_types', 'object_name_prefix', 'payload_format', 'topic'],
-          'providedAttributes' => ['google_storage_notification_id', 'custom_attributes', 'event_types', 'object_name_prefix', 'self_link']
+          'providedAttributes' => ['custom_attributes', 'event_types', 'object_name_prefix', 'self_link']
         }
       },
       attributes => {
         'google_storage_notification_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10800,20 +12478,31 @@ type TerraformGoogle = TypeSet[{
     },
     Google_storage_notificationHandler => {
       functions => {
-        'create' => Callable[Optional[Google_storage_notification], Tuple[Optional[Google_storage_notification]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_storage_notification]],
-        'update' => Callable[String, Optional[Google_storage_notification]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_storage_object_access_control => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['google_storage_object_access_control_id', 'domain', 'email', 'entity_id', 'generation', 'project_team']
+          'providedAttributes' => ['domain', 'email', 'entity_id', 'generation', 'project_team']
         }
       },
       attributes => {
         'google_storage_object_access_control_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10845,10 +12534,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_storage_object_access_controlHandler => {
       functions => {
-        'create' => Callable[Optional[Google_storage_object_access_control], Tuple[Optional[Google_storage_object_access_control]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_storage_object_access_control]],
-        'update' => Callable[String, Optional[Google_storage_object_access_control]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     },
     Google_storage_object_access_control_project_team_222 => {
@@ -10867,11 +12562,16 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bucket', 'object', 'predefined_acl'],
-          'providedAttributes' => ['google_storage_object_acl_id', 'predefined_acl', 'role_entity']
+          'providedAttributes' => ['predefined_acl', 'role_entity']
         }
       },
       attributes => {
         'google_storage_object_acl_id' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
           'type' => Optional[String],
           'value' => undef
         },
@@ -10889,10 +12589,16 @@ type TerraformGoogle = TypeSet[{
     },
     Google_storage_object_aclHandler => {
       functions => {
-        'create' => Callable[Optional[Google_storage_object_acl], Tuple[Optional[Google_storage_object_acl]]],
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
         'delete' => Callable[String],
-        'read' => Callable[String, Optional[Google_storage_object_acl]],
-        'update' => Callable[String, Optional[Google_storage_object_acl]]
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
       }
     }
   }

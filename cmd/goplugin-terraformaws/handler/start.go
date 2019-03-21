@@ -4,6 +4,7 @@ import (
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
 	"github.com/lyraproj/lyra/cmd/goplugin-terraformaws/generated"
+	"github.com/lyraproj/lyra/pkg/bridge"
 	"github.com/lyraproj/pcore/pcore"
 	"github.com/lyraproj/pcore/px"
 	"github.com/lyraproj/servicesdk/grpc"
@@ -20,7 +21,7 @@ func Server(c px.Context) *service.Server {
 
 // Start this server running
 func Start() {
-	generated.Config = &terraform.ResourceConfig{
+	bridge.Config = &terraform.ResourceConfig{
 		Config: map[string]interface{}{
 			"region": "eu-west-1",
 		},

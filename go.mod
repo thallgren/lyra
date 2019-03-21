@@ -47,3 +47,5 @@ require (
 )
 
 replace github.com/google/go-github => github.com/google/go-github v16.0.0+incompatible // Terraform GitHub provider requires this version
+
+replace github.com/lyraproj/pcore => ../pcore
