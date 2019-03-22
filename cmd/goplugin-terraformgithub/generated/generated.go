@@ -3,7 +3,7 @@
 // This code is generated on a per-Provider basis using "tf-gen"
 // Long term our hope is to remove this generation step and adopt dynamic approach
 
-package generated
+package github
 
 import (
 	"github.com/hashicorp/terraform/helper/schema"
@@ -12,401 +12,305 @@ import (
 	"github.com/lyraproj/servicesdk/service"
 )
 
+type (
+	Branch_protection struct {
+		Branch_protectionID           *string `lyra:"ignore"`
+		Branch                        string
+		Enforce_admins                *bool
+		Etag                          *string
+		Repository                    string
+		Required_pull_request_reviews *[]Branch_protection__required_pull_request_reviews
+		Required_status_checks        *[]Branch_protection__required_status_checks
+		Restrictions                  *[]Branch_protection__restrictions
+	}
+
+	Issue_label struct {
+		Issue_labelID *string `lyra:"ignore"`
+		Color         string
+		Description   *string
+		Etag          *string
+		Name          string
+		Repository    string
+		Url           *string
+	}
+
+	Membership struct {
+		MembershipID *string `lyra:"ignore"`
+		Etag         *string
+		Role         *string
+		Username     string
+	}
+
+	Organization_project struct {
+		Organization_projectID *string `lyra:"ignore"`
+		Body                   *string
+		Etag                   *string
+		Name                   string
+		Url                    *string
+	}
+
+	Organization_webhook struct {
+		Organization_webhookID *string `lyra:"ignore"`
+		Active                 *bool
+		Configuration          *[]Organization_webhook__configuration
+		Etag                   *string
+		Events                 []string
+		Name                   string
+		Url                    *string
+	}
+
+	Project_column struct {
+		Project_columnID *string `lyra:"ignore"`
+		Etag             *string
+		Name             string
+		Project_id       string
+	}
+
+	Repository struct {
+		RepositoryID       *string `lyra:"ignore"`
+		Allow_merge_commit *bool
+		Allow_rebase_merge *bool
+		Allow_squash_merge *bool
+		Archived           *bool
+		Auto_init          *bool
+		Default_branch     *string
+		Description        *string
+		Etag               *string
+		Full_name          *string
+		Git_clone_url      *string
+		Gitignore_template *string
+		Has_downloads      *bool
+		Has_issues         *bool
+		Has_projects       *bool
+		Has_wiki           *bool
+		Homepage_url       *string
+		Html_url           *string
+		Http_clone_url     *string
+		License_template   *string
+		Name               string
+		Private            *bool
+		Ssh_clone_url      *string
+		Svn_url            *string
+		Topics             *[]string
+	}
+
+	Repository_collaborator struct {
+		Repository_collaboratorID *string `lyra:"ignore"`
+		Permission                *string
+		Repository                string
+		Username                  string
+	}
+
+	Repository_deploy_key struct {
+		Repository_deploy_keyID *string `lyra:"ignore"`
+		Etag                    *string
+		Key                     string
+		Read_only               *bool
+		Repository              string
+		Title                   string
+	}
+
+	Repository_project struct {
+		Repository_projectID *string `lyra:"ignore"`
+		Body                 *string
+		Etag                 *string
+		Name                 string
+		Repository           string
+		Url                  *string
+	}
+
+	Repository_webhook struct {
+		Repository_webhookID *string `lyra:"ignore"`
+		Active               *bool
+		Configuration        *[]Repository_webhook__configuration
+		Etag                 *string
+		Events               []string
+		Name                 string
+		Repository           string
+		Url                  *string
+	}
+
+	Team struct {
+		TeamID         *string `lyra:"ignore"`
+		Description    *string
+		Etag           *string
+		Ldap_dn        *string
+		Name           string
+		Parent_team_id *int64
+		Privacy        *string
+		Slug           *string
+	}
+
+	Team_membership struct {
+		Team_membershipID *string `lyra:"ignore"`
+		Etag              *string
+		Role              *string
+		Team_id           string
+		Username          string
+	}
+
+	Team_repository struct {
+		Team_repositoryID *string `lyra:"ignore"`
+		Etag              *string
+		Permission        *string
+		Repository        string
+		Team_id           string
+	}
+
+	User_gpg_key struct {
+		User_gpg_keyID     *string `lyra:"ignore"`
+		Armored_public_key string
+		Etag               *string
+		Key_id             *string
+	}
+
+	User_ssh_key struct {
+		User_ssh_keyID *string `lyra:"ignore"`
+		Etag           *string
+		Key            string
+		Title          string
+		Url            *string
+	}
+
+	Branch_protection__required_pull_request_reviews struct {
+		Dismiss_stale_reviews      *bool
+		Dismissal_teams            *[]string
+		Dismissal_users            *[]string
+		Include_admins             *bool
+		Require_code_owner_reviews *bool
+	}
+
+	Branch_protection__required_status_checks struct {
+		Contexts       *[]string
+		Include_admins *bool
+		Strict         *bool
+	}
+
+	Branch_protection__restrictions struct {
+		Teams *[]string
+		Users *[]string
+	}
+
+	Organization_webhook__configuration struct {
+		Content_type *string
+		Insecure_ssl *string
+		Secret       *string
+		Url          string
+	}
+
+	Repository_webhook__configuration struct {
+		Content_type *string
+		Insecure_ssl *string
+		Secret       *string
+		Url          string
+	}
+)
+
 func Initialize(sb *service.Builder, p *schema.Provider) {
-	var evs []px.Type
+	// Generic handler API
 	sb.RegisterAPI("TerraformGitHub::GenericHandler", bridge.NewTFHandler(nil, "", nil))
 
-	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_branch_protection{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	// Registration of resource types with handler
+	var rt px.Type
+	rt = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Branch_protection{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("branch_protectionID", "etag")
 		b.ImmutableAttributes("branch", "repository")
-	}))
-	sb.RegisterHandler("TerraformGitHub::Github_branch_protectionHandler", bridge.NewTFHandler(p, "github_branch_protection", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGitHub::Branch_protectionHandler", bridge.NewTFHandler(p, "github_branch_protection", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_issue_label{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "url")
+	rt = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Issue_label{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("issue_labelID", "etag", "url")
 		b.ImmutableAttributes("repository")
-	}))
-	sb.RegisterHandler("TerraformGitHub::Github_issue_labelHandler", bridge.NewTFHandler(p, "github_issue_label", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGitHub::Issue_labelHandler", bridge.NewTFHandler(p, "github_issue_label", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_membership{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	rt = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Membership{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("membershipID", "etag")
 		b.ImmutableAttributes("username")
-	}))
-	sb.RegisterHandler("TerraformGitHub::Github_membershipHandler", bridge.NewTFHandler(p, "github_membership", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGitHub::MembershipHandler", bridge.NewTFHandler(p, "github_membership", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_organization_project{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "url")
-	}))
-	sb.RegisterHandler("TerraformGitHub::Github_organization_projectHandler", bridge.NewTFHandler(p, "github_organization_project", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Organization_project{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("organization_projectID", "etag", "url")
+	}))[0]
+	sb.RegisterHandler("TerraformGitHub::Organization_projectHandler", bridge.NewTFHandler(p, "github_organization_project", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_organization_webhook{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "url")
+	rt = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Organization_webhook{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("organization_webhookID", "etag", "url")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformGitHub::Github_organization_webhookHandler", bridge.NewTFHandler(p, "github_organization_webhook", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGitHub::Organization_webhookHandler", bridge.NewTFHandler(p, "github_organization_webhook", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_project_column{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	rt = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Project_column{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("project_columnID", "etag")
 		b.ImmutableAttributes("project_id")
-	}))
-	sb.RegisterHandler("TerraformGitHub::Github_project_columnHandler", bridge.NewTFHandler(p, "github_project_column", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGitHub::Project_columnHandler", bridge.NewTFHandler(p, "github_project_column", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_repository{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("default_branch", "etag", "full_name", "git_clone_url", "html_url", "http_clone_url", "ssh_clone_url", "svn_url")
+	rt = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Repository{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("repositoryID", "default_branch", "etag", "full_name", "git_clone_url", "html_url", "http_clone_url", "ssh_clone_url", "svn_url")
 		b.ImmutableAttributes("auto_init", "gitignore_template", "license_template", "name")
-	}))
-	sb.RegisterHandler("TerraformGitHub::Github_repositoryHandler", bridge.NewTFHandler(p, "github_repository", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGitHub::RepositoryHandler", bridge.NewTFHandler(p, "github_repository", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_repository_collaborator{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Repository_collaborator{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("repository_collaboratorID")
 		b.ImmutableAttributes("permission", "repository", "username")
-	}))
-	sb.RegisterHandler("TerraformGitHub::Github_repository_collaboratorHandler", bridge.NewTFHandler(p, "github_repository_collaborator", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGitHub::Repository_collaboratorHandler", bridge.NewTFHandler(p, "github_repository_collaborator", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_repository_deploy_key{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	rt = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Repository_deploy_key{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("repository_deploy_keyID", "etag")
 		b.ImmutableAttributes("key", "read_only", "repository", "title")
-	}))
-	sb.RegisterHandler("TerraformGitHub::Github_repository_deploy_keyHandler", bridge.NewTFHandler(p, "github_repository_deploy_key", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGitHub::Repository_deploy_keyHandler", bridge.NewTFHandler(p, "github_repository_deploy_key", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_repository_project{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "url")
+	rt = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Repository_project{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("repository_projectID", "etag", "url")
 		b.ImmutableAttributes("repository")
-	}))
-	sb.RegisterHandler("TerraformGitHub::Github_repository_projectHandler", bridge.NewTFHandler(p, "github_repository_project", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGitHub::Repository_projectHandler", bridge.NewTFHandler(p, "github_repository_project", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_repository_webhook{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "url")
+	rt = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Repository_webhook{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("repository_webhookID", "etag", "url")
 		b.ImmutableAttributes("name", "repository")
-	}))
-	sb.RegisterHandler("TerraformGitHub::Github_repository_webhookHandler", bridge.NewTFHandler(p, "github_repository_webhook", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGitHub::Repository_webhookHandler", bridge.NewTFHandler(p, "github_repository_webhook", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_team{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "slug")
-	}))
-	sb.RegisterHandler("TerraformGitHub::Github_teamHandler", bridge.NewTFHandler(p, "github_team", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Team{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("teamID", "etag", "slug")
+	}))[0]
+	sb.RegisterHandler("TerraformGitHub::TeamHandler", bridge.NewTFHandler(p, "github_team", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_team_membership{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	rt = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Team_membership{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("team_membershipID", "etag")
 		b.ImmutableAttributes("team_id", "username")
-	}))
-	sb.RegisterHandler("TerraformGitHub::Github_team_membershipHandler", bridge.NewTFHandler(p, "github_team_membership", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGitHub::Team_membershipHandler", bridge.NewTFHandler(p, "github_team_membership", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_team_repository{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	rt = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Team_repository{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("team_repositoryID", "etag")
 		b.ImmutableAttributes("repository", "team_id")
-	}))
-	sb.RegisterHandler("TerraformGitHub::Github_team_repositoryHandler", bridge.NewTFHandler(p, "github_team_repository", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGitHub::Team_repositoryHandler", bridge.NewTFHandler(p, "github_team_repository", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_user_gpg_key{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "key_id")
+	rt = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&User_gpg_key{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("user_gpg_keyID", "etag", "key_id")
 		b.ImmutableAttributes("armored_public_key")
-	}))
-	sb.RegisterHandler("TerraformGitHub::Github_user_gpg_keyHandler", bridge.NewTFHandler(p, "github_user_gpg_key", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGitHub::User_gpg_keyHandler", bridge.NewTFHandler(p, "github_user_gpg_key", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_user_ssh_key{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "url")
+	rt = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&User_ssh_key{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("user_ssh_keyID", "etag", "url")
 		b.ImmutableAttributes("key", "title")
-	}))
-	sb.RegisterHandler("TerraformGitHub::Github_user_ssh_keyHandler", bridge.NewTFHandler(p, "github_user_ssh_key", evs[0]), evs[0])
-
-}
-
-type Github_branch_protection_required_pull_request_reviews_1 struct {
-	Dismiss_stale_reviews *bool
-
-	Dismissal_teams *[]string
-
-	Dismissal_users *[]string
-
-	Include_admins *bool
-
-	Require_code_owner_reviews *bool
-}
-
-type Github_branch_protection_required_status_checks_2 struct {
-	Contexts *[]string
-
-	Include_admins *bool
-
-	Strict *bool
-}
-
-type Github_branch_protection_restrictions_3 struct {
-	Teams *[]string
-
-	Users *[]string
-}
-
-type Github_branch_protection struct {
-	Github_branch_protection_id *string `lyra:"ignore"`
-
-	Branch string
-
-	Enforce_admins *bool
-
-	Etag *string
-
-	Repository string
-
-	Required_pull_request_reviews *[]Github_branch_protection_required_pull_request_reviews_1
-
-	Required_status_checks *[]Github_branch_protection_required_status_checks_2
-
-	Restrictions *[]Github_branch_protection_restrictions_3
-}
-
-type Github_issue_label struct {
-	Github_issue_label_id *string `lyra:"ignore"`
-
-	Color string
-
-	Description *string
-
-	Etag *string
-
-	Name string
-
-	Repository string
-
-	Url *string
-}
-
-type Github_membership struct {
-	Github_membership_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Role *string
-
-	Username string
-}
-
-type Github_organization_project struct {
-	Github_organization_project_id *string `lyra:"ignore"`
-
-	Body *string
-
-	Etag *string
-
-	Name string
-
-	Url *string
-}
-
-type Github_organization_webhook_configuration_4 struct {
-	Content_type *string
-
-	Insecure_ssl *string
-
-	Secret *string
-
-	Url string
-}
-
-type Github_organization_webhook struct {
-	Github_organization_webhook_id *string `lyra:"ignore"`
-
-	Active *bool
-
-	Configuration *[]Github_organization_webhook_configuration_4
-
-	Etag *string
-
-	Events []string
-
-	Name string
-
-	Url *string
-}
-
-type Github_project_column struct {
-	Github_project_column_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Name string
-
-	Project_id string
-}
-
-type Github_repository struct {
-	Github_repository_id *string `lyra:"ignore"`
-
-	Allow_merge_commit *bool
-
-	Allow_rebase_merge *bool
-
-	Allow_squash_merge *bool
-
-	Archived *bool
-
-	Auto_init *bool
-
-	Default_branch *string
-
-	Description *string
-
-	Etag *string
-
-	Full_name *string
-
-	Git_clone_url *string
-
-	Gitignore_template *string
-
-	Has_downloads *bool
-
-	Has_issues *bool
-
-	Has_projects *bool
-
-	Has_wiki *bool
-
-	Homepage_url *string
-
-	Html_url *string
-
-	Http_clone_url *string
-
-	License_template *string
-
-	Name string
-
-	Private *bool
-
-	Ssh_clone_url *string
-
-	Svn_url *string
-
-	Topics *[]string
-}
-
-type Github_repository_collaborator struct {
-	Github_repository_collaborator_id *string `lyra:"ignore"`
-
-	Permission *string
-
-	Repository string
-
-	Username string
-}
-
-type Github_repository_deploy_key struct {
-	Github_repository_deploy_key_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Key string
-
-	Read_only *bool
-
-	Repository string
-
-	Title string
-}
-
-type Github_repository_project struct {
-	Github_repository_project_id *string `lyra:"ignore"`
-
-	Body *string
-
-	Etag *string
-
-	Name string
-
-	Repository string
-
-	Url *string
-}
-
-type Github_repository_webhook_configuration_5 struct {
-	Content_type *string
-
-	Insecure_ssl *string
-
-	Secret *string
-
-	Url string
-}
-
-type Github_repository_webhook struct {
-	Github_repository_webhook_id *string `lyra:"ignore"`
-
-	Active *bool
-
-	Configuration *[]Github_repository_webhook_configuration_5
-
-	Etag *string
-
-	Events []string
-
-	Name string
-
-	Repository string
-
-	Url *string
-}
-
-type Github_team struct {
-	Github_team_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Etag *string
-
-	Ldap_dn *string
-
-	Name string
-
-	Parent_team_id *int
-
-	Privacy *string
-
-	Slug *string
-}
-
-type Github_team_membership struct {
-	Github_team_membership_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Role *string
-
-	Team_id string
-
-	Username string
-}
-
-type Github_team_repository struct {
-	Github_team_repository_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Permission *string
-
-	Repository string
-
-	Team_id string
-}
-
-type Github_user_gpg_key struct {
-	Github_user_gpg_key_id *string `lyra:"ignore"`
-
-	Armored_public_key string
-
-	Etag *string
-
-	Key_id *string
-}
-
-type Github_user_ssh_key struct {
-	Github_user_ssh_key_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Key string
-
-	Title string
-
-	Url *string
+	}))[0]
+	sb.RegisterHandler("TerraformGitHub::User_ssh_keyHandler", bridge.NewTFHandler(p, "github_user_ssh_key", rt), rt)
+
+	// Registration of non-resource types
+	sb.RegisterTypes("TerraformGitHub",
+		&Branch_protection__required_pull_request_reviews{},
+		&Branch_protection__required_status_checks{},
+		&Branch_protection__restrictions{},
+		&Organization_webhook__configuration{},
+		&Repository_webhook__configuration{})
 }

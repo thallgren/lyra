@@ -2,7 +2,7 @@ package handler
 
 import (
 	"github.com/hashicorp/terraform/helper/schema"
-	"github.com/lyraproj/lyra/cmd/goplugin-terraformgoogle/generated"
+	gp "github.com/lyraproj/lyra/cmd/goplugin-terraformgoogle/generated"
 	"github.com/lyraproj/pcore/pcore"
 	"github.com/lyraproj/pcore/px"
 	"github.com/lyraproj/servicesdk/grpc"
@@ -13,7 +13,7 @@ import (
 // Server configures the Terraform provider and creates an instance of the server
 func Server(c px.Context) *service.Server {
 	sb := service.NewServiceBuilder(c, "TerraformGoogle")
-	generated.Initialize(sb, google.Provider().(*schema.Provider))
+	gp.Initialize(sb, google.Provider().(*schema.Provider))
 	return sb.Server()
 }
 

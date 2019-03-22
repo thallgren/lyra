@@ -3,7 +3,7 @@ package handler
 import (
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
-	"github.com/lyraproj/lyra/cmd/goplugin-terraformaws/generated"
+	gp "github.com/lyraproj/lyra/cmd/goplugin-terraformaws/generated"
 	"github.com/lyraproj/lyra/pkg/bridge"
 	"github.com/lyraproj/pcore/pcore"
 	"github.com/lyraproj/pcore/px"
@@ -15,7 +15,7 @@ import (
 // Server configures the Terraform provider and creates an instance of the server
 func Server(c px.Context) *service.Server {
 	sb := service.NewServiceBuilder(c, "TerraformAws")
-	generated.Initialize(sb, aws.Provider().(*schema.Provider))
+	gp.Initialize(sb, aws.Provider().(*schema.Provider))
 	return sb.Server()
 }
 

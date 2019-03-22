@@ -11,7 +11,7 @@ workflow aws_vpc_instance_tf {
   )
 } {
 
-  resource aws_instance {
+  resource instance {
     input  => ($tags),
   }{
     tags => $tags,
@@ -19,7 +19,7 @@ workflow aws_vpc_instance_tf {
     ami => 'ami-f90a4880',
   }
 
-  resource aws_vpc {
+  resource vpc {
     input  => ($tags),
     output => ($aws_vpc_id)
   }{
@@ -28,7 +28,7 @@ workflow aws_vpc_instance_tf {
     tags => $tags,
   }
 
-  resource aws_subnet {
+  resource subnet {
     input  => ($tags, $aws_vpc_id),
     output => ($aws_subnet_id)
   }{
@@ -37,21 +37,21 @@ workflow aws_vpc_instance_tf {
     tags => $tags,
   }
 
-  resource aws_security_group {
+  resource security_group {
     input  => ($aws_vpc_id),
   }{
     name => "lyra",
     description => "lyra example",
     vpc_id      => $aws_vpc_id,
 
-    ingress => [TerraformAws::Aws_security_group_ingress_501(
+    ingress => [TerraformAws::Security_group__ingress(
       from_port   => 0,
       to_port     => 0,
       protocol    => "-1",
       cidr_blocks => ["0.0.0.0/0"],
     )],
 
-    egress => [TerraformAws::Aws_security_group_egress_500(
+    egress => [TerraformAws::Security_group__egress(
       from_port       => 0,
       to_port         => 0,
       protocol        => "-1",

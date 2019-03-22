@@ -6,28 +6,15 @@ type TerraformKubernetes = TypeSet[{
   name => 'TerraformKubernetes',
   version => '0.1.0',
   types => {
-    GenericHandler => {
-      functions => {
-        'create' => Callable[
-          [Object],
-          Tuple[Object, String]],
-        'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Object],
-        'update' => Callable[
-          [String, Object],
-          Object]
-      }
-    },
-    Kubernetes_cluster_role_binding => {
+    Cluster_role_binding => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['role_ref']
+          'immutableAttributes' => ['role_ref'],
+          'providedAttributes' => ['cluster_role_bindingID']
         }
       },
       attributes => {
-        'kubernetes_cluster_role_binding_id' => {
+        'cluster_role_bindingID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -36,12 +23,12 @@ type TerraformKubernetes = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'metadata' => Array[Kubernetes_cluster_role_binding_metadata_1],
-        'role_ref' => Hash[String, String],
-        'subject' => Array[Kubernetes_cluster_role_binding_subject_2]
+        'metadata' => Array[Cluster_role_binding__metadata],
+        'role_ref' => Hash[String, Cluster_role_binding__role_ref],
+        'subject' => Array[Cluster_role_binding__subject]
       }
     },
-    Kubernetes_cluster_role_bindingHandler => {
+    Cluster_role_bindingHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -55,7 +42,7 @@ type TerraformKubernetes = TypeSet[{
           Object]
       }
     },
-    Kubernetes_cluster_role_binding_metadata_1 => {
+    Cluster_role_binding__metadata => {
       attributes => {
         'annotations' => {
           'type' => Optional[Hash[String, String]],
@@ -87,7 +74,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_cluster_role_binding_subject_2 => {
+    Cluster_role_binding__role_ref => {
+      attributes => {
+        'api_group' => String,
+        'kind' => String,
+        'name' => String
+      }
+    },
+    Cluster_role_binding__subject => {
       attributes => {
         'api_group' => {
           'type' => Optional[String],
@@ -101,9 +95,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_config_map => {
+    Config_map => {
+      annotations => {
+        Lyra::Resource => {
+          'providedAttributes' => ['config_mapID']
+        }
+      },
       attributes => {
-        'kubernetes_config_map_id' => {
+        'config_mapID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -116,10 +115,10 @@ type TerraformKubernetes = TypeSet[{
           'type' => Optional[Hash[String, String]],
           'value' => undef
         },
-        'metadata' => Array[Kubernetes_config_map_metadata_3]
+        'metadata' => Array[Config_map__metadata]
       }
     },
-    Kubernetes_config_mapHandler => {
+    Config_mapHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -133,7 +132,7 @@ type TerraformKubernetes = TypeSet[{
           Object]
       }
     },
-    Kubernetes_config_map_metadata_3 => {
+    Config_map__metadata => {
       attributes => {
         'annotations' => {
           'type' => Optional[Hash[String, String]],
@@ -173,9 +172,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment => {
+    Deployment => {
+      annotations => {
+        Lyra::Resource => {
+          'providedAttributes' => ['deploymentID']
+        }
+      },
       attributes => {
-        'kubernetes_deployment_id' => {
+        'deploymentID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -184,11 +188,11 @@ type TerraformKubernetes = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'metadata' => Array[Kubernetes_deployment_metadata_4],
-        'spec' => Array[Kubernetes_deployment_spec_5]
+        'metadata' => Array[Deployment__metadata],
+        'spec' => Array[Deployment__spec]
       }
     },
-    Kubernetes_deploymentHandler => {
+    DeploymentHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -202,7 +206,7 @@ type TerraformKubernetes = TypeSet[{
           Object]
       }
     },
-    Kubernetes_deployment_metadata_4 => {
+    Deployment__metadata => {
       attributes => {
         'annotations' => {
           'type' => Optional[Hash[String, String]],
@@ -242,7 +246,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5 => {
+    Deployment__spec => {
       attributes => {
         'min_ready_seconds' => {
           'type' => Optional[Integer],
@@ -265,20 +269,20 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'selector' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_selector_6]],
+          'type' => Optional[Array[Deployment__spec__selector]],
           'value' => undef
         },
         'strategy' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_strategy_8]],
+          'type' => Optional[Array[Deployment__spec__strategy]],
           'value' => undef
         },
-        'template' => Array[Kubernetes_deployment_spec_5_template_10]
+        'template' => Array[Deployment__spec__template]
       }
     },
-    Kubernetes_deployment_spec_5_selector_6 => {
+    Deployment__spec__selector => {
       attributes => {
         'match_expressions' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_selector_6_match_expressions_7]],
+          'type' => Optional[Array[Deployment__spec__selector__match_expressions]],
           'value' => undef
         },
         'match_labels' => {
@@ -287,7 +291,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_selector_6_match_expressions_7 => {
+    Deployment__spec__selector__match_expressions => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -303,10 +307,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_strategy_8 => {
+    Deployment__spec__strategy => {
       attributes => {
         'rolling_update' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_strategy_8_rolling_update_9]],
+          'type' => Optional[Array[Deployment__spec__strategy__rolling_update]],
           'value' => undef
         },
         'type' => {
@@ -315,7 +319,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_strategy_8_rolling_update_9 => {
+    Deployment__spec__strategy__rolling_update => {
       attributes => {
         'max_surge' => {
           'type' => Optional[String],
@@ -327,13 +331,13 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10 => {
+    Deployment__spec__template => {
       attributes => {
-        'metadata' => Array[Kubernetes_deployment_spec_5_template_10_metadata_11],
-        'spec' => Array[Kubernetes_deployment_spec_5_template_10_spec_12]
+        'metadata' => Array[Deployment__spec__template__metadata],
+        'spec' => Array[Deployment__spec__template__spec]
       }
     },
-    Kubernetes_deployment_spec_5_template_10_metadata_11 => {
+    Deployment__spec__template__metadata => {
       attributes => {
         'annotations' => {
           'type' => Optional[Hash[String, String]],
@@ -373,14 +377,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12 => {
+    Deployment__spec__template__spec => {
       attributes => {
         'active_deadline_seconds' => {
           'type' => Optional[Integer],
           'value' => undef
         },
         'container' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container]],
           'value' => undef
         },
         'dns_policy' => {
@@ -404,11 +408,11 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'image_pull_secrets' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_image_pull_secrets_52]],
+          'type' => Optional[Array[Deployment__spec__template__spec__image_pull_secrets]],
           'value' => undef
         },
         'init_container' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container]],
           'value' => undef
         },
         'node_name' => {
@@ -424,7 +428,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'security_context' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_security_context_92]],
+          'type' => Optional[Array[Deployment__spec__template__spec__security_context]],
           'value' => undef
         },
         'service_account_name' => {
@@ -440,12 +444,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'volume' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume]],
           'value' => undef
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13 => {
+    Deployment__spec__template__spec__container => {
       attributes => {
         'args' => {
           'type' => Optional[Array[String]],
@@ -456,11 +460,11 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'env' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__env]],
           'value' => undef
         },
         'env_from' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_from_20]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__env_from]],
           'value' => undef
         },
         'image' => {
@@ -472,28 +476,28 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'lifecycle' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__lifecycle]],
           'value' => undef
         },
         'liveness_probe' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__liveness_probe]],
           'value' => undef
         },
         'name' => String,
         'port' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_port_39]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__port]],
           'value' => undef
         },
         'readiness_probe' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__readiness_probe]],
           'value' => undef
         },
         'resources' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_resources_45]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__resources]],
           'value' => undef
         },
         'security_context' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_security_context_48]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__security_context]],
           'value' => undef
         },
         'stdin' => {
@@ -513,7 +517,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'volume_mount' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_volume_mount_51]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__volume_mount]],
           'value' => undef
         },
         'working_dir' => {
@@ -522,7 +526,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14 => {
+    Deployment__spec__template__spec__container__env => {
       attributes => {
         'name' => String,
         'value' => {
@@ -530,32 +534,32 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'value_from' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__env__value_from]],
           'value' => undef
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15 => {
+    Deployment__spec__template__spec__container__env__value_from => {
       attributes => {
         'config_map_key_ref' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15_config_map_key_ref_16]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__env__value_from__config_map_key_ref]],
           'value' => undef
         },
         'field_ref' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15_field_ref_17]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__env__value_from__field_ref]],
           'value' => undef
         },
         'resource_field_ref' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15_resource_field_ref_18]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__env__value_from__resource_field_ref]],
           'value' => undef
         },
         'secret_key_ref' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15_secret_key_ref_19]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__env__value_from__secret_key_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15_config_map_key_ref_16 => {
+    Deployment__spec__template__spec__container__env__value_from__config_map_key_ref => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -567,7 +571,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15_field_ref_17 => {
+    Deployment__spec__template__spec__container__env__value_from__field_ref => {
       attributes => {
         'api_version' => {
           'type' => Optional[String],
@@ -579,7 +583,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15_resource_field_ref_18 => {
+    Deployment__spec__template__spec__container__env__value_from__resource_field_ref => {
       attributes => {
         'container_name' => {
           'type' => Optional[String],
@@ -588,7 +592,7 @@ type TerraformKubernetes = TypeSet[{
         'resource' => String
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_14_value_from_15_secret_key_ref_19 => {
+    Deployment__spec__template__spec__container__env__value_from__secret_key_ref => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -600,10 +604,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_from_20 => {
+    Deployment__spec__template__spec__container__env_from => {
       attributes => {
         'config_map_ref' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_from_20_config_map_ref_21]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__env_from__config_map_ref]],
           'value' => undef
         },
         'prefix' => {
@@ -611,12 +615,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_from_20_secret_ref_22]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__env_from__secret_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_from_20_config_map_ref_21 => {
+    Deployment__spec__template__spec__container__env_from__config_map_ref => {
       attributes => {
         'name' => String,
         'optional' => {
@@ -625,7 +629,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_env_from_20_secret_ref_22 => {
+    Deployment__spec__template__spec__container__env_from__secret_ref => {
       attributes => {
         'name' => String,
         'optional' => {
@@ -634,35 +638,35 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23 => {
+    Deployment__spec__template__spec__container__lifecycle => {
       attributes => {
         'post_start' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__lifecycle__post_start]],
           'value' => undef
         },
         'pre_stop' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__lifecycle__pre_stop]],
           'value' => undef
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24 => {
+    Deployment__spec__template__spec__container__lifecycle__post_start => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24_exec_25]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__lifecycle__post_start__exec]],
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24_http_get_26]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__lifecycle__post_start__http_get]],
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24_tcp_socket_28]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__lifecycle__post_start__tcp_socket]],
           'value' => undef
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24_exec_25 => {
+    Deployment__spec__template__spec__container__lifecycle__post_start__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -670,14 +674,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24_http_get_26 => {
+    Deployment__spec__template__spec__container__lifecycle__post_start__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24_http_get_26_http_header_27]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__lifecycle__post_start__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -694,7 +698,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24_http_get_26_http_header_27 => {
+    Deployment__spec__template__spec__container__lifecycle__post_start__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -706,28 +710,28 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_post_start_24_tcp_socket_28 => {
+    Deployment__spec__template__spec__container__lifecycle__post_start__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29 => {
+    Deployment__spec__template__spec__container__lifecycle__pre_stop => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29_exec_30]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__lifecycle__pre_stop__exec]],
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29_http_get_31]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__lifecycle__pre_stop__http_get]],
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29_tcp_socket_33]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__lifecycle__pre_stop__tcp_socket]],
           'value' => undef
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29_exec_30 => {
+    Deployment__spec__template__spec__container__lifecycle__pre_stop__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -735,14 +739,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29_http_get_31 => {
+    Deployment__spec__template__spec__container__lifecycle__pre_stop__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29_http_get_31_http_header_32]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__lifecycle__pre_stop__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -759,7 +763,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29_http_get_31_http_header_32 => {
+    Deployment__spec__template__spec__container__lifecycle__pre_stop__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -771,15 +775,15 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_lifecycle_23_pre_stop_29_tcp_socket_33 => {
+    Deployment__spec__template__spec__container__lifecycle__pre_stop__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34 => {
+    Deployment__spec__template__spec__container__liveness_probe => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34_exec_35]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__liveness_probe__exec]],
           'value' => undef
         },
         'failure_threshold' => {
@@ -787,7 +791,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34_http_get_36]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__liveness_probe__http_get]],
           'value' => undef
         },
         'initial_delay_seconds' => {
@@ -803,7 +807,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34_tcp_socket_38]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__liveness_probe__tcp_socket]],
           'value' => undef
         },
         'timeout_seconds' => {
@@ -812,7 +816,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34_exec_35 => {
+    Deployment__spec__template__spec__container__liveness_probe__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -820,14 +824,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34_http_get_36 => {
+    Deployment__spec__template__spec__container__liveness_probe__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34_http_get_36_http_header_37]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__liveness_probe__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -844,7 +848,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34_http_get_36_http_header_37 => {
+    Deployment__spec__template__spec__container__liveness_probe__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -856,12 +860,12 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_liveness_probe_34_tcp_socket_38 => {
+    Deployment__spec__template__spec__container__liveness_probe__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_port_39 => {
+    Deployment__spec__template__spec__container__port => {
       attributes => {
         'container_port' => Integer,
         'host_ip' => {
@@ -882,10 +886,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40 => {
+    Deployment__spec__template__spec__container__readiness_probe => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40_exec_41]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__readiness_probe__exec]],
           'value' => undef
         },
         'failure_threshold' => {
@@ -893,7 +897,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40_http_get_42]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__readiness_probe__http_get]],
           'value' => undef
         },
         'initial_delay_seconds' => {
@@ -909,7 +913,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40_tcp_socket_44]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__readiness_probe__tcp_socket]],
           'value' => undef
         },
         'timeout_seconds' => {
@@ -918,7 +922,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40_exec_41 => {
+    Deployment__spec__template__spec__container__readiness_probe__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -926,14 +930,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40_http_get_42 => {
+    Deployment__spec__template__spec__container__readiness_probe__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40_http_get_42_http_header_43]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__readiness_probe__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -950,7 +954,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40_http_get_42_http_header_43 => {
+    Deployment__spec__template__spec__container__readiness_probe__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -962,24 +966,24 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_readiness_probe_40_tcp_socket_44 => {
+    Deployment__spec__template__spec__container__readiness_probe__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_resources_45 => {
+    Deployment__spec__template__spec__container__resources => {
       attributes => {
         'limits' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_resources_45_limits_46]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__resources__limits]],
           'value' => undef
         },
         'requests' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_resources_45_requests_47]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__resources__requests]],
           'value' => undef
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_resources_45_limits_46 => {
+    Deployment__spec__template__spec__container__resources__limits => {
       attributes => {
         'cpu' => {
           'type' => Optional[String],
@@ -991,7 +995,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_resources_45_requests_47 => {
+    Deployment__spec__template__spec__container__resources__requests => {
       attributes => {
         'cpu' => {
           'type' => Optional[String],
@@ -1003,14 +1007,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_security_context_48 => {
+    Deployment__spec__template__spec__container__security_context => {
       attributes => {
         'allow_privilege_escalation' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
         'capabilities' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_security_context_48_capabilities_49]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__security_context__capabilities]],
           'value' => undef
         },
         'privileged' => {
@@ -1030,12 +1034,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'se_linux_options' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_container_13_security_context_48_se_linux_options_50]],
+          'type' => Optional[Array[Deployment__spec__template__spec__container__security_context__se_linux_options]],
           'value' => undef
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_security_context_48_capabilities_49 => {
+    Deployment__spec__template__spec__container__security_context__capabilities => {
       attributes => {
         'add' => {
           'type' => Optional[Array[String]],
@@ -1047,7 +1051,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_security_context_48_se_linux_options_50 => {
+    Deployment__spec__template__spec__container__security_context__se_linux_options => {
       attributes => {
         'level' => {
           'type' => Optional[String],
@@ -1067,7 +1071,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_container_13_volume_mount_51 => {
+    Deployment__spec__template__spec__container__volume_mount => {
       attributes => {
         'mount_path' => String,
         'name' => String,
@@ -1081,12 +1085,12 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_image_pull_secrets_52 => {
+    Deployment__spec__template__spec__image_pull_secrets => {
       attributes => {
         'name' => String
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53 => {
+    Deployment__spec__template__spec__init_container => {
       attributes => {
         'args' => {
           'type' => Optional[Array[String]],
@@ -1097,11 +1101,11 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'env' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__env]],
           'value' => undef
         },
         'env_from' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_from_60]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__env_from]],
           'value' => undef
         },
         'image' => {
@@ -1113,28 +1117,28 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'lifecycle' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__lifecycle]],
           'value' => undef
         },
         'liveness_probe' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__liveness_probe]],
           'value' => undef
         },
         'name' => String,
         'port' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_port_79]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__port]],
           'value' => undef
         },
         'readiness_probe' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__readiness_probe]],
           'value' => undef
         },
         'resources' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_resources_85]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__resources]],
           'value' => undef
         },
         'security_context' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_security_context_88]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__security_context]],
           'value' => undef
         },
         'stdin' => {
@@ -1154,7 +1158,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'volume_mount' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_volume_mount_91]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__volume_mount]],
           'value' => undef
         },
         'working_dir' => {
@@ -1163,7 +1167,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54 => {
+    Deployment__spec__template__spec__init_container__env => {
       attributes => {
         'name' => String,
         'value' => {
@@ -1171,32 +1175,32 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'value_from' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__env__value_from]],
           'value' => undef
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55 => {
+    Deployment__spec__template__spec__init_container__env__value_from => {
       attributes => {
         'config_map_key_ref' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55_config_map_key_ref_56]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__env__value_from__config_map_key_ref]],
           'value' => undef
         },
         'field_ref' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55_field_ref_57]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__env__value_from__field_ref]],
           'value' => undef
         },
         'resource_field_ref' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55_resource_field_ref_58]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__env__value_from__resource_field_ref]],
           'value' => undef
         },
         'secret_key_ref' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55_secret_key_ref_59]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__env__value_from__secret_key_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55_config_map_key_ref_56 => {
+    Deployment__spec__template__spec__init_container__env__value_from__config_map_key_ref => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -1208,7 +1212,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55_field_ref_57 => {
+    Deployment__spec__template__spec__init_container__env__value_from__field_ref => {
       attributes => {
         'api_version' => {
           'type' => Optional[String],
@@ -1220,7 +1224,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55_resource_field_ref_58 => {
+    Deployment__spec__template__spec__init_container__env__value_from__resource_field_ref => {
       attributes => {
         'container_name' => {
           'type' => Optional[String],
@@ -1229,7 +1233,7 @@ type TerraformKubernetes = TypeSet[{
         'resource' => String
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_54_value_from_55_secret_key_ref_59 => {
+    Deployment__spec__template__spec__init_container__env__value_from__secret_key_ref => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -1241,10 +1245,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_from_60 => {
+    Deployment__spec__template__spec__init_container__env_from => {
       attributes => {
         'config_map_ref' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_from_60_config_map_ref_61]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__env_from__config_map_ref]],
           'value' => undef
         },
         'prefix' => {
@@ -1252,12 +1256,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_from_60_secret_ref_62]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__env_from__secret_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_from_60_config_map_ref_61 => {
+    Deployment__spec__template__spec__init_container__env_from__config_map_ref => {
       attributes => {
         'name' => String,
         'optional' => {
@@ -1266,7 +1270,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_env_from_60_secret_ref_62 => {
+    Deployment__spec__template__spec__init_container__env_from__secret_ref => {
       attributes => {
         'name' => String,
         'optional' => {
@@ -1275,35 +1279,35 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63 => {
+    Deployment__spec__template__spec__init_container__lifecycle => {
       attributes => {
         'post_start' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__lifecycle__post_start]],
           'value' => undef
         },
         'pre_stop' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__lifecycle__pre_stop]],
           'value' => undef
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64 => {
+    Deployment__spec__template__spec__init_container__lifecycle__post_start => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64_exec_65]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__lifecycle__post_start__exec]],
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64_http_get_66]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__lifecycle__post_start__http_get]],
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64_tcp_socket_68]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__lifecycle__post_start__tcp_socket]],
           'value' => undef
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64_exec_65 => {
+    Deployment__spec__template__spec__init_container__lifecycle__post_start__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -1311,14 +1315,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64_http_get_66 => {
+    Deployment__spec__template__spec__init_container__lifecycle__post_start__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64_http_get_66_http_header_67]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__lifecycle__post_start__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -1335,7 +1339,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64_http_get_66_http_header_67 => {
+    Deployment__spec__template__spec__init_container__lifecycle__post_start__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -1347,28 +1351,28 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_post_start_64_tcp_socket_68 => {
+    Deployment__spec__template__spec__init_container__lifecycle__post_start__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69 => {
+    Deployment__spec__template__spec__init_container__lifecycle__pre_stop => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69_exec_70]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__lifecycle__pre_stop__exec]],
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69_http_get_71]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__lifecycle__pre_stop__http_get]],
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69_tcp_socket_73]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__lifecycle__pre_stop__tcp_socket]],
           'value' => undef
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69_exec_70 => {
+    Deployment__spec__template__spec__init_container__lifecycle__pre_stop__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -1376,14 +1380,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69_http_get_71 => {
+    Deployment__spec__template__spec__init_container__lifecycle__pre_stop__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69_http_get_71_http_header_72]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__lifecycle__pre_stop__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -1400,7 +1404,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69_http_get_71_http_header_72 => {
+    Deployment__spec__template__spec__init_container__lifecycle__pre_stop__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -1412,15 +1416,15 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_lifecycle_63_pre_stop_69_tcp_socket_73 => {
+    Deployment__spec__template__spec__init_container__lifecycle__pre_stop__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74 => {
+    Deployment__spec__template__spec__init_container__liveness_probe => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74_exec_75]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__liveness_probe__exec]],
           'value' => undef
         },
         'failure_threshold' => {
@@ -1428,7 +1432,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74_http_get_76]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__liveness_probe__http_get]],
           'value' => undef
         },
         'initial_delay_seconds' => {
@@ -1444,7 +1448,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74_tcp_socket_78]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__liveness_probe__tcp_socket]],
           'value' => undef
         },
         'timeout_seconds' => {
@@ -1453,7 +1457,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74_exec_75 => {
+    Deployment__spec__template__spec__init_container__liveness_probe__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -1461,14 +1465,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74_http_get_76 => {
+    Deployment__spec__template__spec__init_container__liveness_probe__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74_http_get_76_http_header_77]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__liveness_probe__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -1485,7 +1489,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74_http_get_76_http_header_77 => {
+    Deployment__spec__template__spec__init_container__liveness_probe__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -1497,12 +1501,12 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_liveness_probe_74_tcp_socket_78 => {
+    Deployment__spec__template__spec__init_container__liveness_probe__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_port_79 => {
+    Deployment__spec__template__spec__init_container__port => {
       attributes => {
         'container_port' => Integer,
         'host_ip' => {
@@ -1523,10 +1527,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80 => {
+    Deployment__spec__template__spec__init_container__readiness_probe => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80_exec_81]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__readiness_probe__exec]],
           'value' => undef
         },
         'failure_threshold' => {
@@ -1534,7 +1538,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80_http_get_82]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__readiness_probe__http_get]],
           'value' => undef
         },
         'initial_delay_seconds' => {
@@ -1550,7 +1554,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80_tcp_socket_84]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__readiness_probe__tcp_socket]],
           'value' => undef
         },
         'timeout_seconds' => {
@@ -1559,7 +1563,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80_exec_81 => {
+    Deployment__spec__template__spec__init_container__readiness_probe__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -1567,14 +1571,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80_http_get_82 => {
+    Deployment__spec__template__spec__init_container__readiness_probe__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80_http_get_82_http_header_83]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__readiness_probe__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -1591,7 +1595,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80_http_get_82_http_header_83 => {
+    Deployment__spec__template__spec__init_container__readiness_probe__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -1603,24 +1607,24 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_readiness_probe_80_tcp_socket_84 => {
+    Deployment__spec__template__spec__init_container__readiness_probe__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_resources_85 => {
+    Deployment__spec__template__spec__init_container__resources => {
       attributes => {
         'limits' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_resources_85_limits_86]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__resources__limits]],
           'value' => undef
         },
         'requests' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_resources_85_requests_87]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__resources__requests]],
           'value' => undef
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_resources_85_limits_86 => {
+    Deployment__spec__template__spec__init_container__resources__limits => {
       attributes => {
         'cpu' => {
           'type' => Optional[String],
@@ -1632,7 +1636,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_resources_85_requests_87 => {
+    Deployment__spec__template__spec__init_container__resources__requests => {
       attributes => {
         'cpu' => {
           'type' => Optional[String],
@@ -1644,14 +1648,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_security_context_88 => {
+    Deployment__spec__template__spec__init_container__security_context => {
       attributes => {
         'allow_privilege_escalation' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
         'capabilities' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_security_context_88_capabilities_89]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__security_context__capabilities]],
           'value' => undef
         },
         'privileged' => {
@@ -1671,12 +1675,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'se_linux_options' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_security_context_88_se_linux_options_90]],
+          'type' => Optional[Array[Deployment__spec__template__spec__init_container__security_context__se_linux_options]],
           'value' => undef
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_security_context_88_capabilities_89 => {
+    Deployment__spec__template__spec__init_container__security_context__capabilities => {
       attributes => {
         'add' => {
           'type' => Optional[Array[String]],
@@ -1688,7 +1692,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_security_context_88_se_linux_options_90 => {
+    Deployment__spec__template__spec__init_container__security_context__se_linux_options => {
       attributes => {
         'level' => {
           'type' => Optional[String],
@@ -1708,7 +1712,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_init_container_53_volume_mount_91 => {
+    Deployment__spec__template__spec__init_container__volume_mount => {
       attributes => {
         'mount_path' => String,
         'name' => String,
@@ -1722,7 +1726,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_security_context_92 => {
+    Deployment__spec__template__spec__security_context => {
       attributes => {
         'fs_group' => {
           'type' => Optional[Integer],
@@ -1737,7 +1741,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'se_linux_options' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_security_context_92_se_linux_options_93]],
+          'type' => Optional[Array[Deployment__spec__template__spec__security_context__se_linux_options]],
           'value' => undef
         },
         'supplemental_groups' => {
@@ -1746,7 +1750,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_security_context_92_se_linux_options_93 => {
+    Deployment__spec__template__spec__security_context__se_linux_options => {
       attributes => {
         'level' => {
           'type' => Optional[String],
@@ -1766,74 +1770,74 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94 => {
+    Deployment__spec__template__spec__volume => {
       attributes => {
         'aws_elastic_block_store' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_aws_elastic_block_store_95]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__aws_elastic_block_store]],
           'value' => undef
         },
         'azure_disk' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_azure_disk_96]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__azure_disk]],
           'value' => undef
         },
         'azure_file' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_azure_file_97]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__azure_file]],
           'value' => undef
         },
         'ceph_fs' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_ceph_fs_98]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__ceph_fs]],
           'value' => undef
         },
         'cinder' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_cinder_100]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__cinder]],
           'value' => undef
         },
         'config_map' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_config_map_101]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__config_map]],
           'value' => undef
         },
         'downward_api' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_downward_api_103]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__downward_api]],
           'value' => undef
         },
         'empty_dir' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_empty_dir_107]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__empty_dir]],
           'value' => undef
         },
         'fc' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_fc_108]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__fc]],
           'value' => undef
         },
         'flex_volume' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_flex_volume_109]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__flex_volume]],
           'value' => undef
         },
         'flocker' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_flocker_111]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__flocker]],
           'value' => undef
         },
         'gce_persistent_disk' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_gce_persistent_disk_112]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__gce_persistent_disk]],
           'value' => undef
         },
         'git_repo' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_git_repo_113]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__git_repo]],
           'value' => undef
         },
         'glusterfs' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_glusterfs_114]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__glusterfs]],
           'value' => undef
         },
         'host_path' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_host_path_115]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__host_path]],
           'value' => undef
         },
         'iscsi' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_iscsi_116]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__iscsi]],
           'value' => undef
         },
         'local' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_local_117]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__local]],
           'value' => undef
         },
         'name' => {
@@ -1841,36 +1845,36 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'nfs' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_nfs_118]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__nfs]],
           'value' => undef
         },
         'persistent_volume_claim' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_persistent_volume_claim_119]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__persistent_volume_claim]],
           'value' => undef
         },
         'photon_persistent_disk' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_photon_persistent_disk_120]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__photon_persistent_disk]],
           'value' => undef
         },
         'quobyte' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_quobyte_121]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__quobyte]],
           'value' => undef
         },
         'rbd' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_rbd_122]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__rbd]],
           'value' => undef
         },
         'secret' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_secret_124]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__secret]],
           'value' => undef
         },
         'vsphere_volume' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_vsphere_volume_126]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__vsphere_volume]],
           'value' => undef
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_aws_elastic_block_store_95 => {
+    Deployment__spec__template__spec__volume__aws_elastic_block_store => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -1887,7 +1891,7 @@ type TerraformKubernetes = TypeSet[{
         'volume_id' => String
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_azure_disk_96 => {
+    Deployment__spec__template__spec__volume__azure_disk => {
       attributes => {
         'caching_mode' => String,
         'data_disk_uri' => String,
@@ -1902,7 +1906,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_azure_file_97 => {
+    Deployment__spec__template__spec__volume__azure_file => {
       attributes => {
         'read_only' => {
           'type' => Optional[Boolean],
@@ -1912,7 +1916,7 @@ type TerraformKubernetes = TypeSet[{
         'share_name' => String
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_ceph_fs_98 => {
+    Deployment__spec__template__spec__volume__ceph_fs => {
       attributes => {
         'monitors' => Array[String],
         'path' => {
@@ -1928,7 +1932,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_ceph_fs_98_secret_ref_99]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__ceph_fs__secret_ref]],
           'value' => undef
         },
         'user' => {
@@ -1937,7 +1941,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_ceph_fs_98_secret_ref_99 => {
+    Deployment__spec__template__spec__volume__ceph_fs__secret_ref => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -1945,7 +1949,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_cinder_100 => {
+    Deployment__spec__template__spec__volume__cinder => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -1958,14 +1962,14 @@ type TerraformKubernetes = TypeSet[{
         'volume_id' => String
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_config_map_101 => {
+    Deployment__spec__template__spec__volume__config_map => {
       attributes => {
         'default_mode' => {
           'type' => Optional[Integer],
           'value' => undef
         },
         'items' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_config_map_101_items_102]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__config_map__items]],
           'value' => undef
         },
         'name' => {
@@ -1974,7 +1978,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_config_map_101_items_102 => {
+    Deployment__spec__template__spec__volume__config_map__items => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -1990,33 +1994,33 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_downward_api_103 => {
+    Deployment__spec__template__spec__volume__downward_api => {
       attributes => {
         'default_mode' => {
           'type' => Optional[Integer],
           'value' => undef
         },
         'items' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_downward_api_103_items_104]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__downward_api__items]],
           'value' => undef
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_downward_api_103_items_104 => {
+    Deployment__spec__template__spec__volume__downward_api__items => {
       attributes => {
-        'field_ref' => Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_downward_api_103_items_104_field_ref_105],
+        'field_ref' => Array[Deployment__spec__template__spec__volume__downward_api__items__field_ref],
         'mode' => {
           'type' => Optional[Integer],
           'value' => undef
         },
         'path' => String,
         'resource_field_ref' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_downward_api_103_items_104_resource_field_ref_106]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__downward_api__items__resource_field_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_downward_api_103_items_104_field_ref_105 => {
+    Deployment__spec__template__spec__volume__downward_api__items__field_ref => {
       attributes => {
         'api_version' => {
           'type' => Optional[String],
@@ -2028,7 +2032,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_downward_api_103_items_104_resource_field_ref_106 => {
+    Deployment__spec__template__spec__volume__downward_api__items__resource_field_ref => {
       attributes => {
         'container_name' => String,
         'quantity' => {
@@ -2038,7 +2042,7 @@ type TerraformKubernetes = TypeSet[{
         'resource' => String
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_empty_dir_107 => {
+    Deployment__spec__template__spec__volume__empty_dir => {
       attributes => {
         'medium' => {
           'type' => Optional[String],
@@ -2046,7 +2050,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_fc_108 => {
+    Deployment__spec__template__spec__volume__fc => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -2060,7 +2064,7 @@ type TerraformKubernetes = TypeSet[{
         'target_ww_ns' => Array[String]
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_flex_volume_109 => {
+    Deployment__spec__template__spec__volume__flex_volume => {
       attributes => {
         'driver' => String,
         'fs_type' => {
@@ -2076,12 +2080,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_flex_volume_109_secret_ref_110]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__flex_volume__secret_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_flex_volume_109_secret_ref_110 => {
+    Deployment__spec__template__spec__volume__flex_volume__secret_ref => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -2089,7 +2093,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_flocker_111 => {
+    Deployment__spec__template__spec__volume__flocker => {
       attributes => {
         'dataset_name' => {
           'type' => Optional[String],
@@ -2101,7 +2105,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_gce_persistent_disk_112 => {
+    Deployment__spec__template__spec__volume__gce_persistent_disk => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -2118,7 +2122,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_git_repo_113 => {
+    Deployment__spec__template__spec__volume__git_repo => {
       attributes => {
         'directory' => {
           'type' => Optional[String],
@@ -2134,7 +2138,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_glusterfs_114 => {
+    Deployment__spec__template__spec__volume__glusterfs => {
       attributes => {
         'endpoints_name' => String,
         'path' => String,
@@ -2144,7 +2148,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_host_path_115 => {
+    Deployment__spec__template__spec__volume__host_path => {
       attributes => {
         'path' => {
           'type' => Optional[String],
@@ -2152,7 +2156,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_iscsi_116 => {
+    Deployment__spec__template__spec__volume__iscsi => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -2174,7 +2178,7 @@ type TerraformKubernetes = TypeSet[{
         'target_portal' => String
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_local_117 => {
+    Deployment__spec__template__spec__volume__local => {
       attributes => {
         'path' => {
           'type' => Optional[String],
@@ -2182,7 +2186,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_nfs_118 => {
+    Deployment__spec__template__spec__volume__nfs => {
       attributes => {
         'path' => String,
         'read_only' => {
@@ -2192,7 +2196,7 @@ type TerraformKubernetes = TypeSet[{
         'server' => String
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_persistent_volume_claim_119 => {
+    Deployment__spec__template__spec__volume__persistent_volume_claim => {
       attributes => {
         'claim_name' => {
           'type' => Optional[String],
@@ -2204,7 +2208,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_photon_persistent_disk_120 => {
+    Deployment__spec__template__spec__volume__photon_persistent_disk => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -2213,7 +2217,7 @@ type TerraformKubernetes = TypeSet[{
         'pd_id' => String
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_quobyte_121 => {
+    Deployment__spec__template__spec__volume__quobyte => {
       attributes => {
         'group' => {
           'type' => Optional[String],
@@ -2231,7 +2235,7 @@ type TerraformKubernetes = TypeSet[{
         'volume' => String
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_rbd_122 => {
+    Deployment__spec__template__spec__volume__rbd => {
       attributes => {
         'ceph_monitors' => Array[String],
         'fs_type' => {
@@ -2256,12 +2260,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_rbd_122_secret_ref_123]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__rbd__secret_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_rbd_122_secret_ref_123 => {
+    Deployment__spec__template__spec__volume__rbd__secret_ref => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -2269,14 +2273,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_secret_124 => {
+    Deployment__spec__template__spec__volume__secret => {
       attributes => {
         'default_mode' => {
           'type' => Optional[Integer],
           'value' => undef
         },
         'items' => {
-          'type' => Optional[Array[Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_secret_124_items_125]],
+          'type' => Optional[Array[Deployment__spec__template__spec__volume__secret__items]],
           'value' => undef
         },
         'optional' => {
@@ -2289,7 +2293,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_secret_124_items_125 => {
+    Deployment__spec__template__spec__volume__secret__items => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -2305,7 +2309,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_deployment_spec_5_template_10_spec_12_volume_94_vsphere_volume_126 => {
+    Deployment__spec__template__spec__volume__vsphere_volume => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -2314,22 +2318,7 @@ type TerraformKubernetes = TypeSet[{
         'volume_path' => String
       }
     },
-    Kubernetes_horizontal_pod_autoscaler => {
-      attributes => {
-        'kubernetes_horizontal_pod_autoscaler_id' => {
-          'annotations' => {
-            TagsAnnotation => {
-              'lyra' => 'ignore'
-            }
-          },
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'metadata' => Array[Kubernetes_horizontal_pod_autoscaler_metadata_127],
-        'spec' => Array[Kubernetes_horizontal_pod_autoscaler_spec_128]
-      }
-    },
-    Kubernetes_horizontal_pod_autoscalerHandler => {
+    GenericHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -2343,7 +2332,41 @@ type TerraformKubernetes = TypeSet[{
           Object]
       }
     },
-    Kubernetes_horizontal_pod_autoscaler_metadata_127 => {
+    Horizontal_pod_autoscaler => {
+      annotations => {
+        Lyra::Resource => {
+          'providedAttributes' => ['horizontal_pod_autoscalerID']
+        }
+      },
+      attributes => {
+        'horizontal_pod_autoscalerID' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'metadata' => Array[Horizontal_pod_autoscaler__metadata],
+        'spec' => Array[Horizontal_pod_autoscaler__spec]
+      }
+    },
+    Horizontal_pod_autoscalerHandler => {
+      functions => {
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
+        'delete' => Callable[String],
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
+      }
+    },
+    Horizontal_pod_autoscaler__metadata => {
       attributes => {
         'annotations' => {
           'type' => Optional[Hash[String, String]],
@@ -2383,21 +2406,21 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_horizontal_pod_autoscaler_spec_128 => {
+    Horizontal_pod_autoscaler__spec => {
       attributes => {
         'max_replicas' => Integer,
         'min_replicas' => {
           'type' => Optional[Integer],
           'value' => undef
         },
-        'scale_target_ref' => Array[Kubernetes_horizontal_pod_autoscaler_spec_128_scale_target_ref_129],
+        'scale_target_ref' => Array[Horizontal_pod_autoscaler__spec__scale_target_ref],
         'target_cpu_utilization_percentage' => {
           'type' => Optional[Integer],
           'value' => undef
         }
       }
     },
-    Kubernetes_horizontal_pod_autoscaler_spec_128_scale_target_ref_129 => {
+    Horizontal_pod_autoscaler__spec__scale_target_ref => {
       attributes => {
         'api_version' => {
           'type' => Optional[String],
@@ -2407,9 +2430,14 @@ type TerraformKubernetes = TypeSet[{
         'name' => String
       }
     },
-    Kubernetes_limit_range => {
+    Limit_range => {
+      annotations => {
+        Lyra::Resource => {
+          'providedAttributes' => ['limit_rangeID']
+        }
+      },
       attributes => {
-        'kubernetes_limit_range_id' => {
+        'limit_rangeID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -2418,14 +2446,14 @@ type TerraformKubernetes = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'metadata' => Array[Kubernetes_limit_range_metadata_130],
+        'metadata' => Array[Limit_range__metadata],
         'spec' => {
-          'type' => Optional[Array[Kubernetes_limit_range_spec_131]],
+          'type' => Optional[Array[Limit_range__spec]],
           'value' => undef
         }
       }
     },
-    Kubernetes_limit_rangeHandler => {
+    Limit_rangeHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -2439,7 +2467,7 @@ type TerraformKubernetes = TypeSet[{
           Object]
       }
     },
-    Kubernetes_limit_range_metadata_130 => {
+    Limit_range__metadata => {
       attributes => {
         'annotations' => {
           'type' => Optional[Hash[String, String]],
@@ -2479,15 +2507,15 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_limit_range_spec_131 => {
+    Limit_range__spec => {
       attributes => {
         'limit' => {
-          'type' => Optional[Array[Kubernetes_limit_range_spec_131_limit_132]],
+          'type' => Optional[Array[Limit_range__spec__limit]],
           'value' => undef
         }
       }
     },
-    Kubernetes_limit_range_spec_131_limit_132 => {
+    Limit_range__spec__limit => {
       attributes => {
         'default' => {
           'type' => Optional[Hash[String, String]],
@@ -2515,9 +2543,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_namespace => {
+    Namespace => {
+      annotations => {
+        Lyra::Resource => {
+          'providedAttributes' => ['namespaceID']
+        }
+      },
       attributes => {
-        'kubernetes_namespace_id' => {
+        'namespaceID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -2526,10 +2559,10 @@ type TerraformKubernetes = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'metadata' => Array[Kubernetes_namespace_metadata_133]
+        'metadata' => Array[Namespace__metadata]
       }
     },
-    Kubernetes_namespaceHandler => {
+    NamespaceHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -2543,7 +2576,7 @@ type TerraformKubernetes = TypeSet[{
           Object]
       }
     },
-    Kubernetes_namespace_metadata_133 => {
+    Namespace__metadata => {
       attributes => {
         'annotations' => {
           'type' => Optional[Hash[String, String]],
@@ -2579,9 +2612,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_network_policy => {
+    Network_policy => {
+      annotations => {
+        Lyra::Resource => {
+          'providedAttributes' => ['network_policyID']
+        }
+      },
       attributes => {
-        'kubernetes_network_policy_id' => {
+        'network_policyID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -2590,11 +2628,11 @@ type TerraformKubernetes = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'metadata' => Array[Kubernetes_network_policy_metadata_134],
-        'spec' => Array[Kubernetes_network_policy_spec_135]
+        'metadata' => Array[Network_policy__metadata],
+        'spec' => Array[Network_policy__spec]
       }
     },
-    Kubernetes_network_policyHandler => {
+    Network_policyHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -2608,7 +2646,7 @@ type TerraformKubernetes = TypeSet[{
           Object]
       }
     },
-    Kubernetes_network_policy_metadata_134 => {
+    Network_policy__metadata => {
       attributes => {
         'annotations' => {
           'type' => Optional[Hash[String, String]],
@@ -2648,33 +2686,33 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_network_policy_spec_135 => {
+    Network_policy__spec => {
       attributes => {
         'egress' => {
-          'type' => Optional[Array[Kubernetes_network_policy_spec_135_egress_136]],
+          'type' => Optional[Array[Network_policy__spec__egress]],
           'value' => undef
         },
         'ingress' => {
-          'type' => Optional[Array[Kubernetes_network_policy_spec_135_ingress_144]],
+          'type' => Optional[Array[Network_policy__spec__ingress]],
           'value' => undef
         },
-        'pod_selector' => Array[Kubernetes_network_policy_spec_135_pod_selector_152],
+        'pod_selector' => Array[Network_policy__spec__pod_selector],
         'policy_types' => Array[String]
       }
     },
-    Kubernetes_network_policy_spec_135_egress_136 => {
+    Network_policy__spec__egress => {
       attributes => {
         'ports' => {
-          'type' => Optional[Array[Kubernetes_network_policy_spec_135_egress_136_ports_137]],
+          'type' => Optional[Array[Network_policy__spec__egress__ports]],
           'value' => undef
         },
         'to' => {
-          'type' => Optional[Array[Kubernetes_network_policy_spec_135_egress_136_to_138]],
+          'type' => Optional[Array[Network_policy__spec__egress__to]],
           'value' => undef
         }
       }
     },
-    Kubernetes_network_policy_spec_135_egress_136_ports_137 => {
+    Network_policy__spec__egress__ports => {
       attributes => {
         'port' => {
           'type' => Optional[String],
@@ -2686,23 +2724,23 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_network_policy_spec_135_egress_136_to_138 => {
+    Network_policy__spec__egress__to => {
       attributes => {
         'ip_block' => {
-          'type' => Optional[Array[Kubernetes_network_policy_spec_135_egress_136_to_138_ip_block_139]],
+          'type' => Optional[Array[Network_policy__spec__egress__to__ip_block]],
           'value' => undef
         },
         'namespace_selector' => {
-          'type' => Optional[Array[Kubernetes_network_policy_spec_135_egress_136_to_138_namespace_selector_140]],
+          'type' => Optional[Array[Network_policy__spec__egress__to__namespace_selector]],
           'value' => undef
         },
         'pod_selector' => {
-          'type' => Optional[Array[Kubernetes_network_policy_spec_135_egress_136_to_138_pod_selector_142]],
+          'type' => Optional[Array[Network_policy__spec__egress__to__pod_selector]],
           'value' => undef
         }
       }
     },
-    Kubernetes_network_policy_spec_135_egress_136_to_138_ip_block_139 => {
+    Network_policy__spec__egress__to__ip_block => {
       attributes => {
         'cidr' => {
           'type' => Optional[String],
@@ -2714,10 +2752,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_network_policy_spec_135_egress_136_to_138_namespace_selector_140 => {
+    Network_policy__spec__egress__to__namespace_selector => {
       attributes => {
         'match_expressions' => {
-          'type' => Optional[Array[Kubernetes_network_policy_spec_135_egress_136_to_138_namespace_selector_140_match_expressions_141]],
+          'type' => Optional[Array[Network_policy__spec__egress__to__namespace_selector__match_expressions]],
           'value' => undef
         },
         'match_labels' => {
@@ -2726,7 +2764,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_network_policy_spec_135_egress_136_to_138_namespace_selector_140_match_expressions_141 => {
+    Network_policy__spec__egress__to__namespace_selector__match_expressions => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -2742,10 +2780,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_network_policy_spec_135_egress_136_to_138_pod_selector_142 => {
+    Network_policy__spec__egress__to__pod_selector => {
       attributes => {
         'match_expressions' => {
-          'type' => Optional[Array[Kubernetes_network_policy_spec_135_egress_136_to_138_pod_selector_142_match_expressions_143]],
+          'type' => Optional[Array[Network_policy__spec__egress__to__pod_selector__match_expressions]],
           'value' => undef
         },
         'match_labels' => {
@@ -2754,7 +2792,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_network_policy_spec_135_egress_136_to_138_pod_selector_142_match_expressions_143 => {
+    Network_policy__spec__egress__to__pod_selector__match_expressions => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -2770,35 +2808,35 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_network_policy_spec_135_ingress_144 => {
+    Network_policy__spec__ingress => {
       attributes => {
         'from' => {
-          'type' => Optional[Array[Kubernetes_network_policy_spec_135_ingress_144_from_145]],
+          'type' => Optional[Array[Network_policy__spec__ingress__from]],
           'value' => undef
         },
         'ports' => {
-          'type' => Optional[Array[Kubernetes_network_policy_spec_135_ingress_144_ports_151]],
+          'type' => Optional[Array[Network_policy__spec__ingress__ports]],
           'value' => undef
         }
       }
     },
-    Kubernetes_network_policy_spec_135_ingress_144_from_145 => {
+    Network_policy__spec__ingress__from => {
       attributes => {
         'ip_block' => {
-          'type' => Optional[Array[Kubernetes_network_policy_spec_135_ingress_144_from_145_ip_block_146]],
+          'type' => Optional[Array[Network_policy__spec__ingress__from__ip_block]],
           'value' => undef
         },
         'namespace_selector' => {
-          'type' => Optional[Array[Kubernetes_network_policy_spec_135_ingress_144_from_145_namespace_selector_147]],
+          'type' => Optional[Array[Network_policy__spec__ingress__from__namespace_selector]],
           'value' => undef
         },
         'pod_selector' => {
-          'type' => Optional[Array[Kubernetes_network_policy_spec_135_ingress_144_from_145_pod_selector_149]],
+          'type' => Optional[Array[Network_policy__spec__ingress__from__pod_selector]],
           'value' => undef
         }
       }
     },
-    Kubernetes_network_policy_spec_135_ingress_144_from_145_ip_block_146 => {
+    Network_policy__spec__ingress__from__ip_block => {
       attributes => {
         'cidr' => {
           'type' => Optional[String],
@@ -2810,10 +2848,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_network_policy_spec_135_ingress_144_from_145_namespace_selector_147 => {
+    Network_policy__spec__ingress__from__namespace_selector => {
       attributes => {
         'match_expressions' => {
-          'type' => Optional[Array[Kubernetes_network_policy_spec_135_ingress_144_from_145_namespace_selector_147_match_expressions_148]],
+          'type' => Optional[Array[Network_policy__spec__ingress__from__namespace_selector__match_expressions]],
           'value' => undef
         },
         'match_labels' => {
@@ -2822,7 +2860,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_network_policy_spec_135_ingress_144_from_145_namespace_selector_147_match_expressions_148 => {
+    Network_policy__spec__ingress__from__namespace_selector__match_expressions => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -2838,10 +2876,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_network_policy_spec_135_ingress_144_from_145_pod_selector_149 => {
+    Network_policy__spec__ingress__from__pod_selector => {
       attributes => {
         'match_expressions' => {
-          'type' => Optional[Array[Kubernetes_network_policy_spec_135_ingress_144_from_145_pod_selector_149_match_expressions_150]],
+          'type' => Optional[Array[Network_policy__spec__ingress__from__pod_selector__match_expressions]],
           'value' => undef
         },
         'match_labels' => {
@@ -2850,7 +2888,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_network_policy_spec_135_ingress_144_from_145_pod_selector_149_match_expressions_150 => {
+    Network_policy__spec__ingress__from__pod_selector__match_expressions => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -2866,7 +2904,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_network_policy_spec_135_ingress_144_ports_151 => {
+    Network_policy__spec__ingress__ports => {
       attributes => {
         'port' => {
           'type' => Optional[String],
@@ -2878,10 +2916,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_network_policy_spec_135_pod_selector_152 => {
+    Network_policy__spec__pod_selector => {
       attributes => {
         'match_expressions' => {
-          'type' => Optional[Array[Kubernetes_network_policy_spec_135_pod_selector_152_match_expressions_153]],
+          'type' => Optional[Array[Network_policy__spec__pod_selector__match_expressions]],
           'value' => undef
         },
         'match_labels' => {
@@ -2890,7 +2928,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_network_policy_spec_135_pod_selector_152_match_expressions_153 => {
+    Network_policy__spec__pod_selector__match_expressions => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -2906,9 +2944,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_persistent_volume => {
+    Persistent_volume => {
+      annotations => {
+        Lyra::Resource => {
+          'providedAttributes' => ['persistent_volumeID']
+        }
+      },
       attributes => {
-        'kubernetes_persistent_volume_id' => {
+        'persistent_volumeID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -2917,11 +2960,11 @@ type TerraformKubernetes = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'metadata' => Array[Kubernetes_persistent_volume_metadata_154],
-        'spec' => Array[Kubernetes_persistent_volume_spec_155]
+        'metadata' => Array[Persistent_volume__metadata],
+        'spec' => Array[Persistent_volume__spec]
       }
     },
-    Kubernetes_persistent_volumeHandler => {
+    Persistent_volumeHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -2935,14 +2978,494 @@ type TerraformKubernetes = TypeSet[{
           Object]
       }
     },
-    Kubernetes_persistent_volume_claim => {
+    Persistent_volume__metadata => {
+      attributes => {
+        'annotations' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'generation' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'resource_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'self_link' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'uid' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Persistent_volume__spec => {
+      attributes => {
+        'access_modes' => Array[String],
+        'capacity' => Hash[String, String],
+        'node_affinity' => {
+          'type' => Optional[Array[Persistent_volume__spec__node_affinity]],
+          'value' => undef
+        },
+        'persistent_volume_reclaim_policy' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'persistent_volume_source' => Array[Persistent_volume__spec__persistent_volume_source],
+        'storage_class_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Persistent_volume__spec__node_affinity => {
+      attributes => {
+        'required' => {
+          'type' => Optional[Array[Persistent_volume__spec__node_affinity__required]],
+          'value' => undef
+        }
+      }
+    },
+    Persistent_volume__spec__node_affinity__required => {
+      attributes => {
+        'node_selector_term' => {
+          'type' => Optional[Array[Persistent_volume__spec__node_affinity__required__node_selector_term]],
+          'value' => undef
+        }
+      }
+    },
+    Persistent_volume__spec__node_affinity__required__node_selector_term => {
+      attributes => {
+        'match_expressions' => {
+          'type' => Optional[Array[Persistent_volume__spec__node_affinity__required__node_selector_term__match_expressions]],
+          'value' => undef
+        },
+        'match_fields' => {
+          'type' => Optional[Array[Persistent_volume__spec__node_affinity__required__node_selector_term__match_fields]],
+          'value' => undef
+        }
+      }
+    },
+    Persistent_volume__spec__node_affinity__required__node_selector_term__match_expressions => {
+      attributes => {
+        'key' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'operator' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'values' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        }
+      }
+    },
+    Persistent_volume__spec__node_affinity__required__node_selector_term__match_fields => {
+      attributes => {
+        'key' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'operator' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'values' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        }
+      }
+    },
+    Persistent_volume__spec__persistent_volume_source => {
+      attributes => {
+        'aws_elastic_block_store' => {
+          'type' => Optional[Array[Persistent_volume__spec__persistent_volume_source__aws_elastic_block_store]],
+          'value' => undef
+        },
+        'azure_disk' => {
+          'type' => Optional[Array[Persistent_volume__spec__persistent_volume_source__azure_disk]],
+          'value' => undef
+        },
+        'azure_file' => {
+          'type' => Optional[Array[Persistent_volume__spec__persistent_volume_source__azure_file]],
+          'value' => undef
+        },
+        'ceph_fs' => {
+          'type' => Optional[Array[Persistent_volume__spec__persistent_volume_source__ceph_fs]],
+          'value' => undef
+        },
+        'cinder' => {
+          'type' => Optional[Array[Persistent_volume__spec__persistent_volume_source__cinder]],
+          'value' => undef
+        },
+        'fc' => {
+          'type' => Optional[Array[Persistent_volume__spec__persistent_volume_source__fc]],
+          'value' => undef
+        },
+        'flex_volume' => {
+          'type' => Optional[Array[Persistent_volume__spec__persistent_volume_source__flex_volume]],
+          'value' => undef
+        },
+        'flocker' => {
+          'type' => Optional[Array[Persistent_volume__spec__persistent_volume_source__flocker]],
+          'value' => undef
+        },
+        'gce_persistent_disk' => {
+          'type' => Optional[Array[Persistent_volume__spec__persistent_volume_source__gce_persistent_disk]],
+          'value' => undef
+        },
+        'glusterfs' => {
+          'type' => Optional[Array[Persistent_volume__spec__persistent_volume_source__glusterfs]],
+          'value' => undef
+        },
+        'host_path' => {
+          'type' => Optional[Array[Persistent_volume__spec__persistent_volume_source__host_path]],
+          'value' => undef
+        },
+        'iscsi' => {
+          'type' => Optional[Array[Persistent_volume__spec__persistent_volume_source__iscsi]],
+          'value' => undef
+        },
+        'local' => {
+          'type' => Optional[Array[Persistent_volume__spec__persistent_volume_source__local]],
+          'value' => undef
+        },
+        'nfs' => {
+          'type' => Optional[Array[Persistent_volume__spec__persistent_volume_source__nfs]],
+          'value' => undef
+        },
+        'photon_persistent_disk' => {
+          'type' => Optional[Array[Persistent_volume__spec__persistent_volume_source__photon_persistent_disk]],
+          'value' => undef
+        },
+        'quobyte' => {
+          'type' => Optional[Array[Persistent_volume__spec__persistent_volume_source__quobyte]],
+          'value' => undef
+        },
+        'rbd' => {
+          'type' => Optional[Array[Persistent_volume__spec__persistent_volume_source__rbd]],
+          'value' => undef
+        },
+        'vsphere_volume' => {
+          'type' => Optional[Array[Persistent_volume__spec__persistent_volume_source__vsphere_volume]],
+          'value' => undef
+        }
+      }
+    },
+    Persistent_volume__spec__persistent_volume_source__aws_elastic_block_store => {
+      attributes => {
+        'fs_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'partition' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'read_only' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'volume_id' => String
+      }
+    },
+    Persistent_volume__spec__persistent_volume_source__azure_disk => {
+      attributes => {
+        'caching_mode' => String,
+        'data_disk_uri' => String,
+        'disk_name' => String,
+        'fs_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'read_only' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        }
+      }
+    },
+    Persistent_volume__spec__persistent_volume_source__azure_file => {
+      attributes => {
+        'read_only' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'secret_name' => String,
+        'share_name' => String
+      }
+    },
+    Persistent_volume__spec__persistent_volume_source__ceph_fs => {
+      attributes => {
+        'monitors' => Array[String],
+        'path' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'read_only' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'secret_file' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'secret_ref' => {
+          'type' => Optional[Array[Persistent_volume__spec__persistent_volume_source__ceph_fs__secret_ref]],
+          'value' => undef
+        },
+        'user' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Persistent_volume__spec__persistent_volume_source__ceph_fs__secret_ref => {
+      attributes => {
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Persistent_volume__spec__persistent_volume_source__cinder => {
+      attributes => {
+        'fs_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'read_only' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'volume_id' => String
+      }
+    },
+    Persistent_volume__spec__persistent_volume_source__fc => {
+      attributes => {
+        'fs_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'lun' => Integer,
+        'read_only' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'target_ww_ns' => Array[String]
+      }
+    },
+    Persistent_volume__spec__persistent_volume_source__flex_volume => {
+      attributes => {
+        'driver' => String,
+        'fs_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'options' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'read_only' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'secret_ref' => {
+          'type' => Optional[Array[Persistent_volume__spec__persistent_volume_source__flex_volume__secret_ref]],
+          'value' => undef
+        }
+      }
+    },
+    Persistent_volume__spec__persistent_volume_source__flex_volume__secret_ref => {
+      attributes => {
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Persistent_volume__spec__persistent_volume_source__flocker => {
+      attributes => {
+        'dataset_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'dataset_uuid' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Persistent_volume__spec__persistent_volume_source__gce_persistent_disk => {
+      attributes => {
+        'fs_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'partition' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'pd_name' => String,
+        'read_only' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        }
+      }
+    },
+    Persistent_volume__spec__persistent_volume_source__glusterfs => {
+      attributes => {
+        'endpoints_name' => String,
+        'path' => String,
+        'read_only' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        }
+      }
+    },
+    Persistent_volume__spec__persistent_volume_source__host_path => {
+      attributes => {
+        'path' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Persistent_volume__spec__persistent_volume_source__iscsi => {
+      attributes => {
+        'fs_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'iqn' => String,
+        'iscsi_interface' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'lun' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'read_only' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'target_portal' => String
+      }
+    },
+    Persistent_volume__spec__persistent_volume_source__local => {
+      attributes => {
+        'path' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Persistent_volume__spec__persistent_volume_source__nfs => {
+      attributes => {
+        'path' => String,
+        'read_only' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'server' => String
+      }
+    },
+    Persistent_volume__spec__persistent_volume_source__photon_persistent_disk => {
+      attributes => {
+        'fs_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'pd_id' => String
+      }
+    },
+    Persistent_volume__spec__persistent_volume_source__quobyte => {
+      attributes => {
+        'group' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'read_only' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'registry' => String,
+        'user' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'volume' => String
+      }
+    },
+    Persistent_volume__spec__persistent_volume_source__rbd => {
+      attributes => {
+        'ceph_monitors' => Array[String],
+        'fs_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'keyring' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'rados_user' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'rbd_image' => String,
+        'rbd_pool' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'read_only' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'secret_ref' => {
+          'type' => Optional[Array[Persistent_volume__spec__persistent_volume_source__rbd__secret_ref]],
+          'value' => undef
+        }
+      }
+    },
+    Persistent_volume__spec__persistent_volume_source__rbd__secret_ref => {
+      attributes => {
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Persistent_volume__spec__persistent_volume_source__vsphere_volume => {
+      attributes => {
+        'fs_type' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'volume_path' => String
+      }
+    },
+    Persistent_volume_claim => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['spec']
+          'immutableAttributes' => ['spec'],
+          'providedAttributes' => ['persistent_volume_claimID']
         }
       },
       attributes => {
-        'kubernetes_persistent_volume_claim_id' => {
+        'persistent_volume_claimID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -2951,15 +3474,15 @@ type TerraformKubernetes = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'metadata' => Array[Kubernetes_persistent_volume_claim_metadata_183],
-        'spec' => Array[Kubernetes_persistent_volume_claim_spec_184],
+        'metadata' => Array[Persistent_volume_claim__metadata],
+        'spec' => Array[Persistent_volume_claim__spec],
         'wait_until_bound' => {
           'type' => Optional[Boolean],
           'value' => undef
         }
       }
     },
-    Kubernetes_persistent_volume_claimHandler => {
+    Persistent_volume_claimHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -2973,7 +3496,7 @@ type TerraformKubernetes = TypeSet[{
           Object]
       }
     },
-    Kubernetes_persistent_volume_claim_metadata_183 => {
+    Persistent_volume_claim__metadata => {
       attributes => {
         'annotations' => {
           'type' => Optional[Hash[String, String]],
@@ -3013,12 +3536,12 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_persistent_volume_claim_spec_184 => {
+    Persistent_volume_claim__spec => {
       attributes => {
         'access_modes' => Array[String],
-        'resources' => Array[Kubernetes_persistent_volume_claim_spec_184_resources_185],
+        'resources' => Array[Persistent_volume_claim__spec__resources],
         'selector' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_claim_spec_184_selector_186]],
+          'type' => Optional[Array[Persistent_volume_claim__spec__selector]],
           'value' => undef
         },
         'storage_class_name' => {
@@ -3031,7 +3554,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_persistent_volume_claim_spec_184_resources_185 => {
+    Persistent_volume_claim__spec__resources => {
       attributes => {
         'limits' => {
           'type' => Optional[Hash[String, String]],
@@ -3043,10 +3566,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_persistent_volume_claim_spec_184_selector_186 => {
+    Persistent_volume_claim__spec__selector => {
       attributes => {
         'match_expressions' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_claim_spec_184_selector_186_match_expressions_187]],
+          'type' => Optional[Array[Persistent_volume_claim__spec__selector__match_expressions]],
           'value' => undef
         },
         'match_labels' => {
@@ -3055,7 +3578,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_persistent_volume_claim_spec_184_selector_186_match_expressions_187 => {
+    Persistent_volume_claim__spec__selector__match_expressions => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -3071,488 +3594,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_persistent_volume_metadata_154 => {
-      attributes => {
-        'annotations' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'generation' => {
-          'type' => Optional[Integer],
-          'value' => undef
-        },
-        'labels' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'resource_version' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'self_link' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'uid' => {
-          'type' => Optional[String],
-          'value' => undef
+    Pod => {
+      annotations => {
+        Lyra::Resource => {
+          'providedAttributes' => ['podID']
         }
-      }
-    },
-    Kubernetes_persistent_volume_spec_155 => {
+      },
       attributes => {
-        'access_modes' => Array[String],
-        'capacity' => Hash[String, String],
-        'node_affinity' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_spec_155_node_affinity_156]],
-          'value' => undef
-        },
-        'persistent_volume_reclaim_policy' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'persistent_volume_source' => Array[Kubernetes_persistent_volume_spec_155_persistent_volume_source_161],
-        'storage_class_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
-      }
-    },
-    Kubernetes_persistent_volume_spec_155_node_affinity_156 => {
-      attributes => {
-        'required' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_spec_155_node_affinity_156_required_157]],
-          'value' => undef
-        }
-      }
-    },
-    Kubernetes_persistent_volume_spec_155_node_affinity_156_required_157 => {
-      attributes => {
-        'node_selector_term' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_spec_155_node_affinity_156_required_157_node_selector_term_158]],
-          'value' => undef
-        }
-      }
-    },
-    Kubernetes_persistent_volume_spec_155_node_affinity_156_required_157_node_selector_term_158 => {
-      attributes => {
-        'match_expressions' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_spec_155_node_affinity_156_required_157_node_selector_term_158_match_expressions_159]],
-          'value' => undef
-        },
-        'match_fields' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_spec_155_node_affinity_156_required_157_node_selector_term_158_match_fields_160]],
-          'value' => undef
-        }
-      }
-    },
-    Kubernetes_persistent_volume_spec_155_node_affinity_156_required_157_node_selector_term_158_match_expressions_159 => {
-      attributes => {
-        'key' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'operator' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'values' => {
-          'type' => Optional[Array[String]],
-          'value' => undef
-        }
-      }
-    },
-    Kubernetes_persistent_volume_spec_155_node_affinity_156_required_157_node_selector_term_158_match_fields_160 => {
-      attributes => {
-        'key' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'operator' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'values' => {
-          'type' => Optional[Array[String]],
-          'value' => undef
-        }
-      }
-    },
-    Kubernetes_persistent_volume_spec_155_persistent_volume_source_161 => {
-      attributes => {
-        'aws_elastic_block_store' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_aws_elastic_block_store_162]],
-          'value' => undef
-        },
-        'azure_disk' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_azure_disk_163]],
-          'value' => undef
-        },
-        'azure_file' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_azure_file_164]],
-          'value' => undef
-        },
-        'ceph_fs' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_ceph_fs_165]],
-          'value' => undef
-        },
-        'cinder' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_cinder_167]],
-          'value' => undef
-        },
-        'fc' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_fc_168]],
-          'value' => undef
-        },
-        'flex_volume' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_flex_volume_169]],
-          'value' => undef
-        },
-        'flocker' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_flocker_171]],
-          'value' => undef
-        },
-        'gce_persistent_disk' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_gce_persistent_disk_172]],
-          'value' => undef
-        },
-        'glusterfs' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_glusterfs_173]],
-          'value' => undef
-        },
-        'host_path' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_host_path_174]],
-          'value' => undef
-        },
-        'iscsi' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_iscsi_175]],
-          'value' => undef
-        },
-        'local' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_local_176]],
-          'value' => undef
-        },
-        'nfs' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_nfs_177]],
-          'value' => undef
-        },
-        'photon_persistent_disk' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_photon_persistent_disk_178]],
-          'value' => undef
-        },
-        'quobyte' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_quobyte_179]],
-          'value' => undef
-        },
-        'rbd' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_rbd_180]],
-          'value' => undef
-        },
-        'vsphere_volume' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_vsphere_volume_182]],
-          'value' => undef
-        }
-      }
-    },
-    Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_aws_elastic_block_store_162 => {
-      attributes => {
-        'fs_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'partition' => {
-          'type' => Optional[Integer],
-          'value' => undef
-        },
-        'read_only' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'volume_id' => String
-      }
-    },
-    Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_azure_disk_163 => {
-      attributes => {
-        'caching_mode' => String,
-        'data_disk_uri' => String,
-        'disk_name' => String,
-        'fs_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'read_only' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        }
-      }
-    },
-    Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_azure_file_164 => {
-      attributes => {
-        'read_only' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'secret_name' => String,
-        'share_name' => String
-      }
-    },
-    Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_ceph_fs_165 => {
-      attributes => {
-        'monitors' => Array[String],
-        'path' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'read_only' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'secret_file' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_ceph_fs_165_secret_ref_166]],
-          'value' => undef
-        },
-        'user' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
-      }
-    },
-    Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_ceph_fs_165_secret_ref_166 => {
-      attributes => {
-        'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
-      }
-    },
-    Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_cinder_167 => {
-      attributes => {
-        'fs_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'read_only' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'volume_id' => String
-      }
-    },
-    Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_fc_168 => {
-      attributes => {
-        'fs_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'lun' => Integer,
-        'read_only' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'target_ww_ns' => Array[String]
-      }
-    },
-    Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_flex_volume_169 => {
-      attributes => {
-        'driver' => String,
-        'fs_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'options' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'read_only' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_flex_volume_169_secret_ref_170]],
-          'value' => undef
-        }
-      }
-    },
-    Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_flex_volume_169_secret_ref_170 => {
-      attributes => {
-        'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
-      }
-    },
-    Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_flocker_171 => {
-      attributes => {
-        'dataset_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'dataset_uuid' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
-      }
-    },
-    Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_gce_persistent_disk_172 => {
-      attributes => {
-        'fs_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'partition' => {
-          'type' => Optional[Integer],
-          'value' => undef
-        },
-        'pd_name' => String,
-        'read_only' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        }
-      }
-    },
-    Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_glusterfs_173 => {
-      attributes => {
-        'endpoints_name' => String,
-        'path' => String,
-        'read_only' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        }
-      }
-    },
-    Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_host_path_174 => {
-      attributes => {
-        'path' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
-      }
-    },
-    Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_iscsi_175 => {
-      attributes => {
-        'fs_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'iqn' => String,
-        'iscsi_interface' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'lun' => {
-          'type' => Optional[Integer],
-          'value' => undef
-        },
-        'read_only' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'target_portal' => String
-      }
-    },
-    Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_local_176 => {
-      attributes => {
-        'path' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
-      }
-    },
-    Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_nfs_177 => {
-      attributes => {
-        'path' => String,
-        'read_only' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'server' => String
-      }
-    },
-    Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_photon_persistent_disk_178 => {
-      attributes => {
-        'fs_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'pd_id' => String
-      }
-    },
-    Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_quobyte_179 => {
-      attributes => {
-        'group' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'read_only' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'registry' => String,
-        'user' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'volume' => String
-      }
-    },
-    Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_rbd_180 => {
-      attributes => {
-        'ceph_monitors' => Array[String],
-        'fs_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'keyring' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'rados_user' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'rbd_image' => String,
-        'rbd_pool' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'read_only' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_rbd_180_secret_ref_181]],
-          'value' => undef
-        }
-      }
-    },
-    Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_rbd_180_secret_ref_181 => {
-      attributes => {
-        'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
-      }
-    },
-    Kubernetes_persistent_volume_spec_155_persistent_volume_source_161_vsphere_volume_182 => {
-      attributes => {
-        'fs_type' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'volume_path' => String
-      }
-    },
-    Kubernetes_pod => {
-      attributes => {
-        'kubernetes_pod_id' => {
+        'podID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -3561,11 +3610,11 @@ type TerraformKubernetes = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'metadata' => Array[Kubernetes_pod_metadata_188],
-        'spec' => Array[Kubernetes_pod_spec_189]
+        'metadata' => Array[Pod__metadata],
+        'spec' => Array[Pod__spec]
       }
     },
-    Kubernetes_podHandler => {
+    PodHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -3579,7 +3628,7 @@ type TerraformKubernetes = TypeSet[{
           Object]
       }
     },
-    Kubernetes_pod_metadata_188 => {
+    Pod__metadata => {
       attributes => {
         'annotations' => {
           'type' => Optional[Hash[String, String]],
@@ -3619,14 +3668,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189 => {
+    Pod__spec => {
       attributes => {
         'active_deadline_seconds' => {
           'type' => Optional[Integer],
           'value' => undef
         },
         'container' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190]],
+          'type' => Optional[Array[Pod__spec__container]],
           'value' => undef
         },
         'dns_policy' => {
@@ -3650,11 +3699,11 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'image_pull_secrets' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_image_pull_secrets_229]],
+          'type' => Optional[Array[Pod__spec__image_pull_secrets]],
           'value' => undef
         },
         'init_container' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230]],
+          'type' => Optional[Array[Pod__spec__init_container]],
           'value' => undef
         },
         'node_name' => {
@@ -3670,7 +3719,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'security_context' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_security_context_269]],
+          'type' => Optional[Array[Pod__spec__security_context]],
           'value' => undef
         },
         'service_account_name' => {
@@ -3686,12 +3735,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'volume' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271]],
+          'type' => Optional[Array[Pod__spec__volume]],
           'value' => undef
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190 => {
+    Pod__spec__container => {
       attributes => {
         'args' => {
           'type' => Optional[Array[String]],
@@ -3702,11 +3751,11 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'env' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_env_191]],
+          'type' => Optional[Array[Pod__spec__container__env]],
           'value' => undef
         },
         'env_from' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_env_from_197]],
+          'type' => Optional[Array[Pod__spec__container__env_from]],
           'value' => undef
         },
         'image' => {
@@ -3718,28 +3767,28 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'lifecycle' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_lifecycle_200]],
+          'type' => Optional[Array[Pod__spec__container__lifecycle]],
           'value' => undef
         },
         'liveness_probe' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_liveness_probe_211]],
+          'type' => Optional[Array[Pod__spec__container__liveness_probe]],
           'value' => undef
         },
         'name' => String,
         'port' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_port_216]],
+          'type' => Optional[Array[Pod__spec__container__port]],
           'value' => undef
         },
         'readiness_probe' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_readiness_probe_217]],
+          'type' => Optional[Array[Pod__spec__container__readiness_probe]],
           'value' => undef
         },
         'resources' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_resources_222]],
+          'type' => Optional[Array[Pod__spec__container__resources]],
           'value' => undef
         },
         'security_context' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_security_context_225]],
+          'type' => Optional[Array[Pod__spec__container__security_context]],
           'value' => undef
         },
         'stdin' => {
@@ -3759,7 +3808,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'volume_mount' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_volume_mount_228]],
+          'type' => Optional[Array[Pod__spec__container__volume_mount]],
           'value' => undef
         },
         'working_dir' => {
@@ -3768,7 +3817,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_env_191 => {
+    Pod__spec__container__env => {
       attributes => {
         'name' => String,
         'value' => {
@@ -3776,32 +3825,32 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'value_from' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_env_191_value_from_192]],
+          'type' => Optional[Array[Pod__spec__container__env__value_from]],
           'value' => undef
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_env_191_value_from_192 => {
+    Pod__spec__container__env__value_from => {
       attributes => {
         'config_map_key_ref' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_env_191_value_from_192_config_map_key_ref_193]],
+          'type' => Optional[Array[Pod__spec__container__env__value_from__config_map_key_ref]],
           'value' => undef
         },
         'field_ref' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_env_191_value_from_192_field_ref_194]],
+          'type' => Optional[Array[Pod__spec__container__env__value_from__field_ref]],
           'value' => undef
         },
         'resource_field_ref' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_env_191_value_from_192_resource_field_ref_195]],
+          'type' => Optional[Array[Pod__spec__container__env__value_from__resource_field_ref]],
           'value' => undef
         },
         'secret_key_ref' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_env_191_value_from_192_secret_key_ref_196]],
+          'type' => Optional[Array[Pod__spec__container__env__value_from__secret_key_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_env_191_value_from_192_config_map_key_ref_193 => {
+    Pod__spec__container__env__value_from__config_map_key_ref => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -3813,7 +3862,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_env_191_value_from_192_field_ref_194 => {
+    Pod__spec__container__env__value_from__field_ref => {
       attributes => {
         'api_version' => {
           'type' => Optional[String],
@@ -3825,7 +3874,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_env_191_value_from_192_resource_field_ref_195 => {
+    Pod__spec__container__env__value_from__resource_field_ref => {
       attributes => {
         'container_name' => {
           'type' => Optional[String],
@@ -3834,7 +3883,7 @@ type TerraformKubernetes = TypeSet[{
         'resource' => String
       }
     },
-    Kubernetes_pod_spec_189_container_190_env_191_value_from_192_secret_key_ref_196 => {
+    Pod__spec__container__env__value_from__secret_key_ref => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -3846,10 +3895,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_env_from_197 => {
+    Pod__spec__container__env_from => {
       attributes => {
         'config_map_ref' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_env_from_197_config_map_ref_198]],
+          'type' => Optional[Array[Pod__spec__container__env_from__config_map_ref]],
           'value' => undef
         },
         'prefix' => {
@@ -3857,12 +3906,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_env_from_197_secret_ref_199]],
+          'type' => Optional[Array[Pod__spec__container__env_from__secret_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_env_from_197_config_map_ref_198 => {
+    Pod__spec__container__env_from__config_map_ref => {
       attributes => {
         'name' => String,
         'optional' => {
@@ -3871,7 +3920,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_env_from_197_secret_ref_199 => {
+    Pod__spec__container__env_from__secret_ref => {
       attributes => {
         'name' => String,
         'optional' => {
@@ -3880,35 +3929,35 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_lifecycle_200 => {
+    Pod__spec__container__lifecycle => {
       attributes => {
         'post_start' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201]],
+          'type' => Optional[Array[Pod__spec__container__lifecycle__post_start]],
           'value' => undef
         },
         'pre_stop' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206]],
+          'type' => Optional[Array[Pod__spec__container__lifecycle__pre_stop]],
           'value' => undef
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201 => {
+    Pod__spec__container__lifecycle__post_start => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201_exec_202]],
+          'type' => Optional[Array[Pod__spec__container__lifecycle__post_start__exec]],
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201_http_get_203]],
+          'type' => Optional[Array[Pod__spec__container__lifecycle__post_start__http_get]],
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201_tcp_socket_205]],
+          'type' => Optional[Array[Pod__spec__container__lifecycle__post_start__tcp_socket]],
           'value' => undef
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201_exec_202 => {
+    Pod__spec__container__lifecycle__post_start__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -3916,14 +3965,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201_http_get_203 => {
+    Pod__spec__container__lifecycle__post_start__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201_http_get_203_http_header_204]],
+          'type' => Optional[Array[Pod__spec__container__lifecycle__post_start__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -3940,7 +3989,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201_http_get_203_http_header_204 => {
+    Pod__spec__container__lifecycle__post_start__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -3952,28 +4001,28 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_lifecycle_200_post_start_201_tcp_socket_205 => {
+    Pod__spec__container__lifecycle__post_start__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206 => {
+    Pod__spec__container__lifecycle__pre_stop => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206_exec_207]],
+          'type' => Optional[Array[Pod__spec__container__lifecycle__pre_stop__exec]],
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206_http_get_208]],
+          'type' => Optional[Array[Pod__spec__container__lifecycle__pre_stop__http_get]],
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206_tcp_socket_210]],
+          'type' => Optional[Array[Pod__spec__container__lifecycle__pre_stop__tcp_socket]],
           'value' => undef
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206_exec_207 => {
+    Pod__spec__container__lifecycle__pre_stop__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -3981,14 +4030,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206_http_get_208 => {
+    Pod__spec__container__lifecycle__pre_stop__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206_http_get_208_http_header_209]],
+          'type' => Optional[Array[Pod__spec__container__lifecycle__pre_stop__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -4005,7 +4054,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206_http_get_208_http_header_209 => {
+    Pod__spec__container__lifecycle__pre_stop__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -4017,15 +4066,15 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_lifecycle_200_pre_stop_206_tcp_socket_210 => {
+    Pod__spec__container__lifecycle__pre_stop__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_pod_spec_189_container_190_liveness_probe_211 => {
+    Pod__spec__container__liveness_probe => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_liveness_probe_211_exec_212]],
+          'type' => Optional[Array[Pod__spec__container__liveness_probe__exec]],
           'value' => undef
         },
         'failure_threshold' => {
@@ -4033,7 +4082,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_liveness_probe_211_http_get_213]],
+          'type' => Optional[Array[Pod__spec__container__liveness_probe__http_get]],
           'value' => undef
         },
         'initial_delay_seconds' => {
@@ -4049,7 +4098,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_liveness_probe_211_tcp_socket_215]],
+          'type' => Optional[Array[Pod__spec__container__liveness_probe__tcp_socket]],
           'value' => undef
         },
         'timeout_seconds' => {
@@ -4058,7 +4107,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_liveness_probe_211_exec_212 => {
+    Pod__spec__container__liveness_probe__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -4066,14 +4115,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_liveness_probe_211_http_get_213 => {
+    Pod__spec__container__liveness_probe__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_liveness_probe_211_http_get_213_http_header_214]],
+          'type' => Optional[Array[Pod__spec__container__liveness_probe__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -4090,7 +4139,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_liveness_probe_211_http_get_213_http_header_214 => {
+    Pod__spec__container__liveness_probe__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -4102,12 +4151,12 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_liveness_probe_211_tcp_socket_215 => {
+    Pod__spec__container__liveness_probe__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_pod_spec_189_container_190_port_216 => {
+    Pod__spec__container__port => {
       attributes => {
         'container_port' => Integer,
         'host_ip' => {
@@ -4128,10 +4177,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_readiness_probe_217 => {
+    Pod__spec__container__readiness_probe => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_readiness_probe_217_exec_218]],
+          'type' => Optional[Array[Pod__spec__container__readiness_probe__exec]],
           'value' => undef
         },
         'failure_threshold' => {
@@ -4139,7 +4188,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_readiness_probe_217_http_get_219]],
+          'type' => Optional[Array[Pod__spec__container__readiness_probe__http_get]],
           'value' => undef
         },
         'initial_delay_seconds' => {
@@ -4155,7 +4204,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_readiness_probe_217_tcp_socket_221]],
+          'type' => Optional[Array[Pod__spec__container__readiness_probe__tcp_socket]],
           'value' => undef
         },
         'timeout_seconds' => {
@@ -4164,7 +4213,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_readiness_probe_217_exec_218 => {
+    Pod__spec__container__readiness_probe__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -4172,14 +4221,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_readiness_probe_217_http_get_219 => {
+    Pod__spec__container__readiness_probe__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_readiness_probe_217_http_get_219_http_header_220]],
+          'type' => Optional[Array[Pod__spec__container__readiness_probe__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -4196,7 +4245,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_readiness_probe_217_http_get_219_http_header_220 => {
+    Pod__spec__container__readiness_probe__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -4208,24 +4257,24 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_readiness_probe_217_tcp_socket_221 => {
+    Pod__spec__container__readiness_probe__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_pod_spec_189_container_190_resources_222 => {
+    Pod__spec__container__resources => {
       attributes => {
         'limits' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_resources_222_limits_223]],
+          'type' => Optional[Array[Pod__spec__container__resources__limits]],
           'value' => undef
         },
         'requests' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_resources_222_requests_224]],
+          'type' => Optional[Array[Pod__spec__container__resources__requests]],
           'value' => undef
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_resources_222_limits_223 => {
+    Pod__spec__container__resources__limits => {
       attributes => {
         'cpu' => {
           'type' => Optional[String],
@@ -4237,7 +4286,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_resources_222_requests_224 => {
+    Pod__spec__container__resources__requests => {
       attributes => {
         'cpu' => {
           'type' => Optional[String],
@@ -4249,14 +4298,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_security_context_225 => {
+    Pod__spec__container__security_context => {
       attributes => {
         'allow_privilege_escalation' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
         'capabilities' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_security_context_225_capabilities_226]],
+          'type' => Optional[Array[Pod__spec__container__security_context__capabilities]],
           'value' => undef
         },
         'privileged' => {
@@ -4276,12 +4325,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'se_linux_options' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_container_190_security_context_225_se_linux_options_227]],
+          'type' => Optional[Array[Pod__spec__container__security_context__se_linux_options]],
           'value' => undef
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_security_context_225_capabilities_226 => {
+    Pod__spec__container__security_context__capabilities => {
       attributes => {
         'add' => {
           'type' => Optional[Array[String]],
@@ -4293,7 +4342,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_security_context_225_se_linux_options_227 => {
+    Pod__spec__container__security_context__se_linux_options => {
       attributes => {
         'level' => {
           'type' => Optional[String],
@@ -4313,7 +4362,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_container_190_volume_mount_228 => {
+    Pod__spec__container__volume_mount => {
       attributes => {
         'mount_path' => String,
         'name' => String,
@@ -4327,12 +4376,12 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_image_pull_secrets_229 => {
+    Pod__spec__image_pull_secrets => {
       attributes => {
         'name' => String
       }
     },
-    Kubernetes_pod_spec_189_init_container_230 => {
+    Pod__spec__init_container => {
       attributes => {
         'args' => {
           'type' => Optional[Array[String]],
@@ -4343,11 +4392,11 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'env' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_env_231]],
+          'type' => Optional[Array[Pod__spec__init_container__env]],
           'value' => undef
         },
         'env_from' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_env_from_237]],
+          'type' => Optional[Array[Pod__spec__init_container__env_from]],
           'value' => undef
         },
         'image' => {
@@ -4359,28 +4408,28 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'lifecycle' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_lifecycle_240]],
+          'type' => Optional[Array[Pod__spec__init_container__lifecycle]],
           'value' => undef
         },
         'liveness_probe' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_liveness_probe_251]],
+          'type' => Optional[Array[Pod__spec__init_container__liveness_probe]],
           'value' => undef
         },
         'name' => String,
         'port' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_port_256]],
+          'type' => Optional[Array[Pod__spec__init_container__port]],
           'value' => undef
         },
         'readiness_probe' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_readiness_probe_257]],
+          'type' => Optional[Array[Pod__spec__init_container__readiness_probe]],
           'value' => undef
         },
         'resources' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_resources_262]],
+          'type' => Optional[Array[Pod__spec__init_container__resources]],
           'value' => undef
         },
         'security_context' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_security_context_265]],
+          'type' => Optional[Array[Pod__spec__init_container__security_context]],
           'value' => undef
         },
         'stdin' => {
@@ -4400,7 +4449,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'volume_mount' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_volume_mount_268]],
+          'type' => Optional[Array[Pod__spec__init_container__volume_mount]],
           'value' => undef
         },
         'working_dir' => {
@@ -4409,7 +4458,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_env_231 => {
+    Pod__spec__init_container__env => {
       attributes => {
         'name' => String,
         'value' => {
@@ -4417,32 +4466,32 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'value_from' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232]],
+          'type' => Optional[Array[Pod__spec__init_container__env__value_from]],
           'value' => undef
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232 => {
+    Pod__spec__init_container__env__value_from => {
       attributes => {
         'config_map_key_ref' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232_config_map_key_ref_233]],
+          'type' => Optional[Array[Pod__spec__init_container__env__value_from__config_map_key_ref]],
           'value' => undef
         },
         'field_ref' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232_field_ref_234]],
+          'type' => Optional[Array[Pod__spec__init_container__env__value_from__field_ref]],
           'value' => undef
         },
         'resource_field_ref' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232_resource_field_ref_235]],
+          'type' => Optional[Array[Pod__spec__init_container__env__value_from__resource_field_ref]],
           'value' => undef
         },
         'secret_key_ref' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232_secret_key_ref_236]],
+          'type' => Optional[Array[Pod__spec__init_container__env__value_from__secret_key_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232_config_map_key_ref_233 => {
+    Pod__spec__init_container__env__value_from__config_map_key_ref => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -4454,7 +4503,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232_field_ref_234 => {
+    Pod__spec__init_container__env__value_from__field_ref => {
       attributes => {
         'api_version' => {
           'type' => Optional[String],
@@ -4466,7 +4515,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232_resource_field_ref_235 => {
+    Pod__spec__init_container__env__value_from__resource_field_ref => {
       attributes => {
         'container_name' => {
           'type' => Optional[String],
@@ -4475,7 +4524,7 @@ type TerraformKubernetes = TypeSet[{
         'resource' => String
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_env_231_value_from_232_secret_key_ref_236 => {
+    Pod__spec__init_container__env__value_from__secret_key_ref => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -4487,10 +4536,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_env_from_237 => {
+    Pod__spec__init_container__env_from => {
       attributes => {
         'config_map_ref' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_env_from_237_config_map_ref_238]],
+          'type' => Optional[Array[Pod__spec__init_container__env_from__config_map_ref]],
           'value' => undef
         },
         'prefix' => {
@@ -4498,12 +4547,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_env_from_237_secret_ref_239]],
+          'type' => Optional[Array[Pod__spec__init_container__env_from__secret_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_env_from_237_config_map_ref_238 => {
+    Pod__spec__init_container__env_from__config_map_ref => {
       attributes => {
         'name' => String,
         'optional' => {
@@ -4512,7 +4561,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_env_from_237_secret_ref_239 => {
+    Pod__spec__init_container__env_from__secret_ref => {
       attributes => {
         'name' => String,
         'optional' => {
@@ -4521,35 +4570,35 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_lifecycle_240 => {
+    Pod__spec__init_container__lifecycle => {
       attributes => {
         'post_start' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241]],
+          'type' => Optional[Array[Pod__spec__init_container__lifecycle__post_start]],
           'value' => undef
         },
         'pre_stop' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246]],
+          'type' => Optional[Array[Pod__spec__init_container__lifecycle__pre_stop]],
           'value' => undef
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241 => {
+    Pod__spec__init_container__lifecycle__post_start => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241_exec_242]],
+          'type' => Optional[Array[Pod__spec__init_container__lifecycle__post_start__exec]],
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241_http_get_243]],
+          'type' => Optional[Array[Pod__spec__init_container__lifecycle__post_start__http_get]],
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241_tcp_socket_245]],
+          'type' => Optional[Array[Pod__spec__init_container__lifecycle__post_start__tcp_socket]],
           'value' => undef
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241_exec_242 => {
+    Pod__spec__init_container__lifecycle__post_start__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -4557,14 +4606,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241_http_get_243 => {
+    Pod__spec__init_container__lifecycle__post_start__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241_http_get_243_http_header_244]],
+          'type' => Optional[Array[Pod__spec__init_container__lifecycle__post_start__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -4581,7 +4630,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241_http_get_243_http_header_244 => {
+    Pod__spec__init_container__lifecycle__post_start__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -4593,28 +4642,28 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_lifecycle_240_post_start_241_tcp_socket_245 => {
+    Pod__spec__init_container__lifecycle__post_start__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246 => {
+    Pod__spec__init_container__lifecycle__pre_stop => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246_exec_247]],
+          'type' => Optional[Array[Pod__spec__init_container__lifecycle__pre_stop__exec]],
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246_http_get_248]],
+          'type' => Optional[Array[Pod__spec__init_container__lifecycle__pre_stop__http_get]],
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246_tcp_socket_250]],
+          'type' => Optional[Array[Pod__spec__init_container__lifecycle__pre_stop__tcp_socket]],
           'value' => undef
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246_exec_247 => {
+    Pod__spec__init_container__lifecycle__pre_stop__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -4622,14 +4671,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246_http_get_248 => {
+    Pod__spec__init_container__lifecycle__pre_stop__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246_http_get_248_http_header_249]],
+          'type' => Optional[Array[Pod__spec__init_container__lifecycle__pre_stop__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -4646,7 +4695,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246_http_get_248_http_header_249 => {
+    Pod__spec__init_container__lifecycle__pre_stop__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -4658,15 +4707,15 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_lifecycle_240_pre_stop_246_tcp_socket_250 => {
+    Pod__spec__init_container__lifecycle__pre_stop__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_liveness_probe_251 => {
+    Pod__spec__init_container__liveness_probe => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_liveness_probe_251_exec_252]],
+          'type' => Optional[Array[Pod__spec__init_container__liveness_probe__exec]],
           'value' => undef
         },
         'failure_threshold' => {
@@ -4674,7 +4723,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_liveness_probe_251_http_get_253]],
+          'type' => Optional[Array[Pod__spec__init_container__liveness_probe__http_get]],
           'value' => undef
         },
         'initial_delay_seconds' => {
@@ -4690,7 +4739,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_liveness_probe_251_tcp_socket_255]],
+          'type' => Optional[Array[Pod__spec__init_container__liveness_probe__tcp_socket]],
           'value' => undef
         },
         'timeout_seconds' => {
@@ -4699,7 +4748,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_liveness_probe_251_exec_252 => {
+    Pod__spec__init_container__liveness_probe__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -4707,14 +4756,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_liveness_probe_251_http_get_253 => {
+    Pod__spec__init_container__liveness_probe__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_liveness_probe_251_http_get_253_http_header_254]],
+          'type' => Optional[Array[Pod__spec__init_container__liveness_probe__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -4731,7 +4780,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_liveness_probe_251_http_get_253_http_header_254 => {
+    Pod__spec__init_container__liveness_probe__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -4743,12 +4792,12 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_liveness_probe_251_tcp_socket_255 => {
+    Pod__spec__init_container__liveness_probe__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_port_256 => {
+    Pod__spec__init_container__port => {
       attributes => {
         'container_port' => Integer,
         'host_ip' => {
@@ -4769,10 +4818,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_readiness_probe_257 => {
+    Pod__spec__init_container__readiness_probe => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_readiness_probe_257_exec_258]],
+          'type' => Optional[Array[Pod__spec__init_container__readiness_probe__exec]],
           'value' => undef
         },
         'failure_threshold' => {
@@ -4780,7 +4829,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_readiness_probe_257_http_get_259]],
+          'type' => Optional[Array[Pod__spec__init_container__readiness_probe__http_get]],
           'value' => undef
         },
         'initial_delay_seconds' => {
@@ -4796,7 +4845,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_readiness_probe_257_tcp_socket_261]],
+          'type' => Optional[Array[Pod__spec__init_container__readiness_probe__tcp_socket]],
           'value' => undef
         },
         'timeout_seconds' => {
@@ -4805,7 +4854,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_readiness_probe_257_exec_258 => {
+    Pod__spec__init_container__readiness_probe__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -4813,14 +4862,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_readiness_probe_257_http_get_259 => {
+    Pod__spec__init_container__readiness_probe__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_readiness_probe_257_http_get_259_http_header_260]],
+          'type' => Optional[Array[Pod__spec__init_container__readiness_probe__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -4837,7 +4886,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_readiness_probe_257_http_get_259_http_header_260 => {
+    Pod__spec__init_container__readiness_probe__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -4849,24 +4898,24 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_readiness_probe_257_tcp_socket_261 => {
+    Pod__spec__init_container__readiness_probe__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_resources_262 => {
+    Pod__spec__init_container__resources => {
       attributes => {
         'limits' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_resources_262_limits_263]],
+          'type' => Optional[Array[Pod__spec__init_container__resources__limits]],
           'value' => undef
         },
         'requests' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_resources_262_requests_264]],
+          'type' => Optional[Array[Pod__spec__init_container__resources__requests]],
           'value' => undef
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_resources_262_limits_263 => {
+    Pod__spec__init_container__resources__limits => {
       attributes => {
         'cpu' => {
           'type' => Optional[String],
@@ -4878,7 +4927,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_resources_262_requests_264 => {
+    Pod__spec__init_container__resources__requests => {
       attributes => {
         'cpu' => {
           'type' => Optional[String],
@@ -4890,14 +4939,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_security_context_265 => {
+    Pod__spec__init_container__security_context => {
       attributes => {
         'allow_privilege_escalation' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
         'capabilities' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_security_context_265_capabilities_266]],
+          'type' => Optional[Array[Pod__spec__init_container__security_context__capabilities]],
           'value' => undef
         },
         'privileged' => {
@@ -4917,12 +4966,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'se_linux_options' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_init_container_230_security_context_265_se_linux_options_267]],
+          'type' => Optional[Array[Pod__spec__init_container__security_context__se_linux_options]],
           'value' => undef
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_security_context_265_capabilities_266 => {
+    Pod__spec__init_container__security_context__capabilities => {
       attributes => {
         'add' => {
           'type' => Optional[Array[String]],
@@ -4934,7 +4983,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_security_context_265_se_linux_options_267 => {
+    Pod__spec__init_container__security_context__se_linux_options => {
       attributes => {
         'level' => {
           'type' => Optional[String],
@@ -4954,7 +5003,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_init_container_230_volume_mount_268 => {
+    Pod__spec__init_container__volume_mount => {
       attributes => {
         'mount_path' => String,
         'name' => String,
@@ -4968,7 +5017,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_security_context_269 => {
+    Pod__spec__security_context => {
       attributes => {
         'fs_group' => {
           'type' => Optional[Integer],
@@ -4983,7 +5032,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'se_linux_options' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_security_context_269_se_linux_options_270]],
+          'type' => Optional[Array[Pod__spec__security_context__se_linux_options]],
           'value' => undef
         },
         'supplemental_groups' => {
@@ -4992,7 +5041,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_security_context_269_se_linux_options_270 => {
+    Pod__spec__security_context__se_linux_options => {
       attributes => {
         'level' => {
           'type' => Optional[String],
@@ -5012,74 +5061,74 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_volume_271 => {
+    Pod__spec__volume => {
       attributes => {
         'aws_elastic_block_store' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_aws_elastic_block_store_272]],
+          'type' => Optional[Array[Pod__spec__volume__aws_elastic_block_store]],
           'value' => undef
         },
         'azure_disk' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_azure_disk_273]],
+          'type' => Optional[Array[Pod__spec__volume__azure_disk]],
           'value' => undef
         },
         'azure_file' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_azure_file_274]],
+          'type' => Optional[Array[Pod__spec__volume__azure_file]],
           'value' => undef
         },
         'ceph_fs' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_ceph_fs_275]],
+          'type' => Optional[Array[Pod__spec__volume__ceph_fs]],
           'value' => undef
         },
         'cinder' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_cinder_277]],
+          'type' => Optional[Array[Pod__spec__volume__cinder]],
           'value' => undef
         },
         'config_map' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_config_map_278]],
+          'type' => Optional[Array[Pod__spec__volume__config_map]],
           'value' => undef
         },
         'downward_api' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_downward_api_280]],
+          'type' => Optional[Array[Pod__spec__volume__downward_api]],
           'value' => undef
         },
         'empty_dir' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_empty_dir_284]],
+          'type' => Optional[Array[Pod__spec__volume__empty_dir]],
           'value' => undef
         },
         'fc' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_fc_285]],
+          'type' => Optional[Array[Pod__spec__volume__fc]],
           'value' => undef
         },
         'flex_volume' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_flex_volume_286]],
+          'type' => Optional[Array[Pod__spec__volume__flex_volume]],
           'value' => undef
         },
         'flocker' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_flocker_288]],
+          'type' => Optional[Array[Pod__spec__volume__flocker]],
           'value' => undef
         },
         'gce_persistent_disk' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_gce_persistent_disk_289]],
+          'type' => Optional[Array[Pod__spec__volume__gce_persistent_disk]],
           'value' => undef
         },
         'git_repo' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_git_repo_290]],
+          'type' => Optional[Array[Pod__spec__volume__git_repo]],
           'value' => undef
         },
         'glusterfs' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_glusterfs_291]],
+          'type' => Optional[Array[Pod__spec__volume__glusterfs]],
           'value' => undef
         },
         'host_path' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_host_path_292]],
+          'type' => Optional[Array[Pod__spec__volume__host_path]],
           'value' => undef
         },
         'iscsi' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_iscsi_293]],
+          'type' => Optional[Array[Pod__spec__volume__iscsi]],
           'value' => undef
         },
         'local' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_local_294]],
+          'type' => Optional[Array[Pod__spec__volume__local]],
           'value' => undef
         },
         'name' => {
@@ -5087,36 +5136,36 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'nfs' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_nfs_295]],
+          'type' => Optional[Array[Pod__spec__volume__nfs]],
           'value' => undef
         },
         'persistent_volume_claim' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_persistent_volume_claim_296]],
+          'type' => Optional[Array[Pod__spec__volume__persistent_volume_claim]],
           'value' => undef
         },
         'photon_persistent_disk' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_photon_persistent_disk_297]],
+          'type' => Optional[Array[Pod__spec__volume__photon_persistent_disk]],
           'value' => undef
         },
         'quobyte' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_quobyte_298]],
+          'type' => Optional[Array[Pod__spec__volume__quobyte]],
           'value' => undef
         },
         'rbd' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_rbd_299]],
+          'type' => Optional[Array[Pod__spec__volume__rbd]],
           'value' => undef
         },
         'secret' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_secret_301]],
+          'type' => Optional[Array[Pod__spec__volume__secret]],
           'value' => undef
         },
         'vsphere_volume' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_vsphere_volume_303]],
+          'type' => Optional[Array[Pod__spec__volume__vsphere_volume]],
           'value' => undef
         }
       }
     },
-    Kubernetes_pod_spec_189_volume_271_aws_elastic_block_store_272 => {
+    Pod__spec__volume__aws_elastic_block_store => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -5133,7 +5182,7 @@ type TerraformKubernetes = TypeSet[{
         'volume_id' => String
       }
     },
-    Kubernetes_pod_spec_189_volume_271_azure_disk_273 => {
+    Pod__spec__volume__azure_disk => {
       attributes => {
         'caching_mode' => String,
         'data_disk_uri' => String,
@@ -5148,7 +5197,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_volume_271_azure_file_274 => {
+    Pod__spec__volume__azure_file => {
       attributes => {
         'read_only' => {
           'type' => Optional[Boolean],
@@ -5158,7 +5207,7 @@ type TerraformKubernetes = TypeSet[{
         'share_name' => String
       }
     },
-    Kubernetes_pod_spec_189_volume_271_ceph_fs_275 => {
+    Pod__spec__volume__ceph_fs => {
       attributes => {
         'monitors' => Array[String],
         'path' => {
@@ -5174,7 +5223,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_ceph_fs_275_secret_ref_276]],
+          'type' => Optional[Array[Pod__spec__volume__ceph_fs__secret_ref]],
           'value' => undef
         },
         'user' => {
@@ -5183,7 +5232,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_volume_271_ceph_fs_275_secret_ref_276 => {
+    Pod__spec__volume__ceph_fs__secret_ref => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -5191,7 +5240,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_volume_271_cinder_277 => {
+    Pod__spec__volume__cinder => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -5204,14 +5253,14 @@ type TerraformKubernetes = TypeSet[{
         'volume_id' => String
       }
     },
-    Kubernetes_pod_spec_189_volume_271_config_map_278 => {
+    Pod__spec__volume__config_map => {
       attributes => {
         'default_mode' => {
           'type' => Optional[Integer],
           'value' => undef
         },
         'items' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_config_map_278_items_279]],
+          'type' => Optional[Array[Pod__spec__volume__config_map__items]],
           'value' => undef
         },
         'name' => {
@@ -5220,7 +5269,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_volume_271_config_map_278_items_279 => {
+    Pod__spec__volume__config_map__items => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -5236,33 +5285,33 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_volume_271_downward_api_280 => {
+    Pod__spec__volume__downward_api => {
       attributes => {
         'default_mode' => {
           'type' => Optional[Integer],
           'value' => undef
         },
         'items' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_downward_api_280_items_281]],
+          'type' => Optional[Array[Pod__spec__volume__downward_api__items]],
           'value' => undef
         }
       }
     },
-    Kubernetes_pod_spec_189_volume_271_downward_api_280_items_281 => {
+    Pod__spec__volume__downward_api__items => {
       attributes => {
-        'field_ref' => Array[Kubernetes_pod_spec_189_volume_271_downward_api_280_items_281_field_ref_282],
+        'field_ref' => Array[Pod__spec__volume__downward_api__items__field_ref],
         'mode' => {
           'type' => Optional[Integer],
           'value' => undef
         },
         'path' => String,
         'resource_field_ref' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_downward_api_280_items_281_resource_field_ref_283]],
+          'type' => Optional[Array[Pod__spec__volume__downward_api__items__resource_field_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_pod_spec_189_volume_271_downward_api_280_items_281_field_ref_282 => {
+    Pod__spec__volume__downward_api__items__field_ref => {
       attributes => {
         'api_version' => {
           'type' => Optional[String],
@@ -5274,7 +5323,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_volume_271_downward_api_280_items_281_resource_field_ref_283 => {
+    Pod__spec__volume__downward_api__items__resource_field_ref => {
       attributes => {
         'container_name' => String,
         'quantity' => {
@@ -5284,7 +5333,7 @@ type TerraformKubernetes = TypeSet[{
         'resource' => String
       }
     },
-    Kubernetes_pod_spec_189_volume_271_empty_dir_284 => {
+    Pod__spec__volume__empty_dir => {
       attributes => {
         'medium' => {
           'type' => Optional[String],
@@ -5292,7 +5341,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_volume_271_fc_285 => {
+    Pod__spec__volume__fc => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -5306,7 +5355,7 @@ type TerraformKubernetes = TypeSet[{
         'target_ww_ns' => Array[String]
       }
     },
-    Kubernetes_pod_spec_189_volume_271_flex_volume_286 => {
+    Pod__spec__volume__flex_volume => {
       attributes => {
         'driver' => String,
         'fs_type' => {
@@ -5322,12 +5371,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_flex_volume_286_secret_ref_287]],
+          'type' => Optional[Array[Pod__spec__volume__flex_volume__secret_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_pod_spec_189_volume_271_flex_volume_286_secret_ref_287 => {
+    Pod__spec__volume__flex_volume__secret_ref => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -5335,7 +5384,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_volume_271_flocker_288 => {
+    Pod__spec__volume__flocker => {
       attributes => {
         'dataset_name' => {
           'type' => Optional[String],
@@ -5347,7 +5396,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_volume_271_gce_persistent_disk_289 => {
+    Pod__spec__volume__gce_persistent_disk => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -5364,7 +5413,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_volume_271_git_repo_290 => {
+    Pod__spec__volume__git_repo => {
       attributes => {
         'directory' => {
           'type' => Optional[String],
@@ -5380,7 +5429,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_volume_271_glusterfs_291 => {
+    Pod__spec__volume__glusterfs => {
       attributes => {
         'endpoints_name' => String,
         'path' => String,
@@ -5390,7 +5439,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_volume_271_host_path_292 => {
+    Pod__spec__volume__host_path => {
       attributes => {
         'path' => {
           'type' => Optional[String],
@@ -5398,7 +5447,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_volume_271_iscsi_293 => {
+    Pod__spec__volume__iscsi => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -5420,7 +5469,7 @@ type TerraformKubernetes = TypeSet[{
         'target_portal' => String
       }
     },
-    Kubernetes_pod_spec_189_volume_271_local_294 => {
+    Pod__spec__volume__local => {
       attributes => {
         'path' => {
           'type' => Optional[String],
@@ -5428,7 +5477,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_volume_271_nfs_295 => {
+    Pod__spec__volume__nfs => {
       attributes => {
         'path' => String,
         'read_only' => {
@@ -5438,7 +5487,7 @@ type TerraformKubernetes = TypeSet[{
         'server' => String
       }
     },
-    Kubernetes_pod_spec_189_volume_271_persistent_volume_claim_296 => {
+    Pod__spec__volume__persistent_volume_claim => {
       attributes => {
         'claim_name' => {
           'type' => Optional[String],
@@ -5450,7 +5499,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_volume_271_photon_persistent_disk_297 => {
+    Pod__spec__volume__photon_persistent_disk => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -5459,7 +5508,7 @@ type TerraformKubernetes = TypeSet[{
         'pd_id' => String
       }
     },
-    Kubernetes_pod_spec_189_volume_271_quobyte_298 => {
+    Pod__spec__volume__quobyte => {
       attributes => {
         'group' => {
           'type' => Optional[String],
@@ -5477,7 +5526,7 @@ type TerraformKubernetes = TypeSet[{
         'volume' => String
       }
     },
-    Kubernetes_pod_spec_189_volume_271_rbd_299 => {
+    Pod__spec__volume__rbd => {
       attributes => {
         'ceph_monitors' => Array[String],
         'fs_type' => {
@@ -5502,12 +5551,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_rbd_299_secret_ref_300]],
+          'type' => Optional[Array[Pod__spec__volume__rbd__secret_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_pod_spec_189_volume_271_rbd_299_secret_ref_300 => {
+    Pod__spec__volume__rbd__secret_ref => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -5515,14 +5564,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_volume_271_secret_301 => {
+    Pod__spec__volume__secret => {
       attributes => {
         'default_mode' => {
           'type' => Optional[Integer],
           'value' => undef
         },
         'items' => {
-          'type' => Optional[Array[Kubernetes_pod_spec_189_volume_271_secret_301_items_302]],
+          'type' => Optional[Array[Pod__spec__volume__secret__items]],
           'value' => undef
         },
         'optional' => {
@@ -5535,7 +5584,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_volume_271_secret_301_items_302 => {
+    Pod__spec__volume__secret__items => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -5551,7 +5600,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_pod_spec_189_volume_271_vsphere_volume_303 => {
+    Pod__spec__volume__vsphere_volume => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -5560,9 +5609,14 @@ type TerraformKubernetes = TypeSet[{
         'volume_path' => String
       }
     },
-    Kubernetes_replication_controller => {
+    Replication_controller => {
+      annotations => {
+        Lyra::Resource => {
+          'providedAttributes' => ['replication_controllerID']
+        }
+      },
       attributes => {
-        'kubernetes_replication_controller_id' => {
+        'replication_controllerID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -5571,11 +5625,11 @@ type TerraformKubernetes = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'metadata' => Array[Kubernetes_replication_controller_metadata_304],
-        'spec' => Array[Kubernetes_replication_controller_spec_305]
+        'metadata' => Array[Replication_controller__metadata],
+        'spec' => Array[Replication_controller__spec]
       }
     },
-    Kubernetes_replication_controllerHandler => {
+    Replication_controllerHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -5589,7 +5643,7 @@ type TerraformKubernetes = TypeSet[{
           Object]
       }
     },
-    Kubernetes_replication_controller_metadata_304 => {
+    Replication_controller__metadata => {
       attributes => {
         'annotations' => {
           'type' => Optional[Hash[String, String]],
@@ -5629,7 +5683,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305 => {
+    Replication_controller__spec => {
       attributes => {
         'min_ready_seconds' => {
           'type' => Optional[Integer],
@@ -5640,17 +5694,17 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'selector' => Hash[String, String],
-        'template' => Array[Kubernetes_replication_controller_spec_305_template_306]
+        'template' => Array[Replication_controller__spec__template]
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306 => {
+    Replication_controller__spec__template => {
       attributes => {
         'active_deadline_seconds' => {
           'type' => Optional[Integer],
           'value' => undef
         },
         'container' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307]],
+          'type' => Optional[Array[Replication_controller__spec__template__container]],
           'value' => undef
         },
         'dns_policy' => {
@@ -5674,15 +5728,15 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'image_pull_secrets' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_image_pull_secrets_346]],
+          'type' => Optional[Array[Replication_controller__spec__template__image_pull_secrets]],
           'value' => undef
         },
         'init_container' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container]],
           'value' => undef
         },
         'metadata' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_metadata_386]],
+          'type' => Optional[Array[Replication_controller__spec__template__metadata]],
           'value' => undef
         },
         'node_name' => {
@@ -5698,7 +5752,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'security_context' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_security_context_387]],
+          'type' => Optional[Array[Replication_controller__spec__template__security_context]],
           'value' => undef
         },
         'service_account_name' => {
@@ -5706,7 +5760,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'spec' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec]],
           'value' => undef
         },
         'subdomain' => {
@@ -5718,12 +5772,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'volume' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307 => {
+    Replication_controller__spec__template__container => {
       attributes => {
         'args' => {
           'type' => Optional[Array[String]],
@@ -5734,11 +5788,11 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'env' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_env_308]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__env]],
           'value' => undef
         },
         'env_from' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_env_from_314]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__env_from]],
           'value' => undef
         },
         'image' => {
@@ -5750,28 +5804,28 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'lifecycle' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__lifecycle]],
           'value' => undef
         },
         'liveness_probe' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__liveness_probe]],
           'value' => undef
         },
         'name' => String,
         'port' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_port_333]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__port]],
           'value' => undef
         },
         'readiness_probe' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__readiness_probe]],
           'value' => undef
         },
         'resources' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_resources_339]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__resources]],
           'value' => undef
         },
         'security_context' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_security_context_342]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__security_context]],
           'value' => undef
         },
         'stdin' => {
@@ -5791,7 +5845,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'volume_mount' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_volume_mount_345]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__volume_mount]],
           'value' => undef
         },
         'working_dir' => {
@@ -5800,7 +5854,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_env_308 => {
+    Replication_controller__spec__template__container__env => {
       attributes => {
         'name' => String,
         'value' => {
@@ -5808,32 +5862,32 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'value_from' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__env__value_from]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309 => {
+    Replication_controller__spec__template__container__env__value_from => {
       attributes => {
         'config_map_key_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309_config_map_key_ref_310]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__env__value_from__config_map_key_ref]],
           'value' => undef
         },
         'field_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309_field_ref_311]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__env__value_from__field_ref]],
           'value' => undef
         },
         'resource_field_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309_resource_field_ref_312]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__env__value_from__resource_field_ref]],
           'value' => undef
         },
         'secret_key_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309_secret_key_ref_313]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__env__value_from__secret_key_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309_config_map_key_ref_310 => {
+    Replication_controller__spec__template__container__env__value_from__config_map_key_ref => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -5845,7 +5899,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309_field_ref_311 => {
+    Replication_controller__spec__template__container__env__value_from__field_ref => {
       attributes => {
         'api_version' => {
           'type' => Optional[String],
@@ -5857,7 +5911,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309_resource_field_ref_312 => {
+    Replication_controller__spec__template__container__env__value_from__resource_field_ref => {
       attributes => {
         'container_name' => {
           'type' => Optional[String],
@@ -5866,7 +5920,7 @@ type TerraformKubernetes = TypeSet[{
         'resource' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_env_308_value_from_309_secret_key_ref_313 => {
+    Replication_controller__spec__template__container__env__value_from__secret_key_ref => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -5878,10 +5932,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_env_from_314 => {
+    Replication_controller__spec__template__container__env_from => {
       attributes => {
         'config_map_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_env_from_314_config_map_ref_315]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__env_from__config_map_ref]],
           'value' => undef
         },
         'prefix' => {
@@ -5889,12 +5943,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_env_from_314_secret_ref_316]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__env_from__secret_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_env_from_314_config_map_ref_315 => {
+    Replication_controller__spec__template__container__env_from__config_map_ref => {
       attributes => {
         'name' => String,
         'optional' => {
@@ -5903,7 +5957,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_env_from_314_secret_ref_316 => {
+    Replication_controller__spec__template__container__env_from__secret_ref => {
       attributes => {
         'name' => String,
         'optional' => {
@@ -5912,35 +5966,35 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317 => {
+    Replication_controller__spec__template__container__lifecycle => {
       attributes => {
         'post_start' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__lifecycle__post_start]],
           'value' => undef
         },
         'pre_stop' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__lifecycle__pre_stop]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318 => {
+    Replication_controller__spec__template__container__lifecycle__post_start => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318_exec_319]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__lifecycle__post_start__exec]],
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318_http_get_320]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__lifecycle__post_start__http_get]],
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318_tcp_socket_322]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__lifecycle__post_start__tcp_socket]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318_exec_319 => {
+    Replication_controller__spec__template__container__lifecycle__post_start__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -5948,14 +6002,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318_http_get_320 => {
+    Replication_controller__spec__template__container__lifecycle__post_start__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318_http_get_320_http_header_321]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__lifecycle__post_start__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -5972,7 +6026,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318_http_get_320_http_header_321 => {
+    Replication_controller__spec__template__container__lifecycle__post_start__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -5984,28 +6038,28 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_post_start_318_tcp_socket_322 => {
+    Replication_controller__spec__template__container__lifecycle__post_start__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323 => {
+    Replication_controller__spec__template__container__lifecycle__pre_stop => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323_exec_324]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__lifecycle__pre_stop__exec]],
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323_http_get_325]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__lifecycle__pre_stop__http_get]],
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323_tcp_socket_327]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__lifecycle__pre_stop__tcp_socket]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323_exec_324 => {
+    Replication_controller__spec__template__container__lifecycle__pre_stop__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -6013,14 +6067,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323_http_get_325 => {
+    Replication_controller__spec__template__container__lifecycle__pre_stop__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323_http_get_325_http_header_326]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__lifecycle__pre_stop__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -6037,7 +6091,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323_http_get_325_http_header_326 => {
+    Replication_controller__spec__template__container__lifecycle__pre_stop__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -6049,15 +6103,15 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_lifecycle_317_pre_stop_323_tcp_socket_327 => {
+    Replication_controller__spec__template__container__lifecycle__pre_stop__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328 => {
+    Replication_controller__spec__template__container__liveness_probe => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328_exec_329]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__liveness_probe__exec]],
           'value' => undef
         },
         'failure_threshold' => {
@@ -6065,7 +6119,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328_http_get_330]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__liveness_probe__http_get]],
           'value' => undef
         },
         'initial_delay_seconds' => {
@@ -6081,7 +6135,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328_tcp_socket_332]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__liveness_probe__tcp_socket]],
           'value' => undef
         },
         'timeout_seconds' => {
@@ -6090,7 +6144,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328_exec_329 => {
+    Replication_controller__spec__template__container__liveness_probe__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -6098,14 +6152,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328_http_get_330 => {
+    Replication_controller__spec__template__container__liveness_probe__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328_http_get_330_http_header_331]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__liveness_probe__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -6122,7 +6176,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328_http_get_330_http_header_331 => {
+    Replication_controller__spec__template__container__liveness_probe__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -6134,12 +6188,12 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_liveness_probe_328_tcp_socket_332 => {
+    Replication_controller__spec__template__container__liveness_probe__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_port_333 => {
+    Replication_controller__spec__template__container__port => {
       attributes => {
         'container_port' => Integer,
         'host_ip' => {
@@ -6160,10 +6214,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334 => {
+    Replication_controller__spec__template__container__readiness_probe => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334_exec_335]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__readiness_probe__exec]],
           'value' => undef
         },
         'failure_threshold' => {
@@ -6171,7 +6225,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334_http_get_336]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__readiness_probe__http_get]],
           'value' => undef
         },
         'initial_delay_seconds' => {
@@ -6187,7 +6241,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334_tcp_socket_338]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__readiness_probe__tcp_socket]],
           'value' => undef
         },
         'timeout_seconds' => {
@@ -6196,7 +6250,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334_exec_335 => {
+    Replication_controller__spec__template__container__readiness_probe__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -6204,14 +6258,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334_http_get_336 => {
+    Replication_controller__spec__template__container__readiness_probe__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334_http_get_336_http_header_337]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__readiness_probe__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -6228,7 +6282,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334_http_get_336_http_header_337 => {
+    Replication_controller__spec__template__container__readiness_probe__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -6240,24 +6294,24 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_readiness_probe_334_tcp_socket_338 => {
+    Replication_controller__spec__template__container__readiness_probe__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_resources_339 => {
+    Replication_controller__spec__template__container__resources => {
       attributes => {
         'limits' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_resources_339_limits_340]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__resources__limits]],
           'value' => undef
         },
         'requests' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_resources_339_requests_341]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__resources__requests]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_resources_339_limits_340 => {
+    Replication_controller__spec__template__container__resources__limits => {
       attributes => {
         'cpu' => {
           'type' => Optional[String],
@@ -6269,7 +6323,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_resources_339_requests_341 => {
+    Replication_controller__spec__template__container__resources__requests => {
       attributes => {
         'cpu' => {
           'type' => Optional[String],
@@ -6281,14 +6335,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_security_context_342 => {
+    Replication_controller__spec__template__container__security_context => {
       attributes => {
         'allow_privilege_escalation' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
         'capabilities' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_security_context_342_capabilities_343]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__security_context__capabilities]],
           'value' => undef
         },
         'privileged' => {
@@ -6308,12 +6362,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'se_linux_options' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_container_307_security_context_342_se_linux_options_344]],
+          'type' => Optional[Array[Replication_controller__spec__template__container__security_context__se_linux_options]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_security_context_342_capabilities_343 => {
+    Replication_controller__spec__template__container__security_context__capabilities => {
       attributes => {
         'add' => {
           'type' => Optional[Array[String]],
@@ -6325,7 +6379,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_security_context_342_se_linux_options_344 => {
+    Replication_controller__spec__template__container__security_context__se_linux_options => {
       attributes => {
         'level' => {
           'type' => Optional[String],
@@ -6345,7 +6399,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_container_307_volume_mount_345 => {
+    Replication_controller__spec__template__container__volume_mount => {
       attributes => {
         'mount_path' => String,
         'name' => String,
@@ -6359,12 +6413,12 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_image_pull_secrets_346 => {
+    Replication_controller__spec__template__image_pull_secrets => {
       attributes => {
         'name' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347 => {
+    Replication_controller__spec__template__init_container => {
       attributes => {
         'args' => {
           'type' => Optional[Array[String]],
@@ -6375,11 +6429,11 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'env' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__env]],
           'value' => undef
         },
         'env_from' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_from_354]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__env_from]],
           'value' => undef
         },
         'image' => {
@@ -6391,28 +6445,28 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'lifecycle' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__lifecycle]],
           'value' => undef
         },
         'liveness_probe' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__liveness_probe]],
           'value' => undef
         },
         'name' => String,
         'port' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_port_373]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__port]],
           'value' => undef
         },
         'readiness_probe' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__readiness_probe]],
           'value' => undef
         },
         'resources' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_resources_379]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__resources]],
           'value' => undef
         },
         'security_context' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_security_context_382]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__security_context]],
           'value' => undef
         },
         'stdin' => {
@@ -6432,7 +6486,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'volume_mount' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_volume_mount_385]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__volume_mount]],
           'value' => undef
         },
         'working_dir' => {
@@ -6441,7 +6495,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348 => {
+    Replication_controller__spec__template__init_container__env => {
       attributes => {
         'name' => String,
         'value' => {
@@ -6449,32 +6503,32 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'value_from' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__env__value_from]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349 => {
+    Replication_controller__spec__template__init_container__env__value_from => {
       attributes => {
         'config_map_key_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349_config_map_key_ref_350]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__env__value_from__config_map_key_ref]],
           'value' => undef
         },
         'field_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349_field_ref_351]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__env__value_from__field_ref]],
           'value' => undef
         },
         'resource_field_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349_resource_field_ref_352]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__env__value_from__resource_field_ref]],
           'value' => undef
         },
         'secret_key_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349_secret_key_ref_353]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__env__value_from__secret_key_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349_config_map_key_ref_350 => {
+    Replication_controller__spec__template__init_container__env__value_from__config_map_key_ref => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -6486,7 +6540,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349_field_ref_351 => {
+    Replication_controller__spec__template__init_container__env__value_from__field_ref => {
       attributes => {
         'api_version' => {
           'type' => Optional[String],
@@ -6498,7 +6552,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349_resource_field_ref_352 => {
+    Replication_controller__spec__template__init_container__env__value_from__resource_field_ref => {
       attributes => {
         'container_name' => {
           'type' => Optional[String],
@@ -6507,7 +6561,7 @@ type TerraformKubernetes = TypeSet[{
         'resource' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_348_value_from_349_secret_key_ref_353 => {
+    Replication_controller__spec__template__init_container__env__value_from__secret_key_ref => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -6519,10 +6573,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_from_354 => {
+    Replication_controller__spec__template__init_container__env_from => {
       attributes => {
         'config_map_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_from_354_config_map_ref_355]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__env_from__config_map_ref]],
           'value' => undef
         },
         'prefix' => {
@@ -6530,12 +6584,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_from_354_secret_ref_356]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__env_from__secret_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_from_354_config_map_ref_355 => {
+    Replication_controller__spec__template__init_container__env_from__config_map_ref => {
       attributes => {
         'name' => String,
         'optional' => {
@@ -6544,7 +6598,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_env_from_354_secret_ref_356 => {
+    Replication_controller__spec__template__init_container__env_from__secret_ref => {
       attributes => {
         'name' => String,
         'optional' => {
@@ -6553,35 +6607,35 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357 => {
+    Replication_controller__spec__template__init_container__lifecycle => {
       attributes => {
         'post_start' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__lifecycle__post_start]],
           'value' => undef
         },
         'pre_stop' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__lifecycle__pre_stop]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358 => {
+    Replication_controller__spec__template__init_container__lifecycle__post_start => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358_exec_359]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__lifecycle__post_start__exec]],
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358_http_get_360]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__lifecycle__post_start__http_get]],
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358_tcp_socket_362]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__lifecycle__post_start__tcp_socket]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358_exec_359 => {
+    Replication_controller__spec__template__init_container__lifecycle__post_start__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -6589,14 +6643,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358_http_get_360 => {
+    Replication_controller__spec__template__init_container__lifecycle__post_start__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358_http_get_360_http_header_361]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__lifecycle__post_start__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -6613,7 +6667,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358_http_get_360_http_header_361 => {
+    Replication_controller__spec__template__init_container__lifecycle__post_start__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -6625,28 +6679,28 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_post_start_358_tcp_socket_362 => {
+    Replication_controller__spec__template__init_container__lifecycle__post_start__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363 => {
+    Replication_controller__spec__template__init_container__lifecycle__pre_stop => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363_exec_364]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__lifecycle__pre_stop__exec]],
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363_http_get_365]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__lifecycle__pre_stop__http_get]],
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363_tcp_socket_367]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__lifecycle__pre_stop__tcp_socket]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363_exec_364 => {
+    Replication_controller__spec__template__init_container__lifecycle__pre_stop__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -6654,14 +6708,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363_http_get_365 => {
+    Replication_controller__spec__template__init_container__lifecycle__pre_stop__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363_http_get_365_http_header_366]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__lifecycle__pre_stop__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -6678,7 +6732,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363_http_get_365_http_header_366 => {
+    Replication_controller__spec__template__init_container__lifecycle__pre_stop__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -6690,15 +6744,15 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_lifecycle_357_pre_stop_363_tcp_socket_367 => {
+    Replication_controller__spec__template__init_container__lifecycle__pre_stop__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368 => {
+    Replication_controller__spec__template__init_container__liveness_probe => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368_exec_369]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__liveness_probe__exec]],
           'value' => undef
         },
         'failure_threshold' => {
@@ -6706,7 +6760,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368_http_get_370]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__liveness_probe__http_get]],
           'value' => undef
         },
         'initial_delay_seconds' => {
@@ -6722,7 +6776,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368_tcp_socket_372]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__liveness_probe__tcp_socket]],
           'value' => undef
         },
         'timeout_seconds' => {
@@ -6731,7 +6785,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368_exec_369 => {
+    Replication_controller__spec__template__init_container__liveness_probe__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -6739,14 +6793,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368_http_get_370 => {
+    Replication_controller__spec__template__init_container__liveness_probe__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368_http_get_370_http_header_371]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__liveness_probe__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -6763,7 +6817,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368_http_get_370_http_header_371 => {
+    Replication_controller__spec__template__init_container__liveness_probe__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -6775,12 +6829,12 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_liveness_probe_368_tcp_socket_372 => {
+    Replication_controller__spec__template__init_container__liveness_probe__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_port_373 => {
+    Replication_controller__spec__template__init_container__port => {
       attributes => {
         'container_port' => Integer,
         'host_ip' => {
@@ -6801,10 +6855,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374 => {
+    Replication_controller__spec__template__init_container__readiness_probe => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374_exec_375]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__readiness_probe__exec]],
           'value' => undef
         },
         'failure_threshold' => {
@@ -6812,7 +6866,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374_http_get_376]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__readiness_probe__http_get]],
           'value' => undef
         },
         'initial_delay_seconds' => {
@@ -6828,7 +6882,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374_tcp_socket_378]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__readiness_probe__tcp_socket]],
           'value' => undef
         },
         'timeout_seconds' => {
@@ -6837,7 +6891,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374_exec_375 => {
+    Replication_controller__spec__template__init_container__readiness_probe__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -6845,14 +6899,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374_http_get_376 => {
+    Replication_controller__spec__template__init_container__readiness_probe__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374_http_get_376_http_header_377]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__readiness_probe__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -6869,7 +6923,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374_http_get_376_http_header_377 => {
+    Replication_controller__spec__template__init_container__readiness_probe__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -6881,24 +6935,24 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_readiness_probe_374_tcp_socket_378 => {
+    Replication_controller__spec__template__init_container__readiness_probe__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_resources_379 => {
+    Replication_controller__spec__template__init_container__resources => {
       attributes => {
         'limits' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_resources_379_limits_380]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__resources__limits]],
           'value' => undef
         },
         'requests' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_resources_379_requests_381]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__resources__requests]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_resources_379_limits_380 => {
+    Replication_controller__spec__template__init_container__resources__limits => {
       attributes => {
         'cpu' => {
           'type' => Optional[String],
@@ -6910,7 +6964,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_resources_379_requests_381 => {
+    Replication_controller__spec__template__init_container__resources__requests => {
       attributes => {
         'cpu' => {
           'type' => Optional[String],
@@ -6922,14 +6976,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_security_context_382 => {
+    Replication_controller__spec__template__init_container__security_context => {
       attributes => {
         'allow_privilege_escalation' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
         'capabilities' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_security_context_382_capabilities_383]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__security_context__capabilities]],
           'value' => undef
         },
         'privileged' => {
@@ -6949,12 +7003,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'se_linux_options' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_init_container_347_security_context_382_se_linux_options_384]],
+          'type' => Optional[Array[Replication_controller__spec__template__init_container__security_context__se_linux_options]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_security_context_382_capabilities_383 => {
+    Replication_controller__spec__template__init_container__security_context__capabilities => {
       attributes => {
         'add' => {
           'type' => Optional[Array[String]],
@@ -6966,7 +7020,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_security_context_382_se_linux_options_384 => {
+    Replication_controller__spec__template__init_container__security_context__se_linux_options => {
       attributes => {
         'level' => {
           'type' => Optional[String],
@@ -6986,7 +7040,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_init_container_347_volume_mount_385 => {
+    Replication_controller__spec__template__init_container__volume_mount => {
       attributes => {
         'mount_path' => String,
         'name' => String,
@@ -7000,7 +7054,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_metadata_386 => {
+    Replication_controller__spec__template__metadata => {
       attributes => {
         'annotations' => {
           'type' => Optional[Hash[String, String]],
@@ -7040,7 +7094,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_security_context_387 => {
+    Replication_controller__spec__template__security_context => {
       attributes => {
         'fs_group' => {
           'type' => Optional[Integer],
@@ -7055,7 +7109,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'se_linux_options' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_security_context_387_se_linux_options_388]],
+          'type' => Optional[Array[Replication_controller__spec__template__security_context__se_linux_options]],
           'value' => undef
         },
         'supplemental_groups' => {
@@ -7064,7 +7118,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_security_context_387_se_linux_options_388 => {
+    Replication_controller__spec__template__security_context__se_linux_options => {
       attributes => {
         'level' => {
           'type' => Optional[String],
@@ -7084,14 +7138,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389 => {
+    Replication_controller__spec__template__spec => {
       attributes => {
         'active_deadline_seconds' => {
           'type' => Optional[Integer],
           'value' => undef
         },
         'container' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container]],
           'value' => undef
         },
         'dns_policy' => {
@@ -7115,11 +7169,11 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'image_pull_secrets' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_image_pull_secrets_429]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__image_pull_secrets]],
           'value' => undef
         },
         'init_container' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container]],
           'value' => undef
         },
         'node_name' => {
@@ -7135,7 +7189,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'security_context' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_security_context_469]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__security_context]],
           'value' => undef
         },
         'service_account_name' => {
@@ -7151,12 +7205,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'volume' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390 => {
+    Replication_controller__spec__template__spec__container => {
       attributes => {
         'args' => {
           'type' => Optional[Array[String]],
@@ -7167,11 +7221,11 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'env' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__env]],
           'value' => undef
         },
         'env_from' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_from_397]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__env_from]],
           'value' => undef
         },
         'image' => {
@@ -7183,28 +7237,28 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'lifecycle' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__lifecycle]],
           'value' => undef
         },
         'liveness_probe' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__liveness_probe]],
           'value' => undef
         },
         'name' => String,
         'port' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_port_416]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__port]],
           'value' => undef
         },
         'readiness_probe' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__readiness_probe]],
           'value' => undef
         },
         'resources' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_resources_422]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__resources]],
           'value' => undef
         },
         'security_context' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_security_context_425]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__security_context]],
           'value' => undef
         },
         'stdin' => {
@@ -7224,7 +7278,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'volume_mount' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_volume_mount_428]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__volume_mount]],
           'value' => undef
         },
         'working_dir' => {
@@ -7233,7 +7287,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391 => {
+    Replication_controller__spec__template__spec__container__env => {
       attributes => {
         'name' => String,
         'value' => {
@@ -7241,32 +7295,32 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'value_from' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__env__value_from]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392 => {
+    Replication_controller__spec__template__spec__container__env__value_from => {
       attributes => {
         'config_map_key_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392_config_map_key_ref_393]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__env__value_from__config_map_key_ref]],
           'value' => undef
         },
         'field_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392_field_ref_394]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__env__value_from__field_ref]],
           'value' => undef
         },
         'resource_field_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392_resource_field_ref_395]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__env__value_from__resource_field_ref]],
           'value' => undef
         },
         'secret_key_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392_secret_key_ref_396]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__env__value_from__secret_key_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392_config_map_key_ref_393 => {
+    Replication_controller__spec__template__spec__container__env__value_from__config_map_key_ref => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -7278,7 +7332,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392_field_ref_394 => {
+    Replication_controller__spec__template__spec__container__env__value_from__field_ref => {
       attributes => {
         'api_version' => {
           'type' => Optional[String],
@@ -7290,7 +7344,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392_resource_field_ref_395 => {
+    Replication_controller__spec__template__spec__container__env__value_from__resource_field_ref => {
       attributes => {
         'container_name' => {
           'type' => Optional[String],
@@ -7299,7 +7353,7 @@ type TerraformKubernetes = TypeSet[{
         'resource' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_391_value_from_392_secret_key_ref_396 => {
+    Replication_controller__spec__template__spec__container__env__value_from__secret_key_ref => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -7311,10 +7365,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_from_397 => {
+    Replication_controller__spec__template__spec__container__env_from => {
       attributes => {
         'config_map_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_from_397_config_map_ref_398]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__env_from__config_map_ref]],
           'value' => undef
         },
         'prefix' => {
@@ -7322,12 +7376,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_from_397_secret_ref_399]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__env_from__secret_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_from_397_config_map_ref_398 => {
+    Replication_controller__spec__template__spec__container__env_from__config_map_ref => {
       attributes => {
         'name' => String,
         'optional' => {
@@ -7336,7 +7390,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_env_from_397_secret_ref_399 => {
+    Replication_controller__spec__template__spec__container__env_from__secret_ref => {
       attributes => {
         'name' => String,
         'optional' => {
@@ -7345,35 +7399,35 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400 => {
+    Replication_controller__spec__template__spec__container__lifecycle => {
       attributes => {
         'post_start' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__lifecycle__post_start]],
           'value' => undef
         },
         'pre_stop' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__lifecycle__pre_stop]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401 => {
+    Replication_controller__spec__template__spec__container__lifecycle__post_start => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401_exec_402]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__lifecycle__post_start__exec]],
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401_http_get_403]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__lifecycle__post_start__http_get]],
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401_tcp_socket_405]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__lifecycle__post_start__tcp_socket]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401_exec_402 => {
+    Replication_controller__spec__template__spec__container__lifecycle__post_start__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -7381,14 +7435,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401_http_get_403 => {
+    Replication_controller__spec__template__spec__container__lifecycle__post_start__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401_http_get_403_http_header_404]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__lifecycle__post_start__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -7405,7 +7459,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401_http_get_403_http_header_404 => {
+    Replication_controller__spec__template__spec__container__lifecycle__post_start__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -7417,28 +7471,28 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_post_start_401_tcp_socket_405 => {
+    Replication_controller__spec__template__spec__container__lifecycle__post_start__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406 => {
+    Replication_controller__spec__template__spec__container__lifecycle__pre_stop => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406_exec_407]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__lifecycle__pre_stop__exec]],
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406_http_get_408]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__lifecycle__pre_stop__http_get]],
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406_tcp_socket_410]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__lifecycle__pre_stop__tcp_socket]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406_exec_407 => {
+    Replication_controller__spec__template__spec__container__lifecycle__pre_stop__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -7446,14 +7500,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406_http_get_408 => {
+    Replication_controller__spec__template__spec__container__lifecycle__pre_stop__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406_http_get_408_http_header_409]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__lifecycle__pre_stop__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -7470,7 +7524,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406_http_get_408_http_header_409 => {
+    Replication_controller__spec__template__spec__container__lifecycle__pre_stop__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -7482,15 +7536,15 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_lifecycle_400_pre_stop_406_tcp_socket_410 => {
+    Replication_controller__spec__template__spec__container__lifecycle__pre_stop__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411 => {
+    Replication_controller__spec__template__spec__container__liveness_probe => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411_exec_412]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__liveness_probe__exec]],
           'value' => undef
         },
         'failure_threshold' => {
@@ -7498,7 +7552,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411_http_get_413]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__liveness_probe__http_get]],
           'value' => undef
         },
         'initial_delay_seconds' => {
@@ -7514,7 +7568,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411_tcp_socket_415]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__liveness_probe__tcp_socket]],
           'value' => undef
         },
         'timeout_seconds' => {
@@ -7523,7 +7577,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411_exec_412 => {
+    Replication_controller__spec__template__spec__container__liveness_probe__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -7531,14 +7585,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411_http_get_413 => {
+    Replication_controller__spec__template__spec__container__liveness_probe__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411_http_get_413_http_header_414]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__liveness_probe__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -7555,7 +7609,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411_http_get_413_http_header_414 => {
+    Replication_controller__spec__template__spec__container__liveness_probe__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -7567,12 +7621,12 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_liveness_probe_411_tcp_socket_415 => {
+    Replication_controller__spec__template__spec__container__liveness_probe__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_port_416 => {
+    Replication_controller__spec__template__spec__container__port => {
       attributes => {
         'container_port' => Integer,
         'host_ip' => {
@@ -7593,10 +7647,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417 => {
+    Replication_controller__spec__template__spec__container__readiness_probe => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417_exec_418]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__readiness_probe__exec]],
           'value' => undef
         },
         'failure_threshold' => {
@@ -7604,7 +7658,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417_http_get_419]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__readiness_probe__http_get]],
           'value' => undef
         },
         'initial_delay_seconds' => {
@@ -7620,7 +7674,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417_tcp_socket_421]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__readiness_probe__tcp_socket]],
           'value' => undef
         },
         'timeout_seconds' => {
@@ -7629,7 +7683,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417_exec_418 => {
+    Replication_controller__spec__template__spec__container__readiness_probe__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -7637,14 +7691,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417_http_get_419 => {
+    Replication_controller__spec__template__spec__container__readiness_probe__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417_http_get_419_http_header_420]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__readiness_probe__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -7661,7 +7715,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417_http_get_419_http_header_420 => {
+    Replication_controller__spec__template__spec__container__readiness_probe__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -7673,24 +7727,24 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_readiness_probe_417_tcp_socket_421 => {
+    Replication_controller__spec__template__spec__container__readiness_probe__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_resources_422 => {
+    Replication_controller__spec__template__spec__container__resources => {
       attributes => {
         'limits' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_resources_422_limits_423]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__resources__limits]],
           'value' => undef
         },
         'requests' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_resources_422_requests_424]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__resources__requests]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_resources_422_limits_423 => {
+    Replication_controller__spec__template__spec__container__resources__limits => {
       attributes => {
         'cpu' => {
           'type' => Optional[String],
@@ -7702,7 +7756,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_resources_422_requests_424 => {
+    Replication_controller__spec__template__spec__container__resources__requests => {
       attributes => {
         'cpu' => {
           'type' => Optional[String],
@@ -7714,14 +7768,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_security_context_425 => {
+    Replication_controller__spec__template__spec__container__security_context => {
       attributes => {
         'allow_privilege_escalation' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
         'capabilities' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_security_context_425_capabilities_426]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__security_context__capabilities]],
           'value' => undef
         },
         'privileged' => {
@@ -7741,12 +7795,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'se_linux_options' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_security_context_425_se_linux_options_427]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__container__security_context__se_linux_options]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_security_context_425_capabilities_426 => {
+    Replication_controller__spec__template__spec__container__security_context__capabilities => {
       attributes => {
         'add' => {
           'type' => Optional[Array[String]],
@@ -7758,7 +7812,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_security_context_425_se_linux_options_427 => {
+    Replication_controller__spec__template__spec__container__security_context__se_linux_options => {
       attributes => {
         'level' => {
           'type' => Optional[String],
@@ -7778,7 +7832,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_container_390_volume_mount_428 => {
+    Replication_controller__spec__template__spec__container__volume_mount => {
       attributes => {
         'mount_path' => String,
         'name' => String,
@@ -7792,12 +7846,12 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_image_pull_secrets_429 => {
+    Replication_controller__spec__template__spec__image_pull_secrets => {
       attributes => {
         'name' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430 => {
+    Replication_controller__spec__template__spec__init_container => {
       attributes => {
         'args' => {
           'type' => Optional[Array[String]],
@@ -7808,11 +7862,11 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'env' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__env]],
           'value' => undef
         },
         'env_from' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_from_437]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__env_from]],
           'value' => undef
         },
         'image' => {
@@ -7824,28 +7878,28 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'lifecycle' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__lifecycle]],
           'value' => undef
         },
         'liveness_probe' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__liveness_probe]],
           'value' => undef
         },
         'name' => String,
         'port' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_port_456]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__port]],
           'value' => undef
         },
         'readiness_probe' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__readiness_probe]],
           'value' => undef
         },
         'resources' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_resources_462]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__resources]],
           'value' => undef
         },
         'security_context' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_security_context_465]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__security_context]],
           'value' => undef
         },
         'stdin' => {
@@ -7865,7 +7919,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'volume_mount' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_volume_mount_468]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__volume_mount]],
           'value' => undef
         },
         'working_dir' => {
@@ -7874,7 +7928,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431 => {
+    Replication_controller__spec__template__spec__init_container__env => {
       attributes => {
         'name' => String,
         'value' => {
@@ -7882,32 +7936,32 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'value_from' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__env__value_from]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432 => {
+    Replication_controller__spec__template__spec__init_container__env__value_from => {
       attributes => {
         'config_map_key_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432_config_map_key_ref_433]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__env__value_from__config_map_key_ref]],
           'value' => undef
         },
         'field_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432_field_ref_434]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__env__value_from__field_ref]],
           'value' => undef
         },
         'resource_field_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432_resource_field_ref_435]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__env__value_from__resource_field_ref]],
           'value' => undef
         },
         'secret_key_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432_secret_key_ref_436]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__env__value_from__secret_key_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432_config_map_key_ref_433 => {
+    Replication_controller__spec__template__spec__init_container__env__value_from__config_map_key_ref => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -7919,7 +7973,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432_field_ref_434 => {
+    Replication_controller__spec__template__spec__init_container__env__value_from__field_ref => {
       attributes => {
         'api_version' => {
           'type' => Optional[String],
@@ -7931,7 +7985,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432_resource_field_ref_435 => {
+    Replication_controller__spec__template__spec__init_container__env__value_from__resource_field_ref => {
       attributes => {
         'container_name' => {
           'type' => Optional[String],
@@ -7940,7 +7994,7 @@ type TerraformKubernetes = TypeSet[{
         'resource' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_431_value_from_432_secret_key_ref_436 => {
+    Replication_controller__spec__template__spec__init_container__env__value_from__secret_key_ref => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -7952,10 +8006,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_from_437 => {
+    Replication_controller__spec__template__spec__init_container__env_from => {
       attributes => {
         'config_map_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_from_437_config_map_ref_438]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__env_from__config_map_ref]],
           'value' => undef
         },
         'prefix' => {
@@ -7963,12 +8017,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_from_437_secret_ref_439]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__env_from__secret_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_from_437_config_map_ref_438 => {
+    Replication_controller__spec__template__spec__init_container__env_from__config_map_ref => {
       attributes => {
         'name' => String,
         'optional' => {
@@ -7977,7 +8031,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_env_from_437_secret_ref_439 => {
+    Replication_controller__spec__template__spec__init_container__env_from__secret_ref => {
       attributes => {
         'name' => String,
         'optional' => {
@@ -7986,35 +8040,35 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440 => {
+    Replication_controller__spec__template__spec__init_container__lifecycle => {
       attributes => {
         'post_start' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__lifecycle__post_start]],
           'value' => undef
         },
         'pre_stop' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__lifecycle__pre_stop]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441 => {
+    Replication_controller__spec__template__spec__init_container__lifecycle__post_start => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441_exec_442]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__lifecycle__post_start__exec]],
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441_http_get_443]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__lifecycle__post_start__http_get]],
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441_tcp_socket_445]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__lifecycle__post_start__tcp_socket]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441_exec_442 => {
+    Replication_controller__spec__template__spec__init_container__lifecycle__post_start__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -8022,14 +8076,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441_http_get_443 => {
+    Replication_controller__spec__template__spec__init_container__lifecycle__post_start__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441_http_get_443_http_header_444]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__lifecycle__post_start__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -8046,7 +8100,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441_http_get_443_http_header_444 => {
+    Replication_controller__spec__template__spec__init_container__lifecycle__post_start__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -8058,28 +8112,28 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_post_start_441_tcp_socket_445 => {
+    Replication_controller__spec__template__spec__init_container__lifecycle__post_start__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446 => {
+    Replication_controller__spec__template__spec__init_container__lifecycle__pre_stop => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446_exec_447]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__lifecycle__pre_stop__exec]],
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446_http_get_448]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__lifecycle__pre_stop__http_get]],
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446_tcp_socket_450]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__lifecycle__pre_stop__tcp_socket]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446_exec_447 => {
+    Replication_controller__spec__template__spec__init_container__lifecycle__pre_stop__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -8087,14 +8141,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446_http_get_448 => {
+    Replication_controller__spec__template__spec__init_container__lifecycle__pre_stop__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446_http_get_448_http_header_449]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__lifecycle__pre_stop__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -8111,7 +8165,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446_http_get_448_http_header_449 => {
+    Replication_controller__spec__template__spec__init_container__lifecycle__pre_stop__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -8123,15 +8177,15 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_lifecycle_440_pre_stop_446_tcp_socket_450 => {
+    Replication_controller__spec__template__spec__init_container__lifecycle__pre_stop__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451 => {
+    Replication_controller__spec__template__spec__init_container__liveness_probe => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451_exec_452]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__liveness_probe__exec]],
           'value' => undef
         },
         'failure_threshold' => {
@@ -8139,7 +8193,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451_http_get_453]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__liveness_probe__http_get]],
           'value' => undef
         },
         'initial_delay_seconds' => {
@@ -8155,7 +8209,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451_tcp_socket_455]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__liveness_probe__tcp_socket]],
           'value' => undef
         },
         'timeout_seconds' => {
@@ -8164,7 +8218,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451_exec_452 => {
+    Replication_controller__spec__template__spec__init_container__liveness_probe__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -8172,14 +8226,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451_http_get_453 => {
+    Replication_controller__spec__template__spec__init_container__liveness_probe__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451_http_get_453_http_header_454]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__liveness_probe__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -8196,7 +8250,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451_http_get_453_http_header_454 => {
+    Replication_controller__spec__template__spec__init_container__liveness_probe__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -8208,12 +8262,12 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_liveness_probe_451_tcp_socket_455 => {
+    Replication_controller__spec__template__spec__init_container__liveness_probe__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_port_456 => {
+    Replication_controller__spec__template__spec__init_container__port => {
       attributes => {
         'container_port' => Integer,
         'host_ip' => {
@@ -8234,10 +8288,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457 => {
+    Replication_controller__spec__template__spec__init_container__readiness_probe => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457_exec_458]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__readiness_probe__exec]],
           'value' => undef
         },
         'failure_threshold' => {
@@ -8245,7 +8299,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457_http_get_459]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__readiness_probe__http_get]],
           'value' => undef
         },
         'initial_delay_seconds' => {
@@ -8261,7 +8315,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457_tcp_socket_461]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__readiness_probe__tcp_socket]],
           'value' => undef
         },
         'timeout_seconds' => {
@@ -8270,7 +8324,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457_exec_458 => {
+    Replication_controller__spec__template__spec__init_container__readiness_probe__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -8278,14 +8332,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457_http_get_459 => {
+    Replication_controller__spec__template__spec__init_container__readiness_probe__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457_http_get_459_http_header_460]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__readiness_probe__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -8302,7 +8356,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457_http_get_459_http_header_460 => {
+    Replication_controller__spec__template__spec__init_container__readiness_probe__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -8314,24 +8368,24 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_readiness_probe_457_tcp_socket_461 => {
+    Replication_controller__spec__template__spec__init_container__readiness_probe__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_resources_462 => {
+    Replication_controller__spec__template__spec__init_container__resources => {
       attributes => {
         'limits' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_resources_462_limits_463]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__resources__limits]],
           'value' => undef
         },
         'requests' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_resources_462_requests_464]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__resources__requests]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_resources_462_limits_463 => {
+    Replication_controller__spec__template__spec__init_container__resources__limits => {
       attributes => {
         'cpu' => {
           'type' => Optional[String],
@@ -8343,7 +8397,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_resources_462_requests_464 => {
+    Replication_controller__spec__template__spec__init_container__resources__requests => {
       attributes => {
         'cpu' => {
           'type' => Optional[String],
@@ -8355,14 +8409,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_security_context_465 => {
+    Replication_controller__spec__template__spec__init_container__security_context => {
       attributes => {
         'allow_privilege_escalation' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
         'capabilities' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_security_context_465_capabilities_466]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__security_context__capabilities]],
           'value' => undef
         },
         'privileged' => {
@@ -8382,12 +8436,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'se_linux_options' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_security_context_465_se_linux_options_467]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__init_container__security_context__se_linux_options]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_security_context_465_capabilities_466 => {
+    Replication_controller__spec__template__spec__init_container__security_context__capabilities => {
       attributes => {
         'add' => {
           'type' => Optional[Array[String]],
@@ -8399,7 +8453,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_security_context_465_se_linux_options_467 => {
+    Replication_controller__spec__template__spec__init_container__security_context__se_linux_options => {
       attributes => {
         'level' => {
           'type' => Optional[String],
@@ -8419,7 +8473,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_init_container_430_volume_mount_468 => {
+    Replication_controller__spec__template__spec__init_container__volume_mount => {
       attributes => {
         'mount_path' => String,
         'name' => String,
@@ -8433,7 +8487,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_security_context_469 => {
+    Replication_controller__spec__template__spec__security_context => {
       attributes => {
         'fs_group' => {
           'type' => Optional[Integer],
@@ -8448,7 +8502,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'se_linux_options' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_security_context_469_se_linux_options_470]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__security_context__se_linux_options]],
           'value' => undef
         },
         'supplemental_groups' => {
@@ -8457,7 +8511,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_security_context_469_se_linux_options_470 => {
+    Replication_controller__spec__template__spec__security_context__se_linux_options => {
       attributes => {
         'level' => {
           'type' => Optional[String],
@@ -8477,74 +8531,74 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471 => {
+    Replication_controller__spec__template__spec__volume => {
       attributes => {
         'aws_elastic_block_store' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_aws_elastic_block_store_472]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__aws_elastic_block_store]],
           'value' => undef
         },
         'azure_disk' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_azure_disk_473]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__azure_disk]],
           'value' => undef
         },
         'azure_file' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_azure_file_474]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__azure_file]],
           'value' => undef
         },
         'ceph_fs' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_ceph_fs_475]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__ceph_fs]],
           'value' => undef
         },
         'cinder' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_cinder_477]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__cinder]],
           'value' => undef
         },
         'config_map' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_config_map_478]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__config_map]],
           'value' => undef
         },
         'downward_api' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_downward_api_480]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__downward_api]],
           'value' => undef
         },
         'empty_dir' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_empty_dir_484]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__empty_dir]],
           'value' => undef
         },
         'fc' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_fc_485]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__fc]],
           'value' => undef
         },
         'flex_volume' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_flex_volume_486]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__flex_volume]],
           'value' => undef
         },
         'flocker' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_flocker_488]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__flocker]],
           'value' => undef
         },
         'gce_persistent_disk' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_gce_persistent_disk_489]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__gce_persistent_disk]],
           'value' => undef
         },
         'git_repo' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_git_repo_490]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__git_repo]],
           'value' => undef
         },
         'glusterfs' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_glusterfs_491]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__glusterfs]],
           'value' => undef
         },
         'host_path' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_host_path_492]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__host_path]],
           'value' => undef
         },
         'iscsi' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_iscsi_493]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__iscsi]],
           'value' => undef
         },
         'local' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_local_494]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__local]],
           'value' => undef
         },
         'name' => {
@@ -8552,36 +8606,36 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'nfs' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_nfs_495]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__nfs]],
           'value' => undef
         },
         'persistent_volume_claim' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_persistent_volume_claim_496]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__persistent_volume_claim]],
           'value' => undef
         },
         'photon_persistent_disk' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_photon_persistent_disk_497]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__photon_persistent_disk]],
           'value' => undef
         },
         'quobyte' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_quobyte_498]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__quobyte]],
           'value' => undef
         },
         'rbd' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_rbd_499]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__rbd]],
           'value' => undef
         },
         'secret' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_secret_501]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__secret]],
           'value' => undef
         },
         'vsphere_volume' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_vsphere_volume_503]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__vsphere_volume]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_aws_elastic_block_store_472 => {
+    Replication_controller__spec__template__spec__volume__aws_elastic_block_store => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -8598,7 +8652,7 @@ type TerraformKubernetes = TypeSet[{
         'volume_id' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_azure_disk_473 => {
+    Replication_controller__spec__template__spec__volume__azure_disk => {
       attributes => {
         'caching_mode' => String,
         'data_disk_uri' => String,
@@ -8613,7 +8667,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_azure_file_474 => {
+    Replication_controller__spec__template__spec__volume__azure_file => {
       attributes => {
         'read_only' => {
           'type' => Optional[Boolean],
@@ -8623,7 +8677,7 @@ type TerraformKubernetes = TypeSet[{
         'share_name' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_ceph_fs_475 => {
+    Replication_controller__spec__template__spec__volume__ceph_fs => {
       attributes => {
         'monitors' => Array[String],
         'path' => {
@@ -8639,7 +8693,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_ceph_fs_475_secret_ref_476]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__ceph_fs__secret_ref]],
           'value' => undef
         },
         'user' => {
@@ -8648,7 +8702,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_ceph_fs_475_secret_ref_476 => {
+    Replication_controller__spec__template__spec__volume__ceph_fs__secret_ref => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -8656,7 +8710,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_cinder_477 => {
+    Replication_controller__spec__template__spec__volume__cinder => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -8669,14 +8723,14 @@ type TerraformKubernetes = TypeSet[{
         'volume_id' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_config_map_478 => {
+    Replication_controller__spec__template__spec__volume__config_map => {
       attributes => {
         'default_mode' => {
           'type' => Optional[Integer],
           'value' => undef
         },
         'items' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_config_map_478_items_479]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__config_map__items]],
           'value' => undef
         },
         'name' => {
@@ -8685,7 +8739,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_config_map_478_items_479 => {
+    Replication_controller__spec__template__spec__volume__config_map__items => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -8701,33 +8755,33 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_downward_api_480 => {
+    Replication_controller__spec__template__spec__volume__downward_api => {
       attributes => {
         'default_mode' => {
           'type' => Optional[Integer],
           'value' => undef
         },
         'items' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_downward_api_480_items_481]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__downward_api__items]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_downward_api_480_items_481 => {
+    Replication_controller__spec__template__spec__volume__downward_api__items => {
       attributes => {
-        'field_ref' => Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_downward_api_480_items_481_field_ref_482],
+        'field_ref' => Array[Replication_controller__spec__template__spec__volume__downward_api__items__field_ref],
         'mode' => {
           'type' => Optional[Integer],
           'value' => undef
         },
         'path' => String,
         'resource_field_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_downward_api_480_items_481_resource_field_ref_483]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__downward_api__items__resource_field_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_downward_api_480_items_481_field_ref_482 => {
+    Replication_controller__spec__template__spec__volume__downward_api__items__field_ref => {
       attributes => {
         'api_version' => {
           'type' => Optional[String],
@@ -8739,7 +8793,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_downward_api_480_items_481_resource_field_ref_483 => {
+    Replication_controller__spec__template__spec__volume__downward_api__items__resource_field_ref => {
       attributes => {
         'container_name' => String,
         'quantity' => {
@@ -8749,7 +8803,7 @@ type TerraformKubernetes = TypeSet[{
         'resource' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_empty_dir_484 => {
+    Replication_controller__spec__template__spec__volume__empty_dir => {
       attributes => {
         'medium' => {
           'type' => Optional[String],
@@ -8757,7 +8811,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_fc_485 => {
+    Replication_controller__spec__template__spec__volume__fc => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -8771,7 +8825,7 @@ type TerraformKubernetes = TypeSet[{
         'target_ww_ns' => Array[String]
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_flex_volume_486 => {
+    Replication_controller__spec__template__spec__volume__flex_volume => {
       attributes => {
         'driver' => String,
         'fs_type' => {
@@ -8787,12 +8841,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_flex_volume_486_secret_ref_487]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__flex_volume__secret_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_flex_volume_486_secret_ref_487 => {
+    Replication_controller__spec__template__spec__volume__flex_volume__secret_ref => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -8800,7 +8854,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_flocker_488 => {
+    Replication_controller__spec__template__spec__volume__flocker => {
       attributes => {
         'dataset_name' => {
           'type' => Optional[String],
@@ -8812,7 +8866,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_gce_persistent_disk_489 => {
+    Replication_controller__spec__template__spec__volume__gce_persistent_disk => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -8829,7 +8883,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_git_repo_490 => {
+    Replication_controller__spec__template__spec__volume__git_repo => {
       attributes => {
         'directory' => {
           'type' => Optional[String],
@@ -8845,7 +8899,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_glusterfs_491 => {
+    Replication_controller__spec__template__spec__volume__glusterfs => {
       attributes => {
         'endpoints_name' => String,
         'path' => String,
@@ -8855,7 +8909,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_host_path_492 => {
+    Replication_controller__spec__template__spec__volume__host_path => {
       attributes => {
         'path' => {
           'type' => Optional[String],
@@ -8863,7 +8917,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_iscsi_493 => {
+    Replication_controller__spec__template__spec__volume__iscsi => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -8885,7 +8939,7 @@ type TerraformKubernetes = TypeSet[{
         'target_portal' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_local_494 => {
+    Replication_controller__spec__template__spec__volume__local => {
       attributes => {
         'path' => {
           'type' => Optional[String],
@@ -8893,7 +8947,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_nfs_495 => {
+    Replication_controller__spec__template__spec__volume__nfs => {
       attributes => {
         'path' => String,
         'read_only' => {
@@ -8903,7 +8957,7 @@ type TerraformKubernetes = TypeSet[{
         'server' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_persistent_volume_claim_496 => {
+    Replication_controller__spec__template__spec__volume__persistent_volume_claim => {
       attributes => {
         'claim_name' => {
           'type' => Optional[String],
@@ -8915,7 +8969,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_photon_persistent_disk_497 => {
+    Replication_controller__spec__template__spec__volume__photon_persistent_disk => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -8924,7 +8978,7 @@ type TerraformKubernetes = TypeSet[{
         'pd_id' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_quobyte_498 => {
+    Replication_controller__spec__template__spec__volume__quobyte => {
       attributes => {
         'group' => {
           'type' => Optional[String],
@@ -8942,7 +8996,7 @@ type TerraformKubernetes = TypeSet[{
         'volume' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_rbd_499 => {
+    Replication_controller__spec__template__spec__volume__rbd => {
       attributes => {
         'ceph_monitors' => Array[String],
         'fs_type' => {
@@ -8967,12 +9021,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_rbd_499_secret_ref_500]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__rbd__secret_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_rbd_499_secret_ref_500 => {
+    Replication_controller__spec__template__spec__volume__rbd__secret_ref => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -8980,14 +9034,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_secret_501 => {
+    Replication_controller__spec__template__spec__volume__secret => {
       attributes => {
         'default_mode' => {
           'type' => Optional[Integer],
           'value' => undef
         },
         'items' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_secret_501_items_502]],
+          'type' => Optional[Array[Replication_controller__spec__template__spec__volume__secret__items]],
           'value' => undef
         },
         'optional' => {
@@ -9000,7 +9054,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_secret_501_items_502 => {
+    Replication_controller__spec__template__spec__volume__secret__items => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -9016,7 +9070,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_spec_389_volume_471_vsphere_volume_503 => {
+    Replication_controller__spec__template__spec__volume__vsphere_volume => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -9025,74 +9079,74 @@ type TerraformKubernetes = TypeSet[{
         'volume_path' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504 => {
+    Replication_controller__spec__template__volume => {
       attributes => {
         'aws_elastic_block_store' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_aws_elastic_block_store_505]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__aws_elastic_block_store]],
           'value' => undef
         },
         'azure_disk' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_azure_disk_506]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__azure_disk]],
           'value' => undef
         },
         'azure_file' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_azure_file_507]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__azure_file]],
           'value' => undef
         },
         'ceph_fs' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_ceph_fs_508]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__ceph_fs]],
           'value' => undef
         },
         'cinder' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_cinder_510]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__cinder]],
           'value' => undef
         },
         'config_map' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_config_map_511]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__config_map]],
           'value' => undef
         },
         'downward_api' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_downward_api_513]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__downward_api]],
           'value' => undef
         },
         'empty_dir' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_empty_dir_517]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__empty_dir]],
           'value' => undef
         },
         'fc' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_fc_518]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__fc]],
           'value' => undef
         },
         'flex_volume' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_flex_volume_519]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__flex_volume]],
           'value' => undef
         },
         'flocker' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_flocker_521]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__flocker]],
           'value' => undef
         },
         'gce_persistent_disk' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_gce_persistent_disk_522]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__gce_persistent_disk]],
           'value' => undef
         },
         'git_repo' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_git_repo_523]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__git_repo]],
           'value' => undef
         },
         'glusterfs' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_glusterfs_524]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__glusterfs]],
           'value' => undef
         },
         'host_path' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_host_path_525]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__host_path]],
           'value' => undef
         },
         'iscsi' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_iscsi_526]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__iscsi]],
           'value' => undef
         },
         'local' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_local_527]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__local]],
           'value' => undef
         },
         'name' => {
@@ -9100,36 +9154,36 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'nfs' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_nfs_528]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__nfs]],
           'value' => undef
         },
         'persistent_volume_claim' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_persistent_volume_claim_529]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__persistent_volume_claim]],
           'value' => undef
         },
         'photon_persistent_disk' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_photon_persistent_disk_530]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__photon_persistent_disk]],
           'value' => undef
         },
         'quobyte' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_quobyte_531]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__quobyte]],
           'value' => undef
         },
         'rbd' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_rbd_532]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__rbd]],
           'value' => undef
         },
         'secret' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_secret_534]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__secret]],
           'value' => undef
         },
         'vsphere_volume' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_vsphere_volume_536]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__vsphere_volume]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_aws_elastic_block_store_505 => {
+    Replication_controller__spec__template__volume__aws_elastic_block_store => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -9146,7 +9200,7 @@ type TerraformKubernetes = TypeSet[{
         'volume_id' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_azure_disk_506 => {
+    Replication_controller__spec__template__volume__azure_disk => {
       attributes => {
         'caching_mode' => String,
         'data_disk_uri' => String,
@@ -9161,7 +9215,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_azure_file_507 => {
+    Replication_controller__spec__template__volume__azure_file => {
       attributes => {
         'read_only' => {
           'type' => Optional[Boolean],
@@ -9171,7 +9225,7 @@ type TerraformKubernetes = TypeSet[{
         'share_name' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_ceph_fs_508 => {
+    Replication_controller__spec__template__volume__ceph_fs => {
       attributes => {
         'monitors' => Array[String],
         'path' => {
@@ -9187,7 +9241,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_ceph_fs_508_secret_ref_509]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__ceph_fs__secret_ref]],
           'value' => undef
         },
         'user' => {
@@ -9196,7 +9250,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_ceph_fs_508_secret_ref_509 => {
+    Replication_controller__spec__template__volume__ceph_fs__secret_ref => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -9204,7 +9258,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_cinder_510 => {
+    Replication_controller__spec__template__volume__cinder => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -9217,14 +9271,14 @@ type TerraformKubernetes = TypeSet[{
         'volume_id' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_config_map_511 => {
+    Replication_controller__spec__template__volume__config_map => {
       attributes => {
         'default_mode' => {
           'type' => Optional[Integer],
           'value' => undef
         },
         'items' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_config_map_511_items_512]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__config_map__items]],
           'value' => undef
         },
         'name' => {
@@ -9233,7 +9287,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_config_map_511_items_512 => {
+    Replication_controller__spec__template__volume__config_map__items => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -9249,33 +9303,33 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_downward_api_513 => {
+    Replication_controller__spec__template__volume__downward_api => {
       attributes => {
         'default_mode' => {
           'type' => Optional[Integer],
           'value' => undef
         },
         'items' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_downward_api_513_items_514]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__downward_api__items]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_downward_api_513_items_514 => {
+    Replication_controller__spec__template__volume__downward_api__items => {
       attributes => {
-        'field_ref' => Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_downward_api_513_items_514_field_ref_515],
+        'field_ref' => Array[Replication_controller__spec__template__volume__downward_api__items__field_ref],
         'mode' => {
           'type' => Optional[Integer],
           'value' => undef
         },
         'path' => String,
         'resource_field_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_downward_api_513_items_514_resource_field_ref_516]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__downward_api__items__resource_field_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_downward_api_513_items_514_field_ref_515 => {
+    Replication_controller__spec__template__volume__downward_api__items__field_ref => {
       attributes => {
         'api_version' => {
           'type' => Optional[String],
@@ -9287,7 +9341,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_downward_api_513_items_514_resource_field_ref_516 => {
+    Replication_controller__spec__template__volume__downward_api__items__resource_field_ref => {
       attributes => {
         'container_name' => String,
         'quantity' => {
@@ -9297,7 +9351,7 @@ type TerraformKubernetes = TypeSet[{
         'resource' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_empty_dir_517 => {
+    Replication_controller__spec__template__volume__empty_dir => {
       attributes => {
         'medium' => {
           'type' => Optional[String],
@@ -9305,7 +9359,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_fc_518 => {
+    Replication_controller__spec__template__volume__fc => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -9319,7 +9373,7 @@ type TerraformKubernetes = TypeSet[{
         'target_ww_ns' => Array[String]
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_flex_volume_519 => {
+    Replication_controller__spec__template__volume__flex_volume => {
       attributes => {
         'driver' => String,
         'fs_type' => {
@@ -9335,12 +9389,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_flex_volume_519_secret_ref_520]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__flex_volume__secret_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_flex_volume_519_secret_ref_520 => {
+    Replication_controller__spec__template__volume__flex_volume__secret_ref => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -9348,7 +9402,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_flocker_521 => {
+    Replication_controller__spec__template__volume__flocker => {
       attributes => {
         'dataset_name' => {
           'type' => Optional[String],
@@ -9360,7 +9414,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_gce_persistent_disk_522 => {
+    Replication_controller__spec__template__volume__gce_persistent_disk => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -9377,7 +9431,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_git_repo_523 => {
+    Replication_controller__spec__template__volume__git_repo => {
       attributes => {
         'directory' => {
           'type' => Optional[String],
@@ -9393,7 +9447,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_glusterfs_524 => {
+    Replication_controller__spec__template__volume__glusterfs => {
       attributes => {
         'endpoints_name' => String,
         'path' => String,
@@ -9403,7 +9457,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_host_path_525 => {
+    Replication_controller__spec__template__volume__host_path => {
       attributes => {
         'path' => {
           'type' => Optional[String],
@@ -9411,7 +9465,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_iscsi_526 => {
+    Replication_controller__spec__template__volume__iscsi => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -9433,7 +9487,7 @@ type TerraformKubernetes = TypeSet[{
         'target_portal' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_local_527 => {
+    Replication_controller__spec__template__volume__local => {
       attributes => {
         'path' => {
           'type' => Optional[String],
@@ -9441,7 +9495,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_nfs_528 => {
+    Replication_controller__spec__template__volume__nfs => {
       attributes => {
         'path' => String,
         'read_only' => {
@@ -9451,7 +9505,7 @@ type TerraformKubernetes = TypeSet[{
         'server' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_persistent_volume_claim_529 => {
+    Replication_controller__spec__template__volume__persistent_volume_claim => {
       attributes => {
         'claim_name' => {
           'type' => Optional[String],
@@ -9463,7 +9517,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_photon_persistent_disk_530 => {
+    Replication_controller__spec__template__volume__photon_persistent_disk => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -9472,7 +9526,7 @@ type TerraformKubernetes = TypeSet[{
         'pd_id' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_quobyte_531 => {
+    Replication_controller__spec__template__volume__quobyte => {
       attributes => {
         'group' => {
           'type' => Optional[String],
@@ -9490,7 +9544,7 @@ type TerraformKubernetes = TypeSet[{
         'volume' => String
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_rbd_532 => {
+    Replication_controller__spec__template__volume__rbd => {
       attributes => {
         'ceph_monitors' => Array[String],
         'fs_type' => {
@@ -9515,12 +9569,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_rbd_532_secret_ref_533]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__rbd__secret_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_rbd_532_secret_ref_533 => {
+    Replication_controller__spec__template__volume__rbd__secret_ref => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -9528,14 +9582,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_secret_534 => {
+    Replication_controller__spec__template__volume__secret => {
       attributes => {
         'default_mode' => {
           'type' => Optional[Integer],
           'value' => undef
         },
         'items' => {
-          'type' => Optional[Array[Kubernetes_replication_controller_spec_305_template_306_volume_504_secret_534_items_535]],
+          'type' => Optional[Array[Replication_controller__spec__template__volume__secret__items]],
           'value' => undef
         },
         'optional' => {
@@ -9548,7 +9602,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_secret_534_items_535 => {
+    Replication_controller__spec__template__volume__secret__items => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -9564,7 +9618,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_replication_controller_spec_305_template_306_volume_504_vsphere_volume_536 => {
+    Replication_controller__spec__template__volume__vsphere_volume => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -9573,9 +9627,14 @@ type TerraformKubernetes = TypeSet[{
         'volume_path' => String
       }
     },
-    Kubernetes_resource_quota => {
+    Resource_quota => {
+      annotations => {
+        Lyra::Resource => {
+          'providedAttributes' => ['resource_quotaID']
+        }
+      },
       attributes => {
-        'kubernetes_resource_quota_id' => {
+        'resource_quotaID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -9584,14 +9643,14 @@ type TerraformKubernetes = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'metadata' => Array[Kubernetes_resource_quota_metadata_537],
+        'metadata' => Array[Resource_quota__metadata],
         'spec' => {
-          'type' => Optional[Array[Kubernetes_resource_quota_spec_538]],
+          'type' => Optional[Array[Resource_quota__spec]],
           'value' => undef
         }
       }
     },
-    Kubernetes_resource_quotaHandler => {
+    Resource_quotaHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -9605,7 +9664,7 @@ type TerraformKubernetes = TypeSet[{
           Object]
       }
     },
-    Kubernetes_resource_quota_metadata_537 => {
+    Resource_quota__metadata => {
       attributes => {
         'annotations' => {
           'type' => Optional[Hash[String, String]],
@@ -9645,7 +9704,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_resource_quota_spec_538 => {
+    Resource_quota__spec => {
       attributes => {
         'hard' => {
           'type' => Optional[Hash[String, String]],
@@ -9657,43 +9716,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_role => {
-      attributes => {
-        'kubernetes_role_id' => {
-          'annotations' => {
-            TagsAnnotation => {
-              'lyra' => 'ignore'
-            }
-          },
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'metadata' => Array[Kubernetes_role_metadata_539],
-        'rule' => Array[Kubernetes_role_rule_540]
-      }
-    },
-    Kubernetes_roleHandler => {
-      functions => {
-        'create' => Callable[
-          [Object],
-          Tuple[Object, String]],
-        'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Object],
-        'update' => Callable[
-          [String, Object],
-          Object]
-      }
-    },
-    Kubernetes_role_binding => {
+    Role => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['role_ref']
+          'providedAttributes' => ['roleID']
         }
       },
       attributes => {
-        'kubernetes_role_binding_id' => {
+        'roleID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -9702,12 +9732,11 @@ type TerraformKubernetes = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'metadata' => Array[Kubernetes_role_binding_metadata_541],
-        'role_ref' => Hash[String, String],
-        'subject' => Array[Kubernetes_role_binding_subject_542]
+        'metadata' => Array[Role__metadata],
+        'rule' => Array[Role__rule]
       }
     },
-    Kubernetes_role_bindingHandler => {
+    RoleHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -9721,7 +9750,94 @@ type TerraformKubernetes = TypeSet[{
           Object]
       }
     },
-    Kubernetes_role_binding_metadata_541 => {
+    Role__metadata => {
+      attributes => {
+        'annotations' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'generate_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'generation' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'namespace' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'resource_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'self_link' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'uid' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Role__rule => {
+      attributes => {
+        'api_groups' => Array[String],
+        'resource_names' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        },
+        'resources' => Array[String],
+        'verbs' => Array[String]
+      }
+    },
+    Role_binding => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['role_ref'],
+          'providedAttributes' => ['role_bindingID']
+        }
+      },
+      attributes => {
+        'role_bindingID' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'metadata' => Array[Role_binding__metadata],
+        'role_ref' => Hash[String, Role_binding__role_ref],
+        'subject' => Array[Role_binding__subject]
+      }
+    },
+    Role_bindingHandler => {
+      functions => {
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
+        'delete' => Callable[String],
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
+      }
+    },
+    Role_binding__metadata => {
       attributes => {
         'annotations' => {
           'type' => Optional[Hash[String, String]],
@@ -9757,7 +9873,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_role_binding_subject_542 => {
+    Role_binding__role_ref => {
+      attributes => {
+        'api_group' => String,
+        'kind' => String,
+        'name' => String
+      }
+    },
+    Role_binding__subject => {
       attributes => {
         'api_group' => {
           'type' => Optional[String],
@@ -9771,65 +9894,15 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_role_metadata_539 => {
-      attributes => {
-        'annotations' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'generate_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'generation' => {
-          'type' => Optional[Integer],
-          'value' => undef
-        },
-        'labels' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'namespace' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'resource_version' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'self_link' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'uid' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
-      }
-    },
-    Kubernetes_role_rule_540 => {
-      attributes => {
-        'api_groups' => Array[String],
-        'resource_names' => {
-          'type' => Optional[Array[String]],
-          'value' => undef
-        },
-        'resources' => Array[String],
-        'verbs' => Array[String]
-      }
-    },
-    Kubernetes_secret => {
+    Secret => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['type']
+          'immutableAttributes' => ['type'],
+          'providedAttributes' => ['secretID']
         }
       },
       attributes => {
-        'kubernetes_secret_id' => {
+        'secretID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -9842,14 +9915,14 @@ type TerraformKubernetes = TypeSet[{
           'type' => Optional[Hash[String, String]],
           'value' => undef
         },
-        'metadata' => Array[Kubernetes_secret_metadata_543],
+        'metadata' => Array[Secret__metadata],
         'type' => {
           'type' => Optional[String],
           'value' => undef
         }
       }
     },
-    Kubernetes_secretHandler => {
+    SecretHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -9863,7 +9936,7 @@ type TerraformKubernetes = TypeSet[{
           Object]
       }
     },
-    Kubernetes_secret_metadata_543 => {
+    Secret__metadata => {
       attributes => {
         'annotations' => {
           'type' => Optional[Hash[String, String]],
@@ -9903,14 +9976,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_service => {
+    Service => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['load_balancer_ingress']
+          'providedAttributes' => ['serviceID', 'load_balancer_ingress']
         }
       },
       attributes => {
-        'kubernetes_service_id' => {
+        'serviceID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -9920,14 +9993,14 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'load_balancer_ingress' => {
-          'type' => Optional[Array[Kubernetes_service_load_balancer_ingress_544]],
+          'type' => Optional[Array[Service__load_balancer_ingress]],
           'value' => undef
         },
-        'metadata' => Array[Kubernetes_service_metadata_545],
-        'spec' => Array[Kubernetes_service_spec_546]
+        'metadata' => Array[Service__metadata],
+        'spec' => Array[Service__spec]
       }
     },
-    Kubernetes_serviceHandler => {
+    ServiceHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -9941,112 +10014,7 @@ type TerraformKubernetes = TypeSet[{
           Object]
       }
     },
-    Kubernetes_service_account => {
-      annotations => {
-        Lyra::Resource => {
-          'providedAttributes' => ['default_secret_name']
-        }
-      },
-      attributes => {
-        'kubernetes_service_account_id' => {
-          'annotations' => {
-            TagsAnnotation => {
-              'lyra' => 'ignore'
-            }
-          },
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'automount_service_account_token' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'default_secret_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'image_pull_secret' => {
-          'type' => Optional[Array[Kubernetes_service_account_image_pull_secret_548]],
-          'value' => undef
-        },
-        'metadata' => Array[Kubernetes_service_account_metadata_549],
-        'secret' => {
-          'type' => Optional[Array[Kubernetes_service_account_secret_550]],
-          'value' => undef
-        }
-      }
-    },
-    Kubernetes_service_accountHandler => {
-      functions => {
-        'create' => Callable[
-          [Object],
-          Tuple[Object, String]],
-        'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Object],
-        'update' => Callable[
-          [String, Object],
-          Object]
-      }
-    },
-    Kubernetes_service_account_image_pull_secret_548 => {
-      attributes => {
-        'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
-      }
-    },
-    Kubernetes_service_account_metadata_549 => {
-      attributes => {
-        'annotations' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'generate_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'generation' => {
-          'type' => Optional[Integer],
-          'value' => undef
-        },
-        'labels' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'namespace' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'resource_version' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'self_link' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'uid' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
-      }
-    },
-    Kubernetes_service_account_secret_550 => {
-      attributes => {
-        'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
-      }
-    },
-    Kubernetes_service_load_balancer_ingress_544 => {
+    Service__load_balancer_ingress => {
       attributes => {
         'hostname' => {
           'type' => Optional[String],
@@ -10058,7 +10026,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_service_metadata_545 => {
+    Service__metadata => {
       attributes => {
         'annotations' => {
           'type' => Optional[Hash[String, String]],
@@ -10098,7 +10066,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_service_spec_546 => {
+    Service__spec => {
       attributes => {
         'cluster_ip' => {
           'type' => Optional[String],
@@ -10121,7 +10089,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'port' => {
-          'type' => Optional[Array[Kubernetes_service_spec_546_port_547]],
+          'type' => Optional[Array[Service__spec__port]],
           'value' => undef
         },
         'selector' => {
@@ -10138,7 +10106,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_service_spec_546_port_547 => {
+    Service__spec__port => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -10159,14 +10127,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set => {
+    Service_account => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['spec']
+          'providedAttributes' => ['service_accountID', 'default_secret_name']
         }
       },
       attributes => {
-        'kubernetes_stateful_set_id' => {
+        'service_accountID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -10175,11 +10143,26 @@ type TerraformKubernetes = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'metadata' => Array[Kubernetes_stateful_set_metadata_551],
-        'spec' => Array[Kubernetes_stateful_set_spec_552]
+        'automount_service_account_token' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'default_secret_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'image_pull_secret' => {
+          'type' => Optional[Array[Service_account__image_pull_secret]],
+          'value' => undef
+        },
+        'metadata' => Array[Service_account__metadata],
+        'secret' => {
+          'type' => Optional[Array[Service_account__secret]],
+          'value' => undef
+        }
       }
     },
-    Kubernetes_stateful_setHandler => {
+    Service_accountHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -10193,7 +10176,15 @@ type TerraformKubernetes = TypeSet[{
           Object]
       }
     },
-    Kubernetes_stateful_set_metadata_551 => {
+    Service_account__image_pull_secret => {
+      attributes => {
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Service_account__metadata => {
       attributes => {
         'annotations' => {
           'type' => Optional[Hash[String, String]],
@@ -10233,7 +10224,90 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552 => {
+    Service_account__secret => {
+      attributes => {
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Stateful_set => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['spec'],
+          'providedAttributes' => ['stateful_setID']
+        }
+      },
+      attributes => {
+        'stateful_setID' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'metadata' => Array[Stateful_set__metadata],
+        'spec' => Array[Stateful_set__spec]
+      }
+    },
+    Stateful_setHandler => {
+      functions => {
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
+        'delete' => Callable[String],
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
+      }
+    },
+    Stateful_set__metadata => {
+      attributes => {
+        'annotations' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'generate_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'generation' => {
+          'type' => Optional[Integer],
+          'value' => undef
+        },
+        'labels' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'namespace' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'resource_version' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'self_link' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'uid' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Stateful_set__spec => {
       attributes => {
         'pod_management_policy' => {
           'type' => Optional[String],
@@ -10247,23 +10321,23 @@ type TerraformKubernetes = TypeSet[{
           'type' => Optional[Integer],
           'value' => undef
         },
-        'selector' => Array[Kubernetes_stateful_set_spec_552_selector_553],
+        'selector' => Array[Stateful_set__spec__selector],
         'service_name' => String,
-        'template' => Array[Kubernetes_stateful_set_spec_552_template_555],
+        'template' => Array[Stateful_set__spec__template],
         'update_strategy' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_update_strategy_672]],
+          'type' => Optional[Array[Stateful_set__spec__update_strategy]],
           'value' => undef
         },
         'volume_claim_template' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_volume_claim_template_674]],
+          'type' => Optional[Array[Stateful_set__spec__volume_claim_template]],
           'value' => undef
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_selector_553 => {
+    Stateful_set__spec__selector => {
       attributes => {
         'match_expressions' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_selector_553_match_expressions_554]],
+          'type' => Optional[Array[Stateful_set__spec__selector__match_expressions]],
           'value' => undef
         },
         'match_labels' => {
@@ -10272,7 +10346,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_selector_553_match_expressions_554 => {
+    Stateful_set__spec__selector__match_expressions => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -10288,16 +10362,16 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555 => {
+    Stateful_set__spec__template => {
       attributes => {
-        'metadata' => Array[Kubernetes_stateful_set_spec_552_template_555_metadata_556],
+        'metadata' => Array[Stateful_set__spec__template__metadata],
         'spec' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec]],
           'value' => undef
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_metadata_556 => {
+    Stateful_set__spec__template__metadata => {
       attributes => {
         'annotations' => {
           'type' => Optional[Hash[String, String]],
@@ -10333,14 +10407,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557 => {
+    Stateful_set__spec__template__spec => {
       attributes => {
         'active_deadline_seconds' => {
           'type' => Optional[Integer],
           'value' => undef
         },
         'container' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container]],
           'value' => undef
         },
         'dns_policy' => {
@@ -10364,11 +10438,11 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'image_pull_secrets' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_image_pull_secrets_597]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__image_pull_secrets]],
           'value' => undef
         },
         'init_container' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container]],
           'value' => undef
         },
         'node_name' => {
@@ -10384,7 +10458,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'security_context' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_security_context_637]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__security_context]],
           'value' => undef
         },
         'service_account_name' => {
@@ -10400,12 +10474,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'volume' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume]],
           'value' => undef
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558 => {
+    Stateful_set__spec__template__spec__container => {
       attributes => {
         'args' => {
           'type' => Optional[Array[String]],
@@ -10416,11 +10490,11 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'env' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__env]],
           'value' => undef
         },
         'env_from' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_from_565]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__env_from]],
           'value' => undef
         },
         'image' => {
@@ -10432,28 +10506,28 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'lifecycle' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__lifecycle]],
           'value' => undef
         },
         'liveness_probe' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__liveness_probe]],
           'value' => undef
         },
         'name' => String,
         'port' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_port_584]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__port]],
           'value' => undef
         },
         'readiness_probe' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__readiness_probe]],
           'value' => undef
         },
         'resources' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_resources_590]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__resources]],
           'value' => undef
         },
         'security_context' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_security_context_593]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__security_context]],
           'value' => undef
         },
         'stdin' => {
@@ -10473,7 +10547,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'volume_mount' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_volume_mount_596]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__volume_mount]],
           'value' => undef
         },
         'working_dir' => {
@@ -10482,7 +10556,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559 => {
+    Stateful_set__spec__template__spec__container__env => {
       attributes => {
         'name' => String,
         'value' => {
@@ -10490,32 +10564,32 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'value_from' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__env__value_from]],
           'value' => undef
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560 => {
+    Stateful_set__spec__template__spec__container__env__value_from => {
       attributes => {
         'config_map_key_ref' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560_config_map_key_ref_561]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__env__value_from__config_map_key_ref]],
           'value' => undef
         },
         'field_ref' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560_field_ref_562]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__env__value_from__field_ref]],
           'value' => undef
         },
         'resource_field_ref' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560_resource_field_ref_563]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__env__value_from__resource_field_ref]],
           'value' => undef
         },
         'secret_key_ref' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560_secret_key_ref_564]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__env__value_from__secret_key_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560_config_map_key_ref_561 => {
+    Stateful_set__spec__template__spec__container__env__value_from__config_map_key_ref => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -10527,7 +10601,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560_field_ref_562 => {
+    Stateful_set__spec__template__spec__container__env__value_from__field_ref => {
       attributes => {
         'api_version' => {
           'type' => Optional[String],
@@ -10539,7 +10613,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560_resource_field_ref_563 => {
+    Stateful_set__spec__template__spec__container__env__value_from__resource_field_ref => {
       attributes => {
         'container_name' => {
           'type' => Optional[String],
@@ -10548,7 +10622,7 @@ type TerraformKubernetes = TypeSet[{
         'resource' => String
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_559_value_from_560_secret_key_ref_564 => {
+    Stateful_set__spec__template__spec__container__env__value_from__secret_key_ref => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -10560,10 +10634,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_from_565 => {
+    Stateful_set__spec__template__spec__container__env_from => {
       attributes => {
         'config_map_ref' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_from_565_config_map_ref_566]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__env_from__config_map_ref]],
           'value' => undef
         },
         'prefix' => {
@@ -10571,12 +10645,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_from_565_secret_ref_567]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__env_from__secret_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_from_565_config_map_ref_566 => {
+    Stateful_set__spec__template__spec__container__env_from__config_map_ref => {
       attributes => {
         'name' => String,
         'optional' => {
@@ -10585,7 +10659,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_env_from_565_secret_ref_567 => {
+    Stateful_set__spec__template__spec__container__env_from__secret_ref => {
       attributes => {
         'name' => String,
         'optional' => {
@@ -10594,35 +10668,35 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568 => {
+    Stateful_set__spec__template__spec__container__lifecycle => {
       attributes => {
         'post_start' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__lifecycle__post_start]],
           'value' => undef
         },
         'pre_stop' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__lifecycle__pre_stop]],
           'value' => undef
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569 => {
+    Stateful_set__spec__template__spec__container__lifecycle__post_start => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569_exec_570]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__lifecycle__post_start__exec]],
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569_http_get_571]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__lifecycle__post_start__http_get]],
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569_tcp_socket_573]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__lifecycle__post_start__tcp_socket]],
           'value' => undef
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569_exec_570 => {
+    Stateful_set__spec__template__spec__container__lifecycle__post_start__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -10630,14 +10704,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569_http_get_571 => {
+    Stateful_set__spec__template__spec__container__lifecycle__post_start__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569_http_get_571_http_header_572]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__lifecycle__post_start__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -10654,7 +10728,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569_http_get_571_http_header_572 => {
+    Stateful_set__spec__template__spec__container__lifecycle__post_start__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -10666,28 +10740,28 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_post_start_569_tcp_socket_573 => {
+    Stateful_set__spec__template__spec__container__lifecycle__post_start__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574 => {
+    Stateful_set__spec__template__spec__container__lifecycle__pre_stop => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574_exec_575]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__lifecycle__pre_stop__exec]],
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574_http_get_576]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__lifecycle__pre_stop__http_get]],
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574_tcp_socket_578]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__lifecycle__pre_stop__tcp_socket]],
           'value' => undef
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574_exec_575 => {
+    Stateful_set__spec__template__spec__container__lifecycle__pre_stop__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -10695,14 +10769,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574_http_get_576 => {
+    Stateful_set__spec__template__spec__container__lifecycle__pre_stop__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574_http_get_576_http_header_577]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__lifecycle__pre_stop__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -10719,7 +10793,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574_http_get_576_http_header_577 => {
+    Stateful_set__spec__template__spec__container__lifecycle__pre_stop__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -10731,15 +10805,15 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_lifecycle_568_pre_stop_574_tcp_socket_578 => {
+    Stateful_set__spec__template__spec__container__lifecycle__pre_stop__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579 => {
+    Stateful_set__spec__template__spec__container__liveness_probe => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579_exec_580]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__liveness_probe__exec]],
           'value' => undef
         },
         'failure_threshold' => {
@@ -10747,7 +10821,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579_http_get_581]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__liveness_probe__http_get]],
           'value' => undef
         },
         'initial_delay_seconds' => {
@@ -10763,7 +10837,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579_tcp_socket_583]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__liveness_probe__tcp_socket]],
           'value' => undef
         },
         'timeout_seconds' => {
@@ -10772,7 +10846,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579_exec_580 => {
+    Stateful_set__spec__template__spec__container__liveness_probe__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -10780,14 +10854,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579_http_get_581 => {
+    Stateful_set__spec__template__spec__container__liveness_probe__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579_http_get_581_http_header_582]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__liveness_probe__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -10804,7 +10878,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579_http_get_581_http_header_582 => {
+    Stateful_set__spec__template__spec__container__liveness_probe__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -10816,12 +10890,12 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_liveness_probe_579_tcp_socket_583 => {
+    Stateful_set__spec__template__spec__container__liveness_probe__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_port_584 => {
+    Stateful_set__spec__template__spec__container__port => {
       attributes => {
         'container_port' => Integer,
         'host_ip' => {
@@ -10842,10 +10916,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585 => {
+    Stateful_set__spec__template__spec__container__readiness_probe => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585_exec_586]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__readiness_probe__exec]],
           'value' => undef
         },
         'failure_threshold' => {
@@ -10853,7 +10927,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585_http_get_587]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__readiness_probe__http_get]],
           'value' => undef
         },
         'initial_delay_seconds' => {
@@ -10869,7 +10943,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585_tcp_socket_589]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__readiness_probe__tcp_socket]],
           'value' => undef
         },
         'timeout_seconds' => {
@@ -10878,7 +10952,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585_exec_586 => {
+    Stateful_set__spec__template__spec__container__readiness_probe__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -10886,14 +10960,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585_http_get_587 => {
+    Stateful_set__spec__template__spec__container__readiness_probe__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585_http_get_587_http_header_588]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__readiness_probe__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -10910,7 +10984,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585_http_get_587_http_header_588 => {
+    Stateful_set__spec__template__spec__container__readiness_probe__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -10922,24 +10996,24 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_readiness_probe_585_tcp_socket_589 => {
+    Stateful_set__spec__template__spec__container__readiness_probe__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_resources_590 => {
+    Stateful_set__spec__template__spec__container__resources => {
       attributes => {
         'limits' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_resources_590_limits_591]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__resources__limits]],
           'value' => undef
         },
         'requests' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_resources_590_requests_592]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__resources__requests]],
           'value' => undef
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_resources_590_limits_591 => {
+    Stateful_set__spec__template__spec__container__resources__limits => {
       attributes => {
         'cpu' => {
           'type' => Optional[String],
@@ -10951,7 +11025,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_resources_590_requests_592 => {
+    Stateful_set__spec__template__spec__container__resources__requests => {
       attributes => {
         'cpu' => {
           'type' => Optional[String],
@@ -10963,14 +11037,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_security_context_593 => {
+    Stateful_set__spec__template__spec__container__security_context => {
       attributes => {
         'allow_privilege_escalation' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
         'capabilities' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_security_context_593_capabilities_594]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__security_context__capabilities]],
           'value' => undef
         },
         'privileged' => {
@@ -10990,12 +11064,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'se_linux_options' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_security_context_593_se_linux_options_595]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__container__security_context__se_linux_options]],
           'value' => undef
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_security_context_593_capabilities_594 => {
+    Stateful_set__spec__template__spec__container__security_context__capabilities => {
       attributes => {
         'add' => {
           'type' => Optional[Array[String]],
@@ -11007,7 +11081,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_security_context_593_se_linux_options_595 => {
+    Stateful_set__spec__template__spec__container__security_context__se_linux_options => {
       attributes => {
         'level' => {
           'type' => Optional[String],
@@ -11027,7 +11101,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_container_558_volume_mount_596 => {
+    Stateful_set__spec__template__spec__container__volume_mount => {
       attributes => {
         'mount_path' => String,
         'name' => String,
@@ -11041,12 +11115,12 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_image_pull_secrets_597 => {
+    Stateful_set__spec__template__spec__image_pull_secrets => {
       attributes => {
         'name' => String
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598 => {
+    Stateful_set__spec__template__spec__init_container => {
       attributes => {
         'args' => {
           'type' => Optional[Array[String]],
@@ -11057,11 +11131,11 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'env' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__env]],
           'value' => undef
         },
         'env_from' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_from_605]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__env_from]],
           'value' => undef
         },
         'image' => {
@@ -11073,28 +11147,28 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'lifecycle' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__lifecycle]],
           'value' => undef
         },
         'liveness_probe' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__liveness_probe]],
           'value' => undef
         },
         'name' => String,
         'port' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_port_624]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__port]],
           'value' => undef
         },
         'readiness_probe' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__readiness_probe]],
           'value' => undef
         },
         'resources' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_resources_630]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__resources]],
           'value' => undef
         },
         'security_context' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_security_context_633]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__security_context]],
           'value' => undef
         },
         'stdin' => {
@@ -11114,7 +11188,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'volume_mount' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_volume_mount_636]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__volume_mount]],
           'value' => undef
         },
         'working_dir' => {
@@ -11123,7 +11197,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599 => {
+    Stateful_set__spec__template__spec__init_container__env => {
       attributes => {
         'name' => String,
         'value' => {
@@ -11131,32 +11205,32 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'value_from' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__env__value_from]],
           'value' => undef
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600 => {
+    Stateful_set__spec__template__spec__init_container__env__value_from => {
       attributes => {
         'config_map_key_ref' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600_config_map_key_ref_601]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__env__value_from__config_map_key_ref]],
           'value' => undef
         },
         'field_ref' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600_field_ref_602]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__env__value_from__field_ref]],
           'value' => undef
         },
         'resource_field_ref' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600_resource_field_ref_603]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__env__value_from__resource_field_ref]],
           'value' => undef
         },
         'secret_key_ref' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600_secret_key_ref_604]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__env__value_from__secret_key_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600_config_map_key_ref_601 => {
+    Stateful_set__spec__template__spec__init_container__env__value_from__config_map_key_ref => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -11168,7 +11242,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600_field_ref_602 => {
+    Stateful_set__spec__template__spec__init_container__env__value_from__field_ref => {
       attributes => {
         'api_version' => {
           'type' => Optional[String],
@@ -11180,7 +11254,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600_resource_field_ref_603 => {
+    Stateful_set__spec__template__spec__init_container__env__value_from__resource_field_ref => {
       attributes => {
         'container_name' => {
           'type' => Optional[String],
@@ -11189,7 +11263,7 @@ type TerraformKubernetes = TypeSet[{
         'resource' => String
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_599_value_from_600_secret_key_ref_604 => {
+    Stateful_set__spec__template__spec__init_container__env__value_from__secret_key_ref => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -11201,10 +11275,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_from_605 => {
+    Stateful_set__spec__template__spec__init_container__env_from => {
       attributes => {
         'config_map_ref' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_from_605_config_map_ref_606]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__env_from__config_map_ref]],
           'value' => undef
         },
         'prefix' => {
@@ -11212,12 +11286,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_from_605_secret_ref_607]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__env_from__secret_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_from_605_config_map_ref_606 => {
+    Stateful_set__spec__template__spec__init_container__env_from__config_map_ref => {
       attributes => {
         'name' => String,
         'optional' => {
@@ -11226,7 +11300,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_env_from_605_secret_ref_607 => {
+    Stateful_set__spec__template__spec__init_container__env_from__secret_ref => {
       attributes => {
         'name' => String,
         'optional' => {
@@ -11235,35 +11309,35 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608 => {
+    Stateful_set__spec__template__spec__init_container__lifecycle => {
       attributes => {
         'post_start' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__lifecycle__post_start]],
           'value' => undef
         },
         'pre_stop' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__lifecycle__pre_stop]],
           'value' => undef
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609 => {
+    Stateful_set__spec__template__spec__init_container__lifecycle__post_start => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609_exec_610]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__lifecycle__post_start__exec]],
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609_http_get_611]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__lifecycle__post_start__http_get]],
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609_tcp_socket_613]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__lifecycle__post_start__tcp_socket]],
           'value' => undef
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609_exec_610 => {
+    Stateful_set__spec__template__spec__init_container__lifecycle__post_start__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -11271,14 +11345,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609_http_get_611 => {
+    Stateful_set__spec__template__spec__init_container__lifecycle__post_start__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609_http_get_611_http_header_612]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__lifecycle__post_start__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -11295,7 +11369,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609_http_get_611_http_header_612 => {
+    Stateful_set__spec__template__spec__init_container__lifecycle__post_start__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -11307,28 +11381,28 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_post_start_609_tcp_socket_613 => {
+    Stateful_set__spec__template__spec__init_container__lifecycle__post_start__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614 => {
+    Stateful_set__spec__template__spec__init_container__lifecycle__pre_stop => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614_exec_615]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__lifecycle__pre_stop__exec]],
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614_http_get_616]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__lifecycle__pre_stop__http_get]],
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614_tcp_socket_618]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__lifecycle__pre_stop__tcp_socket]],
           'value' => undef
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614_exec_615 => {
+    Stateful_set__spec__template__spec__init_container__lifecycle__pre_stop__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -11336,14 +11410,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614_http_get_616 => {
+    Stateful_set__spec__template__spec__init_container__lifecycle__pre_stop__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614_http_get_616_http_header_617]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__lifecycle__pre_stop__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -11360,7 +11434,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614_http_get_616_http_header_617 => {
+    Stateful_set__spec__template__spec__init_container__lifecycle__pre_stop__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -11372,15 +11446,15 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_lifecycle_608_pre_stop_614_tcp_socket_618 => {
+    Stateful_set__spec__template__spec__init_container__lifecycle__pre_stop__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619 => {
+    Stateful_set__spec__template__spec__init_container__liveness_probe => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619_exec_620]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__liveness_probe__exec]],
           'value' => undef
         },
         'failure_threshold' => {
@@ -11388,7 +11462,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619_http_get_621]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__liveness_probe__http_get]],
           'value' => undef
         },
         'initial_delay_seconds' => {
@@ -11404,7 +11478,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619_tcp_socket_623]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__liveness_probe__tcp_socket]],
           'value' => undef
         },
         'timeout_seconds' => {
@@ -11413,7 +11487,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619_exec_620 => {
+    Stateful_set__spec__template__spec__init_container__liveness_probe__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -11421,14 +11495,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619_http_get_621 => {
+    Stateful_set__spec__template__spec__init_container__liveness_probe__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619_http_get_621_http_header_622]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__liveness_probe__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -11445,7 +11519,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619_http_get_621_http_header_622 => {
+    Stateful_set__spec__template__spec__init_container__liveness_probe__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -11457,12 +11531,12 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_liveness_probe_619_tcp_socket_623 => {
+    Stateful_set__spec__template__spec__init_container__liveness_probe__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_port_624 => {
+    Stateful_set__spec__template__spec__init_container__port => {
       attributes => {
         'container_port' => Integer,
         'host_ip' => {
@@ -11483,10 +11557,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625 => {
+    Stateful_set__spec__template__spec__init_container__readiness_probe => {
       attributes => {
         'exec' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625_exec_626]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__readiness_probe__exec]],
           'value' => undef
         },
         'failure_threshold' => {
@@ -11494,7 +11568,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'http_get' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625_http_get_627]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__readiness_probe__http_get]],
           'value' => undef
         },
         'initial_delay_seconds' => {
@@ -11510,7 +11584,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'tcp_socket' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625_tcp_socket_629]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__readiness_probe__tcp_socket]],
           'value' => undef
         },
         'timeout_seconds' => {
@@ -11519,7 +11593,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625_exec_626 => {
+    Stateful_set__spec__template__spec__init_container__readiness_probe__exec => {
       attributes => {
         'command' => {
           'type' => Optional[Array[String]],
@@ -11527,14 +11601,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625_http_get_627 => {
+    Stateful_set__spec__template__spec__init_container__readiness_probe__http_get => {
       attributes => {
         'host' => {
           'type' => Optional[String],
           'value' => undef
         },
         'http_header' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625_http_get_627_http_header_628]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__readiness_probe__http_get__http_header]],
           'value' => undef
         },
         'path' => {
@@ -11551,7 +11625,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625_http_get_627_http_header_628 => {
+    Stateful_set__spec__template__spec__init_container__readiness_probe__http_get__http_header => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -11563,24 +11637,24 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_readiness_probe_625_tcp_socket_629 => {
+    Stateful_set__spec__template__spec__init_container__readiness_probe__tcp_socket => {
       attributes => {
         'port' => String
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_resources_630 => {
+    Stateful_set__spec__template__spec__init_container__resources => {
       attributes => {
         'limits' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_resources_630_limits_631]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__resources__limits]],
           'value' => undef
         },
         'requests' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_resources_630_requests_632]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__resources__requests]],
           'value' => undef
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_resources_630_limits_631 => {
+    Stateful_set__spec__template__spec__init_container__resources__limits => {
       attributes => {
         'cpu' => {
           'type' => Optional[String],
@@ -11592,7 +11666,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_resources_630_requests_632 => {
+    Stateful_set__spec__template__spec__init_container__resources__requests => {
       attributes => {
         'cpu' => {
           'type' => Optional[String],
@@ -11604,14 +11678,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_security_context_633 => {
+    Stateful_set__spec__template__spec__init_container__security_context => {
       attributes => {
         'allow_privilege_escalation' => {
           'type' => Optional[Boolean],
           'value' => undef
         },
         'capabilities' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_security_context_633_capabilities_634]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__security_context__capabilities]],
           'value' => undef
         },
         'privileged' => {
@@ -11631,12 +11705,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'se_linux_options' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_security_context_633_se_linux_options_635]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__init_container__security_context__se_linux_options]],
           'value' => undef
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_security_context_633_capabilities_634 => {
+    Stateful_set__spec__template__spec__init_container__security_context__capabilities => {
       attributes => {
         'add' => {
           'type' => Optional[Array[String]],
@@ -11648,7 +11722,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_security_context_633_se_linux_options_635 => {
+    Stateful_set__spec__template__spec__init_container__security_context__se_linux_options => {
       attributes => {
         'level' => {
           'type' => Optional[String],
@@ -11668,7 +11742,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_init_container_598_volume_mount_636 => {
+    Stateful_set__spec__template__spec__init_container__volume_mount => {
       attributes => {
         'mount_path' => String,
         'name' => String,
@@ -11682,7 +11756,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_security_context_637 => {
+    Stateful_set__spec__template__spec__security_context => {
       attributes => {
         'fs_group' => {
           'type' => Optional[Integer],
@@ -11697,7 +11771,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'se_linux_options' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_security_context_637_se_linux_options_638]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__security_context__se_linux_options]],
           'value' => undef
         },
         'supplemental_groups' => {
@@ -11706,7 +11780,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_security_context_637_se_linux_options_638 => {
+    Stateful_set__spec__template__spec__security_context__se_linux_options => {
       attributes => {
         'level' => {
           'type' => Optional[String],
@@ -11726,74 +11800,74 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639 => {
+    Stateful_set__spec__template__spec__volume => {
       attributes => {
         'aws_elastic_block_store' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_aws_elastic_block_store_640]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__aws_elastic_block_store]],
           'value' => undef
         },
         'azure_disk' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_azure_disk_641]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__azure_disk]],
           'value' => undef
         },
         'azure_file' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_azure_file_642]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__azure_file]],
           'value' => undef
         },
         'ceph_fs' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_ceph_fs_643]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__ceph_fs]],
           'value' => undef
         },
         'cinder' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_cinder_645]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__cinder]],
           'value' => undef
         },
         'config_map' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_config_map_646]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__config_map]],
           'value' => undef
         },
         'downward_api' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_downward_api_648]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__downward_api]],
           'value' => undef
         },
         'empty_dir' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_empty_dir_652]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__empty_dir]],
           'value' => undef
         },
         'fc' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_fc_653]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__fc]],
           'value' => undef
         },
         'flex_volume' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_flex_volume_654]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__flex_volume]],
           'value' => undef
         },
         'flocker' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_flocker_656]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__flocker]],
           'value' => undef
         },
         'gce_persistent_disk' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_gce_persistent_disk_657]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__gce_persistent_disk]],
           'value' => undef
         },
         'git_repo' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_git_repo_658]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__git_repo]],
           'value' => undef
         },
         'glusterfs' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_glusterfs_659]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__glusterfs]],
           'value' => undef
         },
         'host_path' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_host_path_660]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__host_path]],
           'value' => undef
         },
         'iscsi' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_iscsi_661]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__iscsi]],
           'value' => undef
         },
         'local' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_local_662]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__local]],
           'value' => undef
         },
         'name' => {
@@ -11801,36 +11875,36 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'nfs' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_nfs_663]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__nfs]],
           'value' => undef
         },
         'persistent_volume_claim' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_persistent_volume_claim_664]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__persistent_volume_claim]],
           'value' => undef
         },
         'photon_persistent_disk' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_photon_persistent_disk_665]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__photon_persistent_disk]],
           'value' => undef
         },
         'quobyte' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_quobyte_666]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__quobyte]],
           'value' => undef
         },
         'rbd' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_rbd_667]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__rbd]],
           'value' => undef
         },
         'secret' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_secret_669]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__secret]],
           'value' => undef
         },
         'vsphere_volume' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_vsphere_volume_671]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__vsphere_volume]],
           'value' => undef
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_aws_elastic_block_store_640 => {
+    Stateful_set__spec__template__spec__volume__aws_elastic_block_store => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -11847,7 +11921,7 @@ type TerraformKubernetes = TypeSet[{
         'volume_id' => String
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_azure_disk_641 => {
+    Stateful_set__spec__template__spec__volume__azure_disk => {
       attributes => {
         'caching_mode' => String,
         'data_disk_uri' => String,
@@ -11862,7 +11936,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_azure_file_642 => {
+    Stateful_set__spec__template__spec__volume__azure_file => {
       attributes => {
         'read_only' => {
           'type' => Optional[Boolean],
@@ -11872,7 +11946,7 @@ type TerraformKubernetes = TypeSet[{
         'share_name' => String
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_ceph_fs_643 => {
+    Stateful_set__spec__template__spec__volume__ceph_fs => {
       attributes => {
         'monitors' => Array[String],
         'path' => {
@@ -11888,7 +11962,7 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_ceph_fs_643_secret_ref_644]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__ceph_fs__secret_ref]],
           'value' => undef
         },
         'user' => {
@@ -11897,7 +11971,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_ceph_fs_643_secret_ref_644 => {
+    Stateful_set__spec__template__spec__volume__ceph_fs__secret_ref => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -11905,7 +11979,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_cinder_645 => {
+    Stateful_set__spec__template__spec__volume__cinder => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -11918,14 +11992,14 @@ type TerraformKubernetes = TypeSet[{
         'volume_id' => String
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_config_map_646 => {
+    Stateful_set__spec__template__spec__volume__config_map => {
       attributes => {
         'default_mode' => {
           'type' => Optional[Integer],
           'value' => undef
         },
         'items' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_config_map_646_items_647]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__config_map__items]],
           'value' => undef
         },
         'name' => {
@@ -11934,7 +12008,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_config_map_646_items_647 => {
+    Stateful_set__spec__template__spec__volume__config_map__items => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -11950,33 +12024,33 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_downward_api_648 => {
+    Stateful_set__spec__template__spec__volume__downward_api => {
       attributes => {
         'default_mode' => {
           'type' => Optional[Integer],
           'value' => undef
         },
         'items' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_downward_api_648_items_649]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__downward_api__items]],
           'value' => undef
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_downward_api_648_items_649 => {
+    Stateful_set__spec__template__spec__volume__downward_api__items => {
       attributes => {
-        'field_ref' => Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_downward_api_648_items_649_field_ref_650],
+        'field_ref' => Array[Stateful_set__spec__template__spec__volume__downward_api__items__field_ref],
         'mode' => {
           'type' => Optional[Integer],
           'value' => undef
         },
         'path' => String,
         'resource_field_ref' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_downward_api_648_items_649_resource_field_ref_651]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__downward_api__items__resource_field_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_downward_api_648_items_649_field_ref_650 => {
+    Stateful_set__spec__template__spec__volume__downward_api__items__field_ref => {
       attributes => {
         'api_version' => {
           'type' => Optional[String],
@@ -11988,7 +12062,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_downward_api_648_items_649_resource_field_ref_651 => {
+    Stateful_set__spec__template__spec__volume__downward_api__items__resource_field_ref => {
       attributes => {
         'container_name' => String,
         'quantity' => {
@@ -11998,7 +12072,7 @@ type TerraformKubernetes = TypeSet[{
         'resource' => String
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_empty_dir_652 => {
+    Stateful_set__spec__template__spec__volume__empty_dir => {
       attributes => {
         'medium' => {
           'type' => Optional[String],
@@ -12006,7 +12080,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_fc_653 => {
+    Stateful_set__spec__template__spec__volume__fc => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -12020,7 +12094,7 @@ type TerraformKubernetes = TypeSet[{
         'target_ww_ns' => Array[String]
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_flex_volume_654 => {
+    Stateful_set__spec__template__spec__volume__flex_volume => {
       attributes => {
         'driver' => String,
         'fs_type' => {
@@ -12036,12 +12110,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_flex_volume_654_secret_ref_655]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__flex_volume__secret_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_flex_volume_654_secret_ref_655 => {
+    Stateful_set__spec__template__spec__volume__flex_volume__secret_ref => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -12049,7 +12123,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_flocker_656 => {
+    Stateful_set__spec__template__spec__volume__flocker => {
       attributes => {
         'dataset_name' => {
           'type' => Optional[String],
@@ -12061,7 +12135,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_gce_persistent_disk_657 => {
+    Stateful_set__spec__template__spec__volume__gce_persistent_disk => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -12078,7 +12152,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_git_repo_658 => {
+    Stateful_set__spec__template__spec__volume__git_repo => {
       attributes => {
         'directory' => {
           'type' => Optional[String],
@@ -12094,7 +12168,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_glusterfs_659 => {
+    Stateful_set__spec__template__spec__volume__glusterfs => {
       attributes => {
         'endpoints_name' => String,
         'path' => String,
@@ -12104,7 +12178,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_host_path_660 => {
+    Stateful_set__spec__template__spec__volume__host_path => {
       attributes => {
         'path' => {
           'type' => Optional[String],
@@ -12112,7 +12186,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_iscsi_661 => {
+    Stateful_set__spec__template__spec__volume__iscsi => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -12134,7 +12208,7 @@ type TerraformKubernetes = TypeSet[{
         'target_portal' => String
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_local_662 => {
+    Stateful_set__spec__template__spec__volume__local => {
       attributes => {
         'path' => {
           'type' => Optional[String],
@@ -12142,7 +12216,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_nfs_663 => {
+    Stateful_set__spec__template__spec__volume__nfs => {
       attributes => {
         'path' => String,
         'read_only' => {
@@ -12152,7 +12226,7 @@ type TerraformKubernetes = TypeSet[{
         'server' => String
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_persistent_volume_claim_664 => {
+    Stateful_set__spec__template__spec__volume__persistent_volume_claim => {
       attributes => {
         'claim_name' => {
           'type' => Optional[String],
@@ -12164,7 +12238,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_photon_persistent_disk_665 => {
+    Stateful_set__spec__template__spec__volume__photon_persistent_disk => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -12173,7 +12247,7 @@ type TerraformKubernetes = TypeSet[{
         'pd_id' => String
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_quobyte_666 => {
+    Stateful_set__spec__template__spec__volume__quobyte => {
       attributes => {
         'group' => {
           'type' => Optional[String],
@@ -12191,7 +12265,7 @@ type TerraformKubernetes = TypeSet[{
         'volume' => String
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_rbd_667 => {
+    Stateful_set__spec__template__spec__volume__rbd => {
       attributes => {
         'ceph_monitors' => Array[String],
         'fs_type' => {
@@ -12216,12 +12290,12 @@ type TerraformKubernetes = TypeSet[{
           'value' => undef
         },
         'secret_ref' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_rbd_667_secret_ref_668]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__rbd__secret_ref]],
           'value' => undef
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_rbd_667_secret_ref_668 => {
+    Stateful_set__spec__template__spec__volume__rbd__secret_ref => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -12229,14 +12303,14 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_secret_669 => {
+    Stateful_set__spec__template__spec__volume__secret => {
       attributes => {
         'default_mode' => {
           'type' => Optional[Integer],
           'value' => undef
         },
         'items' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_secret_669_items_670]],
+          'type' => Optional[Array[Stateful_set__spec__template__spec__volume__secret__items]],
           'value' => undef
         },
         'optional' => {
@@ -12249,7 +12323,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_secret_669_items_670 => {
+    Stateful_set__spec__template__spec__volume__secret__items => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -12265,7 +12339,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_template_555_spec_557_volume_639_vsphere_volume_671 => {
+    Stateful_set__spec__template__spec__volume__vsphere_volume => {
       attributes => {
         'fs_type' => {
           'type' => Optional[String],
@@ -12274,10 +12348,10 @@ type TerraformKubernetes = TypeSet[{
         'volume_path' => String
       }
     },
-    Kubernetes_stateful_set_spec_552_update_strategy_672 => {
+    Stateful_set__spec__update_strategy => {
       attributes => {
         'rolling_update' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_update_strategy_672_rolling_update_673]],
+          'type' => Optional[Array[Stateful_set__spec__update_strategy__rolling_update]],
           'value' => undef
         },
         'type' => {
@@ -12286,7 +12360,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_update_strategy_672_rolling_update_673 => {
+    Stateful_set__spec__update_strategy__rolling_update => {
       attributes => {
         'partition' => {
           'type' => Optional[Integer],
@@ -12294,13 +12368,13 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_volume_claim_template_674 => {
+    Stateful_set__spec__volume_claim_template => {
       attributes => {
-        'metadata' => Array[Kubernetes_stateful_set_spec_552_volume_claim_template_674_metadata_675],
-        'spec' => Array[Kubernetes_stateful_set_spec_552_volume_claim_template_674_spec_676]
+        'metadata' => Array[Stateful_set__spec__volume_claim_template__metadata],
+        'spec' => Array[Stateful_set__spec__volume_claim_template__spec]
       }
     },
-    Kubernetes_stateful_set_spec_552_volume_claim_template_674_metadata_675 => {
+    Stateful_set__spec__volume_claim_template__metadata => {
       attributes => {
         'annotations' => {
           'type' => Optional[Hash[String, String]],
@@ -12340,12 +12414,12 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_volume_claim_template_674_spec_676 => {
+    Stateful_set__spec__volume_claim_template__spec => {
       attributes => {
         'access_modes' => Array[String],
-        'resources' => Array[Kubernetes_stateful_set_spec_552_volume_claim_template_674_spec_676_resources_677],
+        'resources' => Array[Stateful_set__spec__volume_claim_template__spec__resources],
         'selector' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_volume_claim_template_674_spec_676_selector_678]],
+          'type' => Optional[Array[Stateful_set__spec__volume_claim_template__spec__selector]],
           'value' => undef
         },
         'storage_class_name' => {
@@ -12358,7 +12432,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_volume_claim_template_674_spec_676_resources_677 => {
+    Stateful_set__spec__volume_claim_template__spec__resources => {
       attributes => {
         'limits' => {
           'type' => Optional[Hash[String, String]],
@@ -12370,10 +12444,10 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_volume_claim_template_674_spec_676_selector_678 => {
+    Stateful_set__spec__volume_claim_template__spec__selector => {
       attributes => {
         'match_expressions' => {
-          'type' => Optional[Array[Kubernetes_stateful_set_spec_552_volume_claim_template_674_spec_676_selector_678_match_expressions_679]],
+          'type' => Optional[Array[Stateful_set__spec__volume_claim_template__spec__selector__match_expressions]],
           'value' => undef
         },
         'match_labels' => {
@@ -12382,7 +12456,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_stateful_set_spec_552_volume_claim_template_674_spec_676_selector_678_match_expressions_679 => {
+    Stateful_set__spec__volume_claim_template__spec__selector__match_expressions => {
       attributes => {
         'key' => {
           'type' => Optional[String],
@@ -12398,14 +12472,15 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_storage_class => {
+    Storage_class => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['parameters', 'storage_provisioner']
+          'immutableAttributes' => ['parameters', 'storage_provisioner'],
+          'providedAttributes' => ['storage_classID']
         }
       },
       attributes => {
-        'kubernetes_storage_class_id' => {
+        'storage_classID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -12414,7 +12489,7 @@ type TerraformKubernetes = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'metadata' => Array[Kubernetes_storage_class_metadata_680],
+        'metadata' => Array[Storage_class__metadata],
         'parameters' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
@@ -12430,7 +12505,7 @@ type TerraformKubernetes = TypeSet[{
         }
       }
     },
-    Kubernetes_storage_classHandler => {
+    Storage_classHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -12444,7 +12519,7 @@ type TerraformKubernetes = TypeSet[{
           Object]
       }
     },
-    Kubernetes_storage_class_metadata_680 => {
+    Storage_class__metadata => {
       attributes => {
         'annotations' => {
           'type' => Optional[Hash[String, String]],

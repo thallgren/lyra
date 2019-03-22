@@ -3,7 +3,7 @@
 // This code is generated on a per-Provider basis using "tf-gen"
 // Long term our hope is to remove this generation step and adopt dynamic approach
 
-package generated
+package google
 
 import (
 	"github.com/hashicorp/terraform/helper/schema"
@@ -12,6011 +12,4479 @@ import (
 	"github.com/lyraproj/servicesdk/service"
 )
 
+type (
+	App_engine_application struct {
+		App_engine_applicationID *string `lyra:"ignore"`
+		Auth_domain              *string
+		Code_bucket              *string
+		Default_bucket           *string
+		Default_hostname         *string
+		Feature_settings         *[]App_engine_application__feature_settings
+		Gcr_domain               *string
+		Location_id              string
+		Name                     *string
+		Project                  *string
+		Serving_status           *string
+		Url_dispatch_rule        *[]App_engine_application__url_dispatch_rule
+	}
+
+	Bigquery_dataset struct {
+		Bigquery_datasetID          *string `lyra:"ignore"`
+		Access                      *[]Bigquery_dataset__access
+		Creation_time               *int64
+		Dataset_id                  string
+		Default_table_expiration_ms *int64
+		Description                 *string
+		Etag                        *string
+		Friendly_name               *string
+		Labels                      *map[string]string
+		Last_modified_time          *int64
+		Location                    *string
+		Project                     *string
+		Self_link                   *string
+	}
+
+	Bigquery_table struct {
+		Bigquery_tableID    *string `lyra:"ignore"`
+		Creation_time       *int64
+		Dataset_id          string
+		Description         *string
+		Etag                *string
+		Expiration_time     *int64
+		Friendly_name       *string
+		Labels              *map[string]string
+		Last_modified_time  *int64
+		Location            *string
+		Num_bytes           *int64
+		Num_long_term_bytes *int64
+		Num_rows            *int64
+		Project             *string
+		Schema              *string
+		Self_link           *string
+		Table_id            string
+		Time_partitioning   *[]Bigquery_table__time_partitioning
+		Type                *string
+		View                *[]Bigquery_table__view
+	}
+
+	Bigtable_instance struct {
+		Bigtable_instanceID *string `lyra:"ignore"`
+		Cluster             *[]Bigtable_instance__cluster
+		Cluster_id          *string
+		Display_name        *string
+		Instance_type       *string
+		Name                string
+		Num_nodes           *int64
+		Project             *string
+		Storage_type        *string
+		Zone                *string
+	}
+
+	Bigtable_table struct {
+		Bigtable_tableID *string `lyra:"ignore"`
+		Instance_name    string
+		Name             string
+		Project          *string
+		Split_keys       *[]string
+	}
+
+	Billing_account_iam_binding struct {
+		Billing_account_iam_bindingID *string `lyra:"ignore"`
+		Billing_account_id            string
+		Etag                          *string
+		Members                       []string
+		Role                          string
+	}
+
+	Billing_account_iam_member struct {
+		Billing_account_iam_memberID *string `lyra:"ignore"`
+		Billing_account_id           string
+		Etag                         *string
+		Member                       string
+		Role                         string
+	}
+
+	Billing_account_iam_policy struct {
+		Billing_account_iam_policyID *string `lyra:"ignore"`
+		Billing_account_id           string
+		Etag                         *string
+		Policy_data                  string
+	}
+
+	Binary_authorization_attestor struct {
+		Binary_authorization_attestorID *string `lyra:"ignore"`
+		Attestation_authority_note      []Binary_authorization_attestor__attestation_authority_note
+		Description                     *string
+		Name                            string
+		Project                         *string
+	}
+
+	Binary_authorization_policy struct {
+		Binary_authorization_policyID *string `lyra:"ignore"`
+		Admission_whitelist_patterns  *[]Binary_authorization_policy__admission_whitelist_patterns
+		Cluster_admission_rules       *[]Binary_authorization_policy__cluster_admission_rules
+		Default_admission_rule        []Binary_authorization_policy__default_admission_rule
+		Description                   *string
+		Project                       *string
+	}
+
+	Cloudbuild_trigger struct {
+		Cloudbuild_triggerID *string `lyra:"ignore"`
+		Build                *[]Cloudbuild_trigger__build
+		Description          *string
+		Filename             *string
+		Project              *string
+		Substitutions        *map[string]string
+		Trigger_template     *[]Cloudbuild_trigger__trigger_template
+	}
+
+	Cloudfunctions_function struct {
+		Cloudfunctions_functionID *string `lyra:"ignore"`
+		Available_memory_mb       *int64
+		Description               *string
+		Entry_point               *string
+		Environment_variables     *map[string]string
+		Event_trigger             *[]Cloudfunctions_function__event_trigger
+		Https_trigger_url         *string
+		Labels                    *map[string]string
+		Name                      string
+		Project                   *string
+		Region                    *string
+		Retry_on_failure          *bool
+		Runtime                   *string
+		Source_archive_bucket     string
+		Source_archive_object     string
+		Timeout                   *int64
+		Trigger_bucket            *string
+		Trigger_http              *bool
+		Trigger_topic             *string
+	}
+
+	Cloudiot_registry struct {
+		Cloudiot_registryID       *string `lyra:"ignore"`
+		Credentials               *[]Cloudiot_registry__credentials
+		Event_notification_config *map[string]Cloudiot_registry__event_notification_config
+		Http_config               *map[string]Cloudiot_registry__http_config
+		Mqtt_config               *map[string]Cloudiot_registry__mqtt_config
+		Name                      string
+		Project                   *string
+		Region                    *string
+		State_notification_config *map[string]Cloudiot_registry__state_notification_config
+	}
+
+	Composer_environment struct {
+		Composer_environmentID *string `lyra:"ignore"`
+		Config                 *[]Composer_environment__config
+		Labels                 *map[string]string
+		Name                   string
+		Project                *string
+		Region                 *string
+	}
+
+	Compute_address struct {
+		Compute_addressID  *string `lyra:"ignore"`
+		Address            *string
+		Address_type       *string
+		Creation_timestamp *string
+		Description        *string
+		Label_fingerprint  *string
+		Labels             *map[string]string
+		Name               string
+		Network_tier       *string
+		Project            *string
+		Region             *string
+		Self_link          *string
+		Subnetwork         *string
+		Users              *[]string
+	}
+
+	Compute_attached_disk struct {
+		Compute_attached_diskID *string `lyra:"ignore"`
+		Device_name             *string
+		Disk                    string
+		Instance                string
+		Mode                    *string
+		Project                 *string
+		Zone                    *string
+	}
+
+	Compute_autoscaler struct {
+		Compute_autoscalerID *string `lyra:"ignore"`
+		Autoscaling_policy   []Compute_autoscaler__autoscaling_policy
+		Creation_timestamp   *string
+		Description          *string
+		Name                 string
+		Project              *string
+		Self_link            *string
+		Target               string
+		Zone                 *string
+	}
+
+	Compute_backend_bucket struct {
+		Compute_backend_bucketID *string `lyra:"ignore"`
+		Bucket_name              string
+		Creation_timestamp       *string
+		Description              *string
+		Enable_cdn               *bool
+		Name                     string
+		Project                  *string
+		Self_link                *string
+	}
+
+	Compute_backend_service struct {
+		Compute_backend_serviceID       *string `lyra:"ignore"`
+		Backend                         *[]Compute_backend_service__backend
+		Cdn_policy                      *[]Compute_backend_service__cdn_policy
+		Connection_draining_timeout_sec *int64
+		Custom_request_headers          *[]string
+		Description                     *string
+		Enable_cdn                      *bool
+		Fingerprint                     *string
+		Health_checks                   []string
+		Iap                             *[]Compute_backend_service__iap
+		Name                            string
+		Port_name                       *string
+		Project                         *string
+		Protocol                        *string
+		Region                          *string
+		Security_policy                 *string
+		Self_link                       *string
+		Session_affinity                *string
+		Timeout_sec                     *int64
+	}
+
+	Compute_disk struct {
+		Compute_diskID                 *string `lyra:"ignore"`
+		Creation_timestamp             *string
+		Description                    *string
+		Disk_encryption_key            *[]Compute_disk__disk_encryption_key
+		Disk_encryption_key_raw        *string
+		Disk_encryption_key_sha256     *string
+		Image                          *string
+		Label_fingerprint              *string
+		Labels                         *map[string]string
+		Last_attach_timestamp          *string
+		Last_detach_timestamp          *string
+		Name                           string
+		Project                        *string
+		Self_link                      *string
+		Size                           *int64
+		Snapshot                       *string
+		Source_image_encryption_key    *[]Compute_disk__source_image_encryption_key
+		Source_image_id                *string
+		Source_snapshot_encryption_key *[]Compute_disk__source_snapshot_encryption_key
+		Source_snapshot_id             *string
+		Type                           *string
+		Users                          *[]string
+		Zone                           *string
+	}
+
+	Compute_firewall struct {
+		Compute_firewallID      *string `lyra:"ignore"`
+		Allow                   *[]Compute_firewall__allow
+		Creation_timestamp      *string
+		Deny                    *[]Compute_firewall__deny
+		Description             *string
+		Destination_ranges      *[]string
+		Direction               *string
+		Disabled                *bool
+		Enable_logging          *bool
+		Name                    string
+		Network                 string
+		Priority                *int64
+		Project                 *string
+		Self_link               *string
+		Source_ranges           *[]string
+		Source_service_accounts *[]string
+		Source_tags             *[]string
+		Target_service_accounts *[]string
+		Target_tags             *[]string
+	}
+
+	Compute_forwarding_rule struct {
+		Compute_forwarding_ruleID *string `lyra:"ignore"`
+		Backend_service           *string
+		Creation_timestamp        *string
+		Description               *string
+		Ip_address                *string
+		Ip_protocol               *string
+		Ip_version                *string
+		Label_fingerprint         *string
+		Labels                    *map[string]string
+		Load_balancing_scheme     *string
+		Name                      string
+		Network                   *string
+		Network_tier              *string
+		Port_range                *string
+		Ports                     *[]string
+		Project                   *string
+		Region                    *string
+		Self_link                 *string
+		Service_label             *string
+		Service_name              *string
+		Subnetwork                *string
+		Target                    *string
+	}
+
+	Compute_global_address struct {
+		Compute_global_addressID *string `lyra:"ignore"`
+		Address                  *string
+		Address_type             *string
+		Creation_timestamp       *string
+		Description              *string
+		Ip_version               *string
+		Label_fingerprint        *string
+		Labels                   *map[string]string
+		Name                     string
+		Network                  *string
+		Prefix_length            *int64
+		Project                  *string
+		Purpose                  *string
+		Self_link                *string
+	}
+
+	Compute_global_forwarding_rule struct {
+		Compute_global_forwarding_ruleID *string `lyra:"ignore"`
+		Description                      *string
+		Ip_address                       *string
+		Ip_protocol                      *string
+		Ip_version                       *string
+		Label_fingerprint                *string
+		Labels                           *map[string]string
+		Name                             string
+		Port_range                       *string
+		Project                          *string
+		Region                           *string
+		Self_link                        *string
+		Target                           string
+	}
+
+	Compute_health_check struct {
+		Compute_health_checkID *string `lyra:"ignore"`
+		Check_interval_sec     *int64
+		Creation_timestamp     *string
+		Description            *string
+		Healthy_threshold      *int64
+		Http_health_check      *[]Compute_health_check__http_health_check
+		Https_health_check     *[]Compute_health_check__https_health_check
+		Name                   string
+		Project                *string
+		Self_link              *string
+		Ssl_health_check       *[]Compute_health_check__ssl_health_check
+		Tcp_health_check       *[]Compute_health_check__tcp_health_check
+		Timeout_sec            *int64
+		Type                   *string
+		Unhealthy_threshold    *int64
+	}
+
+	Compute_http_health_check struct {
+		Compute_http_health_checkID *string `lyra:"ignore"`
+		Check_interval_sec          *int64
+		Creation_timestamp          *string
+		Description                 *string
+		Healthy_threshold           *int64
+		Host                        *string
+		Name                        string
+		Port                        *int64
+		Project                     *string
+		Request_path                *string
+		Self_link                   *string
+		Timeout_sec                 *int64
+		Unhealthy_threshold         *int64
+	}
+
+	Compute_https_health_check struct {
+		Compute_https_health_checkID *string `lyra:"ignore"`
+		Check_interval_sec           *int64
+		Creation_timestamp           *string
+		Description                  *string
+		Healthy_threshold            *int64
+		Host                         *string
+		Name                         string
+		Port                         *int64
+		Project                      *string
+		Request_path                 *string
+		Self_link                    *string
+		Timeout_sec                  *int64
+		Unhealthy_threshold          *int64
+	}
+
+	Compute_image struct {
+		Compute_imageID   *string `lyra:"ignore"`
+		Create_timeout    *int64
+		Description       *string
+		Family            *string
+		Label_fingerprint *string
+		Labels            *map[string]string
+		Licenses          *[]string
+		Name              string
+		Project           *string
+		Raw_disk          *[]Compute_image__raw_disk
+		Self_link         *string
+		Source_disk       *string
+	}
+
+	Compute_instance struct {
+		Compute_instanceID        *string `lyra:"ignore"`
+		Allow_stopping_for_update *bool
+		Attached_disk             *[]Compute_instance__attached_disk
+		Boot_disk                 []Compute_instance__boot_disk
+		Can_ip_forward            *bool
+		Cpu_platform              *string
+		Create_timeout            *int64
+		Deletion_protection       *bool
+		Description               *string
+		Disk                      *[]Compute_instance__disk
+		Guest_accelerator         *[]Compute_instance__guest_accelerator
+		Instance_id               *string
+		Label_fingerprint         *string
+		Labels                    *map[string]string
+		Machine_type              string
+		Metadata                  *map[string]string
+		Metadata_fingerprint      *string
+		Metadata_startup_script   *string
+		Min_cpu_platform          *string
+		Name                      string
+		Network                   *[]Compute_instance__network
+		Network_interface         []Compute_instance__network_interface
+		Project                   *string
+		Scheduling                *[]Compute_instance__scheduling
+		Scratch_disk              *[]Compute_instance__scratch_disk
+		Self_link                 *string
+		Service_account           *[]Compute_instance__service_account
+		Tags                      *[]string
+		Tags_fingerprint          *string
+		Zone                      *string
+	}
+
+	Compute_instance_from_template struct {
+		Compute_instance_from_templateID *string `lyra:"ignore"`
+		Allow_stopping_for_update        *bool
+		Attached_disk                    *[]Compute_instance_from_template__attached_disk
+		Boot_disk                        *[]Compute_instance_from_template__boot_disk
+		Can_ip_forward                   *bool
+		Cpu_platform                     *string
+		Deletion_protection              *bool
+		Description                      *string
+		Guest_accelerator                *[]Compute_instance_from_template__guest_accelerator
+		Instance_id                      *string
+		Label_fingerprint                *string
+		Labels                           *map[string]string
+		Machine_type                     *string
+		Metadata                         *map[string]string
+		Metadata_fingerprint             *string
+		Metadata_startup_script          *string
+		Min_cpu_platform                 *string
+		Name                             string
+		Network_interface                *[]Compute_instance_from_template__network_interface
+		Project                          *string
+		Scheduling                       *[]Compute_instance_from_template__scheduling
+		Scratch_disk                     *[]Compute_instance_from_template__scratch_disk
+		Self_link                        *string
+		Service_account                  *[]Compute_instance_from_template__service_account
+		Source_instance_template         string
+		Tags                             *[]string
+		Tags_fingerprint                 *string
+		Zone                             *string
+	}
+
+	Compute_instance_group struct {
+		Compute_instance_groupID *string `lyra:"ignore"`
+		Description              *string
+		Instances                *[]string
+		Name                     string
+		Named_port               *[]Compute_instance_group__named_port
+		Network                  *string
+		Project                  *string
+		Self_link                *string
+		Size                     *int64
+		Zone                     *string
+	}
+
+	Compute_instance_group_manager struct {
+		Compute_instance_group_managerID *string `lyra:"ignore"`
+		Auto_healing_policies            *[]Compute_instance_group_manager__auto_healing_policies
+		Base_instance_name               string
+		Description                      *string
+		Fingerprint                      *string
+		Instance_group                   *string
+		Instance_template                *string
+		Name                             string
+		Named_port                       *[]Compute_instance_group_manager__named_port
+		Project                          *string
+		Rolling_update_policy            *[]Compute_instance_group_manager__rolling_update_policy
+		Self_link                        *string
+		Target_pools                     *[]string
+		Target_size                      *int64
+		Update_strategy                  *string
+		Version                          *[]Compute_instance_group_manager__version
+		Wait_for_instances               *bool
+		Zone                             *string
+	}
+
+	Compute_instance_template struct {
+		Compute_instance_templateID *string `lyra:"ignore"`
+		Automatic_restart           *bool
+		Can_ip_forward              *bool
+		Description                 *string
+		Disk                        []Compute_instance_template__disk
+		Guest_accelerator           *[]Compute_instance_template__guest_accelerator
+		Instance_description        *string
+		Labels                      *map[string]string
+		Machine_type                string
+		Metadata                    *map[string]string
+		Metadata_fingerprint        *string
+		Metadata_startup_script     *string
+		Min_cpu_platform            *string
+		Name                        *string
+		Name_prefix                 *string
+		Network_interface           *[]Compute_instance_template__network_interface
+		On_host_maintenance         *string
+		Project                     *string
+		Region                      *string
+		Scheduling                  *[]Compute_instance_template__scheduling
+		Self_link                   *string
+		Service_account             *[]Compute_instance_template__service_account
+		Tags                        *[]string
+		Tags_fingerprint            *string
+	}
+
+	Compute_interconnect_attachment struct {
+		Compute_interconnect_attachmentID *string `lyra:"ignore"`
+		Cloud_router_ip_address           *string
+		Creation_timestamp                *string
+		Customer_router_ip_address        *string
+		Description                       *string
+		Google_reference_id               *string
+		Interconnect                      string
+		Name                              string
+		Private_interconnect_info         *[]Compute_interconnect_attachment__private_interconnect_info
+		Project                           *string
+		Region                            *string
+		Router                            string
+		Self_link                         *string
+	}
+
+	Compute_network struct {
+		Compute_networkID       *string `lyra:"ignore"`
+		Auto_create_subnetworks *bool
+		Description             *string
+		Gateway_ipv4            *string
+		Ipv4_range              *string
+		Name                    string
+		Project                 *string
+		Routing_mode            *string
+		Self_link               *string
+	}
+
+	Compute_network_peering struct {
+		Compute_network_peeringID *string `lyra:"ignore"`
+		Auto_create_routes        *bool
+		Name                      string
+		Network                   string
+		Peer_network              string
+		State                     *string
+		State_details             *string
+	}
+
+	Compute_project_metadata struct {
+		Compute_project_metadataID *string `lyra:"ignore"`
+		Metadata                   map[string]string
+		Project                    *string
+	}
+
+	Compute_project_metadata_item struct {
+		Compute_project_metadata_itemID *string `lyra:"ignore"`
+		Key                             string
+		Project                         *string
+		Value                           string
+	}
+
+	Compute_region_autoscaler struct {
+		Compute_region_autoscalerID *string `lyra:"ignore"`
+		Autoscaling_policy          []Compute_region_autoscaler__autoscaling_policy
+		Creation_timestamp          *string
+		Description                 *string
+		Name                        string
+		Project                     *string
+		Region                      *string
+		Self_link                   *string
+		Target                      string
+	}
+
+	Compute_region_backend_service struct {
+		Compute_region_backend_serviceID *string `lyra:"ignore"`
+		Backend                          *[]Compute_region_backend_service__backend
+		Connection_draining_timeout_sec  *int64
+		Description                      *string
+		Fingerprint                      *string
+		Health_checks                    []string
+		Name                             string
+		Project                          *string
+		Protocol                         *string
+		Region                           *string
+		Self_link                        *string
+		Session_affinity                 *string
+		Timeout_sec                      *int64
+	}
+
+	Compute_region_disk struct {
+		Compute_region_diskID          *string `lyra:"ignore"`
+		Creation_timestamp             *string
+		Description                    *string
+		Disk_encryption_key            *[]Compute_region_disk__disk_encryption_key
+		Label_fingerprint              *string
+		Labels                         *map[string]string
+		Last_attach_timestamp          *string
+		Last_detach_timestamp          *string
+		Name                           string
+		Project                        *string
+		Region                         *string
+		Replica_zones                  []string
+		Self_link                      *string
+		Size                           *int64
+		Snapshot                       *string
+		Source_snapshot_encryption_key *[]Compute_region_disk__source_snapshot_encryption_key
+		Source_snapshot_id             *string
+		Type                           *string
+		Users                          *[]string
+	}
+
+	Compute_region_instance_group_manager struct {
+		Compute_region_instance_group_managerID *string `lyra:"ignore"`
+		Auto_healing_policies                   *[]Compute_region_instance_group_manager__auto_healing_policies
+		Base_instance_name                      string
+		Description                             *string
+		Distribution_policy_zones               *[]string
+		Fingerprint                             *string
+		Instance_group                          *string
+		Instance_template                       *string
+		Name                                    string
+		Named_port                              *[]Compute_region_instance_group_manager__named_port
+		Project                                 *string
+		Region                                  string
+		Rolling_update_policy                   *[]Compute_region_instance_group_manager__rolling_update_policy
+		Self_link                               *string
+		Target_pools                            *[]string
+		Target_size                             *int64
+		Update_strategy                         *string
+		Version                                 *[]Compute_region_instance_group_manager__version
+		Wait_for_instances                      *bool
+	}
+
+	Compute_route struct {
+		Compute_routeID        *string `lyra:"ignore"`
+		Description            *string
+		Dest_range             string
+		Name                   string
+		Network                string
+		Next_hop_gateway       *string
+		Next_hop_instance      *string
+		Next_hop_instance_zone *string
+		Next_hop_ip            *string
+		Next_hop_network       *string
+		Next_hop_vpn_tunnel    *string
+		Priority               *int64
+		Project                *string
+		Self_link              *string
+		Tags                   *[]string
+	}
+
+	Compute_router struct {
+		Compute_routerID   *string `lyra:"ignore"`
+		Bgp                *[]Compute_router__bgp
+		Creation_timestamp *string
+		Description        *string
+		Name               string
+		Network            string
+		Project            *string
+		Region             *string
+		Self_link          *string
+	}
+
+	Compute_router_interface struct {
+		Compute_router_interfaceID *string `lyra:"ignore"`
+		Ip_range                   *string
+		Name                       string
+		Project                    *string
+		Region                     *string
+		Router                     string
+		Vpn_tunnel                 string
+	}
+
+	Compute_router_nat struct {
+		Compute_router_natID               *string `lyra:"ignore"`
+		Icmp_idle_timeout_sec              *int64
+		Min_ports_per_vm                   *int64
+		Name                               string
+		Nat_ip_allocate_option             string
+		Nat_ips                            *[]string
+		Project                            *string
+		Region                             *string
+		Router                             string
+		Source_subnetwork_ip_ranges_to_nat *string
+		Subnetwork                         *[]Compute_router_nat__subnetwork
+		Tcp_established_idle_timeout_sec   *int64
+		Tcp_transitory_idle_timeout_sec    *int64
+		Udp_idle_timeout_sec               *int64
+	}
+
+	Compute_router_peer struct {
+		Compute_router_peerID     *string `lyra:"ignore"`
+		Advertised_route_priority *int64
+		Interface                 string
+		Ip_address                *string
+		Name                      string
+		Peer_asn                  int64
+		Peer_ip_address           *string
+		Project                   *string
+		Region                    *string
+		Router                    string
+	}
+
+	Compute_security_policy struct {
+		Compute_security_policyID *string `lyra:"ignore"`
+		Description               *string
+		Fingerprint               *string
+		Name                      string
+		Project                   *string
+		Rule                      *[]Compute_security_policy__rule
+		Self_link                 *string
+	}
+
+	Compute_shared_vpc_host_project struct {
+		Compute_shared_vpc_host_projectID *string `lyra:"ignore"`
+		Project                           string
+	}
+
+	Compute_shared_vpc_service_project struct {
+		Compute_shared_vpc_service_projectID *string `lyra:"ignore"`
+		Host_project                         string
+		Service_project                      string
+	}
+
+	Compute_snapshot struct {
+		Compute_snapshotID                *string `lyra:"ignore"`
+		Creation_timestamp                *string
+		Description                       *string
+		Disk_size_gb                      *int64
+		Label_fingerprint                 *string
+		Labels                            *map[string]string
+		Licenses                          *[]string
+		Name                              string
+		Project                           *string
+		Self_link                         *string
+		Snapshot_encryption_key           *[]Compute_snapshot__snapshot_encryption_key
+		Snapshot_encryption_key_raw       *string
+		Snapshot_encryption_key_sha256    *string
+		Snapshot_id                       *int64
+		Source_disk                       string
+		Source_disk_encryption_key        *[]Compute_snapshot__source_disk_encryption_key
+		Source_disk_encryption_key_raw    *string
+		Source_disk_encryption_key_sha256 *string
+		Source_disk_link                  *string
+		Storage_bytes                     *int64
+		Zone                              *string
+	}
+
+	Compute_ssl_certificate struct {
+		Compute_ssl_certificateID *string `lyra:"ignore"`
+		Certificate               string
+		Certificate_id            *int64
+		Creation_timestamp        *string
+		Description               *string
+		Name                      *string
+		Name_prefix               *string
+		Private_key               string
+		Project                   *string
+		Self_link                 *string
+	}
+
+	Compute_ssl_policy struct {
+		Compute_ssl_policyID *string `lyra:"ignore"`
+		Creation_timestamp   *string
+		Custom_features      *[]string
+		Description          *string
+		Enabled_features     *[]string
+		Fingerprint          *string
+		Min_tls_version      *string
+		Name                 string
+		Profile              *string
+		Project              *string
+		Self_link            *string
+	}
+
+	Compute_subnetwork struct {
+		Compute_subnetworkID     *string `lyra:"ignore"`
+		Creation_timestamp       *string
+		Description              *string
+		Enable_flow_logs         *bool
+		Fingerprint              *string
+		Gateway_address          *string
+		Ip_cidr_range            string
+		Name                     string
+		Network                  string
+		Private_ip_google_access *bool
+		Project                  *string
+		Region                   *string
+		Secondary_ip_range       *[]Compute_subnetwork__secondary_ip_range
+		Self_link                *string
+	}
+
+	Compute_subnetwork_iam_binding struct {
+		Compute_subnetwork_iam_bindingID *string `lyra:"ignore"`
+		Etag                             *string
+		Members                          []string
+		Project                          *string
+		Region                           *string
+		Role                             string
+		Subnetwork                       string
+	}
+
+	Compute_subnetwork_iam_member struct {
+		Compute_subnetwork_iam_memberID *string `lyra:"ignore"`
+		Etag                            *string
+		Member                          string
+		Project                         *string
+		Region                          *string
+		Role                            string
+		Subnetwork                      string
+	}
+
+	Compute_subnetwork_iam_policy struct {
+		Compute_subnetwork_iam_policyID *string `lyra:"ignore"`
+		Etag                            *string
+		Policy_data                     string
+		Project                         *string
+		Region                          *string
+		Subnetwork                      string
+	}
+
+	Compute_target_http_proxy struct {
+		Compute_target_http_proxyID *string `lyra:"ignore"`
+		Creation_timestamp          *string
+		Description                 *string
+		Name                        string
+		Project                     *string
+		Proxy_id                    *int64
+		Self_link                   *string
+		Url_map                     string
+	}
+
+	Compute_target_https_proxy struct {
+		Compute_target_https_proxyID *string `lyra:"ignore"`
+		Creation_timestamp           *string
+		Description                  *string
+		Name                         string
+		Project                      *string
+		Proxy_id                     *int64
+		Quic_override                *string
+		Self_link                    *string
+		Ssl_certificates             []string
+		Ssl_policy                   *string
+		Url_map                      string
+	}
+
+	Compute_target_pool struct {
+		Compute_target_poolID *string `lyra:"ignore"`
+		Backup_pool           *string
+		Description           *string
+		Failover_ratio        *float64
+		Health_checks         *[]string
+		Instances             *[]string
+		Name                  string
+		Project               *string
+		Region                *string
+		Self_link             *string
+		Session_affinity      *string
+	}
+
+	Compute_target_ssl_proxy struct {
+		Compute_target_ssl_proxyID *string `lyra:"ignore"`
+		Backend_service            string
+		Creation_timestamp         *string
+		Description                *string
+		Name                       string
+		Project                    *string
+		Proxy_header               *string
+		Proxy_id                   *int64
+		Self_link                  *string
+		Ssl_certificates           []string
+		Ssl_policy                 *string
+	}
+
+	Compute_target_tcp_proxy struct {
+		Compute_target_tcp_proxyID *string `lyra:"ignore"`
+		Backend_service            string
+		Creation_timestamp         *string
+		Description                *string
+		Name                       string
+		Project                    *string
+		Proxy_header               *string
+		Proxy_id                   *int64
+		Self_link                  *string
+	}
+
+	Compute_url_map struct {
+		Compute_url_mapID *string `lyra:"ignore"`
+		Default_service   string
+		Description       *string
+		Fingerprint       *string
+		Host_rule         *[]Compute_url_map__host_rule
+		Map_id            *string
+		Name              string
+		Path_matcher      *[]Compute_url_map__path_matcher
+		Project           *string
+		Self_link         *string
+		Test              *[]Compute_url_map__test
+	}
+
+	Compute_vpn_gateway struct {
+		Compute_vpn_gatewayID *string `lyra:"ignore"`
+		Creation_timestamp    *string
+		Description           *string
+		Name                  string
+		Network               string
+		Project               *string
+		Region                *string
+		Self_link             *string
+	}
+
+	Compute_vpn_tunnel struct {
+		Compute_vpn_tunnelID    *string `lyra:"ignore"`
+		Creation_timestamp      *string
+		Description             *string
+		Detailed_status         *string
+		Ike_version             *int64
+		Label_fingerprint       *string
+		Labels                  *map[string]string
+		Local_traffic_selector  *[]string
+		Name                    string
+		Peer_ip                 string
+		Project                 *string
+		Region                  *string
+		Remote_traffic_selector *[]string
+		Router                  *string
+		Self_link               *string
+		Shared_secret           string
+		Shared_secret_hash      *string
+		Target_vpn_gateway      string
+	}
+
+	Container_analysis_note struct {
+		Container_analysis_noteID *string `lyra:"ignore"`
+		Attestation_authority     []Container_analysis_note__attestation_authority
+		Name                      string
+		Project                   *string
+	}
+
+	Container_cluster struct {
+		Container_clusterID               *string `lyra:"ignore"`
+		Additional_zones                  *[]string
+		Addons_config                     *[]Container_cluster__addons_config
+		Cluster_autoscaling               *[]Container_cluster__cluster_autoscaling
+		Cluster_ipv4_cidr                 *string
+		Description                       *string
+		Enable_binary_authorization       *bool
+		Enable_kubernetes_alpha           *bool
+		Enable_legacy_abac                *bool
+		Enable_tpu                        *bool
+		Endpoint                          *string
+		Initial_node_count                *int64
+		Instance_group_urls               *[]string
+		Ip_allocation_policy              *[]Container_cluster__ip_allocation_policy
+		Logging_service                   *string
+		Maintenance_policy                *[]Container_cluster__maintenance_policy
+		Master_auth                       *[]Container_cluster__master_auth
+		Master_authorized_networks_config *[]Container_cluster__master_authorized_networks_config
+		Master_ipv4_cidr_block            *string
+		Master_version                    *string
+		Min_master_version                *string
+		Monitoring_service                *string
+		Name                              string
+		Network                           *string
+		Network_policy                    *[]Container_cluster__network_policy
+		Node_config                       *[]Container_cluster__node_config
+		Node_pool                         *[]Container_cluster__node_pool
+		Node_version                      *string
+		Pod_security_policy_config        *[]Container_cluster__pod_security_policy_config
+		Private_cluster                   *bool
+		Private_cluster_config            *[]Container_cluster__private_cluster_config
+		Project                           *string
+		Region                            *string
+		Remove_default_node_pool          *bool
+		Resource_labels                   *map[string]string
+		Subnetwork                        *string
+		Zone                              *string
+	}
+
+	Container_node_pool struct {
+		Container_node_poolID *string `lyra:"ignore"`
+		Autoscaling           *[]Container_node_pool__autoscaling
+		Cluster               string
+		Initial_node_count    *int64
+		Instance_group_urls   *[]string
+		Management            *[]Container_node_pool__management
+		Max_pods_per_node     *int64
+		Name                  *string
+		Name_prefix           *string
+		Node_config           *[]Container_node_pool__node_config
+		Node_count            *int64
+		Project               *string
+		Region                *string
+		Version               *string
+		Zone                  *string
+	}
+
+	Dataflow_job struct {
+		Dataflow_jobID    *string `lyra:"ignore"`
+		Max_workers       *int64
+		Name              string
+		On_delete         *string
+		Parameters        *map[string]string
+		Project           *string
+		Region            *string
+		State             *string
+		Temp_gcs_location string
+		Template_gcs_path string
+		Zone              *string
+	}
+
+	Dataproc_cluster struct {
+		Dataproc_clusterID *string `lyra:"ignore"`
+		Cluster_config     *[]Dataproc_cluster__cluster_config
+		Labels             *map[string]string
+		Name               string
+		Project            *string
+		Region             *string
+	}
+
+	Dataproc_job struct {
+		Dataproc_jobID             *string `lyra:"ignore"`
+		Driver_controls_files_uri  *string
+		Driver_output_resource_uri *string
+		Force_delete               *bool
+		Hadoop_config              *[]Dataproc_job__hadoop_config
+		Hive_config                *[]Dataproc_job__hive_config
+		Labels                     *map[string]string
+		Pig_config                 *[]Dataproc_job__pig_config
+		Placement                  []Dataproc_job__placement
+		Project                    *string
+		Pyspark_config             *[]Dataproc_job__pyspark_config
+		Reference                  *[]Dataproc_job__reference
+		Region                     *string
+		Scheduling                 *[]Dataproc_job__scheduling
+		Spark_config               *[]Dataproc_job__spark_config
+		Sparksql_config            *[]Dataproc_job__sparksql_config
+		Status                     *[]Dataproc_job__status
+	}
+
+	Dns_managed_zone struct {
+		Dns_managed_zoneID *string `lyra:"ignore"`
+		Description        *string
+		Dns_name           string
+		Labels             *map[string]string
+		Name               string
+		Name_servers       *[]string
+		Project            *string
+	}
+
+	Dns_record_set struct {
+		Dns_record_setID *string `lyra:"ignore"`
+		Managed_zone     string
+		Name             string
+		Project          *string
+		Rrdatas          []string
+		Ttl              int64
+		Type             string
+	}
+
+	Endpoints_service struct {
+		Endpoints_serviceID  *string `lyra:"ignore"`
+		Apis                 *[]Endpoints_service__apis
+		Config_id            *string
+		Dns_address          *string
+		Endpoints            *[]Endpoints_service__endpoints
+		Grpc_config          *string
+		Openapi_config       *string
+		Project              *string
+		Protoc_output        *string
+		Protoc_output_base64 *string
+		Service_name         string
+	}
+
+	Filestore_instance struct {
+		Filestore_instanceID *string `lyra:"ignore"`
+		Create_time          *string
+		Description          *string
+		Etag                 *string
+		File_shares          []Filestore_instance__file_shares
+		Labels               *map[string]string
+		Name                 string
+		Networks             []Filestore_instance__networks
+		Project              *string
+		Tier                 string
+		Zone                 string
+	}
+
+	Folder struct {
+		FolderID        *string `lyra:"ignore"`
+		Create_time     *string
+		Display_name    string
+		Lifecycle_state *string
+		Name            *string
+		Parent          string
+	}
+
+	Folder_iam_binding struct {
+		Folder_iam_bindingID *string `lyra:"ignore"`
+		Etag                 *string
+		Folder               string
+		Members              []string
+		Role                 string
+	}
+
+	Folder_iam_member struct {
+		Folder_iam_memberID *string `lyra:"ignore"`
+		Etag                *string
+		Folder              string
+		Member              string
+		Role                string
+	}
+
+	Folder_iam_policy struct {
+		Folder_iam_policyID *string `lyra:"ignore"`
+		Etag                *string
+		Folder              string
+		Policy_data         string
+	}
+
+	Folder_organization_policy struct {
+		Folder_organization_policyID *string `lyra:"ignore"`
+		Boolean_policy               *[]Folder_organization_policy__boolean_policy
+		Constraint                   string
+		Etag                         *string
+		Folder                       string
+		List_policy                  *[]Folder_organization_policy__list_policy
+		Restore_policy               *[]Folder_organization_policy__restore_policy
+		Update_time                  *string
+		Version                      *int64
+	}
+
+	Kms_crypto_key struct {
+		Kms_crypto_keyID *string `lyra:"ignore"`
+		Key_ring         string
+		Name             string
+		Rotation_period  *string
+		Self_link        *string
+	}
+
+	Kms_crypto_key_iam_binding struct {
+		Kms_crypto_key_iam_bindingID *string `lyra:"ignore"`
+		Crypto_key_id                string
+		Etag                         *string
+		Members                      []string
+		Role                         string
+	}
+
+	Kms_crypto_key_iam_member struct {
+		Kms_crypto_key_iam_memberID *string `lyra:"ignore"`
+		Crypto_key_id               string
+		Etag                        *string
+		Member                      string
+		Role                        string
+	}
+
+	Kms_key_ring struct {
+		Kms_key_ringID *string `lyra:"ignore"`
+		Location       string
+		Name           string
+		Project        *string
+		Self_link      *string
+	}
+
+	Kms_key_ring_iam_binding struct {
+		Kms_key_ring_iam_bindingID *string `lyra:"ignore"`
+		Etag                       *string
+		Key_ring_id                string
+		Members                    []string
+		Role                       string
+	}
+
+	Kms_key_ring_iam_member struct {
+		Kms_key_ring_iam_memberID *string `lyra:"ignore"`
+		Etag                      *string
+		Key_ring_id               string
+		Member                    string
+		Role                      string
+	}
+
+	Kms_key_ring_iam_policy struct {
+		Kms_key_ring_iam_policyID *string `lyra:"ignore"`
+		Etag                      *string
+		Key_ring_id               string
+		Policy_data               string
+	}
+
+	Logging_billing_account_exclusion struct {
+		Logging_billing_account_exclusionID *string `lyra:"ignore"`
+		Billing_account                     string
+		Description                         *string
+		Disabled                            *bool
+		Filter                              string
+		Name                                string
+	}
+
+	Logging_billing_account_sink struct {
+		Logging_billing_account_sinkID *string `lyra:"ignore"`
+		Billing_account                string
+		Destination                    string
+		Filter                         *string
+		Name                           string
+		Writer_identity                *string
+	}
+
+	Logging_folder_exclusion struct {
+		Logging_folder_exclusionID *string `lyra:"ignore"`
+		Description                *string
+		Disabled                   *bool
+		Filter                     string
+		Folder                     string
+		Name                       string
+	}
+
+	Logging_folder_sink struct {
+		Logging_folder_sinkID *string `lyra:"ignore"`
+		Destination           string
+		Filter                *string
+		Folder                string
+		Include_children      *bool
+		Name                  string
+		Writer_identity       *string
+	}
+
+	Logging_organization_exclusion struct {
+		Logging_organization_exclusionID *string `lyra:"ignore"`
+		Description                      *string
+		Disabled                         *bool
+		Filter                           string
+		Name                             string
+		Org_id                           string
+	}
+
+	Logging_organization_sink struct {
+		Logging_organization_sinkID *string `lyra:"ignore"`
+		Destination                 string
+		Filter                      *string
+		Include_children            *bool
+		Name                        string
+		Org_id                      string
+		Writer_identity             *string
+	}
+
+	Logging_project_exclusion struct {
+		Logging_project_exclusionID *string `lyra:"ignore"`
+		Description                 *string
+		Disabled                    *bool
+		Filter                      string
+		Name                        string
+		Project                     *string
+	}
+
+	Logging_project_sink struct {
+		Logging_project_sinkID *string `lyra:"ignore"`
+		Destination            string
+		Filter                 *string
+		Name                   string
+		Project                *string
+		Unique_writer_identity *bool
+		Writer_identity        *string
+	}
+
+	Monitoring_alert_policy struct {
+		Monitoring_alert_policyID *string `lyra:"ignore"`
+		Combiner                  string
+		Conditions                []Monitoring_alert_policy__conditions
+		Creation_record           *[]Monitoring_alert_policy__creation_record
+		Display_name              string
+		Enabled                   bool
+		Labels                    *[]string
+		Name                      *string
+		Notification_channels     *[]string
+		Project                   *string
+	}
+
+	Monitoring_group struct {
+		Monitoring_groupID *string `lyra:"ignore"`
+		Display_name       string
+		Filter             string
+		Is_cluster         *bool
+		Name               *string
+		Parent_name        *string
+		Project            *string
+	}
+
+	Monitoring_notification_channel struct {
+		Monitoring_notification_channelID *string `lyra:"ignore"`
+		Description                       *string
+		Display_name                      string
+		Enabled                           *bool
+		Labels                            *map[string]string
+		Name                              *string
+		Project                           *string
+		Type                              string
+		User_labels                       *map[string]string
+		Verification_status               *string
+	}
+
+	Monitoring_uptime_check_config struct {
+		Monitoring_uptime_check_configID *string `lyra:"ignore"`
+		Content_matchers                 *[]Monitoring_uptime_check_config__content_matchers
+		Display_name                     string
+		Http_check                       *[]Monitoring_uptime_check_config__http_check
+		Internal_checkers                *[]Monitoring_uptime_check_config__internal_checkers
+		Is_internal                      *bool
+		Monitored_resource               *[]Monitoring_uptime_check_config__monitored_resource
+		Name                             *string
+		Period                           *string
+		Project                          *string
+		Resource_group                   *[]Monitoring_uptime_check_config__resource_group
+		Selected_regions                 *[]string
+		Tcp_check                        *[]Monitoring_uptime_check_config__tcp_check
+		Timeout                          string
+	}
+
+	Organization_iam_binding struct {
+		Organization_iam_bindingID *string `lyra:"ignore"`
+		Etag                       *string
+		Members                    []string
+		Org_id                     string
+		Role                       string
+	}
+
+	Organization_iam_custom_role struct {
+		Organization_iam_custom_roleID *string `lyra:"ignore"`
+		Deleted                        *bool
+		Description                    *string
+		Org_id                         string
+		Permissions                    []string
+		Role_id                        string
+		Stage                          *string
+		Title                          string
+	}
+
+	Organization_iam_member struct {
+		Organization_iam_memberID *string `lyra:"ignore"`
+		Etag                      *string
+		Member                    string
+		Org_id                    string
+		Role                      string
+	}
+
+	Organization_iam_policy struct {
+		Organization_iam_policyID *string `lyra:"ignore"`
+		Etag                      *string
+		Org_id                    string
+		Policy_data               string
+	}
+
+	Organization_policy struct {
+		Organization_policyID *string `lyra:"ignore"`
+		Boolean_policy        *[]Organization_policy__boolean_policy
+		Constraint            string
+		Etag                  *string
+		List_policy           *[]Organization_policy__list_policy
+		Org_id                string
+		Restore_policy        *[]Organization_policy__restore_policy
+		Update_time           *string
+		Version               *int64
+	}
+
+	Project struct {
+		ProjectID           *string `lyra:"ignore"`
+		App_engine          *[]Project__app_engine
+		Auto_create_network *bool
+		Billing_account     *string
+		Folder_id           *string
+		Labels              *map[string]string
+		Name                string
+		Number              *string
+		Org_id              *string
+		Policy_data         *string
+		Policy_etag         *string
+		Project_id          string
+		Skip_delete         *bool
+	}
+
+	Project_iam_binding struct {
+		Project_iam_bindingID *string `lyra:"ignore"`
+		Etag                  *string
+		Members               []string
+		Project               *string
+		Role                  string
+	}
+
+	Project_iam_custom_role struct {
+		Project_iam_custom_roleID *string `lyra:"ignore"`
+		Deleted                   *bool
+		Description               *string
+		Permissions               []string
+		Project                   *string
+		Role_id                   string
+		Stage                     *string
+		Title                     string
+	}
+
+	Project_iam_member struct {
+		Project_iam_memberID *string `lyra:"ignore"`
+		Etag                 *string
+		Member               string
+		Project              *string
+		Role                 string
+	}
+
+	Project_iam_policy struct {
+		Project_iam_policyID *string `lyra:"ignore"`
+		Authoritative        *bool
+		Disable_project      *bool
+		Etag                 *string
+		Policy_data          string
+		Project              *string
+		Restore_policy       *string
+	}
+
+	Project_organization_policy struct {
+		Project_organization_policyID *string `lyra:"ignore"`
+		Boolean_policy                *[]Project_organization_policy__boolean_policy
+		Constraint                    string
+		Etag                          *string
+		List_policy                   *[]Project_organization_policy__list_policy
+		Project                       string
+		Restore_policy                *[]Project_organization_policy__restore_policy
+		Update_time                   *string
+		Version                       *int64
+	}
+
+	Project_service struct {
+		Project_serviceID  *string `lyra:"ignore"`
+		Disable_on_destroy *bool
+		Project            *string
+		Service            string
+	}
+
+	Project_services struct {
+		Project_servicesID *string `lyra:"ignore"`
+		Disable_on_destroy *bool
+		Project            *string
+		Services           []string
+	}
+
+	Project_usage_export_bucket struct {
+		Project_usage_export_bucketID *string `lyra:"ignore"`
+		Bucket_name                   string
+		Prefix                        *string
+		Project                       *string
+	}
+
+	Pubsub_subscription struct {
+		Pubsub_subscriptionID *string `lyra:"ignore"`
+		Ack_deadline_seconds  *int64
+		Name                  string
+		Path                  *string
+		Project               *string
+		Push_config           *[]Pubsub_subscription__push_config
+		Topic                 string
+	}
+
+	Pubsub_subscription_iam_binding struct {
+		Pubsub_subscription_iam_bindingID *string `lyra:"ignore"`
+		Etag                              *string
+		Members                           []string
+		Project                           *string
+		Role                              string
+		Subscription                      string
+	}
+
+	Pubsub_subscription_iam_member struct {
+		Pubsub_subscription_iam_memberID *string `lyra:"ignore"`
+		Etag                             *string
+		Member                           string
+		Project                          *string
+		Role                             string
+		Subscription                     string
+	}
+
+	Pubsub_subscription_iam_policy struct {
+		Pubsub_subscription_iam_policyID *string `lyra:"ignore"`
+		Etag                             *string
+		Policy_data                      string
+		Project                          *string
+		Subscription                     string
+	}
+
+	Pubsub_topic struct {
+		Pubsub_topicID *string `lyra:"ignore"`
+		Name           string
+		Project        *string
+	}
+
+	Pubsub_topic_iam_binding struct {
+		Pubsub_topic_iam_bindingID *string `lyra:"ignore"`
+		Etag                       *string
+		Members                    []string
+		Project                    *string
+		Role                       string
+		Topic                      string
+	}
+
+	Pubsub_topic_iam_member struct {
+		Pubsub_topic_iam_memberID *string `lyra:"ignore"`
+		Etag                      *string
+		Member                    string
+		Project                   *string
+		Role                      string
+		Topic                     string
+	}
+
+	Pubsub_topic_iam_policy struct {
+		Pubsub_topic_iam_policyID *string `lyra:"ignore"`
+		Etag                      *string
+		Policy_data               string
+		Project                   *string
+		Topic                     string
+	}
+
+	Redis_instance struct {
+		Redis_instanceID        *string `lyra:"ignore"`
+		Alternative_location_id *string
+		Authorized_network      *string
+		Create_time             *string
+		Current_location_id     *string
+		Display_name            *string
+		Host                    *string
+		Labels                  *map[string]string
+		Location_id             *string
+		Memory_size_gb          int64
+		Name                    string
+		Port                    *int64
+		Project                 *string
+		Redis_configs           *map[string]string
+		Redis_version           *string
+		Region                  *string
+		Reserved_ip_range       *string
+		Tier                    *string
+	}
+
+	Resource_manager_lien struct {
+		Resource_manager_lienID *string `lyra:"ignore"`
+		Create_time             *string
+		Name                    *string
+		Origin                  string
+		Parent                  string
+		Reason                  string
+		Restrictions            []string
+	}
+
+	Runtimeconfig_config struct {
+		Runtimeconfig_configID *string `lyra:"ignore"`
+		Description            *string
+		Name                   string
+		Project                *string
+	}
+
+	Runtimeconfig_variable struct {
+		Runtimeconfig_variableID *string `lyra:"ignore"`
+		Name                     string
+		Parent                   string
+		Project                  *string
+		Text                     *string
+		Update_time              *string
+		Value                    *string
+	}
+
+	Service_account struct {
+		Service_accountID *string `lyra:"ignore"`
+		Account_id        string
+		Display_name      *string
+		Email             *string
+		Name              *string
+		Policy_data       *string
+		Project           *string
+		Unique_id         *string
+	}
+
+	Service_account_iam_binding struct {
+		Service_account_iam_bindingID *string `lyra:"ignore"`
+		Etag                          *string
+		Members                       []string
+		Role                          string
+		Service_account_id            string
+	}
+
+	Service_account_iam_member struct {
+		Service_account_iam_memberID *string `lyra:"ignore"`
+		Etag                         *string
+		Member                       string
+		Role                         string
+		Service_account_id           string
+	}
+
+	Service_account_iam_policy struct {
+		Service_account_iam_policyID *string `lyra:"ignore"`
+		Etag                         *string
+		Policy_data                  string
+		Service_account_id           string
+	}
+
+	Service_account_key struct {
+		Service_account_keyID   *string `lyra:"ignore"`
+		Key_algorithm           *string
+		Name                    *string
+		Pgp_key                 *string
+		Private_key             *string
+		Private_key_encrypted   *string
+		Private_key_fingerprint *string
+		Private_key_type        *string
+		Public_key              *string
+		Public_key_type         *string
+		Service_account_id      string
+		Valid_after             *string
+		Valid_before            *string
+	}
+
+	Sourcerepo_repository struct {
+		Sourcerepo_repositoryID *string `lyra:"ignore"`
+		Name                    string
+		Project                 *string
+		Size                    *int64
+		Url                     *string
+	}
+
+	Spanner_database struct {
+		Spanner_databaseID *string `lyra:"ignore"`
+		Ddl                *[]string
+		Instance           string
+		Name               string
+		Project            *string
+		State              *string
+	}
+
+	Spanner_database_iam_binding struct {
+		Spanner_database_iam_bindingID *string `lyra:"ignore"`
+		Database                       string
+		Etag                           *string
+		Instance                       string
+		Members                        []string
+		Project                        *string
+		Role                           string
+	}
+
+	Spanner_database_iam_member struct {
+		Spanner_database_iam_memberID *string `lyra:"ignore"`
+		Database                      string
+		Etag                          *string
+		Instance                      string
+		Member                        string
+		Project                       *string
+		Role                          string
+	}
+
+	Spanner_database_iam_policy struct {
+		Spanner_database_iam_policyID *string `lyra:"ignore"`
+		Database                      string
+		Etag                          *string
+		Instance                      string
+		Policy_data                   string
+		Project                       *string
+	}
+
+	Spanner_instance struct {
+		Spanner_instanceID *string `lyra:"ignore"`
+		Config             string
+		Display_name       string
+		Labels             *map[string]string
+		Name               *string
+		Num_nodes          *int64
+		Project            *string
+		State              *string
+	}
+
+	Spanner_instance_iam_binding struct {
+		Spanner_instance_iam_bindingID *string `lyra:"ignore"`
+		Etag                           *string
+		Instance                       string
+		Members                        []string
+		Project                        *string
+		Role                           string
+	}
+
+	Spanner_instance_iam_member struct {
+		Spanner_instance_iam_memberID *string `lyra:"ignore"`
+		Etag                          *string
+		Instance                      string
+		Member                        string
+		Project                       *string
+		Role                          string
+	}
+
+	Spanner_instance_iam_policy struct {
+		Spanner_instance_iam_policyID *string `lyra:"ignore"`
+		Etag                          *string
+		Instance                      string
+		Policy_data                   string
+		Project                       *string
+	}
+
+	Sql_database struct {
+		Sql_databaseID *string `lyra:"ignore"`
+		Charset        *string
+		Collation      *string
+		Instance       string
+		Name           string
+		Project        *string
+		Self_link      *string
+	}
+
+	Sql_database_instance struct {
+		Sql_database_instanceID       *string `lyra:"ignore"`
+		Connection_name               *string
+		Database_version              *string
+		First_ip_address              *string
+		Ip_address                    *[]Sql_database_instance__ip_address
+		Master_instance_name          *string
+		Name                          *string
+		Project                       *string
+		Region                        *string
+		Replica_configuration         *[]Sql_database_instance__replica_configuration
+		Self_link                     *string
+		Server_ca_cert                *[]Sql_database_instance__server_ca_cert
+		Service_account_email_address *string
+		Settings                      []Sql_database_instance__settings
+	}
+
+	Sql_ssl_cert struct {
+		Sql_ssl_certID     *string `lyra:"ignore"`
+		Cert               *string
+		Cert_serial_number *string
+		Common_name        string
+		Create_time        *string
+		Expiration_time    *string
+		Instance           string
+		Private_key        *string
+		Server_ca_cert     *string
+		Sha1_fingerprint   *string
+	}
+
+	Sql_user struct {
+		Sql_userID *string `lyra:"ignore"`
+		Host       *string
+		Instance   string
+		Name       string
+		Password   *string
+		Project    *string
+	}
+
+	Storage_bucket struct {
+		Storage_bucketID *string `lyra:"ignore"`
+		Cors             *[]Storage_bucket__cors
+		Encryption       *[]Storage_bucket__encryption
+		Force_destroy    *bool
+		Labels           *map[string]string
+		Lifecycle_rule   *[]Storage_bucket__lifecycle_rule
+		Location         *string
+		Logging          *[]Storage_bucket__logging
+		Name             string
+		Predefined_acl   *string
+		Project          *string
+		Self_link        *string
+		Storage_class    *string
+		Url              *string
+		Versioning       *[]Storage_bucket__versioning
+		Website          *[]Storage_bucket__website
+	}
+
+	Storage_bucket_acl struct {
+		Storage_bucket_aclID *string `lyra:"ignore"`
+		Bucket               string
+		Default_acl          *string
+		Predefined_acl       *string
+		Role_entity          *[]string
+	}
+
+	Storage_bucket_iam_binding struct {
+		Storage_bucket_iam_bindingID *string `lyra:"ignore"`
+		Bucket                       string
+		Etag                         *string
+		Members                      []string
+		Role                         string
+	}
+
+	Storage_bucket_iam_member struct {
+		Storage_bucket_iam_memberID *string `lyra:"ignore"`
+		Bucket                      string
+		Etag                        *string
+		Member                      string
+		Role                        string
+	}
+
+	Storage_bucket_iam_policy struct {
+		Storage_bucket_iam_policyID *string `lyra:"ignore"`
+		Bucket                      string
+		Etag                        *string
+		Policy_data                 string
+	}
+
+	Storage_bucket_object struct {
+		Storage_bucket_objectID *string `lyra:"ignore"`
+		Bucket                  string
+		Cache_control           *string
+		Content                 *string
+		Content_disposition     *string
+		Content_encoding        *string
+		Content_language        *string
+		Content_type            *string
+		Crc32c                  *string
+		Detect_md5hash          *string
+		Md5hash                 *string
+		Name                    string
+		Predefined_acl          *string
+		Source                  *string
+		Storage_class           *string
+	}
+
+	Storage_default_object_access_control struct {
+		Storage_default_object_access_controlID *string `lyra:"ignore"`
+		Bucket                                  string
+		Domain                                  *string
+		Email                                   *string
+		Entity                                  string
+		Entity_id                               *string
+		Generation                              *int64
+		Object                                  *string
+		Project_team                            *[]Storage_default_object_access_control__project_team
+		Role                                    string
+	}
+
+	Storage_default_object_acl struct {
+		Storage_default_object_aclID *string `lyra:"ignore"`
+		Bucket                       string
+		Role_entity                  *[]string
+	}
+
+	Storage_notification struct {
+		Storage_notificationID *string `lyra:"ignore"`
+		Bucket                 string
+		Custom_attributes      *map[string]string
+		Event_types            *[]string
+		Object_name_prefix     *string
+		Payload_format         string
+		Self_link              *string
+		Topic                  string
+	}
+
+	Storage_object_access_control struct {
+		Storage_object_access_controlID *string `lyra:"ignore"`
+		Bucket                          string
+		Domain                          *string
+		Email                           *string
+		Entity                          string
+		Entity_id                       *string
+		Generation                      *int64
+		Object                          string
+		Project_team                    *[]Storage_object_access_control__project_team
+		Role                            string
+	}
+
+	Storage_object_acl struct {
+		Storage_object_aclID *string `lyra:"ignore"`
+		Bucket               string
+		Object               string
+		Predefined_acl       *string
+		Role_entity          *[]string
+	}
+
+	App_engine_application__feature_settings struct {
+		Split_health_checks *bool
+	}
+
+	App_engine_application__url_dispatch_rule struct {
+		Domain  *string
+		Path    *string
+		Service *string
+	}
+
+	Bigquery_dataset__access__view struct {
+		Dataset_id string
+		Project_id string
+		Table_id   string
+	}
+
+	Bigquery_dataset__access struct {
+		Domain         *string
+		Group_by_email *string
+		Role           *string
+		Special_group  *string
+		User_by_email  *string
+		View           *[]Bigquery_dataset__access__view
+	}
+
+	Bigquery_table__time_partitioning struct {
+		Expiration_ms *int64
+		Field         *string
+		Type          string
+	}
+
+	Bigquery_table__view struct {
+		Query          string
+		Use_legacy_sql *bool
+	}
+
+	Bigtable_instance__cluster struct {
+		Cluster_id   *string
+		Num_nodes    *int64
+		Storage_type *string
+		Zone         *string
+	}
+
+	Binary_authorization_attestor__attestation_authority_note__public_keys struct {
+		Ascii_armored_pgp_public_key string
+		Comment                      *string
+		Id                           *string
+	}
+
+	Binary_authorization_attestor__attestation_authority_note struct {
+		Delegation_service_account_email *string
+		Note_reference                   string
+		Public_keys                      *[]Binary_authorization_attestor__attestation_authority_note__public_keys
+	}
+
+	Binary_authorization_policy__admission_whitelist_patterns struct {
+		Name_pattern *string
+	}
+
+	Binary_authorization_policy__cluster_admission_rules struct {
+		Cluster                 string
+		Enforcement_mode        *string
+		Evaluation_mode         *string
+		Require_attestations_by *[]string
+	}
+
+	Binary_authorization_policy__default_admission_rule struct {
+		Enforcement_mode        string
+		Evaluation_mode         string
+		Require_attestations_by *[]string
+	}
+
+	Cloudbuild_trigger__build__step struct {
+		Args *string
+		Name *string
+	}
+
+	Cloudbuild_trigger__build struct {
+		Images *[]string
+		Step   *[]Cloudbuild_trigger__build__step
+		Tags   *[]string
+	}
+
+	Cloudbuild_trigger__trigger_template struct {
+		Branch_name *string
+		Commit_sha  *string
+		Dir         *string
+		Project     *string
+		Repo_name   *string
+		Tag_name    *string
+	}
+
+	Cloudfunctions_function__event_trigger__failure_policy struct {
+		Retry bool
+	}
+
+	Cloudfunctions_function__event_trigger struct {
+		Event_type     string
+		Failure_policy *[]Cloudfunctions_function__event_trigger__failure_policy
+		Resource       string
+	}
+
+	Cloudiot_registry__credentials__public_key_certificate struct {
+		Certificate string
+		Format      string
+	}
+
+	Cloudiot_registry__credentials struct {
+		Public_key_certificate *map[string]Cloudiot_registry__credentials__public_key_certificate
+	}
+
+	Cloudiot_registry__event_notification_config struct {
+		Pubsub_topic_name string
+	}
+
+	Cloudiot_registry__http_config struct {
+		Http_enabled_state string
+	}
+
+	Cloudiot_registry__mqtt_config struct {
+		Mqtt_enabled_state string
+	}
+
+	Cloudiot_registry__state_notification_config struct {
+		Pubsub_topic_name string
+	}
+
+	Composer_environment__config__node_config struct {
+		Disk_size_gb    *int64
+		Machine_type    *string
+		Network         *string
+		Oauth_scopes    *[]string
+		Service_account *string
+		Subnetwork      *string
+		Tags            *[]string
+		Zone            *string
+	}
+
+	Composer_environment__config__software_config struct {
+		Airflow_config_overrides *map[string]string
+		Env_variables            *map[string]string
+		Image_version            *string
+		Pypi_packages            *map[string]string
+	}
+
+	Composer_environment__config struct {
+		Airflow_uri     *string
+		Dag_gcs_prefix  *string
+		Gke_cluster     *string
+		Node_config     *[]Composer_environment__config__node_config
+		Node_count      *int64
+		Software_config *[]Composer_environment__config__software_config
+	}
+
+	Compute_autoscaler__autoscaling_policy__cpu_utilization struct {
+		Target float64
+	}
+
+	Compute_autoscaler__autoscaling_policy__load_balancing_utilization struct {
+		Target float64
+	}
+
+	Compute_autoscaler__autoscaling_policy__metric struct {
+		Name   string
+		Target float64
+		Type   string
+	}
+
+	Compute_autoscaler__autoscaling_policy struct {
+		Cooldown_period            *int64
+		Cpu_utilization            *[]Compute_autoscaler__autoscaling_policy__cpu_utilization
+		Load_balancing_utilization *[]Compute_autoscaler__autoscaling_policy__load_balancing_utilization
+		Max_replicas               int64
+		Metric                     *[]Compute_autoscaler__autoscaling_policy__metric
+		Min_replicas               int64
+	}
+
+	Compute_backend_service__backend struct {
+		Balancing_mode               *string
+		Capacity_scaler              *float64
+		Description                  *string
+		Group                        *string
+		Max_connections              *int64
+		Max_connections_per_instance *int64
+		Max_rate                     *int64
+		Max_rate_per_instance        *float64
+		Max_utilization              *float64
+	}
+
+	Compute_backend_service__cdn_policy__cache_key_policy struct {
+		Include_host           *bool
+		Include_protocol       *bool
+		Include_query_string   *bool
+		Query_string_blacklist *[]string
+		Query_string_whitelist *[]string
+	}
+
+	Compute_backend_service__cdn_policy struct {
+		Cache_key_policy *[]Compute_backend_service__cdn_policy__cache_key_policy
+	}
+
+	Compute_backend_service__iap struct {
+		Oauth2_client_id     string
+		Oauth2_client_secret string
+	}
+
+	Compute_disk__disk_encryption_key struct {
+		Raw_key *string
+		Sha256  *string
+	}
+
+	Compute_disk__source_image_encryption_key struct {
+		Raw_key *string
+		Sha256  *string
+	}
+
+	Compute_disk__source_snapshot_encryption_key struct {
+		Raw_key *string
+		Sha256  *string
+	}
+
+	Compute_firewall__allow struct {
+		Ports    *[]string
+		Protocol string
+	}
+
+	Compute_firewall__deny struct {
+		Ports    *[]string
+		Protocol string
+	}
+
+	Compute_health_check__http_health_check struct {
+		Host         *string
+		Port         *int64
+		Proxy_header *string
+		Request_path *string
+		Response     *string
+	}
+
+	Compute_health_check__https_health_check struct {
+		Host         *string
+		Port         *int64
+		Proxy_header *string
+		Request_path *string
+		Response     *string
+	}
+
+	Compute_health_check__ssl_health_check struct {
+		Port         *int64
+		Proxy_header *string
+		Request      *string
+		Response     *string
+	}
+
+	Compute_health_check__tcp_health_check struct {
+		Port         *int64
+		Proxy_header *string
+		Request      *string
+		Response     *string
+	}
+
+	Compute_image__raw_disk struct {
+		Container_type *string
+		Sha1           *string
+		Source         string
+	}
+
+	Compute_instance__attached_disk struct {
+		Device_name                *string
+		Disk_encryption_key_raw    *string
+		Disk_encryption_key_sha256 *string
+		Mode                       *string
+		Source                     string
+	}
+
+	Compute_instance__boot_disk__initialize_params struct {
+		Image *string
+		Size  *int64
+		Type  *string
+	}
+
+	Compute_instance__boot_disk struct {
+		Auto_delete                *bool
+		Device_name                *string
+		Disk_encryption_key_raw    *string
+		Disk_encryption_key_sha256 *string
+		Initialize_params          *[]Compute_instance__boot_disk__initialize_params
+		Source                     *string
+	}
+
+	Compute_instance__disk struct {
+		Auto_delete                *bool
+		Device_name                *string
+		Disk                       *string
+		Disk_encryption_key_raw    *string
+		Disk_encryption_key_sha256 *string
+		Image                      *string
+		Scratch                    *bool
+		Size                       *int64
+		Type                       *string
+	}
+
+	Compute_instance__guest_accelerator struct {
+		Count int64
+		Type  string
+	}
+
+	Compute_instance__network struct {
+		Address          *string
+		External_address *string
+		Internal_address *string
+		Name             *string
+		Source           string
+	}
+
+	Compute_instance__network_interface__access_config struct {
+		Assigned_nat_ip        *string
+		Nat_ip                 *string
+		Network_tier           *string
+		Public_ptr_domain_name *string
+	}
+
+	Compute_instance__network_interface__alias_ip_range struct {
+		Ip_cidr_range         string
+		Subnetwork_range_name *string
+	}
+
+	Compute_instance__network_interface struct {
+		Access_config      *[]Compute_instance__network_interface__access_config
+		Address            *string
+		Alias_ip_range     *[]Compute_instance__network_interface__alias_ip_range
+		Name               *string
+		Network            *string
+		Network_ip         *string
+		Subnetwork         *string
+		Subnetwork_project *string
+	}
+
+	Compute_instance__scheduling struct {
+		Automatic_restart   *bool
+		On_host_maintenance *string
+		Preemptible         *bool
+	}
+
+	Compute_instance__scratch_disk struct {
+		Interface *string
+	}
+
+	Compute_instance__service_account struct {
+		Email  *string
+		Scopes []string
+	}
+
+	Compute_instance_from_template__attached_disk struct {
+		Device_name                *string
+		Disk_encryption_key_raw    *string
+		Disk_encryption_key_sha256 *string
+		Mode                       *string
+		Source                     string
+	}
+
+	Compute_instance_from_template__boot_disk__initialize_params struct {
+		Image *string
+		Size  *int64
+		Type  *string
+	}
+
+	Compute_instance_from_template__boot_disk struct {
+		Auto_delete                *bool
+		Device_name                *string
+		Disk_encryption_key_raw    *string
+		Disk_encryption_key_sha256 *string
+		Initialize_params          *[]Compute_instance_from_template__boot_disk__initialize_params
+		Source                     *string
+	}
+
+	Compute_instance_from_template__guest_accelerator struct {
+		Count int64
+		Type  string
+	}
+
+	Compute_instance_from_template__network_interface__access_config struct {
+		Assigned_nat_ip        *string
+		Nat_ip                 *string
+		Network_tier           *string
+		Public_ptr_domain_name *string
+	}
+
+	Compute_instance_from_template__network_interface__alias_ip_range struct {
+		Ip_cidr_range         string
+		Subnetwork_range_name *string
+	}
+
+	Compute_instance_from_template__network_interface struct {
+		Access_config      *[]Compute_instance_from_template__network_interface__access_config
+		Address            *string
+		Alias_ip_range     *[]Compute_instance_from_template__network_interface__alias_ip_range
+		Name               *string
+		Network            *string
+		Network_ip         *string
+		Subnetwork         *string
+		Subnetwork_project *string
+	}
+
+	Compute_instance_from_template__scheduling struct {
+		Automatic_restart   *bool
+		On_host_maintenance *string
+		Preemptible         *bool
+	}
+
+	Compute_instance_from_template__scratch_disk struct {
+		Interface *string
+	}
+
+	Compute_instance_from_template__service_account struct {
+		Email  *string
+		Scopes []string
+	}
+
+	Compute_instance_group__named_port struct {
+		Name string
+		Port int64
+	}
+
+	Compute_instance_group_manager__auto_healing_policies struct {
+		Health_check      string
+		Initial_delay_sec int64
+	}
+
+	Compute_instance_group_manager__named_port struct {
+		Name string
+		Port int64
+	}
+
+	Compute_instance_group_manager__rolling_update_policy struct {
+		Max_surge_fixed         *int64
+		Max_surge_percent       *int64
+		Max_unavailable_fixed   *int64
+		Max_unavailable_percent *int64
+		Min_ready_sec           *int64
+		Minimal_action          string
+		Type                    string
+	}
+
+	Compute_instance_group_manager__version__target_size struct {
+		Fixed   *int64
+		Percent *int64
+	}
+
+	Compute_instance_group_manager__version struct {
+		Instance_template string
+		Name              string
+		Target_size       *[]Compute_instance_group_manager__version__target_size
+	}
+
+	Compute_instance_template__disk__disk_encryption_key struct {
+		Kms_key_self_link *string
+	}
+
+	Compute_instance_template__disk struct {
+		Auto_delete         *bool
+		Boot                *bool
+		Device_name         *string
+		Disk_encryption_key *[]Compute_instance_template__disk__disk_encryption_key
+		Disk_name           *string
+		Disk_size_gb        *int64
+		Disk_type           *string
+		Interface           *string
+		Mode                *string
+		Source              *string
+		Source_image        *string
+		Type                *string
+	}
+
+	Compute_instance_template__guest_accelerator struct {
+		Count int64
+		Type  string
+	}
+
+	Compute_instance_template__network_interface__access_config struct {
+		Assigned_nat_ip *string
+		Nat_ip          *string
+		Network_tier    *string
+	}
+
+	Compute_instance_template__network_interface__alias_ip_range struct {
+		Ip_cidr_range         string
+		Subnetwork_range_name *string
+	}
+
+	Compute_instance_template__network_interface struct {
+		Access_config      *[]Compute_instance_template__network_interface__access_config
+		Address            *string
+		Alias_ip_range     *[]Compute_instance_template__network_interface__alias_ip_range
+		Network            *string
+		Network_ip         *string
+		Subnetwork         *string
+		Subnetwork_project *string
+	}
+
+	Compute_instance_template__scheduling struct {
+		Automatic_restart   *bool
+		On_host_maintenance *string
+		Preemptible         *bool
+	}
+
+	Compute_instance_template__service_account struct {
+		Email  *string
+		Scopes []string
+	}
+
+	Compute_interconnect_attachment__private_interconnect_info struct {
+		Tag8021q *int64
+	}
+
+	Compute_region_autoscaler__autoscaling_policy__cpu_utilization struct {
+		Target float64
+	}
+
+	Compute_region_autoscaler__autoscaling_policy__load_balancing_utilization struct {
+		Target float64
+	}
+
+	Compute_region_autoscaler__autoscaling_policy__metric struct {
+		Name   string
+		Target float64
+		Type   string
+	}
+
+	Compute_region_autoscaler__autoscaling_policy struct {
+		Cooldown_period            *int64
+		Cpu_utilization            *[]Compute_region_autoscaler__autoscaling_policy__cpu_utilization
+		Load_balancing_utilization *[]Compute_region_autoscaler__autoscaling_policy__load_balancing_utilization
+		Max_replicas               int64
+		Metric                     *[]Compute_region_autoscaler__autoscaling_policy__metric
+		Min_replicas               int64
+	}
+
+	Compute_region_backend_service__backend struct {
+		Description *string
+		Group       *string
+	}
+
+	Compute_region_disk__disk_encryption_key struct {
+		Raw_key *string
+		Sha256  *string
+	}
+
+	Compute_region_disk__source_snapshot_encryption_key struct {
+		Raw_key *string
+		Sha256  *string
+	}
+
+	Compute_region_instance_group_manager__auto_healing_policies struct {
+		Health_check      string
+		Initial_delay_sec int64
+	}
+
+	Compute_region_instance_group_manager__named_port struct {
+		Name string
+		Port int64
+	}
+
+	Compute_region_instance_group_manager__rolling_update_policy struct {
+		Max_surge_fixed         *int64
+		Max_surge_percent       *int64
+		Max_unavailable_fixed   *int64
+		Max_unavailable_percent *int64
+		Min_ready_sec           *int64
+		Minimal_action          string
+		Type                    string
+	}
+
+	Compute_region_instance_group_manager__version__target_size struct {
+		Fixed   *int64
+		Percent *int64
+	}
+
+	Compute_region_instance_group_manager__version struct {
+		Instance_template string
+		Name              string
+		Target_size       *[]Compute_region_instance_group_manager__version__target_size
+	}
+
+	Compute_router__bgp__advertised_ip_ranges struct {
+		Description *string
+		Range       *string
+	}
+
+	Compute_router__bgp struct {
+		Advertise_mode       *string
+		Advertised_groups    *[]string
+		Advertised_ip_ranges *[]Compute_router__bgp__advertised_ip_ranges
+		Asn                  int64
+	}
+
+	Compute_router_nat__subnetwork struct {
+		Name                     string
+		Secondary_ip_range_names *[]string
+		Source_ip_ranges_to_nat  *[]string
+	}
+
+	Compute_security_policy__rule__match__config struct {
+		Src_ip_ranges []string
+	}
+
+	Compute_security_policy__rule__match struct {
+		Config         []Compute_security_policy__rule__match__config
+		Versioned_expr string
+	}
+
+	Compute_security_policy__rule struct {
+		Action      string
+		Description *string
+		Match       []Compute_security_policy__rule__match
+		Preview     *bool
+		Priority    int64
+	}
+
+	Compute_snapshot__snapshot_encryption_key struct {
+		Raw_key *string
+		Sha256  *string
+	}
+
+	Compute_snapshot__source_disk_encryption_key struct {
+		Raw_key *string
+	}
+
+	Compute_subnetwork__secondary_ip_range struct {
+		Ip_cidr_range string
+		Range_name    string
+	}
+
+	Compute_url_map__host_rule struct {
+		Description  *string
+		Hosts        []string
+		Path_matcher string
+	}
+
+	Compute_url_map__path_matcher__path_rule struct {
+		Paths   []string
+		Service string
+	}
+
+	Compute_url_map__path_matcher struct {
+		Default_service string
+		Description     *string
+		Name            string
+		Path_rule       *[]Compute_url_map__path_matcher__path_rule
+	}
+
+	Compute_url_map__test struct {
+		Description *string
+		Host        string
+		Path        string
+		Service     string
+	}
+
+	Container_analysis_note__attestation_authority__hint struct {
+		Human_readable_name string
+	}
+
+	Container_analysis_note__attestation_authority struct {
+		Hint []Container_analysis_note__attestation_authority__hint
+	}
+
+	Container_cluster__addons_config__horizontal_pod_autoscaling struct {
+		Disabled *bool
+	}
+
+	Container_cluster__addons_config__http_load_balancing struct {
+		Disabled *bool
+	}
+
+	Container_cluster__addons_config__kubernetes_dashboard struct {
+		Disabled *bool
+	}
+
+	Container_cluster__addons_config__network_policy_config struct {
+		Disabled *bool
+	}
+
+	Container_cluster__addons_config struct {
+		Horizontal_pod_autoscaling *[]Container_cluster__addons_config__horizontal_pod_autoscaling
+		Http_load_balancing        *[]Container_cluster__addons_config__http_load_balancing
+		Kubernetes_dashboard       *[]Container_cluster__addons_config__kubernetes_dashboard
+		Network_policy_config      *[]Container_cluster__addons_config__network_policy_config
+	}
+
+	Container_cluster__cluster_autoscaling__resource_limits struct {
+		Maximum       *int64
+		Minimum       *int64
+		Resource_type string
+	}
+
+	Container_cluster__cluster_autoscaling struct {
+		Enabled         bool
+		Resource_limits *[]Container_cluster__cluster_autoscaling__resource_limits
+	}
+
+	Container_cluster__ip_allocation_policy struct {
+		Cluster_ipv4_cidr_block       *string
+		Cluster_secondary_range_name  *string
+		Create_subnetwork             *bool
+		Services_ipv4_cidr_block      *string
+		Services_secondary_range_name *string
+		Subnetwork_name               *string
+	}
+
+	Container_cluster__maintenance_policy__daily_maintenance_window struct {
+		Duration   *string
+		Start_time string
+	}
+
+	Container_cluster__maintenance_policy struct {
+		Daily_maintenance_window []Container_cluster__maintenance_policy__daily_maintenance_window
+	}
+
+	Container_cluster__master_auth__client_certificate_config struct {
+		Issue_client_certificate bool
+	}
+
+	Container_cluster__master_auth struct {
+		Client_certificate        *string
+		Client_certificate_config *[]Container_cluster__master_auth__client_certificate_config
+		Client_key                *string
+		Cluster_ca_certificate    *string
+		Password                  string
+		Username                  string
+	}
+
+	Container_cluster__master_authorized_networks_config__cidr_blocks struct {
+		Cidr_block   string
+		Display_name *string
+	}
+
+	Container_cluster__master_authorized_networks_config struct {
+		Cidr_blocks *[]Container_cluster__master_authorized_networks_config__cidr_blocks
+	}
+
+	Container_cluster__network_policy struct {
+		Enabled  *bool
+		Provider *string
+	}
+
+	Container_cluster__node_config__guest_accelerator struct {
+		Count int64
+		Type  string
+	}
+
+	Container_cluster__node_config__taint struct {
+		Effect string
+		Key    string
+		Value  string
+	}
+
+	Container_cluster__node_config__workload_metadata_config struct {
+		Node_metadata string
+	}
+
+	Container_cluster__node_config struct {
+		Disk_size_gb             *int64
+		Disk_type                *string
+		Guest_accelerator        *[]Container_cluster__node_config__guest_accelerator
+		Image_type               *string
+		Labels                   *map[string]string
+		Local_ssd_count          *int64
+		Machine_type             *string
+		Metadata                 *map[string]string
+		Min_cpu_platform         *string
+		Oauth_scopes             *[]string
+		Preemptible              *bool
+		Service_account          *string
+		Tags                     *[]string
+		Taint                    *[]Container_cluster__node_config__taint
+		Workload_metadata_config *[]Container_cluster__node_config__workload_metadata_config
+	}
+
+	Container_cluster__node_pool__autoscaling struct {
+		Max_node_count int64
+		Min_node_count int64
+	}
+
+	Container_cluster__node_pool__management struct {
+		Auto_repair  *bool
+		Auto_upgrade *bool
+	}
+
+	Container_cluster__node_pool__node_config__guest_accelerator struct {
+		Count int64
+		Type  string
+	}
+
+	Container_cluster__node_pool__node_config__taint struct {
+		Effect string
+		Key    string
+		Value  string
+	}
+
+	Container_cluster__node_pool__node_config__workload_metadata_config struct {
+		Node_metadata string
+	}
+
+	Container_cluster__node_pool__node_config struct {
+		Disk_size_gb             *int64
+		Disk_type                *string
+		Guest_accelerator        *[]Container_cluster__node_pool__node_config__guest_accelerator
+		Image_type               *string
+		Labels                   *map[string]string
+		Local_ssd_count          *int64
+		Machine_type             *string
+		Metadata                 *map[string]string
+		Min_cpu_platform         *string
+		Oauth_scopes             *[]string
+		Preemptible              *bool
+		Service_account          *string
+		Tags                     *[]string
+		Taint                    *[]Container_cluster__node_pool__node_config__taint
+		Workload_metadata_config *[]Container_cluster__node_pool__node_config__workload_metadata_config
+	}
+
+	Container_cluster__node_pool struct {
+		Autoscaling         *[]Container_cluster__node_pool__autoscaling
+		Initial_node_count  *int64
+		Instance_group_urls *[]string
+		Management          *[]Container_cluster__node_pool__management
+		Max_pods_per_node   *int64
+		Name                *string
+		Name_prefix         *string
+		Node_config         *[]Container_cluster__node_pool__node_config
+		Node_count          *int64
+		Version             *string
+	}
+
+	Container_cluster__pod_security_policy_config struct {
+		Enabled bool
+	}
+
+	Container_cluster__private_cluster_config struct {
+		Enable_private_endpoint *bool
+		Enable_private_nodes    *bool
+		Master_ipv4_cidr_block  *string
+		Private_endpoint        *string
+		Public_endpoint         *string
+	}
+
+	Container_node_pool__autoscaling struct {
+		Max_node_count int64
+		Min_node_count int64
+	}
+
+	Container_node_pool__management struct {
+		Auto_repair  *bool
+		Auto_upgrade *bool
+	}
+
+	Container_node_pool__node_config__guest_accelerator struct {
+		Count int64
+		Type  string
+	}
+
+	Container_node_pool__node_config__taint struct {
+		Effect string
+		Key    string
+		Value  string
+	}
+
+	Container_node_pool__node_config__workload_metadata_config struct {
+		Node_metadata string
+	}
+
+	Container_node_pool__node_config struct {
+		Disk_size_gb             *int64
+		Disk_type                *string
+		Guest_accelerator        *[]Container_node_pool__node_config__guest_accelerator
+		Image_type               *string
+		Labels                   *map[string]string
+		Local_ssd_count          *int64
+		Machine_type             *string
+		Metadata                 *map[string]string
+		Min_cpu_platform         *string
+		Oauth_scopes             *[]string
+		Preemptible              *bool
+		Service_account          *string
+		Tags                     *[]string
+		Taint                    *[]Container_node_pool__node_config__taint
+		Workload_metadata_config *[]Container_node_pool__node_config__workload_metadata_config
+	}
+
+	Dataproc_cluster__cluster_config__gce_cluster_config struct {
+		Internal_ip_only       *bool
+		Metadata               *map[string]string
+		Network                *string
+		Service_account        *string
+		Service_account_scopes *[]string
+		Subnetwork             *string
+		Tags                   *[]string
+		Zone                   *string
+	}
+
+	Dataproc_cluster__cluster_config__initialization_action struct {
+		Script      string
+		Timeout_sec *int64
+	}
+
+	Dataproc_cluster__cluster_config__master_config__disk_config struct {
+		Boot_disk_size_gb *int64
+		Boot_disk_type    *string
+		Num_local_ssds    *int64
+	}
+
+	Dataproc_cluster__cluster_config__master_config struct {
+		Disk_config    *[]Dataproc_cluster__cluster_config__master_config__disk_config
+		Instance_names *[]string
+		Machine_type   *string
+		Num_instances  *int64
+	}
+
+	Dataproc_cluster__cluster_config__preemptible_worker_config__disk_config struct {
+		Boot_disk_size_gb *int64
+	}
+
+	Dataproc_cluster__cluster_config__preemptible_worker_config struct {
+		Disk_config    *[]Dataproc_cluster__cluster_config__preemptible_worker_config__disk_config
+		Instance_names *[]string
+		Num_instances  *int64
+	}
+
+	Dataproc_cluster__cluster_config__software_config struct {
+		Image_version       *string
+		Override_properties *map[string]string
+		Properties          *map[string]string
+	}
+
+	Dataproc_cluster__cluster_config__worker_config__disk_config struct {
+		Boot_disk_size_gb *int64
+		Boot_disk_type    *string
+		Num_local_ssds    *int64
+	}
+
+	Dataproc_cluster__cluster_config__worker_config struct {
+		Disk_config    *[]Dataproc_cluster__cluster_config__worker_config__disk_config
+		Instance_names *[]string
+		Machine_type   *string
+		Num_instances  *int64
+	}
+
+	Dataproc_cluster__cluster_config struct {
+		Bucket                    *string
+		Delete_autogen_bucket     *bool
+		Gce_cluster_config        *[]Dataproc_cluster__cluster_config__gce_cluster_config
+		Initialization_action     *[]Dataproc_cluster__cluster_config__initialization_action
+		Master_config             *[]Dataproc_cluster__cluster_config__master_config
+		Preemptible_worker_config *[]Dataproc_cluster__cluster_config__preemptible_worker_config
+		Software_config           *[]Dataproc_cluster__cluster_config__software_config
+		Staging_bucket            *string
+		Worker_config             *[]Dataproc_cluster__cluster_config__worker_config
+	}
+
+	Dataproc_job__hadoop_config__logging_config struct {
+		Driver_log_levels *map[string]string
+	}
+
+	Dataproc_job__hadoop_config struct {
+		Archive_uris      *[]string
+		Args              *[]string
+		File_uris         *[]string
+		Jar_file_uris     *[]string
+		Logging_config    *[]Dataproc_job__hadoop_config__logging_config
+		Main_class        *string
+		Main_jar_file_uri *string
+		Properties        *map[string]string
+	}
+
+	Dataproc_job__hive_config struct {
+		Continue_on_failure *bool
+		Jar_file_uris       *[]string
+		Properties          *map[string]string
+		Query_file_uri      *string
+		Query_list          *[]string
+		Script_variables    *map[string]string
+	}
+
+	Dataproc_job__pig_config__logging_config struct {
+		Driver_log_levels *map[string]string
+	}
+
+	Dataproc_job__pig_config struct {
+		Continue_on_failure *bool
+		Jar_file_uris       *[]string
+		Logging_config      *[]Dataproc_job__pig_config__logging_config
+		Properties          *map[string]string
+		Query_file_uri      *string
+		Query_list          *[]string
+		Script_variables    *map[string]string
+	}
+
+	Dataproc_job__placement struct {
+		Cluster_name string
+		Cluster_uuid *string
+	}
+
+	Dataproc_job__pyspark_config__logging_config struct {
+		Driver_log_levels *map[string]string
+	}
+
+	Dataproc_job__pyspark_config struct {
+		Archive_uris         *[]string
+		Args                 *[]string
+		File_uris            *[]string
+		Jar_file_uris        *[]string
+		Logging_config       *[]Dataproc_job__pyspark_config__logging_config
+		Main_python_file_uri string
+		Properties           *map[string]string
+		Python_file_uris     *[]string
+	}
+
+	Dataproc_job__reference struct {
+		Job_id *string
+	}
+
+	Dataproc_job__scheduling struct {
+		Max_failures_per_hour *int64
+	}
+
+	Dataproc_job__spark_config__logging_config struct {
+		Driver_log_levels *map[string]string
+	}
+
+	Dataproc_job__spark_config struct {
+		Archive_uris      *[]string
+		Args              *[]string
+		File_uris         *[]string
+		Jar_file_uris     *[]string
+		Logging_config    *[]Dataproc_job__spark_config__logging_config
+		Main_class        *string
+		Main_jar_file_uri *string
+		Properties        *map[string]string
+	}
+
+	Dataproc_job__sparksql_config__logging_config struct {
+		Driver_log_levels *map[string]string
+	}
+
+	Dataproc_job__sparksql_config struct {
+		Jar_file_uris    *[]string
+		Logging_config   *[]Dataproc_job__sparksql_config__logging_config
+		Properties       *map[string]string
+		Query_file_uri   *string
+		Query_list       *[]string
+		Script_variables *map[string]string
+	}
+
+	Dataproc_job__status struct {
+		Details          *string
+		State            *string
+		State_start_time *string
+		Substate         *string
+	}
+
+	Endpoints_service__apis__methods struct {
+		Name          *string
+		Request_type  *string
+		Response_type *string
+		Syntax        *string
+	}
+
+	Endpoints_service__apis struct {
+		Methods *[]Endpoints_service__apis__methods
+		Name    *string
+		Syntax  *string
+		Version *string
+	}
+
+	Endpoints_service__endpoints struct {
+		Address *string
+		Name    *string
+	}
+
+	Filestore_instance__file_shares struct {
+		Capacity_gb int64
+		Name        string
+	}
+
+	Filestore_instance__networks struct {
+		Ip_addresses      *[]string
+		Modes             []string
+		Network           string
+		Reserved_ip_range *string
+	}
+
+	Folder_organization_policy__boolean_policy struct {
+		Enforced bool
+	}
+
+	Folder_organization_policy__list_policy__allow struct {
+		All    *bool
+		Values *[]string
+	}
+
+	Folder_organization_policy__list_policy__deny struct {
+		All    *bool
+		Values *[]string
+	}
+
+	Folder_organization_policy__list_policy struct {
+		Allow           *[]Folder_organization_policy__list_policy__allow
+		Deny            *[]Folder_organization_policy__list_policy__deny
+		Suggested_value *string
+	}
+
+	Folder_organization_policy__restore_policy struct {
+		Default bool
+	}
+
+	Monitoring_alert_policy__conditions__condition_absent__aggregations struct {
+		Alignment_period     *string
+		Cross_series_reducer *string
+		Group_by_fields      *[]string
+		Per_series_aligner   *string
+	}
+
+	Monitoring_alert_policy__conditions__condition_absent__trigger struct {
+		Count   *int64
+		Percent *float64
+	}
+
+	Monitoring_alert_policy__conditions__condition_absent struct {
+		Aggregations *[]Monitoring_alert_policy__conditions__condition_absent__aggregations
+		Duration     string
+		Filter       *string
+		Trigger      *[]Monitoring_alert_policy__conditions__condition_absent__trigger
+	}
+
+	Monitoring_alert_policy__conditions__condition_threshold__aggregations struct {
+		Alignment_period     *string
+		Cross_series_reducer *string
+		Group_by_fields      *[]string
+		Per_series_aligner   *string
+	}
+
+	Monitoring_alert_policy__conditions__condition_threshold__denominator_aggregations struct {
+		Alignment_period     *string
+		Cross_series_reducer *string
+		Group_by_fields      *[]string
+		Per_series_aligner   *string
+	}
+
+	Monitoring_alert_policy__conditions__condition_threshold__trigger struct {
+		Count   *int64
+		Percent *float64
+	}
+
+	Monitoring_alert_policy__conditions__condition_threshold struct {
+		Aggregations             *[]Monitoring_alert_policy__conditions__condition_threshold__aggregations
+		Comparison               string
+		Denominator_aggregations *[]Monitoring_alert_policy__conditions__condition_threshold__denominator_aggregations
+		Denominator_filter       *string
+		Duration                 string
+		Filter                   *string
+		Threshold_value          *float64
+		Trigger                  *[]Monitoring_alert_policy__conditions__condition_threshold__trigger
+	}
+
+	Monitoring_alert_policy__conditions struct {
+		Condition_absent    *[]Monitoring_alert_policy__conditions__condition_absent
+		Condition_threshold *[]Monitoring_alert_policy__conditions__condition_threshold
+		Display_name        string
+		Name                *string
+	}
+
+	Monitoring_alert_policy__creation_record struct {
+		Mutate_time *string
+		Mutated_by  *string
+	}
+
+	Monitoring_uptime_check_config__content_matchers struct {
+		Content *string
+	}
+
+	Monitoring_uptime_check_config__http_check__auth_info struct {
+		Password *string
+		Username *string
+	}
+
+	Monitoring_uptime_check_config__http_check struct {
+		Auth_info    *[]Monitoring_uptime_check_config__http_check__auth_info
+		Headers      *map[string]string
+		Mask_headers *bool
+		Path         *string
+		Port         *int64
+		Use_ssl      *bool
+	}
+
+	Monitoring_uptime_check_config__internal_checkers struct {
+		Display_name    *string
+		Gcp_zone        *string
+		Name            *string
+		Network         *string
+		Peer_project_id *string
+	}
+
+	Monitoring_uptime_check_config__monitored_resource struct {
+		Labels map[string]string
+		Type   string
+	}
+
+	Monitoring_uptime_check_config__resource_group struct {
+		Group_id      *string
+		Resource_type *string
+	}
+
+	Monitoring_uptime_check_config__tcp_check struct {
+		Port int64
+	}
+
+	Organization_policy__boolean_policy struct {
+		Enforced bool
+	}
+
+	Organization_policy__list_policy__allow struct {
+		All    *bool
+		Values *[]string
+	}
+
+	Organization_policy__list_policy__deny struct {
+		All    *bool
+		Values *[]string
+	}
+
+	Organization_policy__list_policy struct {
+		Allow           *[]Organization_policy__list_policy__allow
+		Deny            *[]Organization_policy__list_policy__deny
+		Suggested_value *string
+	}
+
+	Organization_policy__restore_policy struct {
+		Default bool
+	}
+
+	Project__app_engine__feature_settings struct {
+		Split_health_checks *bool
+	}
+
+	Project__app_engine__url_dispatch_rule struct {
+		Domain  *string
+		Path    *string
+		Service *string
+	}
+
+	Project__app_engine struct {
+		Auth_domain       *string
+		Code_bucket       *string
+		Default_bucket    *string
+		Default_hostname  *string
+		Feature_settings  *[]Project__app_engine__feature_settings
+		Gcr_domain        *string
+		Location_id       *string
+		Name              *string
+		Serving_status    *string
+		Url_dispatch_rule *[]Project__app_engine__url_dispatch_rule
+	}
+
+	Project_organization_policy__boolean_policy struct {
+		Enforced bool
+	}
+
+	Project_organization_policy__list_policy__allow struct {
+		All    *bool
+		Values *[]string
+	}
+
+	Project_organization_policy__list_policy__deny struct {
+		All    *bool
+		Values *[]string
+	}
+
+	Project_organization_policy__list_policy struct {
+		Allow           *[]Project_organization_policy__list_policy__allow
+		Deny            *[]Project_organization_policy__list_policy__deny
+		Suggested_value *string
+	}
+
+	Project_organization_policy__restore_policy struct {
+		Default bool
+	}
+
+	Pubsub_subscription__push_config struct {
+		Attributes    *map[string]string
+		Push_endpoint string
+	}
+
+	Sql_database_instance__ip_address struct {
+		Ip_address     *string
+		Time_to_retire *string
+	}
+
+	Sql_database_instance__replica_configuration struct {
+		Ca_certificate            *string
+		Client_certificate        *string
+		Client_key                *string
+		Connect_retry_interval    *int64
+		Dump_file_path            *string
+		Failover_target           *bool
+		Master_heartbeat_period   *int64
+		Password                  *string
+		Ssl_cipher                *string
+		Username                  *string
+		Verify_server_certificate *bool
+	}
+
+	Sql_database_instance__server_ca_cert struct {
+		Cert             *string
+		Common_name      *string
+		Create_time      *string
+		Expiration_time  *string
+		Sha1_fingerprint *string
+	}
+
+	Sql_database_instance__settings__backup_configuration struct {
+		Binary_log_enabled *bool
+		Enabled            *bool
+		Start_time         *string
+	}
+
+	Sql_database_instance__settings__database_flags struct {
+		Name  *string
+		Value *string
+	}
+
+	Sql_database_instance__settings__ip_configuration__authorized_networks struct {
+		Expiration_time *string
+		Name            *string
+		Value           *string
+	}
+
+	Sql_database_instance__settings__ip_configuration struct {
+		Authorized_networks *[]Sql_database_instance__settings__ip_configuration__authorized_networks
+		Ipv4_enabled        *bool
+		Private_network     *string
+		Require_ssl         *bool
+	}
+
+	Sql_database_instance__settings__location_preference struct {
+		Follow_gae_application *string
+		Zone                   *string
+	}
+
+	Sql_database_instance__settings__maintenance_window struct {
+		Day          *int64
+		Hour         *int64
+		Update_track *string
+	}
+
+	Sql_database_instance__settings struct {
+		Activation_policy           *string
+		Authorized_gae_applications *[]string
+		Availability_type           *string
+		Backup_configuration        *[]Sql_database_instance__settings__backup_configuration
+		Crash_safe_replication      *bool
+		Database_flags              *[]Sql_database_instance__settings__database_flags
+		Disk_autoresize             *bool
+		Disk_size                   *int64
+		Disk_type                   *string
+		Ip_configuration            *[]Sql_database_instance__settings__ip_configuration
+		Location_preference         *[]Sql_database_instance__settings__location_preference
+		Maintenance_window          *[]Sql_database_instance__settings__maintenance_window
+		Pricing_plan                *string
+		Replication_type            *string
+		Tier                        string
+		User_labels                 *map[string]string
+		Version                     *int64
+	}
+
+	Storage_bucket__cors struct {
+		Max_age_seconds *int64
+		Method          *[]string
+		Origin          *[]string
+		Response_header *[]string
+	}
+
+	Storage_bucket__encryption struct {
+		Default_kms_key_name string
+	}
+
+	Storage_bucket__lifecycle_rule__action struct {
+		Storage_class *string
+		Type          string
+	}
+
+	Storage_bucket__lifecycle_rule__condition struct {
+		Age                   *int64
+		Created_before        *string
+		Is_live               *bool
+		Matches_storage_class *[]string
+		Num_newer_versions    *int64
+	}
+
+	Storage_bucket__lifecycle_rule struct {
+		Action    []Storage_bucket__lifecycle_rule__action
+		Condition []Storage_bucket__lifecycle_rule__condition
+	}
+
+	Storage_bucket__logging struct {
+		Log_bucket        string
+		Log_object_prefix *string
+	}
+
+	Storage_bucket__versioning struct {
+		Enabled *bool
+	}
+
+	Storage_bucket__website struct {
+		Main_page_suffix *string
+		Not_found_page   *string
+	}
+
+	Storage_default_object_access_control__project_team struct {
+		Project_number *string
+		Team           *string
+	}
+
+	Storage_object_access_control__project_team struct {
+		Project_number *string
+		Team           *string
+	}
+)
+
 func Initialize(sb *service.Builder, p *schema.Provider) {
-	var evs []px.Type
+	// Generic handler API
 	sb.RegisterAPI("TerraformGoogle::GenericHandler", bridge.NewTFHandler(nil, "", nil))
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_app_engine_application{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("auth_domain", "code_bucket", "default_bucket", "default_hostname", "feature_settings", "gcr_domain", "name", "project", "serving_status", "url_dispatch_rule")
+	// Registration of resource types with handler
+	var rt px.Type
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&App_engine_application{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("app_engine_applicationID", "auth_domain", "code_bucket", "default_bucket", "default_hostname", "feature_settings", "gcr_domain", "name", "project", "serving_status", "url_dispatch_rule")
 		b.ImmutableAttributes("project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_app_engine_applicationHandler", bridge.NewTFHandler(p, "google_app_engine_application", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::App_engine_applicationHandler", bridge.NewTFHandler(p, "google_app_engine_application", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_bigquery_dataset{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("access", "creation_time", "etag", "last_modified_time", "project", "self_link")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Bigquery_dataset{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("bigquery_datasetID", "access", "creation_time", "etag", "last_modified_time", "project", "self_link")
 		b.ImmutableAttributes("dataset_id", "location", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_bigquery_datasetHandler", bridge.NewTFHandler(p, "google_bigquery_dataset", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Bigquery_datasetHandler", bridge.NewTFHandler(p, "google_bigquery_dataset", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_bigquery_table{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_time", "etag", "expiration_time", "last_modified_time", "location", "num_bytes", "num_long_term_bytes", "num_rows", "project", "schema", "self_link", "type")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Bigquery_table{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("bigquery_tableID", "creation_time", "etag", "expiration_time", "last_modified_time", "location", "num_bytes", "num_long_term_bytes", "num_rows", "project", "schema", "self_link", "type")
 		b.ImmutableAttributes("dataset_id", "project", "table_id")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_bigquery_tableHandler", bridge.NewTFHandler(p, "google_bigquery_table", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Bigquery_tableHandler", bridge.NewTFHandler(p, "google_bigquery_table", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_bigtable_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("display_name", "project", "zone")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Bigtable_instance{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("bigtable_instanceID", "display_name", "project", "zone")
 		b.ImmutableAttributes("display_name", "instance_type", "name", "project", "zone")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_bigtable_instanceHandler", bridge.NewTFHandler(p, "google_bigtable_instance", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Bigtable_instanceHandler", bridge.NewTFHandler(p, "google_bigtable_instance", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_bigtable_table{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Bigtable_table{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("bigtable_tableID", "project")
 		b.ImmutableAttributes("instance_name", "name", "project", "split_keys")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_bigtable_tableHandler", bridge.NewTFHandler(p, "google_bigtable_table", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Bigtable_tableHandler", bridge.NewTFHandler(p, "google_bigtable_table", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_billing_account_iam_binding{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Billing_account_iam_binding{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("billing_account_iam_bindingID", "etag")
 		b.ImmutableAttributes("billing_account_id", "role")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_billing_account_iam_bindingHandler", bridge.NewTFHandler(p, "google_billing_account_iam_binding", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Billing_account_iam_bindingHandler", bridge.NewTFHandler(p, "google_billing_account_iam_binding", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_billing_account_iam_member{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Billing_account_iam_member{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("billing_account_iam_memberID", "etag")
 		b.ImmutableAttributes("billing_account_id", "member", "role")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_billing_account_iam_memberHandler", bridge.NewTFHandler(p, "google_billing_account_iam_member", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Billing_account_iam_memberHandler", bridge.NewTFHandler(p, "google_billing_account_iam_member", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_billing_account_iam_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Billing_account_iam_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("billing_account_iam_policyID", "etag")
 		b.ImmutableAttributes("billing_account_id")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_billing_account_iam_policyHandler", bridge.NewTFHandler(p, "google_billing_account_iam_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Billing_account_iam_policyHandler", bridge.NewTFHandler(p, "google_billing_account_iam_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_binary_authorization_attestor{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Binary_authorization_attestor{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("binary_authorization_attestorID", "project")
 		b.ImmutableAttributes("name", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_binary_authorization_attestorHandler", bridge.NewTFHandler(p, "google_binary_authorization_attestor", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Binary_authorization_attestorHandler", bridge.NewTFHandler(p, "google_binary_authorization_attestor", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_binary_authorization_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Binary_authorization_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("binary_authorization_policyID", "project")
 		b.ImmutableAttributes("project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_binary_authorization_policyHandler", bridge.NewTFHandler(p, "google_binary_authorization_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Binary_authorization_policyHandler", bridge.NewTFHandler(p, "google_binary_authorization_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_cloudbuild_trigger{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Cloudbuild_trigger{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cloudbuild_triggerID", "project")
 		b.ImmutableAttributes("build", "description", "filename", "project", "substitutions", "trigger_template")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_cloudbuild_triggerHandler", bridge.NewTFHandler(p, "google_cloudbuild_trigger", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Cloudbuild_triggerHandler", bridge.NewTFHandler(p, "google_cloudbuild_trigger", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_cloudfunctions_function{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("event_trigger", "https_trigger_url", "project", "region", "retry_on_failure", "runtime", "trigger_bucket", "trigger_topic")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Cloudfunctions_function{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cloudfunctions_functionID", "event_trigger", "https_trigger_url", "project", "region", "retry_on_failure", "runtime", "trigger_bucket", "trigger_topic")
 		b.ImmutableAttributes("entry_point", "name", "project", "region", "trigger_http")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_cloudfunctions_functionHandler", bridge.NewTFHandler(p, "google_cloudfunctions_function", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Cloudfunctions_functionHandler", bridge.NewTFHandler(p, "google_cloudfunctions_function", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_cloudiot_registry{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("http_config", "mqtt_config", "project", "region")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Cloudiot_registry{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cloudiot_registryID", "http_config", "mqtt_config", "project", "region")
 		b.ImmutableAttributes("name", "project", "region")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_cloudiot_registryHandler", bridge.NewTFHandler(p, "google_cloudiot_registry", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Cloudiot_registryHandler", bridge.NewTFHandler(p, "google_cloudiot_registry", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_composer_environment{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("config", "project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Composer_environment{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("composer_environmentID", "config", "project")
 		b.ImmutableAttributes("name", "project", "region")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_composer_environmentHandler", bridge.NewTFHandler(p, "google_composer_environment", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Composer_environmentHandler", bridge.NewTFHandler(p, "google_composer_environment", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_address{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("address", "creation_timestamp", "label_fingerprint", "network_tier", "project", "region", "self_link", "subnetwork", "users")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_address{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_addressID", "address", "creation_timestamp", "label_fingerprint", "network_tier", "project", "region", "self_link", "subnetwork", "users")
 		b.ImmutableAttributes("address", "address_type", "description", "name", "network_tier", "project", "region", "subnetwork")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_addressHandler", bridge.NewTFHandler(p, "google_compute_address", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_addressHandler", bridge.NewTFHandler(p, "google_compute_address", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_attached_disk{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("device_name", "project", "zone")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_attached_disk{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_attached_diskID", "device_name", "project", "zone")
 		b.ImmutableAttributes("device_name", "disk", "instance", "mode", "project", "zone")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_attached_diskHandler", bridge.NewTFHandler(p, "google_compute_attached_disk", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_attached_diskHandler", bridge.NewTFHandler(p, "google_compute_attached_disk", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_autoscaler{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "project", "self_link", "zone")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_autoscaler{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_autoscalerID", "creation_timestamp", "project", "self_link", "zone")
 		b.ImmutableAttributes("name", "project", "zone")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_autoscalerHandler", bridge.NewTFHandler(p, "google_compute_autoscaler", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_autoscalerHandler", bridge.NewTFHandler(p, "google_compute_autoscaler", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_backend_bucket{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "project", "self_link")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_backend_bucket{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_backend_bucketID", "creation_timestamp", "project", "self_link")
 		b.ImmutableAttributes("name", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_backend_bucketHandler", bridge.NewTFHandler(p, "google_compute_backend_bucket", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_backend_bucketHandler", bridge.NewTFHandler(p, "google_compute_backend_bucket", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_backend_service{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("cdn_policy", "fingerprint", "port_name", "project", "protocol", "self_link", "session_affinity", "timeout_sec")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_backend_service{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_backend_serviceID", "cdn_policy", "fingerprint", "port_name", "project", "protocol", "self_link", "session_affinity", "timeout_sec")
 		b.ImmutableAttributes("name", "project", "region")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_backend_serviceHandler", bridge.NewTFHandler(p, "google_compute_backend_service", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_backend_serviceHandler", bridge.NewTFHandler(p, "google_compute_backend_service", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_disk{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "disk_encryption_key", "disk_encryption_key_sha256", "label_fingerprint", "last_attach_timestamp", "last_detach_timestamp", "project", "self_link", "size", "source_image_id", "source_snapshot_id", "users", "zone")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_disk{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_diskID", "creation_timestamp", "disk_encryption_key", "disk_encryption_key_sha256", "label_fingerprint", "last_attach_timestamp", "last_detach_timestamp", "project", "self_link", "size", "source_image_id", "source_snapshot_id", "users", "zone")
 		b.ImmutableAttributes("description", "disk_encryption_key", "image", "name", "project", "snapshot", "source_image_encryption_key", "source_snapshot_encryption_key", "type", "zone")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_diskHandler", bridge.NewTFHandler(p, "google_compute_disk", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_diskHandler", bridge.NewTFHandler(p, "google_compute_disk", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_firewall{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "destination_ranges", "direction", "project", "self_link", "source_ranges")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_firewall{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_firewallID", "creation_timestamp", "destination_ranges", "direction", "project", "self_link", "source_ranges")
 		b.ImmutableAttributes("name", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_firewallHandler", bridge.NewTFHandler(p, "google_compute_firewall", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_firewallHandler", bridge.NewTFHandler(p, "google_compute_firewall", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_forwarding_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "ip_address", "ip_protocol", "label_fingerprint", "network", "network_tier", "project", "region", "self_link", "service_name", "subnetwork")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_forwarding_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_forwarding_ruleID", "creation_timestamp", "ip_address", "ip_protocol", "label_fingerprint", "network", "network_tier", "project", "region", "self_link", "service_name", "subnetwork")
 		b.ImmutableAttributes("backend_service", "description", "ip_address", "ip_protocol", "ip_version", "load_balancing_scheme", "name", "network", "network_tier", "port_range", "ports", "project", "region", "service_label", "subnetwork")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_forwarding_ruleHandler", bridge.NewTFHandler(p, "google_compute_forwarding_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_forwarding_ruleHandler", bridge.NewTFHandler(p, "google_compute_forwarding_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_global_address{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("address", "creation_timestamp", "label_fingerprint", "project", "self_link")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_global_address{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_global_addressID", "address", "creation_timestamp", "label_fingerprint", "project", "self_link")
 		b.ImmutableAttributes("address_type", "description", "ip_version", "name", "network", "prefix_length", "project", "purpose")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_global_addressHandler", bridge.NewTFHandler(p, "google_compute_global_address", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_global_addressHandler", bridge.NewTFHandler(p, "google_compute_global_address", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_global_forwarding_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("ip_address", "ip_protocol", "label_fingerprint", "project", "self_link")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_global_forwarding_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_global_forwarding_ruleID", "ip_address", "ip_protocol", "label_fingerprint", "project", "self_link")
 		b.ImmutableAttributes("description", "ip_address", "ip_protocol", "ip_version", "name", "port_range", "project", "region")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_global_forwarding_ruleHandler", bridge.NewTFHandler(p, "google_compute_global_forwarding_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_global_forwarding_ruleHandler", bridge.NewTFHandler(p, "google_compute_global_forwarding_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_health_check{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "project", "self_link", "type")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_health_check{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_health_checkID", "creation_timestamp", "project", "self_link", "type")
 		b.ImmutableAttributes("name", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_health_checkHandler", bridge.NewTFHandler(p, "google_compute_health_check", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_health_checkHandler", bridge.NewTFHandler(p, "google_compute_health_check", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_http_health_check{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "project", "self_link")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_http_health_check{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_http_health_checkID", "creation_timestamp", "project", "self_link")
 		b.ImmutableAttributes("name", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_http_health_checkHandler", bridge.NewTFHandler(p, "google_compute_http_health_check", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_http_health_checkHandler", bridge.NewTFHandler(p, "google_compute_http_health_check", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_https_health_check{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "project", "self_link")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_https_health_check{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_https_health_checkID", "creation_timestamp", "project", "self_link")
 		b.ImmutableAttributes("name", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_https_health_checkHandler", bridge.NewTFHandler(p, "google_compute_https_health_check", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_https_health_checkHandler", bridge.NewTFHandler(p, "google_compute_https_health_check", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_image{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("label_fingerprint", "licenses", "project", "self_link")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_image{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_imageID", "label_fingerprint", "licenses", "project", "self_link")
 		b.ImmutableAttributes("description", "family", "licenses", "name", "project", "raw_disk", "source_disk")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_imageHandler", bridge.NewTFHandler(p, "google_compute_image", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_imageHandler", bridge.NewTFHandler(p, "google_compute_image", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("cpu_platform", "guest_accelerator", "instance_id", "label_fingerprint", "metadata_fingerprint", "project", "scheduling", "self_link", "tags_fingerprint", "zone")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_instance{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_instanceID", "cpu_platform", "guest_accelerator", "instance_id", "label_fingerprint", "metadata_fingerprint", "project", "scheduling", "self_link", "tags_fingerprint", "zone")
 		b.ImmutableAttributes("boot_disk", "can_ip_forward", "description", "disk", "guest_accelerator", "metadata_startup_script", "name", "network", "network_interface", "project", "scratch_disk", "zone")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_instanceHandler", bridge.NewTFHandler(p, "google_compute_instance", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_instanceHandler", bridge.NewTFHandler(p, "google_compute_instance", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_instance_from_template{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allow_stopping_for_update", "attached_disk", "boot_disk", "can_ip_forward", "cpu_platform", "deletion_protection", "description", "guest_accelerator", "instance_id", "label_fingerprint", "labels", "machine_type", "metadata", "metadata_fingerprint", "metadata_startup_script", "min_cpu_platform", "network_interface", "project", "scheduling", "scratch_disk", "self_link", "service_account", "tags", "tags_fingerprint", "zone")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_instance_from_template{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_instance_from_templateID", "allow_stopping_for_update", "attached_disk", "boot_disk", "can_ip_forward", "cpu_platform", "deletion_protection", "description", "guest_accelerator", "instance_id", "label_fingerprint", "labels", "machine_type", "metadata", "metadata_fingerprint", "metadata_startup_script", "min_cpu_platform", "network_interface", "project", "scheduling", "scratch_disk", "self_link", "service_account", "tags", "tags_fingerprint", "zone")
 		b.ImmutableAttributes("boot_disk", "can_ip_forward", "description", "guest_accelerator", "metadata_startup_script", "name", "network_interface", "project", "scratch_disk", "source_instance_template", "zone")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_instance_from_templateHandler", bridge.NewTFHandler(p, "google_compute_instance_from_template", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_instance_from_templateHandler", bridge.NewTFHandler(p, "google_compute_instance_from_template", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_instance_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("instances", "network", "project", "self_link", "size", "zone")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_instance_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_instance_groupID", "instances", "network", "project", "self_link", "size", "zone")
 		b.ImmutableAttributes("description", "name", "network", "project", "zone")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_instance_groupHandler", bridge.NewTFHandler(p, "google_compute_instance_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_instance_groupHandler", bridge.NewTFHandler(p, "google_compute_instance_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_instance_group_manager{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("fingerprint", "instance_group", "project", "self_link", "target_size", "version", "zone")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_instance_group_manager{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_instance_group_managerID", "fingerprint", "instance_group", "project", "self_link", "target_size", "version", "zone")
 		b.ImmutableAttributes("base_instance_name", "description", "name", "project", "zone")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_instance_group_managerHandler", bridge.NewTFHandler(p, "google_compute_instance_group_manager", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_instance_group_managerHandler", bridge.NewTFHandler(p, "google_compute_instance_group_manager", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_instance_template{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("metadata_fingerprint", "name", "name_prefix", "project", "region", "scheduling", "self_link", "tags_fingerprint")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_instance_template{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_instance_templateID", "metadata_fingerprint", "name", "name_prefix", "project", "region", "scheduling", "self_link", "tags_fingerprint")
 		b.ImmutableAttributes("automatic_restart", "can_ip_forward", "description", "disk", "guest_accelerator", "instance_description", "labels", "machine_type", "metadata", "metadata_startup_script", "min_cpu_platform", "name", "name_prefix", "network_interface", "on_host_maintenance", "project", "region", "scheduling", "service_account", "tags")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_instance_templateHandler", bridge.NewTFHandler(p, "google_compute_instance_template", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_instance_templateHandler", bridge.NewTFHandler(p, "google_compute_instance_template", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_interconnect_attachment{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("cloud_router_ip_address", "creation_timestamp", "customer_router_ip_address", "google_reference_id", "private_interconnect_info", "project", "region", "self_link")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_interconnect_attachment{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_interconnect_attachmentID", "cloud_router_ip_address", "creation_timestamp", "customer_router_ip_address", "google_reference_id", "private_interconnect_info", "project", "region", "self_link")
 		b.ImmutableAttributes("description", "interconnect", "name", "project", "region", "router")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_interconnect_attachmentHandler", bridge.NewTFHandler(p, "google_compute_interconnect_attachment", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_interconnect_attachmentHandler", bridge.NewTFHandler(p, "google_compute_interconnect_attachment", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_network{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("gateway_ipv4", "project", "routing_mode", "self_link")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_network{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_networkID", "gateway_ipv4", "project", "routing_mode", "self_link")
 		b.ImmutableAttributes("auto_create_subnetworks", "description", "ipv4_range", "name", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_networkHandler", bridge.NewTFHandler(p, "google_compute_network", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_networkHandler", bridge.NewTFHandler(p, "google_compute_network", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_network_peering{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("state", "state_details")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_network_peering{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_network_peeringID", "state", "state_details")
 		b.ImmutableAttributes("auto_create_routes", "name", "network", "peer_network")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_network_peeringHandler", bridge.NewTFHandler(p, "google_compute_network_peering", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_network_peeringHandler", bridge.NewTFHandler(p, "google_compute_network_peering", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_project_metadata{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_project_metadata{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_project_metadataID", "project")
 		b.ImmutableAttributes("project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_project_metadataHandler", bridge.NewTFHandler(p, "google_compute_project_metadata", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_project_metadataHandler", bridge.NewTFHandler(p, "google_compute_project_metadata", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_project_metadata_item{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_project_metadata_item{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_project_metadata_itemID", "project")
 		b.ImmutableAttributes("key", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_project_metadata_itemHandler", bridge.NewTFHandler(p, "google_compute_project_metadata_item", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_project_metadata_itemHandler", bridge.NewTFHandler(p, "google_compute_project_metadata_item", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_region_autoscaler{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "project", "region", "self_link")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_region_autoscaler{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_region_autoscalerID", "creation_timestamp", "project", "region", "self_link")
 		b.ImmutableAttributes("name", "project", "region")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_region_autoscalerHandler", bridge.NewTFHandler(p, "google_compute_region_autoscaler", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_region_autoscalerHandler", bridge.NewTFHandler(p, "google_compute_region_autoscaler", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_region_backend_service{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("fingerprint", "project", "protocol", "region", "self_link", "session_affinity", "timeout_sec")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_region_backend_service{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_region_backend_serviceID", "fingerprint", "project", "protocol", "region", "self_link", "session_affinity", "timeout_sec")
 		b.ImmutableAttributes("name", "project", "region")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_region_backend_serviceHandler", bridge.NewTFHandler(p, "google_compute_region_backend_service", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_region_backend_serviceHandler", bridge.NewTFHandler(p, "google_compute_region_backend_service", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_region_disk{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "label_fingerprint", "last_attach_timestamp", "last_detach_timestamp", "project", "region", "self_link", "size", "source_snapshot_id", "users")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_region_disk{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_region_diskID", "creation_timestamp", "label_fingerprint", "last_attach_timestamp", "last_detach_timestamp", "project", "region", "self_link", "size", "source_snapshot_id", "users")
 		b.ImmutableAttributes("description", "disk_encryption_key", "name", "project", "region", "replica_zones", "snapshot", "source_snapshot_encryption_key", "type")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_region_diskHandler", bridge.NewTFHandler(p, "google_compute_region_disk", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_region_diskHandler", bridge.NewTFHandler(p, "google_compute_region_disk", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_region_instance_group_manager{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("distribution_policy_zones", "fingerprint", "instance_group", "project", "self_link", "target_size", "version")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_region_instance_group_manager{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_region_instance_group_managerID", "distribution_policy_zones", "fingerprint", "instance_group", "project", "self_link", "target_size", "version")
 		b.ImmutableAttributes("base_instance_name", "description", "distribution_policy_zones", "name", "project", "region")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_region_instance_group_managerHandler", bridge.NewTFHandler(p, "google_compute_region_instance_group_manager", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_region_instance_group_managerHandler", bridge.NewTFHandler(p, "google_compute_region_instance_group_manager", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_route{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("next_hop_network", "project", "self_link")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_route{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_routeID", "next_hop_network", "project", "self_link")
 		b.ImmutableAttributes("description", "dest_range", "name", "network", "next_hop_gateway", "next_hop_instance", "next_hop_instance_zone", "next_hop_ip", "next_hop_vpn_tunnel", "priority", "project", "tags")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_routeHandler", bridge.NewTFHandler(p, "google_compute_route", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_routeHandler", bridge.NewTFHandler(p, "google_compute_route", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_router{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "project", "region", "self_link")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_router{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_routerID", "creation_timestamp", "project", "region", "self_link")
 		b.ImmutableAttributes("name", "network", "project", "region")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_routerHandler", bridge.NewTFHandler(p, "google_compute_router", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_routerHandler", bridge.NewTFHandler(p, "google_compute_router", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_router_interface{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("project", "region")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_router_interface{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_router_interfaceID", "project", "region")
 		b.ImmutableAttributes("ip_range", "name", "project", "region", "router", "vpn_tunnel")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_router_interfaceHandler", bridge.NewTFHandler(p, "google_compute_router_interface", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_router_interfaceHandler", bridge.NewTFHandler(p, "google_compute_router_interface", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_router_nat{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("project", "region")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_router_nat{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_router_natID", "project", "region")
 		b.ImmutableAttributes("icmp_idle_timeout_sec", "min_ports_per_vm", "name", "nat_ip_allocate_option", "nat_ips", "project", "region", "router", "source_subnetwork_ip_ranges_to_nat", "subnetwork", "tcp_established_idle_timeout_sec", "tcp_transitory_idle_timeout_sec", "udp_idle_timeout_sec")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_router_natHandler", bridge.NewTFHandler(p, "google_compute_router_nat", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_router_natHandler", bridge.NewTFHandler(p, "google_compute_router_nat", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_router_peer{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("ip_address", "project", "region")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_router_peer{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_router_peerID", "ip_address", "project", "region")
 		b.ImmutableAttributes("advertised_route_priority", "interface", "name", "peer_asn", "peer_ip_address", "project", "region", "router")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_router_peerHandler", bridge.NewTFHandler(p, "google_compute_router_peer", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_router_peerHandler", bridge.NewTFHandler(p, "google_compute_router_peer", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_security_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("fingerprint", "project", "rule", "self_link")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_security_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_security_policyID", "fingerprint", "project", "rule", "self_link")
 		b.ImmutableAttributes("name", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_security_policyHandler", bridge.NewTFHandler(p, "google_compute_security_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_security_policyHandler", bridge.NewTFHandler(p, "google_compute_security_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_shared_vpc_host_project{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_shared_vpc_host_project{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_shared_vpc_host_projectID")
 		b.ImmutableAttributes("project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_shared_vpc_host_projectHandler", bridge.NewTFHandler(p, "google_compute_shared_vpc_host_project", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_shared_vpc_host_projectHandler", bridge.NewTFHandler(p, "google_compute_shared_vpc_host_project", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_shared_vpc_service_project{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_shared_vpc_service_project{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_shared_vpc_service_projectID")
 		b.ImmutableAttributes("host_project", "service_project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_shared_vpc_service_projectHandler", bridge.NewTFHandler(p, "google_compute_shared_vpc_service_project", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_shared_vpc_service_projectHandler", bridge.NewTFHandler(p, "google_compute_shared_vpc_service_project", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_snapshot{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "disk_size_gb", "label_fingerprint", "licenses", "project", "self_link", "snapshot_encryption_key", "snapshot_encryption_key_sha256", "snapshot_id", "source_disk_encryption_key_sha256", "source_disk_link", "storage_bytes", "zone")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_snapshot{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_snapshotID", "creation_timestamp", "disk_size_gb", "label_fingerprint", "licenses", "project", "self_link", "snapshot_encryption_key", "snapshot_encryption_key_sha256", "snapshot_id", "source_disk_encryption_key_sha256", "source_disk_link", "storage_bytes", "zone")
 		b.ImmutableAttributes("description", "name", "project", "source_disk", "zone")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_snapshotHandler", bridge.NewTFHandler(p, "google_compute_snapshot", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_snapshotHandler", bridge.NewTFHandler(p, "google_compute_snapshot", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_ssl_certificate{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("certificate_id", "creation_timestamp", "name", "name_prefix", "project", "self_link")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_ssl_certificate{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_ssl_certificateID", "certificate_id", "creation_timestamp", "name", "name_prefix", "project", "self_link")
 		b.ImmutableAttributes("certificate", "description", "name", "name_prefix", "private_key", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_ssl_certificateHandler", bridge.NewTFHandler(p, "google_compute_ssl_certificate", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_ssl_certificateHandler", bridge.NewTFHandler(p, "google_compute_ssl_certificate", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_ssl_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "enabled_features", "fingerprint", "project", "self_link")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_ssl_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_ssl_policyID", "creation_timestamp", "enabled_features", "fingerprint", "project", "self_link")
 		b.ImmutableAttributes("description", "name", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_ssl_policyHandler", bridge.NewTFHandler(p, "google_compute_ssl_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_ssl_policyHandler", bridge.NewTFHandler(p, "google_compute_ssl_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_subnetwork{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "fingerprint", "gateway_address", "project", "region", "secondary_ip_range", "self_link")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_subnetwork{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_subnetworkID", "creation_timestamp", "fingerprint", "gateway_address", "project", "region", "secondary_ip_range", "self_link")
 		b.ImmutableAttributes("description", "name", "network", "project", "region")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_subnetworkHandler", bridge.NewTFHandler(p, "google_compute_subnetwork", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_subnetworkHandler", bridge.NewTFHandler(p, "google_compute_subnetwork", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_subnetwork_iam_binding{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "project", "region")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_subnetwork_iam_binding{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_subnetwork_iam_bindingID", "etag", "project", "region")
 		b.ImmutableAttributes("project", "region", "role", "subnetwork")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_subnetwork_iam_bindingHandler", bridge.NewTFHandler(p, "google_compute_subnetwork_iam_binding", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_subnetwork_iam_bindingHandler", bridge.NewTFHandler(p, "google_compute_subnetwork_iam_binding", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_subnetwork_iam_member{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "project", "region")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_subnetwork_iam_member{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_subnetwork_iam_memberID", "etag", "project", "region")
 		b.ImmutableAttributes("member", "project", "region", "role", "subnetwork")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_subnetwork_iam_memberHandler", bridge.NewTFHandler(p, "google_compute_subnetwork_iam_member", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_subnetwork_iam_memberHandler", bridge.NewTFHandler(p, "google_compute_subnetwork_iam_member", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_subnetwork_iam_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "project", "region")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_subnetwork_iam_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_subnetwork_iam_policyID", "etag", "project", "region")
 		b.ImmutableAttributes("project", "region", "subnetwork")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_subnetwork_iam_policyHandler", bridge.NewTFHandler(p, "google_compute_subnetwork_iam_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_subnetwork_iam_policyHandler", bridge.NewTFHandler(p, "google_compute_subnetwork_iam_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_target_http_proxy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "project", "proxy_id", "self_link")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_target_http_proxy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_target_http_proxyID", "creation_timestamp", "project", "proxy_id", "self_link")
 		b.ImmutableAttributes("description", "name", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_target_http_proxyHandler", bridge.NewTFHandler(p, "google_compute_target_http_proxy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_target_http_proxyHandler", bridge.NewTFHandler(p, "google_compute_target_http_proxy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_target_https_proxy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "project", "proxy_id", "self_link")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_target_https_proxy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_target_https_proxyID", "creation_timestamp", "project", "proxy_id", "self_link")
 		b.ImmutableAttributes("description", "name", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_target_https_proxyHandler", bridge.NewTFHandler(p, "google_compute_target_https_proxy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_target_https_proxyHandler", bridge.NewTFHandler(p, "google_compute_target_https_proxy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_target_pool{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("instances", "project", "region", "self_link")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_target_pool{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_target_poolID", "instances", "project", "region", "self_link")
 		b.ImmutableAttributes("description", "failover_ratio", "name", "project", "region", "session_affinity")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_target_poolHandler", bridge.NewTFHandler(p, "google_compute_target_pool", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_target_poolHandler", bridge.NewTFHandler(p, "google_compute_target_pool", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_target_ssl_proxy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "project", "proxy_id", "self_link")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_target_ssl_proxy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_target_ssl_proxyID", "creation_timestamp", "project", "proxy_id", "self_link")
 		b.ImmutableAttributes("description", "name", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_target_ssl_proxyHandler", bridge.NewTFHandler(p, "google_compute_target_ssl_proxy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_target_ssl_proxyHandler", bridge.NewTFHandler(p, "google_compute_target_ssl_proxy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_target_tcp_proxy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "project", "proxy_id", "self_link")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_target_tcp_proxy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_target_tcp_proxyID", "creation_timestamp", "project", "proxy_id", "self_link")
 		b.ImmutableAttributes("description", "name", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_target_tcp_proxyHandler", bridge.NewTFHandler(p, "google_compute_target_tcp_proxy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_target_tcp_proxyHandler", bridge.NewTFHandler(p, "google_compute_target_tcp_proxy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_url_map{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("fingerprint", "map_id", "project", "self_link")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_url_map{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_url_mapID", "fingerprint", "map_id", "project", "self_link")
 		b.ImmutableAttributes("name", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_url_mapHandler", bridge.NewTFHandler(p, "google_compute_url_map", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_url_mapHandler", bridge.NewTFHandler(p, "google_compute_url_map", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_vpn_gateway{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "project", "region", "self_link")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_vpn_gateway{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_vpn_gatewayID", "creation_timestamp", "project", "region", "self_link")
 		b.ImmutableAttributes("description", "name", "network", "project", "region")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_vpn_gatewayHandler", bridge.NewTFHandler(p, "google_compute_vpn_gateway", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_vpn_gatewayHandler", bridge.NewTFHandler(p, "google_compute_vpn_gateway", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_vpn_tunnel{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "detailed_status", "label_fingerprint", "local_traffic_selector", "project", "region", "remote_traffic_selector", "self_link", "shared_secret_hash")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Compute_vpn_tunnel{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("compute_vpn_tunnelID", "creation_timestamp", "detailed_status", "label_fingerprint", "local_traffic_selector", "project", "region", "remote_traffic_selector", "self_link", "shared_secret_hash")
 		b.ImmutableAttributes("description", "ike_version", "local_traffic_selector", "name", "peer_ip", "project", "region", "remote_traffic_selector", "router", "shared_secret", "target_vpn_gateway")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_compute_vpn_tunnelHandler", bridge.NewTFHandler(p, "google_compute_vpn_tunnel", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Compute_vpn_tunnelHandler", bridge.NewTFHandler(p, "google_compute_vpn_tunnel", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_container_analysis_note{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Container_analysis_note{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("container_analysis_noteID", "project")
 		b.ImmutableAttributes("name", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_container_analysis_noteHandler", bridge.NewTFHandler(p, "google_container_analysis_note", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Container_analysis_noteHandler", bridge.NewTFHandler(p, "google_container_analysis_note", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_container_cluster{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("additional_zones", "addons_config", "cluster_autoscaling", "cluster_ipv4_cidr", "endpoint", "instance_group_urls", "logging_service", "master_auth", "master_ipv4_cidr_block", "master_version", "monitoring_service", "network_policy", "node_config", "node_pool", "node_version", "private_cluster", "private_cluster_config", "project", "region", "subnetwork", "zone")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Container_cluster{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("container_clusterID", "additional_zones", "addons_config", "cluster_autoscaling", "cluster_ipv4_cidr", "endpoint", "instance_group_urls", "logging_service", "master_auth", "master_ipv4_cidr_block", "master_version", "monitoring_service", "network_policy", "node_config", "node_pool", "node_version", "private_cluster", "private_cluster_config", "project", "region", "subnetwork", "zone")
 		b.ImmutableAttributes("cluster_ipv4_cidr", "description", "enable_kubernetes_alpha", "enable_tpu", "initial_node_count", "ip_allocation_policy", "master_ipv4_cidr_block", "name", "network", "node_config", "node_pool", "private_cluster", "project", "region", "subnetwork", "zone")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_container_clusterHandler", bridge.NewTFHandler(p, "google_container_cluster", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Container_clusterHandler", bridge.NewTFHandler(p, "google_container_cluster", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_container_node_pool{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("initial_node_count", "instance_group_urls", "management", "max_pods_per_node", "name", "name_prefix", "node_config", "node_count", "project", "version", "zone")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Container_node_pool{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("container_node_poolID", "initial_node_count", "instance_group_urls", "management", "max_pods_per_node", "name", "name_prefix", "node_config", "node_count", "project", "version", "zone")
 		b.ImmutableAttributes("cluster", "initial_node_count", "max_pods_per_node", "name", "name_prefix", "node_config", "project", "region", "zone")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_container_node_poolHandler", bridge.NewTFHandler(p, "google_container_node_pool", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Container_node_poolHandler", bridge.NewTFHandler(p, "google_container_node_pool", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_dataflow_job{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("state")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Dataflow_job{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dataflow_jobID", "state")
 		b.ImmutableAttributes("max_workers", "name", "on_delete", "parameters", "project", "region", "temp_gcs_location", "template_gcs_path", "zone")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_dataflow_jobHandler", bridge.NewTFHandler(p, "google_dataflow_job", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Dataflow_jobHandler", bridge.NewTFHandler(p, "google_dataflow_job", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_dataproc_cluster{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("cluster_config", "labels", "project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Dataproc_cluster{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dataproc_clusterID", "cluster_config", "labels", "project")
 		b.ImmutableAttributes("name", "project", "region")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_dataproc_clusterHandler", bridge.NewTFHandler(p, "google_dataproc_cluster", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Dataproc_clusterHandler", bridge.NewTFHandler(p, "google_dataproc_cluster", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_dataproc_job{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("driver_controls_files_uri", "driver_output_resource_uri", "project", "reference", "status")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Dataproc_job{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dataproc_jobID", "driver_controls_files_uri", "driver_output_resource_uri", "project", "reference", "status")
 		b.ImmutableAttributes("hadoop_config", "hive_config", "labels", "pig_config", "project", "pyspark_config", "region", "scheduling", "spark_config", "sparksql_config")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_dataproc_jobHandler", bridge.NewTFHandler(p, "google_dataproc_job", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Dataproc_jobHandler", bridge.NewTFHandler(p, "google_dataproc_job", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_dns_managed_zone{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("name_servers", "project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Dns_managed_zone{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dns_managed_zoneID", "name_servers", "project")
 		b.ImmutableAttributes("dns_name", "name", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_dns_managed_zoneHandler", bridge.NewTFHandler(p, "google_dns_managed_zone", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Dns_managed_zoneHandler", bridge.NewTFHandler(p, "google_dns_managed_zone", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_dns_record_set{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Dns_record_set{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dns_record_setID", "project")
 		b.ImmutableAttributes("managed_zone", "name", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_dns_record_setHandler", bridge.NewTFHandler(p, "google_dns_record_set", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Dns_record_setHandler", bridge.NewTFHandler(p, "google_dns_record_set", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_endpoints_service{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("apis", "config_id", "dns_address", "endpoints", "project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Endpoints_service{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("endpoints_serviceID", "apis", "config_id", "dns_address", "endpoints", "project")
 		b.ImmutableAttributes("project", "service_name")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_endpoints_serviceHandler", bridge.NewTFHandler(p, "google_endpoints_service", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Endpoints_serviceHandler", bridge.NewTFHandler(p, "google_endpoints_service", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_filestore_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("create_time", "etag", "project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Filestore_instance{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("filestore_instanceID", "create_time", "etag", "project")
 		b.ImmutableAttributes("networks", "project", "tier", "zone")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_filestore_instanceHandler", bridge.NewTFHandler(p, "google_filestore_instance", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Filestore_instanceHandler", bridge.NewTFHandler(p, "google_filestore_instance", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_folder{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("create_time", "lifecycle_state", "name")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_folderHandler", bridge.NewTFHandler(p, "google_folder", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Folder{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("folderID", "create_time", "lifecycle_state", "name")
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::FolderHandler", bridge.NewTFHandler(p, "google_folder", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_folder_iam_binding{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Folder_iam_binding{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("folder_iam_bindingID", "etag")
 		b.ImmutableAttributes("folder", "role")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_folder_iam_bindingHandler", bridge.NewTFHandler(p, "google_folder_iam_binding", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Folder_iam_bindingHandler", bridge.NewTFHandler(p, "google_folder_iam_binding", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_folder_iam_member{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Folder_iam_member{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("folder_iam_memberID", "etag")
 		b.ImmutableAttributes("folder", "member", "role")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_folder_iam_memberHandler", bridge.NewTFHandler(p, "google_folder_iam_member", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Folder_iam_memberHandler", bridge.NewTFHandler(p, "google_folder_iam_member", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_folder_iam_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Folder_iam_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("folder_iam_policyID", "etag")
 		b.ImmutableAttributes("folder")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_folder_iam_policyHandler", bridge.NewTFHandler(p, "google_folder_iam_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Folder_iam_policyHandler", bridge.NewTFHandler(p, "google_folder_iam_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_folder_organization_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "update_time", "version")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Folder_organization_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("folder_organization_policyID", "etag", "update_time", "version")
 		b.ImmutableAttributes("constraint", "folder")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_folder_organization_policyHandler", bridge.NewTFHandler(p, "google_folder_organization_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Folder_organization_policyHandler", bridge.NewTFHandler(p, "google_folder_organization_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_kms_crypto_key{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("self_link")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Kms_crypto_key{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("kms_crypto_keyID", "self_link")
 		b.ImmutableAttributes("key_ring", "name")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_kms_crypto_keyHandler", bridge.NewTFHandler(p, "google_kms_crypto_key", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Kms_crypto_keyHandler", bridge.NewTFHandler(p, "google_kms_crypto_key", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_kms_crypto_key_iam_binding{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Kms_crypto_key_iam_binding{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("kms_crypto_key_iam_bindingID", "etag")
 		b.ImmutableAttributes("crypto_key_id", "role")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_kms_crypto_key_iam_bindingHandler", bridge.NewTFHandler(p, "google_kms_crypto_key_iam_binding", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Kms_crypto_key_iam_bindingHandler", bridge.NewTFHandler(p, "google_kms_crypto_key_iam_binding", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_kms_crypto_key_iam_member{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Kms_crypto_key_iam_member{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("kms_crypto_key_iam_memberID", "etag")
 		b.ImmutableAttributes("crypto_key_id", "member", "role")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_kms_crypto_key_iam_memberHandler", bridge.NewTFHandler(p, "google_kms_crypto_key_iam_member", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Kms_crypto_key_iam_memberHandler", bridge.NewTFHandler(p, "google_kms_crypto_key_iam_member", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_kms_key_ring{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("project", "self_link")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Kms_key_ring{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("kms_key_ringID", "project", "self_link")
 		b.ImmutableAttributes("location", "name", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_kms_key_ringHandler", bridge.NewTFHandler(p, "google_kms_key_ring", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Kms_key_ringHandler", bridge.NewTFHandler(p, "google_kms_key_ring", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_kms_key_ring_iam_binding{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Kms_key_ring_iam_binding{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("kms_key_ring_iam_bindingID", "etag")
 		b.ImmutableAttributes("key_ring_id", "role")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_kms_key_ring_iam_bindingHandler", bridge.NewTFHandler(p, "google_kms_key_ring_iam_binding", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Kms_key_ring_iam_bindingHandler", bridge.NewTFHandler(p, "google_kms_key_ring_iam_binding", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_kms_key_ring_iam_member{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Kms_key_ring_iam_member{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("kms_key_ring_iam_memberID", "etag")
 		b.ImmutableAttributes("key_ring_id", "member", "role")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_kms_key_ring_iam_memberHandler", bridge.NewTFHandler(p, "google_kms_key_ring_iam_member", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Kms_key_ring_iam_memberHandler", bridge.NewTFHandler(p, "google_kms_key_ring_iam_member", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_kms_key_ring_iam_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Kms_key_ring_iam_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("kms_key_ring_iam_policyID", "etag")
 		b.ImmutableAttributes("key_ring_id")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_kms_key_ring_iam_policyHandler", bridge.NewTFHandler(p, "google_kms_key_ring_iam_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Kms_key_ring_iam_policyHandler", bridge.NewTFHandler(p, "google_kms_key_ring_iam_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_logging_billing_account_exclusion{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Logging_billing_account_exclusion{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("logging_billing_account_exclusionID")
 		b.ImmutableAttributes("billing_account", "name")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_logging_billing_account_exclusionHandler", bridge.NewTFHandler(p, "google_logging_billing_account_exclusion", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Logging_billing_account_exclusionHandler", bridge.NewTFHandler(p, "google_logging_billing_account_exclusion", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_logging_billing_account_sink{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("writer_identity")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Logging_billing_account_sink{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("logging_billing_account_sinkID", "writer_identity")
 		b.ImmutableAttributes("billing_account", "name")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_logging_billing_account_sinkHandler", bridge.NewTFHandler(p, "google_logging_billing_account_sink", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Logging_billing_account_sinkHandler", bridge.NewTFHandler(p, "google_logging_billing_account_sink", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_logging_folder_exclusion{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Logging_folder_exclusion{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("logging_folder_exclusionID")
 		b.ImmutableAttributes("folder", "name")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_logging_folder_exclusionHandler", bridge.NewTFHandler(p, "google_logging_folder_exclusion", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Logging_folder_exclusionHandler", bridge.NewTFHandler(p, "google_logging_folder_exclusion", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_logging_folder_sink{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("writer_identity")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Logging_folder_sink{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("logging_folder_sinkID", "writer_identity")
 		b.ImmutableAttributes("folder", "include_children", "name")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_logging_folder_sinkHandler", bridge.NewTFHandler(p, "google_logging_folder_sink", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Logging_folder_sinkHandler", bridge.NewTFHandler(p, "google_logging_folder_sink", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_logging_organization_exclusion{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Logging_organization_exclusion{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("logging_organization_exclusionID")
 		b.ImmutableAttributes("name", "org_id")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_logging_organization_exclusionHandler", bridge.NewTFHandler(p, "google_logging_organization_exclusion", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Logging_organization_exclusionHandler", bridge.NewTFHandler(p, "google_logging_organization_exclusion", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_logging_organization_sink{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("writer_identity")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Logging_organization_sink{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("logging_organization_sinkID", "writer_identity")
 		b.ImmutableAttributes("include_children", "name")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_logging_organization_sinkHandler", bridge.NewTFHandler(p, "google_logging_organization_sink", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Logging_organization_sinkHandler", bridge.NewTFHandler(p, "google_logging_organization_sink", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_logging_project_exclusion{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Logging_project_exclusion{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("logging_project_exclusionID", "project")
 		b.ImmutableAttributes("name", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_logging_project_exclusionHandler", bridge.NewTFHandler(p, "google_logging_project_exclusion", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Logging_project_exclusionHandler", bridge.NewTFHandler(p, "google_logging_project_exclusion", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_logging_project_sink{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("project", "writer_identity")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Logging_project_sink{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("logging_project_sinkID", "project", "writer_identity")
 		b.ImmutableAttributes("name", "project", "unique_writer_identity")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_logging_project_sinkHandler", bridge.NewTFHandler(p, "google_logging_project_sink", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Logging_project_sinkHandler", bridge.NewTFHandler(p, "google_logging_project_sink", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_monitoring_alert_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_record", "name", "project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Monitoring_alert_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("monitoring_alert_policyID", "creation_record", "name", "project")
 		b.ImmutableAttributes("project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_monitoring_alert_policyHandler", bridge.NewTFHandler(p, "google_monitoring_alert_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Monitoring_alert_policyHandler", bridge.NewTFHandler(p, "google_monitoring_alert_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_monitoring_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("name", "project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Monitoring_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("monitoring_groupID", "name", "project")
 		b.ImmutableAttributes("project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_monitoring_groupHandler", bridge.NewTFHandler(p, "google_monitoring_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Monitoring_groupHandler", bridge.NewTFHandler(p, "google_monitoring_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_monitoring_notification_channel{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("name", "project", "verification_status")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Monitoring_notification_channel{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("monitoring_notification_channelID", "name", "project", "verification_status")
 		b.ImmutableAttributes("project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_monitoring_notification_channelHandler", bridge.NewTFHandler(p, "google_monitoring_notification_channel", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Monitoring_notification_channelHandler", bridge.NewTFHandler(p, "google_monitoring_notification_channel", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_monitoring_uptime_check_config{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("name", "project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Monitoring_uptime_check_config{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("monitoring_uptime_check_configID", "name", "project")
 		b.ImmutableAttributes("project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_monitoring_uptime_check_configHandler", bridge.NewTFHandler(p, "google_monitoring_uptime_check_config", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Monitoring_uptime_check_configHandler", bridge.NewTFHandler(p, "google_monitoring_uptime_check_config", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_organization_iam_binding{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Organization_iam_binding{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("organization_iam_bindingID", "etag")
 		b.ImmutableAttributes("org_id", "role")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_organization_iam_bindingHandler", bridge.NewTFHandler(p, "google_organization_iam_binding", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Organization_iam_bindingHandler", bridge.NewTFHandler(p, "google_organization_iam_binding", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_organization_iam_custom_role{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Organization_iam_custom_role{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("organization_iam_custom_roleID")
 		b.ImmutableAttributes("org_id", "role_id")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_organization_iam_custom_roleHandler", bridge.NewTFHandler(p, "google_organization_iam_custom_role", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Organization_iam_custom_roleHandler", bridge.NewTFHandler(p, "google_organization_iam_custom_role", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_organization_iam_member{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Organization_iam_member{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("organization_iam_memberID", "etag")
 		b.ImmutableAttributes("member", "org_id", "role")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_organization_iam_memberHandler", bridge.NewTFHandler(p, "google_organization_iam_member", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Organization_iam_memberHandler", bridge.NewTFHandler(p, "google_organization_iam_member", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_organization_iam_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Organization_iam_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("organization_iam_policyID", "etag")
 		b.ImmutableAttributes("org_id")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_organization_iam_policyHandler", bridge.NewTFHandler(p, "google_organization_iam_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Organization_iam_policyHandler", bridge.NewTFHandler(p, "google_organization_iam_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_organization_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "update_time", "version")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Organization_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("organization_policyID", "etag", "update_time", "version")
 		b.ImmutableAttributes("constraint", "org_id")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_organization_policyHandler", bridge.NewTFHandler(p, "google_organization_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Organization_policyHandler", bridge.NewTFHandler(p, "google_organization_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_project{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("app_engine", "folder_id", "number", "org_id", "policy_data", "policy_etag", "skip_delete")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Project{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("projectID", "app_engine", "folder_id", "number", "org_id", "policy_data", "policy_etag", "skip_delete")
 		b.ImmutableAttributes("project_id")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_projectHandler", bridge.NewTFHandler(p, "google_project", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::ProjectHandler", bridge.NewTFHandler(p, "google_project", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_project_iam_binding{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Project_iam_binding{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("project_iam_bindingID", "etag")
 		b.ImmutableAttributes("project", "role")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_project_iam_bindingHandler", bridge.NewTFHandler(p, "google_project_iam_binding", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Project_iam_bindingHandler", bridge.NewTFHandler(p, "google_project_iam_binding", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_project_iam_custom_role{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Project_iam_custom_role{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("project_iam_custom_roleID", "project")
 		b.ImmutableAttributes("project", "role_id")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_project_iam_custom_roleHandler", bridge.NewTFHandler(p, "google_project_iam_custom_role", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Project_iam_custom_roleHandler", bridge.NewTFHandler(p, "google_project_iam_custom_role", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_project_iam_member{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Project_iam_member{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("project_iam_memberID", "etag")
 		b.ImmutableAttributes("member", "project", "role")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_project_iam_memberHandler", bridge.NewTFHandler(p, "google_project_iam_member", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Project_iam_memberHandler", bridge.NewTFHandler(p, "google_project_iam_member", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_project_iam_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "project", "restore_policy")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Project_iam_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("project_iam_policyID", "etag", "project", "restore_policy")
 		b.ImmutableAttributes("project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_project_iam_policyHandler", bridge.NewTFHandler(p, "google_project_iam_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Project_iam_policyHandler", bridge.NewTFHandler(p, "google_project_iam_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_project_organization_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "update_time", "version")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Project_organization_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("project_organization_policyID", "etag", "update_time", "version")
 		b.ImmutableAttributes("constraint", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_project_organization_policyHandler", bridge.NewTFHandler(p, "google_project_organization_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Project_organization_policyHandler", bridge.NewTFHandler(p, "google_project_organization_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_project_service{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Project_service{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("project_serviceID", "project")
 		b.ImmutableAttributes("project", "service")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_project_serviceHandler", bridge.NewTFHandler(p, "google_project_service", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Project_serviceHandler", bridge.NewTFHandler(p, "google_project_service", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_project_services{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Project_services{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("project_servicesID", "project")
 		b.ImmutableAttributes("project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_project_servicesHandler", bridge.NewTFHandler(p, "google_project_services", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Project_servicesHandler", bridge.NewTFHandler(p, "google_project_services", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_project_usage_export_bucket{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Project_usage_export_bucket{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("project_usage_export_bucketID", "project")
 		b.ImmutableAttributes("bucket_name", "prefix", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_project_usage_export_bucketHandler", bridge.NewTFHandler(p, "google_project_usage_export_bucket", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Project_usage_export_bucketHandler", bridge.NewTFHandler(p, "google_project_usage_export_bucket", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_pubsub_subscription{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("ack_deadline_seconds", "path", "project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Pubsub_subscription{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("pubsub_subscriptionID", "ack_deadline_seconds", "path", "project")
 		b.ImmutableAttributes("ack_deadline_seconds", "name", "project", "topic")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_pubsub_subscriptionHandler", bridge.NewTFHandler(p, "google_pubsub_subscription", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Pubsub_subscriptionHandler", bridge.NewTFHandler(p, "google_pubsub_subscription", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_pubsub_subscription_iam_binding{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Pubsub_subscription_iam_binding{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("pubsub_subscription_iam_bindingID", "etag", "project")
 		b.ImmutableAttributes("project", "role", "subscription")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_pubsub_subscription_iam_bindingHandler", bridge.NewTFHandler(p, "google_pubsub_subscription_iam_binding", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Pubsub_subscription_iam_bindingHandler", bridge.NewTFHandler(p, "google_pubsub_subscription_iam_binding", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_pubsub_subscription_iam_member{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Pubsub_subscription_iam_member{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("pubsub_subscription_iam_memberID", "etag", "project")
 		b.ImmutableAttributes("member", "project", "role", "subscription")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_pubsub_subscription_iam_memberHandler", bridge.NewTFHandler(p, "google_pubsub_subscription_iam_member", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Pubsub_subscription_iam_memberHandler", bridge.NewTFHandler(p, "google_pubsub_subscription_iam_member", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_pubsub_subscription_iam_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Pubsub_subscription_iam_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("pubsub_subscription_iam_policyID", "etag", "project")
 		b.ImmutableAttributes("project", "subscription")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_pubsub_subscription_iam_policyHandler", bridge.NewTFHandler(p, "google_pubsub_subscription_iam_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Pubsub_subscription_iam_policyHandler", bridge.NewTFHandler(p, "google_pubsub_subscription_iam_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_pubsub_topic{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Pubsub_topic{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("pubsub_topicID", "project")
 		b.ImmutableAttributes("name", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_pubsub_topicHandler", bridge.NewTFHandler(p, "google_pubsub_topic", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Pubsub_topicHandler", bridge.NewTFHandler(p, "google_pubsub_topic", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_pubsub_topic_iam_binding{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Pubsub_topic_iam_binding{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("pubsub_topic_iam_bindingID", "etag", "project")
 		b.ImmutableAttributes("project", "role", "topic")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_pubsub_topic_iam_bindingHandler", bridge.NewTFHandler(p, "google_pubsub_topic_iam_binding", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Pubsub_topic_iam_bindingHandler", bridge.NewTFHandler(p, "google_pubsub_topic_iam_binding", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_pubsub_topic_iam_member{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Pubsub_topic_iam_member{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("pubsub_topic_iam_memberID", "etag", "project")
 		b.ImmutableAttributes("member", "project", "role", "topic")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_pubsub_topic_iam_memberHandler", bridge.NewTFHandler(p, "google_pubsub_topic_iam_member", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Pubsub_topic_iam_memberHandler", bridge.NewTFHandler(p, "google_pubsub_topic_iam_member", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_pubsub_topic_iam_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Pubsub_topic_iam_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("pubsub_topic_iam_policyID", "etag", "project")
 		b.ImmutableAttributes("project", "topic")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_pubsub_topic_iam_policyHandler", bridge.NewTFHandler(p, "google_pubsub_topic_iam_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Pubsub_topic_iam_policyHandler", bridge.NewTFHandler(p, "google_pubsub_topic_iam_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_redis_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("alternative_location_id", "authorized_network", "create_time", "current_location_id", "host", "location_id", "port", "project", "redis_version", "region", "reserved_ip_range")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Redis_instance{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("redis_instanceID", "alternative_location_id", "authorized_network", "create_time", "current_location_id", "host", "location_id", "port", "project", "redis_version", "region", "reserved_ip_range")
 		b.ImmutableAttributes("alternative_location_id", "authorized_network", "location_id", "name", "project", "redis_version", "region", "reserved_ip_range", "tier")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_redis_instanceHandler", bridge.NewTFHandler(p, "google_redis_instance", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Redis_instanceHandler", bridge.NewTFHandler(p, "google_redis_instance", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_resource_manager_lien{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("create_time", "name")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Resource_manager_lien{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("resource_manager_lienID", "create_time", "name")
 		b.ImmutableAttributes("origin", "parent", "reason", "restrictions")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_resource_manager_lienHandler", bridge.NewTFHandler(p, "google_resource_manager_lien", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Resource_manager_lienHandler", bridge.NewTFHandler(p, "google_resource_manager_lien", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_runtimeconfig_config{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Runtimeconfig_config{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("runtimeconfig_configID", "project")
 		b.ImmutableAttributes("name", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_runtimeconfig_configHandler", bridge.NewTFHandler(p, "google_runtimeconfig_config", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Runtimeconfig_configHandler", bridge.NewTFHandler(p, "google_runtimeconfig_config", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_runtimeconfig_variable{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("project", "update_time")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Runtimeconfig_variable{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("runtimeconfig_variableID", "project", "update_time")
 		b.ImmutableAttributes("name", "parent", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_runtimeconfig_variableHandler", bridge.NewTFHandler(p, "google_runtimeconfig_variable", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Runtimeconfig_variableHandler", bridge.NewTFHandler(p, "google_runtimeconfig_variable", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_service_account{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("email", "name", "project", "unique_id")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Service_account{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("service_accountID", "email", "name", "project", "unique_id")
 		b.ImmutableAttributes("account_id", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_service_accountHandler", bridge.NewTFHandler(p, "google_service_account", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Service_accountHandler", bridge.NewTFHandler(p, "google_service_account", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_service_account_iam_binding{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Service_account_iam_binding{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("service_account_iam_bindingID", "etag")
 		b.ImmutableAttributes("role", "service_account_id")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_service_account_iam_bindingHandler", bridge.NewTFHandler(p, "google_service_account_iam_binding", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Service_account_iam_bindingHandler", bridge.NewTFHandler(p, "google_service_account_iam_binding", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_service_account_iam_member{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Service_account_iam_member{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("service_account_iam_memberID", "etag")
 		b.ImmutableAttributes("member", "role", "service_account_id")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_service_account_iam_memberHandler", bridge.NewTFHandler(p, "google_service_account_iam_member", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Service_account_iam_memberHandler", bridge.NewTFHandler(p, "google_service_account_iam_member", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_service_account_iam_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Service_account_iam_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("service_account_iam_policyID", "etag")
 		b.ImmutableAttributes("service_account_id")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_service_account_iam_policyHandler", bridge.NewTFHandler(p, "google_service_account_iam_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Service_account_iam_policyHandler", bridge.NewTFHandler(p, "google_service_account_iam_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_service_account_key{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("name", "private_key", "private_key_encrypted", "private_key_fingerprint", "public_key", "valid_after", "valid_before")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Service_account_key{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("service_account_keyID", "name", "private_key", "private_key_encrypted", "private_key_fingerprint", "public_key", "valid_after", "valid_before")
 		b.ImmutableAttributes("key_algorithm", "name", "pgp_key", "private_key_type", "public_key", "public_key_type", "service_account_id")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_service_account_keyHandler", bridge.NewTFHandler(p, "google_service_account_key", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Service_account_keyHandler", bridge.NewTFHandler(p, "google_service_account_key", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_sourcerepo_repository{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("project", "size", "url")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Sourcerepo_repository{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("sourcerepo_repositoryID", "project", "size", "url")
 		b.ImmutableAttributes("name", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_sourcerepo_repositoryHandler", bridge.NewTFHandler(p, "google_sourcerepo_repository", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Sourcerepo_repositoryHandler", bridge.NewTFHandler(p, "google_sourcerepo_repository", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_spanner_database{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("project", "state")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Spanner_database{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("spanner_databaseID", "project", "state")
 		b.ImmutableAttributes("ddl", "instance", "name", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_spanner_databaseHandler", bridge.NewTFHandler(p, "google_spanner_database", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Spanner_databaseHandler", bridge.NewTFHandler(p, "google_spanner_database", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_spanner_database_iam_binding{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Spanner_database_iam_binding{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("spanner_database_iam_bindingID", "etag", "project")
 		b.ImmutableAttributes("database", "instance", "project", "role")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_spanner_database_iam_bindingHandler", bridge.NewTFHandler(p, "google_spanner_database_iam_binding", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Spanner_database_iam_bindingHandler", bridge.NewTFHandler(p, "google_spanner_database_iam_binding", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_spanner_database_iam_member{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Spanner_database_iam_member{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("spanner_database_iam_memberID", "etag", "project")
 		b.ImmutableAttributes("database", "instance", "member", "project", "role")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_spanner_database_iam_memberHandler", bridge.NewTFHandler(p, "google_spanner_database_iam_member", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Spanner_database_iam_memberHandler", bridge.NewTFHandler(p, "google_spanner_database_iam_member", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_spanner_database_iam_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Spanner_database_iam_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("spanner_database_iam_policyID", "etag", "project")
 		b.ImmutableAttributes("database", "instance", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_spanner_database_iam_policyHandler", bridge.NewTFHandler(p, "google_spanner_database_iam_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Spanner_database_iam_policyHandler", bridge.NewTFHandler(p, "google_spanner_database_iam_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_spanner_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("name", "project", "state")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Spanner_instance{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("spanner_instanceID", "name", "project", "state")
 		b.ImmutableAttributes("config", "name", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_spanner_instanceHandler", bridge.NewTFHandler(p, "google_spanner_instance", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Spanner_instanceHandler", bridge.NewTFHandler(p, "google_spanner_instance", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_spanner_instance_iam_binding{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Spanner_instance_iam_binding{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("spanner_instance_iam_bindingID", "etag", "project")
 		b.ImmutableAttributes("instance", "project", "role")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_spanner_instance_iam_bindingHandler", bridge.NewTFHandler(p, "google_spanner_instance_iam_binding", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Spanner_instance_iam_bindingHandler", bridge.NewTFHandler(p, "google_spanner_instance_iam_binding", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_spanner_instance_iam_member{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Spanner_instance_iam_member{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("spanner_instance_iam_memberID", "etag", "project")
 		b.ImmutableAttributes("instance", "member", "project", "role")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_spanner_instance_iam_memberHandler", bridge.NewTFHandler(p, "google_spanner_instance_iam_member", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Spanner_instance_iam_memberHandler", bridge.NewTFHandler(p, "google_spanner_instance_iam_member", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_spanner_instance_iam_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Spanner_instance_iam_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("spanner_instance_iam_policyID", "etag", "project")
 		b.ImmutableAttributes("instance", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_spanner_instance_iam_policyHandler", bridge.NewTFHandler(p, "google_spanner_instance_iam_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Spanner_instance_iam_policyHandler", bridge.NewTFHandler(p, "google_spanner_instance_iam_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_sql_database{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("charset", "collation", "project", "self_link")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Sql_database{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("sql_databaseID", "charset", "collation", "project", "self_link")
 		b.ImmutableAttributes("instance", "name", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_sql_databaseHandler", bridge.NewTFHandler(p, "google_sql_database", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Sql_databaseHandler", bridge.NewTFHandler(p, "google_sql_database", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_sql_database_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("connection_name", "first_ip_address", "ip_address", "master_instance_name", "name", "project", "replica_configuration", "self_link", "server_ca_cert", "service_account_email_address")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Sql_database_instance{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("sql_database_instanceID", "connection_name", "first_ip_address", "ip_address", "master_instance_name", "name", "project", "replica_configuration", "self_link", "server_ca_cert", "service_account_email_address")
 		b.ImmutableAttributes("database_version", "master_instance_name", "name", "project", "region")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_sql_database_instanceHandler", bridge.NewTFHandler(p, "google_sql_database_instance", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Sql_database_instanceHandler", bridge.NewTFHandler(p, "google_sql_database_instance", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_sql_ssl_cert{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("cert", "cert_serial_number", "create_time", "expiration_time", "private_key", "server_ca_cert", "sha1_fingerprint")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Sql_ssl_cert{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("sql_ssl_certID", "cert", "cert_serial_number", "create_time", "expiration_time", "private_key", "server_ca_cert", "sha1_fingerprint")
 		b.ImmutableAttributes("common_name", "instance")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_sql_ssl_certHandler", bridge.NewTFHandler(p, "google_sql_ssl_cert", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Sql_ssl_certHandler", bridge.NewTFHandler(p, "google_sql_ssl_cert", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_sql_user{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("project")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Sql_user{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("sql_userID", "project")
 		b.ImmutableAttributes("host", "instance", "name", "project")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_sql_userHandler", bridge.NewTFHandler(p, "google_sql_user", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Sql_userHandler", bridge.NewTFHandler(p, "google_sql_user", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_storage_bucket{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("project", "self_link", "url")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Storage_bucket{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("storage_bucketID", "project", "self_link", "url")
 		b.ImmutableAttributes("location", "name", "predefined_acl", "project", "storage_class")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_storage_bucketHandler", bridge.NewTFHandler(p, "google_storage_bucket", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Storage_bucketHandler", bridge.NewTFHandler(p, "google_storage_bucket", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_storage_bucket_acl{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("role_entity")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Storage_bucket_acl{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("storage_bucket_aclID", "role_entity")
 		b.ImmutableAttributes("bucket", "predefined_acl")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_storage_bucket_aclHandler", bridge.NewTFHandler(p, "google_storage_bucket_acl", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Storage_bucket_aclHandler", bridge.NewTFHandler(p, "google_storage_bucket_acl", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_storage_bucket_iam_binding{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Storage_bucket_iam_binding{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("storage_bucket_iam_bindingID", "etag")
 		b.ImmutableAttributes("bucket", "role")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_storage_bucket_iam_bindingHandler", bridge.NewTFHandler(p, "google_storage_bucket_iam_binding", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Storage_bucket_iam_bindingHandler", bridge.NewTFHandler(p, "google_storage_bucket_iam_binding", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_storage_bucket_iam_member{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Storage_bucket_iam_member{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("storage_bucket_iam_memberID", "etag")
 		b.ImmutableAttributes("bucket", "member", "role")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_storage_bucket_iam_memberHandler", bridge.NewTFHandler(p, "google_storage_bucket_iam_member", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Storage_bucket_iam_memberHandler", bridge.NewTFHandler(p, "google_storage_bucket_iam_member", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_storage_bucket_iam_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Storage_bucket_iam_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("storage_bucket_iam_policyID", "etag")
 		b.ImmutableAttributes("bucket")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_storage_bucket_iam_policyHandler", bridge.NewTFHandler(p, "google_storage_bucket_iam_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Storage_bucket_iam_policyHandler", bridge.NewTFHandler(p, "google_storage_bucket_iam_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_storage_bucket_object{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("content_type", "crc32c", "md5hash", "storage_class")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Storage_bucket_object{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("storage_bucket_objectID", "content_type", "crc32c", "md5hash", "storage_class")
 		b.ImmutableAttributes("bucket", "cache_control", "content", "content_disposition", "content_encoding", "content_language", "content_type", "detect_md5hash", "name", "predefined_acl", "source", "storage_class")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_storage_bucket_objectHandler", bridge.NewTFHandler(p, "google_storage_bucket_object", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Storage_bucket_objectHandler", bridge.NewTFHandler(p, "google_storage_bucket_object", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_storage_default_object_access_control{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("domain", "email", "entity_id", "generation", "project_team")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_storage_default_object_access_controlHandler", bridge.NewTFHandler(p, "google_storage_default_object_access_control", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Storage_default_object_access_control{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("storage_default_object_access_controlID", "domain", "email", "entity_id", "generation", "project_team")
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Storage_default_object_access_controlHandler", bridge.NewTFHandler(p, "google_storage_default_object_access_control", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_storage_default_object_acl{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("role_entity")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Storage_default_object_acl{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("storage_default_object_aclID", "role_entity")
 		b.ImmutableAttributes("bucket")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_storage_default_object_aclHandler", bridge.NewTFHandler(p, "google_storage_default_object_acl", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Storage_default_object_aclHandler", bridge.NewTFHandler(p, "google_storage_default_object_acl", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_storage_notification{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("self_link")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Storage_notification{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("storage_notificationID", "self_link")
 		b.ImmutableAttributes("bucket", "custom_attributes", "event_types", "object_name_prefix", "payload_format", "topic")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_storage_notificationHandler", bridge.NewTFHandler(p, "google_storage_notification", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Storage_notificationHandler", bridge.NewTFHandler(p, "google_storage_notification", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_storage_object_access_control{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("domain", "email", "entity_id", "generation", "project_team")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_storage_object_access_controlHandler", bridge.NewTFHandler(p, "google_storage_object_access_control", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Storage_object_access_control{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("storage_object_access_controlID", "domain", "email", "entity_id", "generation", "project_team")
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Storage_object_access_controlHandler", bridge.NewTFHandler(p, "google_storage_object_access_control", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_storage_object_acl{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("role_entity")
+	rt = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Storage_object_acl{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("storage_object_aclID", "role_entity")
 		b.ImmutableAttributes("bucket", "object", "predefined_acl")
-	}))
-	sb.RegisterHandler("TerraformGoogle::Google_storage_object_aclHandler", bridge.NewTFHandler(p, "google_storage_object_acl", evs[0]), evs[0])
-
-}
-
-type Google_app_engine_application_feature_settings_1 struct {
-	Split_health_checks *bool
-}
-
-type Google_app_engine_application_url_dispatch_rule_2 struct {
-	Domain *string
-
-	Path *string
-
-	Service *string
-}
-
-type Google_app_engine_application struct {
-	Google_app_engine_application_id *string `lyra:"ignore"`
-
-	Auth_domain *string
-
-	Code_bucket *string
-
-	Default_bucket *string
-
-	Default_hostname *string
-
-	Feature_settings *[]Google_app_engine_application_feature_settings_1
-
-	Gcr_domain *string
-
-	Location_id string
-
-	Name *string
-
-	Project *string
-
-	Serving_status *string
-
-	Url_dispatch_rule *[]Google_app_engine_application_url_dispatch_rule_2
-}
-
-type Google_bigquery_dataset_access_3_view_4 struct {
-	Dataset_id string
-
-	Project_id string
-
-	Table_id string
-}
-
-type Google_bigquery_dataset_access_3 struct {
-	Domain *string
-
-	Group_by_email *string
-
-	Role *string
-
-	Special_group *string
-
-	User_by_email *string
-
-	View *[]Google_bigquery_dataset_access_3_view_4
-}
-
-type Google_bigquery_dataset struct {
-	Google_bigquery_dataset_id *string `lyra:"ignore"`
-
-	Access *[]Google_bigquery_dataset_access_3
-
-	Creation_time *int
-
-	Dataset_id string
-
-	Default_table_expiration_ms *int
-
-	Description *string
-
-	Etag *string
-
-	Friendly_name *string
-
-	Labels *map[string]string
-
-	Last_modified_time *int
-
-	Location *string
-
-	Project *string
-
-	Self_link *string
-}
-
-type Google_bigquery_table_time_partitioning_5 struct {
-	Expiration_ms *int
-
-	Field *string
-
-	Type string
-}
-
-type Google_bigquery_table_view_6 struct {
-	Query string
-
-	Use_legacy_sql *bool
-}
-
-type Google_bigquery_table struct {
-	Google_bigquery_table_id *string `lyra:"ignore"`
-
-	Creation_time *int
-
-	Dataset_id string
-
-	Description *string
-
-	Etag *string
-
-	Expiration_time *int
-
-	Friendly_name *string
-
-	Labels *map[string]string
-
-	Last_modified_time *int
-
-	Location *string
-
-	Num_bytes *int
-
-	Num_long_term_bytes *int
-
-	Num_rows *int
-
-	Project *string
-
-	Schema *string
-
-	Self_link *string
-
-	Table_id string
-
-	Time_partitioning *[]Google_bigquery_table_time_partitioning_5
-
-	Type *string
-
-	View *[]Google_bigquery_table_view_6
-}
-
-type Google_bigtable_instance_cluster_7 struct {
-	Cluster_id *string
-
-	Num_nodes *int
-
-	Storage_type *string
-
-	Zone *string
-}
-
-type Google_bigtable_instance struct {
-	Google_bigtable_instance_id *string `lyra:"ignore"`
-
-	Cluster *[]Google_bigtable_instance_cluster_7
-
-	Cluster_id *string
-
-	Display_name *string
-
-	Instance_type *string
-
-	Name string
-
-	Num_nodes *int
-
-	Project *string
-
-	Storage_type *string
-
-	Zone *string
-}
-
-type Google_bigtable_table struct {
-	Google_bigtable_table_id *string `lyra:"ignore"`
-
-	Instance_name string
-
-	Name string
-
-	Project *string
-
-	Split_keys *[]string
-}
-
-type Google_billing_account_iam_binding struct {
-	Google_billing_account_iam_binding_id *string `lyra:"ignore"`
-
-	Billing_account_id string
-
-	Etag *string
-
-	Members []string
-
-	Role string
-}
-
-type Google_billing_account_iam_member struct {
-	Google_billing_account_iam_member_id *string `lyra:"ignore"`
-
-	Billing_account_id string
-
-	Etag *string
-
-	Member string
-
-	Role string
-}
-
-type Google_billing_account_iam_policy struct {
-	Google_billing_account_iam_policy_id *string `lyra:"ignore"`
-
-	Billing_account_id string
-
-	Etag *string
-
-	Policy_data string
-}
-
-type Google_binary_authorization_attestor_attestation_authority_note_8_public_keys_9 struct {
-	Ascii_armored_pgp_public_key string
-
-	Comment *string
-
-	Id *string
-}
-
-type Google_binary_authorization_attestor_attestation_authority_note_8 struct {
-	Delegation_service_account_email *string
-
-	Note_reference string
-
-	Public_keys *[]Google_binary_authorization_attestor_attestation_authority_note_8_public_keys_9
-}
-
-type Google_binary_authorization_attestor struct {
-	Google_binary_authorization_attestor_id *string `lyra:"ignore"`
-
-	Attestation_authority_note []Google_binary_authorization_attestor_attestation_authority_note_8
-
-	Description *string
-
-	Name string
-
-	Project *string
-}
-
-type Google_binary_authorization_policy_admission_whitelist_patterns_10 struct {
-	Name_pattern *string
-}
-
-type Google_binary_authorization_policy_cluster_admission_rules_11 struct {
-	Cluster string
-
-	Enforcement_mode *string
-
-	Evaluation_mode *string
-
-	Require_attestations_by *[]string
-}
-
-type Google_binary_authorization_policy_default_admission_rule_12 struct {
-	Enforcement_mode string
-
-	Evaluation_mode string
-
-	Require_attestations_by *[]string
-}
-
-type Google_binary_authorization_policy struct {
-	Google_binary_authorization_policy_id *string `lyra:"ignore"`
-
-	Admission_whitelist_patterns *[]Google_binary_authorization_policy_admission_whitelist_patterns_10
-
-	Cluster_admission_rules *[]Google_binary_authorization_policy_cluster_admission_rules_11
-
-	Default_admission_rule []Google_binary_authorization_policy_default_admission_rule_12
-
-	Description *string
-
-	Project *string
-}
-
-type Google_cloudbuild_trigger_build_13_step_14 struct {
-	Args *string
-
-	Name *string
-}
-
-type Google_cloudbuild_trigger_build_13 struct {
-	Images *[]string
-
-	Step *[]Google_cloudbuild_trigger_build_13_step_14
-
-	Tags *[]string
-}
-
-type Google_cloudbuild_trigger_trigger_template_15 struct {
-	Branch_name *string
-
-	Commit_sha *string
-
-	Dir *string
-
-	Project *string
-
-	Repo_name *string
-
-	Tag_name *string
-}
-
-type Google_cloudbuild_trigger struct {
-	Google_cloudbuild_trigger_id *string `lyra:"ignore"`
-
-	Build *[]Google_cloudbuild_trigger_build_13
-
-	Description *string
-
-	Filename *string
-
-	Project *string
-
-	Substitutions *map[string]string
-
-	Trigger_template *[]Google_cloudbuild_trigger_trigger_template_15
-}
-
-type Google_cloudfunctions_function_event_trigger_16_failure_policy_17 struct {
-	Retry bool
-}
-
-type Google_cloudfunctions_function_event_trigger_16 struct {
-	Event_type string
-
-	Failure_policy *[]Google_cloudfunctions_function_event_trigger_16_failure_policy_17
-
-	Resource string
-}
-
-type Google_cloudfunctions_function struct {
-	Google_cloudfunctions_function_id *string `lyra:"ignore"`
-
-	Available_memory_mb *int
-
-	Description *string
-
-	Entry_point *string
-
-	Environment_variables *map[string]string
-
-	Event_trigger *[]Google_cloudfunctions_function_event_trigger_16
-
-	Https_trigger_url *string
-
-	Labels *map[string]string
-
-	Name string
-
-	Project *string
-
-	Region *string
-
-	Retry_on_failure *bool
-
-	Runtime *string
-
-	Source_archive_bucket string
-
-	Source_archive_object string
-
-	Timeout *int
-
-	Trigger_bucket *string
-
-	Trigger_http *bool
-
-	Trigger_topic *string
-}
-
-type Google_cloudiot_registry_credentials_18 struct {
-	Public_key_certificate *map[string]string
-}
-
-type Google_cloudiot_registry struct {
-	Google_cloudiot_registry_id *string `lyra:"ignore"`
-
-	Credentials *[]Google_cloudiot_registry_credentials_18
-
-	Event_notification_config *map[string]string
-
-	Http_config *map[string]string
-
-	Mqtt_config *map[string]string
-
-	Name string
-
-	Project *string
-
-	Region *string
-
-	State_notification_config *map[string]string
-}
-
-type Google_composer_environment_config_19_node_config_20 struct {
-	Disk_size_gb *int
-
-	Machine_type *string
-
-	Network *string
-
-	Oauth_scopes *[]string
-
-	Service_account *string
-
-	Subnetwork *string
-
-	Tags *[]string
-
-	Zone *string
-}
-
-type Google_composer_environment_config_19_software_config_21 struct {
-	Airflow_config_overrides *map[string]string
-
-	Env_variables *map[string]string
-
-	Image_version *string
-
-	Pypi_packages *map[string]string
-}
-
-type Google_composer_environment_config_19 struct {
-	Airflow_uri *string
-
-	Dag_gcs_prefix *string
-
-	Gke_cluster *string
-
-	Node_config *[]Google_composer_environment_config_19_node_config_20
-
-	Node_count *int
-
-	Software_config *[]Google_composer_environment_config_19_software_config_21
-}
-
-type Google_composer_environment struct {
-	Google_composer_environment_id *string `lyra:"ignore"`
-
-	Config *[]Google_composer_environment_config_19
-
-	Labels *map[string]string
-
-	Name string
-
-	Project *string
-
-	Region *string
-}
-
-type Google_compute_address struct {
-	Google_compute_address_id *string `lyra:"ignore"`
-
-	Address *string
-
-	Address_type *string
-
-	Creation_timestamp *string
-
-	Description *string
-
-	Label_fingerprint *string
-
-	Labels *map[string]string
-
-	Name string
-
-	Network_tier *string
-
-	Project *string
-
-	Region *string
-
-	Self_link *string
-
-	Subnetwork *string
-
-	Users *[]string
-}
-
-type Google_compute_attached_disk struct {
-	Google_compute_attached_disk_id *string `lyra:"ignore"`
-
-	Device_name *string
-
-	Disk string
-
-	Instance string
-
-	Mode *string
-
-	Project *string
-
-	Zone *string
-}
-
-type Google_compute_autoscaler_autoscaling_policy_22_cpu_utilization_23 struct {
-	Target float64
-}
-
-type Google_compute_autoscaler_autoscaling_policy_22_load_balancing_utilization_24 struct {
-	Target float64
-}
-
-type Google_compute_autoscaler_autoscaling_policy_22_metric_25 struct {
-	Name string
-
-	Target float64
-
-	Type string
-}
-
-type Google_compute_autoscaler_autoscaling_policy_22 struct {
-	Cooldown_period *int
-
-	Cpu_utilization *[]Google_compute_autoscaler_autoscaling_policy_22_cpu_utilization_23
-
-	Load_balancing_utilization *[]Google_compute_autoscaler_autoscaling_policy_22_load_balancing_utilization_24
-
-	Max_replicas int
-
-	Metric *[]Google_compute_autoscaler_autoscaling_policy_22_metric_25
-
-	Min_replicas int
-}
-
-type Google_compute_autoscaler struct {
-	Google_compute_autoscaler_id *string `lyra:"ignore"`
-
-	Autoscaling_policy []Google_compute_autoscaler_autoscaling_policy_22
-
-	Creation_timestamp *string
-
-	Description *string
-
-	Name string
-
-	Project *string
-
-	Self_link *string
-
-	Target string
-
-	Zone *string
-}
-
-type Google_compute_backend_bucket struct {
-	Google_compute_backend_bucket_id *string `lyra:"ignore"`
-
-	Bucket_name string
-
-	Creation_timestamp *string
-
-	Description *string
-
-	Enable_cdn *bool
-
-	Name string
-
-	Project *string
-
-	Self_link *string
-}
-
-type Google_compute_backend_service_backend_26 struct {
-	Balancing_mode *string
-
-	Capacity_scaler *float64
-
-	Description *string
-
-	Group *string
-
-	Max_connections *int
-
-	Max_connections_per_instance *int
-
-	Max_rate *int
-
-	Max_rate_per_instance *float64
-
-	Max_utilization *float64
-}
-
-type Google_compute_backend_service_cdn_policy_27_cache_key_policy_28 struct {
-	Include_host *bool
-
-	Include_protocol *bool
-
-	Include_query_string *bool
-
-	Query_string_blacklist *[]string
-
-	Query_string_whitelist *[]string
-}
-
-type Google_compute_backend_service_cdn_policy_27 struct {
-	Cache_key_policy *[]Google_compute_backend_service_cdn_policy_27_cache_key_policy_28
-}
-
-type Google_compute_backend_service_iap_29 struct {
-	Oauth2_client_id string
-
-	Oauth2_client_secret string
-}
-
-type Google_compute_backend_service struct {
-	Google_compute_backend_service_id *string `lyra:"ignore"`
-
-	Backend *[]Google_compute_backend_service_backend_26
-
-	Cdn_policy *[]Google_compute_backend_service_cdn_policy_27
-
-	Connection_draining_timeout_sec *int
-
-	Custom_request_headers *[]string
-
-	Description *string
-
-	Enable_cdn *bool
-
-	Fingerprint *string
-
-	Health_checks []string
-
-	Iap *[]Google_compute_backend_service_iap_29
-
-	Name string
-
-	Port_name *string
-
-	Project *string
-
-	Protocol *string
-
-	Region *string
-
-	Security_policy *string
-
-	Self_link *string
-
-	Session_affinity *string
-
-	Timeout_sec *int
-}
-
-type Google_compute_disk_disk_encryption_key_30 struct {
-	Raw_key *string
-
-	Sha256 *string
-}
-
-type Google_compute_disk_source_image_encryption_key_31 struct {
-	Raw_key *string
-
-	Sha256 *string
-}
-
-type Google_compute_disk_source_snapshot_encryption_key_32 struct {
-	Raw_key *string
-
-	Sha256 *string
-}
-
-type Google_compute_disk struct {
-	Google_compute_disk_id *string `lyra:"ignore"`
-
-	Creation_timestamp *string
-
-	Description *string
-
-	Disk_encryption_key *[]Google_compute_disk_disk_encryption_key_30
-
-	Disk_encryption_key_raw *string
-
-	Disk_encryption_key_sha256 *string
-
-	Image *string
-
-	Label_fingerprint *string
-
-	Labels *map[string]string
-
-	Last_attach_timestamp *string
-
-	Last_detach_timestamp *string
-
-	Name string
-
-	Project *string
-
-	Self_link *string
-
-	Size *int
-
-	Snapshot *string
-
-	Source_image_encryption_key *[]Google_compute_disk_source_image_encryption_key_31
-
-	Source_image_id *string
-
-	Source_snapshot_encryption_key *[]Google_compute_disk_source_snapshot_encryption_key_32
-
-	Source_snapshot_id *string
-
-	Type *string
-
-	Users *[]string
-
-	Zone *string
-}
-
-type Google_compute_firewall_allow_33 struct {
-	Ports *[]string
-
-	Protocol string
-}
-
-type Google_compute_firewall_deny_34 struct {
-	Ports *[]string
-
-	Protocol string
-}
-
-type Google_compute_firewall struct {
-	Google_compute_firewall_id *string `lyra:"ignore"`
-
-	Allow *[]Google_compute_firewall_allow_33
-
-	Creation_timestamp *string
-
-	Deny *[]Google_compute_firewall_deny_34
-
-	Description *string
-
-	Destination_ranges *[]string
-
-	Direction *string
-
-	Disabled *bool
-
-	Enable_logging *bool
-
-	Name string
-
-	Network string
-
-	Priority *int
-
-	Project *string
-
-	Self_link *string
-
-	Source_ranges *[]string
-
-	Source_service_accounts *[]string
-
-	Source_tags *[]string
-
-	Target_service_accounts *[]string
-
-	Target_tags *[]string
-}
-
-type Google_compute_forwarding_rule struct {
-	Google_compute_forwarding_rule_id *string `lyra:"ignore"`
-
-	Backend_service *string
-
-	Creation_timestamp *string
-
-	Description *string
-
-	Ip_address *string
-
-	Ip_protocol *string
-
-	Ip_version *string
-
-	Label_fingerprint *string
-
-	Labels *map[string]string
-
-	Load_balancing_scheme *string
-
-	Name string
-
-	Network *string
-
-	Network_tier *string
-
-	Port_range *string
-
-	Ports *[]string
-
-	Project *string
-
-	Region *string
-
-	Self_link *string
-
-	Service_label *string
-
-	Service_name *string
-
-	Subnetwork *string
-
-	Target *string
-}
-
-type Google_compute_global_address struct {
-	Google_compute_global_address_id *string `lyra:"ignore"`
-
-	Address *string
-
-	Address_type *string
-
-	Creation_timestamp *string
-
-	Description *string
-
-	Ip_version *string
-
-	Label_fingerprint *string
-
-	Labels *map[string]string
-
-	Name string
-
-	Network *string
-
-	Prefix_length *int
-
-	Project *string
-
-	Purpose *string
-
-	Self_link *string
-}
-
-type Google_compute_global_forwarding_rule struct {
-	Google_compute_global_forwarding_rule_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Ip_address *string
-
-	Ip_protocol *string
-
-	Ip_version *string
-
-	Label_fingerprint *string
-
-	Labels *map[string]string
-
-	Name string
-
-	Port_range *string
-
-	Project *string
-
-	Region *string
-
-	Self_link *string
-
-	Target string
-}
-
-type Google_compute_health_check_http_health_check_35 struct {
-	Host *string
-
-	Port *int
-
-	Proxy_header *string
-
-	Request_path *string
-
-	Response *string
-}
-
-type Google_compute_health_check_https_health_check_36 struct {
-	Host *string
-
-	Port *int
-
-	Proxy_header *string
-
-	Request_path *string
-
-	Response *string
-}
-
-type Google_compute_health_check_ssl_health_check_37 struct {
-	Port *int
-
-	Proxy_header *string
-
-	Request *string
-
-	Response *string
-}
-
-type Google_compute_health_check_tcp_health_check_38 struct {
-	Port *int
-
-	Proxy_header *string
-
-	Request *string
-
-	Response *string
-}
-
-type Google_compute_health_check struct {
-	Google_compute_health_check_id *string `lyra:"ignore"`
-
-	Check_interval_sec *int
-
-	Creation_timestamp *string
-
-	Description *string
-
-	Healthy_threshold *int
-
-	Http_health_check *[]Google_compute_health_check_http_health_check_35
-
-	Https_health_check *[]Google_compute_health_check_https_health_check_36
-
-	Name string
-
-	Project *string
-
-	Self_link *string
-
-	Ssl_health_check *[]Google_compute_health_check_ssl_health_check_37
-
-	Tcp_health_check *[]Google_compute_health_check_tcp_health_check_38
-
-	Timeout_sec *int
-
-	Type *string
-
-	Unhealthy_threshold *int
-}
-
-type Google_compute_http_health_check struct {
-	Google_compute_http_health_check_id *string `lyra:"ignore"`
-
-	Check_interval_sec *int
-
-	Creation_timestamp *string
-
-	Description *string
-
-	Healthy_threshold *int
-
-	Host *string
-
-	Name string
-
-	Port *int
-
-	Project *string
-
-	Request_path *string
-
-	Self_link *string
-
-	Timeout_sec *int
-
-	Unhealthy_threshold *int
-}
-
-type Google_compute_https_health_check struct {
-	Google_compute_https_health_check_id *string `lyra:"ignore"`
-
-	Check_interval_sec *int
-
-	Creation_timestamp *string
-
-	Description *string
-
-	Healthy_threshold *int
-
-	Host *string
-
-	Name string
-
-	Port *int
-
-	Project *string
-
-	Request_path *string
-
-	Self_link *string
-
-	Timeout_sec *int
-
-	Unhealthy_threshold *int
-}
-
-type Google_compute_image_raw_disk_39 struct {
-	Container_type *string
-
-	Sha1 *string
-
-	Source string
-}
-
-type Google_compute_image struct {
-	Google_compute_image_id *string `lyra:"ignore"`
-
-	Create_timeout *int
-
-	Description *string
-
-	Family *string
-
-	Label_fingerprint *string
-
-	Labels *map[string]string
-
-	Licenses *[]string
-
-	Name string
-
-	Project *string
-
-	Raw_disk *[]Google_compute_image_raw_disk_39
-
-	Self_link *string
-
-	Source_disk *string
-}
-
-type Google_compute_instance_attached_disk_40 struct {
-	Device_name *string
-
-	Disk_encryption_key_raw *string
-
-	Disk_encryption_key_sha256 *string
-
-	Mode *string
-
-	Source string
-}
-
-type Google_compute_instance_boot_disk_41_initialize_params_42 struct {
-	Image *string
-
-	Size *int
-
-	Type *string
-}
-
-type Google_compute_instance_boot_disk_41 struct {
-	Auto_delete *bool
-
-	Device_name *string
-
-	Disk_encryption_key_raw *string
-
-	Disk_encryption_key_sha256 *string
-
-	Initialize_params *[]Google_compute_instance_boot_disk_41_initialize_params_42
-
-	Source *string
-}
-
-type Google_compute_instance_disk_43 struct {
-	Auto_delete *bool
-
-	Device_name *string
-
-	Disk *string
-
-	Disk_encryption_key_raw *string
-
-	Disk_encryption_key_sha256 *string
-
-	Image *string
-
-	Scratch *bool
-
-	Size *int
-
-	Type *string
-}
-
-type Google_compute_instance_guest_accelerator_44 struct {
-	Count int
-
-	Type string
-}
-
-type Google_compute_instance_network_45 struct {
-	Address *string
-
-	External_address *string
-
-	Internal_address *string
-
-	Name *string
-
-	Source string
-}
-
-type Google_compute_instance_network_interface_46_access_config_47 struct {
-	Assigned_nat_ip *string
-
-	Nat_ip *string
-
-	Network_tier *string
-
-	Public_ptr_domain_name *string
-}
-
-type Google_compute_instance_network_interface_46_alias_ip_range_48 struct {
-	Ip_cidr_range string
-
-	Subnetwork_range_name *string
-}
-
-type Google_compute_instance_network_interface_46 struct {
-	Access_config *[]Google_compute_instance_network_interface_46_access_config_47
-
-	Address *string
-
-	Alias_ip_range *[]Google_compute_instance_network_interface_46_alias_ip_range_48
-
-	Name *string
-
-	Network *string
-
-	Network_ip *string
-
-	Subnetwork *string
-
-	Subnetwork_project *string
-}
-
-type Google_compute_instance_scheduling_49 struct {
-	Automatic_restart *bool
-
-	On_host_maintenance *string
-
-	Preemptible *bool
-}
-
-type Google_compute_instance_scratch_disk_50 struct {
-	Interface *string
-}
-
-type Google_compute_instance_service_account_51 struct {
-	Email *string
-
-	Scopes []string
-}
-
-type Google_compute_instance struct {
-	Google_compute_instance_id *string `lyra:"ignore"`
-
-	Allow_stopping_for_update *bool
-
-	Attached_disk *[]Google_compute_instance_attached_disk_40
-
-	Boot_disk []Google_compute_instance_boot_disk_41
-
-	Can_ip_forward *bool
-
-	Cpu_platform *string
-
-	Create_timeout *int
-
-	Deletion_protection *bool
-
-	Description *string
-
-	Disk *[]Google_compute_instance_disk_43
-
-	Guest_accelerator *[]Google_compute_instance_guest_accelerator_44
-
-	Instance_id *string
-
-	Label_fingerprint *string
-
-	Labels *map[string]string
-
-	Machine_type string
-
-	Metadata *map[string]string
-
-	Metadata_fingerprint *string
-
-	Metadata_startup_script *string
-
-	Min_cpu_platform *string
-
-	Name string
-
-	Network *[]Google_compute_instance_network_45
-
-	Network_interface []Google_compute_instance_network_interface_46
-
-	Project *string
-
-	Scheduling *[]Google_compute_instance_scheduling_49
-
-	Scratch_disk *[]Google_compute_instance_scratch_disk_50
-
-	Self_link *string
-
-	Service_account *[]Google_compute_instance_service_account_51
-
-	Tags *[]string
-
-	Tags_fingerprint *string
-
-	Zone *string
-}
-
-type Google_compute_instance_from_template_attached_disk_52 struct {
-	Device_name *string
-
-	Disk_encryption_key_raw *string
-
-	Disk_encryption_key_sha256 *string
-
-	Mode *string
-
-	Source string
-}
-
-type Google_compute_instance_from_template_boot_disk_53_initialize_params_54 struct {
-	Image *string
-
-	Size *int
-
-	Type *string
-}
-
-type Google_compute_instance_from_template_boot_disk_53 struct {
-	Auto_delete *bool
-
-	Device_name *string
-
-	Disk_encryption_key_raw *string
-
-	Disk_encryption_key_sha256 *string
-
-	Initialize_params *[]Google_compute_instance_from_template_boot_disk_53_initialize_params_54
-
-	Source *string
-}
-
-type Google_compute_instance_from_template_guest_accelerator_55 struct {
-	Count int
-
-	Type string
-}
-
-type Google_compute_instance_from_template_network_interface_56_access_config_57 struct {
-	Assigned_nat_ip *string
-
-	Nat_ip *string
-
-	Network_tier *string
-
-	Public_ptr_domain_name *string
-}
-
-type Google_compute_instance_from_template_network_interface_56_alias_ip_range_58 struct {
-	Ip_cidr_range string
-
-	Subnetwork_range_name *string
-}
-
-type Google_compute_instance_from_template_network_interface_56 struct {
-	Access_config *[]Google_compute_instance_from_template_network_interface_56_access_config_57
-
-	Address *string
-
-	Alias_ip_range *[]Google_compute_instance_from_template_network_interface_56_alias_ip_range_58
-
-	Name *string
-
-	Network *string
-
-	Network_ip *string
-
-	Subnetwork *string
-
-	Subnetwork_project *string
-}
-
-type Google_compute_instance_from_template_scheduling_59 struct {
-	Automatic_restart *bool
-
-	On_host_maintenance *string
-
-	Preemptible *bool
-}
-
-type Google_compute_instance_from_template_scratch_disk_60 struct {
-	Interface *string
-}
-
-type Google_compute_instance_from_template_service_account_61 struct {
-	Email *string
-
-	Scopes []string
-}
-
-type Google_compute_instance_from_template struct {
-	Google_compute_instance_from_template_id *string `lyra:"ignore"`
-
-	Allow_stopping_for_update *bool
-
-	Attached_disk *[]Google_compute_instance_from_template_attached_disk_52
-
-	Boot_disk *[]Google_compute_instance_from_template_boot_disk_53
-
-	Can_ip_forward *bool
-
-	Cpu_platform *string
-
-	Deletion_protection *bool
-
-	Description *string
-
-	Guest_accelerator *[]Google_compute_instance_from_template_guest_accelerator_55
-
-	Instance_id *string
-
-	Label_fingerprint *string
-
-	Labels *map[string]string
-
-	Machine_type *string
-
-	Metadata *map[string]string
-
-	Metadata_fingerprint *string
-
-	Metadata_startup_script *string
-
-	Min_cpu_platform *string
-
-	Name string
-
-	Network_interface *[]Google_compute_instance_from_template_network_interface_56
-
-	Project *string
-
-	Scheduling *[]Google_compute_instance_from_template_scheduling_59
-
-	Scratch_disk *[]Google_compute_instance_from_template_scratch_disk_60
-
-	Self_link *string
-
-	Service_account *[]Google_compute_instance_from_template_service_account_61
-
-	Source_instance_template string
-
-	Tags *[]string
-
-	Tags_fingerprint *string
-
-	Zone *string
-}
-
-type Google_compute_instance_group_named_port_62 struct {
-	Name string
-
-	Port int
-}
-
-type Google_compute_instance_group struct {
-	Google_compute_instance_group_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Instances *[]string
-
-	Name string
-
-	Named_port *[]Google_compute_instance_group_named_port_62
-
-	Network *string
-
-	Project *string
-
-	Self_link *string
-
-	Size *int
-
-	Zone *string
-}
-
-type Google_compute_instance_group_manager_auto_healing_policies_63 struct {
-	Health_check string
-
-	Initial_delay_sec int
-}
-
-type Google_compute_instance_group_manager_named_port_64 struct {
-	Name string
-
-	Port int
-}
-
-type Google_compute_instance_group_manager_rolling_update_policy_65 struct {
-	Max_surge_fixed *int
-
-	Max_surge_percent *int
-
-	Max_unavailable_fixed *int
-
-	Max_unavailable_percent *int
-
-	Min_ready_sec *int
-
-	Minimal_action string
-
-	Type string
-}
-
-type Google_compute_instance_group_manager_version_66_target_size_67 struct {
-	Fixed *int
-
-	Percent *int
-}
-
-type Google_compute_instance_group_manager_version_66 struct {
-	Instance_template string
-
-	Name string
-
-	Target_size *[]Google_compute_instance_group_manager_version_66_target_size_67
-}
-
-type Google_compute_instance_group_manager struct {
-	Google_compute_instance_group_manager_id *string `lyra:"ignore"`
-
-	Auto_healing_policies *[]Google_compute_instance_group_manager_auto_healing_policies_63
-
-	Base_instance_name string
-
-	Description *string
-
-	Fingerprint *string
-
-	Instance_group *string
-
-	Instance_template *string
-
-	Name string
-
-	Named_port *[]Google_compute_instance_group_manager_named_port_64
-
-	Project *string
-
-	Rolling_update_policy *[]Google_compute_instance_group_manager_rolling_update_policy_65
-
-	Self_link *string
-
-	Target_pools *[]string
-
-	Target_size *int
-
-	Update_strategy *string
-
-	Version *[]Google_compute_instance_group_manager_version_66
-
-	Wait_for_instances *bool
-
-	Zone *string
-}
-
-type Google_compute_instance_template_disk_68_disk_encryption_key_69 struct {
-	Kms_key_self_link *string
-}
-
-type Google_compute_instance_template_disk_68 struct {
-	Auto_delete *bool
-
-	Boot *bool
-
-	Device_name *string
-
-	Disk_encryption_key *[]Google_compute_instance_template_disk_68_disk_encryption_key_69
-
-	Disk_name *string
-
-	Disk_size_gb *int
-
-	Disk_type *string
-
-	Interface *string
-
-	Mode *string
-
-	Source *string
-
-	Source_image *string
-
-	Type *string
-}
-
-type Google_compute_instance_template_guest_accelerator_70 struct {
-	Count int
-
-	Type string
-}
-
-type Google_compute_instance_template_network_interface_71_access_config_72 struct {
-	Assigned_nat_ip *string
-
-	Nat_ip *string
-
-	Network_tier *string
-}
-
-type Google_compute_instance_template_network_interface_71_alias_ip_range_73 struct {
-	Ip_cidr_range string
-
-	Subnetwork_range_name *string
-}
-
-type Google_compute_instance_template_network_interface_71 struct {
-	Access_config *[]Google_compute_instance_template_network_interface_71_access_config_72
-
-	Address *string
-
-	Alias_ip_range *[]Google_compute_instance_template_network_interface_71_alias_ip_range_73
-
-	Network *string
-
-	Network_ip *string
-
-	Subnetwork *string
-
-	Subnetwork_project *string
-}
-
-type Google_compute_instance_template_scheduling_74 struct {
-	Automatic_restart *bool
-
-	On_host_maintenance *string
-
-	Preemptible *bool
-}
-
-type Google_compute_instance_template_service_account_75 struct {
-	Email *string
-
-	Scopes []string
-}
-
-type Google_compute_instance_template struct {
-	Google_compute_instance_template_id *string `lyra:"ignore"`
-
-	Automatic_restart *bool
-
-	Can_ip_forward *bool
-
-	Description *string
-
-	Disk []Google_compute_instance_template_disk_68
-
-	Guest_accelerator *[]Google_compute_instance_template_guest_accelerator_70
-
-	Instance_description *string
-
-	Labels *map[string]string
-
-	Machine_type string
-
-	Metadata *map[string]string
-
-	Metadata_fingerprint *string
-
-	Metadata_startup_script *string
-
-	Min_cpu_platform *string
-
-	Name *string
-
-	Name_prefix *string
-
-	Network_interface *[]Google_compute_instance_template_network_interface_71
-
-	On_host_maintenance *string
-
-	Project *string
-
-	Region *string
-
-	Scheduling *[]Google_compute_instance_template_scheduling_74
-
-	Self_link *string
-
-	Service_account *[]Google_compute_instance_template_service_account_75
-
-	Tags *[]string
-
-	Tags_fingerprint *string
-}
-
-type Google_compute_interconnect_attachment_private_interconnect_info_76 struct {
-	Tag8021q *int
-}
-
-type Google_compute_interconnect_attachment struct {
-	Google_compute_interconnect_attachment_id *string `lyra:"ignore"`
-
-	Cloud_router_ip_address *string
-
-	Creation_timestamp *string
-
-	Customer_router_ip_address *string
-
-	Description *string
-
-	Google_reference_id *string
-
-	Interconnect string
-
-	Name string
-
-	Private_interconnect_info *[]Google_compute_interconnect_attachment_private_interconnect_info_76
-
-	Project *string
-
-	Region *string
-
-	Router string
-
-	Self_link *string
-}
-
-type Google_compute_network struct {
-	Google_compute_network_id *string `lyra:"ignore"`
-
-	Auto_create_subnetworks *bool
-
-	Description *string
-
-	Gateway_ipv4 *string
-
-	Ipv4_range *string
-
-	Name string
-
-	Project *string
-
-	Routing_mode *string
-
-	Self_link *string
-}
-
-type Google_compute_network_peering struct {
-	Google_compute_network_peering_id *string `lyra:"ignore"`
-
-	Auto_create_routes *bool
-
-	Name string
-
-	Network string
-
-	Peer_network string
-
-	State *string
-
-	State_details *string
-}
-
-type Google_compute_project_metadata struct {
-	Google_compute_project_metadata_id *string `lyra:"ignore"`
-
-	Metadata map[string]string
-
-	Project *string
-}
-
-type Google_compute_project_metadata_item struct {
-	Google_compute_project_metadata_item_id *string `lyra:"ignore"`
-
-	Key string
-
-	Project *string
-
-	Value string
-}
-
-type Google_compute_region_autoscaler_autoscaling_policy_77_cpu_utilization_78 struct {
-	Target float64
-}
-
-type Google_compute_region_autoscaler_autoscaling_policy_77_load_balancing_utilization_79 struct {
-	Target float64
-}
-
-type Google_compute_region_autoscaler_autoscaling_policy_77_metric_80 struct {
-	Name string
-
-	Target float64
-
-	Type string
-}
-
-type Google_compute_region_autoscaler_autoscaling_policy_77 struct {
-	Cooldown_period *int
-
-	Cpu_utilization *[]Google_compute_region_autoscaler_autoscaling_policy_77_cpu_utilization_78
-
-	Load_balancing_utilization *[]Google_compute_region_autoscaler_autoscaling_policy_77_load_balancing_utilization_79
-
-	Max_replicas int
-
-	Metric *[]Google_compute_region_autoscaler_autoscaling_policy_77_metric_80
-
-	Min_replicas int
-}
-
-type Google_compute_region_autoscaler struct {
-	Google_compute_region_autoscaler_id *string `lyra:"ignore"`
-
-	Autoscaling_policy []Google_compute_region_autoscaler_autoscaling_policy_77
-
-	Creation_timestamp *string
-
-	Description *string
-
-	Name string
-
-	Project *string
-
-	Region *string
-
-	Self_link *string
-
-	Target string
-}
-
-type Google_compute_region_backend_service_backend_81 struct {
-	Description *string
-
-	Group *string
-}
-
-type Google_compute_region_backend_service struct {
-	Google_compute_region_backend_service_id *string `lyra:"ignore"`
-
-	Backend *[]Google_compute_region_backend_service_backend_81
-
-	Connection_draining_timeout_sec *int
-
-	Description *string
-
-	Fingerprint *string
-
-	Health_checks []string
-
-	Name string
-
-	Project *string
-
-	Protocol *string
-
-	Region *string
-
-	Self_link *string
-
-	Session_affinity *string
-
-	Timeout_sec *int
-}
-
-type Google_compute_region_disk_disk_encryption_key_82 struct {
-	Raw_key *string
-
-	Sha256 *string
-}
-
-type Google_compute_region_disk_source_snapshot_encryption_key_83 struct {
-	Raw_key *string
-
-	Sha256 *string
-}
-
-type Google_compute_region_disk struct {
-	Google_compute_region_disk_id *string `lyra:"ignore"`
-
-	Creation_timestamp *string
-
-	Description *string
-
-	Disk_encryption_key *[]Google_compute_region_disk_disk_encryption_key_82
-
-	Label_fingerprint *string
-
-	Labels *map[string]string
-
-	Last_attach_timestamp *string
-
-	Last_detach_timestamp *string
-
-	Name string
-
-	Project *string
-
-	Region *string
-
-	Replica_zones []string
-
-	Self_link *string
-
-	Size *int
-
-	Snapshot *string
-
-	Source_snapshot_encryption_key *[]Google_compute_region_disk_source_snapshot_encryption_key_83
-
-	Source_snapshot_id *string
-
-	Type *string
-
-	Users *[]string
-}
-
-type Google_compute_region_instance_group_manager_auto_healing_policies_84 struct {
-	Health_check string
-
-	Initial_delay_sec int
-}
-
-type Google_compute_region_instance_group_manager_named_port_85 struct {
-	Name string
-
-	Port int
-}
-
-type Google_compute_region_instance_group_manager_rolling_update_policy_86 struct {
-	Max_surge_fixed *int
-
-	Max_surge_percent *int
-
-	Max_unavailable_fixed *int
-
-	Max_unavailable_percent *int
-
-	Min_ready_sec *int
-
-	Minimal_action string
-
-	Type string
-}
-
-type Google_compute_region_instance_group_manager_version_87_target_size_88 struct {
-	Fixed *int
-
-	Percent *int
-}
-
-type Google_compute_region_instance_group_manager_version_87 struct {
-	Instance_template string
-
-	Name string
-
-	Target_size *[]Google_compute_region_instance_group_manager_version_87_target_size_88
-}
-
-type Google_compute_region_instance_group_manager struct {
-	Google_compute_region_instance_group_manager_id *string `lyra:"ignore"`
-
-	Auto_healing_policies *[]Google_compute_region_instance_group_manager_auto_healing_policies_84
-
-	Base_instance_name string
-
-	Description *string
-
-	Distribution_policy_zones *[]string
-
-	Fingerprint *string
-
-	Instance_group *string
-
-	Instance_template *string
-
-	Name string
-
-	Named_port *[]Google_compute_region_instance_group_manager_named_port_85
-
-	Project *string
-
-	Region string
-
-	Rolling_update_policy *[]Google_compute_region_instance_group_manager_rolling_update_policy_86
-
-	Self_link *string
-
-	Target_pools *[]string
-
-	Target_size *int
-
-	Update_strategy *string
-
-	Version *[]Google_compute_region_instance_group_manager_version_87
-
-	Wait_for_instances *bool
-}
-
-type Google_compute_route struct {
-	Google_compute_route_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Dest_range string
-
-	Name string
-
-	Network string
-
-	Next_hop_gateway *string
-
-	Next_hop_instance *string
-
-	Next_hop_instance_zone *string
-
-	Next_hop_ip *string
-
-	Next_hop_network *string
-
-	Next_hop_vpn_tunnel *string
-
-	Priority *int
-
-	Project *string
-
-	Self_link *string
-
-	Tags *[]string
-}
-
-type Google_compute_router_bgp_89_advertised_ip_ranges_90 struct {
-	Description *string
-
-	Range *string
-}
-
-type Google_compute_router_bgp_89 struct {
-	Advertise_mode *string
-
-	Advertised_groups *[]string
-
-	Advertised_ip_ranges *[]Google_compute_router_bgp_89_advertised_ip_ranges_90
-
-	Asn int
-}
-
-type Google_compute_router struct {
-	Google_compute_router_id *string `lyra:"ignore"`
-
-	Bgp *[]Google_compute_router_bgp_89
-
-	Creation_timestamp *string
-
-	Description *string
-
-	Name string
-
-	Network string
-
-	Project *string
-
-	Region *string
-
-	Self_link *string
-}
-
-type Google_compute_router_interface struct {
-	Google_compute_router_interface_id *string `lyra:"ignore"`
-
-	Ip_range *string
-
-	Name string
-
-	Project *string
-
-	Region *string
-
-	Router string
-
-	Vpn_tunnel string
-}
-
-type Google_compute_router_nat_subnetwork_91 struct {
-	Name string
-
-	Secondary_ip_range_names *[]string
-
-	Source_ip_ranges_to_nat *[]string
-}
-
-type Google_compute_router_nat struct {
-	Google_compute_router_nat_id *string `lyra:"ignore"`
-
-	Icmp_idle_timeout_sec *int
-
-	Min_ports_per_vm *int
-
-	Name string
-
-	Nat_ip_allocate_option string
-
-	Nat_ips *[]string
-
-	Project *string
-
-	Region *string
-
-	Router string
-
-	Source_subnetwork_ip_ranges_to_nat *string
-
-	Subnetwork *[]Google_compute_router_nat_subnetwork_91
-
-	Tcp_established_idle_timeout_sec *int
-
-	Tcp_transitory_idle_timeout_sec *int
-
-	Udp_idle_timeout_sec *int
-}
-
-type Google_compute_router_peer struct {
-	Google_compute_router_peer_id *string `lyra:"ignore"`
-
-	Advertised_route_priority *int
-
-	Interface string
-
-	Ip_address *string
-
-	Name string
-
-	Peer_asn int
-
-	Peer_ip_address *string
-
-	Project *string
-
-	Region *string
-
-	Router string
-}
-
-type Google_compute_security_policy_rule_92_match_93_config_94 struct {
-	Src_ip_ranges []string
-}
-
-type Google_compute_security_policy_rule_92_match_93 struct {
-	Config []Google_compute_security_policy_rule_92_match_93_config_94
-
-	Versioned_expr string
-}
-
-type Google_compute_security_policy_rule_92 struct {
-	Action string
-
-	Description *string
-
-	Match []Google_compute_security_policy_rule_92_match_93
-
-	Preview *bool
-
-	Priority int
-}
-
-type Google_compute_security_policy struct {
-	Google_compute_security_policy_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Fingerprint *string
-
-	Name string
-
-	Project *string
-
-	Rule *[]Google_compute_security_policy_rule_92
-
-	Self_link *string
-}
-
-type Google_compute_shared_vpc_host_project struct {
-	Google_compute_shared_vpc_host_project_id *string `lyra:"ignore"`
-
-	Project string
-}
-
-type Google_compute_shared_vpc_service_project struct {
-	Google_compute_shared_vpc_service_project_id *string `lyra:"ignore"`
-
-	Host_project string
-
-	Service_project string
-}
-
-type Google_compute_snapshot_snapshot_encryption_key_95 struct {
-	Raw_key *string
-
-	Sha256 *string
-}
-
-type Google_compute_snapshot_source_disk_encryption_key_96 struct {
-	Raw_key *string
-}
-
-type Google_compute_snapshot struct {
-	Google_compute_snapshot_id *string `lyra:"ignore"`
-
-	Creation_timestamp *string
-
-	Description *string
-
-	Disk_size_gb *int
-
-	Label_fingerprint *string
-
-	Labels *map[string]string
-
-	Licenses *[]string
-
-	Name string
-
-	Project *string
-
-	Self_link *string
-
-	Snapshot_encryption_key *[]Google_compute_snapshot_snapshot_encryption_key_95
-
-	Snapshot_encryption_key_raw *string
-
-	Snapshot_encryption_key_sha256 *string
-
-	Snapshot_id *int
-
-	Source_disk string
-
-	Source_disk_encryption_key *[]Google_compute_snapshot_source_disk_encryption_key_96
-
-	Source_disk_encryption_key_raw *string
-
-	Source_disk_encryption_key_sha256 *string
-
-	Source_disk_link *string
-
-	Storage_bytes *int
-
-	Zone *string
-}
-
-type Google_compute_ssl_certificate struct {
-	Google_compute_ssl_certificate_id *string `lyra:"ignore"`
-
-	Certificate string
-
-	Certificate_id *int
-
-	Creation_timestamp *string
-
-	Description *string
-
-	Name *string
-
-	Name_prefix *string
-
-	Private_key string
-
-	Project *string
-
-	Self_link *string
-}
-
-type Google_compute_ssl_policy struct {
-	Google_compute_ssl_policy_id *string `lyra:"ignore"`
-
-	Creation_timestamp *string
-
-	Custom_features *[]string
-
-	Description *string
-
-	Enabled_features *[]string
-
-	Fingerprint *string
-
-	Min_tls_version *string
-
-	Name string
-
-	Profile *string
-
-	Project *string
-
-	Self_link *string
-}
-
-type Google_compute_subnetwork_secondary_ip_range_97 struct {
-	Ip_cidr_range string
-
-	Range_name string
-}
-
-type Google_compute_subnetwork struct {
-	Google_compute_subnetwork_id *string `lyra:"ignore"`
-
-	Creation_timestamp *string
-
-	Description *string
-
-	Enable_flow_logs *bool
-
-	Fingerprint *string
-
-	Gateway_address *string
-
-	Ip_cidr_range string
-
-	Name string
-
-	Network string
-
-	Private_ip_google_access *bool
-
-	Project *string
-
-	Region *string
-
-	Secondary_ip_range *[]Google_compute_subnetwork_secondary_ip_range_97
-
-	Self_link *string
-}
-
-type Google_compute_subnetwork_iam_binding struct {
-	Google_compute_subnetwork_iam_binding_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Members []string
-
-	Project *string
-
-	Region *string
-
-	Role string
-
-	Subnetwork string
-}
-
-type Google_compute_subnetwork_iam_member struct {
-	Google_compute_subnetwork_iam_member_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Member string
-
-	Project *string
-
-	Region *string
-
-	Role string
-
-	Subnetwork string
-}
-
-type Google_compute_subnetwork_iam_policy struct {
-	Google_compute_subnetwork_iam_policy_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Policy_data string
-
-	Project *string
-
-	Region *string
-
-	Subnetwork string
-}
-
-type Google_compute_target_http_proxy struct {
-	Google_compute_target_http_proxy_id *string `lyra:"ignore"`
-
-	Creation_timestamp *string
-
-	Description *string
-
-	Name string
-
-	Project *string
-
-	Proxy_id *int
-
-	Self_link *string
-
-	Url_map string
-}
-
-type Google_compute_target_https_proxy struct {
-	Google_compute_target_https_proxy_id *string `lyra:"ignore"`
-
-	Creation_timestamp *string
-
-	Description *string
-
-	Name string
-
-	Project *string
-
-	Proxy_id *int
-
-	Quic_override *string
-
-	Self_link *string
-
-	Ssl_certificates []string
-
-	Ssl_policy *string
-
-	Url_map string
-}
-
-type Google_compute_target_pool struct {
-	Google_compute_target_pool_id *string `lyra:"ignore"`
-
-	Backup_pool *string
-
-	Description *string
-
-	Failover_ratio *float64
-
-	Health_checks *[]string
-
-	Instances *[]string
-
-	Name string
-
-	Project *string
-
-	Region *string
-
-	Self_link *string
-
-	Session_affinity *string
-}
-
-type Google_compute_target_ssl_proxy struct {
-	Google_compute_target_ssl_proxy_id *string `lyra:"ignore"`
-
-	Backend_service string
-
-	Creation_timestamp *string
-
-	Description *string
-
-	Name string
-
-	Project *string
-
-	Proxy_header *string
-
-	Proxy_id *int
-
-	Self_link *string
-
-	Ssl_certificates []string
-
-	Ssl_policy *string
-}
-
-type Google_compute_target_tcp_proxy struct {
-	Google_compute_target_tcp_proxy_id *string `lyra:"ignore"`
-
-	Backend_service string
-
-	Creation_timestamp *string
-
-	Description *string
-
-	Name string
-
-	Project *string
-
-	Proxy_header *string
-
-	Proxy_id *int
-
-	Self_link *string
-}
-
-type Google_compute_url_map_host_rule_98 struct {
-	Description *string
-
-	Hosts []string
-
-	Path_matcher string
-}
-
-type Google_compute_url_map_path_matcher_99_path_rule_100 struct {
-	Paths []string
-
-	Service string
-}
-
-type Google_compute_url_map_path_matcher_99 struct {
-	Default_service string
-
-	Description *string
-
-	Name string
-
-	Path_rule *[]Google_compute_url_map_path_matcher_99_path_rule_100
-}
-
-type Google_compute_url_map_test_101 struct {
-	Description *string
-
-	Host string
-
-	Path string
-
-	Service string
-}
-
-type Google_compute_url_map struct {
-	Google_compute_url_map_id *string `lyra:"ignore"`
-
-	Default_service string
-
-	Description *string
-
-	Fingerprint *string
-
-	Host_rule *[]Google_compute_url_map_host_rule_98
-
-	Map_id *string
-
-	Name string
-
-	Path_matcher *[]Google_compute_url_map_path_matcher_99
-
-	Project *string
-
-	Self_link *string
-
-	Test *[]Google_compute_url_map_test_101
-}
-
-type Google_compute_vpn_gateway struct {
-	Google_compute_vpn_gateway_id *string `lyra:"ignore"`
-
-	Creation_timestamp *string
-
-	Description *string
-
-	Name string
-
-	Network string
-
-	Project *string
-
-	Region *string
-
-	Self_link *string
-}
-
-type Google_compute_vpn_tunnel struct {
-	Google_compute_vpn_tunnel_id *string `lyra:"ignore"`
-
-	Creation_timestamp *string
-
-	Description *string
-
-	Detailed_status *string
-
-	Ike_version *int
-
-	Label_fingerprint *string
-
-	Labels *map[string]string
-
-	Local_traffic_selector *[]string
-
-	Name string
-
-	Peer_ip string
-
-	Project *string
-
-	Region *string
-
-	Remote_traffic_selector *[]string
-
-	Router *string
-
-	Self_link *string
-
-	Shared_secret string
-
-	Shared_secret_hash *string
-
-	Target_vpn_gateway string
-}
-
-type Google_container_analysis_note_attestation_authority_102_hint_103 struct {
-	Human_readable_name string
-}
-
-type Google_container_analysis_note_attestation_authority_102 struct {
-	Hint []Google_container_analysis_note_attestation_authority_102_hint_103
-}
-
-type Google_container_analysis_note struct {
-	Google_container_analysis_note_id *string `lyra:"ignore"`
-
-	Attestation_authority []Google_container_analysis_note_attestation_authority_102
-
-	Name string
-
-	Project *string
-}
-
-type Google_container_cluster_addons_config_104_horizontal_pod_autoscaling_105 struct {
-	Disabled *bool
-}
-
-type Google_container_cluster_addons_config_104_http_load_balancing_106 struct {
-	Disabled *bool
-}
-
-type Google_container_cluster_addons_config_104_kubernetes_dashboard_107 struct {
-	Disabled *bool
-}
-
-type Google_container_cluster_addons_config_104_network_policy_config_108 struct {
-	Disabled *bool
-}
-
-type Google_container_cluster_addons_config_104 struct {
-	Horizontal_pod_autoscaling *[]Google_container_cluster_addons_config_104_horizontal_pod_autoscaling_105
-
-	Http_load_balancing *[]Google_container_cluster_addons_config_104_http_load_balancing_106
-
-	Kubernetes_dashboard *[]Google_container_cluster_addons_config_104_kubernetes_dashboard_107
-
-	Network_policy_config *[]Google_container_cluster_addons_config_104_network_policy_config_108
-}
-
-type Google_container_cluster_cluster_autoscaling_109_resource_limits_110 struct {
-	Maximum *int
-
-	Minimum *int
-
-	Resource_type string
-}
-
-type Google_container_cluster_cluster_autoscaling_109 struct {
-	Enabled bool
-
-	Resource_limits *[]Google_container_cluster_cluster_autoscaling_109_resource_limits_110
-}
-
-type Google_container_cluster_ip_allocation_policy_111 struct {
-	Cluster_ipv4_cidr_block *string
-
-	Cluster_secondary_range_name *string
-
-	Create_subnetwork *bool
-
-	Services_ipv4_cidr_block *string
-
-	Services_secondary_range_name *string
-
-	Subnetwork_name *string
-}
-
-type Google_container_cluster_maintenance_policy_112_daily_maintenance_window_113 struct {
-	Duration *string
-
-	Start_time string
-}
-
-type Google_container_cluster_maintenance_policy_112 struct {
-	Daily_maintenance_window []Google_container_cluster_maintenance_policy_112_daily_maintenance_window_113
-}
-
-type Google_container_cluster_master_auth_114_client_certificate_config_115 struct {
-	Issue_client_certificate bool
-}
-
-type Google_container_cluster_master_auth_114 struct {
-	Client_certificate *string
-
-	Client_certificate_config *[]Google_container_cluster_master_auth_114_client_certificate_config_115
-
-	Client_key *string
-
-	Cluster_ca_certificate *string
-
-	Password string
-
-	Username string
-}
-
-type Google_container_cluster_master_authorized_networks_config_116_cidr_blocks_117 struct {
-	Cidr_block string
-
-	Display_name *string
-}
-
-type Google_container_cluster_master_authorized_networks_config_116 struct {
-	Cidr_blocks *[]Google_container_cluster_master_authorized_networks_config_116_cidr_blocks_117
-}
-
-type Google_container_cluster_network_policy_118 struct {
-	Enabled *bool
-
-	Provider *string
-}
-
-type Google_container_cluster_node_config_119_guest_accelerator_120 struct {
-	Count int
-
-	Type string
-}
-
-type Google_container_cluster_node_config_119_taint_121 struct {
-	Effect string
-
-	Key string
-
-	Value string
-}
-
-type Google_container_cluster_node_config_119_workload_metadata_config_122 struct {
-	Node_metadata string
-}
-
-type Google_container_cluster_node_config_119 struct {
-	Disk_size_gb *int
-
-	Disk_type *string
-
-	Guest_accelerator *[]Google_container_cluster_node_config_119_guest_accelerator_120
-
-	Image_type *string
-
-	Labels *map[string]string
-
-	Local_ssd_count *int
-
-	Machine_type *string
-
-	Metadata *map[string]string
-
-	Min_cpu_platform *string
-
-	Oauth_scopes *[]string
-
-	Preemptible *bool
-
-	Service_account *string
-
-	Tags *[]string
-
-	Taint *[]Google_container_cluster_node_config_119_taint_121
-
-	Workload_metadata_config *[]Google_container_cluster_node_config_119_workload_metadata_config_122
-}
-
-type Google_container_cluster_node_pool_123_autoscaling_124 struct {
-	Max_node_count int
-
-	Min_node_count int
-}
-
-type Google_container_cluster_node_pool_123_management_125 struct {
-	Auto_repair *bool
-
-	Auto_upgrade *bool
-}
-
-type Google_container_cluster_node_pool_123_node_config_126_guest_accelerator_127 struct {
-	Count int
-
-	Type string
-}
-
-type Google_container_cluster_node_pool_123_node_config_126_taint_128 struct {
-	Effect string
-
-	Key string
-
-	Value string
-}
-
-type Google_container_cluster_node_pool_123_node_config_126_workload_metadata_config_129 struct {
-	Node_metadata string
-}
-
-type Google_container_cluster_node_pool_123_node_config_126 struct {
-	Disk_size_gb *int
-
-	Disk_type *string
-
-	Guest_accelerator *[]Google_container_cluster_node_pool_123_node_config_126_guest_accelerator_127
-
-	Image_type *string
-
-	Labels *map[string]string
-
-	Local_ssd_count *int
-
-	Machine_type *string
-
-	Metadata *map[string]string
-
-	Min_cpu_platform *string
-
-	Oauth_scopes *[]string
-
-	Preemptible *bool
-
-	Service_account *string
-
-	Tags *[]string
-
-	Taint *[]Google_container_cluster_node_pool_123_node_config_126_taint_128
-
-	Workload_metadata_config *[]Google_container_cluster_node_pool_123_node_config_126_workload_metadata_config_129
-}
-
-type Google_container_cluster_node_pool_123 struct {
-	Autoscaling *[]Google_container_cluster_node_pool_123_autoscaling_124
-
-	Initial_node_count *int
-
-	Instance_group_urls *[]string
-
-	Management *[]Google_container_cluster_node_pool_123_management_125
-
-	Max_pods_per_node *int
-
-	Name *string
-
-	Name_prefix *string
-
-	Node_config *[]Google_container_cluster_node_pool_123_node_config_126
-
-	Node_count *int
-
-	Version *string
-}
-
-type Google_container_cluster_pod_security_policy_config_130 struct {
-	Enabled bool
-}
-
-type Google_container_cluster_private_cluster_config_131 struct {
-	Enable_private_endpoint *bool
-
-	Enable_private_nodes *bool
-
-	Master_ipv4_cidr_block *string
-
-	Private_endpoint *string
-
-	Public_endpoint *string
-}
-
-type Google_container_cluster struct {
-	Google_container_cluster_id *string `lyra:"ignore"`
-
-	Additional_zones *[]string
-
-	Addons_config *[]Google_container_cluster_addons_config_104
-
-	Cluster_autoscaling *[]Google_container_cluster_cluster_autoscaling_109
-
-	Cluster_ipv4_cidr *string
-
-	Description *string
-
-	Enable_binary_authorization *bool
-
-	Enable_kubernetes_alpha *bool
-
-	Enable_legacy_abac *bool
-
-	Enable_tpu *bool
-
-	Endpoint *string
-
-	Initial_node_count *int
-
-	Instance_group_urls *[]string
-
-	Ip_allocation_policy *[]Google_container_cluster_ip_allocation_policy_111
-
-	Logging_service *string
-
-	Maintenance_policy *[]Google_container_cluster_maintenance_policy_112
-
-	Master_auth *[]Google_container_cluster_master_auth_114
-
-	Master_authorized_networks_config *[]Google_container_cluster_master_authorized_networks_config_116
-
-	Master_ipv4_cidr_block *string
-
-	Master_version *string
-
-	Min_master_version *string
-
-	Monitoring_service *string
-
-	Name string
-
-	Network *string
-
-	Network_policy *[]Google_container_cluster_network_policy_118
-
-	Node_config *[]Google_container_cluster_node_config_119
-
-	Node_pool *[]Google_container_cluster_node_pool_123
-
-	Node_version *string
-
-	Pod_security_policy_config *[]Google_container_cluster_pod_security_policy_config_130
-
-	Private_cluster *bool
-
-	Private_cluster_config *[]Google_container_cluster_private_cluster_config_131
-
-	Project *string
-
-	Region *string
-
-	Remove_default_node_pool *bool
-
-	Resource_labels *map[string]string
-
-	Subnetwork *string
-
-	Zone *string
-}
-
-type Google_container_node_pool_autoscaling_132 struct {
-	Max_node_count int
-
-	Min_node_count int
-}
-
-type Google_container_node_pool_management_133 struct {
-	Auto_repair *bool
-
-	Auto_upgrade *bool
-}
-
-type Google_container_node_pool_node_config_134_guest_accelerator_135 struct {
-	Count int
-
-	Type string
-}
-
-type Google_container_node_pool_node_config_134_taint_136 struct {
-	Effect string
-
-	Key string
-
-	Value string
-}
-
-type Google_container_node_pool_node_config_134_workload_metadata_config_137 struct {
-	Node_metadata string
-}
-
-type Google_container_node_pool_node_config_134 struct {
-	Disk_size_gb *int
-
-	Disk_type *string
-
-	Guest_accelerator *[]Google_container_node_pool_node_config_134_guest_accelerator_135
-
-	Image_type *string
-
-	Labels *map[string]string
-
-	Local_ssd_count *int
-
-	Machine_type *string
-
-	Metadata *map[string]string
-
-	Min_cpu_platform *string
-
-	Oauth_scopes *[]string
-
-	Preemptible *bool
-
-	Service_account *string
-
-	Tags *[]string
-
-	Taint *[]Google_container_node_pool_node_config_134_taint_136
-
-	Workload_metadata_config *[]Google_container_node_pool_node_config_134_workload_metadata_config_137
-}
-
-type Google_container_node_pool struct {
-	Google_container_node_pool_id *string `lyra:"ignore"`
-
-	Autoscaling *[]Google_container_node_pool_autoscaling_132
-
-	Cluster string
-
-	Initial_node_count *int
-
-	Instance_group_urls *[]string
-
-	Management *[]Google_container_node_pool_management_133
-
-	Max_pods_per_node *int
-
-	Name *string
-
-	Name_prefix *string
-
-	Node_config *[]Google_container_node_pool_node_config_134
-
-	Node_count *int
-
-	Project *string
-
-	Region *string
-
-	Version *string
-
-	Zone *string
-}
-
-type Google_dataflow_job struct {
-	Google_dataflow_job_id *string `lyra:"ignore"`
-
-	Max_workers *int
-
-	Name string
-
-	On_delete *string
-
-	Parameters *map[string]string
-
-	Project *string
-
-	Region *string
-
-	State *string
-
-	Temp_gcs_location string
-
-	Template_gcs_path string
-
-	Zone *string
-}
-
-type Google_dataproc_cluster_cluster_config_138_gce_cluster_config_139 struct {
-	Internal_ip_only *bool
-
-	Metadata *map[string]string
-
-	Network *string
-
-	Service_account *string
-
-	Service_account_scopes *[]string
-
-	Subnetwork *string
-
-	Tags *[]string
-
-	Zone *string
-}
-
-type Google_dataproc_cluster_cluster_config_138_initialization_action_140 struct {
-	Script string
-
-	Timeout_sec *int
-}
-
-type Google_dataproc_cluster_cluster_config_138_master_config_141_disk_config_142 struct {
-	Boot_disk_size_gb *int
-
-	Boot_disk_type *string
-
-	Num_local_ssds *int
-}
-
-type Google_dataproc_cluster_cluster_config_138_master_config_141 struct {
-	Disk_config *[]Google_dataproc_cluster_cluster_config_138_master_config_141_disk_config_142
-
-	Instance_names *[]string
-
-	Machine_type *string
-
-	Num_instances *int
-}
-
-type Google_dataproc_cluster_cluster_config_138_preemptible_worker_config_143_disk_config_144 struct {
-	Boot_disk_size_gb *int
-}
-
-type Google_dataproc_cluster_cluster_config_138_preemptible_worker_config_143 struct {
-	Disk_config *[]Google_dataproc_cluster_cluster_config_138_preemptible_worker_config_143_disk_config_144
-
-	Instance_names *[]string
-
-	Num_instances *int
-}
-
-type Google_dataproc_cluster_cluster_config_138_software_config_145 struct {
-	Image_version *string
-
-	Override_properties *map[string]string
-
-	Properties *map[string]string
-}
-
-type Google_dataproc_cluster_cluster_config_138_worker_config_146_disk_config_147 struct {
-	Boot_disk_size_gb *int
-
-	Boot_disk_type *string
-
-	Num_local_ssds *int
-}
-
-type Google_dataproc_cluster_cluster_config_138_worker_config_146 struct {
-	Disk_config *[]Google_dataproc_cluster_cluster_config_138_worker_config_146_disk_config_147
-
-	Instance_names *[]string
-
-	Machine_type *string
-
-	Num_instances *int
-}
-
-type Google_dataproc_cluster_cluster_config_138 struct {
-	Bucket *string
-
-	Delete_autogen_bucket *bool
-
-	Gce_cluster_config *[]Google_dataproc_cluster_cluster_config_138_gce_cluster_config_139
-
-	Initialization_action *[]Google_dataproc_cluster_cluster_config_138_initialization_action_140
-
-	Master_config *[]Google_dataproc_cluster_cluster_config_138_master_config_141
-
-	Preemptible_worker_config *[]Google_dataproc_cluster_cluster_config_138_preemptible_worker_config_143
-
-	Software_config *[]Google_dataproc_cluster_cluster_config_138_software_config_145
-
-	Staging_bucket *string
-
-	Worker_config *[]Google_dataproc_cluster_cluster_config_138_worker_config_146
-}
-
-type Google_dataproc_cluster struct {
-	Google_dataproc_cluster_id *string `lyra:"ignore"`
-
-	Cluster_config *[]Google_dataproc_cluster_cluster_config_138
-
-	Labels *map[string]string
-
-	Name string
-
-	Project *string
-
-	Region *string
-}
-
-type Google_dataproc_job_hadoop_config_148_logging_config_149 struct {
-	Driver_log_levels *map[string]string
-}
-
-type Google_dataproc_job_hadoop_config_148 struct {
-	Archive_uris *[]string
-
-	Args *[]string
-
-	File_uris *[]string
-
-	Jar_file_uris *[]string
-
-	Logging_config *[]Google_dataproc_job_hadoop_config_148_logging_config_149
-
-	Main_class *string
-
-	Main_jar_file_uri *string
-
-	Properties *map[string]string
-}
-
-type Google_dataproc_job_hive_config_150 struct {
-	Continue_on_failure *bool
-
-	Jar_file_uris *[]string
-
-	Properties *map[string]string
-
-	Query_file_uri *string
-
-	Query_list *[]string
-
-	Script_variables *map[string]string
-}
-
-type Google_dataproc_job_pig_config_151_logging_config_152 struct {
-	Driver_log_levels *map[string]string
-}
-
-type Google_dataproc_job_pig_config_151 struct {
-	Continue_on_failure *bool
-
-	Jar_file_uris *[]string
-
-	Logging_config *[]Google_dataproc_job_pig_config_151_logging_config_152
-
-	Properties *map[string]string
-
-	Query_file_uri *string
-
-	Query_list *[]string
-
-	Script_variables *map[string]string
-}
-
-type Google_dataproc_job_placement_153 struct {
-	Cluster_name string
-
-	Cluster_uuid *string
-}
-
-type Google_dataproc_job_pyspark_config_154_logging_config_155 struct {
-	Driver_log_levels *map[string]string
-}
-
-type Google_dataproc_job_pyspark_config_154 struct {
-	Archive_uris *[]string
-
-	Args *[]string
-
-	File_uris *[]string
-
-	Jar_file_uris *[]string
-
-	Logging_config *[]Google_dataproc_job_pyspark_config_154_logging_config_155
-
-	Main_python_file_uri string
-
-	Properties *map[string]string
-
-	Python_file_uris *[]string
-}
-
-type Google_dataproc_job_reference_156 struct {
-	Job_id *string
-}
-
-type Google_dataproc_job_scheduling_157 struct {
-	Max_failures_per_hour *int
-}
-
-type Google_dataproc_job_spark_config_158_logging_config_159 struct {
-	Driver_log_levels *map[string]string
-}
-
-type Google_dataproc_job_spark_config_158 struct {
-	Archive_uris *[]string
-
-	Args *[]string
-
-	File_uris *[]string
-
-	Jar_file_uris *[]string
-
-	Logging_config *[]Google_dataproc_job_spark_config_158_logging_config_159
-
-	Main_class *string
-
-	Main_jar_file_uri *string
-
-	Properties *map[string]string
-}
-
-type Google_dataproc_job_sparksql_config_160_logging_config_161 struct {
-	Driver_log_levels *map[string]string
-}
-
-type Google_dataproc_job_sparksql_config_160 struct {
-	Jar_file_uris *[]string
-
-	Logging_config *[]Google_dataproc_job_sparksql_config_160_logging_config_161
-
-	Properties *map[string]string
-
-	Query_file_uri *string
-
-	Query_list *[]string
-
-	Script_variables *map[string]string
-}
-
-type Google_dataproc_job_status_162 struct {
-	Details *string
-
-	State *string
-
-	State_start_time *string
-
-	Substate *string
-}
-
-type Google_dataproc_job struct {
-	Google_dataproc_job_id *string `lyra:"ignore"`
-
-	Driver_controls_files_uri *string
-
-	Driver_output_resource_uri *string
-
-	Force_delete *bool
-
-	Hadoop_config *[]Google_dataproc_job_hadoop_config_148
-
-	Hive_config *[]Google_dataproc_job_hive_config_150
-
-	Labels *map[string]string
-
-	Pig_config *[]Google_dataproc_job_pig_config_151
-
-	Placement []Google_dataproc_job_placement_153
-
-	Project *string
-
-	Pyspark_config *[]Google_dataproc_job_pyspark_config_154
-
-	Reference *[]Google_dataproc_job_reference_156
-
-	Region *string
-
-	Scheduling *[]Google_dataproc_job_scheduling_157
-
-	Spark_config *[]Google_dataproc_job_spark_config_158
-
-	Sparksql_config *[]Google_dataproc_job_sparksql_config_160
-
-	Status *[]Google_dataproc_job_status_162
-}
-
-type Google_dns_managed_zone struct {
-	Google_dns_managed_zone_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Dns_name string
-
-	Labels *map[string]string
-
-	Name string
-
-	Name_servers *[]string
-
-	Project *string
-}
-
-type Google_dns_record_set struct {
-	Google_dns_record_set_id *string `lyra:"ignore"`
-
-	Managed_zone string
-
-	Name string
-
-	Project *string
-
-	Rrdatas []string
-
-	Ttl int
-
-	Type string
-}
-
-type Google_endpoints_service_apis_163_methods_164 struct {
-	Name *string
-
-	Request_type *string
-
-	Response_type *string
-
-	Syntax *string
-}
-
-type Google_endpoints_service_apis_163 struct {
-	Methods *[]Google_endpoints_service_apis_163_methods_164
-
-	Name *string
-
-	Syntax *string
-
-	Version *string
-}
-
-type Google_endpoints_service_endpoints_165 struct {
-	Address *string
-
-	Name *string
-}
-
-type Google_endpoints_service struct {
-	Google_endpoints_service_id *string `lyra:"ignore"`
-
-	Apis *[]Google_endpoints_service_apis_163
-
-	Config_id *string
-
-	Dns_address *string
-
-	Endpoints *[]Google_endpoints_service_endpoints_165
-
-	Grpc_config *string
-
-	Openapi_config *string
-
-	Project *string
-
-	Protoc_output *string
-
-	Protoc_output_base64 *string
-
-	Service_name string
-}
-
-type Google_filestore_instance_file_shares_166 struct {
-	Capacity_gb int
-
-	Name string
-}
-
-type Google_filestore_instance_networks_167 struct {
-	Ip_addresses *[]string
-
-	Modes []string
-
-	Network string
-
-	Reserved_ip_range *string
-}
-
-type Google_filestore_instance struct {
-	Google_filestore_instance_id *string `lyra:"ignore"`
-
-	Create_time *string
-
-	Description *string
-
-	Etag *string
-
-	File_shares []Google_filestore_instance_file_shares_166
-
-	Labels *map[string]string
-
-	Name string
-
-	Networks []Google_filestore_instance_networks_167
-
-	Project *string
-
-	Tier string
-
-	Zone string
-}
-
-type Google_folder struct {
-	Google_folder_id *string `lyra:"ignore"`
-
-	Create_time *string
-
-	Display_name string
-
-	Lifecycle_state *string
-
-	Name *string
-
-	Parent string
-}
-
-type Google_folder_iam_binding struct {
-	Google_folder_iam_binding_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Folder string
-
-	Members []string
-
-	Role string
-}
-
-type Google_folder_iam_member struct {
-	Google_folder_iam_member_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Folder string
-
-	Member string
-
-	Role string
-}
-
-type Google_folder_iam_policy struct {
-	Google_folder_iam_policy_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Folder string
-
-	Policy_data string
-}
-
-type Google_folder_organization_policy_boolean_policy_168 struct {
-	Enforced bool
-}
-
-type Google_folder_organization_policy_list_policy_169_allow_170 struct {
-	All *bool
-
-	Values *[]string
-}
-
-type Google_folder_organization_policy_list_policy_169_deny_171 struct {
-	All *bool
-
-	Values *[]string
-}
-
-type Google_folder_organization_policy_list_policy_169 struct {
-	Allow *[]Google_folder_organization_policy_list_policy_169_allow_170
-
-	Deny *[]Google_folder_organization_policy_list_policy_169_deny_171
-
-	Suggested_value *string
-}
-
-type Google_folder_organization_policy_restore_policy_172 struct {
-	Default bool
-}
-
-type Google_folder_organization_policy struct {
-	Google_folder_organization_policy_id *string `lyra:"ignore"`
-
-	Boolean_policy *[]Google_folder_organization_policy_boolean_policy_168
-
-	Constraint string
-
-	Etag *string
-
-	Folder string
-
-	List_policy *[]Google_folder_organization_policy_list_policy_169
-
-	Restore_policy *[]Google_folder_organization_policy_restore_policy_172
-
-	Update_time *string
-
-	Version *int
-}
-
-type Google_kms_crypto_key struct {
-	Google_kms_crypto_key_id *string `lyra:"ignore"`
-
-	Key_ring string
-
-	Name string
-
-	Rotation_period *string
-
-	Self_link *string
-}
-
-type Google_kms_crypto_key_iam_binding struct {
-	Google_kms_crypto_key_iam_binding_id *string `lyra:"ignore"`
-
-	Crypto_key_id string
-
-	Etag *string
-
-	Members []string
-
-	Role string
-}
-
-type Google_kms_crypto_key_iam_member struct {
-	Google_kms_crypto_key_iam_member_id *string `lyra:"ignore"`
-
-	Crypto_key_id string
-
-	Etag *string
-
-	Member string
-
-	Role string
-}
-
-type Google_kms_key_ring struct {
-	Google_kms_key_ring_id *string `lyra:"ignore"`
-
-	Location string
-
-	Name string
-
-	Project *string
-
-	Self_link *string
-}
-
-type Google_kms_key_ring_iam_binding struct {
-	Google_kms_key_ring_iam_binding_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Key_ring_id string
-
-	Members []string
-
-	Role string
-}
-
-type Google_kms_key_ring_iam_member struct {
-	Google_kms_key_ring_iam_member_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Key_ring_id string
-
-	Member string
-
-	Role string
-}
-
-type Google_kms_key_ring_iam_policy struct {
-	Google_kms_key_ring_iam_policy_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Key_ring_id string
-
-	Policy_data string
-}
-
-type Google_logging_billing_account_exclusion struct {
-	Google_logging_billing_account_exclusion_id *string `lyra:"ignore"`
-
-	Billing_account string
-
-	Description *string
-
-	Disabled *bool
-
-	Filter string
-
-	Name string
-}
-
-type Google_logging_billing_account_sink struct {
-	Google_logging_billing_account_sink_id *string `lyra:"ignore"`
-
-	Billing_account string
-
-	Destination string
-
-	Filter *string
-
-	Name string
-
-	Writer_identity *string
-}
-
-type Google_logging_folder_exclusion struct {
-	Google_logging_folder_exclusion_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Disabled *bool
-
-	Filter string
-
-	Folder string
-
-	Name string
-}
-
-type Google_logging_folder_sink struct {
-	Google_logging_folder_sink_id *string `lyra:"ignore"`
-
-	Destination string
-
-	Filter *string
-
-	Folder string
-
-	Include_children *bool
-
-	Name string
-
-	Writer_identity *string
-}
-
-type Google_logging_organization_exclusion struct {
-	Google_logging_organization_exclusion_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Disabled *bool
-
-	Filter string
-
-	Name string
-
-	Org_id string
-}
-
-type Google_logging_organization_sink struct {
-	Google_logging_organization_sink_id *string `lyra:"ignore"`
-
-	Destination string
-
-	Filter *string
-
-	Include_children *bool
-
-	Name string
-
-	Org_id string
-
-	Writer_identity *string
-}
-
-type Google_logging_project_exclusion struct {
-	Google_logging_project_exclusion_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Disabled *bool
-
-	Filter string
-
-	Name string
-
-	Project *string
-}
-
-type Google_logging_project_sink struct {
-	Google_logging_project_sink_id *string `lyra:"ignore"`
-
-	Destination string
-
-	Filter *string
-
-	Name string
-
-	Project *string
-
-	Unique_writer_identity *bool
-
-	Writer_identity *string
-}
-
-type Google_monitoring_alert_policy_conditions_173_condition_absent_174_aggregations_175 struct {
-	Alignment_period *string
-
-	Cross_series_reducer *string
-
-	Group_by_fields *[]string
-
-	Per_series_aligner *string
-}
-
-type Google_monitoring_alert_policy_conditions_173_condition_absent_174_trigger_176 struct {
-	Count *int
-
-	Percent *float64
-}
-
-type Google_monitoring_alert_policy_conditions_173_condition_absent_174 struct {
-	Aggregations *[]Google_monitoring_alert_policy_conditions_173_condition_absent_174_aggregations_175
-
-	Duration string
-
-	Filter *string
-
-	Trigger *[]Google_monitoring_alert_policy_conditions_173_condition_absent_174_trigger_176
-}
-
-type Google_monitoring_alert_policy_conditions_173_condition_threshold_177_aggregations_178 struct {
-	Alignment_period *string
-
-	Cross_series_reducer *string
-
-	Group_by_fields *[]string
-
-	Per_series_aligner *string
-}
-
-type Google_monitoring_alert_policy_conditions_173_condition_threshold_177_denominator_aggregations_179 struct {
-	Alignment_period *string
-
-	Cross_series_reducer *string
-
-	Group_by_fields *[]string
-
-	Per_series_aligner *string
-}
-
-type Google_monitoring_alert_policy_conditions_173_condition_threshold_177_trigger_180 struct {
-	Count *int
-
-	Percent *float64
-}
-
-type Google_monitoring_alert_policy_conditions_173_condition_threshold_177 struct {
-	Aggregations *[]Google_monitoring_alert_policy_conditions_173_condition_threshold_177_aggregations_178
-
-	Comparison string
-
-	Denominator_aggregations *[]Google_monitoring_alert_policy_conditions_173_condition_threshold_177_denominator_aggregations_179
-
-	Denominator_filter *string
-
-	Duration string
-
-	Filter *string
-
-	Threshold_value *float64
-
-	Trigger *[]Google_monitoring_alert_policy_conditions_173_condition_threshold_177_trigger_180
-}
-
-type Google_monitoring_alert_policy_conditions_173 struct {
-	Condition_absent *[]Google_monitoring_alert_policy_conditions_173_condition_absent_174
-
-	Condition_threshold *[]Google_monitoring_alert_policy_conditions_173_condition_threshold_177
-
-	Display_name string
-
-	Name *string
-}
-
-type Google_monitoring_alert_policy_creation_record_181 struct {
-	Mutate_time *string
-
-	Mutated_by *string
-}
-
-type Google_monitoring_alert_policy struct {
-	Google_monitoring_alert_policy_id *string `lyra:"ignore"`
-
-	Combiner string
-
-	Conditions []Google_monitoring_alert_policy_conditions_173
-
-	Creation_record *[]Google_monitoring_alert_policy_creation_record_181
-
-	Display_name string
-
-	Enabled bool
-
-	Labels *[]string
-
-	Name *string
-
-	Notification_channels *[]string
-
-	Project *string
-}
-
-type Google_monitoring_group struct {
-	Google_monitoring_group_id *string `lyra:"ignore"`
-
-	Display_name string
-
-	Filter string
-
-	Is_cluster *bool
-
-	Name *string
-
-	Parent_name *string
-
-	Project *string
-}
-
-type Google_monitoring_notification_channel struct {
-	Google_monitoring_notification_channel_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Display_name string
-
-	Enabled *bool
-
-	Labels *map[string]string
-
-	Name *string
-
-	Project *string
-
-	Type string
-
-	User_labels *map[string]string
-
-	Verification_status *string
-}
-
-type Google_monitoring_uptime_check_config_content_matchers_182 struct {
-	Content *string
-}
-
-type Google_monitoring_uptime_check_config_http_check_183_auth_info_184 struct {
-	Password *string
-
-	Username *string
-}
-
-type Google_monitoring_uptime_check_config_http_check_183 struct {
-	Auth_info *[]Google_monitoring_uptime_check_config_http_check_183_auth_info_184
-
-	Headers *map[string]string
-
-	Mask_headers *bool
-
-	Path *string
-
-	Port *int
-
-	Use_ssl *bool
-}
-
-type Google_monitoring_uptime_check_config_internal_checkers_185 struct {
-	Display_name *string
-
-	Gcp_zone *string
-
-	Name *string
-
-	Network *string
-
-	Peer_project_id *string
-}
-
-type Google_monitoring_uptime_check_config_monitored_resource_186 struct {
-	Labels map[string]string
-
-	Type string
-}
-
-type Google_monitoring_uptime_check_config_resource_group_187 struct {
-	Group_id *string
-
-	Resource_type *string
-}
-
-type Google_monitoring_uptime_check_config_tcp_check_188 struct {
-	Port int
-}
-
-type Google_monitoring_uptime_check_config struct {
-	Google_monitoring_uptime_check_config_id *string `lyra:"ignore"`
-
-	Content_matchers *[]Google_monitoring_uptime_check_config_content_matchers_182
-
-	Display_name string
-
-	Http_check *[]Google_monitoring_uptime_check_config_http_check_183
-
-	Internal_checkers *[]Google_monitoring_uptime_check_config_internal_checkers_185
-
-	Is_internal *bool
-
-	Monitored_resource *[]Google_monitoring_uptime_check_config_monitored_resource_186
-
-	Name *string
-
-	Period *string
-
-	Project *string
-
-	Resource_group *[]Google_monitoring_uptime_check_config_resource_group_187
-
-	Selected_regions *[]string
-
-	Tcp_check *[]Google_monitoring_uptime_check_config_tcp_check_188
-
-	Timeout string
-}
-
-type Google_organization_iam_binding struct {
-	Google_organization_iam_binding_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Members []string
-
-	Org_id string
-
-	Role string
-}
-
-type Google_organization_iam_custom_role struct {
-	Google_organization_iam_custom_role_id *string `lyra:"ignore"`
-
-	Deleted *bool
-
-	Description *string
-
-	Org_id string
-
-	Permissions []string
-
-	Role_id string
-
-	Stage *string
-
-	Title string
-}
-
-type Google_organization_iam_member struct {
-	Google_organization_iam_member_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Member string
-
-	Org_id string
-
-	Role string
-}
-
-type Google_organization_iam_policy struct {
-	Google_organization_iam_policy_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Org_id string
-
-	Policy_data string
-}
-
-type Google_organization_policy_boolean_policy_189 struct {
-	Enforced bool
-}
-
-type Google_organization_policy_list_policy_190_allow_191 struct {
-	All *bool
-
-	Values *[]string
-}
-
-type Google_organization_policy_list_policy_190_deny_192 struct {
-	All *bool
-
-	Values *[]string
-}
-
-type Google_organization_policy_list_policy_190 struct {
-	Allow *[]Google_organization_policy_list_policy_190_allow_191
-
-	Deny *[]Google_organization_policy_list_policy_190_deny_192
-
-	Suggested_value *string
-}
-
-type Google_organization_policy_restore_policy_193 struct {
-	Default bool
-}
-
-type Google_organization_policy struct {
-	Google_organization_policy_id *string `lyra:"ignore"`
-
-	Boolean_policy *[]Google_organization_policy_boolean_policy_189
-
-	Constraint string
-
-	Etag *string
-
-	List_policy *[]Google_organization_policy_list_policy_190
-
-	Org_id string
-
-	Restore_policy *[]Google_organization_policy_restore_policy_193
-
-	Update_time *string
-
-	Version *int
-}
-
-type Google_project_app_engine_194_feature_settings_195 struct {
-	Split_health_checks *bool
-}
-
-type Google_project_app_engine_194_url_dispatch_rule_196 struct {
-	Domain *string
-
-	Path *string
-
-	Service *string
-}
-
-type Google_project_app_engine_194 struct {
-	Auth_domain *string
-
-	Code_bucket *string
-
-	Default_bucket *string
-
-	Default_hostname *string
-
-	Feature_settings *[]Google_project_app_engine_194_feature_settings_195
-
-	Gcr_domain *string
-
-	Location_id *string
-
-	Name *string
-
-	Serving_status *string
-
-	Url_dispatch_rule *[]Google_project_app_engine_194_url_dispatch_rule_196
-}
-
-type Google_project struct {
-	Google_project_id *string `lyra:"ignore"`
-
-	App_engine *[]Google_project_app_engine_194
-
-	Auto_create_network *bool
-
-	Billing_account *string
-
-	Folder_id *string
-
-	Labels *map[string]string
-
-	Name string
-
-	Number *string
-
-	Org_id *string
-
-	Policy_data *string
-
-	Policy_etag *string
-
-	Project_id string
-
-	Skip_delete *bool
-}
-
-type Google_project_iam_binding struct {
-	Google_project_iam_binding_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Members []string
-
-	Project *string
-
-	Role string
-}
-
-type Google_project_iam_custom_role struct {
-	Google_project_iam_custom_role_id *string `lyra:"ignore"`
-
-	Deleted *bool
-
-	Description *string
-
-	Permissions []string
-
-	Project *string
-
-	Role_id string
-
-	Stage *string
-
-	Title string
-}
-
-type Google_project_iam_member struct {
-	Google_project_iam_member_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Member string
-
-	Project *string
-
-	Role string
-}
-
-type Google_project_iam_policy struct {
-	Google_project_iam_policy_id *string `lyra:"ignore"`
-
-	Authoritative *bool
-
-	Disable_project *bool
-
-	Etag *string
-
-	Policy_data string
-
-	Project *string
-
-	Restore_policy *string
-}
-
-type Google_project_organization_policy_boolean_policy_197 struct {
-	Enforced bool
-}
-
-type Google_project_organization_policy_list_policy_198_allow_199 struct {
-	All *bool
-
-	Values *[]string
-}
-
-type Google_project_organization_policy_list_policy_198_deny_200 struct {
-	All *bool
-
-	Values *[]string
-}
-
-type Google_project_organization_policy_list_policy_198 struct {
-	Allow *[]Google_project_organization_policy_list_policy_198_allow_199
-
-	Deny *[]Google_project_organization_policy_list_policy_198_deny_200
-
-	Suggested_value *string
-}
-
-type Google_project_organization_policy_restore_policy_201 struct {
-	Default bool
-}
-
-type Google_project_organization_policy struct {
-	Google_project_organization_policy_id *string `lyra:"ignore"`
-
-	Boolean_policy *[]Google_project_organization_policy_boolean_policy_197
-
-	Constraint string
-
-	Etag *string
-
-	List_policy *[]Google_project_organization_policy_list_policy_198
-
-	Project string
-
-	Restore_policy *[]Google_project_organization_policy_restore_policy_201
-
-	Update_time *string
-
-	Version *int
-}
-
-type Google_project_service struct {
-	Google_project_service_id *string `lyra:"ignore"`
-
-	Disable_on_destroy *bool
-
-	Project *string
-
-	Service string
-}
-
-type Google_project_services struct {
-	Google_project_services_id *string `lyra:"ignore"`
-
-	Disable_on_destroy *bool
-
-	Project *string
-
-	Services []string
-}
-
-type Google_project_usage_export_bucket struct {
-	Google_project_usage_export_bucket_id *string `lyra:"ignore"`
-
-	Bucket_name string
-
-	Prefix *string
-
-	Project *string
-}
-
-type Google_pubsub_subscription_push_config_202 struct {
-	Attributes *map[string]string
-
-	Push_endpoint string
-}
-
-type Google_pubsub_subscription struct {
-	Google_pubsub_subscription_id *string `lyra:"ignore"`
-
-	Ack_deadline_seconds *int
-
-	Name string
-
-	Path *string
-
-	Project *string
-
-	Push_config *[]Google_pubsub_subscription_push_config_202
-
-	Topic string
-}
-
-type Google_pubsub_subscription_iam_binding struct {
-	Google_pubsub_subscription_iam_binding_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Members []string
-
-	Project *string
-
-	Role string
-
-	Subscription string
-}
-
-type Google_pubsub_subscription_iam_member struct {
-	Google_pubsub_subscription_iam_member_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Member string
-
-	Project *string
-
-	Role string
-
-	Subscription string
-}
-
-type Google_pubsub_subscription_iam_policy struct {
-	Google_pubsub_subscription_iam_policy_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Policy_data string
-
-	Project *string
-
-	Subscription string
-}
-
-type Google_pubsub_topic struct {
-	Google_pubsub_topic_id *string `lyra:"ignore"`
-
-	Name string
-
-	Project *string
-}
-
-type Google_pubsub_topic_iam_binding struct {
-	Google_pubsub_topic_iam_binding_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Members []string
-
-	Project *string
-
-	Role string
-
-	Topic string
-}
-
-type Google_pubsub_topic_iam_member struct {
-	Google_pubsub_topic_iam_member_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Member string
-
-	Project *string
-
-	Role string
-
-	Topic string
-}
-
-type Google_pubsub_topic_iam_policy struct {
-	Google_pubsub_topic_iam_policy_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Policy_data string
-
-	Project *string
-
-	Topic string
-}
-
-type Google_redis_instance struct {
-	Google_redis_instance_id *string `lyra:"ignore"`
-
-	Alternative_location_id *string
-
-	Authorized_network *string
-
-	Create_time *string
-
-	Current_location_id *string
-
-	Display_name *string
-
-	Host *string
-
-	Labels *map[string]string
-
-	Location_id *string
-
-	Memory_size_gb int
-
-	Name string
-
-	Port *int
-
-	Project *string
-
-	Redis_configs *map[string]string
-
-	Redis_version *string
-
-	Region *string
-
-	Reserved_ip_range *string
-
-	Tier *string
-}
-
-type Google_resource_manager_lien struct {
-	Google_resource_manager_lien_id *string `lyra:"ignore"`
-
-	Create_time *string
-
-	Name *string
-
-	Origin string
-
-	Parent string
-
-	Reason string
-
-	Restrictions []string
-}
-
-type Google_runtimeconfig_config struct {
-	Google_runtimeconfig_config_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Name string
-
-	Project *string
-}
-
-type Google_runtimeconfig_variable struct {
-	Google_runtimeconfig_variable_id *string `lyra:"ignore"`
-
-	Name string
-
-	Parent string
-
-	Project *string
-
-	Text *string
-
-	Update_time *string
-
-	Value *string
-}
-
-type Google_service_account struct {
-	Google_service_account_id *string `lyra:"ignore"`
-
-	Account_id string
-
-	Display_name *string
-
-	Email *string
-
-	Name *string
-
-	Policy_data *string
-
-	Project *string
-
-	Unique_id *string
-}
-
-type Google_service_account_iam_binding struct {
-	Google_service_account_iam_binding_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Members []string
-
-	Role string
-
-	Service_account_id string
-}
-
-type Google_service_account_iam_member struct {
-	Google_service_account_iam_member_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Member string
-
-	Role string
-
-	Service_account_id string
-}
-
-type Google_service_account_iam_policy struct {
-	Google_service_account_iam_policy_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Policy_data string
-
-	Service_account_id string
-}
-
-type Google_service_account_key struct {
-	Google_service_account_key_id *string `lyra:"ignore"`
-
-	Key_algorithm *string
-
-	Name *string
-
-	Pgp_key *string
-
-	Private_key *string
-
-	Private_key_encrypted *string
-
-	Private_key_fingerprint *string
-
-	Private_key_type *string
-
-	Public_key *string
-
-	Public_key_type *string
-
-	Service_account_id string
-
-	Valid_after *string
-
-	Valid_before *string
-}
-
-type Google_sourcerepo_repository struct {
-	Google_sourcerepo_repository_id *string `lyra:"ignore"`
-
-	Name string
-
-	Project *string
-
-	Size *int
-
-	Url *string
-}
-
-type Google_spanner_database struct {
-	Google_spanner_database_id *string `lyra:"ignore"`
-
-	Ddl *[]string
-
-	Instance string
-
-	Name string
-
-	Project *string
-
-	State *string
-}
-
-type Google_spanner_database_iam_binding struct {
-	Google_spanner_database_iam_binding_id *string `lyra:"ignore"`
-
-	Database string
-
-	Etag *string
-
-	Instance string
-
-	Members []string
-
-	Project *string
-
-	Role string
-}
-
-type Google_spanner_database_iam_member struct {
-	Google_spanner_database_iam_member_id *string `lyra:"ignore"`
-
-	Database string
-
-	Etag *string
-
-	Instance string
-
-	Member string
-
-	Project *string
-
-	Role string
-}
-
-type Google_spanner_database_iam_policy struct {
-	Google_spanner_database_iam_policy_id *string `lyra:"ignore"`
-
-	Database string
-
-	Etag *string
-
-	Instance string
-
-	Policy_data string
-
-	Project *string
-}
-
-type Google_spanner_instance struct {
-	Google_spanner_instance_id *string `lyra:"ignore"`
-
-	Config string
-
-	Display_name string
-
-	Labels *map[string]string
-
-	Name *string
-
-	Num_nodes *int
-
-	Project *string
-
-	State *string
-}
-
-type Google_spanner_instance_iam_binding struct {
-	Google_spanner_instance_iam_binding_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Instance string
-
-	Members []string
-
-	Project *string
-
-	Role string
-}
-
-type Google_spanner_instance_iam_member struct {
-	Google_spanner_instance_iam_member_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Instance string
-
-	Member string
-
-	Project *string
-
-	Role string
-}
-
-type Google_spanner_instance_iam_policy struct {
-	Google_spanner_instance_iam_policy_id *string `lyra:"ignore"`
-
-	Etag *string
-
-	Instance string
-
-	Policy_data string
-
-	Project *string
-}
-
-type Google_sql_database struct {
-	Google_sql_database_id *string `lyra:"ignore"`
-
-	Charset *string
-
-	Collation *string
-
-	Instance string
-
-	Name string
-
-	Project *string
-
-	Self_link *string
-}
-
-type Google_sql_database_instance_ip_address_203 struct {
-	Ip_address *string
-
-	Time_to_retire *string
-}
-
-type Google_sql_database_instance_replica_configuration_204 struct {
-	Ca_certificate *string
-
-	Client_certificate *string
-
-	Client_key *string
-
-	Connect_retry_interval *int
-
-	Dump_file_path *string
-
-	Failover_target *bool
-
-	Master_heartbeat_period *int
-
-	Password *string
-
-	Ssl_cipher *string
-
-	Username *string
-
-	Verify_server_certificate *bool
-}
-
-type Google_sql_database_instance_server_ca_cert_205 struct {
-	Cert *string
-
-	Common_name *string
-
-	Create_time *string
-
-	Expiration_time *string
-
-	Sha1_fingerprint *string
-}
-
-type Google_sql_database_instance_settings_206_backup_configuration_207 struct {
-	Binary_log_enabled *bool
-
-	Enabled *bool
-
-	Start_time *string
-}
-
-type Google_sql_database_instance_settings_206_database_flags_208 struct {
-	Name *string
-
-	Value *string
-}
-
-type Google_sql_database_instance_settings_206_ip_configuration_209_authorized_networks_210 struct {
-	Expiration_time *string
-
-	Name *string
-
-	Value *string
-}
-
-type Google_sql_database_instance_settings_206_ip_configuration_209 struct {
-	Authorized_networks *[]Google_sql_database_instance_settings_206_ip_configuration_209_authorized_networks_210
-
-	Ipv4_enabled *bool
-
-	Private_network *string
-
-	Require_ssl *bool
-}
-
-type Google_sql_database_instance_settings_206_location_preference_211 struct {
-	Follow_gae_application *string
-
-	Zone *string
-}
-
-type Google_sql_database_instance_settings_206_maintenance_window_212 struct {
-	Day *int
-
-	Hour *int
-
-	Update_track *string
-}
-
-type Google_sql_database_instance_settings_206 struct {
-	Activation_policy *string
-
-	Authorized_gae_applications *[]string
-
-	Availability_type *string
-
-	Backup_configuration *[]Google_sql_database_instance_settings_206_backup_configuration_207
-
-	Crash_safe_replication *bool
-
-	Database_flags *[]Google_sql_database_instance_settings_206_database_flags_208
-
-	Disk_autoresize *bool
-
-	Disk_size *int
-
-	Disk_type *string
-
-	Ip_configuration *[]Google_sql_database_instance_settings_206_ip_configuration_209
-
-	Location_preference *[]Google_sql_database_instance_settings_206_location_preference_211
-
-	Maintenance_window *[]Google_sql_database_instance_settings_206_maintenance_window_212
-
-	Pricing_plan *string
-
-	Replication_type *string
-
-	Tier string
-
-	User_labels *map[string]string
-
-	Version *int
-}
-
-type Google_sql_database_instance struct {
-	Google_sql_database_instance_id *string `lyra:"ignore"`
-
-	Connection_name *string
-
-	Database_version *string
-
-	First_ip_address *string
-
-	Ip_address *[]Google_sql_database_instance_ip_address_203
-
-	Master_instance_name *string
-
-	Name *string
-
-	Project *string
-
-	Region *string
-
-	Replica_configuration *[]Google_sql_database_instance_replica_configuration_204
-
-	Self_link *string
-
-	Server_ca_cert *[]Google_sql_database_instance_server_ca_cert_205
-
-	Service_account_email_address *string
-
-	Settings []Google_sql_database_instance_settings_206
-}
-
-type Google_sql_ssl_cert struct {
-	Google_sql_ssl_cert_id *string `lyra:"ignore"`
-
-	Cert *string
-
-	Cert_serial_number *string
-
-	Common_name string
-
-	Create_time *string
-
-	Expiration_time *string
-
-	Instance string
-
-	Private_key *string
-
-	Server_ca_cert *string
-
-	Sha1_fingerprint *string
-}
-
-type Google_sql_user struct {
-	Google_sql_user_id *string `lyra:"ignore"`
-
-	Host *string
-
-	Instance string
-
-	Name string
-
-	Password *string
-
-	Project *string
-}
-
-type Google_storage_bucket_cors_213 struct {
-	Max_age_seconds *int
-
-	Method *[]string
-
-	Origin *[]string
-
-	Response_header *[]string
-}
-
-type Google_storage_bucket_encryption_214 struct {
-	Default_kms_key_name string
-}
-
-type Google_storage_bucket_lifecycle_rule_215_action_216 struct {
-	Storage_class *string
-
-	Type string
-}
-
-type Google_storage_bucket_lifecycle_rule_215_condition_217 struct {
-	Age *int
-
-	Created_before *string
-
-	Is_live *bool
-
-	Matches_storage_class *[]string
-
-	Num_newer_versions *int
-}
-
-type Google_storage_bucket_lifecycle_rule_215 struct {
-	Action []Google_storage_bucket_lifecycle_rule_215_action_216
-
-	Condition []Google_storage_bucket_lifecycle_rule_215_condition_217
-}
-
-type Google_storage_bucket_logging_218 struct {
-	Log_bucket string
-
-	Log_object_prefix *string
-}
-
-type Google_storage_bucket_versioning_219 struct {
-	Enabled *bool
-}
-
-type Google_storage_bucket_website_220 struct {
-	Main_page_suffix *string
-
-	Not_found_page *string
-}
-
-type Google_storage_bucket struct {
-	Google_storage_bucket_id *string `lyra:"ignore"`
-
-	Cors *[]Google_storage_bucket_cors_213
-
-	Encryption *[]Google_storage_bucket_encryption_214
-
-	Force_destroy *bool
-
-	Labels *map[string]string
-
-	Lifecycle_rule *[]Google_storage_bucket_lifecycle_rule_215
-
-	Location *string
-
-	Logging *[]Google_storage_bucket_logging_218
-
-	Name string
-
-	Predefined_acl *string
-
-	Project *string
-
-	Self_link *string
-
-	Storage_class *string
-
-	Url *string
-
-	Versioning *[]Google_storage_bucket_versioning_219
-
-	Website *[]Google_storage_bucket_website_220
-}
-
-type Google_storage_bucket_acl struct {
-	Google_storage_bucket_acl_id *string `lyra:"ignore"`
-
-	Bucket string
-
-	Default_acl *string
-
-	Predefined_acl *string
-
-	Role_entity *[]string
-}
-
-type Google_storage_bucket_iam_binding struct {
-	Google_storage_bucket_iam_binding_id *string `lyra:"ignore"`
-
-	Bucket string
-
-	Etag *string
-
-	Members []string
-
-	Role string
-}
-
-type Google_storage_bucket_iam_member struct {
-	Google_storage_bucket_iam_member_id *string `lyra:"ignore"`
-
-	Bucket string
-
-	Etag *string
-
-	Member string
-
-	Role string
-}
-
-type Google_storage_bucket_iam_policy struct {
-	Google_storage_bucket_iam_policy_id *string `lyra:"ignore"`
-
-	Bucket string
-
-	Etag *string
-
-	Policy_data string
-}
-
-type Google_storage_bucket_object struct {
-	Google_storage_bucket_object_id *string `lyra:"ignore"`
-
-	Bucket string
-
-	Cache_control *string
-
-	Content *string
-
-	Content_disposition *string
-
-	Content_encoding *string
-
-	Content_language *string
-
-	Content_type *string
-
-	Crc32c *string
-
-	Detect_md5hash *string
-
-	Md5hash *string
-
-	Name string
-
-	Predefined_acl *string
-
-	Source *string
-
-	Storage_class *string
-}
-
-type Google_storage_default_object_access_control_project_team_221 struct {
-	Project_number *string
-
-	Team *string
-}
-
-type Google_storage_default_object_access_control struct {
-	Google_storage_default_object_access_control_id *string `lyra:"ignore"`
-
-	Bucket string
-
-	Domain *string
-
-	Email *string
-
-	Entity string
-
-	Entity_id *string
-
-	Generation *int
-
-	Object *string
-
-	Project_team *[]Google_storage_default_object_access_control_project_team_221
-
-	Role string
-}
-
-type Google_storage_default_object_acl struct {
-	Google_storage_default_object_acl_id *string `lyra:"ignore"`
-
-	Bucket string
-
-	Role_entity *[]string
-}
-
-type Google_storage_notification struct {
-	Google_storage_notification_id *string `lyra:"ignore"`
-
-	Bucket string
-
-	Custom_attributes *map[string]string
-
-	Event_types *[]string
-
-	Object_name_prefix *string
-
-	Payload_format string
-
-	Self_link *string
-
-	Topic string
-}
-
-type Google_storage_object_access_control_project_team_222 struct {
-	Project_number *string
-
-	Team *string
-}
-
-type Google_storage_object_access_control struct {
-	Google_storage_object_access_control_id *string `lyra:"ignore"`
-
-	Bucket string
-
-	Domain *string
-
-	Email *string
-
-	Entity string
-
-	Entity_id *string
-
-	Generation *int
-
-	Object string
-
-	Project_team *[]Google_storage_object_access_control_project_team_222
-
-	Role string
-}
-
-type Google_storage_object_acl struct {
-	Google_storage_object_acl_id *string `lyra:"ignore"`
-
-	Bucket string
-
-	Object string
-
-	Predefined_acl *string
-
-	Role_entity *[]string
+	}))[0]
+	sb.RegisterHandler("TerraformGoogle::Storage_object_aclHandler", bridge.NewTFHandler(p, "google_storage_object_acl", rt), rt)
+
+	// Registration of non-resource types
+	sb.RegisterTypes("TerraformGoogle",
+		&App_engine_application__feature_settings{},
+		&App_engine_application__url_dispatch_rule{},
+		&Bigquery_dataset__access__view{},
+		&Bigquery_dataset__access{},
+		&Bigquery_table__time_partitioning{},
+		&Bigquery_table__view{},
+		&Bigtable_instance__cluster{},
+		&Binary_authorization_attestor__attestation_authority_note__public_keys{},
+		&Binary_authorization_attestor__attestation_authority_note{},
+		&Binary_authorization_policy__admission_whitelist_patterns{},
+		&Binary_authorization_policy__cluster_admission_rules{},
+		&Binary_authorization_policy__default_admission_rule{},
+		&Cloudbuild_trigger__build__step{},
+		&Cloudbuild_trigger__build{},
+		&Cloudbuild_trigger__trigger_template{},
+		&Cloudfunctions_function__event_trigger__failure_policy{},
+		&Cloudfunctions_function__event_trigger{},
+		&Cloudiot_registry__credentials__public_key_certificate{},
+		&Cloudiot_registry__credentials{},
+		&Cloudiot_registry__event_notification_config{},
+		&Cloudiot_registry__http_config{},
+		&Cloudiot_registry__mqtt_config{},
+		&Cloudiot_registry__state_notification_config{},
+		&Composer_environment__config__node_config{},
+		&Composer_environment__config__software_config{},
+		&Composer_environment__config{},
+		&Compute_autoscaler__autoscaling_policy__cpu_utilization{},
+		&Compute_autoscaler__autoscaling_policy__load_balancing_utilization{},
+		&Compute_autoscaler__autoscaling_policy__metric{},
+		&Compute_autoscaler__autoscaling_policy{},
+		&Compute_backend_service__backend{},
+		&Compute_backend_service__cdn_policy__cache_key_policy{},
+		&Compute_backend_service__cdn_policy{},
+		&Compute_backend_service__iap{},
+		&Compute_disk__disk_encryption_key{},
+		&Compute_disk__source_image_encryption_key{},
+		&Compute_disk__source_snapshot_encryption_key{},
+		&Compute_firewall__allow{},
+		&Compute_firewall__deny{},
+		&Compute_health_check__http_health_check{},
+		&Compute_health_check__https_health_check{},
+		&Compute_health_check__ssl_health_check{},
+		&Compute_health_check__tcp_health_check{},
+		&Compute_image__raw_disk{},
+		&Compute_instance__attached_disk{},
+		&Compute_instance__boot_disk__initialize_params{},
+		&Compute_instance__boot_disk{},
+		&Compute_instance__disk{},
+		&Compute_instance__guest_accelerator{},
+		&Compute_instance__network{},
+		&Compute_instance__network_interface__access_config{},
+		&Compute_instance__network_interface__alias_ip_range{},
+		&Compute_instance__network_interface{},
+		&Compute_instance__scheduling{},
+		&Compute_instance__scratch_disk{},
+		&Compute_instance__service_account{},
+		&Compute_instance_from_template__attached_disk{},
+		&Compute_instance_from_template__boot_disk__initialize_params{},
+		&Compute_instance_from_template__boot_disk{},
+		&Compute_instance_from_template__guest_accelerator{},
+		&Compute_instance_from_template__network_interface__access_config{},
+		&Compute_instance_from_template__network_interface__alias_ip_range{},
+		&Compute_instance_from_template__network_interface{},
+		&Compute_instance_from_template__scheduling{},
+		&Compute_instance_from_template__scratch_disk{},
+		&Compute_instance_from_template__service_account{},
+		&Compute_instance_group__named_port{},
+		&Compute_instance_group_manager__auto_healing_policies{},
+		&Compute_instance_group_manager__named_port{},
+		&Compute_instance_group_manager__rolling_update_policy{},
+		&Compute_instance_group_manager__version__target_size{},
+		&Compute_instance_group_manager__version{},
+		&Compute_instance_template__disk__disk_encryption_key{},
+		&Compute_instance_template__disk{},
+		&Compute_instance_template__guest_accelerator{},
+		&Compute_instance_template__network_interface__access_config{},
+		&Compute_instance_template__network_interface__alias_ip_range{},
+		&Compute_instance_template__network_interface{},
+		&Compute_instance_template__scheduling{},
+		&Compute_instance_template__service_account{},
+		&Compute_interconnect_attachment__private_interconnect_info{},
+		&Compute_region_autoscaler__autoscaling_policy__cpu_utilization{},
+		&Compute_region_autoscaler__autoscaling_policy__load_balancing_utilization{},
+		&Compute_region_autoscaler__autoscaling_policy__metric{},
+		&Compute_region_autoscaler__autoscaling_policy{},
+		&Compute_region_backend_service__backend{},
+		&Compute_region_disk__disk_encryption_key{},
+		&Compute_region_disk__source_snapshot_encryption_key{},
+		&Compute_region_instance_group_manager__auto_healing_policies{},
+		&Compute_region_instance_group_manager__named_port{},
+		&Compute_region_instance_group_manager__rolling_update_policy{},
+		&Compute_region_instance_group_manager__version__target_size{},
+		&Compute_region_instance_group_manager__version{},
+		&Compute_router__bgp__advertised_ip_ranges{},
+		&Compute_router__bgp{},
+		&Compute_router_nat__subnetwork{},
+		&Compute_security_policy__rule__match__config{},
+		&Compute_security_policy__rule__match{},
+		&Compute_security_policy__rule{},
+		&Compute_snapshot__snapshot_encryption_key{},
+		&Compute_snapshot__source_disk_encryption_key{},
+		&Compute_subnetwork__secondary_ip_range{},
+		&Compute_url_map__host_rule{},
+		&Compute_url_map__path_matcher__path_rule{},
+		&Compute_url_map__path_matcher{},
+		&Compute_url_map__test{},
+		&Container_analysis_note__attestation_authority__hint{},
+		&Container_analysis_note__attestation_authority{},
+		&Container_cluster__addons_config__horizontal_pod_autoscaling{},
+		&Container_cluster__addons_config__http_load_balancing{},
+		&Container_cluster__addons_config__kubernetes_dashboard{},
+		&Container_cluster__addons_config__network_policy_config{},
+		&Container_cluster__addons_config{},
+		&Container_cluster__cluster_autoscaling__resource_limits{},
+		&Container_cluster__cluster_autoscaling{},
+		&Container_cluster__ip_allocation_policy{},
+		&Container_cluster__maintenance_policy__daily_maintenance_window{},
+		&Container_cluster__maintenance_policy{},
+		&Container_cluster__master_auth__client_certificate_config{},
+		&Container_cluster__master_auth{},
+		&Container_cluster__master_authorized_networks_config__cidr_blocks{},
+		&Container_cluster__master_authorized_networks_config{},
+		&Container_cluster__network_policy{},
+		&Container_cluster__node_config__guest_accelerator{},
+		&Container_cluster__node_config__taint{},
+		&Container_cluster__node_config__workload_metadata_config{},
+		&Container_cluster__node_config{},
+		&Container_cluster__node_pool__autoscaling{},
+		&Container_cluster__node_pool__management{},
+		&Container_cluster__node_pool__node_config__guest_accelerator{},
+		&Container_cluster__node_pool__node_config__taint{},
+		&Container_cluster__node_pool__node_config__workload_metadata_config{},
+		&Container_cluster__node_pool__node_config{},
+		&Container_cluster__node_pool{},
+		&Container_cluster__pod_security_policy_config{},
+		&Container_cluster__private_cluster_config{},
+		&Container_node_pool__autoscaling{},
+		&Container_node_pool__management{},
+		&Container_node_pool__node_config__guest_accelerator{},
+		&Container_node_pool__node_config__taint{},
+		&Container_node_pool__node_config__workload_metadata_config{},
+		&Container_node_pool__node_config{},
+		&Dataproc_cluster__cluster_config__gce_cluster_config{},
+		&Dataproc_cluster__cluster_config__initialization_action{},
+		&Dataproc_cluster__cluster_config__master_config__disk_config{},
+		&Dataproc_cluster__cluster_config__master_config{},
+		&Dataproc_cluster__cluster_config__preemptible_worker_config__disk_config{},
+		&Dataproc_cluster__cluster_config__preemptible_worker_config{},
+		&Dataproc_cluster__cluster_config__software_config{},
+		&Dataproc_cluster__cluster_config__worker_config__disk_config{},
+		&Dataproc_cluster__cluster_config__worker_config{},
+		&Dataproc_cluster__cluster_config{},
+		&Dataproc_job__hadoop_config__logging_config{},
+		&Dataproc_job__hadoop_config{},
+		&Dataproc_job__hive_config{},
+		&Dataproc_job__pig_config__logging_config{},
+		&Dataproc_job__pig_config{},
+		&Dataproc_job__placement{},
+		&Dataproc_job__pyspark_config__logging_config{},
+		&Dataproc_job__pyspark_config{},
+		&Dataproc_job__reference{},
+		&Dataproc_job__scheduling{},
+		&Dataproc_job__spark_config__logging_config{},
+		&Dataproc_job__spark_config{},
+		&Dataproc_job__sparksql_config__logging_config{},
+		&Dataproc_job__sparksql_config{},
+		&Dataproc_job__status{},
+		&Endpoints_service__apis__methods{},
+		&Endpoints_service__apis{},
+		&Endpoints_service__endpoints{},
+		&Filestore_instance__file_shares{},
+		&Filestore_instance__networks{},
+		&Folder_organization_policy__boolean_policy{},
+		&Folder_organization_policy__list_policy__allow{},
+		&Folder_organization_policy__list_policy__deny{},
+		&Folder_organization_policy__list_policy{},
+		&Folder_organization_policy__restore_policy{},
+		&Monitoring_alert_policy__conditions__condition_absent__aggregations{},
+		&Monitoring_alert_policy__conditions__condition_absent__trigger{},
+		&Monitoring_alert_policy__conditions__condition_absent{},
+		&Monitoring_alert_policy__conditions__condition_threshold__aggregations{},
+		&Monitoring_alert_policy__conditions__condition_threshold__denominator_aggregations{},
+		&Monitoring_alert_policy__conditions__condition_threshold__trigger{},
+		&Monitoring_alert_policy__conditions__condition_threshold{},
+		&Monitoring_alert_policy__conditions{},
+		&Monitoring_alert_policy__creation_record{},
+		&Monitoring_uptime_check_config__content_matchers{},
+		&Monitoring_uptime_check_config__http_check__auth_info{},
+		&Monitoring_uptime_check_config__http_check{},
+		&Monitoring_uptime_check_config__internal_checkers{},
+		&Monitoring_uptime_check_config__monitored_resource{},
+		&Monitoring_uptime_check_config__resource_group{},
+		&Monitoring_uptime_check_config__tcp_check{},
+		&Organization_policy__boolean_policy{},
+		&Organization_policy__list_policy__allow{},
+		&Organization_policy__list_policy__deny{},
+		&Organization_policy__list_policy{},
+		&Organization_policy__restore_policy{},
+		&Project__app_engine__feature_settings{},
+		&Project__app_engine__url_dispatch_rule{},
+		&Project__app_engine{},
+		&Project_organization_policy__boolean_policy{},
+		&Project_organization_policy__list_policy__allow{},
+		&Project_organization_policy__list_policy__deny{},
+		&Project_organization_policy__list_policy{},
+		&Project_organization_policy__restore_policy{},
+		&Pubsub_subscription__push_config{},
+		&Sql_database_instance__ip_address{},
+		&Sql_database_instance__replica_configuration{},
+		&Sql_database_instance__server_ca_cert{},
+		&Sql_database_instance__settings__backup_configuration{},
+		&Sql_database_instance__settings__database_flags{},
+		&Sql_database_instance__settings__ip_configuration__authorized_networks{},
+		&Sql_database_instance__settings__ip_configuration{},
+		&Sql_database_instance__settings__location_preference{},
+		&Sql_database_instance__settings__maintenance_window{},
+		&Sql_database_instance__settings{},
+		&Storage_bucket__cors{},
+		&Storage_bucket__encryption{},
+		&Storage_bucket__lifecycle_rule__action{},
+		&Storage_bucket__lifecycle_rule__condition{},
+		&Storage_bucket__lifecycle_rule{},
+		&Storage_bucket__logging{},
+		&Storage_bucket__versioning{},
+		&Storage_bucket__website{},
+		&Storage_default_object_access_control__project_team{},
+		&Storage_object_access_control__project_team{})
 }

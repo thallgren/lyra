@@ -2,11 +2,12 @@ package bridge
 
 import (
 	"fmt"
+	"strings"
+	"time"
+
 	"github.com/lyraproj/lyra/pkg/logger"
 	"github.com/lyraproj/pcore/px"
 	"github.com/lyraproj/pcore/types"
-	"strings"
-	"time"
 )
 
 // TerraformMarshal converts a PuppetObject into its Terraform representation
@@ -53,6 +54,8 @@ func marshal(c px.Context, v px.Value) interface{} {
 		return v.Float()
 	case *types.Timestamp:
 		return v.Format(time.RFC3339)
+	case *types.Regexp:
+		return v.PatternString()
 	case px.OrderedMap:
 		nested := map[string]interface{}{}
 		v.EachPair(func(k, v px.Value) { nested[k.String()] = marshal(c, v) })

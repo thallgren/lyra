@@ -4,7 +4,9 @@ import (
 	"bytes"
 	"os"
 	"reflect"
+	"regexp"
 	"testing"
+	"time"
 
 	"github.com/davecgh/go-spew/spew"
 	"github.com/lyraproj/lyra/pkg/logger"
@@ -47,6 +49,8 @@ type Person struct {
 	Uncool     *bool
 	Up         float64
 	Down       *float64
+	When       time.Time
+	Match      *regexp.Regexp
 	Age        int
 	PetDog     Dog
 	PetDoggy   *Dog
@@ -93,6 +97,8 @@ func init() {
 		Uncool:    &tru,
 		Up:        1.234,
 		Down:      &fl,
+		When:      time.Date(2019, 3, 22, 10, 53, 20, 0, time.UTC),
+		Match:     regexp.MustCompile(`.*blue.*`),
 		PetDog: Dog{
 			12,
 			"red",
@@ -166,6 +172,8 @@ func init() {
 		"uncool":    true,
 		"up":        1.234,
 		"down":      5.678,
+		"when":      "2019-03-22T10:53:20Z",
+		"match":     ".*blue.*",
 		"petdog": map[string]interface{}{
 			"colour": "red",
 			"size":   12,

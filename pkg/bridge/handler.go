@@ -75,7 +75,7 @@ func (h *GenericTFHandler) Update(externalID string, desired px.PuppetObject) (p
 	if err != nil {
 		return nil, err
 	}
-	x := TerraformUnMarshal(c, h.nativeType+"_id", externalID, actual, dt)
+	x := TerraformUnMarshal(c, h.nativeType+"ID", externalID, actual, dt)
 	if log.IsInfo() {
 		log.Info("Update Actual State "+dt.Name(), "actual", x.String())
 	}
@@ -95,7 +95,7 @@ func (h *GenericTFHandler) Read(externalID string) (px.PuppetObject, error) {
 	if err != nil {
 		return nil, err
 	}
-	x := TerraformUnMarshal(c, h.nativeType+"_id", id, actual, h.resourceType.(px.ObjectType))
+	x := TerraformUnMarshal(c, h.nativeType+"ID", id, actual, h.resourceType.(px.ObjectType))
 	if log.IsInfo() {
 		log.Info("Read Actual State "+h.nativeType, "actual", x.String())
 	}

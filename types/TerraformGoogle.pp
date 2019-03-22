@@ -6,29 +6,15 @@ type TerraformGoogle = TypeSet[{
   name => 'TerraformGoogle',
   version => '0.1.0',
   types => {
-    GenericHandler => {
-      functions => {
-        'create' => Callable[
-          [Object],
-          Tuple[Object, String]],
-        'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Object],
-        'update' => Callable[
-          [String, Object],
-          Object]
-      }
-    },
-    Google_app_engine_application => {
+    App_engine_application => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project'],
-          'providedAttributes' => ['auth_domain', 'code_bucket', 'default_bucket', 'default_hostname', 'feature_settings', 'gcr_domain', 'name', 'project', 'serving_status', 'url_dispatch_rule']
+          'providedAttributes' => ['app_engine_applicationID', 'auth_domain', 'code_bucket', 'default_bucket', 'default_hostname', 'feature_settings', 'gcr_domain', 'name', 'project', 'serving_status', 'url_dispatch_rule']
         }
       },
       attributes => {
-        'google_app_engine_application_id' => {
+        'app_engine_applicationID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -54,7 +40,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'feature_settings' => {
-          'type' => Optional[Array[Google_app_engine_application_feature_settings_1]],
+          'type' => Optional[Array[App_engine_application__feature_settings]],
           'value' => undef
         },
         'gcr_domain' => {
@@ -75,12 +61,12 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'url_dispatch_rule' => {
-          'type' => Optional[Array[Google_app_engine_application_url_dispatch_rule_2]],
+          'type' => Optional[Array[App_engine_application__url_dispatch_rule]],
           'value' => undef
         }
       }
     },
-    Google_app_engine_applicationHandler => {
+    App_engine_applicationHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -94,7 +80,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_app_engine_application_feature_settings_1 => {
+    App_engine_application__feature_settings => {
       attributes => {
         'split_health_checks' => {
           'type' => Optional[Boolean],
@@ -102,7 +88,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_app_engine_application_url_dispatch_rule_2 => {
+    App_engine_application__url_dispatch_rule => {
       attributes => {
         'domain' => {
           'type' => Optional[String],
@@ -118,15 +104,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_bigquery_dataset => {
+    Bigquery_dataset => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['dataset_id', 'location', 'project'],
-          'providedAttributes' => ['access', 'creation_time', 'etag', 'last_modified_time', 'project', 'self_link']
+          'providedAttributes' => ['bigquery_datasetID', 'access', 'creation_time', 'etag', 'last_modified_time', 'project', 'self_link']
         }
       },
       attributes => {
-        'google_bigquery_dataset_id' => {
+        'bigquery_datasetID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -136,7 +122,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'access' => {
-          'type' => Optional[Array[Google_bigquery_dataset_access_3]],
+          'type' => Optional[Array[Bigquery_dataset__access]],
           'value' => undef
         },
         'creation_time' => {
@@ -182,7 +168,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_bigquery_datasetHandler => {
+    Bigquery_datasetHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -196,7 +182,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_bigquery_dataset_access_3 => {
+    Bigquery_dataset__access => {
       attributes => {
         'domain' => {
           'type' => Optional[String],
@@ -219,27 +205,27 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'view' => {
-          'type' => Optional[Array[Google_bigquery_dataset_access_3_view_4]],
+          'type' => Optional[Array[Bigquery_dataset__access__view]],
           'value' => undef
         }
       }
     },
-    Google_bigquery_dataset_access_3_view_4 => {
+    Bigquery_dataset__access__view => {
       attributes => {
         'dataset_id' => String,
         'project_id' => String,
         'table_id' => String
       }
     },
-    Google_bigquery_table => {
+    Bigquery_table => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['dataset_id', 'project', 'table_id'],
-          'providedAttributes' => ['creation_time', 'etag', 'expiration_time', 'last_modified_time', 'location', 'num_bytes', 'num_long_term_bytes', 'num_rows', 'project', 'schema', 'self_link', 'type']
+          'providedAttributes' => ['bigquery_tableID', 'creation_time', 'etag', 'expiration_time', 'last_modified_time', 'location', 'num_bytes', 'num_long_term_bytes', 'num_rows', 'project', 'schema', 'self_link', 'type']
         }
       },
       attributes => {
-        'google_bigquery_table_id' => {
+        'bigquery_tableID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -307,7 +293,7 @@ type TerraformGoogle = TypeSet[{
         },
         'table_id' => String,
         'time_partitioning' => {
-          'type' => Optional[Array[Google_bigquery_table_time_partitioning_5]],
+          'type' => Optional[Array[Bigquery_table__time_partitioning]],
           'value' => undef
         },
         'type' => {
@@ -315,12 +301,12 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'view' => {
-          'type' => Optional[Array[Google_bigquery_table_view_6]],
+          'type' => Optional[Array[Bigquery_table__view]],
           'value' => undef
         }
       }
     },
-    Google_bigquery_tableHandler => {
+    Bigquery_tableHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -334,7 +320,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_bigquery_table_time_partitioning_5 => {
+    Bigquery_table__time_partitioning => {
       attributes => {
         'expiration_ms' => {
           'type' => Optional[Integer],
@@ -347,7 +333,7 @@ type TerraformGoogle = TypeSet[{
         'type' => String
       }
     },
-    Google_bigquery_table_view_6 => {
+    Bigquery_table__view => {
       attributes => {
         'query' => String,
         'use_legacy_sql' => {
@@ -356,15 +342,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_bigtable_instance => {
+    Bigtable_instance => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['display_name', 'instance_type', 'name', 'project', 'zone'],
-          'providedAttributes' => ['display_name', 'project', 'zone']
+          'providedAttributes' => ['bigtable_instanceID', 'display_name', 'project', 'zone']
         }
       },
       attributes => {
-        'google_bigtable_instance_id' => {
+        'bigtable_instanceID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -374,7 +360,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'cluster' => {
-          'type' => Optional[Array[Google_bigtable_instance_cluster_7]],
+          'type' => Optional[Array[Bigtable_instance__cluster]],
           'value' => undef
         },
         'cluster_id' => {
@@ -408,7 +394,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_bigtable_instanceHandler => {
+    Bigtable_instanceHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -422,7 +408,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_bigtable_instance_cluster_7 => {
+    Bigtable_instance__cluster => {
       attributes => {
         'cluster_id' => {
           'type' => Optional[String],
@@ -442,15 +428,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_bigtable_table => {
+    Bigtable_table => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['instance_name', 'name', 'project', 'split_keys'],
-          'providedAttributes' => ['project']
+          'providedAttributes' => ['bigtable_tableID', 'project']
         }
       },
       attributes => {
-        'google_bigtable_table_id' => {
+        'bigtable_tableID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -471,7 +457,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_bigtable_tableHandler => {
+    Bigtable_tableHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -485,15 +471,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_billing_account_iam_binding => {
+    Billing_account_iam_binding => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['billing_account_id', 'role'],
-          'providedAttributes' => ['etag']
+          'providedAttributes' => ['billing_account_iam_bindingID', 'etag']
         }
       },
       attributes => {
-        'google_billing_account_iam_binding_id' => {
+        'billing_account_iam_bindingID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -511,7 +497,7 @@ type TerraformGoogle = TypeSet[{
         'role' => String
       }
     },
-    Google_billing_account_iam_bindingHandler => {
+    Billing_account_iam_bindingHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -525,15 +511,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_billing_account_iam_member => {
+    Billing_account_iam_member => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['billing_account_id', 'member', 'role'],
-          'providedAttributes' => ['etag']
+          'providedAttributes' => ['billing_account_iam_memberID', 'etag']
         }
       },
       attributes => {
-        'google_billing_account_iam_member_id' => {
+        'billing_account_iam_memberID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -551,7 +537,7 @@ type TerraformGoogle = TypeSet[{
         'role' => String
       }
     },
-    Google_billing_account_iam_memberHandler => {
+    Billing_account_iam_memberHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -565,15 +551,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_billing_account_iam_policy => {
+    Billing_account_iam_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['billing_account_id'],
-          'providedAttributes' => ['etag']
+          'providedAttributes' => ['billing_account_iam_policyID', 'etag']
         }
       },
       attributes => {
-        'google_billing_account_iam_policy_id' => {
+        'billing_account_iam_policyID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -590,7 +576,7 @@ type TerraformGoogle = TypeSet[{
         'policy_data' => String
       }
     },
-    Google_billing_account_iam_policyHandler => {
+    Billing_account_iam_policyHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -604,15 +590,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_binary_authorization_attestor => {
+    Binary_authorization_attestor => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['project']
+          'providedAttributes' => ['binary_authorization_attestorID', 'project']
         }
       },
       attributes => {
-        'google_binary_authorization_attestor_id' => {
+        'binary_authorization_attestorID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -621,7 +607,7 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'attestation_authority_note' => Array[Google_binary_authorization_attestor_attestation_authority_note_8],
+        'attestation_authority_note' => Array[Binary_authorization_attestor__attestation_authority_note],
         'description' => {
           'type' => Optional[String],
           'value' => undef
@@ -633,7 +619,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_binary_authorization_attestorHandler => {
+    Binary_authorization_attestorHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -647,7 +633,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_binary_authorization_attestor_attestation_authority_note_8 => {
+    Binary_authorization_attestor__attestation_authority_note => {
       attributes => {
         'delegation_service_account_email' => {
           'type' => Optional[String],
@@ -655,12 +641,12 @@ type TerraformGoogle = TypeSet[{
         },
         'note_reference' => String,
         'public_keys' => {
-          'type' => Optional[Array[Google_binary_authorization_attestor_attestation_authority_note_8_public_keys_9]],
+          'type' => Optional[Array[Binary_authorization_attestor__attestation_authority_note__public_keys]],
           'value' => undef
         }
       }
     },
-    Google_binary_authorization_attestor_attestation_authority_note_8_public_keys_9 => {
+    Binary_authorization_attestor__attestation_authority_note__public_keys => {
       attributes => {
         'ascii_armored_pgp_public_key' => String,
         'comment' => {
@@ -673,15 +659,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_binary_authorization_policy => {
+    Binary_authorization_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project'],
-          'providedAttributes' => ['project']
+          'providedAttributes' => ['binary_authorization_policyID', 'project']
         }
       },
       attributes => {
-        'google_binary_authorization_policy_id' => {
+        'binary_authorization_policyID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -691,14 +677,14 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'admission_whitelist_patterns' => {
-          'type' => Optional[Array[Google_binary_authorization_policy_admission_whitelist_patterns_10]],
+          'type' => Optional[Array[Binary_authorization_policy__admission_whitelist_patterns]],
           'value' => undef
         },
         'cluster_admission_rules' => {
-          'type' => Optional[Array[Google_binary_authorization_policy_cluster_admission_rules_11]],
+          'type' => Optional[Array[Binary_authorization_policy__cluster_admission_rules]],
           'value' => undef
         },
-        'default_admission_rule' => Array[Google_binary_authorization_policy_default_admission_rule_12],
+        'default_admission_rule' => Array[Binary_authorization_policy__default_admission_rule],
         'description' => {
           'type' => Optional[String],
           'value' => undef
@@ -709,7 +695,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_binary_authorization_policyHandler => {
+    Binary_authorization_policyHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -723,7 +709,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_binary_authorization_policy_admission_whitelist_patterns_10 => {
+    Binary_authorization_policy__admission_whitelist_patterns => {
       attributes => {
         'name_pattern' => {
           'type' => Optional[String],
@@ -731,7 +717,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_binary_authorization_policy_cluster_admission_rules_11 => {
+    Binary_authorization_policy__cluster_admission_rules => {
       attributes => {
         'cluster' => String,
         'enforcement_mode' => {
@@ -748,7 +734,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_binary_authorization_policy_default_admission_rule_12 => {
+    Binary_authorization_policy__default_admission_rule => {
       attributes => {
         'enforcement_mode' => String,
         'evaluation_mode' => String,
@@ -758,15 +744,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_cloudbuild_trigger => {
+    Cloudbuild_trigger => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['build', 'description', 'filename', 'project', 'substitutions', 'trigger_template'],
-          'providedAttributes' => ['project']
+          'providedAttributes' => ['cloudbuild_triggerID', 'project']
         }
       },
       attributes => {
-        'google_cloudbuild_trigger_id' => {
+        'cloudbuild_triggerID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -776,7 +762,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'build' => {
-          'type' => Optional[Array[Google_cloudbuild_trigger_build_13]],
+          'type' => Optional[Array[Cloudbuild_trigger__build]],
           'value' => undef
         },
         'description' => {
@@ -796,12 +782,12 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'trigger_template' => {
-          'type' => Optional[Array[Google_cloudbuild_trigger_trigger_template_15]],
+          'type' => Optional[Array[Cloudbuild_trigger__trigger_template]],
           'value' => undef
         }
       }
     },
-    Google_cloudbuild_triggerHandler => {
+    Cloudbuild_triggerHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -815,14 +801,14 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_cloudbuild_trigger_build_13 => {
+    Cloudbuild_trigger__build => {
       attributes => {
         'images' => {
           'type' => Optional[Array[String]],
           'value' => undef
         },
         'step' => {
-          'type' => Optional[Array[Google_cloudbuild_trigger_build_13_step_14]],
+          'type' => Optional[Array[Cloudbuild_trigger__build__step]],
           'value' => undef
         },
         'tags' => {
@@ -831,7 +817,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_cloudbuild_trigger_build_13_step_14 => {
+    Cloudbuild_trigger__build__step => {
       attributes => {
         'args' => {
           'type' => Optional[String],
@@ -843,7 +829,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_cloudbuild_trigger_trigger_template_15 => {
+    Cloudbuild_trigger__trigger_template => {
       attributes => {
         'branch_name' => {
           'type' => Optional[String],
@@ -871,15 +857,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_cloudfunctions_function => {
+    Cloudfunctions_function => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['entry_point', 'name', 'project', 'region', 'trigger_http'],
-          'providedAttributes' => ['event_trigger', 'https_trigger_url', 'project', 'region', 'retry_on_failure', 'runtime', 'trigger_bucket', 'trigger_topic']
+          'providedAttributes' => ['cloudfunctions_functionID', 'event_trigger', 'https_trigger_url', 'project', 'region', 'retry_on_failure', 'runtime', 'trigger_bucket', 'trigger_topic']
         }
       },
       attributes => {
-        'google_cloudfunctions_function_id' => {
+        'cloudfunctions_functionID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -905,7 +891,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'event_trigger' => {
-          'type' => Optional[Array[Google_cloudfunctions_function_event_trigger_16]],
+          'type' => Optional[Array[Cloudfunctions_function__event_trigger]],
           'value' => undef
         },
         'https_trigger_url' => {
@@ -953,7 +939,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_cloudfunctions_functionHandler => {
+    Cloudfunctions_functionHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -967,30 +953,30 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_cloudfunctions_function_event_trigger_16 => {
+    Cloudfunctions_function__event_trigger => {
       attributes => {
         'event_type' => String,
         'failure_policy' => {
-          'type' => Optional[Array[Google_cloudfunctions_function_event_trigger_16_failure_policy_17]],
+          'type' => Optional[Array[Cloudfunctions_function__event_trigger__failure_policy]],
           'value' => undef
         },
         'resource' => String
       }
     },
-    Google_cloudfunctions_function_event_trigger_16_failure_policy_17 => {
+    Cloudfunctions_function__event_trigger__failure_policy => {
       attributes => {
         'retry' => Boolean
       }
     },
-    Google_cloudiot_registry => {
+    Cloudiot_registry => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project', 'region'],
-          'providedAttributes' => ['http_config', 'mqtt_config', 'project', 'region']
+          'providedAttributes' => ['cloudiot_registryID', 'http_config', 'mqtt_config', 'project', 'region']
         }
       },
       attributes => {
-        'google_cloudiot_registry_id' => {
+        'cloudiot_registryID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -1000,19 +986,19 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'credentials' => {
-          'type' => Optional[Array[Google_cloudiot_registry_credentials_18]],
+          'type' => Optional[Array[Cloudiot_registry__credentials]],
           'value' => undef
         },
         'event_notification_config' => {
-          'type' => Optional[Hash[String, String]],
+          'type' => Optional[Hash[String, Cloudiot_registry__event_notification_config]],
           'value' => undef
         },
         'http_config' => {
-          'type' => Optional[Hash[String, String]],
+          'type' => Optional[Hash[String, Cloudiot_registry__http_config]],
           'value' => undef
         },
         'mqtt_config' => {
-          'type' => Optional[Hash[String, String]],
+          'type' => Optional[Hash[String, Cloudiot_registry__mqtt_config]],
           'value' => undef
         },
         'name' => String,
@@ -1025,12 +1011,12 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'state_notification_config' => {
-          'type' => Optional[Hash[String, String]],
+          'type' => Optional[Hash[String, Cloudiot_registry__state_notification_config]],
           'value' => undef
         }
       }
     },
-    Google_cloudiot_registryHandler => {
+    Cloudiot_registryHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -1044,23 +1030,49 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_cloudiot_registry_credentials_18 => {
+    Cloudiot_registry__credentials => {
       attributes => {
         'public_key_certificate' => {
-          'type' => Optional[Hash[String, String]],
+          'type' => Optional[Hash[String, Cloudiot_registry__credentials__public_key_certificate]],
           'value' => undef
         }
       }
     },
-    Google_composer_environment => {
+    Cloudiot_registry__credentials__public_key_certificate => {
+      attributes => {
+        'certificate' => String,
+        'format' => String
+      }
+    },
+    Cloudiot_registry__event_notification_config => {
+      attributes => {
+        'pubsub_topic_name' => String
+      }
+    },
+    Cloudiot_registry__http_config => {
+      attributes => {
+        'http_enabled_state' => String
+      }
+    },
+    Cloudiot_registry__mqtt_config => {
+      attributes => {
+        'mqtt_enabled_state' => String
+      }
+    },
+    Cloudiot_registry__state_notification_config => {
+      attributes => {
+        'pubsub_topic_name' => String
+      }
+    },
+    Composer_environment => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project', 'region'],
-          'providedAttributes' => ['config', 'project']
+          'providedAttributes' => ['composer_environmentID', 'config', 'project']
         }
       },
       attributes => {
-        'google_composer_environment_id' => {
+        'composer_environmentID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -1070,7 +1082,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'config' => {
-          'type' => Optional[Array[Google_composer_environment_config_19]],
+          'type' => Optional[Array[Composer_environment__config]],
           'value' => undef
         },
         'labels' => {
@@ -1088,7 +1100,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_composer_environmentHandler => {
+    Composer_environmentHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -1102,7 +1114,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_composer_environment_config_19 => {
+    Composer_environment__config => {
       attributes => {
         'airflow_uri' => {
           'type' => Optional[String],
@@ -1117,7 +1129,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'node_config' => {
-          'type' => Optional[Array[Google_composer_environment_config_19_node_config_20]],
+          'type' => Optional[Array[Composer_environment__config__node_config]],
           'value' => undef
         },
         'node_count' => {
@@ -1125,12 +1137,12 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'software_config' => {
-          'type' => Optional[Array[Google_composer_environment_config_19_software_config_21]],
+          'type' => Optional[Array[Composer_environment__config__software_config]],
           'value' => undef
         }
       }
     },
-    Google_composer_environment_config_19_node_config_20 => {
+    Composer_environment__config__node_config => {
       attributes => {
         'disk_size_gb' => {
           'type' => Optional[Integer],
@@ -1166,7 +1178,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_composer_environment_config_19_software_config_21 => {
+    Composer_environment__config__software_config => {
       attributes => {
         'airflow_config_overrides' => {
           'type' => Optional[Hash[String, String]],
@@ -1186,15 +1198,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_address => {
+    Compute_address => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['address', 'address_type', 'description', 'name', 'network_tier', 'project', 'region', 'subnetwork'],
-          'providedAttributes' => ['address', 'creation_timestamp', 'label_fingerprint', 'network_tier', 'project', 'region', 'self_link', 'subnetwork', 'users']
+          'providedAttributes' => ['compute_addressID', 'address', 'creation_timestamp', 'label_fingerprint', 'network_tier', 'project', 'region', 'self_link', 'subnetwork', 'users']
         }
       },
       attributes => {
-        'google_compute_address_id' => {
+        'compute_addressID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -1254,7 +1266,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_addressHandler => {
+    Compute_addressHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -1268,15 +1280,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_attached_disk => {
+    Compute_attached_disk => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['device_name', 'disk', 'instance', 'mode', 'project', 'zone'],
-          'providedAttributes' => ['device_name', 'project', 'zone']
+          'providedAttributes' => ['compute_attached_diskID', 'device_name', 'project', 'zone']
         }
       },
       attributes => {
-        'google_compute_attached_disk_id' => {
+        'compute_attached_diskID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -1305,7 +1317,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_attached_diskHandler => {
+    Compute_attached_diskHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -1319,15 +1331,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_autoscaler => {
+    Compute_autoscaler => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project', 'zone'],
-          'providedAttributes' => ['creation_timestamp', 'project', 'self_link', 'zone']
+          'providedAttributes' => ['compute_autoscalerID', 'creation_timestamp', 'project', 'self_link', 'zone']
         }
       },
       attributes => {
-        'google_compute_autoscaler_id' => {
+        'compute_autoscalerID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -1336,7 +1348,7 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'autoscaling_policy' => Array[Google_compute_autoscaler_autoscaling_policy_22],
+        'autoscaling_policy' => Array[Compute_autoscaler__autoscaling_policy],
         'creation_timestamp' => {
           'type' => Optional[String],
           'value' => undef
@@ -1361,7 +1373,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_autoscalerHandler => {
+    Compute_autoscalerHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -1375,54 +1387,54 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_autoscaler_autoscaling_policy_22 => {
+    Compute_autoscaler__autoscaling_policy => {
       attributes => {
         'cooldown_period' => {
           'type' => Optional[Integer],
           'value' => undef
         },
         'cpu_utilization' => {
-          'type' => Optional[Array[Google_compute_autoscaler_autoscaling_policy_22_cpu_utilization_23]],
+          'type' => Optional[Array[Compute_autoscaler__autoscaling_policy__cpu_utilization]],
           'value' => undef
         },
         'load_balancing_utilization' => {
-          'type' => Optional[Array[Google_compute_autoscaler_autoscaling_policy_22_load_balancing_utilization_24]],
+          'type' => Optional[Array[Compute_autoscaler__autoscaling_policy__load_balancing_utilization]],
           'value' => undef
         },
         'max_replicas' => Integer,
         'metric' => {
-          'type' => Optional[Array[Google_compute_autoscaler_autoscaling_policy_22_metric_25]],
+          'type' => Optional[Array[Compute_autoscaler__autoscaling_policy__metric]],
           'value' => undef
         },
         'min_replicas' => Integer
       }
     },
-    Google_compute_autoscaler_autoscaling_policy_22_cpu_utilization_23 => {
+    Compute_autoscaler__autoscaling_policy__cpu_utilization => {
       attributes => {
         'target' => Float
       }
     },
-    Google_compute_autoscaler_autoscaling_policy_22_load_balancing_utilization_24 => {
+    Compute_autoscaler__autoscaling_policy__load_balancing_utilization => {
       attributes => {
         'target' => Float
       }
     },
-    Google_compute_autoscaler_autoscaling_policy_22_metric_25 => {
+    Compute_autoscaler__autoscaling_policy__metric => {
       attributes => {
         'name' => String,
         'target' => Float,
         'type' => String
       }
     },
-    Google_compute_backend_bucket => {
+    Compute_backend_bucket => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['creation_timestamp', 'project', 'self_link']
+          'providedAttributes' => ['compute_backend_bucketID', 'creation_timestamp', 'project', 'self_link']
         }
       },
       attributes => {
-        'google_compute_backend_bucket_id' => {
+        'compute_backend_bucketID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -1455,7 +1467,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_backend_bucketHandler => {
+    Compute_backend_bucketHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -1469,15 +1481,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_backend_service => {
+    Compute_backend_service => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project', 'region'],
-          'providedAttributes' => ['cdn_policy', 'fingerprint', 'port_name', 'project', 'protocol', 'self_link', 'session_affinity', 'timeout_sec']
+          'providedAttributes' => ['compute_backend_serviceID', 'cdn_policy', 'fingerprint', 'port_name', 'project', 'protocol', 'self_link', 'session_affinity', 'timeout_sec']
         }
       },
       attributes => {
-        'google_compute_backend_service_id' => {
+        'compute_backend_serviceID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -1487,11 +1499,11 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'backend' => {
-          'type' => Optional[Array[Google_compute_backend_service_backend_26]],
+          'type' => Optional[Array[Compute_backend_service__backend]],
           'value' => undef
         },
         'cdn_policy' => {
-          'type' => Optional[Array[Google_compute_backend_service_cdn_policy_27]],
+          'type' => Optional[Array[Compute_backend_service__cdn_policy]],
           'value' => undef
         },
         'connection_draining_timeout_sec' => {
@@ -1516,7 +1528,7 @@ type TerraformGoogle = TypeSet[{
         },
         'health_checks' => Array[String],
         'iap' => {
-          'type' => Optional[Array[Google_compute_backend_service_iap_29]],
+          'type' => Optional[Array[Compute_backend_service__iap]],
           'value' => undef
         },
         'name' => String,
@@ -1554,7 +1566,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_backend_serviceHandler => {
+    Compute_backend_serviceHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -1568,7 +1580,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_backend_service_backend_26 => {
+    Compute_backend_service__backend => {
       attributes => {
         'balancing_mode' => {
           'type' => Optional[String],
@@ -1608,15 +1620,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_backend_service_cdn_policy_27 => {
+    Compute_backend_service__cdn_policy => {
       attributes => {
         'cache_key_policy' => {
-          'type' => Optional[Array[Google_compute_backend_service_cdn_policy_27_cache_key_policy_28]],
+          'type' => Optional[Array[Compute_backend_service__cdn_policy__cache_key_policy]],
           'value' => undef
         }
       }
     },
-    Google_compute_backend_service_cdn_policy_27_cache_key_policy_28 => {
+    Compute_backend_service__cdn_policy__cache_key_policy => {
       attributes => {
         'include_host' => {
           'type' => Optional[Boolean],
@@ -1640,21 +1652,21 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_backend_service_iap_29 => {
+    Compute_backend_service__iap => {
       attributes => {
         'oauth2_client_id' => String,
         'oauth2_client_secret' => String
       }
     },
-    Google_compute_disk => {
+    Compute_disk => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'disk_encryption_key', 'image', 'name', 'project', 'snapshot', 'source_image_encryption_key', 'source_snapshot_encryption_key', 'type', 'zone'],
-          'providedAttributes' => ['creation_timestamp', 'disk_encryption_key', 'disk_encryption_key_sha256', 'label_fingerprint', 'last_attach_timestamp', 'last_detach_timestamp', 'project', 'self_link', 'size', 'source_image_id', 'source_snapshot_id', 'users', 'zone']
+          'providedAttributes' => ['compute_diskID', 'creation_timestamp', 'disk_encryption_key', 'disk_encryption_key_sha256', 'label_fingerprint', 'last_attach_timestamp', 'last_detach_timestamp', 'project', 'self_link', 'size', 'source_image_id', 'source_snapshot_id', 'users', 'zone']
         }
       },
       attributes => {
-        'google_compute_disk_id' => {
+        'compute_diskID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -1672,7 +1684,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'disk_encryption_key' => {
-          'type' => Optional[Array[Google_compute_disk_disk_encryption_key_30]],
+          'type' => Optional[Array[Compute_disk__disk_encryption_key]],
           'value' => undef
         },
         'disk_encryption_key_raw' => {
@@ -1721,7 +1733,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'source_image_encryption_key' => {
-          'type' => Optional[Array[Google_compute_disk_source_image_encryption_key_31]],
+          'type' => Optional[Array[Compute_disk__source_image_encryption_key]],
           'value' => undef
         },
         'source_image_id' => {
@@ -1729,7 +1741,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'source_snapshot_encryption_key' => {
-          'type' => Optional[Array[Google_compute_disk_source_snapshot_encryption_key_32]],
+          'type' => Optional[Array[Compute_disk__source_snapshot_encryption_key]],
           'value' => undef
         },
         'source_snapshot_id' => {
@@ -1750,7 +1762,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_diskHandler => {
+    Compute_diskHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -1764,7 +1776,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_disk_disk_encryption_key_30 => {
+    Compute_disk__disk_encryption_key => {
       attributes => {
         'raw_key' => {
           'type' => Optional[String],
@@ -1776,7 +1788,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_disk_source_image_encryption_key_31 => {
+    Compute_disk__source_image_encryption_key => {
       attributes => {
         'raw_key' => {
           'type' => Optional[String],
@@ -1788,7 +1800,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_disk_source_snapshot_encryption_key_32 => {
+    Compute_disk__source_snapshot_encryption_key => {
       attributes => {
         'raw_key' => {
           'type' => Optional[String],
@@ -1800,15 +1812,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_firewall => {
+    Compute_firewall => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['creation_timestamp', 'destination_ranges', 'direction', 'project', 'self_link', 'source_ranges']
+          'providedAttributes' => ['compute_firewallID', 'creation_timestamp', 'destination_ranges', 'direction', 'project', 'self_link', 'source_ranges']
         }
       },
       attributes => {
-        'google_compute_firewall_id' => {
+        'compute_firewallID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -1818,7 +1830,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'allow' => {
-          'type' => Optional[Array[Google_compute_firewall_allow_33]],
+          'type' => Optional[Array[Compute_firewall__allow]],
           'value' => undef
         },
         'creation_timestamp' => {
@@ -1826,7 +1838,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'deny' => {
-          'type' => Optional[Array[Google_compute_firewall_deny_34]],
+          'type' => Optional[Array[Compute_firewall__deny]],
           'value' => undef
         },
         'description' => {
@@ -1885,7 +1897,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_firewallHandler => {
+    Compute_firewallHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -1899,7 +1911,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_firewall_allow_33 => {
+    Compute_firewall__allow => {
       attributes => {
         'ports' => {
           'type' => Optional[Array[String]],
@@ -1908,7 +1920,7 @@ type TerraformGoogle = TypeSet[{
         'protocol' => String
       }
     },
-    Google_compute_firewall_deny_34 => {
+    Compute_firewall__deny => {
       attributes => {
         'ports' => {
           'type' => Optional[Array[String]],
@@ -1917,15 +1929,15 @@ type TerraformGoogle = TypeSet[{
         'protocol' => String
       }
     },
-    Google_compute_forwarding_rule => {
+    Compute_forwarding_rule => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['backend_service', 'description', 'ip_address', 'ip_protocol', 'ip_version', 'load_balancing_scheme', 'name', 'network', 'network_tier', 'port_range', 'ports', 'project', 'region', 'service_label', 'subnetwork'],
-          'providedAttributes' => ['creation_timestamp', 'ip_address', 'ip_protocol', 'label_fingerprint', 'network', 'network_tier', 'project', 'region', 'self_link', 'service_name', 'subnetwork']
+          'providedAttributes' => ['compute_forwarding_ruleID', 'creation_timestamp', 'ip_address', 'ip_protocol', 'label_fingerprint', 'network', 'network_tier', 'project', 'region', 'self_link', 'service_name', 'subnetwork']
         }
       },
       attributes => {
-        'google_compute_forwarding_rule_id' => {
+        'compute_forwarding_ruleID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -2017,7 +2029,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_forwarding_ruleHandler => {
+    Compute_forwarding_ruleHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -2031,15 +2043,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_global_address => {
+    Compute_global_address => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['address_type', 'description', 'ip_version', 'name', 'network', 'prefix_length', 'project', 'purpose'],
-          'providedAttributes' => ['address', 'creation_timestamp', 'label_fingerprint', 'project', 'self_link']
+          'providedAttributes' => ['compute_global_addressID', 'address', 'creation_timestamp', 'label_fingerprint', 'project', 'self_link']
         }
       },
       attributes => {
-        'google_compute_global_address_id' => {
+        'compute_global_addressID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -2099,7 +2111,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_global_addressHandler => {
+    Compute_global_addressHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -2113,15 +2125,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_global_forwarding_rule => {
+    Compute_global_forwarding_rule => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'ip_address', 'ip_protocol', 'ip_version', 'name', 'port_range', 'project', 'region'],
-          'providedAttributes' => ['ip_address', 'ip_protocol', 'label_fingerprint', 'project', 'self_link']
+          'providedAttributes' => ['compute_global_forwarding_ruleID', 'ip_address', 'ip_protocol', 'label_fingerprint', 'project', 'self_link']
         }
       },
       attributes => {
-        'google_compute_global_forwarding_rule_id' => {
+        'compute_global_forwarding_ruleID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -2174,7 +2186,7 @@ type TerraformGoogle = TypeSet[{
         'target' => String
       }
     },
-    Google_compute_global_forwarding_ruleHandler => {
+    Compute_global_forwarding_ruleHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -2188,15 +2200,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_health_check => {
+    Compute_health_check => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['creation_timestamp', 'project', 'self_link', 'type']
+          'providedAttributes' => ['compute_health_checkID', 'creation_timestamp', 'project', 'self_link', 'type']
         }
       },
       attributes => {
-        'google_compute_health_check_id' => {
+        'compute_health_checkID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -2222,11 +2234,11 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'http_health_check' => {
-          'type' => Optional[Array[Google_compute_health_check_http_health_check_35]],
+          'type' => Optional[Array[Compute_health_check__http_health_check]],
           'value' => undef
         },
         'https_health_check' => {
-          'type' => Optional[Array[Google_compute_health_check_https_health_check_36]],
+          'type' => Optional[Array[Compute_health_check__https_health_check]],
           'value' => undef
         },
         'name' => String,
@@ -2239,11 +2251,11 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'ssl_health_check' => {
-          'type' => Optional[Array[Google_compute_health_check_ssl_health_check_37]],
+          'type' => Optional[Array[Compute_health_check__ssl_health_check]],
           'value' => undef
         },
         'tcp_health_check' => {
-          'type' => Optional[Array[Google_compute_health_check_tcp_health_check_38]],
+          'type' => Optional[Array[Compute_health_check__tcp_health_check]],
           'value' => undef
         },
         'timeout_sec' => {
@@ -2260,7 +2272,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_health_checkHandler => {
+    Compute_health_checkHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -2274,7 +2286,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_health_check_http_health_check_35 => {
+    Compute_health_check__http_health_check => {
       attributes => {
         'host' => {
           'type' => Optional[String],
@@ -2298,7 +2310,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_health_check_https_health_check_36 => {
+    Compute_health_check__https_health_check => {
       attributes => {
         'host' => {
           'type' => Optional[String],
@@ -2322,7 +2334,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_health_check_ssl_health_check_37 => {
+    Compute_health_check__ssl_health_check => {
       attributes => {
         'port' => {
           'type' => Optional[Integer],
@@ -2342,7 +2354,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_health_check_tcp_health_check_38 => {
+    Compute_health_check__tcp_health_check => {
       attributes => {
         'port' => {
           'type' => Optional[Integer],
@@ -2362,15 +2374,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_http_health_check => {
+    Compute_http_health_check => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['creation_timestamp', 'project', 'self_link']
+          'providedAttributes' => ['compute_http_health_checkID', 'creation_timestamp', 'project', 'self_link']
         }
       },
       attributes => {
-        'google_compute_http_health_check_id' => {
+        'compute_http_health_checkID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -2426,7 +2438,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_http_health_checkHandler => {
+    Compute_http_health_checkHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -2440,15 +2452,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_https_health_check => {
+    Compute_https_health_check => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['creation_timestamp', 'project', 'self_link']
+          'providedAttributes' => ['compute_https_health_checkID', 'creation_timestamp', 'project', 'self_link']
         }
       },
       attributes => {
-        'google_compute_https_health_check_id' => {
+        'compute_https_health_checkID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -2504,7 +2516,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_https_health_checkHandler => {
+    Compute_https_health_checkHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -2518,15 +2530,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_image => {
+    Compute_image => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'family', 'licenses', 'name', 'project', 'raw_disk', 'source_disk'],
-          'providedAttributes' => ['label_fingerprint', 'licenses', 'project', 'self_link']
+          'providedAttributes' => ['compute_imageID', 'label_fingerprint', 'licenses', 'project', 'self_link']
         }
       },
       attributes => {
-        'google_compute_image_id' => {
+        'compute_imageID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -2565,7 +2577,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'raw_disk' => {
-          'type' => Optional[Array[Google_compute_image_raw_disk_39]],
+          'type' => Optional[Array[Compute_image__raw_disk]],
           'value' => undef
         },
         'self_link' => {
@@ -2578,7 +2590,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_imageHandler => {
+    Compute_imageHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -2592,7 +2604,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_image_raw_disk_39 => {
+    Compute_image__raw_disk => {
       attributes => {
         'container_type' => {
           'type' => Optional[String],
@@ -2605,15 +2617,15 @@ type TerraformGoogle = TypeSet[{
         'source' => String
       }
     },
-    Google_compute_instance => {
+    Compute_instance => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['boot_disk', 'can_ip_forward', 'description', 'disk', 'guest_accelerator', 'metadata_startup_script', 'name', 'network', 'network_interface', 'project', 'scratch_disk', 'zone'],
-          'providedAttributes' => ['cpu_platform', 'guest_accelerator', 'instance_id', 'label_fingerprint', 'metadata_fingerprint', 'project', 'scheduling', 'self_link', 'tags_fingerprint', 'zone']
+          'providedAttributes' => ['compute_instanceID', 'cpu_platform', 'guest_accelerator', 'instance_id', 'label_fingerprint', 'metadata_fingerprint', 'project', 'scheduling', 'self_link', 'tags_fingerprint', 'zone']
         }
       },
       attributes => {
-        'google_compute_instance_id' => {
+        'compute_instanceID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -2627,10 +2639,10 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'attached_disk' => {
-          'type' => Optional[Array[Google_compute_instance_attached_disk_40]],
+          'type' => Optional[Array[Compute_instance__attached_disk]],
           'value' => undef
         },
-        'boot_disk' => Array[Google_compute_instance_boot_disk_41],
+        'boot_disk' => Array[Compute_instance__boot_disk],
         'can_ip_forward' => {
           'type' => Optional[Boolean],
           'value' => undef
@@ -2652,11 +2664,11 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'disk' => {
-          'type' => Optional[Array[Google_compute_instance_disk_43]],
+          'type' => Optional[Array[Compute_instance__disk]],
           'value' => undef
         },
         'guest_accelerator' => {
-          'type' => Optional[Array[Google_compute_instance_guest_accelerator_44]],
+          'type' => Optional[Array[Compute_instance__guest_accelerator]],
           'value' => undef
         },
         'instance_id' => {
@@ -2690,20 +2702,20 @@ type TerraformGoogle = TypeSet[{
         },
         'name' => String,
         'network' => {
-          'type' => Optional[Array[Google_compute_instance_network_45]],
+          'type' => Optional[Array[Compute_instance__network]],
           'value' => undef
         },
-        'network_interface' => Array[Google_compute_instance_network_interface_46],
+        'network_interface' => Array[Compute_instance__network_interface],
         'project' => {
           'type' => Optional[String],
           'value' => undef
         },
         'scheduling' => {
-          'type' => Optional[Array[Google_compute_instance_scheduling_49]],
+          'type' => Optional[Array[Compute_instance__scheduling]],
           'value' => undef
         },
         'scratch_disk' => {
-          'type' => Optional[Array[Google_compute_instance_scratch_disk_50]],
+          'type' => Optional[Array[Compute_instance__scratch_disk]],
           'value' => undef
         },
         'self_link' => {
@@ -2711,7 +2723,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'service_account' => {
-          'type' => Optional[Array[Google_compute_instance_service_account_51]],
+          'type' => Optional[Array[Compute_instance__service_account]],
           'value' => undef
         },
         'tags' => {
@@ -2728,7 +2740,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_instanceHandler => {
+    Compute_instanceHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -2742,7 +2754,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_instance_attached_disk_40 => {
+    Compute_instance__attached_disk => {
       attributes => {
         'device_name' => {
           'type' => Optional[String],
@@ -2763,7 +2775,7 @@ type TerraformGoogle = TypeSet[{
         'source' => String
       }
     },
-    Google_compute_instance_boot_disk_41 => {
+    Compute_instance__boot_disk => {
       attributes => {
         'auto_delete' => {
           'type' => Optional[Boolean],
@@ -2782,7 +2794,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'initialize_params' => {
-          'type' => Optional[Array[Google_compute_instance_boot_disk_41_initialize_params_42]],
+          'type' => Optional[Array[Compute_instance__boot_disk__initialize_params]],
           'value' => undef
         },
         'source' => {
@@ -2791,7 +2803,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_instance_boot_disk_41_initialize_params_42 => {
+    Compute_instance__boot_disk__initialize_params => {
       attributes => {
         'image' => {
           'type' => Optional[String],
@@ -2807,7 +2819,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_instance_disk_43 => {
+    Compute_instance__disk => {
       attributes => {
         'auto_delete' => {
           'type' => Optional[Boolean],
@@ -2847,15 +2859,140 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_instance_from_template => {
+    Compute_instance__guest_accelerator => {
+      attributes => {
+        'count' => Integer,
+        'type' => String
+      }
+    },
+    Compute_instance__network => {
+      attributes => {
+        'address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'external_address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'internal_address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'source' => String
+      }
+    },
+    Compute_instance__network_interface => {
+      attributes => {
+        'access_config' => {
+          'type' => Optional[Array[Compute_instance__network_interface__access_config]],
+          'value' => undef
+        },
+        'address' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'alias_ip_range' => {
+          'type' => Optional[Array[Compute_instance__network_interface__alias_ip_range]],
+          'value' => undef
+        },
+        'name' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'network' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'network_ip' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'subnetwork' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'subnetwork_project' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Compute_instance__network_interface__access_config => {
+      attributes => {
+        'assigned_nat_ip' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'nat_ip' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'network_tier' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'public_ptr_domain_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Compute_instance__network_interface__alias_ip_range => {
+      attributes => {
+        'ip_cidr_range' => String,
+        'subnetwork_range_name' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Compute_instance__scheduling => {
+      attributes => {
+        'automatic_restart' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        },
+        'on_host_maintenance' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'preemptible' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        }
+      }
+    },
+    Compute_instance__scratch_disk => {
+      attributes => {
+        'interface' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Compute_instance__service_account => {
+      attributes => {
+        'email' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'scopes' => Array[String]
+      }
+    },
+    Compute_instance_from_template => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['boot_disk', 'can_ip_forward', 'description', 'guest_accelerator', 'metadata_startup_script', 'name', 'network_interface', 'project', 'scratch_disk', 'source_instance_template', 'zone'],
-          'providedAttributes' => ['allow_stopping_for_update', 'attached_disk', 'boot_disk', 'can_ip_forward', 'cpu_platform', 'deletion_protection', 'description', 'guest_accelerator', 'instance_id', 'label_fingerprint', 'labels', 'machine_type', 'metadata', 'metadata_fingerprint', 'metadata_startup_script', 'min_cpu_platform', 'network_interface', 'project', 'scheduling', 'scratch_disk', 'self_link', 'service_account', 'tags', 'tags_fingerprint', 'zone']
+          'providedAttributes' => ['compute_instance_from_templateID', 'allow_stopping_for_update', 'attached_disk', 'boot_disk', 'can_ip_forward', 'cpu_platform', 'deletion_protection', 'description', 'guest_accelerator', 'instance_id', 'label_fingerprint', 'labels', 'machine_type', 'metadata', 'metadata_fingerprint', 'metadata_startup_script', 'min_cpu_platform', 'network_interface', 'project', 'scheduling', 'scratch_disk', 'self_link', 'service_account', 'tags', 'tags_fingerprint', 'zone']
         }
       },
       attributes => {
-        'google_compute_instance_from_template_id' => {
+        'compute_instance_from_templateID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -2869,11 +3006,11 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'attached_disk' => {
-          'type' => Optional[Array[Google_compute_instance_from_template_attached_disk_52]],
+          'type' => Optional[Array[Compute_instance_from_template__attached_disk]],
           'value' => undef
         },
         'boot_disk' => {
-          'type' => Optional[Array[Google_compute_instance_from_template_boot_disk_53]],
+          'type' => Optional[Array[Compute_instance_from_template__boot_disk]],
           'value' => undef
         },
         'can_ip_forward' => {
@@ -2893,7 +3030,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'guest_accelerator' => {
-          'type' => Optional[Array[Google_compute_instance_from_template_guest_accelerator_55]],
+          'type' => Optional[Array[Compute_instance_from_template__guest_accelerator]],
           'value' => undef
         },
         'instance_id' => {
@@ -2930,7 +3067,7 @@ type TerraformGoogle = TypeSet[{
         },
         'name' => String,
         'network_interface' => {
-          'type' => Optional[Array[Google_compute_instance_from_template_network_interface_56]],
+          'type' => Optional[Array[Compute_instance_from_template__network_interface]],
           'value' => undef
         },
         'project' => {
@@ -2938,11 +3075,11 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'scheduling' => {
-          'type' => Optional[Array[Google_compute_instance_from_template_scheduling_59]],
+          'type' => Optional[Array[Compute_instance_from_template__scheduling]],
           'value' => undef
         },
         'scratch_disk' => {
-          'type' => Optional[Array[Google_compute_instance_from_template_scratch_disk_60]],
+          'type' => Optional[Array[Compute_instance_from_template__scratch_disk]],
           'value' => undef
         },
         'self_link' => {
@@ -2950,7 +3087,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'service_account' => {
-          'type' => Optional[Array[Google_compute_instance_from_template_service_account_61]],
+          'type' => Optional[Array[Compute_instance_from_template__service_account]],
           'value' => undef
         },
         'source_instance_template' => String,
@@ -2968,7 +3105,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_instance_from_templateHandler => {
+    Compute_instance_from_templateHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -2982,7 +3119,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_instance_from_template_attached_disk_52 => {
+    Compute_instance_from_template__attached_disk => {
       attributes => {
         'device_name' => {
           'type' => Optional[String],
@@ -3003,7 +3140,7 @@ type TerraformGoogle = TypeSet[{
         'source' => String
       }
     },
-    Google_compute_instance_from_template_boot_disk_53 => {
+    Compute_instance_from_template__boot_disk => {
       attributes => {
         'auto_delete' => {
           'type' => Optional[Boolean],
@@ -3022,7 +3159,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'initialize_params' => {
-          'type' => Optional[Array[Google_compute_instance_from_template_boot_disk_53_initialize_params_54]],
+          'type' => Optional[Array[Compute_instance_from_template__boot_disk__initialize_params]],
           'value' => undef
         },
         'source' => {
@@ -3031,7 +3168,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_instance_from_template_boot_disk_53_initialize_params_54 => {
+    Compute_instance_from_template__boot_disk__initialize_params => {
       attributes => {
         'image' => {
           'type' => Optional[String],
@@ -3047,16 +3184,16 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_instance_from_template_guest_accelerator_55 => {
+    Compute_instance_from_template__guest_accelerator => {
       attributes => {
         'count' => Integer,
         'type' => String
       }
     },
-    Google_compute_instance_from_template_network_interface_56 => {
+    Compute_instance_from_template__network_interface => {
       attributes => {
         'access_config' => {
-          'type' => Optional[Array[Google_compute_instance_from_template_network_interface_56_access_config_57]],
+          'type' => Optional[Array[Compute_instance_from_template__network_interface__access_config]],
           'value' => undef
         },
         'address' => {
@@ -3064,7 +3201,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'alias_ip_range' => {
-          'type' => Optional[Array[Google_compute_instance_from_template_network_interface_56_alias_ip_range_58]],
+          'type' => Optional[Array[Compute_instance_from_template__network_interface__alias_ip_range]],
           'value' => undef
         },
         'name' => {
@@ -3089,7 +3226,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_instance_from_template_network_interface_56_access_config_57 => {
+    Compute_instance_from_template__network_interface__access_config => {
       attributes => {
         'assigned_nat_ip' => {
           'type' => Optional[String],
@@ -3109,7 +3246,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_instance_from_template_network_interface_56_alias_ip_range_58 => {
+    Compute_instance_from_template__network_interface__alias_ip_range => {
       attributes => {
         'ip_cidr_range' => String,
         'subnetwork_range_name' => {
@@ -3118,7 +3255,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_instance_from_template_scheduling_59 => {
+    Compute_instance_from_template__scheduling => {
       attributes => {
         'automatic_restart' => {
           'type' => Optional[Boolean],
@@ -3134,7 +3271,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_instance_from_template_scratch_disk_60 => {
+    Compute_instance_from_template__scratch_disk => {
       attributes => {
         'interface' => {
           'type' => Optional[String],
@@ -3142,7 +3279,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_instance_from_template_service_account_61 => {
+    Compute_instance_from_template__service_account => {
       attributes => {
         'email' => {
           'type' => Optional[String],
@@ -3151,15 +3288,15 @@ type TerraformGoogle = TypeSet[{
         'scopes' => Array[String]
       }
     },
-    Google_compute_instance_group => {
+    Compute_instance_group => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'network', 'project', 'zone'],
-          'providedAttributes' => ['instances', 'network', 'project', 'self_link', 'size', 'zone']
+          'providedAttributes' => ['compute_instance_groupID', 'instances', 'network', 'project', 'self_link', 'size', 'zone']
         }
       },
       attributes => {
-        'google_compute_instance_group_id' => {
+        'compute_instance_groupID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -3178,7 +3315,7 @@ type TerraformGoogle = TypeSet[{
         },
         'name' => String,
         'named_port' => {
-          'type' => Optional[Array[Google_compute_instance_group_named_port_62]],
+          'type' => Optional[Array[Compute_instance_group__named_port]],
           'value' => undef
         },
         'network' => {
@@ -3203,7 +3340,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_instance_groupHandler => {
+    Compute_instance_groupHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -3217,15 +3354,21 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_instance_group_manager => {
+    Compute_instance_group__named_port => {
+      attributes => {
+        'name' => String,
+        'port' => Integer
+      }
+    },
+    Compute_instance_group_manager => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['base_instance_name', 'description', 'name', 'project', 'zone'],
-          'providedAttributes' => ['fingerprint', 'instance_group', 'project', 'self_link', 'target_size', 'version', 'zone']
+          'providedAttributes' => ['compute_instance_group_managerID', 'fingerprint', 'instance_group', 'project', 'self_link', 'target_size', 'version', 'zone']
         }
       },
       attributes => {
-        'google_compute_instance_group_manager_id' => {
+        'compute_instance_group_managerID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -3235,7 +3378,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'auto_healing_policies' => {
-          'type' => Optional[Array[Google_compute_instance_group_manager_auto_healing_policies_63]],
+          'type' => Optional[Array[Compute_instance_group_manager__auto_healing_policies]],
           'value' => undef
         },
         'base_instance_name' => String,
@@ -3257,7 +3400,7 @@ type TerraformGoogle = TypeSet[{
         },
         'name' => String,
         'named_port' => {
-          'type' => Optional[Array[Google_compute_instance_group_manager_named_port_64]],
+          'type' => Optional[Array[Compute_instance_group_manager__named_port]],
           'value' => undef
         },
         'project' => {
@@ -3265,7 +3408,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'rolling_update_policy' => {
-          'type' => Optional[Array[Google_compute_instance_group_manager_rolling_update_policy_65]],
+          'type' => Optional[Array[Compute_instance_group_manager__rolling_update_policy]],
           'value' => undef
         },
         'self_link' => {
@@ -3285,7 +3428,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'version' => {
-          'type' => Optional[Array[Google_compute_instance_group_manager_version_66]],
+          'type' => Optional[Array[Compute_instance_group_manager__version]],
           'value' => undef
         },
         'wait_for_instances' => {
@@ -3298,7 +3441,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_instance_group_managerHandler => {
+    Compute_instance_group_managerHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -3312,19 +3455,19 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_instance_group_manager_auto_healing_policies_63 => {
+    Compute_instance_group_manager__auto_healing_policies => {
       attributes => {
         'health_check' => String,
         'initial_delay_sec' => Integer
       }
     },
-    Google_compute_instance_group_manager_named_port_64 => {
+    Compute_instance_group_manager__named_port => {
       attributes => {
         'name' => String,
         'port' => Integer
       }
     },
-    Google_compute_instance_group_manager_rolling_update_policy_65 => {
+    Compute_instance_group_manager__rolling_update_policy => {
       attributes => {
         'max_surge_fixed' => {
           'type' => Optional[Integer],
@@ -3350,17 +3493,17 @@ type TerraformGoogle = TypeSet[{
         'type' => String
       }
     },
-    Google_compute_instance_group_manager_version_66 => {
+    Compute_instance_group_manager__version => {
       attributes => {
         'instance_template' => String,
         'name' => String,
         'target_size' => {
-          'type' => Optional[Array[Google_compute_instance_group_manager_version_66_target_size_67]],
+          'type' => Optional[Array[Compute_instance_group_manager__version__target_size]],
           'value' => undef
         }
       }
     },
-    Google_compute_instance_group_manager_version_66_target_size_67 => {
+    Compute_instance_group_manager__version__target_size => {
       attributes => {
         'fixed' => {
           'type' => Optional[Integer],
@@ -3372,146 +3515,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_instance_group_named_port_62 => {
-      attributes => {
-        'name' => String,
-        'port' => Integer
-      }
-    },
-    Google_compute_instance_guest_accelerator_44 => {
-      attributes => {
-        'count' => Integer,
-        'type' => String
-      }
-    },
-    Google_compute_instance_network_45 => {
-      attributes => {
-        'address' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'external_address' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'internal_address' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'source' => String
-      }
-    },
-    Google_compute_instance_network_interface_46 => {
-      attributes => {
-        'access_config' => {
-          'type' => Optional[Array[Google_compute_instance_network_interface_46_access_config_47]],
-          'value' => undef
-        },
-        'address' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'alias_ip_range' => {
-          'type' => Optional[Array[Google_compute_instance_network_interface_46_alias_ip_range_48]],
-          'value' => undef
-        },
-        'name' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'network' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'network_ip' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'subnetwork' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'subnetwork_project' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
-      }
-    },
-    Google_compute_instance_network_interface_46_access_config_47 => {
-      attributes => {
-        'assigned_nat_ip' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'nat_ip' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'network_tier' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'public_ptr_domain_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
-      }
-    },
-    Google_compute_instance_network_interface_46_alias_ip_range_48 => {
-      attributes => {
-        'ip_cidr_range' => String,
-        'subnetwork_range_name' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
-      }
-    },
-    Google_compute_instance_scheduling_49 => {
-      attributes => {
-        'automatic_restart' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        },
-        'on_host_maintenance' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'preemptible' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        }
-      }
-    },
-    Google_compute_instance_scratch_disk_50 => {
-      attributes => {
-        'interface' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
-      }
-    },
-    Google_compute_instance_service_account_51 => {
-      attributes => {
-        'email' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'scopes' => Array[String]
-      }
-    },
-    Google_compute_instance_template => {
+    Compute_instance_template => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['automatic_restart', 'can_ip_forward', 'description', 'disk', 'guest_accelerator', 'instance_description', 'labels', 'machine_type', 'metadata', 'metadata_startup_script', 'min_cpu_platform', 'name', 'name_prefix', 'network_interface', 'on_host_maintenance', 'project', 'region', 'scheduling', 'service_account', 'tags'],
-          'providedAttributes' => ['metadata_fingerprint', 'name', 'name_prefix', 'project', 'region', 'scheduling', 'self_link', 'tags_fingerprint']
+          'providedAttributes' => ['compute_instance_templateID', 'metadata_fingerprint', 'name', 'name_prefix', 'project', 'region', 'scheduling', 'self_link', 'tags_fingerprint']
         }
       },
       attributes => {
-        'google_compute_instance_template_id' => {
+        'compute_instance_templateID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -3532,9 +3544,9 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'disk' => Array[Google_compute_instance_template_disk_68],
+        'disk' => Array[Compute_instance_template__disk],
         'guest_accelerator' => {
-          'type' => Optional[Array[Google_compute_instance_template_guest_accelerator_70]],
+          'type' => Optional[Array[Compute_instance_template__guest_accelerator]],
           'value' => undef
         },
         'instance_description' => {
@@ -3571,7 +3583,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'network_interface' => {
-          'type' => Optional[Array[Google_compute_instance_template_network_interface_71]],
+          'type' => Optional[Array[Compute_instance_template__network_interface]],
           'value' => undef
         },
         'on_host_maintenance' => {
@@ -3587,7 +3599,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'scheduling' => {
-          'type' => Optional[Array[Google_compute_instance_template_scheduling_74]],
+          'type' => Optional[Array[Compute_instance_template__scheduling]],
           'value' => undef
         },
         'self_link' => {
@@ -3595,7 +3607,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'service_account' => {
-          'type' => Optional[Array[Google_compute_instance_template_service_account_75]],
+          'type' => Optional[Array[Compute_instance_template__service_account]],
           'value' => undef
         },
         'tags' => {
@@ -3608,7 +3620,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_instance_templateHandler => {
+    Compute_instance_templateHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -3622,7 +3634,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_instance_template_disk_68 => {
+    Compute_instance_template__disk => {
       attributes => {
         'auto_delete' => {
           'type' => Optional[Boolean],
@@ -3637,7 +3649,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'disk_encryption_key' => {
-          'type' => Optional[Array[Google_compute_instance_template_disk_68_disk_encryption_key_69]],
+          'type' => Optional[Array[Compute_instance_template__disk__disk_encryption_key]],
           'value' => undef
         },
         'disk_name' => {
@@ -3674,7 +3686,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_instance_template_disk_68_disk_encryption_key_69 => {
+    Compute_instance_template__disk__disk_encryption_key => {
       attributes => {
         'kms_key_self_link' => {
           'type' => Optional[String],
@@ -3682,16 +3694,16 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_instance_template_guest_accelerator_70 => {
+    Compute_instance_template__guest_accelerator => {
       attributes => {
         'count' => Integer,
         'type' => String
       }
     },
-    Google_compute_instance_template_network_interface_71 => {
+    Compute_instance_template__network_interface => {
       attributes => {
         'access_config' => {
-          'type' => Optional[Array[Google_compute_instance_template_network_interface_71_access_config_72]],
+          'type' => Optional[Array[Compute_instance_template__network_interface__access_config]],
           'value' => undef
         },
         'address' => {
@@ -3699,7 +3711,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'alias_ip_range' => {
-          'type' => Optional[Array[Google_compute_instance_template_network_interface_71_alias_ip_range_73]],
+          'type' => Optional[Array[Compute_instance_template__network_interface__alias_ip_range]],
           'value' => undef
         },
         'network' => {
@@ -3720,7 +3732,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_instance_template_network_interface_71_access_config_72 => {
+    Compute_instance_template__network_interface__access_config => {
       attributes => {
         'assigned_nat_ip' => {
           'type' => Optional[String],
@@ -3736,7 +3748,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_instance_template_network_interface_71_alias_ip_range_73 => {
+    Compute_instance_template__network_interface__alias_ip_range => {
       attributes => {
         'ip_cidr_range' => String,
         'subnetwork_range_name' => {
@@ -3745,7 +3757,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_instance_template_scheduling_74 => {
+    Compute_instance_template__scheduling => {
       attributes => {
         'automatic_restart' => {
           'type' => Optional[Boolean],
@@ -3761,7 +3773,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_instance_template_service_account_75 => {
+    Compute_instance_template__service_account => {
       attributes => {
         'email' => {
           'type' => Optional[String],
@@ -3770,15 +3782,15 @@ type TerraformGoogle = TypeSet[{
         'scopes' => Array[String]
       }
     },
-    Google_compute_interconnect_attachment => {
+    Compute_interconnect_attachment => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'interconnect', 'name', 'project', 'region', 'router'],
-          'providedAttributes' => ['cloud_router_ip_address', 'creation_timestamp', 'customer_router_ip_address', 'google_reference_id', 'private_interconnect_info', 'project', 'region', 'self_link']
+          'providedAttributes' => ['compute_interconnect_attachmentID', 'cloud_router_ip_address', 'creation_timestamp', 'customer_router_ip_address', 'google_reference_id', 'private_interconnect_info', 'project', 'region', 'self_link']
         }
       },
       attributes => {
-        'google_compute_interconnect_attachment_id' => {
+        'compute_interconnect_attachmentID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -3810,7 +3822,7 @@ type TerraformGoogle = TypeSet[{
         'interconnect' => String,
         'name' => String,
         'private_interconnect_info' => {
-          'type' => Optional[Array[Google_compute_interconnect_attachment_private_interconnect_info_76]],
+          'type' => Optional[Array[Compute_interconnect_attachment__private_interconnect_info]],
           'value' => undef
         },
         'project' => {
@@ -3828,7 +3840,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_interconnect_attachmentHandler => {
+    Compute_interconnect_attachmentHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -3842,7 +3854,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_interconnect_attachment_private_interconnect_info_76 => {
+    Compute_interconnect_attachment__private_interconnect_info => {
       attributes => {
         'tag8021q' => {
           'type' => Optional[Integer],
@@ -3850,15 +3862,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_network => {
+    Compute_network => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['auto_create_subnetworks', 'description', 'ipv4_range', 'name', 'project'],
-          'providedAttributes' => ['gateway_ipv4', 'project', 'routing_mode', 'self_link']
+          'providedAttributes' => ['compute_networkID', 'gateway_ipv4', 'project', 'routing_mode', 'self_link']
         }
       },
       attributes => {
-        'google_compute_network_id' => {
+        'compute_networkID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -3898,7 +3910,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_networkHandler => {
+    Compute_networkHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -3912,15 +3924,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_network_peering => {
+    Compute_network_peering => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['auto_create_routes', 'name', 'network', 'peer_network'],
-          'providedAttributes' => ['state', 'state_details']
+          'providedAttributes' => ['compute_network_peeringID', 'state', 'state_details']
         }
       },
       attributes => {
-        'google_compute_network_peering_id' => {
+        'compute_network_peeringID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -3946,7 +3958,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_network_peeringHandler => {
+    Compute_network_peeringHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -3960,15 +3972,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_project_metadata => {
+    Compute_project_metadata => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project'],
-          'providedAttributes' => ['project']
+          'providedAttributes' => ['compute_project_metadataID', 'project']
         }
       },
       attributes => {
-        'google_compute_project_metadata_id' => {
+        'compute_project_metadataID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -3984,7 +3996,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_project_metadataHandler => {
+    Compute_project_metadataHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -3998,15 +4010,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_project_metadata_item => {
+    Compute_project_metadata_item => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['key', 'project'],
-          'providedAttributes' => ['project']
+          'providedAttributes' => ['compute_project_metadata_itemID', 'project']
         }
       },
       attributes => {
-        'google_compute_project_metadata_item_id' => {
+        'compute_project_metadata_itemID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -4023,7 +4035,7 @@ type TerraformGoogle = TypeSet[{
         'value' => String
       }
     },
-    Google_compute_project_metadata_itemHandler => {
+    Compute_project_metadata_itemHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -4037,15 +4049,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_region_autoscaler => {
+    Compute_region_autoscaler => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project', 'region'],
-          'providedAttributes' => ['creation_timestamp', 'project', 'region', 'self_link']
+          'providedAttributes' => ['compute_region_autoscalerID', 'creation_timestamp', 'project', 'region', 'self_link']
         }
       },
       attributes => {
-        'google_compute_region_autoscaler_id' => {
+        'compute_region_autoscalerID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -4054,7 +4066,7 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'autoscaling_policy' => Array[Google_compute_region_autoscaler_autoscaling_policy_77],
+        'autoscaling_policy' => Array[Compute_region_autoscaler__autoscaling_policy],
         'creation_timestamp' => {
           'type' => Optional[String],
           'value' => undef
@@ -4079,7 +4091,7 @@ type TerraformGoogle = TypeSet[{
         'target' => String
       }
     },
-    Google_compute_region_autoscalerHandler => {
+    Compute_region_autoscalerHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -4093,54 +4105,54 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_region_autoscaler_autoscaling_policy_77 => {
+    Compute_region_autoscaler__autoscaling_policy => {
       attributes => {
         'cooldown_period' => {
           'type' => Optional[Integer],
           'value' => undef
         },
         'cpu_utilization' => {
-          'type' => Optional[Array[Google_compute_region_autoscaler_autoscaling_policy_77_cpu_utilization_78]],
+          'type' => Optional[Array[Compute_region_autoscaler__autoscaling_policy__cpu_utilization]],
           'value' => undef
         },
         'load_balancing_utilization' => {
-          'type' => Optional[Array[Google_compute_region_autoscaler_autoscaling_policy_77_load_balancing_utilization_79]],
+          'type' => Optional[Array[Compute_region_autoscaler__autoscaling_policy__load_balancing_utilization]],
           'value' => undef
         },
         'max_replicas' => Integer,
         'metric' => {
-          'type' => Optional[Array[Google_compute_region_autoscaler_autoscaling_policy_77_metric_80]],
+          'type' => Optional[Array[Compute_region_autoscaler__autoscaling_policy__metric]],
           'value' => undef
         },
         'min_replicas' => Integer
       }
     },
-    Google_compute_region_autoscaler_autoscaling_policy_77_cpu_utilization_78 => {
+    Compute_region_autoscaler__autoscaling_policy__cpu_utilization => {
       attributes => {
         'target' => Float
       }
     },
-    Google_compute_region_autoscaler_autoscaling_policy_77_load_balancing_utilization_79 => {
+    Compute_region_autoscaler__autoscaling_policy__load_balancing_utilization => {
       attributes => {
         'target' => Float
       }
     },
-    Google_compute_region_autoscaler_autoscaling_policy_77_metric_80 => {
+    Compute_region_autoscaler__autoscaling_policy__metric => {
       attributes => {
         'name' => String,
         'target' => Float,
         'type' => String
       }
     },
-    Google_compute_region_backend_service => {
+    Compute_region_backend_service => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project', 'region'],
-          'providedAttributes' => ['fingerprint', 'project', 'protocol', 'region', 'self_link', 'session_affinity', 'timeout_sec']
+          'providedAttributes' => ['compute_region_backend_serviceID', 'fingerprint', 'project', 'protocol', 'region', 'self_link', 'session_affinity', 'timeout_sec']
         }
       },
       attributes => {
-        'google_compute_region_backend_service_id' => {
+        'compute_region_backend_serviceID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -4150,7 +4162,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'backend' => {
-          'type' => Optional[Array[Google_compute_region_backend_service_backend_81]],
+          'type' => Optional[Array[Compute_region_backend_service__backend]],
           'value' => undef
         },
         'connection_draining_timeout_sec' => {
@@ -4193,7 +4205,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_region_backend_serviceHandler => {
+    Compute_region_backend_serviceHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -4207,7 +4219,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_region_backend_service_backend_81 => {
+    Compute_region_backend_service__backend => {
       attributes => {
         'description' => {
           'type' => Optional[String],
@@ -4219,15 +4231,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_region_disk => {
+    Compute_region_disk => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'disk_encryption_key', 'name', 'project', 'region', 'replica_zones', 'snapshot', 'source_snapshot_encryption_key', 'type'],
-          'providedAttributes' => ['creation_timestamp', 'label_fingerprint', 'last_attach_timestamp', 'last_detach_timestamp', 'project', 'region', 'self_link', 'size', 'source_snapshot_id', 'users']
+          'providedAttributes' => ['compute_region_diskID', 'creation_timestamp', 'label_fingerprint', 'last_attach_timestamp', 'last_detach_timestamp', 'project', 'region', 'self_link', 'size', 'source_snapshot_id', 'users']
         }
       },
       attributes => {
-        'google_compute_region_disk_id' => {
+        'compute_region_diskID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -4245,7 +4257,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'disk_encryption_key' => {
-          'type' => Optional[Array[Google_compute_region_disk_disk_encryption_key_82]],
+          'type' => Optional[Array[Compute_region_disk__disk_encryption_key]],
           'value' => undef
         },
         'label_fingerprint' => {
@@ -4287,7 +4299,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'source_snapshot_encryption_key' => {
-          'type' => Optional[Array[Google_compute_region_disk_source_snapshot_encryption_key_83]],
+          'type' => Optional[Array[Compute_region_disk__source_snapshot_encryption_key]],
           'value' => undef
         },
         'source_snapshot_id' => {
@@ -4304,7 +4316,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_region_diskHandler => {
+    Compute_region_diskHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -4318,7 +4330,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_region_disk_disk_encryption_key_82 => {
+    Compute_region_disk__disk_encryption_key => {
       attributes => {
         'raw_key' => {
           'type' => Optional[String],
@@ -4330,7 +4342,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_region_disk_source_snapshot_encryption_key_83 => {
+    Compute_region_disk__source_snapshot_encryption_key => {
       attributes => {
         'raw_key' => {
           'type' => Optional[String],
@@ -4342,15 +4354,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_region_instance_group_manager => {
+    Compute_region_instance_group_manager => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['base_instance_name', 'description', 'distribution_policy_zones', 'name', 'project', 'region'],
-          'providedAttributes' => ['distribution_policy_zones', 'fingerprint', 'instance_group', 'project', 'self_link', 'target_size', 'version']
+          'providedAttributes' => ['compute_region_instance_group_managerID', 'distribution_policy_zones', 'fingerprint', 'instance_group', 'project', 'self_link', 'target_size', 'version']
         }
       },
       attributes => {
-        'google_compute_region_instance_group_manager_id' => {
+        'compute_region_instance_group_managerID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -4360,7 +4372,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'auto_healing_policies' => {
-          'type' => Optional[Array[Google_compute_region_instance_group_manager_auto_healing_policies_84]],
+          'type' => Optional[Array[Compute_region_instance_group_manager__auto_healing_policies]],
           'value' => undef
         },
         'base_instance_name' => String,
@@ -4386,7 +4398,7 @@ type TerraformGoogle = TypeSet[{
         },
         'name' => String,
         'named_port' => {
-          'type' => Optional[Array[Google_compute_region_instance_group_manager_named_port_85]],
+          'type' => Optional[Array[Compute_region_instance_group_manager__named_port]],
           'value' => undef
         },
         'project' => {
@@ -4395,7 +4407,7 @@ type TerraformGoogle = TypeSet[{
         },
         'region' => String,
         'rolling_update_policy' => {
-          'type' => Optional[Array[Google_compute_region_instance_group_manager_rolling_update_policy_86]],
+          'type' => Optional[Array[Compute_region_instance_group_manager__rolling_update_policy]],
           'value' => undef
         },
         'self_link' => {
@@ -4415,7 +4427,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'version' => {
-          'type' => Optional[Array[Google_compute_region_instance_group_manager_version_87]],
+          'type' => Optional[Array[Compute_region_instance_group_manager__version]],
           'value' => undef
         },
         'wait_for_instances' => {
@@ -4424,7 +4436,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_region_instance_group_managerHandler => {
+    Compute_region_instance_group_managerHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -4438,19 +4450,19 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_region_instance_group_manager_auto_healing_policies_84 => {
+    Compute_region_instance_group_manager__auto_healing_policies => {
       attributes => {
         'health_check' => String,
         'initial_delay_sec' => Integer
       }
     },
-    Google_compute_region_instance_group_manager_named_port_85 => {
+    Compute_region_instance_group_manager__named_port => {
       attributes => {
         'name' => String,
         'port' => Integer
       }
     },
-    Google_compute_region_instance_group_manager_rolling_update_policy_86 => {
+    Compute_region_instance_group_manager__rolling_update_policy => {
       attributes => {
         'max_surge_fixed' => {
           'type' => Optional[Integer],
@@ -4476,17 +4488,17 @@ type TerraformGoogle = TypeSet[{
         'type' => String
       }
     },
-    Google_compute_region_instance_group_manager_version_87 => {
+    Compute_region_instance_group_manager__version => {
       attributes => {
         'instance_template' => String,
         'name' => String,
         'target_size' => {
-          'type' => Optional[Array[Google_compute_region_instance_group_manager_version_87_target_size_88]],
+          'type' => Optional[Array[Compute_region_instance_group_manager__version__target_size]],
           'value' => undef
         }
       }
     },
-    Google_compute_region_instance_group_manager_version_87_target_size_88 => {
+    Compute_region_instance_group_manager__version__target_size => {
       attributes => {
         'fixed' => {
           'type' => Optional[Integer],
@@ -4498,15 +4510,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_route => {
+    Compute_route => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'dest_range', 'name', 'network', 'next_hop_gateway', 'next_hop_instance', 'next_hop_instance_zone', 'next_hop_ip', 'next_hop_vpn_tunnel', 'priority', 'project', 'tags'],
-          'providedAttributes' => ['next_hop_network', 'project', 'self_link']
+          'providedAttributes' => ['compute_routeID', 'next_hop_network', 'project', 'self_link']
         }
       },
       attributes => {
-        'google_compute_route_id' => {
+        'compute_routeID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -4564,7 +4576,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_routeHandler => {
+    Compute_routeHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -4578,15 +4590,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_router => {
+    Compute_router => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'network', 'project', 'region'],
-          'providedAttributes' => ['creation_timestamp', 'project', 'region', 'self_link']
+          'providedAttributes' => ['compute_routerID', 'creation_timestamp', 'project', 'region', 'self_link']
         }
       },
       attributes => {
-        'google_compute_router_id' => {
+        'compute_routerID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -4596,7 +4608,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'bgp' => {
-          'type' => Optional[Array[Google_compute_router_bgp_89]],
+          'type' => Optional[Array[Compute_router__bgp]],
           'value' => undef
         },
         'creation_timestamp' => {
@@ -4623,7 +4635,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_routerHandler => {
+    Compute_routerHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -4637,7 +4649,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_router_bgp_89 => {
+    Compute_router__bgp => {
       attributes => {
         'advertise_mode' => {
           'type' => Optional[String],
@@ -4648,13 +4660,13 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'advertised_ip_ranges' => {
-          'type' => Optional[Array[Google_compute_router_bgp_89_advertised_ip_ranges_90]],
+          'type' => Optional[Array[Compute_router__bgp__advertised_ip_ranges]],
           'value' => undef
         },
         'asn' => Integer
       }
     },
-    Google_compute_router_bgp_89_advertised_ip_ranges_90 => {
+    Compute_router__bgp__advertised_ip_ranges => {
       attributes => {
         'description' => {
           'type' => Optional[String],
@@ -4666,15 +4678,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_router_interface => {
+    Compute_router_interface => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['ip_range', 'name', 'project', 'region', 'router', 'vpn_tunnel'],
-          'providedAttributes' => ['project', 'region']
+          'providedAttributes' => ['compute_router_interfaceID', 'project', 'region']
         }
       },
       attributes => {
-        'google_compute_router_interface_id' => {
+        'compute_router_interfaceID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -4700,7 +4712,7 @@ type TerraformGoogle = TypeSet[{
         'vpn_tunnel' => String
       }
     },
-    Google_compute_router_interfaceHandler => {
+    Compute_router_interfaceHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -4714,15 +4726,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_router_nat => {
+    Compute_router_nat => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['icmp_idle_timeout_sec', 'min_ports_per_vm', 'name', 'nat_ip_allocate_option', 'nat_ips', 'project', 'region', 'router', 'source_subnetwork_ip_ranges_to_nat', 'subnetwork', 'tcp_established_idle_timeout_sec', 'tcp_transitory_idle_timeout_sec', 'udp_idle_timeout_sec'],
-          'providedAttributes' => ['project', 'region']
+          'providedAttributes' => ['compute_router_natID', 'project', 'region']
         }
       },
       attributes => {
-        'google_compute_router_nat_id' => {
+        'compute_router_natID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -4759,7 +4771,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'subnetwork' => {
-          'type' => Optional[Array[Google_compute_router_nat_subnetwork_91]],
+          'type' => Optional[Array[Compute_router_nat__subnetwork]],
           'value' => undef
         },
         'tcp_established_idle_timeout_sec' => {
@@ -4776,7 +4788,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_router_natHandler => {
+    Compute_router_natHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -4790,7 +4802,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_router_nat_subnetwork_91 => {
+    Compute_router_nat__subnetwork => {
       attributes => {
         'name' => String,
         'secondary_ip_range_names' => {
@@ -4803,15 +4815,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_router_peer => {
+    Compute_router_peer => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['advertised_route_priority', 'interface', 'name', 'peer_asn', 'peer_ip_address', 'project', 'region', 'router'],
-          'providedAttributes' => ['ip_address', 'project', 'region']
+          'providedAttributes' => ['compute_router_peerID', 'ip_address', 'project', 'region']
         }
       },
       attributes => {
-        'google_compute_router_peer_id' => {
+        'compute_router_peerID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -4846,7 +4858,7 @@ type TerraformGoogle = TypeSet[{
         'router' => String
       }
     },
-    Google_compute_router_peerHandler => {
+    Compute_router_peerHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -4860,15 +4872,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_security_policy => {
+    Compute_security_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['fingerprint', 'project', 'rule', 'self_link']
+          'providedAttributes' => ['compute_security_policyID', 'fingerprint', 'project', 'rule', 'self_link']
         }
       },
       attributes => {
-        'google_compute_security_policy_id' => {
+        'compute_security_policyID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -4891,7 +4903,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'rule' => {
-          'type' => Optional[Array[Google_compute_security_policy_rule_92]],
+          'type' => Optional[Array[Compute_security_policy__rule]],
           'value' => undef
         },
         'self_link' => {
@@ -4900,7 +4912,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_security_policyHandler => {
+    Compute_security_policyHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -4914,14 +4926,14 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_security_policy_rule_92 => {
+    Compute_security_policy__rule => {
       attributes => {
         'action' => String,
         'description' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'match' => Array[Google_compute_security_policy_rule_92_match_93],
+        'match' => Array[Compute_security_policy__rule__match],
         'preview' => {
           'type' => Optional[Boolean],
           'value' => undef
@@ -4929,25 +4941,26 @@ type TerraformGoogle = TypeSet[{
         'priority' => Integer
       }
     },
-    Google_compute_security_policy_rule_92_match_93 => {
+    Compute_security_policy__rule__match => {
       attributes => {
-        'config' => Array[Google_compute_security_policy_rule_92_match_93_config_94],
+        'config' => Array[Compute_security_policy__rule__match__config],
         'versioned_expr' => String
       }
     },
-    Google_compute_security_policy_rule_92_match_93_config_94 => {
+    Compute_security_policy__rule__match__config => {
       attributes => {
         'src_ip_ranges' => Array[String]
       }
     },
-    Google_compute_shared_vpc_host_project => {
+    Compute_shared_vpc_host_project => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['project']
+          'immutableAttributes' => ['project'],
+          'providedAttributes' => ['compute_shared_vpc_host_projectID']
         }
       },
       attributes => {
-        'google_compute_shared_vpc_host_project_id' => {
+        'compute_shared_vpc_host_projectID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -4959,7 +4972,7 @@ type TerraformGoogle = TypeSet[{
         'project' => String
       }
     },
-    Google_compute_shared_vpc_host_projectHandler => {
+    Compute_shared_vpc_host_projectHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -4973,14 +4986,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_shared_vpc_service_project => {
+    Compute_shared_vpc_service_project => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['host_project', 'service_project']
+          'immutableAttributes' => ['host_project', 'service_project'],
+          'providedAttributes' => ['compute_shared_vpc_service_projectID']
         }
       },
       attributes => {
-        'google_compute_shared_vpc_service_project_id' => {
+        'compute_shared_vpc_service_projectID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -4993,7 +5007,7 @@ type TerraformGoogle = TypeSet[{
         'service_project' => String
       }
     },
-    Google_compute_shared_vpc_service_projectHandler => {
+    Compute_shared_vpc_service_projectHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -5007,15 +5021,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_snapshot => {
+    Compute_snapshot => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'project', 'source_disk', 'zone'],
-          'providedAttributes' => ['creation_timestamp', 'disk_size_gb', 'label_fingerprint', 'licenses', 'project', 'self_link', 'snapshot_encryption_key', 'snapshot_encryption_key_sha256', 'snapshot_id', 'source_disk_encryption_key_sha256', 'source_disk_link', 'storage_bytes', 'zone']
+          'providedAttributes' => ['compute_snapshotID', 'creation_timestamp', 'disk_size_gb', 'label_fingerprint', 'licenses', 'project', 'self_link', 'snapshot_encryption_key', 'snapshot_encryption_key_sha256', 'snapshot_id', 'source_disk_encryption_key_sha256', 'source_disk_link', 'storage_bytes', 'zone']
         }
       },
       attributes => {
-        'google_compute_snapshot_id' => {
+        'compute_snapshotID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -5058,7 +5072,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'snapshot_encryption_key' => {
-          'type' => Optional[Array[Google_compute_snapshot_snapshot_encryption_key_95]],
+          'type' => Optional[Array[Compute_snapshot__snapshot_encryption_key]],
           'value' => undef
         },
         'snapshot_encryption_key_raw' => {
@@ -5075,7 +5089,7 @@ type TerraformGoogle = TypeSet[{
         },
         'source_disk' => String,
         'source_disk_encryption_key' => {
-          'type' => Optional[Array[Google_compute_snapshot_source_disk_encryption_key_96]],
+          'type' => Optional[Array[Compute_snapshot__source_disk_encryption_key]],
           'value' => undef
         },
         'source_disk_encryption_key_raw' => {
@@ -5100,7 +5114,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_snapshotHandler => {
+    Compute_snapshotHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -5114,7 +5128,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_snapshot_snapshot_encryption_key_95 => {
+    Compute_snapshot__snapshot_encryption_key => {
       attributes => {
         'raw_key' => {
           'type' => Optional[String],
@@ -5126,7 +5140,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_snapshot_source_disk_encryption_key_96 => {
+    Compute_snapshot__source_disk_encryption_key => {
       attributes => {
         'raw_key' => {
           'type' => Optional[String],
@@ -5134,15 +5148,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_ssl_certificate => {
+    Compute_ssl_certificate => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['certificate', 'description', 'name', 'name_prefix', 'private_key', 'project'],
-          'providedAttributes' => ['certificate_id', 'creation_timestamp', 'name', 'name_prefix', 'project', 'self_link']
+          'providedAttributes' => ['compute_ssl_certificateID', 'certificate_id', 'creation_timestamp', 'name', 'name_prefix', 'project', 'self_link']
         }
       },
       attributes => {
-        'google_compute_ssl_certificate_id' => {
+        'compute_ssl_certificateID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -5183,7 +5197,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_ssl_certificateHandler => {
+    Compute_ssl_certificateHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -5197,15 +5211,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_ssl_policy => {
+    Compute_ssl_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'project'],
-          'providedAttributes' => ['creation_timestamp', 'enabled_features', 'fingerprint', 'project', 'self_link']
+          'providedAttributes' => ['compute_ssl_policyID', 'creation_timestamp', 'enabled_features', 'fingerprint', 'project', 'self_link']
         }
       },
       attributes => {
-        'google_compute_ssl_policy_id' => {
+        'compute_ssl_policyID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -5253,7 +5267,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_ssl_policyHandler => {
+    Compute_ssl_policyHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -5267,15 +5281,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_subnetwork => {
+    Compute_subnetwork => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'network', 'project', 'region'],
-          'providedAttributes' => ['creation_timestamp', 'fingerprint', 'gateway_address', 'project', 'region', 'secondary_ip_range', 'self_link']
+          'providedAttributes' => ['compute_subnetworkID', 'creation_timestamp', 'fingerprint', 'gateway_address', 'project', 'region', 'secondary_ip_range', 'self_link']
         }
       },
       attributes => {
-        'google_compute_subnetwork_id' => {
+        'compute_subnetworkID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -5320,7 +5334,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'secondary_ip_range' => {
-          'type' => Optional[Array[Google_compute_subnetwork_secondary_ip_range_97]],
+          'type' => Optional[Array[Compute_subnetwork__secondary_ip_range]],
           'value' => undef
         },
         'self_link' => {
@@ -5329,7 +5343,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_subnetworkHandler => {
+    Compute_subnetworkHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -5343,15 +5357,21 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_subnetwork_iam_binding => {
+    Compute_subnetwork__secondary_ip_range => {
+      attributes => {
+        'ip_cidr_range' => String,
+        'range_name' => String
+      }
+    },
+    Compute_subnetwork_iam_binding => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project', 'region', 'role', 'subnetwork'],
-          'providedAttributes' => ['etag', 'project', 'region']
+          'providedAttributes' => ['compute_subnetwork_iam_bindingID', 'etag', 'project', 'region']
         }
       },
       attributes => {
-        'google_compute_subnetwork_iam_binding_id' => {
+        'compute_subnetwork_iam_bindingID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -5377,7 +5397,7 @@ type TerraformGoogle = TypeSet[{
         'subnetwork' => String
       }
     },
-    Google_compute_subnetwork_iam_bindingHandler => {
+    Compute_subnetwork_iam_bindingHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -5391,15 +5411,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_subnetwork_iam_member => {
+    Compute_subnetwork_iam_member => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['member', 'project', 'region', 'role', 'subnetwork'],
-          'providedAttributes' => ['etag', 'project', 'region']
+          'providedAttributes' => ['compute_subnetwork_iam_memberID', 'etag', 'project', 'region']
         }
       },
       attributes => {
-        'google_compute_subnetwork_iam_member_id' => {
+        'compute_subnetwork_iam_memberID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -5425,7 +5445,7 @@ type TerraformGoogle = TypeSet[{
         'subnetwork' => String
       }
     },
-    Google_compute_subnetwork_iam_memberHandler => {
+    Compute_subnetwork_iam_memberHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -5439,15 +5459,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_subnetwork_iam_policy => {
+    Compute_subnetwork_iam_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project', 'region', 'subnetwork'],
-          'providedAttributes' => ['etag', 'project', 'region']
+          'providedAttributes' => ['compute_subnetwork_iam_policyID', 'etag', 'project', 'region']
         }
       },
       attributes => {
-        'google_compute_subnetwork_iam_policy_id' => {
+        'compute_subnetwork_iam_policyID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -5472,7 +5492,7 @@ type TerraformGoogle = TypeSet[{
         'subnetwork' => String
       }
     },
-    Google_compute_subnetwork_iam_policyHandler => {
+    Compute_subnetwork_iam_policyHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -5486,21 +5506,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_subnetwork_secondary_ip_range_97 => {
-      attributes => {
-        'ip_cidr_range' => String,
-        'range_name' => String
-      }
-    },
-    Google_compute_target_http_proxy => {
+    Compute_target_http_proxy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'project'],
-          'providedAttributes' => ['creation_timestamp', 'project', 'proxy_id', 'self_link']
+          'providedAttributes' => ['compute_target_http_proxyID', 'creation_timestamp', 'project', 'proxy_id', 'self_link']
         }
       },
       attributes => {
-        'google_compute_target_http_proxy_id' => {
+        'compute_target_http_proxyID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -5533,7 +5547,7 @@ type TerraformGoogle = TypeSet[{
         'url_map' => String
       }
     },
-    Google_compute_target_http_proxyHandler => {
+    Compute_target_http_proxyHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -5547,15 +5561,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_target_https_proxy => {
+    Compute_target_https_proxy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'project'],
-          'providedAttributes' => ['creation_timestamp', 'project', 'proxy_id', 'self_link']
+          'providedAttributes' => ['compute_target_https_proxyID', 'creation_timestamp', 'project', 'proxy_id', 'self_link']
         }
       },
       attributes => {
-        'google_compute_target_https_proxy_id' => {
+        'compute_target_https_proxyID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -5597,7 +5611,7 @@ type TerraformGoogle = TypeSet[{
         'url_map' => String
       }
     },
-    Google_compute_target_https_proxyHandler => {
+    Compute_target_https_proxyHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -5611,15 +5625,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_target_pool => {
+    Compute_target_pool => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'failover_ratio', 'name', 'project', 'region', 'session_affinity'],
-          'providedAttributes' => ['instances', 'project', 'region', 'self_link']
+          'providedAttributes' => ['compute_target_poolID', 'instances', 'project', 'region', 'self_link']
         }
       },
       attributes => {
-        'google_compute_target_pool_id' => {
+        'compute_target_poolID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -5667,7 +5681,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_target_poolHandler => {
+    Compute_target_poolHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -5681,15 +5695,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_target_ssl_proxy => {
+    Compute_target_ssl_proxy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'project'],
-          'providedAttributes' => ['creation_timestamp', 'project', 'proxy_id', 'self_link']
+          'providedAttributes' => ['compute_target_ssl_proxyID', 'creation_timestamp', 'project', 'proxy_id', 'self_link']
         }
       },
       attributes => {
-        'google_compute_target_ssl_proxy_id' => {
+        'compute_target_ssl_proxyID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -5731,7 +5745,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_target_ssl_proxyHandler => {
+    Compute_target_ssl_proxyHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -5745,15 +5759,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_target_tcp_proxy => {
+    Compute_target_tcp_proxy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'project'],
-          'providedAttributes' => ['creation_timestamp', 'project', 'proxy_id', 'self_link']
+          'providedAttributes' => ['compute_target_tcp_proxyID', 'creation_timestamp', 'project', 'proxy_id', 'self_link']
         }
       },
       attributes => {
-        'google_compute_target_tcp_proxy_id' => {
+        'compute_target_tcp_proxyID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -5790,7 +5804,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_target_tcp_proxyHandler => {
+    Compute_target_tcp_proxyHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -5804,15 +5818,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_url_map => {
+    Compute_url_map => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['fingerprint', 'map_id', 'project', 'self_link']
+          'providedAttributes' => ['compute_url_mapID', 'fingerprint', 'map_id', 'project', 'self_link']
         }
       },
       attributes => {
-        'google_compute_url_map_id' => {
+        'compute_url_mapID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -5831,7 +5845,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'host_rule' => {
-          'type' => Optional[Array[Google_compute_url_map_host_rule_98]],
+          'type' => Optional[Array[Compute_url_map__host_rule]],
           'value' => undef
         },
         'map_id' => {
@@ -5840,7 +5854,7 @@ type TerraformGoogle = TypeSet[{
         },
         'name' => String,
         'path_matcher' => {
-          'type' => Optional[Array[Google_compute_url_map_path_matcher_99]],
+          'type' => Optional[Array[Compute_url_map__path_matcher]],
           'value' => undef
         },
         'project' => {
@@ -5852,12 +5866,12 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'test' => {
-          'type' => Optional[Array[Google_compute_url_map_test_101]],
+          'type' => Optional[Array[Compute_url_map__test]],
           'value' => undef
         }
       }
     },
-    Google_compute_url_mapHandler => {
+    Compute_url_mapHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -5871,7 +5885,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_url_map_host_rule_98 => {
+    Compute_url_map__host_rule => {
       attributes => {
         'description' => {
           'type' => Optional[String],
@@ -5881,7 +5895,7 @@ type TerraformGoogle = TypeSet[{
         'path_matcher' => String
       }
     },
-    Google_compute_url_map_path_matcher_99 => {
+    Compute_url_map__path_matcher => {
       attributes => {
         'default_service' => String,
         'description' => {
@@ -5890,18 +5904,18 @@ type TerraformGoogle = TypeSet[{
         },
         'name' => String,
         'path_rule' => {
-          'type' => Optional[Array[Google_compute_url_map_path_matcher_99_path_rule_100]],
+          'type' => Optional[Array[Compute_url_map__path_matcher__path_rule]],
           'value' => undef
         }
       }
     },
-    Google_compute_url_map_path_matcher_99_path_rule_100 => {
+    Compute_url_map__path_matcher__path_rule => {
       attributes => {
         'paths' => Array[String],
         'service' => String
       }
     },
-    Google_compute_url_map_test_101 => {
+    Compute_url_map__test => {
       attributes => {
         'description' => {
           'type' => Optional[String],
@@ -5912,15 +5926,15 @@ type TerraformGoogle = TypeSet[{
         'service' => String
       }
     },
-    Google_compute_vpn_gateway => {
+    Compute_vpn_gateway => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'network', 'project', 'region'],
-          'providedAttributes' => ['creation_timestamp', 'project', 'region', 'self_link']
+          'providedAttributes' => ['compute_vpn_gatewayID', 'creation_timestamp', 'project', 'region', 'self_link']
         }
       },
       attributes => {
-        'google_compute_vpn_gateway_id' => {
+        'compute_vpn_gatewayID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -5953,7 +5967,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_compute_vpn_gatewayHandler => {
+    Compute_vpn_gatewayHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -5967,15 +5981,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_compute_vpn_tunnel => {
+    Compute_vpn_tunnel => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'ike_version', 'local_traffic_selector', 'name', 'peer_ip', 'project', 'region', 'remote_traffic_selector', 'router', 'shared_secret', 'target_vpn_gateway'],
-          'providedAttributes' => ['creation_timestamp', 'detailed_status', 'label_fingerprint', 'local_traffic_selector', 'project', 'region', 'remote_traffic_selector', 'self_link', 'shared_secret_hash']
+          'providedAttributes' => ['compute_vpn_tunnelID', 'creation_timestamp', 'detailed_status', 'label_fingerprint', 'local_traffic_selector', 'project', 'region', 'remote_traffic_selector', 'self_link', 'shared_secret_hash']
         }
       },
       attributes => {
-        'google_compute_vpn_tunnel_id' => {
+        'compute_vpn_tunnelID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -6042,7 +6056,7 @@ type TerraformGoogle = TypeSet[{
         'target_vpn_gateway' => String
       }
     },
-    Google_compute_vpn_tunnelHandler => {
+    Compute_vpn_tunnelHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -6056,15 +6070,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_container_analysis_note => {
+    Container_analysis_note => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['project']
+          'providedAttributes' => ['container_analysis_noteID', 'project']
         }
       },
       attributes => {
-        'google_container_analysis_note_id' => {
+        'container_analysis_noteID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -6073,7 +6087,7 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'attestation_authority' => Array[Google_container_analysis_note_attestation_authority_102],
+        'attestation_authority' => Array[Container_analysis_note__attestation_authority],
         'name' => String,
         'project' => {
           'type' => Optional[String],
@@ -6081,7 +6095,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_container_analysis_noteHandler => {
+    Container_analysis_noteHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -6095,25 +6109,25 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_container_analysis_note_attestation_authority_102 => {
+    Container_analysis_note__attestation_authority => {
       attributes => {
-        'hint' => Array[Google_container_analysis_note_attestation_authority_102_hint_103]
+        'hint' => Array[Container_analysis_note__attestation_authority__hint]
       }
     },
-    Google_container_analysis_note_attestation_authority_102_hint_103 => {
+    Container_analysis_note__attestation_authority__hint => {
       attributes => {
         'human_readable_name' => String
       }
     },
-    Google_container_cluster => {
+    Container_cluster => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['cluster_ipv4_cidr', 'description', 'enable_kubernetes_alpha', 'enable_tpu', 'initial_node_count', 'ip_allocation_policy', 'master_ipv4_cidr_block', 'name', 'network', 'node_config', 'node_pool', 'private_cluster', 'project', 'region', 'subnetwork', 'zone'],
-          'providedAttributes' => ['additional_zones', 'addons_config', 'cluster_autoscaling', 'cluster_ipv4_cidr', 'endpoint', 'instance_group_urls', 'logging_service', 'master_auth', 'master_ipv4_cidr_block', 'master_version', 'monitoring_service', 'network_policy', 'node_config', 'node_pool', 'node_version', 'private_cluster', 'private_cluster_config', 'project', 'region', 'subnetwork', 'zone']
+          'providedAttributes' => ['container_clusterID', 'additional_zones', 'addons_config', 'cluster_autoscaling', 'cluster_ipv4_cidr', 'endpoint', 'instance_group_urls', 'logging_service', 'master_auth', 'master_ipv4_cidr_block', 'master_version', 'monitoring_service', 'network_policy', 'node_config', 'node_pool', 'node_version', 'private_cluster', 'private_cluster_config', 'project', 'region', 'subnetwork', 'zone']
         }
       },
       attributes => {
-        'google_container_cluster_id' => {
+        'container_clusterID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -6127,11 +6141,11 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'addons_config' => {
-          'type' => Optional[Array[Google_container_cluster_addons_config_104]],
+          'type' => Optional[Array[Container_cluster__addons_config]],
           'value' => undef
         },
         'cluster_autoscaling' => {
-          'type' => Optional[Array[Google_container_cluster_cluster_autoscaling_109]],
+          'type' => Optional[Array[Container_cluster__cluster_autoscaling]],
           'value' => undef
         },
         'cluster_ipv4_cidr' => {
@@ -6171,7 +6185,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'ip_allocation_policy' => {
-          'type' => Optional[Array[Google_container_cluster_ip_allocation_policy_111]],
+          'type' => Optional[Array[Container_cluster__ip_allocation_policy]],
           'value' => undef
         },
         'logging_service' => {
@@ -6179,15 +6193,15 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'maintenance_policy' => {
-          'type' => Optional[Array[Google_container_cluster_maintenance_policy_112]],
+          'type' => Optional[Array[Container_cluster__maintenance_policy]],
           'value' => undef
         },
         'master_auth' => {
-          'type' => Optional[Array[Google_container_cluster_master_auth_114]],
+          'type' => Optional[Array[Container_cluster__master_auth]],
           'value' => undef
         },
         'master_authorized_networks_config' => {
-          'type' => Optional[Array[Google_container_cluster_master_authorized_networks_config_116]],
+          'type' => Optional[Array[Container_cluster__master_authorized_networks_config]],
           'value' => undef
         },
         'master_ipv4_cidr_block' => {
@@ -6212,15 +6226,15 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'network_policy' => {
-          'type' => Optional[Array[Google_container_cluster_network_policy_118]],
+          'type' => Optional[Array[Container_cluster__network_policy]],
           'value' => undef
         },
         'node_config' => {
-          'type' => Optional[Array[Google_container_cluster_node_config_119]],
+          'type' => Optional[Array[Container_cluster__node_config]],
           'value' => undef
         },
         'node_pool' => {
-          'type' => Optional[Array[Google_container_cluster_node_pool_123]],
+          'type' => Optional[Array[Container_cluster__node_pool]],
           'value' => undef
         },
         'node_version' => {
@@ -6228,7 +6242,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'pod_security_policy_config' => {
-          'type' => Optional[Array[Google_container_cluster_pod_security_policy_config_130]],
+          'type' => Optional[Array[Container_cluster__pod_security_policy_config]],
           'value' => undef
         },
         'private_cluster' => {
@@ -6236,7 +6250,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'private_cluster_config' => {
-          'type' => Optional[Array[Google_container_cluster_private_cluster_config_131]],
+          'type' => Optional[Array[Container_cluster__private_cluster_config]],
           'value' => undef
         },
         'project' => {
@@ -6265,7 +6279,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_container_clusterHandler => {
+    Container_clusterHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -6279,27 +6293,27 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_container_cluster_addons_config_104 => {
+    Container_cluster__addons_config => {
       attributes => {
         'horizontal_pod_autoscaling' => {
-          'type' => Optional[Array[Google_container_cluster_addons_config_104_horizontal_pod_autoscaling_105]],
+          'type' => Optional[Array[Container_cluster__addons_config__horizontal_pod_autoscaling]],
           'value' => undef
         },
         'http_load_balancing' => {
-          'type' => Optional[Array[Google_container_cluster_addons_config_104_http_load_balancing_106]],
+          'type' => Optional[Array[Container_cluster__addons_config__http_load_balancing]],
           'value' => undef
         },
         'kubernetes_dashboard' => {
-          'type' => Optional[Array[Google_container_cluster_addons_config_104_kubernetes_dashboard_107]],
+          'type' => Optional[Array[Container_cluster__addons_config__kubernetes_dashboard]],
           'value' => undef
         },
         'network_policy_config' => {
-          'type' => Optional[Array[Google_container_cluster_addons_config_104_network_policy_config_108]],
+          'type' => Optional[Array[Container_cluster__addons_config__network_policy_config]],
           'value' => undef
         }
       }
     },
-    Google_container_cluster_addons_config_104_horizontal_pod_autoscaling_105 => {
+    Container_cluster__addons_config__horizontal_pod_autoscaling => {
       attributes => {
         'disabled' => {
           'type' => Optional[Boolean],
@@ -6307,7 +6321,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_container_cluster_addons_config_104_http_load_balancing_106 => {
+    Container_cluster__addons_config__http_load_balancing => {
       attributes => {
         'disabled' => {
           'type' => Optional[Boolean],
@@ -6315,7 +6329,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_container_cluster_addons_config_104_kubernetes_dashboard_107 => {
+    Container_cluster__addons_config__kubernetes_dashboard => {
       attributes => {
         'disabled' => {
           'type' => Optional[Boolean],
@@ -6323,7 +6337,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_container_cluster_addons_config_104_network_policy_config_108 => {
+    Container_cluster__addons_config__network_policy_config => {
       attributes => {
         'disabled' => {
           'type' => Optional[Boolean],
@@ -6331,16 +6345,16 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_container_cluster_cluster_autoscaling_109 => {
+    Container_cluster__cluster_autoscaling => {
       attributes => {
         'enabled' => Boolean,
         'resource_limits' => {
-          'type' => Optional[Array[Google_container_cluster_cluster_autoscaling_109_resource_limits_110]],
+          'type' => Optional[Array[Container_cluster__cluster_autoscaling__resource_limits]],
           'value' => undef
         }
       }
     },
-    Google_container_cluster_cluster_autoscaling_109_resource_limits_110 => {
+    Container_cluster__cluster_autoscaling__resource_limits => {
       attributes => {
         'maximum' => {
           'type' => Optional[Integer],
@@ -6353,7 +6367,7 @@ type TerraformGoogle = TypeSet[{
         'resource_type' => String
       }
     },
-    Google_container_cluster_ip_allocation_policy_111 => {
+    Container_cluster__ip_allocation_policy => {
       attributes => {
         'cluster_ipv4_cidr_block' => {
           'type' => Optional[String],
@@ -6381,12 +6395,12 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_container_cluster_maintenance_policy_112 => {
+    Container_cluster__maintenance_policy => {
       attributes => {
-        'daily_maintenance_window' => Array[Google_container_cluster_maintenance_policy_112_daily_maintenance_window_113]
+        'daily_maintenance_window' => Array[Container_cluster__maintenance_policy__daily_maintenance_window]
       }
     },
-    Google_container_cluster_maintenance_policy_112_daily_maintenance_window_113 => {
+    Container_cluster__maintenance_policy__daily_maintenance_window => {
       attributes => {
         'duration' => {
           'type' => Optional[String],
@@ -6395,14 +6409,14 @@ type TerraformGoogle = TypeSet[{
         'start_time' => String
       }
     },
-    Google_container_cluster_master_auth_114 => {
+    Container_cluster__master_auth => {
       attributes => {
         'client_certificate' => {
           'type' => Optional[String],
           'value' => undef
         },
         'client_certificate_config' => {
-          'type' => Optional[Array[Google_container_cluster_master_auth_114_client_certificate_config_115]],
+          'type' => Optional[Array[Container_cluster__master_auth__client_certificate_config]],
           'value' => undef
         },
         'client_key' => {
@@ -6417,20 +6431,20 @@ type TerraformGoogle = TypeSet[{
         'username' => String
       }
     },
-    Google_container_cluster_master_auth_114_client_certificate_config_115 => {
+    Container_cluster__master_auth__client_certificate_config => {
       attributes => {
         'issue_client_certificate' => Boolean
       }
     },
-    Google_container_cluster_master_authorized_networks_config_116 => {
+    Container_cluster__master_authorized_networks_config => {
       attributes => {
         'cidr_blocks' => {
-          'type' => Optional[Array[Google_container_cluster_master_authorized_networks_config_116_cidr_blocks_117]],
+          'type' => Optional[Array[Container_cluster__master_authorized_networks_config__cidr_blocks]],
           'value' => undef
         }
       }
     },
-    Google_container_cluster_master_authorized_networks_config_116_cidr_blocks_117 => {
+    Container_cluster__master_authorized_networks_config__cidr_blocks => {
       attributes => {
         'cidr_block' => String,
         'display_name' => {
@@ -6439,7 +6453,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_container_cluster_network_policy_118 => {
+    Container_cluster__network_policy => {
       attributes => {
         'enabled' => {
           'type' => Optional[Boolean],
@@ -6451,7 +6465,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_container_cluster_node_config_119 => {
+    Container_cluster__node_config => {
       attributes => {
         'disk_size_gb' => {
           'type' => Optional[Integer],
@@ -6462,7 +6476,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'guest_accelerator' => {
-          'type' => Optional[Array[Google_container_cluster_node_config_119_guest_accelerator_120]],
+          'type' => Optional[Array[Container_cluster__node_config__guest_accelerator]],
           'value' => undef
         },
         'image_type' => {
@@ -6506,37 +6520,37 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'taint' => {
-          'type' => Optional[Array[Google_container_cluster_node_config_119_taint_121]],
+          'type' => Optional[Array[Container_cluster__node_config__taint]],
           'value' => undef
         },
         'workload_metadata_config' => {
-          'type' => Optional[Array[Google_container_cluster_node_config_119_workload_metadata_config_122]],
+          'type' => Optional[Array[Container_cluster__node_config__workload_metadata_config]],
           'value' => undef
         }
       }
     },
-    Google_container_cluster_node_config_119_guest_accelerator_120 => {
+    Container_cluster__node_config__guest_accelerator => {
       attributes => {
         'count' => Integer,
         'type' => String
       }
     },
-    Google_container_cluster_node_config_119_taint_121 => {
+    Container_cluster__node_config__taint => {
       attributes => {
         'effect' => String,
         'key' => String,
         'value' => String
       }
     },
-    Google_container_cluster_node_config_119_workload_metadata_config_122 => {
+    Container_cluster__node_config__workload_metadata_config => {
       attributes => {
         'node_metadata' => String
       }
     },
-    Google_container_cluster_node_pool_123 => {
+    Container_cluster__node_pool => {
       attributes => {
         'autoscaling' => {
-          'type' => Optional[Array[Google_container_cluster_node_pool_123_autoscaling_124]],
+          'type' => Optional[Array[Container_cluster__node_pool__autoscaling]],
           'value' => undef
         },
         'initial_node_count' => {
@@ -6548,7 +6562,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'management' => {
-          'type' => Optional[Array[Google_container_cluster_node_pool_123_management_125]],
+          'type' => Optional[Array[Container_cluster__node_pool__management]],
           'value' => undef
         },
         'max_pods_per_node' => {
@@ -6564,7 +6578,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'node_config' => {
-          'type' => Optional[Array[Google_container_cluster_node_pool_123_node_config_126]],
+          'type' => Optional[Array[Container_cluster__node_pool__node_config]],
           'value' => undef
         },
         'node_count' => {
@@ -6577,13 +6591,13 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_container_cluster_node_pool_123_autoscaling_124 => {
+    Container_cluster__node_pool__autoscaling => {
       attributes => {
         'max_node_count' => Integer,
         'min_node_count' => Integer
       }
     },
-    Google_container_cluster_node_pool_123_management_125 => {
+    Container_cluster__node_pool__management => {
       attributes => {
         'auto_repair' => {
           'type' => Optional[Boolean],
@@ -6595,7 +6609,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_container_cluster_node_pool_123_node_config_126 => {
+    Container_cluster__node_pool__node_config => {
       attributes => {
         'disk_size_gb' => {
           'type' => Optional[Integer],
@@ -6606,7 +6620,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'guest_accelerator' => {
-          'type' => Optional[Array[Google_container_cluster_node_pool_123_node_config_126_guest_accelerator_127]],
+          'type' => Optional[Array[Container_cluster__node_pool__node_config__guest_accelerator]],
           'value' => undef
         },
         'image_type' => {
@@ -6650,39 +6664,39 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'taint' => {
-          'type' => Optional[Array[Google_container_cluster_node_pool_123_node_config_126_taint_128]],
+          'type' => Optional[Array[Container_cluster__node_pool__node_config__taint]],
           'value' => undef
         },
         'workload_metadata_config' => {
-          'type' => Optional[Array[Google_container_cluster_node_pool_123_node_config_126_workload_metadata_config_129]],
+          'type' => Optional[Array[Container_cluster__node_pool__node_config__workload_metadata_config]],
           'value' => undef
         }
       }
     },
-    Google_container_cluster_node_pool_123_node_config_126_guest_accelerator_127 => {
+    Container_cluster__node_pool__node_config__guest_accelerator => {
       attributes => {
         'count' => Integer,
         'type' => String
       }
     },
-    Google_container_cluster_node_pool_123_node_config_126_taint_128 => {
+    Container_cluster__node_pool__node_config__taint => {
       attributes => {
         'effect' => String,
         'key' => String,
         'value' => String
       }
     },
-    Google_container_cluster_node_pool_123_node_config_126_workload_metadata_config_129 => {
+    Container_cluster__node_pool__node_config__workload_metadata_config => {
       attributes => {
         'node_metadata' => String
       }
     },
-    Google_container_cluster_pod_security_policy_config_130 => {
+    Container_cluster__pod_security_policy_config => {
       attributes => {
         'enabled' => Boolean
       }
     },
-    Google_container_cluster_private_cluster_config_131 => {
+    Container_cluster__private_cluster_config => {
       attributes => {
         'enable_private_endpoint' => {
           'type' => Optional[Boolean],
@@ -6706,15 +6720,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_container_node_pool => {
+    Container_node_pool => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['cluster', 'initial_node_count', 'max_pods_per_node', 'name', 'name_prefix', 'node_config', 'project', 'region', 'zone'],
-          'providedAttributes' => ['initial_node_count', 'instance_group_urls', 'management', 'max_pods_per_node', 'name', 'name_prefix', 'node_config', 'node_count', 'project', 'version', 'zone']
+          'providedAttributes' => ['container_node_poolID', 'initial_node_count', 'instance_group_urls', 'management', 'max_pods_per_node', 'name', 'name_prefix', 'node_config', 'node_count', 'project', 'version', 'zone']
         }
       },
       attributes => {
-        'google_container_node_pool_id' => {
+        'container_node_poolID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -6724,7 +6738,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'autoscaling' => {
-          'type' => Optional[Array[Google_container_node_pool_autoscaling_132]],
+          'type' => Optional[Array[Container_node_pool__autoscaling]],
           'value' => undef
         },
         'cluster' => String,
@@ -6737,7 +6751,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'management' => {
-          'type' => Optional[Array[Google_container_node_pool_management_133]],
+          'type' => Optional[Array[Container_node_pool__management]],
           'value' => undef
         },
         'max_pods_per_node' => {
@@ -6753,7 +6767,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'node_config' => {
-          'type' => Optional[Array[Google_container_node_pool_node_config_134]],
+          'type' => Optional[Array[Container_node_pool__node_config]],
           'value' => undef
         },
         'node_count' => {
@@ -6778,7 +6792,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_container_node_poolHandler => {
+    Container_node_poolHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -6792,13 +6806,13 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_container_node_pool_autoscaling_132 => {
+    Container_node_pool__autoscaling => {
       attributes => {
         'max_node_count' => Integer,
         'min_node_count' => Integer
       }
     },
-    Google_container_node_pool_management_133 => {
+    Container_node_pool__management => {
       attributes => {
         'auto_repair' => {
           'type' => Optional[Boolean],
@@ -6810,7 +6824,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_container_node_pool_node_config_134 => {
+    Container_node_pool__node_config => {
       attributes => {
         'disk_size_gb' => {
           'type' => Optional[Integer],
@@ -6821,7 +6835,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'guest_accelerator' => {
-          'type' => Optional[Array[Google_container_node_pool_node_config_134_guest_accelerator_135]],
+          'type' => Optional[Array[Container_node_pool__node_config__guest_accelerator]],
           'value' => undef
         },
         'image_type' => {
@@ -6865,42 +6879,42 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'taint' => {
-          'type' => Optional[Array[Google_container_node_pool_node_config_134_taint_136]],
+          'type' => Optional[Array[Container_node_pool__node_config__taint]],
           'value' => undef
         },
         'workload_metadata_config' => {
-          'type' => Optional[Array[Google_container_node_pool_node_config_134_workload_metadata_config_137]],
+          'type' => Optional[Array[Container_node_pool__node_config__workload_metadata_config]],
           'value' => undef
         }
       }
     },
-    Google_container_node_pool_node_config_134_guest_accelerator_135 => {
+    Container_node_pool__node_config__guest_accelerator => {
       attributes => {
         'count' => Integer,
         'type' => String
       }
     },
-    Google_container_node_pool_node_config_134_taint_136 => {
+    Container_node_pool__node_config__taint => {
       attributes => {
         'effect' => String,
         'key' => String,
         'value' => String
       }
     },
-    Google_container_node_pool_node_config_134_workload_metadata_config_137 => {
+    Container_node_pool__node_config__workload_metadata_config => {
       attributes => {
         'node_metadata' => String
       }
     },
-    Google_dataflow_job => {
+    Dataflow_job => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['max_workers', 'name', 'on_delete', 'parameters', 'project', 'region', 'temp_gcs_location', 'template_gcs_path', 'zone'],
-          'providedAttributes' => ['state']
+          'providedAttributes' => ['dataflow_jobID', 'state']
         }
       },
       attributes => {
-        'google_dataflow_job_id' => {
+        'dataflow_jobID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -6942,7 +6956,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_dataflow_jobHandler => {
+    Dataflow_jobHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -6956,15 +6970,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_dataproc_cluster => {
+    Dataproc_cluster => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project', 'region'],
-          'providedAttributes' => ['cluster_config', 'labels', 'project']
+          'providedAttributes' => ['dataproc_clusterID', 'cluster_config', 'labels', 'project']
         }
       },
       attributes => {
-        'google_dataproc_cluster_id' => {
+        'dataproc_clusterID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -6974,7 +6988,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'cluster_config' => {
-          'type' => Optional[Array[Google_dataproc_cluster_cluster_config_138]],
+          'type' => Optional[Array[Dataproc_cluster__cluster_config]],
           'value' => undef
         },
         'labels' => {
@@ -6992,7 +7006,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_dataproc_clusterHandler => {
+    Dataproc_clusterHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -7006,7 +7020,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_dataproc_cluster_cluster_config_138 => {
+    Dataproc_cluster__cluster_config => {
       attributes => {
         'bucket' => {
           'type' => Optional[String],
@@ -7017,23 +7031,23 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'gce_cluster_config' => {
-          'type' => Optional[Array[Google_dataproc_cluster_cluster_config_138_gce_cluster_config_139]],
+          'type' => Optional[Array[Dataproc_cluster__cluster_config__gce_cluster_config]],
           'value' => undef
         },
         'initialization_action' => {
-          'type' => Optional[Array[Google_dataproc_cluster_cluster_config_138_initialization_action_140]],
+          'type' => Optional[Array[Dataproc_cluster__cluster_config__initialization_action]],
           'value' => undef
         },
         'master_config' => {
-          'type' => Optional[Array[Google_dataproc_cluster_cluster_config_138_master_config_141]],
+          'type' => Optional[Array[Dataproc_cluster__cluster_config__master_config]],
           'value' => undef
         },
         'preemptible_worker_config' => {
-          'type' => Optional[Array[Google_dataproc_cluster_cluster_config_138_preemptible_worker_config_143]],
+          'type' => Optional[Array[Dataproc_cluster__cluster_config__preemptible_worker_config]],
           'value' => undef
         },
         'software_config' => {
-          'type' => Optional[Array[Google_dataproc_cluster_cluster_config_138_software_config_145]],
+          'type' => Optional[Array[Dataproc_cluster__cluster_config__software_config]],
           'value' => undef
         },
         'staging_bucket' => {
@@ -7041,12 +7055,12 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'worker_config' => {
-          'type' => Optional[Array[Google_dataproc_cluster_cluster_config_138_worker_config_146]],
+          'type' => Optional[Array[Dataproc_cluster__cluster_config__worker_config]],
           'value' => undef
         }
       }
     },
-    Google_dataproc_cluster_cluster_config_138_gce_cluster_config_139 => {
+    Dataproc_cluster__cluster_config__gce_cluster_config => {
       attributes => {
         'internal_ip_only' => {
           'type' => Optional[Boolean],
@@ -7082,7 +7096,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_dataproc_cluster_cluster_config_138_initialization_action_140 => {
+    Dataproc_cluster__cluster_config__initialization_action => {
       attributes => {
         'script' => String,
         'timeout_sec' => {
@@ -7091,10 +7105,10 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_dataproc_cluster_cluster_config_138_master_config_141 => {
+    Dataproc_cluster__cluster_config__master_config => {
       attributes => {
         'disk_config' => {
-          'type' => Optional[Array[Google_dataproc_cluster_cluster_config_138_master_config_141_disk_config_142]],
+          'type' => Optional[Array[Dataproc_cluster__cluster_config__master_config__disk_config]],
           'value' => undef
         },
         'instance_names' => {
@@ -7111,7 +7125,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_dataproc_cluster_cluster_config_138_master_config_141_disk_config_142 => {
+    Dataproc_cluster__cluster_config__master_config__disk_config => {
       attributes => {
         'boot_disk_size_gb' => {
           'type' => Optional[Integer],
@@ -7127,10 +7141,10 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_dataproc_cluster_cluster_config_138_preemptible_worker_config_143 => {
+    Dataproc_cluster__cluster_config__preemptible_worker_config => {
       attributes => {
         'disk_config' => {
-          'type' => Optional[Array[Google_dataproc_cluster_cluster_config_138_preemptible_worker_config_143_disk_config_144]],
+          'type' => Optional[Array[Dataproc_cluster__cluster_config__preemptible_worker_config__disk_config]],
           'value' => undef
         },
         'instance_names' => {
@@ -7143,7 +7157,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_dataproc_cluster_cluster_config_138_preemptible_worker_config_143_disk_config_144 => {
+    Dataproc_cluster__cluster_config__preemptible_worker_config__disk_config => {
       attributes => {
         'boot_disk_size_gb' => {
           'type' => Optional[Integer],
@@ -7151,7 +7165,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_dataproc_cluster_cluster_config_138_software_config_145 => {
+    Dataproc_cluster__cluster_config__software_config => {
       attributes => {
         'image_version' => {
           'type' => Optional[String],
@@ -7167,10 +7181,10 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_dataproc_cluster_cluster_config_138_worker_config_146 => {
+    Dataproc_cluster__cluster_config__worker_config => {
       attributes => {
         'disk_config' => {
-          'type' => Optional[Array[Google_dataproc_cluster_cluster_config_138_worker_config_146_disk_config_147]],
+          'type' => Optional[Array[Dataproc_cluster__cluster_config__worker_config__disk_config]],
           'value' => undef
         },
         'instance_names' => {
@@ -7187,7 +7201,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_dataproc_cluster_cluster_config_138_worker_config_146_disk_config_147 => {
+    Dataproc_cluster__cluster_config__worker_config__disk_config => {
       attributes => {
         'boot_disk_size_gb' => {
           'type' => Optional[Integer],
@@ -7203,15 +7217,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_dataproc_job => {
+    Dataproc_job => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['hadoop_config', 'hive_config', 'labels', 'pig_config', 'project', 'pyspark_config', 'region', 'scheduling', 'spark_config', 'sparksql_config'],
-          'providedAttributes' => ['driver_controls_files_uri', 'driver_output_resource_uri', 'project', 'reference', 'status']
+          'providedAttributes' => ['dataproc_jobID', 'driver_controls_files_uri', 'driver_output_resource_uri', 'project', 'reference', 'status']
         }
       },
       attributes => {
-        'google_dataproc_job_id' => {
+        'dataproc_jobID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -7233,11 +7247,11 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'hadoop_config' => {
-          'type' => Optional[Array[Google_dataproc_job_hadoop_config_148]],
+          'type' => Optional[Array[Dataproc_job__hadoop_config]],
           'value' => undef
         },
         'hive_config' => {
-          'type' => Optional[Array[Google_dataproc_job_hive_config_150]],
+          'type' => Optional[Array[Dataproc_job__hive_config]],
           'value' => undef
         },
         'labels' => {
@@ -7245,20 +7259,20 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'pig_config' => {
-          'type' => Optional[Array[Google_dataproc_job_pig_config_151]],
+          'type' => Optional[Array[Dataproc_job__pig_config]],
           'value' => undef
         },
-        'placement' => Array[Google_dataproc_job_placement_153],
+        'placement' => Array[Dataproc_job__placement],
         'project' => {
           'type' => Optional[String],
           'value' => undef
         },
         'pyspark_config' => {
-          'type' => Optional[Array[Google_dataproc_job_pyspark_config_154]],
+          'type' => Optional[Array[Dataproc_job__pyspark_config]],
           'value' => undef
         },
         'reference' => {
-          'type' => Optional[Array[Google_dataproc_job_reference_156]],
+          'type' => Optional[Array[Dataproc_job__reference]],
           'value' => undef
         },
         'region' => {
@@ -7266,24 +7280,24 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'scheduling' => {
-          'type' => Optional[Array[Google_dataproc_job_scheduling_157]],
+          'type' => Optional[Array[Dataproc_job__scheduling]],
           'value' => undef
         },
         'spark_config' => {
-          'type' => Optional[Array[Google_dataproc_job_spark_config_158]],
+          'type' => Optional[Array[Dataproc_job__spark_config]],
           'value' => undef
         },
         'sparksql_config' => {
-          'type' => Optional[Array[Google_dataproc_job_sparksql_config_160]],
+          'type' => Optional[Array[Dataproc_job__sparksql_config]],
           'value' => undef
         },
         'status' => {
-          'type' => Optional[Array[Google_dataproc_job_status_162]],
+          'type' => Optional[Array[Dataproc_job__status]],
           'value' => undef
         }
       }
     },
-    Google_dataproc_jobHandler => {
+    Dataproc_jobHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -7297,7 +7311,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_dataproc_job_hadoop_config_148 => {
+    Dataproc_job__hadoop_config => {
       attributes => {
         'archive_uris' => {
           'type' => Optional[Array[String]],
@@ -7316,7 +7330,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'logging_config' => {
-          'type' => Optional[Array[Google_dataproc_job_hadoop_config_148_logging_config_149]],
+          'type' => Optional[Array[Dataproc_job__hadoop_config__logging_config]],
           'value' => undef
         },
         'main_class' => {
@@ -7333,7 +7347,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_dataproc_job_hadoop_config_148_logging_config_149 => {
+    Dataproc_job__hadoop_config__logging_config => {
       attributes => {
         'driver_log_levels' => {
           'type' => Optional[Hash[String, String]],
@@ -7341,7 +7355,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_dataproc_job_hive_config_150 => {
+    Dataproc_job__hive_config => {
       attributes => {
         'continue_on_failure' => {
           'type' => Optional[Boolean],
@@ -7369,7 +7383,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_dataproc_job_pig_config_151 => {
+    Dataproc_job__pig_config => {
       attributes => {
         'continue_on_failure' => {
           'type' => Optional[Boolean],
@@ -7380,7 +7394,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'logging_config' => {
-          'type' => Optional[Array[Google_dataproc_job_pig_config_151_logging_config_152]],
+          'type' => Optional[Array[Dataproc_job__pig_config__logging_config]],
           'value' => undef
         },
         'properties' => {
@@ -7401,7 +7415,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_dataproc_job_pig_config_151_logging_config_152 => {
+    Dataproc_job__pig_config__logging_config => {
       attributes => {
         'driver_log_levels' => {
           'type' => Optional[Hash[String, String]],
@@ -7409,7 +7423,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_dataproc_job_placement_153 => {
+    Dataproc_job__placement => {
       attributes => {
         'cluster_name' => String,
         'cluster_uuid' => {
@@ -7418,7 +7432,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_dataproc_job_pyspark_config_154 => {
+    Dataproc_job__pyspark_config => {
       attributes => {
         'archive_uris' => {
           'type' => Optional[Array[String]],
@@ -7437,7 +7451,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'logging_config' => {
-          'type' => Optional[Array[Google_dataproc_job_pyspark_config_154_logging_config_155]],
+          'type' => Optional[Array[Dataproc_job__pyspark_config__logging_config]],
           'value' => undef
         },
         'main_python_file_uri' => String,
@@ -7451,7 +7465,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_dataproc_job_pyspark_config_154_logging_config_155 => {
+    Dataproc_job__pyspark_config__logging_config => {
       attributes => {
         'driver_log_levels' => {
           'type' => Optional[Hash[String, String]],
@@ -7459,7 +7473,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_dataproc_job_reference_156 => {
+    Dataproc_job__reference => {
       attributes => {
         'job_id' => {
           'type' => Optional[String],
@@ -7467,7 +7481,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_dataproc_job_scheduling_157 => {
+    Dataproc_job__scheduling => {
       attributes => {
         'max_failures_per_hour' => {
           'type' => Optional[Integer],
@@ -7475,7 +7489,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_dataproc_job_spark_config_158 => {
+    Dataproc_job__spark_config => {
       attributes => {
         'archive_uris' => {
           'type' => Optional[Array[String]],
@@ -7494,7 +7508,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'logging_config' => {
-          'type' => Optional[Array[Google_dataproc_job_spark_config_158_logging_config_159]],
+          'type' => Optional[Array[Dataproc_job__spark_config__logging_config]],
           'value' => undef
         },
         'main_class' => {
@@ -7511,7 +7525,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_dataproc_job_spark_config_158_logging_config_159 => {
+    Dataproc_job__spark_config__logging_config => {
       attributes => {
         'driver_log_levels' => {
           'type' => Optional[Hash[String, String]],
@@ -7519,14 +7533,14 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_dataproc_job_sparksql_config_160 => {
+    Dataproc_job__sparksql_config => {
       attributes => {
         'jar_file_uris' => {
           'type' => Optional[Array[String]],
           'value' => undef
         },
         'logging_config' => {
-          'type' => Optional[Array[Google_dataproc_job_sparksql_config_160_logging_config_161]],
+          'type' => Optional[Array[Dataproc_job__sparksql_config__logging_config]],
           'value' => undef
         },
         'properties' => {
@@ -7547,7 +7561,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_dataproc_job_sparksql_config_160_logging_config_161 => {
+    Dataproc_job__sparksql_config__logging_config => {
       attributes => {
         'driver_log_levels' => {
           'type' => Optional[Hash[String, String]],
@@ -7555,7 +7569,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_dataproc_job_status_162 => {
+    Dataproc_job__status => {
       attributes => {
         'details' => {
           'type' => Optional[String],
@@ -7575,15 +7589,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_dns_managed_zone => {
+    Dns_managed_zone => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['dns_name', 'name', 'project'],
-          'providedAttributes' => ['name_servers', 'project']
+          'providedAttributes' => ['dns_managed_zoneID', 'name_servers', 'project']
         }
       },
       attributes => {
-        'google_dns_managed_zone_id' => {
+        'dns_managed_zoneID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -7612,7 +7626,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_dns_managed_zoneHandler => {
+    Dns_managed_zoneHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -7626,15 +7640,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_dns_record_set => {
+    Dns_record_set => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['managed_zone', 'name', 'project'],
-          'providedAttributes' => ['project']
+          'providedAttributes' => ['dns_record_setID', 'project']
         }
       },
       attributes => {
-        'google_dns_record_set_id' => {
+        'dns_record_setID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -7654,7 +7668,7 @@ type TerraformGoogle = TypeSet[{
         'type' => String
       }
     },
-    Google_dns_record_setHandler => {
+    Dns_record_setHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -7668,15 +7682,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_endpoints_service => {
+    Endpoints_service => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project', 'service_name'],
-          'providedAttributes' => ['apis', 'config_id', 'dns_address', 'endpoints', 'project']
+          'providedAttributes' => ['endpoints_serviceID', 'apis', 'config_id', 'dns_address', 'endpoints', 'project']
         }
       },
       attributes => {
-        'google_endpoints_service_id' => {
+        'endpoints_serviceID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -7686,7 +7700,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'apis' => {
-          'type' => Optional[Array[Google_endpoints_service_apis_163]],
+          'type' => Optional[Array[Endpoints_service__apis]],
           'value' => undef
         },
         'config_id' => {
@@ -7698,7 +7712,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'endpoints' => {
-          'type' => Optional[Array[Google_endpoints_service_endpoints_165]],
+          'type' => Optional[Array[Endpoints_service__endpoints]],
           'value' => undef
         },
         'grpc_config' => {
@@ -7724,7 +7738,7 @@ type TerraformGoogle = TypeSet[{
         'service_name' => String
       }
     },
-    Google_endpoints_serviceHandler => {
+    Endpoints_serviceHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -7738,10 +7752,10 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_endpoints_service_apis_163 => {
+    Endpoints_service__apis => {
       attributes => {
         'methods' => {
-          'type' => Optional[Array[Google_endpoints_service_apis_163_methods_164]],
+          'type' => Optional[Array[Endpoints_service__apis__methods]],
           'value' => undef
         },
         'name' => {
@@ -7758,7 +7772,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_endpoints_service_apis_163_methods_164 => {
+    Endpoints_service__apis__methods => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -7778,7 +7792,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_endpoints_service_endpoints_165 => {
+    Endpoints_service__endpoints => {
       attributes => {
         'address' => {
           'type' => Optional[String],
@@ -7790,15 +7804,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_filestore_instance => {
+    Filestore_instance => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['networks', 'project', 'tier', 'zone'],
-          'providedAttributes' => ['create_time', 'etag', 'project']
+          'providedAttributes' => ['filestore_instanceID', 'create_time', 'etag', 'project']
         }
       },
       attributes => {
-        'google_filestore_instance_id' => {
+        'filestore_instanceID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -7819,13 +7833,13 @@ type TerraformGoogle = TypeSet[{
           'type' => Optional[String],
           'value' => undef
         },
-        'file_shares' => Array[Google_filestore_instance_file_shares_166],
+        'file_shares' => Array[Filestore_instance__file_shares],
         'labels' => {
           'type' => Optional[Hash[String, String]],
           'value' => undef
         },
         'name' => String,
-        'networks' => Array[Google_filestore_instance_networks_167],
+        'networks' => Array[Filestore_instance__networks],
         'project' => {
           'type' => Optional[String],
           'value' => undef
@@ -7834,7 +7848,7 @@ type TerraformGoogle = TypeSet[{
         'zone' => String
       }
     },
-    Google_filestore_instanceHandler => {
+    Filestore_instanceHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -7848,13 +7862,13 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_filestore_instance_file_shares_166 => {
+    Filestore_instance__file_shares => {
       attributes => {
         'capacity_gb' => Integer,
         'name' => String
       }
     },
-    Google_filestore_instance_networks_167 => {
+    Filestore_instance__networks => {
       attributes => {
         'ip_addresses' => {
           'type' => Optional[Array[String]],
@@ -7868,14 +7882,14 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_folder => {
+    Folder => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['create_time', 'lifecycle_state', 'name']
+          'providedAttributes' => ['folderID', 'create_time', 'lifecycle_state', 'name']
         }
       },
       attributes => {
-        'google_folder_id' => {
+        'folderID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -7900,7 +7914,7 @@ type TerraformGoogle = TypeSet[{
         'parent' => String
       }
     },
-    Google_folderHandler => {
+    FolderHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -7914,15 +7928,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_folder_iam_binding => {
+    Folder_iam_binding => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['folder', 'role'],
-          'providedAttributes' => ['etag']
+          'providedAttributes' => ['folder_iam_bindingID', 'etag']
         }
       },
       attributes => {
-        'google_folder_iam_binding_id' => {
+        'folder_iam_bindingID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -7940,7 +7954,7 @@ type TerraformGoogle = TypeSet[{
         'role' => String
       }
     },
-    Google_folder_iam_bindingHandler => {
+    Folder_iam_bindingHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -7954,15 +7968,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_folder_iam_member => {
+    Folder_iam_member => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['folder', 'member', 'role'],
-          'providedAttributes' => ['etag']
+          'providedAttributes' => ['folder_iam_memberID', 'etag']
         }
       },
       attributes => {
-        'google_folder_iam_member_id' => {
+        'folder_iam_memberID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -7980,7 +7994,7 @@ type TerraformGoogle = TypeSet[{
         'role' => String
       }
     },
-    Google_folder_iam_memberHandler => {
+    Folder_iam_memberHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -7994,15 +8008,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_folder_iam_policy => {
+    Folder_iam_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['folder'],
-          'providedAttributes' => ['etag']
+          'providedAttributes' => ['folder_iam_policyID', 'etag']
         }
       },
       attributes => {
-        'google_folder_iam_policy_id' => {
+        'folder_iam_policyID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -8019,7 +8033,7 @@ type TerraformGoogle = TypeSet[{
         'policy_data' => String
       }
     },
-    Google_folder_iam_policyHandler => {
+    Folder_iam_policyHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -8033,15 +8047,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_folder_organization_policy => {
+    Folder_organization_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['constraint', 'folder'],
-          'providedAttributes' => ['etag', 'update_time', 'version']
+          'providedAttributes' => ['folder_organization_policyID', 'etag', 'update_time', 'version']
         }
       },
       attributes => {
-        'google_folder_organization_policy_id' => {
+        'folder_organization_policyID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -8051,7 +8065,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'boolean_policy' => {
-          'type' => Optional[Array[Google_folder_organization_policy_boolean_policy_168]],
+          'type' => Optional[Array[Folder_organization_policy__boolean_policy]],
           'value' => undef
         },
         'constraint' => String,
@@ -8061,11 +8075,11 @@ type TerraformGoogle = TypeSet[{
         },
         'folder' => String,
         'list_policy' => {
-          'type' => Optional[Array[Google_folder_organization_policy_list_policy_169]],
+          'type' => Optional[Array[Folder_organization_policy__list_policy]],
           'value' => undef
         },
         'restore_policy' => {
-          'type' => Optional[Array[Google_folder_organization_policy_restore_policy_172]],
+          'type' => Optional[Array[Folder_organization_policy__restore_policy]],
           'value' => undef
         },
         'update_time' => {
@@ -8078,7 +8092,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_folder_organization_policyHandler => {
+    Folder_organization_policyHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -8092,19 +8106,19 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_folder_organization_policy_boolean_policy_168 => {
+    Folder_organization_policy__boolean_policy => {
       attributes => {
         'enforced' => Boolean
       }
     },
-    Google_folder_organization_policy_list_policy_169 => {
+    Folder_organization_policy__list_policy => {
       attributes => {
         'allow' => {
-          'type' => Optional[Array[Google_folder_organization_policy_list_policy_169_allow_170]],
+          'type' => Optional[Array[Folder_organization_policy__list_policy__allow]],
           'value' => undef
         },
         'deny' => {
-          'type' => Optional[Array[Google_folder_organization_policy_list_policy_169_deny_171]],
+          'type' => Optional[Array[Folder_organization_policy__list_policy__deny]],
           'value' => undef
         },
         'suggested_value' => {
@@ -8113,7 +8127,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_folder_organization_policy_list_policy_169_allow_170 => {
+    Folder_organization_policy__list_policy__allow => {
       attributes => {
         'all' => {
           'type' => Optional[Boolean],
@@ -8125,7 +8139,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_folder_organization_policy_list_policy_169_deny_171 => {
+    Folder_organization_policy__list_policy__deny => {
       attributes => {
         'all' => {
           'type' => Optional[Boolean],
@@ -8137,20 +8151,34 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_folder_organization_policy_restore_policy_172 => {
+    Folder_organization_policy__restore_policy => {
       attributes => {
         'default' => Boolean
       }
     },
-    Google_kms_crypto_key => {
+    GenericHandler => {
+      functions => {
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
+        'delete' => Callable[String],
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
+      }
+    },
+    Kms_crypto_key => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['key_ring', 'name'],
-          'providedAttributes' => ['self_link']
+          'providedAttributes' => ['kms_crypto_keyID', 'self_link']
         }
       },
       attributes => {
-        'google_kms_crypto_key_id' => {
+        'kms_crypto_keyID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -8171,7 +8199,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_kms_crypto_keyHandler => {
+    Kms_crypto_keyHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -8185,15 +8213,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_kms_crypto_key_iam_binding => {
+    Kms_crypto_key_iam_binding => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['crypto_key_id', 'role'],
-          'providedAttributes' => ['etag']
+          'providedAttributes' => ['kms_crypto_key_iam_bindingID', 'etag']
         }
       },
       attributes => {
-        'google_kms_crypto_key_iam_binding_id' => {
+        'kms_crypto_key_iam_bindingID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -8211,7 +8239,7 @@ type TerraformGoogle = TypeSet[{
         'role' => String
       }
     },
-    Google_kms_crypto_key_iam_bindingHandler => {
+    Kms_crypto_key_iam_bindingHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -8225,15 +8253,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_kms_crypto_key_iam_member => {
+    Kms_crypto_key_iam_member => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['crypto_key_id', 'member', 'role'],
-          'providedAttributes' => ['etag']
+          'providedAttributes' => ['kms_crypto_key_iam_memberID', 'etag']
         }
       },
       attributes => {
-        'google_kms_crypto_key_iam_member_id' => {
+        'kms_crypto_key_iam_memberID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -8251,7 +8279,7 @@ type TerraformGoogle = TypeSet[{
         'role' => String
       }
     },
-    Google_kms_crypto_key_iam_memberHandler => {
+    Kms_crypto_key_iam_memberHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -8265,15 +8293,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_kms_key_ring => {
+    Kms_key_ring => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'project'],
-          'providedAttributes' => ['project', 'self_link']
+          'providedAttributes' => ['kms_key_ringID', 'project', 'self_link']
         }
       },
       attributes => {
-        'google_kms_key_ring_id' => {
+        'kms_key_ringID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -8294,7 +8322,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_kms_key_ringHandler => {
+    Kms_key_ringHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -8308,15 +8336,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_kms_key_ring_iam_binding => {
+    Kms_key_ring_iam_binding => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['key_ring_id', 'role'],
-          'providedAttributes' => ['etag']
+          'providedAttributes' => ['kms_key_ring_iam_bindingID', 'etag']
         }
       },
       attributes => {
-        'google_kms_key_ring_iam_binding_id' => {
+        'kms_key_ring_iam_bindingID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -8334,7 +8362,7 @@ type TerraformGoogle = TypeSet[{
         'role' => String
       }
     },
-    Google_kms_key_ring_iam_bindingHandler => {
+    Kms_key_ring_iam_bindingHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -8348,15 +8376,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_kms_key_ring_iam_member => {
+    Kms_key_ring_iam_member => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['key_ring_id', 'member', 'role'],
-          'providedAttributes' => ['etag']
+          'providedAttributes' => ['kms_key_ring_iam_memberID', 'etag']
         }
       },
       attributes => {
-        'google_kms_key_ring_iam_member_id' => {
+        'kms_key_ring_iam_memberID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -8374,7 +8402,7 @@ type TerraformGoogle = TypeSet[{
         'role' => String
       }
     },
-    Google_kms_key_ring_iam_memberHandler => {
+    Kms_key_ring_iam_memberHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -8388,15 +8416,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_kms_key_ring_iam_policy => {
+    Kms_key_ring_iam_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['key_ring_id'],
-          'providedAttributes' => ['etag']
+          'providedAttributes' => ['kms_key_ring_iam_policyID', 'etag']
         }
       },
       attributes => {
-        'google_kms_key_ring_iam_policy_id' => {
+        'kms_key_ring_iam_policyID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -8413,7 +8441,7 @@ type TerraformGoogle = TypeSet[{
         'policy_data' => String
       }
     },
-    Google_kms_key_ring_iam_policyHandler => {
+    Kms_key_ring_iam_policyHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -8427,14 +8455,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_logging_billing_account_exclusion => {
+    Logging_billing_account_exclusion => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['billing_account', 'name']
+          'immutableAttributes' => ['billing_account', 'name'],
+          'providedAttributes' => ['logging_billing_account_exclusionID']
         }
       },
       attributes => {
-        'google_logging_billing_account_exclusion_id' => {
+        'logging_billing_account_exclusionID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -8456,7 +8485,7 @@ type TerraformGoogle = TypeSet[{
         'name' => String
       }
     },
-    Google_logging_billing_account_exclusionHandler => {
+    Logging_billing_account_exclusionHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -8470,15 +8499,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_logging_billing_account_sink => {
+    Logging_billing_account_sink => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['billing_account', 'name'],
-          'providedAttributes' => ['writer_identity']
+          'providedAttributes' => ['logging_billing_account_sinkID', 'writer_identity']
         }
       },
       attributes => {
-        'google_logging_billing_account_sink_id' => {
+        'logging_billing_account_sinkID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -8500,7 +8529,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_logging_billing_account_sinkHandler => {
+    Logging_billing_account_sinkHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -8514,14 +8543,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_logging_folder_exclusion => {
+    Logging_folder_exclusion => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['folder', 'name']
+          'immutableAttributes' => ['folder', 'name'],
+          'providedAttributes' => ['logging_folder_exclusionID']
         }
       },
       attributes => {
-        'google_logging_folder_exclusion_id' => {
+        'logging_folder_exclusionID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -8543,7 +8573,7 @@ type TerraformGoogle = TypeSet[{
         'name' => String
       }
     },
-    Google_logging_folder_exclusionHandler => {
+    Logging_folder_exclusionHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -8557,15 +8587,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_logging_folder_sink => {
+    Logging_folder_sink => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['folder', 'include_children', 'name'],
-          'providedAttributes' => ['writer_identity']
+          'providedAttributes' => ['logging_folder_sinkID', 'writer_identity']
         }
       },
       attributes => {
-        'google_logging_folder_sink_id' => {
+        'logging_folder_sinkID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -8591,7 +8621,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_logging_folder_sinkHandler => {
+    Logging_folder_sinkHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -8605,14 +8635,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_logging_organization_exclusion => {
+    Logging_organization_exclusion => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['name', 'org_id']
+          'immutableAttributes' => ['name', 'org_id'],
+          'providedAttributes' => ['logging_organization_exclusionID']
         }
       },
       attributes => {
-        'google_logging_organization_exclusion_id' => {
+        'logging_organization_exclusionID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -8634,7 +8665,7 @@ type TerraformGoogle = TypeSet[{
         'org_id' => String
       }
     },
-    Google_logging_organization_exclusionHandler => {
+    Logging_organization_exclusionHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -8648,15 +8679,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_logging_organization_sink => {
+    Logging_organization_sink => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['include_children', 'name'],
-          'providedAttributes' => ['writer_identity']
+          'providedAttributes' => ['logging_organization_sinkID', 'writer_identity']
         }
       },
       attributes => {
-        'google_logging_organization_sink_id' => {
+        'logging_organization_sinkID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -8682,7 +8713,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_logging_organization_sinkHandler => {
+    Logging_organization_sinkHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -8696,15 +8727,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_logging_project_exclusion => {
+    Logging_project_exclusion => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['project']
+          'providedAttributes' => ['logging_project_exclusionID', 'project']
         }
       },
       attributes => {
-        'google_logging_project_exclusion_id' => {
+        'logging_project_exclusionID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -8729,7 +8760,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_logging_project_exclusionHandler => {
+    Logging_project_exclusionHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -8743,15 +8774,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_logging_project_sink => {
+    Logging_project_sink => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project', 'unique_writer_identity'],
-          'providedAttributes' => ['project', 'writer_identity']
+          'providedAttributes' => ['logging_project_sinkID', 'project', 'writer_identity']
         }
       },
       attributes => {
-        'google_logging_project_sink_id' => {
+        'logging_project_sinkID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -8780,7 +8811,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_logging_project_sinkHandler => {
+    Logging_project_sinkHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -8794,15 +8825,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_monitoring_alert_policy => {
+    Monitoring_alert_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project'],
-          'providedAttributes' => ['creation_record', 'name', 'project']
+          'providedAttributes' => ['monitoring_alert_policyID', 'creation_record', 'name', 'project']
         }
       },
       attributes => {
-        'google_monitoring_alert_policy_id' => {
+        'monitoring_alert_policyID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -8812,9 +8843,9 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'combiner' => String,
-        'conditions' => Array[Google_monitoring_alert_policy_conditions_173],
+        'conditions' => Array[Monitoring_alert_policy__conditions],
         'creation_record' => {
-          'type' => Optional[Array[Google_monitoring_alert_policy_creation_record_181]],
+          'type' => Optional[Array[Monitoring_alert_policy__creation_record]],
           'value' => undef
         },
         'display_name' => String,
@@ -8837,7 +8868,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_monitoring_alert_policyHandler => {
+    Monitoring_alert_policyHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -8851,14 +8882,14 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_monitoring_alert_policy_conditions_173 => {
+    Monitoring_alert_policy__conditions => {
       attributes => {
         'condition_absent' => {
-          'type' => Optional[Array[Google_monitoring_alert_policy_conditions_173_condition_absent_174]],
+          'type' => Optional[Array[Monitoring_alert_policy__conditions__condition_absent]],
           'value' => undef
         },
         'condition_threshold' => {
-          'type' => Optional[Array[Google_monitoring_alert_policy_conditions_173_condition_threshold_177]],
+          'type' => Optional[Array[Monitoring_alert_policy__conditions__condition_threshold]],
           'value' => undef
         },
         'display_name' => String,
@@ -8868,10 +8899,10 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_monitoring_alert_policy_conditions_173_condition_absent_174 => {
+    Monitoring_alert_policy__conditions__condition_absent => {
       attributes => {
         'aggregations' => {
-          'type' => Optional[Array[Google_monitoring_alert_policy_conditions_173_condition_absent_174_aggregations_175]],
+          'type' => Optional[Array[Monitoring_alert_policy__conditions__condition_absent__aggregations]],
           'value' => undef
         },
         'duration' => String,
@@ -8880,12 +8911,12 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'trigger' => {
-          'type' => Optional[Array[Google_monitoring_alert_policy_conditions_173_condition_absent_174_trigger_176]],
+          'type' => Optional[Array[Monitoring_alert_policy__conditions__condition_absent__trigger]],
           'value' => undef
         }
       }
     },
-    Google_monitoring_alert_policy_conditions_173_condition_absent_174_aggregations_175 => {
+    Monitoring_alert_policy__conditions__condition_absent__aggregations => {
       attributes => {
         'alignment_period' => {
           'type' => Optional[String],
@@ -8905,7 +8936,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_monitoring_alert_policy_conditions_173_condition_absent_174_trigger_176 => {
+    Monitoring_alert_policy__conditions__condition_absent__trigger => {
       attributes => {
         'count' => {
           'type' => Optional[Integer],
@@ -8917,15 +8948,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_monitoring_alert_policy_conditions_173_condition_threshold_177 => {
+    Monitoring_alert_policy__conditions__condition_threshold => {
       attributes => {
         'aggregations' => {
-          'type' => Optional[Array[Google_monitoring_alert_policy_conditions_173_condition_threshold_177_aggregations_178]],
+          'type' => Optional[Array[Monitoring_alert_policy__conditions__condition_threshold__aggregations]],
           'value' => undef
         },
         'comparison' => String,
         'denominator_aggregations' => {
-          'type' => Optional[Array[Google_monitoring_alert_policy_conditions_173_condition_threshold_177_denominator_aggregations_179]],
+          'type' => Optional[Array[Monitoring_alert_policy__conditions__condition_threshold__denominator_aggregations]],
           'value' => undef
         },
         'denominator_filter' => {
@@ -8942,12 +8973,12 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'trigger' => {
-          'type' => Optional[Array[Google_monitoring_alert_policy_conditions_173_condition_threshold_177_trigger_180]],
+          'type' => Optional[Array[Monitoring_alert_policy__conditions__condition_threshold__trigger]],
           'value' => undef
         }
       }
     },
-    Google_monitoring_alert_policy_conditions_173_condition_threshold_177_aggregations_178 => {
+    Monitoring_alert_policy__conditions__condition_threshold__aggregations => {
       attributes => {
         'alignment_period' => {
           'type' => Optional[String],
@@ -8967,7 +8998,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_monitoring_alert_policy_conditions_173_condition_threshold_177_denominator_aggregations_179 => {
+    Monitoring_alert_policy__conditions__condition_threshold__denominator_aggregations => {
       attributes => {
         'alignment_period' => {
           'type' => Optional[String],
@@ -8987,7 +9018,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_monitoring_alert_policy_conditions_173_condition_threshold_177_trigger_180 => {
+    Monitoring_alert_policy__conditions__condition_threshold__trigger => {
       attributes => {
         'count' => {
           'type' => Optional[Integer],
@@ -8999,7 +9030,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_monitoring_alert_policy_creation_record_181 => {
+    Monitoring_alert_policy__creation_record => {
       attributes => {
         'mutate_time' => {
           'type' => Optional[String],
@@ -9011,15 +9042,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_monitoring_group => {
+    Monitoring_group => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project'],
-          'providedAttributes' => ['name', 'project']
+          'providedAttributes' => ['monitoring_groupID', 'name', 'project']
         }
       },
       attributes => {
-        'google_monitoring_group_id' => {
+        'monitoring_groupID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -9048,7 +9079,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_monitoring_groupHandler => {
+    Monitoring_groupHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -9062,15 +9093,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_monitoring_notification_channel => {
+    Monitoring_notification_channel => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project'],
-          'providedAttributes' => ['name', 'project', 'verification_status']
+          'providedAttributes' => ['monitoring_notification_channelID', 'name', 'project', 'verification_status']
         }
       },
       attributes => {
-        'google_monitoring_notification_channel_id' => {
+        'monitoring_notification_channelID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -9111,7 +9142,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_monitoring_notification_channelHandler => {
+    Monitoring_notification_channelHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -9125,15 +9156,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_monitoring_uptime_check_config => {
+    Monitoring_uptime_check_config => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project'],
-          'providedAttributes' => ['name', 'project']
+          'providedAttributes' => ['monitoring_uptime_check_configID', 'name', 'project']
         }
       },
       attributes => {
-        'google_monitoring_uptime_check_config_id' => {
+        'monitoring_uptime_check_configID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -9143,16 +9174,16 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'content_matchers' => {
-          'type' => Optional[Array[Google_monitoring_uptime_check_config_content_matchers_182]],
+          'type' => Optional[Array[Monitoring_uptime_check_config__content_matchers]],
           'value' => undef
         },
         'display_name' => String,
         'http_check' => {
-          'type' => Optional[Array[Google_monitoring_uptime_check_config_http_check_183]],
+          'type' => Optional[Array[Monitoring_uptime_check_config__http_check]],
           'value' => undef
         },
         'internal_checkers' => {
-          'type' => Optional[Array[Google_monitoring_uptime_check_config_internal_checkers_185]],
+          'type' => Optional[Array[Monitoring_uptime_check_config__internal_checkers]],
           'value' => undef
         },
         'is_internal' => {
@@ -9160,7 +9191,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'monitored_resource' => {
-          'type' => Optional[Array[Google_monitoring_uptime_check_config_monitored_resource_186]],
+          'type' => Optional[Array[Monitoring_uptime_check_config__monitored_resource]],
           'value' => undef
         },
         'name' => {
@@ -9176,7 +9207,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'resource_group' => {
-          'type' => Optional[Array[Google_monitoring_uptime_check_config_resource_group_187]],
+          'type' => Optional[Array[Monitoring_uptime_check_config__resource_group]],
           'value' => undef
         },
         'selected_regions' => {
@@ -9184,13 +9215,13 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'tcp_check' => {
-          'type' => Optional[Array[Google_monitoring_uptime_check_config_tcp_check_188]],
+          'type' => Optional[Array[Monitoring_uptime_check_config__tcp_check]],
           'value' => undef
         },
         'timeout' => String
       }
     },
-    Google_monitoring_uptime_check_configHandler => {
+    Monitoring_uptime_check_configHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -9204,7 +9235,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_monitoring_uptime_check_config_content_matchers_182 => {
+    Monitoring_uptime_check_config__content_matchers => {
       attributes => {
         'content' => {
           'type' => Optional[String],
@@ -9212,10 +9243,10 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_monitoring_uptime_check_config_http_check_183 => {
+    Monitoring_uptime_check_config__http_check => {
       attributes => {
         'auth_info' => {
-          'type' => Optional[Array[Google_monitoring_uptime_check_config_http_check_183_auth_info_184]],
+          'type' => Optional[Array[Monitoring_uptime_check_config__http_check__auth_info]],
           'value' => undef
         },
         'headers' => {
@@ -9240,7 +9271,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_monitoring_uptime_check_config_http_check_183_auth_info_184 => {
+    Monitoring_uptime_check_config__http_check__auth_info => {
       attributes => {
         'password' => {
           'type' => Optional[String],
@@ -9252,7 +9283,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_monitoring_uptime_check_config_internal_checkers_185 => {
+    Monitoring_uptime_check_config__internal_checkers => {
       attributes => {
         'display_name' => {
           'type' => Optional[String],
@@ -9276,13 +9307,13 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_monitoring_uptime_check_config_monitored_resource_186 => {
+    Monitoring_uptime_check_config__monitored_resource => {
       attributes => {
         'labels' => Hash[String, String],
         'type' => String
       }
     },
-    Google_monitoring_uptime_check_config_resource_group_187 => {
+    Monitoring_uptime_check_config__resource_group => {
       attributes => {
         'group_id' => {
           'type' => Optional[String],
@@ -9294,20 +9325,20 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_monitoring_uptime_check_config_tcp_check_188 => {
+    Monitoring_uptime_check_config__tcp_check => {
       attributes => {
         'port' => Integer
       }
     },
-    Google_organization_iam_binding => {
+    Organization_iam_binding => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['org_id', 'role'],
-          'providedAttributes' => ['etag']
+          'providedAttributes' => ['organization_iam_bindingID', 'etag']
         }
       },
       attributes => {
-        'google_organization_iam_binding_id' => {
+        'organization_iam_bindingID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -9325,7 +9356,7 @@ type TerraformGoogle = TypeSet[{
         'role' => String
       }
     },
-    Google_organization_iam_bindingHandler => {
+    Organization_iam_bindingHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -9339,14 +9370,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_organization_iam_custom_role => {
+    Organization_iam_custom_role => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['org_id', 'role_id']
+          'immutableAttributes' => ['org_id', 'role_id'],
+          'providedAttributes' => ['organization_iam_custom_roleID']
         }
       },
       attributes => {
-        'google_organization_iam_custom_role_id' => {
+        'organization_iam_custom_roleID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -9373,7 +9405,7 @@ type TerraformGoogle = TypeSet[{
         'title' => String
       }
     },
-    Google_organization_iam_custom_roleHandler => {
+    Organization_iam_custom_roleHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -9387,15 +9419,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_organization_iam_member => {
+    Organization_iam_member => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['member', 'org_id', 'role'],
-          'providedAttributes' => ['etag']
+          'providedAttributes' => ['organization_iam_memberID', 'etag']
         }
       },
       attributes => {
-        'google_organization_iam_member_id' => {
+        'organization_iam_memberID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -9413,7 +9445,7 @@ type TerraformGoogle = TypeSet[{
         'role' => String
       }
     },
-    Google_organization_iam_memberHandler => {
+    Organization_iam_memberHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -9427,15 +9459,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_organization_iam_policy => {
+    Organization_iam_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['org_id'],
-          'providedAttributes' => ['etag']
+          'providedAttributes' => ['organization_iam_policyID', 'etag']
         }
       },
       attributes => {
-        'google_organization_iam_policy_id' => {
+        'organization_iam_policyID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -9452,7 +9484,7 @@ type TerraformGoogle = TypeSet[{
         'policy_data' => String
       }
     },
-    Google_organization_iam_policyHandler => {
+    Organization_iam_policyHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -9466,15 +9498,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_organization_policy => {
+    Organization_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['constraint', 'org_id'],
-          'providedAttributes' => ['etag', 'update_time', 'version']
+          'providedAttributes' => ['organization_policyID', 'etag', 'update_time', 'version']
         }
       },
       attributes => {
-        'google_organization_policy_id' => {
+        'organization_policyID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -9484,7 +9516,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'boolean_policy' => {
-          'type' => Optional[Array[Google_organization_policy_boolean_policy_189]],
+          'type' => Optional[Array[Organization_policy__boolean_policy]],
           'value' => undef
         },
         'constraint' => String,
@@ -9493,12 +9525,12 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'list_policy' => {
-          'type' => Optional[Array[Google_organization_policy_list_policy_190]],
+          'type' => Optional[Array[Organization_policy__list_policy]],
           'value' => undef
         },
         'org_id' => String,
         'restore_policy' => {
-          'type' => Optional[Array[Google_organization_policy_restore_policy_193]],
+          'type' => Optional[Array[Organization_policy__restore_policy]],
           'value' => undef
         },
         'update_time' => {
@@ -9511,7 +9543,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_organization_policyHandler => {
+    Organization_policyHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -9525,19 +9557,19 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_organization_policy_boolean_policy_189 => {
+    Organization_policy__boolean_policy => {
       attributes => {
         'enforced' => Boolean
       }
     },
-    Google_organization_policy_list_policy_190 => {
+    Organization_policy__list_policy => {
       attributes => {
         'allow' => {
-          'type' => Optional[Array[Google_organization_policy_list_policy_190_allow_191]],
+          'type' => Optional[Array[Organization_policy__list_policy__allow]],
           'value' => undef
         },
         'deny' => {
-          'type' => Optional[Array[Google_organization_policy_list_policy_190_deny_192]],
+          'type' => Optional[Array[Organization_policy__list_policy__deny]],
           'value' => undef
         },
         'suggested_value' => {
@@ -9546,7 +9578,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_organization_policy_list_policy_190_allow_191 => {
+    Organization_policy__list_policy__allow => {
       attributes => {
         'all' => {
           'type' => Optional[Boolean],
@@ -9558,7 +9590,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_organization_policy_list_policy_190_deny_192 => {
+    Organization_policy__list_policy__deny => {
       attributes => {
         'all' => {
           'type' => Optional[Boolean],
@@ -9570,20 +9602,20 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_organization_policy_restore_policy_193 => {
+    Organization_policy__restore_policy => {
       attributes => {
         'default' => Boolean
       }
     },
-    Google_project => {
+    Project => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project_id'],
-          'providedAttributes' => ['app_engine', 'folder_id', 'number', 'org_id', 'policy_data', 'policy_etag', 'skip_delete']
+          'providedAttributes' => ['projectID', 'app_engine', 'folder_id', 'number', 'org_id', 'policy_data', 'policy_etag', 'skip_delete']
         }
       },
       attributes => {
-        'google_project_id' => {
+        'projectID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -9593,7 +9625,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'app_engine' => {
-          'type' => Optional[Array[Google_project_app_engine_194]],
+          'type' => Optional[Array[Project__app_engine]],
           'value' => undef
         },
         'auto_create_network' => {
@@ -9636,7 +9668,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_projectHandler => {
+    ProjectHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -9650,7 +9682,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_project_app_engine_194 => {
+    Project__app_engine => {
       attributes => {
         'auth_domain' => {
           'type' => Optional[String],
@@ -9669,7 +9701,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'feature_settings' => {
-          'type' => Optional[Array[Google_project_app_engine_194_feature_settings_195]],
+          'type' => Optional[Array[Project__app_engine__feature_settings]],
           'value' => undef
         },
         'gcr_domain' => {
@@ -9689,12 +9721,12 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'url_dispatch_rule' => {
-          'type' => Optional[Array[Google_project_app_engine_194_url_dispatch_rule_196]],
+          'type' => Optional[Array[Project__app_engine__url_dispatch_rule]],
           'value' => undef
         }
       }
     },
-    Google_project_app_engine_194_feature_settings_195 => {
+    Project__app_engine__feature_settings => {
       attributes => {
         'split_health_checks' => {
           'type' => Optional[Boolean],
@@ -9702,7 +9734,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_project_app_engine_194_url_dispatch_rule_196 => {
+    Project__app_engine__url_dispatch_rule => {
       attributes => {
         'domain' => {
           'type' => Optional[String],
@@ -9718,15 +9750,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_project_iam_binding => {
+    Project_iam_binding => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project', 'role'],
-          'providedAttributes' => ['etag']
+          'providedAttributes' => ['project_iam_bindingID', 'etag']
         }
       },
       attributes => {
-        'google_project_iam_binding_id' => {
+        'project_iam_bindingID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -9747,7 +9779,7 @@ type TerraformGoogle = TypeSet[{
         'role' => String
       }
     },
-    Google_project_iam_bindingHandler => {
+    Project_iam_bindingHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -9761,15 +9793,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_project_iam_custom_role => {
+    Project_iam_custom_role => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project', 'role_id'],
-          'providedAttributes' => ['project']
+          'providedAttributes' => ['project_iam_custom_roleID', 'project']
         }
       },
       attributes => {
-        'google_project_iam_custom_role_id' => {
+        'project_iam_custom_roleID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -9799,7 +9831,7 @@ type TerraformGoogle = TypeSet[{
         'title' => String
       }
     },
-    Google_project_iam_custom_roleHandler => {
+    Project_iam_custom_roleHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -9813,15 +9845,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_project_iam_member => {
+    Project_iam_member => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['member', 'project', 'role'],
-          'providedAttributes' => ['etag']
+          'providedAttributes' => ['project_iam_memberID', 'etag']
         }
       },
       attributes => {
-        'google_project_iam_member_id' => {
+        'project_iam_memberID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -9842,7 +9874,7 @@ type TerraformGoogle = TypeSet[{
         'role' => String
       }
     },
-    Google_project_iam_memberHandler => {
+    Project_iam_memberHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -9856,15 +9888,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_project_iam_policy => {
+    Project_iam_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project'],
-          'providedAttributes' => ['etag', 'project', 'restore_policy']
+          'providedAttributes' => ['project_iam_policyID', 'etag', 'project', 'restore_policy']
         }
       },
       attributes => {
-        'google_project_iam_policy_id' => {
+        'project_iam_policyID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -9896,7 +9928,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_project_iam_policyHandler => {
+    Project_iam_policyHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -9910,15 +9942,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_project_organization_policy => {
+    Project_organization_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['constraint', 'project'],
-          'providedAttributes' => ['etag', 'update_time', 'version']
+          'providedAttributes' => ['project_organization_policyID', 'etag', 'update_time', 'version']
         }
       },
       attributes => {
-        'google_project_organization_policy_id' => {
+        'project_organization_policyID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -9928,7 +9960,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'boolean_policy' => {
-          'type' => Optional[Array[Google_project_organization_policy_boolean_policy_197]],
+          'type' => Optional[Array[Project_organization_policy__boolean_policy]],
           'value' => undef
         },
         'constraint' => String,
@@ -9937,12 +9969,12 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'list_policy' => {
-          'type' => Optional[Array[Google_project_organization_policy_list_policy_198]],
+          'type' => Optional[Array[Project_organization_policy__list_policy]],
           'value' => undef
         },
         'project' => String,
         'restore_policy' => {
-          'type' => Optional[Array[Google_project_organization_policy_restore_policy_201]],
+          'type' => Optional[Array[Project_organization_policy__restore_policy]],
           'value' => undef
         },
         'update_time' => {
@@ -9955,7 +9987,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_project_organization_policyHandler => {
+    Project_organization_policyHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -9969,19 +10001,19 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_project_organization_policy_boolean_policy_197 => {
+    Project_organization_policy__boolean_policy => {
       attributes => {
         'enforced' => Boolean
       }
     },
-    Google_project_organization_policy_list_policy_198 => {
+    Project_organization_policy__list_policy => {
       attributes => {
         'allow' => {
-          'type' => Optional[Array[Google_project_organization_policy_list_policy_198_allow_199]],
+          'type' => Optional[Array[Project_organization_policy__list_policy__allow]],
           'value' => undef
         },
         'deny' => {
-          'type' => Optional[Array[Google_project_organization_policy_list_policy_198_deny_200]],
+          'type' => Optional[Array[Project_organization_policy__list_policy__deny]],
           'value' => undef
         },
         'suggested_value' => {
@@ -9990,7 +10022,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_project_organization_policy_list_policy_198_allow_199 => {
+    Project_organization_policy__list_policy__allow => {
       attributes => {
         'all' => {
           'type' => Optional[Boolean],
@@ -10002,7 +10034,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_project_organization_policy_list_policy_198_deny_200 => {
+    Project_organization_policy__list_policy__deny => {
       attributes => {
         'all' => {
           'type' => Optional[Boolean],
@@ -10014,20 +10046,20 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_project_organization_policy_restore_policy_201 => {
+    Project_organization_policy__restore_policy => {
       attributes => {
         'default' => Boolean
       }
     },
-    Google_project_service => {
+    Project_service => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project', 'service'],
-          'providedAttributes' => ['project']
+          'providedAttributes' => ['project_serviceID', 'project']
         }
       },
       attributes => {
-        'google_project_service_id' => {
+        'project_serviceID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -10047,7 +10079,7 @@ type TerraformGoogle = TypeSet[{
         'service' => String
       }
     },
-    Google_project_serviceHandler => {
+    Project_serviceHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -10061,15 +10093,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_project_services => {
+    Project_services => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project'],
-          'providedAttributes' => ['project']
+          'providedAttributes' => ['project_servicesID', 'project']
         }
       },
       attributes => {
-        'google_project_services_id' => {
+        'project_servicesID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -10089,7 +10121,7 @@ type TerraformGoogle = TypeSet[{
         'services' => Array[String]
       }
     },
-    Google_project_servicesHandler => {
+    Project_servicesHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -10103,15 +10135,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_project_usage_export_bucket => {
+    Project_usage_export_bucket => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bucket_name', 'prefix', 'project'],
-          'providedAttributes' => ['project']
+          'providedAttributes' => ['project_usage_export_bucketID', 'project']
         }
       },
       attributes => {
-        'google_project_usage_export_bucket_id' => {
+        'project_usage_export_bucketID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -10131,7 +10163,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_project_usage_export_bucketHandler => {
+    Project_usage_export_bucketHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -10145,15 +10177,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_pubsub_subscription => {
+    Pubsub_subscription => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['ack_deadline_seconds', 'name', 'project', 'topic'],
-          'providedAttributes' => ['ack_deadline_seconds', 'path', 'project']
+          'providedAttributes' => ['pubsub_subscriptionID', 'ack_deadline_seconds', 'path', 'project']
         }
       },
       attributes => {
-        'google_pubsub_subscription_id' => {
+        'pubsub_subscriptionID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -10176,13 +10208,13 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'push_config' => {
-          'type' => Optional[Array[Google_pubsub_subscription_push_config_202]],
+          'type' => Optional[Array[Pubsub_subscription__push_config]],
           'value' => undef
         },
         'topic' => String
       }
     },
-    Google_pubsub_subscriptionHandler => {
+    Pubsub_subscriptionHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -10196,15 +10228,24 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_pubsub_subscription_iam_binding => {
+    Pubsub_subscription__push_config => {
+      attributes => {
+        'attributes' => {
+          'type' => Optional[Hash[String, String]],
+          'value' => undef
+        },
+        'push_endpoint' => String
+      }
+    },
+    Pubsub_subscription_iam_binding => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project', 'role', 'subscription'],
-          'providedAttributes' => ['etag', 'project']
+          'providedAttributes' => ['pubsub_subscription_iam_bindingID', 'etag', 'project']
         }
       },
       attributes => {
-        'google_pubsub_subscription_iam_binding_id' => {
+        'pubsub_subscription_iam_bindingID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -10226,7 +10267,7 @@ type TerraformGoogle = TypeSet[{
         'subscription' => String
       }
     },
-    Google_pubsub_subscription_iam_bindingHandler => {
+    Pubsub_subscription_iam_bindingHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -10240,15 +10281,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_pubsub_subscription_iam_member => {
+    Pubsub_subscription_iam_member => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['member', 'project', 'role', 'subscription'],
-          'providedAttributes' => ['etag', 'project']
+          'providedAttributes' => ['pubsub_subscription_iam_memberID', 'etag', 'project']
         }
       },
       attributes => {
-        'google_pubsub_subscription_iam_member_id' => {
+        'pubsub_subscription_iam_memberID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -10270,7 +10311,7 @@ type TerraformGoogle = TypeSet[{
         'subscription' => String
       }
     },
-    Google_pubsub_subscription_iam_memberHandler => {
+    Pubsub_subscription_iam_memberHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -10284,15 +10325,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_pubsub_subscription_iam_policy => {
+    Pubsub_subscription_iam_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project', 'subscription'],
-          'providedAttributes' => ['etag', 'project']
+          'providedAttributes' => ['pubsub_subscription_iam_policyID', 'etag', 'project']
         }
       },
       attributes => {
-        'google_pubsub_subscription_iam_policy_id' => {
+        'pubsub_subscription_iam_policyID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -10313,7 +10354,7 @@ type TerraformGoogle = TypeSet[{
         'subscription' => String
       }
     },
-    Google_pubsub_subscription_iam_policyHandler => {
+    Pubsub_subscription_iam_policyHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -10327,24 +10368,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_pubsub_subscription_push_config_202 => {
-      attributes => {
-        'attributes' => {
-          'type' => Optional[Hash[String, String]],
-          'value' => undef
-        },
-        'push_endpoint' => String
-      }
-    },
-    Google_pubsub_topic => {
+    Pubsub_topic => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['project']
+          'providedAttributes' => ['pubsub_topicID', 'project']
         }
       },
       attributes => {
-        'google_pubsub_topic_id' => {
+        'pubsub_topicID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -10360,7 +10392,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_pubsub_topicHandler => {
+    Pubsub_topicHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -10374,15 +10406,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_pubsub_topic_iam_binding => {
+    Pubsub_topic_iam_binding => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project', 'role', 'topic'],
-          'providedAttributes' => ['etag', 'project']
+          'providedAttributes' => ['pubsub_topic_iam_bindingID', 'etag', 'project']
         }
       },
       attributes => {
-        'google_pubsub_topic_iam_binding_id' => {
+        'pubsub_topic_iam_bindingID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -10404,7 +10436,7 @@ type TerraformGoogle = TypeSet[{
         'topic' => String
       }
     },
-    Google_pubsub_topic_iam_bindingHandler => {
+    Pubsub_topic_iam_bindingHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -10418,15 +10450,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_pubsub_topic_iam_member => {
+    Pubsub_topic_iam_member => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['member', 'project', 'role', 'topic'],
-          'providedAttributes' => ['etag', 'project']
+          'providedAttributes' => ['pubsub_topic_iam_memberID', 'etag', 'project']
         }
       },
       attributes => {
-        'google_pubsub_topic_iam_member_id' => {
+        'pubsub_topic_iam_memberID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -10448,7 +10480,7 @@ type TerraformGoogle = TypeSet[{
         'topic' => String
       }
     },
-    Google_pubsub_topic_iam_memberHandler => {
+    Pubsub_topic_iam_memberHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -10462,15 +10494,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_pubsub_topic_iam_policy => {
+    Pubsub_topic_iam_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project', 'topic'],
-          'providedAttributes' => ['etag', 'project']
+          'providedAttributes' => ['pubsub_topic_iam_policyID', 'etag', 'project']
         }
       },
       attributes => {
-        'google_pubsub_topic_iam_policy_id' => {
+        'pubsub_topic_iam_policyID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -10491,7 +10523,7 @@ type TerraformGoogle = TypeSet[{
         'topic' => String
       }
     },
-    Google_pubsub_topic_iam_policyHandler => {
+    Pubsub_topic_iam_policyHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -10505,15 +10537,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_redis_instance => {
+    Redis_instance => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['alternative_location_id', 'authorized_network', 'location_id', 'name', 'project', 'redis_version', 'region', 'reserved_ip_range', 'tier'],
-          'providedAttributes' => ['alternative_location_id', 'authorized_network', 'create_time', 'current_location_id', 'host', 'location_id', 'port', 'project', 'redis_version', 'region', 'reserved_ip_range']
+          'providedAttributes' => ['redis_instanceID', 'alternative_location_id', 'authorized_network', 'create_time', 'current_location_id', 'host', 'location_id', 'port', 'project', 'redis_version', 'region', 'reserved_ip_range']
         }
       },
       attributes => {
-        'google_redis_instance_id' => {
+        'redis_instanceID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -10586,7 +10618,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_redis_instanceHandler => {
+    Redis_instanceHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -10600,15 +10632,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_resource_manager_lien => {
+    Resource_manager_lien => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['origin', 'parent', 'reason', 'restrictions'],
-          'providedAttributes' => ['create_time', 'name']
+          'providedAttributes' => ['resource_manager_lienID', 'create_time', 'name']
         }
       },
       attributes => {
-        'google_resource_manager_lien_id' => {
+        'resource_manager_lienID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -10631,7 +10663,7 @@ type TerraformGoogle = TypeSet[{
         'restrictions' => Array[String]
       }
     },
-    Google_resource_manager_lienHandler => {
+    Resource_manager_lienHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -10645,15 +10677,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_runtimeconfig_config => {
+    Runtimeconfig_config => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['project']
+          'providedAttributes' => ['runtimeconfig_configID', 'project']
         }
       },
       attributes => {
-        'google_runtimeconfig_config_id' => {
+        'runtimeconfig_configID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -10673,7 +10705,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_runtimeconfig_configHandler => {
+    Runtimeconfig_configHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -10687,15 +10719,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_runtimeconfig_variable => {
+    Runtimeconfig_variable => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'parent', 'project'],
-          'providedAttributes' => ['project', 'update_time']
+          'providedAttributes' => ['runtimeconfig_variableID', 'project', 'update_time']
         }
       },
       attributes => {
-        'google_runtimeconfig_variable_id' => {
+        'runtimeconfig_variableID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -10724,7 +10756,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_runtimeconfig_variableHandler => {
+    Runtimeconfig_variableHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -10738,15 +10770,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_service_account => {
+    Service_account => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['account_id', 'project'],
-          'providedAttributes' => ['email', 'name', 'project', 'unique_id']
+          'providedAttributes' => ['service_accountID', 'email', 'name', 'project', 'unique_id']
         }
       },
       attributes => {
-        'google_service_account_id' => {
+        'service_accountID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -10782,7 +10814,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_service_accountHandler => {
+    Service_accountHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -10796,15 +10828,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_service_account_iam_binding => {
+    Service_account_iam_binding => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['role', 'service_account_id'],
-          'providedAttributes' => ['etag']
+          'providedAttributes' => ['service_account_iam_bindingID', 'etag']
         }
       },
       attributes => {
-        'google_service_account_iam_binding_id' => {
+        'service_account_iam_bindingID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -10822,7 +10854,7 @@ type TerraformGoogle = TypeSet[{
         'service_account_id' => String
       }
     },
-    Google_service_account_iam_bindingHandler => {
+    Service_account_iam_bindingHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -10836,15 +10868,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_service_account_iam_member => {
+    Service_account_iam_member => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['member', 'role', 'service_account_id'],
-          'providedAttributes' => ['etag']
+          'providedAttributes' => ['service_account_iam_memberID', 'etag']
         }
       },
       attributes => {
-        'google_service_account_iam_member_id' => {
+        'service_account_iam_memberID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -10862,7 +10894,7 @@ type TerraformGoogle = TypeSet[{
         'service_account_id' => String
       }
     },
-    Google_service_account_iam_memberHandler => {
+    Service_account_iam_memberHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -10876,15 +10908,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_service_account_iam_policy => {
+    Service_account_iam_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['service_account_id'],
-          'providedAttributes' => ['etag']
+          'providedAttributes' => ['service_account_iam_policyID', 'etag']
         }
       },
       attributes => {
-        'google_service_account_iam_policy_id' => {
+        'service_account_iam_policyID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -10901,7 +10933,7 @@ type TerraformGoogle = TypeSet[{
         'service_account_id' => String
       }
     },
-    Google_service_account_iam_policyHandler => {
+    Service_account_iam_policyHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -10915,15 +10947,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_service_account_key => {
+    Service_account_key => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['key_algorithm', 'name', 'pgp_key', 'private_key_type', 'public_key', 'public_key_type', 'service_account_id'],
-          'providedAttributes' => ['name', 'private_key', 'private_key_encrypted', 'private_key_fingerprint', 'public_key', 'valid_after', 'valid_before']
+          'providedAttributes' => ['service_account_keyID', 'name', 'private_key', 'private_key_encrypted', 'private_key_fingerprint', 'public_key', 'valid_after', 'valid_before']
         }
       },
       attributes => {
-        'google_service_account_key_id' => {
+        'service_account_keyID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -10979,7 +11011,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_service_account_keyHandler => {
+    Service_account_keyHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -10993,15 +11025,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_sourcerepo_repository => {
+    Sourcerepo_repository => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['project', 'size', 'url']
+          'providedAttributes' => ['sourcerepo_repositoryID', 'project', 'size', 'url']
         }
       },
       attributes => {
-        'google_sourcerepo_repository_id' => {
+        'sourcerepo_repositoryID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -11025,7 +11057,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_sourcerepo_repositoryHandler => {
+    Sourcerepo_repositoryHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -11039,15 +11071,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_spanner_database => {
+    Spanner_database => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['ddl', 'instance', 'name', 'project'],
-          'providedAttributes' => ['project', 'state']
+          'providedAttributes' => ['spanner_databaseID', 'project', 'state']
         }
       },
       attributes => {
-        'google_spanner_database_id' => {
+        'spanner_databaseID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -11072,7 +11104,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_spanner_databaseHandler => {
+    Spanner_databaseHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -11086,15 +11118,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_spanner_database_iam_binding => {
+    Spanner_database_iam_binding => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['database', 'instance', 'project', 'role'],
-          'providedAttributes' => ['etag', 'project']
+          'providedAttributes' => ['spanner_database_iam_bindingID', 'etag', 'project']
         }
       },
       attributes => {
-        'google_spanner_database_iam_binding_id' => {
+        'spanner_database_iam_bindingID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -11117,7 +11149,7 @@ type TerraformGoogle = TypeSet[{
         'role' => String
       }
     },
-    Google_spanner_database_iam_bindingHandler => {
+    Spanner_database_iam_bindingHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -11131,15 +11163,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_spanner_database_iam_member => {
+    Spanner_database_iam_member => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['database', 'instance', 'member', 'project', 'role'],
-          'providedAttributes' => ['etag', 'project']
+          'providedAttributes' => ['spanner_database_iam_memberID', 'etag', 'project']
         }
       },
       attributes => {
-        'google_spanner_database_iam_member_id' => {
+        'spanner_database_iam_memberID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -11162,7 +11194,7 @@ type TerraformGoogle = TypeSet[{
         'role' => String
       }
     },
-    Google_spanner_database_iam_memberHandler => {
+    Spanner_database_iam_memberHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -11176,15 +11208,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_spanner_database_iam_policy => {
+    Spanner_database_iam_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['database', 'instance', 'project'],
-          'providedAttributes' => ['etag', 'project']
+          'providedAttributes' => ['spanner_database_iam_policyID', 'etag', 'project']
         }
       },
       attributes => {
-        'google_spanner_database_iam_policy_id' => {
+        'spanner_database_iam_policyID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -11206,7 +11238,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_spanner_database_iam_policyHandler => {
+    Spanner_database_iam_policyHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -11220,15 +11252,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_spanner_instance => {
+    Spanner_instance => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['config', 'name', 'project'],
-          'providedAttributes' => ['name', 'project', 'state']
+          'providedAttributes' => ['spanner_instanceID', 'name', 'project', 'state']
         }
       },
       attributes => {
-        'google_spanner_instance_id' => {
+        'spanner_instanceID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -11261,7 +11293,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_spanner_instanceHandler => {
+    Spanner_instanceHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -11275,15 +11307,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_spanner_instance_iam_binding => {
+    Spanner_instance_iam_binding => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['instance', 'project', 'role'],
-          'providedAttributes' => ['etag', 'project']
+          'providedAttributes' => ['spanner_instance_iam_bindingID', 'etag', 'project']
         }
       },
       attributes => {
-        'google_spanner_instance_iam_binding_id' => {
+        'spanner_instance_iam_bindingID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -11305,7 +11337,7 @@ type TerraformGoogle = TypeSet[{
         'role' => String
       }
     },
-    Google_spanner_instance_iam_bindingHandler => {
+    Spanner_instance_iam_bindingHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -11319,15 +11351,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_spanner_instance_iam_member => {
+    Spanner_instance_iam_member => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['instance', 'member', 'project', 'role'],
-          'providedAttributes' => ['etag', 'project']
+          'providedAttributes' => ['spanner_instance_iam_memberID', 'etag', 'project']
         }
       },
       attributes => {
-        'google_spanner_instance_iam_member_id' => {
+        'spanner_instance_iam_memberID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -11349,7 +11381,7 @@ type TerraformGoogle = TypeSet[{
         'role' => String
       }
     },
-    Google_spanner_instance_iam_memberHandler => {
+    Spanner_instance_iam_memberHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -11363,15 +11395,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_spanner_instance_iam_policy => {
+    Spanner_instance_iam_policy => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['instance', 'project'],
-          'providedAttributes' => ['etag', 'project']
+          'providedAttributes' => ['spanner_instance_iam_policyID', 'etag', 'project']
         }
       },
       attributes => {
-        'google_spanner_instance_iam_policy_id' => {
+        'spanner_instance_iam_policyID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -11392,7 +11424,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_spanner_instance_iam_policyHandler => {
+    Spanner_instance_iam_policyHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -11406,15 +11438,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_sql_database => {
+    Sql_database => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['instance', 'name', 'project'],
-          'providedAttributes' => ['charset', 'collation', 'project', 'self_link']
+          'providedAttributes' => ['sql_databaseID', 'charset', 'collation', 'project', 'self_link']
         }
       },
       attributes => {
-        'google_sql_database_id' => {
+        'sql_databaseID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -11443,7 +11475,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_sql_databaseHandler => {
+    Sql_databaseHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -11457,15 +11489,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_sql_database_instance => {
+    Sql_database_instance => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['database_version', 'master_instance_name', 'name', 'project', 'region'],
-          'providedAttributes' => ['connection_name', 'first_ip_address', 'ip_address', 'master_instance_name', 'name', 'project', 'replica_configuration', 'self_link', 'server_ca_cert', 'service_account_email_address']
+          'providedAttributes' => ['sql_database_instanceID', 'connection_name', 'first_ip_address', 'ip_address', 'master_instance_name', 'name', 'project', 'replica_configuration', 'self_link', 'server_ca_cert', 'service_account_email_address']
         }
       },
       attributes => {
-        'google_sql_database_instance_id' => {
+        'sql_database_instanceID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -11487,7 +11519,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'ip_address' => {
-          'type' => Optional[Array[Google_sql_database_instance_ip_address_203]],
+          'type' => Optional[Array[Sql_database_instance__ip_address]],
           'value' => undef
         },
         'master_instance_name' => {
@@ -11507,7 +11539,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'replica_configuration' => {
-          'type' => Optional[Array[Google_sql_database_instance_replica_configuration_204]],
+          'type' => Optional[Array[Sql_database_instance__replica_configuration]],
           'value' => undef
         },
         'self_link' => {
@@ -11515,17 +11547,17 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'server_ca_cert' => {
-          'type' => Optional[Array[Google_sql_database_instance_server_ca_cert_205]],
+          'type' => Optional[Array[Sql_database_instance__server_ca_cert]],
           'value' => undef
         },
         'service_account_email_address' => {
           'type' => Optional[String],
           'value' => undef
         },
-        'settings' => Array[Google_sql_database_instance_settings_206]
+        'settings' => Array[Sql_database_instance__settings]
       }
     },
-    Google_sql_database_instanceHandler => {
+    Sql_database_instanceHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -11539,7 +11571,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_sql_database_instance_ip_address_203 => {
+    Sql_database_instance__ip_address => {
       attributes => {
         'ip_address' => {
           'type' => Optional[String],
@@ -11551,7 +11583,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_sql_database_instance_replica_configuration_204 => {
+    Sql_database_instance__replica_configuration => {
       attributes => {
         'ca_certificate' => {
           'type' => Optional[String],
@@ -11599,7 +11631,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_sql_database_instance_server_ca_cert_205 => {
+    Sql_database_instance__server_ca_cert => {
       attributes => {
         'cert' => {
           'type' => Optional[String],
@@ -11623,7 +11655,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_sql_database_instance_settings_206 => {
+    Sql_database_instance__settings => {
       attributes => {
         'activation_policy' => {
           'type' => Optional[String],
@@ -11638,7 +11670,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'backup_configuration' => {
-          'type' => Optional[Array[Google_sql_database_instance_settings_206_backup_configuration_207]],
+          'type' => Optional[Array[Sql_database_instance__settings__backup_configuration]],
           'value' => undef
         },
         'crash_safe_replication' => {
@@ -11646,7 +11678,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'database_flags' => {
-          'type' => Optional[Array[Google_sql_database_instance_settings_206_database_flags_208]],
+          'type' => Optional[Array[Sql_database_instance__settings__database_flags]],
           'value' => undef
         },
         'disk_autoresize' => {
@@ -11662,15 +11694,15 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'ip_configuration' => {
-          'type' => Optional[Array[Google_sql_database_instance_settings_206_ip_configuration_209]],
+          'type' => Optional[Array[Sql_database_instance__settings__ip_configuration]],
           'value' => undef
         },
         'location_preference' => {
-          'type' => Optional[Array[Google_sql_database_instance_settings_206_location_preference_211]],
+          'type' => Optional[Array[Sql_database_instance__settings__location_preference]],
           'value' => undef
         },
         'maintenance_window' => {
-          'type' => Optional[Array[Google_sql_database_instance_settings_206_maintenance_window_212]],
+          'type' => Optional[Array[Sql_database_instance__settings__maintenance_window]],
           'value' => undef
         },
         'pricing_plan' => {
@@ -11692,7 +11724,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_sql_database_instance_settings_206_backup_configuration_207 => {
+    Sql_database_instance__settings__backup_configuration => {
       attributes => {
         'binary_log_enabled' => {
           'type' => Optional[Boolean],
@@ -11708,7 +11740,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_sql_database_instance_settings_206_database_flags_208 => {
+    Sql_database_instance__settings__database_flags => {
       attributes => {
         'name' => {
           'type' => Optional[String],
@@ -11720,10 +11752,10 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_sql_database_instance_settings_206_ip_configuration_209 => {
+    Sql_database_instance__settings__ip_configuration => {
       attributes => {
         'authorized_networks' => {
-          'type' => Optional[Array[Google_sql_database_instance_settings_206_ip_configuration_209_authorized_networks_210]],
+          'type' => Optional[Array[Sql_database_instance__settings__ip_configuration__authorized_networks]],
           'value' => undef
         },
         'ipv4_enabled' => {
@@ -11740,7 +11772,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_sql_database_instance_settings_206_ip_configuration_209_authorized_networks_210 => {
+    Sql_database_instance__settings__ip_configuration__authorized_networks => {
       attributes => {
         'expiration_time' => {
           'type' => Optional[String],
@@ -11756,7 +11788,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_sql_database_instance_settings_206_location_preference_211 => {
+    Sql_database_instance__settings__location_preference => {
       attributes => {
         'follow_gae_application' => {
           'type' => Optional[String],
@@ -11768,7 +11800,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_sql_database_instance_settings_206_maintenance_window_212 => {
+    Sql_database_instance__settings__maintenance_window => {
       attributes => {
         'day' => {
           'type' => Optional[Integer],
@@ -11784,15 +11816,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_sql_ssl_cert => {
+    Sql_ssl_cert => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['common_name', 'instance'],
-          'providedAttributes' => ['cert', 'cert_serial_number', 'create_time', 'expiration_time', 'private_key', 'server_ca_cert', 'sha1_fingerprint']
+          'providedAttributes' => ['sql_ssl_certID', 'cert', 'cert_serial_number', 'create_time', 'expiration_time', 'private_key', 'server_ca_cert', 'sha1_fingerprint']
         }
       },
       attributes => {
-        'google_sql_ssl_cert_id' => {
+        'sql_ssl_certID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -11833,7 +11865,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_sql_ssl_certHandler => {
+    Sql_ssl_certHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -11847,15 +11879,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_sql_user => {
+    Sql_user => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['host', 'instance', 'name', 'project'],
-          'providedAttributes' => ['project']
+          'providedAttributes' => ['sql_userID', 'project']
         }
       },
       attributes => {
-        'google_sql_user_id' => {
+        'sql_userID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -11880,7 +11912,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_sql_userHandler => {
+    Sql_userHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -11894,15 +11926,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_storage_bucket => {
+    Storage_bucket => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'predefined_acl', 'project', 'storage_class'],
-          'providedAttributes' => ['project', 'self_link', 'url']
+          'providedAttributes' => ['storage_bucketID', 'project', 'self_link', 'url']
         }
       },
       attributes => {
-        'google_storage_bucket_id' => {
+        'storage_bucketID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -11912,11 +11944,11 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'cors' => {
-          'type' => Optional[Array[Google_storage_bucket_cors_213]],
+          'type' => Optional[Array[Storage_bucket__cors]],
           'value' => undef
         },
         'encryption' => {
-          'type' => Optional[Array[Google_storage_bucket_encryption_214]],
+          'type' => Optional[Array[Storage_bucket__encryption]],
           'value' => undef
         },
         'force_destroy' => {
@@ -11928,7 +11960,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'lifecycle_rule' => {
-          'type' => Optional[Array[Google_storage_bucket_lifecycle_rule_215]],
+          'type' => Optional[Array[Storage_bucket__lifecycle_rule]],
           'value' => undef
         },
         'location' => {
@@ -11936,7 +11968,7 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'logging' => {
-          'type' => Optional[Array[Google_storage_bucket_logging_218]],
+          'type' => Optional[Array[Storage_bucket__logging]],
           'value' => undef
         },
         'name' => String,
@@ -11961,16 +11993,16 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'versioning' => {
-          'type' => Optional[Array[Google_storage_bucket_versioning_219]],
+          'type' => Optional[Array[Storage_bucket__versioning]],
           'value' => undef
         },
         'website' => {
-          'type' => Optional[Array[Google_storage_bucket_website_220]],
+          'type' => Optional[Array[Storage_bucket__website]],
           'value' => undef
         }
       }
     },
-    Google_storage_bucketHandler => {
+    Storage_bucketHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -11984,53 +12016,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_storage_bucket_acl => {
-      annotations => {
-        Lyra::Resource => {
-          'immutableAttributes' => ['bucket', 'predefined_acl'],
-          'providedAttributes' => ['role_entity']
-        }
-      },
-      attributes => {
-        'google_storage_bucket_acl_id' => {
-          'annotations' => {
-            TagsAnnotation => {
-              'lyra' => 'ignore'
-            }
-          },
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'bucket' => String,
-        'default_acl' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'predefined_acl' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'role_entity' => {
-          'type' => Optional[Array[String]],
-          'value' => undef
-        }
-      }
-    },
-    Google_storage_bucket_aclHandler => {
-      functions => {
-        'create' => Callable[
-          [Object],
-          Tuple[Object, String]],
-        'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Object],
-        'update' => Callable[
-          [String, Object],
-          Object]
-      }
-    },
-    Google_storage_bucket_cors_213 => {
+    Storage_bucket__cors => {
       attributes => {
         'max_age_seconds' => {
           'type' => Optional[Integer],
@@ -12050,137 +12036,18 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_storage_bucket_encryption_214 => {
+    Storage_bucket__encryption => {
       attributes => {
         'default_kms_key_name' => String
       }
     },
-    Google_storage_bucket_iam_binding => {
-      annotations => {
-        Lyra::Resource => {
-          'immutableAttributes' => ['bucket', 'role'],
-          'providedAttributes' => ['etag']
-        }
-      },
+    Storage_bucket__lifecycle_rule => {
       attributes => {
-        'google_storage_bucket_iam_binding_id' => {
-          'annotations' => {
-            TagsAnnotation => {
-              'lyra' => 'ignore'
-            }
-          },
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'bucket' => String,
-        'etag' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'members' => Array[String],
-        'role' => String
+        'action' => Array[Storage_bucket__lifecycle_rule__action],
+        'condition' => Array[Storage_bucket__lifecycle_rule__condition]
       }
     },
-    Google_storage_bucket_iam_bindingHandler => {
-      functions => {
-        'create' => Callable[
-          [Object],
-          Tuple[Object, String]],
-        'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Object],
-        'update' => Callable[
-          [String, Object],
-          Object]
-      }
-    },
-    Google_storage_bucket_iam_member => {
-      annotations => {
-        Lyra::Resource => {
-          'immutableAttributes' => ['bucket', 'member', 'role'],
-          'providedAttributes' => ['etag']
-        }
-      },
-      attributes => {
-        'google_storage_bucket_iam_member_id' => {
-          'annotations' => {
-            TagsAnnotation => {
-              'lyra' => 'ignore'
-            }
-          },
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'bucket' => String,
-        'etag' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'member' => String,
-        'role' => String
-      }
-    },
-    Google_storage_bucket_iam_memberHandler => {
-      functions => {
-        'create' => Callable[
-          [Object],
-          Tuple[Object, String]],
-        'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Object],
-        'update' => Callable[
-          [String, Object],
-          Object]
-      }
-    },
-    Google_storage_bucket_iam_policy => {
-      annotations => {
-        Lyra::Resource => {
-          'immutableAttributes' => ['bucket'],
-          'providedAttributes' => ['etag']
-        }
-      },
-      attributes => {
-        'google_storage_bucket_iam_policy_id' => {
-          'annotations' => {
-            TagsAnnotation => {
-              'lyra' => 'ignore'
-            }
-          },
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'bucket' => String,
-        'etag' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'policy_data' => String
-      }
-    },
-    Google_storage_bucket_iam_policyHandler => {
-      functions => {
-        'create' => Callable[
-          [Object],
-          Tuple[Object, String]],
-        'delete' => Callable[String],
-        'read' => Callable[
-          [String],
-          Object],
-        'update' => Callable[
-          [String, Object],
-          Object]
-      }
-    },
-    Google_storage_bucket_lifecycle_rule_215 => {
-      attributes => {
-        'action' => Array[Google_storage_bucket_lifecycle_rule_215_action_216],
-        'condition' => Array[Google_storage_bucket_lifecycle_rule_215_condition_217]
-      }
-    },
-    Google_storage_bucket_lifecycle_rule_215_action_216 => {
+    Storage_bucket__lifecycle_rule__action => {
       attributes => {
         'storage_class' => {
           'type' => Optional[String],
@@ -12189,7 +12056,7 @@ type TerraformGoogle = TypeSet[{
         'type' => String
       }
     },
-    Google_storage_bucket_lifecycle_rule_215_condition_217 => {
+    Storage_bucket__lifecycle_rule__condition => {
       attributes => {
         'age' => {
           'type' => Optional[Integer],
@@ -12213,7 +12080,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_storage_bucket_logging_218 => {
+    Storage_bucket__logging => {
       attributes => {
         'log_bucket' => String,
         'log_object_prefix' => {
@@ -12222,15 +12089,200 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_storage_bucket_object => {
+    Storage_bucket__versioning => {
+      attributes => {
+        'enabled' => {
+          'type' => Optional[Boolean],
+          'value' => undef
+        }
+      }
+    },
+    Storage_bucket__website => {
+      attributes => {
+        'main_page_suffix' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'not_found_page' => {
+          'type' => Optional[String],
+          'value' => undef
+        }
+      }
+    },
+    Storage_bucket_acl => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['bucket', 'cache_control', 'content', 'content_disposition', 'content_encoding', 'content_language', 'content_type', 'detect_md5hash', 'name', 'predefined_acl', 'source', 'storage_class'],
-          'providedAttributes' => ['content_type', 'crc32c', 'md5hash', 'storage_class']
+          'immutableAttributes' => ['bucket', 'predefined_acl'],
+          'providedAttributes' => ['storage_bucket_aclID', 'role_entity']
         }
       },
       attributes => {
-        'google_storage_bucket_object_id' => {
+        'storage_bucket_aclID' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'bucket' => String,
+        'default_acl' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'predefined_acl' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'role_entity' => {
+          'type' => Optional[Array[String]],
+          'value' => undef
+        }
+      }
+    },
+    Storage_bucket_aclHandler => {
+      functions => {
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
+        'delete' => Callable[String],
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
+      }
+    },
+    Storage_bucket_iam_binding => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['bucket', 'role'],
+          'providedAttributes' => ['storage_bucket_iam_bindingID', 'etag']
+        }
+      },
+      attributes => {
+        'storage_bucket_iam_bindingID' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'bucket' => String,
+        'etag' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'members' => Array[String],
+        'role' => String
+      }
+    },
+    Storage_bucket_iam_bindingHandler => {
+      functions => {
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
+        'delete' => Callable[String],
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
+      }
+    },
+    Storage_bucket_iam_member => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['bucket', 'member', 'role'],
+          'providedAttributes' => ['storage_bucket_iam_memberID', 'etag']
+        }
+      },
+      attributes => {
+        'storage_bucket_iam_memberID' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'bucket' => String,
+        'etag' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'member' => String,
+        'role' => String
+      }
+    },
+    Storage_bucket_iam_memberHandler => {
+      functions => {
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
+        'delete' => Callable[String],
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
+      }
+    },
+    Storage_bucket_iam_policy => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['bucket'],
+          'providedAttributes' => ['storage_bucket_iam_policyID', 'etag']
+        }
+      },
+      attributes => {
+        'storage_bucket_iam_policyID' => {
+          'annotations' => {
+            TagsAnnotation => {
+              'lyra' => 'ignore'
+            }
+          },
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'bucket' => String,
+        'etag' => {
+          'type' => Optional[String],
+          'value' => undef
+        },
+        'policy_data' => String
+      }
+    },
+    Storage_bucket_iam_policyHandler => {
+      functions => {
+        'create' => Callable[
+          [Object],
+          Tuple[Object, String]],
+        'delete' => Callable[String],
+        'read' => Callable[
+          [String],
+          Object],
+        'update' => Callable[
+          [String, Object],
+          Object]
+      }
+    },
+    Storage_bucket_object => {
+      annotations => {
+        Lyra::Resource => {
+          'immutableAttributes' => ['bucket', 'cache_control', 'content', 'content_disposition', 'content_encoding', 'content_language', 'content_type', 'detect_md5hash', 'name', 'predefined_acl', 'source', 'storage_class'],
+          'providedAttributes' => ['storage_bucket_objectID', 'content_type', 'crc32c', 'md5hash', 'storage_class']
+        }
+      },
+      attributes => {
+        'storage_bucket_objectID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -12291,7 +12343,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_storage_bucket_objectHandler => {
+    Storage_bucket_objectHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -12305,34 +12357,14 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_storage_bucket_versioning_219 => {
-      attributes => {
-        'enabled' => {
-          'type' => Optional[Boolean],
-          'value' => undef
-        }
-      }
-    },
-    Google_storage_bucket_website_220 => {
-      attributes => {
-        'main_page_suffix' => {
-          'type' => Optional[String],
-          'value' => undef
-        },
-        'not_found_page' => {
-          'type' => Optional[String],
-          'value' => undef
-        }
-      }
-    },
-    Google_storage_default_object_access_control => {
+    Storage_default_object_access_control => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['domain', 'email', 'entity_id', 'generation', 'project_team']
+          'providedAttributes' => ['storage_default_object_access_controlID', 'domain', 'email', 'entity_id', 'generation', 'project_team']
         }
       },
       attributes => {
-        'google_storage_default_object_access_control_id' => {
+        'storage_default_object_access_controlID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -12364,13 +12396,13 @@ type TerraformGoogle = TypeSet[{
           'value' => undef
         },
         'project_team' => {
-          'type' => Optional[Array[Google_storage_default_object_access_control_project_team_221]],
+          'type' => Optional[Array[Storage_default_object_access_control__project_team]],
           'value' => undef
         },
         'role' => String
       }
     },
-    Google_storage_default_object_access_controlHandler => {
+    Storage_default_object_access_controlHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -12384,7 +12416,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_storage_default_object_access_control_project_team_221 => {
+    Storage_default_object_access_control__project_team => {
       attributes => {
         'project_number' => {
           'type' => Optional[String],
@@ -12396,15 +12428,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_storage_default_object_acl => {
+    Storage_default_object_acl => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bucket'],
-          'providedAttributes' => ['role_entity']
+          'providedAttributes' => ['storage_default_object_aclID', 'role_entity']
         }
       },
       attributes => {
-        'google_storage_default_object_acl_id' => {
+        'storage_default_object_aclID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -12420,7 +12452,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_storage_default_object_aclHandler => {
+    Storage_default_object_aclHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -12434,15 +12466,15 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_storage_notification => {
+    Storage_notification => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bucket', 'custom_attributes', 'event_types', 'object_name_prefix', 'payload_format', 'topic'],
-          'providedAttributes' => ['self_link']
+          'providedAttributes' => ['storage_notificationID', 'self_link']
         }
       },
       attributes => {
-        'google_storage_notification_id' => {
+        'storage_notificationID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -12472,7 +12504,7 @@ type TerraformGoogle = TypeSet[{
         'topic' => String
       }
     },
-    Google_storage_notificationHandler => {
+    Storage_notificationHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -12486,14 +12518,14 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_storage_object_access_control => {
+    Storage_object_access_control => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['domain', 'email', 'entity_id', 'generation', 'project_team']
+          'providedAttributes' => ['storage_object_access_controlID', 'domain', 'email', 'entity_id', 'generation', 'project_team']
         }
       },
       attributes => {
-        'google_storage_object_access_control_id' => {
+        'storage_object_access_controlID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -12522,13 +12554,13 @@ type TerraformGoogle = TypeSet[{
         },
         'object' => String,
         'project_team' => {
-          'type' => Optional[Array[Google_storage_object_access_control_project_team_222]],
+          'type' => Optional[Array[Storage_object_access_control__project_team]],
           'value' => undef
         },
         'role' => String
       }
     },
-    Google_storage_object_access_controlHandler => {
+    Storage_object_access_controlHandler => {
       functions => {
         'create' => Callable[
           [Object],
@@ -12542,7 +12574,7 @@ type TerraformGoogle = TypeSet[{
           Object]
       }
     },
-    Google_storage_object_access_control_project_team_222 => {
+    Storage_object_access_control__project_team => {
       attributes => {
         'project_number' => {
           'type' => Optional[String],
@@ -12554,15 +12586,15 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_storage_object_acl => {
+    Storage_object_acl => {
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bucket', 'object', 'predefined_acl'],
-          'providedAttributes' => ['role_entity']
+          'providedAttributes' => ['storage_object_aclID', 'role_entity']
         }
       },
       attributes => {
-        'google_storage_object_acl_id' => {
+        'storage_object_aclID' => {
           'annotations' => {
             TagsAnnotation => {
               'lyra' => 'ignore'
@@ -12583,7 +12615,7 @@ type TerraformGoogle = TypeSet[{
         }
       }
     },
-    Google_storage_object_aclHandler => {
+    Storage_object_aclHandler => {
       functions => {
         'create' => Callable[
           [Object],

@@ -3,7 +3,7 @@
 // This code is generated on a per-Provider basis using "tf-gen"
 // Long term our hope is to remove this generation step and adopt dynamic approach
 
-package generated
+package azurerm
 
 import (
 	"github.com/hashicorp/terraform/helper/schema"
@@ -12,7577 +12,5547 @@ import (
 	"github.com/lyraproj/servicesdk/service"
 )
 
+type (
+	Api_management struct {
+		Api_managementID          *string `lyra:"ignore"`
+		Additional_location       *[]Api_management__additional_location
+		Certificate               *[]Api_management__certificate
+		Gateway_regional_url      *string
+		Gateway_url               *string
+		Hostname_configuration    *[]Api_management__hostname_configuration
+		Identity                  *[]Api_management__identity
+		Location                  string
+		Management_api_url        *string
+		Name                      string
+		Notification_sender_email *string
+		Portal_url                *string
+		Public_ip_addresses       *[]string
+		Publisher_email           string
+		Publisher_name            string
+		Resource_group_name       string
+		Scm_url                   *string
+		Security                  *[]Api_management__security
+		Sku                       []Api_management__sku
+		Tags                      *map[string]string
+	}
+
+	App_service struct {
+		App_serviceID                  *string `lyra:"ignore"`
+		App_service_plan_id            string
+		App_settings                   *map[string]string
+		Client_affinity_enabled        *bool
+		Connection_string              *[]App_service__connection_string
+		Default_site_hostname          *string
+		Enabled                        *bool
+		Https_only                     *bool
+		Identity                       *[]App_service__identity
+		Location                       string
+		Name                           string
+		Outbound_ip_addresses          *string
+		Possible_outbound_ip_addresses *string
+		Resource_group_name            string
+		Site_config                    *[]App_service__site_config
+		Site_credential                *[]App_service__site_credential
+		Source_control                 *[]App_service__source_control
+		Tags                           *map[string]string
+	}
+
+	App_service_active_slot struct {
+		App_service_active_slotID *string `lyra:"ignore"`
+		App_service_name          string
+		App_service_slot_name     string
+		Resource_group_name       string
+	}
+
+	App_service_custom_hostname_binding struct {
+		App_service_custom_hostname_bindingID *string `lyra:"ignore"`
+		App_service_name                      string
+		Hostname                              string
+		Resource_group_name                   string
+	}
+
+	App_service_plan struct {
+		App_service_planID         *string `lyra:"ignore"`
+		App_service_environment_id *string
+		Kind                       *string
+		Location                   string
+		Maximum_number_of_workers  *int64
+		Name                       string
+		Per_site_scaling           *bool
+		Properties                 *[]App_service_plan__properties
+		Reserved                   *bool
+		Resource_group_name        string
+		Sku                        []App_service_plan__sku
+		Tags                       *map[string]string
+	}
+
+	App_service_slot struct {
+		App_service_slotID      *string `lyra:"ignore"`
+		App_service_name        string
+		App_service_plan_id     string
+		App_settings            *map[string]string
+		Client_affinity_enabled *bool
+		Connection_string       *[]App_service_slot__connection_string
+		Default_site_hostname   *string
+		Enabled                 *bool
+		Https_only              *bool
+		Identity                *[]App_service_slot__identity
+		Location                string
+		Name                    string
+		Resource_group_name     string
+		Site_config             *[]App_service_slot__site_config
+		Tags                    *map[string]string
+	}
+
+	Application_gateway struct {
+		Application_gatewayID      *string `lyra:"ignore"`
+		Authentication_certificate *[]Application_gateway__authentication_certificate
+		Backend_address_pool       []Application_gateway__backend_address_pool
+		Backend_http_settings      []Application_gateway__backend_http_settings
+		Disabled_ssl_protocols     *[]string
+		Frontend_ip_configuration  []Application_gateway__frontend_ip_configuration
+		Frontend_port              []Application_gateway__frontend_port
+		Gateway_ip_configuration   []Application_gateway__gateway_ip_configuration
+		Http_listener              []Application_gateway__http_listener
+		Location                   string
+		Name                       string
+		Probe                      *[]Application_gateway__probe
+		Request_routing_rule       []Application_gateway__request_routing_rule
+		Resource_group_name        string
+		Sku                        []Application_gateway__sku
+		Ssl_certificate            *[]Application_gateway__ssl_certificate
+		Tags                       *map[string]string
+		Url_path_map               *[]Application_gateway__url_path_map
+		Waf_configuration          *[]Application_gateway__waf_configuration
+	}
+
+	Application_insights struct {
+		Application_insightsID *string `lyra:"ignore"`
+		App_id                 *string
+		Application_type       string
+		Instrumentation_key    *string
+		Location               string
+		Name                   string
+		Resource_group_name    string
+		Tags                   *map[string]string
+	}
+
+	Application_insights_api_key struct {
+		Application_insights_api_keyID *string `lyra:"ignore"`
+		Api_key                        *string
+		Application_insights_id        string
+		Name                           string
+		Read_permissions               *[]string
+		Write_permissions              *[]string
+	}
+
+	Application_security_group struct {
+		Application_security_groupID *string `lyra:"ignore"`
+		Location                     string
+		Name                         string
+		Resource_group_name          string
+		Tags                         *map[string]string
+	}
+
+	Automation_account struct {
+		Automation_accountID     *string `lyra:"ignore"`
+		Dsc_primary_access_key   *string
+		Dsc_secondary_access_key *string
+		Dsc_server_endpoint      *string
+		Location                 string
+		Name                     string
+		Resource_group_name      string
+		Sku                      []Automation_account__sku
+		Tags                     *map[string]string
+	}
+
+	Automation_credential struct {
+		Automation_credentialID *string `lyra:"ignore"`
+		Account_name            string
+		Description             *string
+		Name                    string
+		Password                string
+		Resource_group_name     string
+		Username                string
+	}
+
+	Automation_dsc_configuration struct {
+		Automation_dsc_configurationID *string `lyra:"ignore"`
+		Automation_account_name        string
+		Content_embedded               string
+		Description                    *string
+		Location                       string
+		Log_verbose                    *bool
+		Name                           string
+		Resource_group_name            string
+		State                          *string
+	}
+
+	Automation_dsc_nodeconfiguration struct {
+		Automation_dsc_nodeconfigurationID *string `lyra:"ignore"`
+		Automation_account_name            string
+		Configuration_name                 *string
+		Content_embedded                   string
+		Name                               string
+		Resource_group_name                string
+	}
+
+	Automation_module struct {
+		Automation_moduleID     *string `lyra:"ignore"`
+		Automation_account_name string
+		Module_link             []Automation_module__module_link
+		Name                    string
+		Resource_group_name     string
+	}
+
+	Automation_runbook struct {
+		Automation_runbookID *string `lyra:"ignore"`
+		Account_name         string
+		Content              *string
+		Description          *string
+		Location             string
+		Log_progress         bool
+		Log_verbose          bool
+		Name                 string
+		Publish_content_link []Automation_runbook__publish_content_link
+		Resource_group_name  string
+		Runbook_type         string
+		Tags                 *map[string]string
+	}
+
+	Automation_schedule struct {
+		Automation_scheduleID   *string `lyra:"ignore"`
+		Account_name            *string
+		Automation_account_name *string
+		Description             *string
+		Expiry_time             *string
+		Frequency               string
+		Interval                *int64
+		Month_days              *[]int64
+		Monthly_occurrence      *[]Automation_schedule__monthly_occurrence
+		Name                    string
+		Resource_group_name     string
+		Start_time              *string
+		Timezone                *string
+		Week_days               *[]string
+	}
+
+	Autoscale_setting struct {
+		Autoscale_settingID *string `lyra:"ignore"`
+		Enabled             *bool
+		Location            string
+		Name                string
+		Notification        *[]Autoscale_setting__notification
+		Profile             []Autoscale_setting__profile
+		Resource_group_name string
+		Tags                *map[string]string
+		Target_resource_id  string
+	}
+
+	Availability_set struct {
+		Availability_setID           *string `lyra:"ignore"`
+		Location                     string
+		Managed                      *bool
+		Name                         string
+		Platform_fault_domain_count  *int64
+		Platform_update_domain_count *int64
+		Resource_group_name          string
+		Tags                         *map[string]string
+	}
+
+	Azuread_application struct {
+		Azuread_applicationID      *string `lyra:"ignore"`
+		Application_id             *string
+		Available_to_other_tenants *bool
+		Homepage                   *string
+		Identifier_uris            *[]string
+		Name                       string
+		Oauth2_allow_implicit_flow *bool
+		Reply_urls                 *[]string
+	}
+
+	Azuread_service_principal struct {
+		Azuread_service_principalID *string `lyra:"ignore"`
+		Application_id              string
+		Display_name                *string
+	}
+
+	Azuread_service_principal_password struct {
+		Azuread_service_principal_passwordID *string `lyra:"ignore"`
+		End_date                             string
+		Key_id                               *string
+		Service_principal_id                 string
+		Start_date                           *string
+		Value                                string
+	}
+
+	Batch_account struct {
+		Batch_accountID      *string `lyra:"ignore"`
+		Location             string
+		Name                 string
+		Pool_allocation_mode *string
+		Resource_group_name  string
+		Storage_account_id   *string
+		Tags                 *map[string]string
+	}
+
+	Batch_pool struct {
+		Batch_poolID                  *string `lyra:"ignore"`
+		Account_name                  string
+		Auto_scale                    *[]Batch_pool__auto_scale
+		Display_name                  *string
+		Fixed_scale                   *[]Batch_pool__fixed_scale
+		Name                          string
+		Node_agent_sku_id             string
+		Resource_group_name           string
+		Start_task                    *[]Batch_pool__start_task
+		Stop_pending_resize_operation *bool
+		Storage_image_reference       []Batch_pool__storage_image_reference
+		Vm_size                       string
+	}
+
+	Cdn_endpoint struct {
+		Cdn_endpointID                *string `lyra:"ignore"`
+		Content_types_to_compress     *[]string
+		Geo_filter                    *[]Cdn_endpoint__geo_filter
+		Host_name                     *string
+		Is_compression_enabled        *bool
+		Is_http_allowed               *bool
+		Is_https_allowed              *bool
+		Location                      string
+		Name                          string
+		Optimization_type             *string
+		Origin                        []Cdn_endpoint__origin
+		Origin_host_header            *string
+		Origin_path                   *string
+		Probe_path                    *string
+		Profile_name                  string
+		Querystring_caching_behaviour *string
+		Resource_group_name           string
+		Tags                          *map[string]string
+	}
+
+	Cdn_profile struct {
+		Cdn_profileID       *string `lyra:"ignore"`
+		Location            string
+		Name                string
+		Resource_group_name string
+		Sku                 string
+		Tags                *map[string]string
+	}
+
+	Cognitive_account struct {
+		Cognitive_accountID *string `lyra:"ignore"`
+		Endpoint            *string
+		Kind                string
+		Location            string
+		Name                string
+		Resource_group_name string
+		Sku                 []Cognitive_account__sku
+		Tags                *map[string]string
+	}
+
+	Container_group struct {
+		Container_groupID         *string `lyra:"ignore"`
+		Container                 []Container_group__container
+		Dns_name_label            *string
+		Fqdn                      *string
+		Image_registry_credential *[]Container_group__image_registry_credential
+		Ip_address                *string
+		Ip_address_type           *string
+		Location                  string
+		Name                      string
+		Os_type                   string
+		Resource_group_name       string
+		Restart_policy            *string
+		Tags                      *map[string]string
+	}
+
+	Container_registry struct {
+		Container_registryID     *string `lyra:"ignore"`
+		Admin_enabled            *bool
+		Admin_password           *string
+		Admin_username           *string
+		Georeplication_locations *[]string
+		Location                 string
+		Login_server             *string
+		Name                     string
+		Resource_group_name      string
+		Sku                      *string
+		Storage_account          *[]Container_registry__storage_account
+		Storage_account_id       *string
+		Tags                     *map[string]string
+	}
+
+	Container_service struct {
+		Container_serviceID    *string `lyra:"ignore"`
+		Agent_pool_profile     []Container_service__agent_pool_profile
+		Diagnostics_profile    []Container_service__diagnostics_profile
+		Linux_profile          []Container_service__linux_profile
+		Location               string
+		Master_profile         []Container_service__master_profile
+		Name                   string
+		Orchestration_platform string
+		Resource_group_name    string
+		Service_principal      *[]Container_service__service_principal
+		Tags                   *map[string]string
+	}
+
+	Cosmosdb_account struct {
+		Cosmosdb_accountID                *string `lyra:"ignore"`
+		Capabilities                      *[]Cosmosdb_account__capabilities
+		Connection_strings                *[]string
+		Consistency_policy                []Cosmosdb_account__consistency_policy
+		Enable_automatic_failover         *bool
+		Enable_multiple_write_locations   *bool
+		Endpoint                          *string
+		Failover_policy                   *[]Cosmosdb_account__failover_policy
+		Geo_location                      *[]Cosmosdb_account__geo_location
+		Ip_range_filter                   *string
+		Is_virtual_network_filter_enabled *bool
+		Kind                              *string
+		Location                          string
+		Name                              string
+		Offer_type                        string
+		Primary_master_key                *string
+		Primary_readonly_master_key       *string
+		Read_endpoints                    *[]string
+		Resource_group_name               string
+		Secondary_master_key              *string
+		Secondary_readonly_master_key     *string
+		Tags                              *map[string]string
+		Virtual_network_rule              *[]Cosmosdb_account__virtual_network_rule
+		Write_endpoints                   *[]string
+	}
+
+	Data_lake_analytics_account struct {
+		Data_lake_analytics_accountID *string `lyra:"ignore"`
+		Default_store_account_name    string
+		Location                      string
+		Name                          string
+		Resource_group_name           string
+		Tags                          *map[string]string
+		Tier                          *string
+	}
+
+	Data_lake_analytics_firewall_rule struct {
+		Data_lake_analytics_firewall_ruleID *string `lyra:"ignore"`
+		Account_name                        string
+		End_ip_address                      string
+		Name                                string
+		Resource_group_name                 string
+		Start_ip_address                    string
+	}
+
+	Data_lake_store struct {
+		Data_lake_storeID        *string `lyra:"ignore"`
+		Encryption_state         *string
+		Encryption_type          *string
+		Endpoint                 *string
+		Firewall_allow_azure_ips *string
+		Firewall_state           *string
+		Location                 string
+		Name                     string
+		Resource_group_name      string
+		Tags                     *map[string]string
+		Tier                     *string
+	}
+
+	Data_lake_store_file struct {
+		Data_lake_store_fileID *string `lyra:"ignore"`
+		Account_name           string
+		Local_file_path        string
+		Remote_file_path       string
+	}
+
+	Data_lake_store_firewall_rule struct {
+		Data_lake_store_firewall_ruleID *string `lyra:"ignore"`
+		Account_name                    string
+		End_ip_address                  string
+		Name                            string
+		Resource_group_name             string
+		Start_ip_address                string
+	}
+
+	Databricks_workspace struct {
+		Databricks_workspaceID      *string `lyra:"ignore"`
+		Location                    string
+		Managed_resource_group_id   *string
+		Managed_resource_group_name *string
+		Name                        string
+		Resource_group_name         string
+		Sku                         string
+		Tags                        *map[string]string
+	}
+
+	Dev_test_lab struct {
+		Dev_test_labID                       *string `lyra:"ignore"`
+		Artifacts_storage_account_id         *string
+		Default_premium_storage_account_id   *string
+		Default_storage_account_id           *string
+		Key_vault_id                         *string
+		Location                             string
+		Name                                 string
+		Premium_data_disk_storage_account_id *string
+		Resource_group_name                  string
+		Storage_type                         *string
+		Tags                                 *map[string]string
+		Unique_identifier                    *string
+	}
+
+	Dev_test_linux_virtual_machine struct {
+		Dev_test_linux_virtual_machineID *string `lyra:"ignore"`
+		Allow_claim                      *bool
+		Disallow_public_ip_address       *bool
+		Fqdn                             *string
+		Gallery_image_reference          []Dev_test_linux_virtual_machine__gallery_image_reference
+		Inbound_nat_rule                 *[]Dev_test_linux_virtual_machine__inbound_nat_rule
+		Lab_name                         string
+		Lab_subnet_name                  string
+		Lab_virtual_network_id           string
+		Location                         string
+		Name                             string
+		Notes                            *string
+		Password                         *string
+		Resource_group_name              string
+		Size                             string
+		Ssh_key                          *string
+		Storage_type                     string
+		Tags                             *map[string]string
+		Unique_identifier                *string
+		Username                         string
+	}
+
+	Dev_test_policy struct {
+		Dev_test_policyID   *string `lyra:"ignore"`
+		Description         *string
+		Evaluator_type      string
+		Fact_data           *string
+		Lab_name            string
+		Name                string
+		Policy_set_name     string
+		Resource_group_name string
+		Tags                *map[string]string
+		Threshold           string
+	}
+
+	Dev_test_virtual_network struct {
+		Dev_test_virtual_networkID *string `lyra:"ignore"`
+		Description                *string
+		Lab_name                   string
+		Name                       string
+		Resource_group_name        string
+		Subnet                     *[]Dev_test_virtual_network__subnet
+		Tags                       *map[string]string
+		Unique_identifier          *string
+	}
+
+	Dev_test_windows_virtual_machine struct {
+		Dev_test_windows_virtual_machineID *string `lyra:"ignore"`
+		Allow_claim                        *bool
+		Disallow_public_ip_address         *bool
+		Fqdn                               *string
+		Gallery_image_reference            []Dev_test_windows_virtual_machine__gallery_image_reference
+		Inbound_nat_rule                   *[]Dev_test_windows_virtual_machine__inbound_nat_rule
+		Lab_name                           string
+		Lab_subnet_name                    string
+		Lab_virtual_network_id             string
+		Location                           string
+		Name                               string
+		Notes                              *string
+		Password                           string
+		Resource_group_name                string
+		Size                               string
+		Storage_type                       string
+		Tags                               *map[string]string
+		Unique_identifier                  *string
+		Username                           string
+	}
+
+	Devspace_controller struct {
+		Devspace_controllerID                    *string `lyra:"ignore"`
+		Data_plane_fqdn                          *string
+		Host_suffix                              string
+		Location                                 string
+		Name                                     string
+		Resource_group_name                      string
+		Sku                                      []Devspace_controller__sku
+		Tags                                     *map[string]string
+		Target_container_host_credentials_base64 string
+		Target_container_host_resource_id        string
+	}
+
+	Dns_a_record struct {
+		Dns_a_recordID      *string `lyra:"ignore"`
+		Name                string
+		Records             []string
+		Resource_group_name string
+		Tags                *map[string]string
+		Ttl                 int64
+		Zone_name           string
+	}
+
+	Dns_aaaa_record struct {
+		Dns_aaaa_recordID   *string `lyra:"ignore"`
+		Name                string
+		Records             []string
+		Resource_group_name string
+		Tags                *map[string]string
+		Ttl                 int64
+		Zone_name           string
+	}
+
+	Dns_caa_record struct {
+		Dns_caa_recordID    *string `lyra:"ignore"`
+		Name                string
+		Record              []Dns_caa_record__record
+		Resource_group_name string
+		Tags                *map[string]string
+		Ttl                 int64
+		Zone_name           string
+	}
+
+	Dns_cname_record struct {
+		Dns_cname_recordID  *string `lyra:"ignore"`
+		Name                string
+		Record              string
+		Records             *string
+		Resource_group_name string
+		Tags                *map[string]string
+		Ttl                 int64
+		Zone_name           string
+	}
+
+	Dns_mx_record struct {
+		Dns_mx_recordID     *string `lyra:"ignore"`
+		Name                string
+		Record              []Dns_mx_record__record
+		Resource_group_name string
+		Tags                *map[string]string
+		Ttl                 int64
+		Zone_name           string
+	}
+
+	Dns_ns_record struct {
+		Dns_ns_recordID     *string `lyra:"ignore"`
+		Name                string
+		Record              *[]Dns_ns_record__record
+		Records             *[]string
+		Resource_group_name string
+		Tags                *map[string]string
+		Ttl                 int64
+		Zone_name           string
+	}
+
+	Dns_ptr_record struct {
+		Dns_ptr_recordID    *string `lyra:"ignore"`
+		Name                string
+		Records             []string
+		Resource_group_name string
+		Tags                *map[string]string
+		Ttl                 int64
+		Zone_name           string
+	}
+
+	Dns_srv_record struct {
+		Dns_srv_recordID    *string `lyra:"ignore"`
+		Name                string
+		Record              []Dns_srv_record__record
+		Resource_group_name string
+		Tags                *map[string]string
+		Ttl                 int64
+		Zone_name           string
+	}
+
+	Dns_txt_record struct {
+		Dns_txt_recordID    *string `lyra:"ignore"`
+		Name                string
+		Record              []Dns_txt_record__record
+		Resource_group_name string
+		Tags                *map[string]string
+		Ttl                 int64
+		Zone_name           string
+	}
+
+	Dns_zone struct {
+		Dns_zoneID                       *string `lyra:"ignore"`
+		Max_number_of_record_sets        *int64
+		Name                             string
+		Name_servers                     *[]string
+		Number_of_record_sets            *int64
+		Registration_virtual_network_ids *[]string
+		Resolution_virtual_network_ids   *[]string
+		Resource_group_name              string
+		Tags                             *map[string]string
+		Zone_type                        *string
+	}
+
+	Eventgrid_topic struct {
+		Eventgrid_topicID    *string `lyra:"ignore"`
+		Endpoint             *string
+		Location             string
+		Name                 string
+		Primary_access_key   *string
+		Resource_group_name  string
+		Secondary_access_key *string
+		Tags                 *map[string]string
+	}
+
+	Eventhub struct {
+		EventhubID          *string `lyra:"ignore"`
+		Capture_description *[]Eventhub__capture_description
+		Location            *string
+		Message_retention   int64
+		Name                string
+		Namespace_name      string
+		Partition_count     int64
+		Partition_ids       *[]string
+		Resource_group_name string
+	}
+
+	Eventhub_authorization_rule struct {
+		Eventhub_authorization_ruleID *string `lyra:"ignore"`
+		Eventhub_name                 string
+		Listen                        *bool
+		Location                      *string
+		Manage                        *bool
+		Name                          string
+		Namespace_name                string
+		Primary_connection_string     *string
+		Primary_key                   *string
+		Resource_group_name           string
+		Secondary_connection_string   *string
+		Secondary_key                 *string
+		Send                          *bool
+	}
+
+	Eventhub_consumer_group struct {
+		Eventhub_consumer_groupID *string `lyra:"ignore"`
+		Eventhub_name             string
+		Location                  *string
+		Name                      string
+		Namespace_name            string
+		Resource_group_name       string
+		User_metadata             *string
+	}
+
+	Eventhub_namespace struct {
+		Eventhub_namespaceID                *string `lyra:"ignore"`
+		Auto_inflate_enabled                *bool
+		Capacity                            *int64
+		Default_primary_connection_string   *string
+		Default_primary_key                 *string
+		Default_secondary_connection_string *string
+		Default_secondary_key               *string
+		Kafka_enabled                       *bool
+		Location                            string
+		Maximum_throughput_units            *int64
+		Name                                string
+		Resource_group_name                 string
+		Sku                                 string
+		Tags                                *map[string]string
+	}
+
+	Eventhub_namespace_authorization_rule struct {
+		Eventhub_namespace_authorization_ruleID *string `lyra:"ignore"`
+		Listen                                  *bool
+		Location                                *string
+		Manage                                  *bool
+		Name                                    string
+		Namespace_name                          string
+		Primary_connection_string               *string
+		Primary_key                             *string
+		Resource_group_name                     string
+		Secondary_connection_string             *string
+		Secondary_key                           *string
+		Send                                    *bool
+	}
+
+	Express_route_circuit struct {
+		Express_route_circuitID             *string `lyra:"ignore"`
+		Allow_classic_operations            *bool
+		Bandwidth_in_mbps                   int64
+		Location                            string
+		Name                                string
+		Peering_location                    string
+		Resource_group_name                 string
+		Service_key                         *string
+		Service_provider_name               string
+		Service_provider_provisioning_state *string
+		Sku                                 []Express_route_circuit__sku
+		Tags                                *map[string]string
+	}
+
+	Express_route_circuit_authorization struct {
+		Express_route_circuit_authorizationID *string `lyra:"ignore"`
+		Authorization_key                     *string
+		Authorization_use_status              *string
+		Express_route_circuit_name            string
+		Name                                  string
+		Resource_group_name                   string
+	}
+
+	Express_route_circuit_peering struct {
+		Express_route_circuit_peeringID *string `lyra:"ignore"`
+		Azure_asn                       *int64
+		Express_route_circuit_name      string
+		Microsoft_peering_config        *[]Express_route_circuit_peering__microsoft_peering_config
+		Peer_asn                        *int64
+		Peering_type                    string
+		Primary_azure_port              *string
+		Primary_peer_address_prefix     string
+		Resource_group_name             string
+		Secondary_azure_port            *string
+		Secondary_peer_address_prefix   string
+		Shared_key                      *string
+		Vlan_id                         int64
+	}
+
+	Firewall struct {
+		FirewallID          *string `lyra:"ignore"`
+		Ip_configuration    []Firewall__ip_configuration
+		Location            string
+		Name                string
+		Resource_group_name string
+		Tags                *map[string]string
+	}
+
+	Firewall_application_rule_collection struct {
+		Firewall_application_rule_collectionID *string `lyra:"ignore"`
+		Action                                 string
+		Azure_firewall_name                    string
+		Name                                   string
+		Priority                               int64
+		Resource_group_name                    string
+		Rule                                   []Firewall_application_rule_collection__rule
+	}
+
+	Firewall_network_rule_collection struct {
+		Firewall_network_rule_collectionID *string `lyra:"ignore"`
+		Action                             string
+		Azure_firewall_name                string
+		Name                               string
+		Priority                           int64
+		Resource_group_name                string
+		Rule                               []Firewall_network_rule_collection__rule
+	}
+
+	Function_app struct {
+		Function_appID            *string `lyra:"ignore"`
+		App_service_plan_id       string
+		App_settings              *map[string]string
+		Client_affinity_enabled   *bool
+		Connection_string         *[]Function_app__connection_string
+		Default_hostname          *string
+		Enable_builtin_logging    *bool
+		Enabled                   *bool
+		Https_only                *bool
+		Identity                  *[]Function_app__identity
+		Location                  string
+		Name                      string
+		Outbound_ip_addresses     *string
+		Resource_group_name       string
+		Site_config               *[]Function_app__site_config
+		Site_credential           *[]Function_app__site_credential
+		Storage_connection_string string
+		Tags                      *map[string]string
+		Version                   *string
+	}
+
+	Image struct {
+		ImageID                   *string `lyra:"ignore"`
+		Data_disk                 *[]Image__data_disk
+		Location                  string
+		Name                      string
+		Os_disk                   *[]Image__os_disk
+		Resource_group_name       string
+		Source_virtual_machine_id *string
+		Tags                      *map[string]string
+	}
+
+	Iothub struct {
+		IothubID                      *string `lyra:"ignore"`
+		Endpoint                      *[]Iothub__endpoint
+		Event_hub_events_endpoint     *string
+		Event_hub_events_path         *string
+		Event_hub_operations_endpoint *string
+		Event_hub_operations_path     *string
+		Hostname                      *string
+		Location                      string
+		Name                          string
+		Resource_group_name           string
+		Route                         *[]Iothub__route
+		Shared_access_policy          *[]Iothub__shared_access_policy
+		Sku                           []Iothub__sku
+		Tags                          *map[string]string
+		Type                          *string
+	}
+
+	Iothub_consumer_group struct {
+		Iothub_consumer_groupID *string `lyra:"ignore"`
+		Eventhub_endpoint_name  string
+		Iothub_name             string
+		Name                    string
+		Resource_group_name     string
+	}
+
+	Key_vault struct {
+		Key_vaultID                     *string `lyra:"ignore"`
+		Access_policy                   *[]Key_vault__access_policy
+		Enabled_for_deployment          *bool
+		Enabled_for_disk_encryption     *bool
+		Enabled_for_template_deployment *bool
+		Location                        string
+		Name                            string
+		Network_acls                    *[]Key_vault__network_acls
+		Resource_group_name             string
+		Sku                             []Key_vault__sku
+		Tags                            *map[string]string
+		Tenant_id                       string
+		Vault_uri                       *string
+	}
+
+	Key_vault_access_policy struct {
+		Key_vault_access_policyID *string `lyra:"ignore"`
+		Application_id            *string
+		Certificate_permissions   *[]string
+		Key_permissions           *[]string
+		Object_id                 string
+		Resource_group_name       string
+		Secret_permissions        *[]string
+		Tenant_id                 string
+		Vault_name                string
+	}
+
+	Key_vault_certificate struct {
+		Key_vault_certificateID *string `lyra:"ignore"`
+		Certificate             *[]Key_vault_certificate__certificate
+		Certificate_data        *string
+		Certificate_policy      []Key_vault_certificate__certificate_policy
+		Name                    string
+		Secret_id               *string
+		Tags                    *map[string]string
+		Thumbprint              *string
+		Vault_uri               string
+		Version                 *string
+	}
+
+	Key_vault_key struct {
+		Key_vault_keyID *string `lyra:"ignore"`
+		E               *string
+		Key_opts        []string
+		Key_size        int64
+		Key_type        string
+		N               *string
+		Name            string
+		Tags            *map[string]string
+		Vault_uri       string
+		Version         *string
+	}
+
+	Key_vault_secret struct {
+		Key_vault_secretID *string `lyra:"ignore"`
+		Content_type       *string
+		Name               string
+		Tags               *map[string]string
+		Value              string
+		Vault_uri          string
+		Version            *string
+	}
+
+	Kubernetes_cluster struct {
+		Kubernetes_clusterID      *string `lyra:"ignore"`
+		Addon_profile             *[]Kubernetes_cluster__addon_profile
+		Agent_pool_profile        []Kubernetes_cluster__agent_pool_profile
+		Dns_prefix                string
+		Fqdn                      *string
+		Kube_admin_config         *[]Kubernetes_cluster__kube_admin_config
+		Kube_admin_config_raw     *string
+		Kube_config               *[]Kubernetes_cluster__kube_config
+		Kube_config_raw           *string
+		Kubernetes_version        *string
+		Linux_profile             *[]Kubernetes_cluster__linux_profile
+		Location                  string
+		Name                      string
+		Network_profile           *[]Kubernetes_cluster__network_profile
+		Node_resource_group       *string
+		Resource_group_name       string
+		Role_based_access_control *[]Kubernetes_cluster__role_based_access_control
+		Service_principal         []Kubernetes_cluster__service_principal
+		Tags                      *map[string]string
+	}
+
+	Lb struct {
+		LbID                      *string `lyra:"ignore"`
+		Frontend_ip_configuration *[]Lb__frontend_ip_configuration
+		Location                  string
+		Name                      string
+		Private_ip_address        *string
+		Private_ip_addresses      *[]string
+		Resource_group_name       string
+		Sku                       *string
+		Tags                      *map[string]string
+	}
+
+	Lb_backend_address_pool struct {
+		Lb_backend_address_poolID *string `lyra:"ignore"`
+		Backend_ip_configurations *[]string
+		Load_balancing_rules      *[]string
+		Loadbalancer_id           string
+		Location                  *string
+		Name                      string
+		Resource_group_name       string
+	}
+
+	Lb_nat_pool struct {
+		Lb_nat_poolID                  *string `lyra:"ignore"`
+		Backend_port                   int64
+		Frontend_ip_configuration_id   *string
+		Frontend_ip_configuration_name string
+		Frontend_port_end              int64
+		Frontend_port_start            int64
+		Loadbalancer_id                string
+		Location                       *string
+		Name                           string
+		Protocol                       string
+		Resource_group_name            string
+	}
+
+	Lb_nat_rule struct {
+		Lb_nat_ruleID                  *string `lyra:"ignore"`
+		Backend_ip_configuration_id    *string
+		Backend_port                   int64
+		Enable_floating_ip             *bool
+		Frontend_ip_configuration_id   *string
+		Frontend_ip_configuration_name string
+		Frontend_port                  int64
+		Loadbalancer_id                string
+		Location                       *string
+		Name                           string
+		Protocol                       string
+		Resource_group_name            string
+	}
+
+	Lb_probe struct {
+		Lb_probeID          *string `lyra:"ignore"`
+		Interval_in_seconds *int64
+		Load_balancer_rules *[]string
+		Loadbalancer_id     string
+		Location            *string
+		Name                string
+		Number_of_probes    *int64
+		Port                int64
+		Protocol            *string
+		Request_path        *string
+		Resource_group_name string
+	}
+
+	Lb_rule struct {
+		Lb_ruleID                      *string `lyra:"ignore"`
+		Backend_address_pool_id        *string
+		Backend_port                   int64
+		Enable_floating_ip             *bool
+		Frontend_ip_configuration_id   *string
+		Frontend_ip_configuration_name string
+		Frontend_port                  int64
+		Idle_timeout_in_minutes        *int64
+		Load_distribution              *string
+		Loadbalancer_id                string
+		Location                       *string
+		Name                           string
+		Probe_id                       *string
+		Protocol                       string
+		Resource_group_name            string
+	}
+
+	Local_network_gateway struct {
+		Local_network_gatewayID *string `lyra:"ignore"`
+		Address_space           []string
+		Bgp_settings            *[]Local_network_gateway__bgp_settings
+		Gateway_address         string
+		Location                string
+		Name                    string
+		Resource_group_name     string
+		Tags                    *map[string]string
+	}
+
+	Log_analytics_solution struct {
+		Log_analytics_solutionID *string `lyra:"ignore"`
+		Location                 string
+		Plan                     []Log_analytics_solution__plan
+		Resource_group_name      string
+		Solution_name            string
+		Workspace_name           string
+		Workspace_resource_id    string
+	}
+
+	Log_analytics_workspace struct {
+		Log_analytics_workspaceID *string `lyra:"ignore"`
+		Location                  string
+		Name                      string
+		Portal_url                *string
+		Primary_shared_key        *string
+		Resource_group_name       string
+		Retention_in_days         *int64
+		Secondary_shared_key      *string
+		Sku                       string
+		Tags                      *map[string]string
+		Workspace_id              *string
+	}
+
+	Log_analytics_workspace_linked_service struct {
+		Log_analytics_workspace_linked_serviceID *string `lyra:"ignore"`
+		Linked_service_name                      *string
+		Linked_service_properties                map[string]Log_analytics_workspace_linked_service__linked_service_properties
+		Name                                     *string
+		Resource_group_name                      string
+		Tags                                     *map[string]string
+		Workspace_name                           string
+	}
+
+	Logic_app_action_custom struct {
+		Logic_app_action_customID *string `lyra:"ignore"`
+		Body                      string
+		Logic_app_id              string
+		Name                      string
+	}
+
+	Logic_app_action_http struct {
+		Logic_app_action_httpID *string `lyra:"ignore"`
+		Body                    *string
+		Headers                 *map[string]string
+		Logic_app_id            string
+		Method                  string
+		Name                    string
+		Uri                     string
+	}
+
+	Logic_app_trigger_custom struct {
+		Logic_app_trigger_customID *string `lyra:"ignore"`
+		Body                       string
+		Logic_app_id               string
+		Name                       string
+	}
+
+	Logic_app_trigger_http_request struct {
+		Logic_app_trigger_http_requestID *string `lyra:"ignore"`
+		Logic_app_id                     string
+		Method                           *string
+		Name                             string
+		Relative_path                    *string
+		Schema                           string
+	}
+
+	Logic_app_trigger_recurrence struct {
+		Logic_app_trigger_recurrenceID *string `lyra:"ignore"`
+		Frequency                      string
+		Interval                       int64
+		Logic_app_id                   string
+		Name                           string
+	}
+
+	Logic_app_workflow struct {
+		Logic_app_workflowID *string `lyra:"ignore"`
+		Access_endpoint      *string
+		Location             string
+		Name                 string
+		Parameters           *map[string]string
+		Resource_group_name  string
+		Tags                 *map[string]string
+		Workflow_schema      *string
+		Workflow_version     *string
+	}
+
+	Managed_disk struct {
+		Managed_diskID       *string `lyra:"ignore"`
+		Create_option        string
+		Disk_size_gb         *int64
+		Encryption_settings  *[]Managed_disk__encryption_settings
+		Image_reference_id   *string
+		Location             string
+		Name                 string
+		Os_type              *string
+		Resource_group_name  string
+		Source_resource_id   *string
+		Source_uri           *string
+		Storage_account_type string
+		Tags                 *map[string]string
+		Zones                *[]string
+	}
+
+	Management_group struct {
+		Management_groupID         *string `lyra:"ignore"`
+		Display_name               *string
+		Group_id                   *string
+		Parent_management_group_id *string
+		Subscription_ids           *[]string
+	}
+
+	Management_lock struct {
+		Management_lockID *string `lyra:"ignore"`
+		Lock_level        string
+		Name              string
+		Notes             *string
+		Scope             string
+	}
+
+	Mariadb_database struct {
+		Mariadb_databaseID  *string `lyra:"ignore"`
+		Charset             string
+		Collation           string
+		Name                string
+		Resource_group_name string
+		Server_name         string
+	}
+
+	Mariadb_server struct {
+		Mariadb_serverID             *string `lyra:"ignore"`
+		Administrator_login          string
+		Administrator_login_password string
+		Fqdn                         *string
+		Location                     string
+		Name                         string
+		Resource_group_name          string
+		Sku                          []Mariadb_server__sku
+		Ssl_enforcement              string
+		Storage_profile              []Mariadb_server__storage_profile
+		Tags                         *map[string]string
+		Version                      string
+	}
+
+	Metric_alertrule struct {
+		Metric_alertruleID  *string `lyra:"ignore"`
+		Aggregation         string
+		Description         *string
+		Email_action        *[]Metric_alertrule__email_action
+		Enabled             *bool
+		Location            string
+		Metric_name         string
+		Name                string
+		Operator            string
+		Period              string
+		Resource_group_name string
+		Resource_id         string
+		Tags                *map[string]string
+		Threshold           float64
+		Webhook_action      *[]Metric_alertrule__webhook_action
+	}
+
+	Monitor_action_group struct {
+		Monitor_action_groupID *string `lyra:"ignore"`
+		Email_receiver         *[]Monitor_action_group__email_receiver
+		Enabled                *bool
+		Name                   string
+		Resource_group_name    string
+		Short_name             string
+		Sms_receiver           *[]Monitor_action_group__sms_receiver
+		Tags                   *map[string]string
+		Webhook_receiver       *[]Monitor_action_group__webhook_receiver
+	}
+
+	Monitor_activity_log_alert struct {
+		Monitor_activity_log_alertID *string `lyra:"ignore"`
+		Action                       *[]Monitor_activity_log_alert__action
+		Criteria                     []Monitor_activity_log_alert__criteria
+		Description                  *string
+		Enabled                      *bool
+		Name                         string
+		Resource_group_name          string
+		Scopes                       []string
+		Tags                         *map[string]string
+	}
+
+	Monitor_diagnostic_setting struct {
+		Monitor_diagnostic_settingID   *string `lyra:"ignore"`
+		Eventhub_authorization_rule_id *string
+		Eventhub_name                  *string
+		Log                            *[]Monitor_diagnostic_setting__log
+		Log_analytics_workspace_id     *string
+		Metric                         *[]Monitor_diagnostic_setting__metric
+		Name                           string
+		Storage_account_id             *string
+		Target_resource_id             string
+	}
+
+	Monitor_log_profile struct {
+		Monitor_log_profileID *string `lyra:"ignore"`
+		Categories            []string
+		Locations             []string
+		Name                  string
+		Retention_policy      []Monitor_log_profile__retention_policy
+		Servicebus_rule_id    *string
+		Storage_account_id    *string
+	}
+
+	Monitor_metric_alert struct {
+		Monitor_metric_alertID *string `lyra:"ignore"`
+		Action                 *[]Monitor_metric_alert__action
+		Auto_mitigate          *bool
+		Criteria               []Monitor_metric_alert__criteria
+		Description            *string
+		Enabled                *bool
+		Frequency              *string
+		Name                   string
+		Resource_group_name    string
+		Scopes                 []string
+		Severity               *int64
+		Tags                   *map[string]string
+		Window_size            *string
+	}
+
+	Mssql_elasticpool struct {
+		Mssql_elasticpoolID     *string `lyra:"ignore"`
+		Elastic_pool_properties *[]Mssql_elasticpool__elastic_pool_properties
+		Location                string
+		Max_size_bytes          *int64
+		Name                    string
+		Per_database_settings   []Mssql_elasticpool__per_database_settings
+		Resource_group_name     string
+		Server_name             string
+		Sku                     []Mssql_elasticpool__sku
+		Tags                    *map[string]string
+		Zone_redundant          *bool
+	}
+
+	Mysql_configuration struct {
+		Mysql_configurationID *string `lyra:"ignore"`
+		Name                  string
+		Resource_group_name   string
+		Server_name           string
+		Value                 string
+	}
+
+	Mysql_database struct {
+		Mysql_databaseID    *string `lyra:"ignore"`
+		Charset             string
+		Collation           string
+		Name                string
+		Resource_group_name string
+		Server_name         string
+	}
+
+	Mysql_firewall_rule struct {
+		Mysql_firewall_ruleID *string `lyra:"ignore"`
+		End_ip_address        string
+		Name                  string
+		Resource_group_name   string
+		Server_name           string
+		Start_ip_address      string
+	}
+
+	Mysql_server struct {
+		Mysql_serverID               *string `lyra:"ignore"`
+		Administrator_login          string
+		Administrator_login_password string
+		Fqdn                         *string
+		Location                     string
+		Name                         string
+		Resource_group_name          string
+		Sku                          []Mysql_server__sku
+		Ssl_enforcement              string
+		Storage_profile              []Mysql_server__storage_profile
+		Tags                         *map[string]string
+		Version                      string
+	}
+
+	Mysql_virtual_network_rule struct {
+		Mysql_virtual_network_ruleID *string `lyra:"ignore"`
+		Name                         string
+		Resource_group_name          string
+		Server_name                  string
+		Subnet_id                    string
+	}
+
+	Network_interface struct {
+		Network_interfaceID           *string `lyra:"ignore"`
+		Applied_dns_servers           *[]string
+		Dns_servers                   *[]string
+		Enable_accelerated_networking *bool
+		Enable_ip_forwarding          *bool
+		Internal_dns_name_label       *string
+		Internal_fqdn                 *string
+		Ip_configuration              []Network_interface__ip_configuration
+		Location                      string
+		Mac_address                   *string
+		Name                          string
+		Network_security_group_id     *string
+		Private_ip_address            *string
+		Private_ip_addresses          *[]string
+		Resource_group_name           string
+		Tags                          *map[string]string
+		Virtual_machine_id            *string
+	}
+
+	Network_interface_application_gateway_backend_address_pool_association struct {
+		Network_interface_application_gateway_backend_address_pool_associationID *string `lyra:"ignore"`
+		Backend_address_pool_id                                                  string
+		Ip_configuration_name                                                    string
+		Network_interface_id                                                     string
+	}
+
+	Network_interface_backend_address_pool_association struct {
+		Network_interface_backend_address_pool_associationID *string `lyra:"ignore"`
+		Backend_address_pool_id                              string
+		Ip_configuration_name                                string
+		Network_interface_id                                 string
+	}
+
+	Network_interface_nat_rule_association struct {
+		Network_interface_nat_rule_associationID *string `lyra:"ignore"`
+		Ip_configuration_name                    string
+		Nat_rule_id                              string
+		Network_interface_id                     string
+	}
+
+	Network_security_group struct {
+		Network_security_groupID *string `lyra:"ignore"`
+		Location                 string
+		Name                     string
+		Resource_group_name      string
+		Security_rule            *[]Network_security_group__security_rule
+		Tags                     *map[string]string
+	}
+
+	Network_security_rule struct {
+		Network_security_ruleID                    *string `lyra:"ignore"`
+		Access                                     string
+		Description                                *string
+		Destination_address_prefix                 *string
+		Destination_address_prefixes               *[]string
+		Destination_application_security_group_ids *[]string
+		Destination_port_range                     *string
+		Destination_port_ranges                    *[]string
+		Direction                                  string
+		Name                                       string
+		Network_security_group_name                string
+		Priority                                   int64
+		Protocol                                   string
+		Resource_group_name                        string
+		Source_address_prefix                      *string
+		Source_address_prefixes                    *[]string
+		Source_application_security_group_ids      *[]string
+		Source_port_range                          *string
+		Source_port_ranges                         *[]string
+	}
+
+	Network_watcher struct {
+		Network_watcherID   *string `lyra:"ignore"`
+		Location            string
+		Name                string
+		Resource_group_name string
+		Tags                *map[string]string
+	}
+
+	Notification_hub struct {
+		Notification_hubID  *string `lyra:"ignore"`
+		Apns_credential     *[]Notification_hub__apns_credential
+		Gcm_credential      *[]Notification_hub__gcm_credential
+		Location            string
+		Name                string
+		Namespace_name      string
+		Resource_group_name string
+	}
+
+	Notification_hub_authorization_rule struct {
+		Notification_hub_authorization_ruleID *string `lyra:"ignore"`
+		Listen                                *bool
+		Manage                                *bool
+		Name                                  string
+		Namespace_name                        string
+		Notification_hub_name                 string
+		Primary_access_key                    *string
+		Resource_group_name                   string
+		Secondary_access_key                  *string
+		Send                                  *bool
+	}
+
+	Notification_hub_namespace struct {
+		Notification_hub_namespaceID *string `lyra:"ignore"`
+		Enabled                      *bool
+		Location                     string
+		Name                         string
+		Namespace_type               string
+		Resource_group_name          string
+		Servicebus_endpoint          *string
+		Sku                          []Notification_hub_namespace__sku
+	}
+
+	Packet_capture struct {
+		Packet_captureID          *string `lyra:"ignore"`
+		Filter                    *[]Packet_capture__filter
+		Maximum_bytes_per_packet  *int64
+		Maximum_bytes_per_session *int64
+		Maximum_capture_duration  *int64
+		Name                      string
+		Network_watcher_name      string
+		Resource_group_name       string
+		Storage_location          []Packet_capture__storage_location
+		Target_resource_id        string
+	}
+
+	Policy_assignment struct {
+		Policy_assignmentID  *string `lyra:"ignore"`
+		Description          *string
+		Display_name         *string
+		Identity             *[]Policy_assignment__identity
+		Location             *string
+		Name                 string
+		Not_scopes           *[]string
+		Parameters           *string
+		Policy_definition_id string
+		Scope                string
+	}
+
+	Policy_definition struct {
+		Policy_definitionID *string `lyra:"ignore"`
+		Description         *string
+		Display_name        string
+		Management_group_id *string
+		Metadata            *string
+		Mode                string
+		Name                string
+		Parameters          *string
+		Policy_rule         *string
+		Policy_type         string
+	}
+
+	Policy_set_definition struct {
+		Policy_set_definitionID *string `lyra:"ignore"`
+		Description             *string
+		Display_name            string
+		Management_group_id     *string
+		Metadata                *string
+		Name                    string
+		Parameters              *string
+		Policy_definitions      *string
+		Policy_type             string
+	}
+
+	Postgresql_configuration struct {
+		Postgresql_configurationID *string `lyra:"ignore"`
+		Name                       string
+		Resource_group_name        string
+		Server_name                string
+		Value                      string
+	}
+
+	Postgresql_database struct {
+		Postgresql_databaseID *string `lyra:"ignore"`
+		Charset               string
+		Collation             string
+		Name                  string
+		Resource_group_name   string
+		Server_name           string
+	}
+
+	Postgresql_firewall_rule struct {
+		Postgresql_firewall_ruleID *string `lyra:"ignore"`
+		End_ip_address             string
+		Name                       string
+		Resource_group_name        string
+		Server_name                string
+		Start_ip_address           string
+	}
+
+	Postgresql_server struct {
+		Postgresql_serverID          *string `lyra:"ignore"`
+		Administrator_login          string
+		Administrator_login_password string
+		Fqdn                         *string
+		Location                     string
+		Name                         string
+		Resource_group_name          string
+		Sku                          []Postgresql_server__sku
+		Ssl_enforcement              string
+		Storage_profile              []Postgresql_server__storage_profile
+		Tags                         *map[string]string
+		Version                      string
+	}
+
+	Postgresql_virtual_network_rule struct {
+		Postgresql_virtual_network_ruleID    *string `lyra:"ignore"`
+		Ignore_missing_vnet_service_endpoint *bool
+		Name                                 string
+		Resource_group_name                  string
+		Server_name                          string
+		Subnet_id                            string
+	}
+
+	Public_ip struct {
+		Public_ipID                  *string `lyra:"ignore"`
+		Allocation_method            *string
+		Domain_name_label            *string
+		Fqdn                         *string
+		Idle_timeout_in_minutes      *int64
+		Ip_address                   *string
+		Ip_version                   *string
+		Location                     string
+		Name                         string
+		Public_ip_address_allocation *string
+		Resource_group_name          string
+		Reverse_fqdn                 *string
+		Sku                          *string
+		Tags                         *map[string]string
+		Zones                        *[]string
+	}
+
+	Recovery_services_protected_vm struct {
+		Recovery_services_protected_vmID *string `lyra:"ignore"`
+		Backup_policy_id                 string
+		Recovery_vault_name              string
+		Resource_group_name              string
+		Source_vm_id                     string
+		Tags                             *map[string]string
+	}
+
+	Recovery_services_protection_policy_vm struct {
+		Recovery_services_protection_policy_vmID *string `lyra:"ignore"`
+		Backup                                   []Recovery_services_protection_policy_vm__backup
+		Name                                     string
+		Recovery_vault_name                      string
+		Resource_group_name                      string
+		Retention_daily                          *[]Recovery_services_protection_policy_vm__retention_daily
+		Retention_monthly                        *[]Recovery_services_protection_policy_vm__retention_monthly
+		Retention_weekly                         *[]Recovery_services_protection_policy_vm__retention_weekly
+		Retention_yearly                         *[]Recovery_services_protection_policy_vm__retention_yearly
+		Tags                                     *map[string]string
+		Timezone                                 *string
+	}
+
+	Recovery_services_vault struct {
+		Recovery_services_vaultID *string `lyra:"ignore"`
+		Location                  string
+		Name                      string
+		Resource_group_name       string
+		Sku                       string
+		Tags                      *map[string]string
+	}
+
+	Redis_cache struct {
+		Redis_cacheID             *string `lyra:"ignore"`
+		Capacity                  int64
+		Enable_non_ssl_port       *bool
+		Family                    string
+		Hostname                  *string
+		Location                  string
+		Name                      string
+		Patch_schedule            *[]Redis_cache__patch_schedule
+		Port                      *int64
+		Primary_access_key        *string
+		Private_static_ip_address *string
+		Redis_configuration       []Redis_cache__redis_configuration
+		Resource_group_name       string
+		Secondary_access_key      *string
+		Shard_count               *int64
+		Sku_name                  string
+		Ssl_port                  *int64
+		Subnet_id                 *string
+		Tags                      *map[string]string
+		Zones                     *[]string
+	}
+
+	Redis_firewall_rule struct {
+		Redis_firewall_ruleID *string `lyra:"ignore"`
+		End_ip                string
+		Name                  string
+		Redis_cache_name      string
+		Resource_group_name   string
+		Start_ip              string
+	}
+
+	Relay_namespace struct {
+		Relay_namespaceID           *string `lyra:"ignore"`
+		Location                    string
+		Metric_id                   *string
+		Name                        string
+		Primary_connection_string   *string
+		Primary_key                 *string
+		Resource_group_name         string
+		Secondary_connection_string *string
+		Secondary_key               *string
+		Sku                         []Relay_namespace__sku
+		Tags                        *map[string]string
+	}
+
+	Resource_group struct {
+		Resource_groupID *string `lyra:"ignore"`
+		Location         string
+		Name             string
+		Tags             *map[string]string
+	}
+
+	Role_assignment struct {
+		Role_assignmentID    *string `lyra:"ignore"`
+		Name                 *string
+		Principal_id         string
+		Role_definition_id   *string
+		Role_definition_name *string
+		Scope                string
+	}
+
+	Role_definition struct {
+		Role_definitionID  *string `lyra:"ignore"`
+		Assignable_scopes  []string
+		Description        *string
+		Name               string
+		Permissions        []Role_definition__permissions
+		Role_definition_id *string
+		Scope              string
+	}
+
+	Route struct {
+		RouteID                *string `lyra:"ignore"`
+		Address_prefix         string
+		Name                   string
+		Next_hop_in_ip_address *string
+		Next_hop_type          string
+		Resource_group_name    string
+		Route_table_name       string
+	}
+
+	Route_table struct {
+		Route_tableID                 *string `lyra:"ignore"`
+		Disable_bgp_route_propagation *bool
+		Location                      string
+		Name                          string
+		Resource_group_name           string
+		Route                         *[]Route_table__route
+		Subnets                       *[]string
+		Tags                          *map[string]string
+	}
+
+	Scheduler_job struct {
+		Scheduler_jobID            *string `lyra:"ignore"`
+		Action_storage_queue       *[]Scheduler_job__action_storage_queue
+		Action_web                 *[]Scheduler_job__action_web
+		Error_action_storage_queue *[]Scheduler_job__error_action_storage_queue
+		Error_action_web           *[]Scheduler_job__error_action_web
+		Job_collection_name        string
+		Name                       string
+		Recurrence                 *[]Scheduler_job__recurrence
+		Resource_group_name        string
+		Retry                      *[]Scheduler_job__retry
+		Start_time                 *string
+		State                      *string
+	}
+
+	Scheduler_job_collection struct {
+		Scheduler_job_collectionID *string `lyra:"ignore"`
+		Location                   string
+		Name                       string
+		Quota                      *[]Scheduler_job_collection__quota
+		Resource_group_name        string
+		Sku                        string
+		State                      *string
+		Tags                       *map[string]string
+	}
+
+	Search_service struct {
+		Search_serviceID    *string `lyra:"ignore"`
+		Location            string
+		Name                string
+		Partition_count     *int64
+		Primary_key         *string
+		Replica_count       *int64
+		Resource_group_name string
+		Secondary_key       *string
+		Sku                 string
+		Tags                *map[string]string
+	}
+
+	Security_center_contact struct {
+		Security_center_contactID *string `lyra:"ignore"`
+		Alert_notifications       bool
+		Alerts_to_admins          bool
+		Email                     string
+		Phone                     string
+	}
+
+	Security_center_subscription_pricing struct {
+		Security_center_subscription_pricingID *string `lyra:"ignore"`
+		Tier                                   string
+	}
+
+	Security_center_workspace struct {
+		Security_center_workspaceID *string `lyra:"ignore"`
+		Scope                       string
+		Workspace_id                string
+	}
+
+	Service_fabric_cluster struct {
+		Service_fabric_clusterID      *string `lyra:"ignore"`
+		Add_on_features               *[]string
+		Azure_active_directory        *[]Service_fabric_cluster__azure_active_directory
+		Certificate                   *[]Service_fabric_cluster__certificate
+		Client_certificate_thumbprint *[]Service_fabric_cluster__client_certificate_thumbprint
+		Cluster_code_version          *string
+		Cluster_endpoint              *string
+		Diagnostics_config            *[]Service_fabric_cluster__diagnostics_config
+		Fabric_settings               *[]Service_fabric_cluster__fabric_settings
+		Location                      string
+		Management_endpoint           string
+		Name                          string
+		Node_type                     []Service_fabric_cluster__node_type
+		Reliability_level             string
+		Resource_group_name           string
+		Reverse_proxy_certificate     *[]Service_fabric_cluster__reverse_proxy_certificate
+		Tags                          *map[string]string
+		Upgrade_mode                  string
+		Vm_image                      string
+	}
+
+	Servicebus_namespace struct {
+		Servicebus_namespaceID              *string `lyra:"ignore"`
+		Capacity                            *int64
+		Default_primary_connection_string   *string
+		Default_primary_key                 *string
+		Default_secondary_connection_string *string
+		Default_secondary_key               *string
+		Location                            string
+		Name                                string
+		Resource_group_name                 string
+		Sku                                 string
+		Tags                                *map[string]string
+	}
+
+	Servicebus_namespace_authorization_rule struct {
+		Servicebus_namespace_authorization_ruleID *string `lyra:"ignore"`
+		Listen                                    *bool
+		Manage                                    *bool
+		Name                                      string
+		Namespace_name                            string
+		Primary_connection_string                 *string
+		Primary_key                               *string
+		Resource_group_name                       string
+		Secondary_connection_string               *string
+		Secondary_key                             *string
+		Send                                      *bool
+	}
+
+	Servicebus_queue struct {
+		Servicebus_queueID                      *string `lyra:"ignore"`
+		Auto_delete_on_idle                     *string
+		Dead_lettering_on_message_expiration    *bool
+		Default_message_ttl                     *string
+		Duplicate_detection_history_time_window *string
+		Enable_batched_operations               *bool
+		Enable_express                          *bool
+		Enable_partitioning                     *bool
+		Location                                *string
+		Lock_duration                           *string
+		Max_delivery_count                      *int64
+		Max_size_in_megabytes                   *int64
+		Name                                    string
+		Namespace_name                          string
+		Requires_duplicate_detection            *bool
+		Requires_session                        *bool
+		Resource_group_name                     string
+		Support_ordering                        *bool
+	}
+
+	Servicebus_queue_authorization_rule struct {
+		Servicebus_queue_authorization_ruleID *string `lyra:"ignore"`
+		Listen                                *bool
+		Manage                                *bool
+		Name                                  string
+		Namespace_name                        string
+		Primary_connection_string             *string
+		Primary_key                           *string
+		Queue_name                            string
+		Resource_group_name                   string
+		Secondary_connection_string           *string
+		Secondary_key                         *string
+		Send                                  *bool
+	}
+
+	Servicebus_subscription struct {
+		Servicebus_subscriptionID                      *string `lyra:"ignore"`
+		Auto_delete_on_idle                            *string
+		Dead_lettering_on_filter_evaluation_exceptions *bool
+		Dead_lettering_on_message_expiration           *bool
+		Default_message_ttl                            *string
+		Enable_batched_operations                      *bool
+		Forward_to                                     *string
+		Location                                       *string
+		Lock_duration                                  *string
+		Max_delivery_count                             int64
+		Name                                           string
+		Namespace_name                                 string
+		Requires_session                               *bool
+		Resource_group_name                            string
+		Topic_name                                     string
+	}
+
+	Servicebus_subscription_rule struct {
+		Servicebus_subscription_ruleID *string `lyra:"ignore"`
+		Action                         *string
+		Correlation_filter             *[]Servicebus_subscription_rule__correlation_filter
+		Filter_type                    string
+		Name                           string
+		Namespace_name                 string
+		Resource_group_name            string
+		Sql_filter                     *string
+		Subscription_name              string
+		Topic_name                     string
+	}
+
+	Servicebus_topic struct {
+		Servicebus_topicID                          *string `lyra:"ignore"`
+		Auto_delete_on_idle                         *string
+		Default_message_ttl                         *string
+		Duplicate_detection_history_time_window     *string
+		Enable_batched_operations                   *bool
+		Enable_express                              *bool
+		Enable_filtering_messages_before_publishing *bool
+		Enable_partitioning                         *bool
+		Location                                    *string
+		Max_size_in_megabytes                       *int64
+		Name                                        string
+		Namespace_name                              string
+		Requires_duplicate_detection                *bool
+		Resource_group_name                         string
+		Status                                      *string
+		Support_ordering                            *bool
+	}
+
+	Servicebus_topic_authorization_rule struct {
+		Servicebus_topic_authorization_ruleID *string `lyra:"ignore"`
+		Listen                                *bool
+		Manage                                *bool
+		Name                                  string
+		Namespace_name                        string
+		Primary_connection_string             *string
+		Primary_key                           *string
+		Resource_group_name                   string
+		Secondary_connection_string           *string
+		Secondary_key                         *string
+		Send                                  *bool
+		Topic_name                            string
+	}
+
+	Shared_image struct {
+		Shared_imageID        *string `lyra:"ignore"`
+		Description           *string
+		Eula                  *string
+		Gallery_name          string
+		Identifier            []Shared_image__identifier
+		Location              string
+		Name                  string
+		Os_type               string
+		Privacy_statement_uri *string
+		Release_note_uri      *string
+		Resource_group_name   string
+		Tags                  *map[string]string
+	}
+
+	Shared_image_gallery struct {
+		Shared_image_galleryID *string `lyra:"ignore"`
+		Description            *string
+		Location               string
+		Name                   string
+		Resource_group_name    string
+		Tags                   *map[string]string
+		Unique_name            *string
+	}
+
+	Shared_image_version struct {
+		Shared_image_versionID *string `lyra:"ignore"`
+		Exclude_from_latest    *bool
+		Gallery_name           string
+		Image_name             string
+		Location               string
+		Managed_image_id       string
+		Name                   string
+		Resource_group_name    string
+		Tags                   *map[string]string
+		Target_region          []Shared_image_version__target_region
+	}
+
+	Signalr_service struct {
+		Signalr_serviceID   *string `lyra:"ignore"`
+		Hostname            *string
+		Ip_address          *string
+		Location            string
+		Name                string
+		Public_port         *int64
+		Resource_group_name string
+		Server_port         *int64
+		Sku                 []Signalr_service__sku
+		Tags                *map[string]string
+	}
+
+	Snapshot struct {
+		SnapshotID          *string `lyra:"ignore"`
+		Create_option       string
+		Disk_size_gb        *int64
+		Encryption_settings *[]Snapshot__encryption_settings
+		Location            string
+		Name                string
+		Resource_group_name string
+		Source_resource_id  *string
+		Source_uri          *string
+		Storage_account_id  *string
+		Tags                *map[string]string
+	}
+
+	Sql_active_directory_administrator struct {
+		Sql_active_directory_administratorID *string `lyra:"ignore"`
+		Login                                string
+		Object_id                            string
+		Resource_group_name                  string
+		Server_name                          string
+		Tenant_id                            string
+	}
+
+	Sql_database struct {
+		Sql_databaseID                   *string `lyra:"ignore"`
+		Collation                        *string
+		Create_mode                      *string
+		Creation_date                    *string
+		Default_secondary_location       *string
+		Edition                          *string
+		Elastic_pool_name                *string
+		Encryption                       *string
+		Import                           *[]Sql_database__import
+		Location                         string
+		Max_size_bytes                   *string
+		Name                             string
+		Requested_service_objective_id   *string
+		Requested_service_objective_name *string
+		Resource_group_name              string
+		Restore_point_in_time            *string
+		Server_name                      string
+		Source_database_deletion_date    *string
+		Source_database_id               *string
+		Tags                             *map[string]string
+		Threat_detection_policy          *[]Sql_database__threat_detection_policy
+	}
+
+	Sql_elasticpool struct {
+		Sql_elasticpoolID   *string `lyra:"ignore"`
+		Creation_date       *string
+		Db_dtu_max          *int64
+		Db_dtu_min          *int64
+		Dtu                 int64
+		Edition             string
+		Location            string
+		Name                string
+		Pool_size           *int64
+		Resource_group_name string
+		Server_name         string
+		Tags                *map[string]string
+	}
+
+	Sql_firewall_rule struct {
+		Sql_firewall_ruleID *string `lyra:"ignore"`
+		End_ip_address      string
+		Name                string
+		Resource_group_name string
+		Server_name         string
+		Start_ip_address    string
+	}
+
+	Sql_server struct {
+		Sql_serverID                 *string `lyra:"ignore"`
+		Administrator_login          string
+		Administrator_login_password string
+		Fully_qualified_domain_name  *string
+		Location                     string
+		Name                         string
+		Resource_group_name          string
+		Tags                         *map[string]string
+		Version                      string
+	}
+
+	Sql_virtual_network_rule struct {
+		Sql_virtual_network_ruleID           *string `lyra:"ignore"`
+		Ignore_missing_vnet_service_endpoint *bool
+		Name                                 string
+		Resource_group_name                  string
+		Server_name                          string
+		Subnet_id                            string
+	}
+
+	Storage_account struct {
+		Storage_accountID                *string `lyra:"ignore"`
+		Access_tier                      *string
+		Account_encryption_source        *string
+		Account_kind                     *string
+		Account_replication_type         string
+		Account_tier                     string
+		Account_type                     *string
+		Custom_domain                    *[]Storage_account__custom_domain
+		Enable_blob_encryption           *bool
+		Enable_file_encryption           *bool
+		Enable_https_traffic_only        *bool
+		Identity                         *[]Storage_account__identity
+		Location                         string
+		Name                             string
+		Network_rules                    *[]Storage_account__network_rules
+		Primary_access_key               *string
+		Primary_blob_connection_string   *string
+		Primary_blob_endpoint            *string
+		Primary_connection_string        *string
+		Primary_file_endpoint            *string
+		Primary_location                 *string
+		Primary_queue_endpoint           *string
+		Primary_table_endpoint           *string
+		Resource_group_name              string
+		Secondary_access_key             *string
+		Secondary_blob_connection_string *string
+		Secondary_blob_endpoint          *string
+		Secondary_connection_string      *string
+		Secondary_location               *string
+		Secondary_queue_endpoint         *string
+		Secondary_table_endpoint         *string
+		Tags                             *map[string]string
+	}
+
+	Storage_blob struct {
+		Storage_blobID         *string `lyra:"ignore"`
+		Attempts               *int64
+		Content_type           *string
+		Name                   string
+		Parallelism            *int64
+		Resource_group_name    string
+		Size                   *int64
+		Source                 *string
+		Source_uri             *string
+		Storage_account_name   string
+		Storage_container_name string
+		Type                   *string
+		Url                    *string
+	}
+
+	Storage_container struct {
+		Storage_containerID   *string `lyra:"ignore"`
+		Container_access_type *string
+		Name                  string
+		Properties            *map[string]string
+		Resource_group_name   string
+		Storage_account_name  string
+	}
+
+	Storage_queue struct {
+		Storage_queueID      *string `lyra:"ignore"`
+		Name                 string
+		Resource_group_name  string
+		Storage_account_name string
+	}
+
+	Storage_share struct {
+		Storage_shareID      *string `lyra:"ignore"`
+		Name                 string
+		Quota                *int64
+		Resource_group_name  string
+		Storage_account_name string
+		Url                  *string
+	}
+
+	Storage_table struct {
+		Storage_tableID      *string `lyra:"ignore"`
+		Name                 string
+		Resource_group_name  string
+		Storage_account_name string
+	}
+
+	Subnet struct {
+		SubnetID                  *string `lyra:"ignore"`
+		Address_prefix            string
+		Delegation                *[]Subnet__delegation
+		Ip_configurations         *[]string
+		Name                      string
+		Network_security_group_id *string
+		Resource_group_name       string
+		Route_table_id            *string
+		Service_endpoints         *[]string
+		Virtual_network_name      string
+	}
+
+	Subnet_network_security_group_association struct {
+		Subnet_network_security_group_associationID *string `lyra:"ignore"`
+		Network_security_group_id                   string
+		Subnet_id                                   string
+	}
+
+	Subnet_route_table_association struct {
+		Subnet_route_table_associationID *string `lyra:"ignore"`
+		Route_table_id                   string
+		Subnet_id                        string
+	}
+
+	Template_deployment struct {
+		Template_deploymentID *string `lyra:"ignore"`
+		Deployment_mode       string
+		Name                  string
+		Outputs               *map[string]string
+		Parameters            *map[string]string
+		Parameters_body       *string
+		Resource_group_name   string
+		Template_body         *string
+	}
+
+	Traffic_manager_endpoint struct {
+		Traffic_manager_endpointID *string `lyra:"ignore"`
+		Endpoint_location          *string
+		Endpoint_monitor_status    *string
+		Endpoint_status            *string
+		Geo_mappings               *[]string
+		Min_child_endpoints        *int64
+		Name                       string
+		Priority                   *int64
+		Profile_name               string
+		Resource_group_name        string
+		Target                     *string
+		Target_resource_id         *string
+		Type                       string
+		Weight                     *int64
+	}
+
+	Traffic_manager_profile struct {
+		Traffic_manager_profileID *string `lyra:"ignore"`
+		Dns_config                []Traffic_manager_profile__dns_config
+		Fqdn                      *string
+		Monitor_config            []Traffic_manager_profile__monitor_config
+		Name                      string
+		Profile_status            *string
+		Resource_group_name       string
+		Tags                      *map[string]string
+		Traffic_routing_method    string
+	}
+
+	User_assigned_identity struct {
+		User_assigned_identityID *string `lyra:"ignore"`
+		Client_id                *string
+		Location                 string
+		Name                     string
+		Principal_id             *string
+		Resource_group_name      string
+		Tags                     *map[string]string
+	}
+
+	Virtual_machine struct {
+		Virtual_machineID                *string `lyra:"ignore"`
+		Availability_set_id              *string
+		Boot_diagnostics                 *[]Virtual_machine__boot_diagnostics
+		Delete_data_disks_on_termination *bool
+		Delete_os_disk_on_termination    *bool
+		Identity                         *[]Virtual_machine__identity
+		License_type                     *string
+		Location                         string
+		Name                             string
+		Network_interface_ids            []string
+		Os_profile                       *[]Virtual_machine__os_profile
+		Os_profile_linux_config          *[]Virtual_machine__os_profile_linux_config
+		Os_profile_secrets               *[]Virtual_machine__os_profile_secrets
+		Os_profile_windows_config        *[]Virtual_machine__os_profile_windows_config
+		Plan                             *[]Virtual_machine__plan
+		Primary_network_interface_id     *string
+		Resource_group_name              string
+		Storage_data_disk                *[]Virtual_machine__storage_data_disk
+		Storage_image_reference          *[]Virtual_machine__storage_image_reference
+		Storage_os_disk                  []Virtual_machine__storage_os_disk
+		Tags                             *map[string]string
+		Vm_size                          string
+		Zones                            *[]string
+	}
+
+	Virtual_machine_data_disk_attachment struct {
+		Virtual_machine_data_disk_attachmentID *string `lyra:"ignore"`
+		Caching                                string
+		Create_option                          *string
+		Lun                                    int64
+		Managed_disk_id                        string
+		Virtual_machine_id                     string
+		Write_accelerator_enabled              *bool
+	}
+
+	Virtual_machine_extension struct {
+		Virtual_machine_extensionID *string `lyra:"ignore"`
+		Auto_upgrade_minor_version  *bool
+		Location                    string
+		Name                        string
+		Protected_settings          *string
+		Publisher                   string
+		Resource_group_name         string
+		Settings                    *string
+		Tags                        *map[string]string
+		Type                        string
+		Type_handler_version        string
+		Virtual_machine_name        string
+	}
+
+	Virtual_machine_scale_set struct {
+		Virtual_machine_scale_setID     *string `lyra:"ignore"`
+		Automatic_os_upgrade            *bool
+		Boot_diagnostics                *[]Virtual_machine_scale_set__boot_diagnostics
+		Eviction_policy                 *string
+		Extension                       *[]Virtual_machine_scale_set__extension
+		Health_probe_id                 *string
+		Identity                        *[]Virtual_machine_scale_set__identity
+		License_type                    *string
+		Location                        string
+		Name                            string
+		Network_profile                 []Virtual_machine_scale_set__network_profile
+		Os_profile                      []Virtual_machine_scale_set__os_profile
+		Os_profile_linux_config         *[]Virtual_machine_scale_set__os_profile_linux_config
+		Os_profile_secrets              *[]Virtual_machine_scale_set__os_profile_secrets
+		Os_profile_windows_config       *[]Virtual_machine_scale_set__os_profile_windows_config
+		Overprovision                   *bool
+		Plan                            *[]Virtual_machine_scale_set__plan
+		Priority                        *string
+		Resource_group_name             string
+		Rolling_upgrade_policy          *[]Virtual_machine_scale_set__rolling_upgrade_policy
+		Single_placement_group          *bool
+		Sku                             []Virtual_machine_scale_set__sku
+		Storage_profile_data_disk       *[]Virtual_machine_scale_set__storage_profile_data_disk
+		Storage_profile_image_reference *[]Virtual_machine_scale_set__storage_profile_image_reference
+		Storage_profile_os_disk         []Virtual_machine_scale_set__storage_profile_os_disk
+		Tags                            *map[string]string
+		Upgrade_policy_mode             string
+		Zones                           *[]string
+	}
+
+	Virtual_network struct {
+		Virtual_networkID   *string `lyra:"ignore"`
+		Address_space       []string
+		Dns_servers         *[]string
+		Location            string
+		Name                string
+		Resource_group_name string
+		Subnet              *[]Virtual_network__subnet
+		Tags                *map[string]string
+	}
+
+	Virtual_network_gateway struct {
+		Virtual_network_gatewayID        *string `lyra:"ignore"`
+		Active_active                    *bool
+		Bgp_settings                     *[]Virtual_network_gateway__bgp_settings
+		Default_local_network_gateway_id *string
+		Enable_bgp                       *bool
+		Ip_configuration                 []Virtual_network_gateway__ip_configuration
+		Location                         string
+		Name                             string
+		Resource_group_name              string
+		Sku                              string
+		Tags                             *map[string]string
+		Type                             string
+		Vpn_client_configuration         *[]Virtual_network_gateway__vpn_client_configuration
+		Vpn_type                         *string
+	}
+
+	Virtual_network_gateway_connection struct {
+		Virtual_network_gateway_connectionID *string `lyra:"ignore"`
+		Authorization_key                    *string
+		Enable_bgp                           *bool
+		Express_route_circuit_id             *string
+		Ipsec_policy                         *[]Virtual_network_gateway_connection__ipsec_policy
+		Local_network_gateway_id             *string
+		Location                             string
+		Name                                 string
+		Peer_virtual_network_gateway_id      *string
+		Resource_group_name                  string
+		Routing_weight                       *int64
+		Shared_key                           *string
+		Tags                                 *map[string]string
+		Type                                 string
+		Use_policy_based_traffic_selectors   *bool
+		Virtual_network_gateway_id           string
+	}
+
+	Virtual_network_peering struct {
+		Virtual_network_peeringID    *string `lyra:"ignore"`
+		Allow_forwarded_traffic      *bool
+		Allow_gateway_transit        *bool
+		Allow_virtual_network_access *bool
+		Name                         string
+		Remote_virtual_network_id    string
+		Resource_group_name          string
+		Use_remote_gateways          *bool
+		Virtual_network_name         string
+	}
+
+	Api_management__additional_location struct {
+		Gateway_regional_url *string
+		Location             string
+		Public_ip_addresses  *[]string
+	}
+
+	Api_management__certificate struct {
+		Certificate_password string
+		Encoded_certificate  string
+		Store_name           string
+	}
+
+	Api_management__hostname_configuration__management struct {
+		Certificate                  *string
+		Certificate_password         *string
+		Host_name                    string
+		Key_vault_id                 *string
+		Negotiate_client_certificate *bool
+	}
+
+	Api_management__hostname_configuration__portal struct {
+		Certificate                  *string
+		Certificate_password         *string
+		Host_name                    string
+		Key_vault_id                 *string
+		Negotiate_client_certificate *bool
+	}
+
+	Api_management__hostname_configuration__proxy struct {
+		Certificate                  *string
+		Certificate_password         *string
+		Default_ssl_binding          *bool
+		Host_name                    string
+		Key_vault_id                 *string
+		Negotiate_client_certificate *bool
+	}
+
+	Api_management__hostname_configuration__scm struct {
+		Certificate                  *string
+		Certificate_password         *string
+		Host_name                    string
+		Key_vault_id                 *string
+		Negotiate_client_certificate *bool
+	}
+
+	Api_management__hostname_configuration struct {
+		Management *[]Api_management__hostname_configuration__management
+		Portal     *[]Api_management__hostname_configuration__portal
+		Proxy      *[]Api_management__hostname_configuration__proxy
+		Scm        *[]Api_management__hostname_configuration__scm
+	}
+
+	Api_management__identity struct {
+		Principal_id *string
+		Tenant_id    *string
+		Type         string
+	}
+
+	Api_management__security struct {
+		Disable_backend_ssl30      *bool
+		Disable_backend_tls10      *bool
+		Disable_backend_tls11      *bool
+		Disable_frontend_ssl30     *bool
+		Disable_frontend_tls10     *bool
+		Disable_frontend_tls11     *bool
+		Disable_triple_des_chipers *bool
+	}
+
+	Api_management__sku struct {
+		Capacity int64
+		Name     string
+	}
+
+	App_service__connection_string struct {
+		Name  string
+		Type  string
+		Value string
+	}
+
+	App_service__identity struct {
+		Principal_id *string
+		Tenant_id    *string
+		Type         string
+	}
+
+	App_service__site_config__ip_restriction struct {
+		Ip_address  string
+		Subnet_mask *string
+	}
+
+	App_service__site_config struct {
+		Always_on                 *bool
+		App_command_line          *string
+		Default_documents         *[]string
+		Dotnet_framework_version  *string
+		Ftps_state                *string
+		Http2_enabled             *bool
+		Ip_restriction            *[]App_service__site_config__ip_restriction
+		Java_container            *string
+		Java_container_version    *string
+		Java_version              *string
+		Linux_fx_version          *string
+		Local_mysql_enabled       *bool
+		Managed_pipeline_mode     *string
+		Min_tls_version           *string
+		Php_version               *string
+		Python_version            *string
+		Remote_debugging_enabled  *bool
+		Remote_debugging_version  *string
+		Scm_type                  *string
+		Use_32_bit_worker_process *bool
+		Virtual_network_name      *string
+		Websockets_enabled        *bool
+	}
+
+	App_service__site_credential struct {
+		Password *string
+		Username *string
+	}
+
+	App_service__source_control struct {
+		Branch   *string
+		Repo_url *string
+	}
+
+	App_service_plan__properties struct {
+		App_service_environment_id *string
+		Per_site_scaling           *bool
+		Reserved                   *bool
+	}
+
+	App_service_plan__sku struct {
+		Capacity *int64
+		Size     string
+		Tier     string
+	}
+
+	App_service_slot__connection_string struct {
+		Name  string
+		Type  string
+		Value string
+	}
+
+	App_service_slot__identity struct {
+		Principal_id *string
+		Tenant_id    *string
+		Type         string
+	}
+
+	App_service_slot__site_config__ip_restriction struct {
+		Ip_address  string
+		Subnet_mask *string
+	}
+
+	App_service_slot__site_config struct {
+		Always_on                 *bool
+		App_command_line          *string
+		Default_documents         *[]string
+		Dotnet_framework_version  *string
+		Ftps_state                *string
+		Http2_enabled             *bool
+		Ip_restriction            *[]App_service_slot__site_config__ip_restriction
+		Java_container            *string
+		Java_container_version    *string
+		Java_version              *string
+		Linux_fx_version          *string
+		Local_mysql_enabled       *bool
+		Managed_pipeline_mode     *string
+		Min_tls_version           *string
+		Php_version               *string
+		Python_version            *string
+		Remote_debugging_enabled  *bool
+		Remote_debugging_version  *string
+		Scm_type                  *string
+		Use_32_bit_worker_process *bool
+		Virtual_network_name      *string
+		Websockets_enabled        *bool
+	}
+
+	Application_gateway__authentication_certificate struct {
+		Data string
+		Id   *string
+		Name string
+	}
+
+	Application_gateway__backend_address_pool struct {
+		Fqdn_list       *[]string
+		Id              *string
+		Ip_address_list *[]string
+		Name            string
+	}
+
+	Application_gateway__backend_http_settings__authentication_certificate struct {
+		Id   *string
+		Name string
+	}
+
+	Application_gateway__backend_http_settings struct {
+		Authentication_certificate *[]Application_gateway__backend_http_settings__authentication_certificate
+		Cookie_based_affinity      string
+		Id                         *string
+		Name                       string
+		Port                       int64
+		Probe_id                   *string
+		Probe_name                 *string
+		Protocol                   string
+		Request_timeout            *int64
+	}
+
+	Application_gateway__frontend_ip_configuration struct {
+		Id                            *string
+		Name                          string
+		Private_ip_address            *string
+		Private_ip_address_allocation *string
+		Public_ip_address_id          *string
+		Subnet_id                     *string
+	}
+
+	Application_gateway__frontend_port struct {
+		Id   *string
+		Name string
+		Port int64
+	}
+
+	Application_gateway__gateway_ip_configuration struct {
+		Id        *string
+		Name      string
+		Subnet_id string
+	}
+
+	Application_gateway__http_listener struct {
+		Frontend_ip_configuration_id   *string
+		Frontend_ip_configuration_name string
+		Frontend_port_id               *string
+		Frontend_port_name             string
+		Host_name                      *string
+		Id                             *string
+		Name                           string
+		Protocol                       string
+		Require_sni                    *bool
+		Ssl_certificate_id             *string
+		Ssl_certificate_name           *string
+	}
+
+	Application_gateway__probe__match struct {
+		Body        *string
+		Status_code *[]string
+	}
+
+	Application_gateway__probe struct {
+		Host                string
+		Id                  *string
+		Interval            int64
+		Match               *[]Application_gateway__probe__match
+		Minimum_servers     *int64
+		Name                string
+		Path                string
+		Protocol            string
+		Timeout             int64
+		Unhealthy_threshold int64
+	}
+
+	Application_gateway__request_routing_rule struct {
+		Backend_address_pool_id    *string
+		Backend_address_pool_name  *string
+		Backend_http_settings_id   *string
+		Backend_http_settings_name *string
+		Http_listener_id           *string
+		Http_listener_name         string
+		Id                         *string
+		Name                       string
+		Rule_type                  string
+		Url_path_map_id            *string
+		Url_path_map_name          *string
+	}
+
+	Application_gateway__sku struct {
+		Capacity int64
+		Name     string
+		Tier     string
+	}
+
+	Application_gateway__ssl_certificate struct {
+		Data             string
+		Id               *string
+		Name             string
+		Password         string
+		Public_cert_data *string
+	}
+
+	Application_gateway__url_path_map__path_rule struct {
+		Backend_address_pool_id    *string
+		Backend_address_pool_name  string
+		Backend_http_settings_id   *string
+		Backend_http_settings_name string
+		Id                         *string
+		Name                       string
+		Paths                      []string
+	}
+
+	Application_gateway__url_path_map struct {
+		Default_backend_address_pool_id    *string
+		Default_backend_address_pool_name  string
+		Default_backend_http_settings_id   *string
+		Default_backend_http_settings_name string
+		Id                                 *string
+		Name                               string
+		Path_rule                          []Application_gateway__url_path_map__path_rule
+	}
+
+	Application_gateway__waf_configuration struct {
+		Enabled          bool
+		Firewall_mode    string
+		Rule_set_type    *string
+		Rule_set_version string
+	}
+
+	Automation_account__sku struct {
+		Name *string
+	}
+
+	Automation_module__module_link__hash struct {
+		Algorithm string
+		Value     string
+	}
+
+	Automation_module__module_link struct {
+		Hash *[]Automation_module__module_link__hash
+		Uri  string
+	}
+
+	Automation_runbook__publish_content_link__hash struct {
+		Algorithm string
+		Value     string
+	}
+
+	Automation_runbook__publish_content_link struct {
+		Hash    *[]Automation_runbook__publish_content_link__hash
+		Uri     string
+		Version *string
+	}
+
+	Automation_schedule__monthly_occurrence struct {
+		Day        string
+		Occurrence int64
+	}
+
+	Autoscale_setting__notification__email struct {
+		Custom_emails                         *[]string
+		Send_to_subscription_administrator    *bool
+		Send_to_subscription_co_administrator *bool
+	}
+
+	Autoscale_setting__notification__webhook struct {
+		Properties  *map[string]string
+		Service_uri string
+	}
+
+	Autoscale_setting__notification struct {
+		Email   *[]Autoscale_setting__notification__email
+		Webhook *[]Autoscale_setting__notification__webhook
+	}
+
+	Autoscale_setting__profile__capacity struct {
+		Default int64
+		Maximum int64
+		Minimum int64
+	}
+
+	Autoscale_setting__profile__fixed_date struct {
+		End      string
+		Start    string
+		Timezone *string
+	}
+
+	Autoscale_setting__profile__recurrence struct {
+		Days     []string
+		Hours    []int64
+		Minutes  []int64
+		Timezone *string
+	}
+
+	Autoscale_setting__profile__rule__metric_trigger struct {
+		Metric_name        string
+		Metric_resource_id string
+		Operator           string
+		Statistic          string
+		Threshold          float64
+		Time_aggregation   string
+		Time_grain         string
+		Time_window        string
+	}
+
+	Autoscale_setting__profile__rule__scale_action struct {
+		Cooldown  string
+		Direction string
+		Type      string
+		Value     int64
+	}
+
+	Autoscale_setting__profile__rule struct {
+		Metric_trigger []Autoscale_setting__profile__rule__metric_trigger
+		Scale_action   []Autoscale_setting__profile__rule__scale_action
+	}
+
+	Autoscale_setting__profile struct {
+		Capacity   []Autoscale_setting__profile__capacity
+		Fixed_date *[]Autoscale_setting__profile__fixed_date
+		Name       string
+		Recurrence *[]Autoscale_setting__profile__recurrence
+		Rule       *[]Autoscale_setting__profile__rule
+	}
+
+	Batch_pool__auto_scale struct {
+		Evaluation_interval *string
+		Formula             string
+	}
+
+	Batch_pool__fixed_scale struct {
+		Resize_timeout            *string
+		Target_dedicated_nodes    *int64
+		Target_low_priority_nodes *int64
+	}
+
+	Batch_pool__start_task__user_identity__auto_user struct {
+		Elevation_level *string
+		Scope           *string
+	}
+
+	Batch_pool__start_task__user_identity struct {
+		Auto_user *[]Batch_pool__start_task__user_identity__auto_user
+		User_name *string
+	}
+
+	Batch_pool__start_task struct {
+		Command_line         string
+		Environment          *map[string]string
+		Max_task_retry_count *int64
+		User_identity        []Batch_pool__start_task__user_identity
+		Wait_for_success     *bool
+	}
+
+	Batch_pool__storage_image_reference struct {
+		Id        *string
+		Offer     string
+		Publisher string
+		Sku       string
+		Version   string
+	}
+
+	Cdn_endpoint__geo_filter struct {
+		Action        string
+		Country_codes []string
+		Relative_path string
+	}
+
+	Cdn_endpoint__origin struct {
+		Host_name  string
+		Http_port  *int64
+		Https_port *int64
+		Name       string
+	}
+
+	Cognitive_account__sku struct {
+		Name string
+		Tier string
+	}
+
+	Container_group__container__ports struct {
+		Port     *int64
+		Protocol *string
+	}
+
+	Container_group__container__volume struct {
+		Mount_path           string
+		Name                 string
+		Read_only            *bool
+		Share_name           string
+		Storage_account_key  string
+		Storage_account_name string
+	}
+
+	Container_group__container struct {
+		Command                      *string
+		Commands                     *[]string
+		Cpu                          float64
+		Environment_variables        *map[string]string
+		Image                        string
+		Memory                       float64
+		Name                         string
+		Port                         *int64
+		Ports                        *[]Container_group__container__ports
+		Protocol                     *string
+		Secure_environment_variables *map[string]string
+		Volume                       *[]Container_group__container__volume
+	}
+
+	Container_group__image_registry_credential struct {
+		Password string
+		Server   string
+		Username string
+	}
+
+	Container_registry__storage_account struct {
+		Access_key string
+		Name       string
+	}
+
+	Container_service__agent_pool_profile struct {
+		Count      *int64
+		Dns_prefix string
+		Fqdn       *string
+		Name       string
+		Vm_size    string
+	}
+
+	Container_service__diagnostics_profile struct {
+		Enabled     bool
+		Storage_uri *string
+	}
+
+	Container_service__linux_profile__ssh_key struct {
+		Key_data string
+	}
+
+	Container_service__linux_profile struct {
+		Admin_username string
+		Ssh_key        []Container_service__linux_profile__ssh_key
+	}
+
+	Container_service__master_profile struct {
+		Count      *int64
+		Dns_prefix string
+		Fqdn       *string
+	}
+
+	Container_service__service_principal struct {
+		Client_id     string
+		Client_secret string
+	}
+
+	Cosmosdb_account__capabilities struct {
+		Name string
+	}
+
+	Cosmosdb_account__consistency_policy struct {
+		Consistency_level       string
+		Max_interval_in_seconds *int64
+		Max_staleness_prefix    *int64
+	}
+
+	Cosmosdb_account__failover_policy struct {
+		Id       *string
+		Location string
+		Priority int64
+	}
+
+	Cosmosdb_account__geo_location struct {
+		Failover_priority int64
+		Id                *string
+		Location          string
+		Prefix            *string
+	}
+
+	Cosmosdb_account__virtual_network_rule struct {
+		Id string
+	}
+
+	Dev_test_linux_virtual_machine__gallery_image_reference struct {
+		Offer     string
+		Publisher string
+		Sku       string
+		Version   string
+	}
+
+	Dev_test_linux_virtual_machine__inbound_nat_rule struct {
+		Backend_port  int64
+		Frontend_port *int64
+		Protocol      string
+	}
+
+	Dev_test_virtual_network__subnet struct {
+		Name                            *string
+		Use_in_virtual_machine_creation *string
+		Use_public_ip_address           *string
+	}
+
+	Dev_test_windows_virtual_machine__gallery_image_reference struct {
+		Offer     string
+		Publisher string
+		Sku       string
+		Version   string
+	}
+
+	Dev_test_windows_virtual_machine__inbound_nat_rule struct {
+		Backend_port  int64
+		Frontend_port *int64
+		Protocol      string
+	}
+
+	Devspace_controller__sku struct {
+		Name string
+		Tier string
+	}
+
+	Dns_caa_record__record struct {
+		Flags int64
+		Tag   string
+		Value string
+	}
+
+	Dns_mx_record__record struct {
+		Exchange   string
+		Preference string
+	}
+
+	Dns_ns_record__record struct {
+		Nsdname string
+	}
+
+	Dns_srv_record__record struct {
+		Port     int64
+		Priority int64
+		Target   string
+		Weight   int64
+	}
+
+	Dns_txt_record__record struct {
+		Value string
+	}
+
+	Eventhub__capture_description__destination struct {
+		Archive_name_format string
+		Blob_container_name string
+		Name                string
+		Storage_account_id  string
+	}
+
+	Eventhub__capture_description struct {
+		Destination         []Eventhub__capture_description__destination
+		Enabled             bool
+		Encoding            string
+		Interval_in_seconds *int64
+		Size_limit_in_bytes *int64
+	}
+
+	Express_route_circuit__sku struct {
+		Family string
+		Tier   string
+	}
+
+	Express_route_circuit_peering__microsoft_peering_config struct {
+		Advertised_public_prefixes []string
+	}
+
+	Firewall__ip_configuration struct {
+		Internal_public_ip_address_id *string
+		Name                          string
+		Private_ip_address            *string
+		Public_ip_address_id          *string
+		Subnet_id                     string
+	}
+
+	Firewall_application_rule_collection__rule__protocol struct {
+		Port *int64
+		Type string
+	}
+
+	Firewall_application_rule_collection__rule struct {
+		Description      *string
+		Fqdn_tags        *[]string
+		Name             string
+		Protocol         *[]Firewall_application_rule_collection__rule__protocol
+		Source_addresses []string
+		Target_fqdns     *[]string
+	}
+
+	Firewall_network_rule_collection__rule struct {
+		Description           *string
+		Destination_addresses []string
+		Destination_ports     []string
+		Name                  string
+		Protocols             []string
+		Source_addresses      []string
+	}
+
+	Function_app__connection_string struct {
+		Name  string
+		Type  string
+		Value string
+	}
+
+	Function_app__identity struct {
+		Principal_id *string
+		Tenant_id    *string
+		Type         string
+	}
+
+	Function_app__site_config struct {
+		Always_on                 *bool
+		Use_32_bit_worker_process *bool
+		Websockets_enabled        *bool
+	}
+
+	Function_app__site_credential struct {
+		Password *string
+		Username *string
+	}
+
+	Image__data_disk struct {
+		Blob_uri        *string
+		Caching         *string
+		Lun             *int64
+		Managed_disk_id *string
+		Size_gb         *int64
+	}
+
+	Image__os_disk struct {
+		Blob_uri        *string
+		Caching         *string
+		Managed_disk_id *string
+		Os_state        *string
+		Os_type         *string
+		Size_gb         *int64
+	}
+
+	Iothub__endpoint struct {
+		Batch_frequency_in_seconds *int64
+		Connection_string          string
+		Container_name             *string
+		Encoding                   *string
+		File_name_format           *string
+		Max_chunk_size_in_bytes    *int64
+		Name                       string
+		Type                       string
+	}
+
+	Iothub__route struct {
+		Condition      *string
+		Enabled        bool
+		Endpoint_names []string
+		Name           string
+		Source         string
+	}
+
+	Iothub__shared_access_policy struct {
+		Key_name      *string
+		Permissions   *string
+		Primary_key   *string
+		Secondary_key *string
+	}
+
+	Iothub__sku struct {
+		Capacity int64
+		Name     string
+		Tier     string
+	}
+
+	Key_vault__access_policy struct {
+		Application_id          *string
+		Certificate_permissions *[]string
+		Key_permissions         *[]string
+		Object_id               string
+		Secret_permissions      *[]string
+		Tenant_id               string
+	}
+
+	Key_vault__network_acls struct {
+		Bypass                     string
+		Default_action             string
+		Ip_rules                   *[]string
+		Virtual_network_subnet_ids *[]string
+	}
+
+	Key_vault__sku struct {
+		Name string
+	}
+
+	Key_vault_certificate__certificate struct {
+		Contents string
+		Password *string
+	}
+
+	Key_vault_certificate__certificate_policy__issuer_parameters struct {
+		Name string
+	}
+
+	Key_vault_certificate__certificate_policy__key_properties struct {
+		Exportable bool
+		Key_size   int64
+		Key_type   string
+		Reuse_key  bool
+	}
+
+	Key_vault_certificate__certificate_policy__lifetime_action__action struct {
+		Action_type string
+	}
+
+	Key_vault_certificate__certificate_policy__lifetime_action__trigger struct {
+		Days_before_expiry  *int64
+		Lifetime_percentage *int64
+	}
+
+	Key_vault_certificate__certificate_policy__lifetime_action struct {
+		Action  []Key_vault_certificate__certificate_policy__lifetime_action__action
+		Trigger []Key_vault_certificate__certificate_policy__lifetime_action__trigger
+	}
+
+	Key_vault_certificate__certificate_policy__secret_properties struct {
+		Content_type string
+	}
+
+	Key_vault_certificate__certificate_policy__x509_certificate_properties__subject_alternative_names struct {
+		Dns_names *[]string
+		Emails    *[]string
+		Upns      *[]string
+	}
+
+	Key_vault_certificate__certificate_policy__x509_certificate_properties struct {
+		Extended_key_usage        *[]string
+		Key_usage                 []string
+		Subject                   string
+		Subject_alternative_names *[]Key_vault_certificate__certificate_policy__x509_certificate_properties__subject_alternative_names
+		Validity_in_months        int64
+	}
+
+	Key_vault_certificate__certificate_policy struct {
+		Issuer_parameters           []Key_vault_certificate__certificate_policy__issuer_parameters
+		Key_properties              []Key_vault_certificate__certificate_policy__key_properties
+		Lifetime_action             *[]Key_vault_certificate__certificate_policy__lifetime_action
+		Secret_properties           []Key_vault_certificate__certificate_policy__secret_properties
+		X509_certificate_properties *[]Key_vault_certificate__certificate_policy__x509_certificate_properties
+	}
+
+	Kubernetes_cluster__addon_profile__aci_connector_linux struct {
+		Enabled     bool
+		Subnet_name string
+	}
+
+	Kubernetes_cluster__addon_profile__http_application_routing struct {
+		Enabled                            bool
+		Http_application_routing_zone_name *string
+	}
+
+	Kubernetes_cluster__addon_profile__oms_agent struct {
+		Enabled                    bool
+		Log_analytics_workspace_id string
+	}
+
+	Kubernetes_cluster__addon_profile struct {
+		Aci_connector_linux      *[]Kubernetes_cluster__addon_profile__aci_connector_linux
+		Http_application_routing *[]Kubernetes_cluster__addon_profile__http_application_routing
+		Oms_agent                *[]Kubernetes_cluster__addon_profile__oms_agent
+	}
+
+	Kubernetes_cluster__agent_pool_profile struct {
+		Count           *int64
+		Dns_prefix      *string
+		Fqdn            *string
+		Max_pods        *int64
+		Name            string
+		Os_disk_size_gb *int64
+		Os_type         *string
+		Vm_size         string
+		Vnet_subnet_id  *string
+	}
+
+	Kubernetes_cluster__kube_admin_config struct {
+		Client_certificate     *string
+		Client_key             *string
+		Cluster_ca_certificate *string
+		Host                   *string
+		Password               *string
+		Username               *string
+	}
+
+	Kubernetes_cluster__kube_config struct {
+		Client_certificate     *string
+		Client_key             *string
+		Cluster_ca_certificate *string
+		Host                   *string
+		Password               *string
+		Username               *string
+	}
+
+	Kubernetes_cluster__linux_profile__ssh_key struct {
+		Key_data string
+	}
+
+	Kubernetes_cluster__linux_profile struct {
+		Admin_username string
+		Ssh_key        []Kubernetes_cluster__linux_profile__ssh_key
+	}
+
+	Kubernetes_cluster__network_profile struct {
+		Dns_service_ip     *string
+		Docker_bridge_cidr *string
+		Network_plugin     string
+		Pod_cidr           *string
+		Service_cidr       *string
+	}
+
+	Kubernetes_cluster__role_based_access_control__azure_active_directory struct {
+		Client_app_id     string
+		Server_app_id     string
+		Server_app_secret string
+		Tenant_id         *string
+	}
+
+	Kubernetes_cluster__role_based_access_control struct {
+		Azure_active_directory *[]Kubernetes_cluster__role_based_access_control__azure_active_directory
+		Enabled                bool
+	}
+
+	Kubernetes_cluster__service_principal struct {
+		Client_id     string
+		Client_secret string
+	}
+
+	Lb__frontend_ip_configuration struct {
+		Inbound_nat_rules             *[]string
+		Load_balancer_rules           *[]string
+		Name                          string
+		Private_ip_address            *string
+		Private_ip_address_allocation *string
+		Public_ip_address_id          *string
+		Subnet_id                     *string
+		Zones                         *[]string
+	}
+
+	Local_network_gateway__bgp_settings struct {
+		Asn                 int64
+		Bgp_peering_address string
+		Peer_weight         *int64
+	}
+
+	Log_analytics_solution__plan struct {
+		Name           *string
+		Product        string
+		Promotion_code *string
+		Publisher      string
+	}
+
+	Log_analytics_workspace_linked_service__linked_service_properties struct {
+		Resource_id string
+	}
+
+	Managed_disk__encryption_settings__disk_encryption_key struct {
+		Secret_url      string
+		Source_vault_id string
+	}
+
+	Managed_disk__encryption_settings__key_encryption_key struct {
+		Key_url         string
+		Source_vault_id string
+	}
+
+	Managed_disk__encryption_settings struct {
+		Disk_encryption_key *[]Managed_disk__encryption_settings__disk_encryption_key
+		Enabled             bool
+		Key_encryption_key  *[]Managed_disk__encryption_settings__key_encryption_key
+	}
+
+	Mariadb_server__sku struct {
+		Capacity int64
+		Family   string
+		Name     string
+		Tier     string
+	}
+
+	Mariadb_server__storage_profile struct {
+		Backup_retention_days *int64
+		Geo_redundant_backup  *string
+		Storage_mb            int64
+	}
+
+	Metric_alertrule__email_action struct {
+		Custom_emails          *[]string
+		Send_to_service_owners *bool
+	}
+
+	Metric_alertrule__webhook_action struct {
+		Properties  *map[string]string
+		Service_uri string
+	}
+
+	Monitor_action_group__email_receiver struct {
+		Email_address string
+		Name          string
+	}
+
+	Monitor_action_group__sms_receiver struct {
+		Country_code string
+		Name         string
+		Phone_number string
+	}
+
+	Monitor_action_group__webhook_receiver struct {
+		Name        string
+		Service_uri string
+	}
+
+	Monitor_activity_log_alert__action struct {
+		Action_group_id    string
+		Webhook_properties *map[string]string
+	}
+
+	Monitor_activity_log_alert__criteria struct {
+		Caller            *string
+		Category          string
+		Level             *string
+		Operation_name    *string
+		Resource_group    *string
+		Resource_id       *string
+		Resource_provider *string
+		Resource_type     *string
+		Status            *string
+		Sub_status        *string
+	}
+
+	Monitor_diagnostic_setting__log__retention_policy struct {
+		Days    *int64
+		Enabled bool
+	}
+
+	Monitor_diagnostic_setting__log struct {
+		Category         string
+		Enabled          *bool
+		Retention_policy []Monitor_diagnostic_setting__log__retention_policy
+	}
+
+	Monitor_diagnostic_setting__metric__retention_policy struct {
+		Days    *int64
+		Enabled bool
+	}
+
+	Monitor_diagnostic_setting__metric struct {
+		Category         string
+		Enabled          *bool
+		Retention_policy []Monitor_diagnostic_setting__metric__retention_policy
+	}
+
+	Monitor_log_profile__retention_policy struct {
+		Days    *int64
+		Enabled bool
+	}
+
+	Monitor_metric_alert__action struct {
+		Action_group_id    string
+		Webhook_properties *map[string]string
+	}
+
+	Monitor_metric_alert__criteria__dimension struct {
+		Name     string
+		Operator string
+		Values   []string
+	}
+
+	Monitor_metric_alert__criteria struct {
+		Aggregation      string
+		Dimension        *[]Monitor_metric_alert__criteria__dimension
+		Metric_name      string
+		Metric_namespace string
+		Operator         string
+		Threshold        float64
+	}
+
+	Mssql_elasticpool__elastic_pool_properties struct {
+		Creation_date  *string
+		License_type   *string
+		Max_size_bytes *int64
+		State          *string
+		Zone_redundant *bool
+	}
+
+	Mssql_elasticpool__per_database_settings struct {
+		Max_capacity float64
+		Min_capacity float64
+	}
+
+	Mssql_elasticpool__sku struct {
+		Capacity int64
+		Family   *string
+		Name     string
+		Tier     string
+	}
+
+	Mysql_server__sku struct {
+		Capacity int64
+		Family   string
+		Name     string
+		Tier     string
+	}
+
+	Mysql_server__storage_profile struct {
+		Backup_retention_days *int64
+		Geo_redundant_backup  *string
+		Storage_mb            int64
+	}
+
+	Network_interface__ip_configuration struct {
+		Application_gateway_backend_address_pools_ids *[]string
+		Application_security_group_ids                *[]string
+		Load_balancer_backend_address_pools_ids       *[]string
+		Load_balancer_inbound_nat_rules_ids           *[]string
+		Name                                          string
+		Primary                                       *bool
+		Private_ip_address                            *string
+		Private_ip_address_allocation                 string
+		Private_ip_address_version                    *string
+		Public_ip_address_id                          *string
+		Subnet_id                                     *string
+	}
+
+	Network_security_group__security_rule struct {
+		Access                                     string
+		Description                                *string
+		Destination_address_prefix                 *string
+		Destination_address_prefixes               *[]string
+		Destination_application_security_group_ids *[]string
+		Destination_port_range                     *string
+		Destination_port_ranges                    *[]string
+		Direction                                  string
+		Name                                       string
+		Priority                                   int64
+		Protocol                                   string
+		Source_address_prefix                      *string
+		Source_address_prefixes                    *[]string
+		Source_application_security_group_ids      *[]string
+		Source_port_range                          *string
+		Source_port_ranges                         *[]string
+	}
+
+	Notification_hub__apns_credential struct {
+		Application_mode string
+		Bundle_id        string
+		Key_id           string
+		Team_id          string
+		Token            string
+	}
+
+	Notification_hub__gcm_credential struct {
+		Api_key string
+	}
+
+	Notification_hub_namespace__sku struct {
+		Name string
+	}
+
+	Packet_capture__filter struct {
+		Local_ip_address  *string
+		Local_port        *string
+		Protocol          string
+		Remote_ip_address *string
+		Remote_port       *string
+	}
+
+	Packet_capture__storage_location struct {
+		File_path          *string
+		Storage_account_id *string
+		Storage_path       *string
+	}
+
+	Policy_assignment__identity struct {
+		Principal_id *string
+		Tenant_id    *string
+		Type         *string
+	}
+
+	Postgresql_server__sku struct {
+		Capacity int64
+		Family   string
+		Name     string
+		Tier     string
+	}
+
+	Postgresql_server__storage_profile struct {
+		Backup_retention_days *int64
+		Geo_redundant_backup  *string
+		Storage_mb            int64
+	}
+
+	Recovery_services_protection_policy_vm__backup struct {
+		Frequency string
+		Time      string
+		Weekdays  *[]string
+	}
+
+	Recovery_services_protection_policy_vm__retention_daily struct {
+		Count int64
+	}
+
+	Recovery_services_protection_policy_vm__retention_monthly struct {
+		Count    int64
+		Weekdays []string
+		Weeks    []string
+	}
+
+	Recovery_services_protection_policy_vm__retention_weekly struct {
+		Count    int64
+		Weekdays []string
+	}
+
+	Recovery_services_protection_policy_vm__retention_yearly struct {
+		Count    int64
+		Months   []string
+		Weekdays []string
+		Weeks    []string
+	}
+
+	Redis_cache__patch_schedule struct {
+		Day_of_week    string
+		Start_hour_utc *int64
+	}
+
+	Redis_cache__redis_configuration struct {
+		Maxclients                    *int64
+		Maxmemory_delta               *int64
+		Maxmemory_policy              *string
+		Maxmemory_reserved            *int64
+		Notify_keyspace_events        *string
+		Rdb_backup_enabled            *bool
+		Rdb_backup_frequency          *int64
+		Rdb_backup_max_snapshot_count *int64
+		Rdb_storage_connection_string *string
+	}
+
+	Relay_namespace__sku struct {
+		Name string
+	}
+
+	Role_definition__permissions struct {
+		Actions          *[]string
+		Data_actions     *[]string
+		Not_actions      *[]string
+		Not_data_actions *[]string
+	}
+
+	Route_table__route struct {
+		Address_prefix         string
+		Name                   string
+		Next_hop_in_ip_address *string
+		Next_hop_type          string
+	}
+
+	Scheduler_job__action_storage_queue struct {
+		Message              string
+		Sas_token            string
+		Storage_account_name string
+		Storage_queue_name   string
+	}
+
+	Scheduler_job__action_web__authentication_active_directory struct {
+		Audience  *string
+		Client_id string
+		Secret    string
+		Tenant_id string
+	}
+
+	Scheduler_job__action_web__authentication_basic struct {
+		Password string
+		Username string
+	}
+
+	Scheduler_job__action_web__authentication_certificate struct {
+		Expiration   *string
+		Password     string
+		Pfx          string
+		Subject_name *string
+		Thumbprint   *string
+	}
+
+	Scheduler_job__action_web struct {
+		Authentication_active_directory *[]Scheduler_job__action_web__authentication_active_directory
+		Authentication_basic            *[]Scheduler_job__action_web__authentication_basic
+		Authentication_certificate      *[]Scheduler_job__action_web__authentication_certificate
+		Body                            *string
+		Headers                         *map[string]string
+		Method                          string
+		Url                             string
+	}
+
+	Scheduler_job__error_action_storage_queue struct {
+		Message              string
+		Sas_token            string
+		Storage_account_name string
+		Storage_queue_name   string
+	}
+
+	Scheduler_job__error_action_web__authentication_active_directory struct {
+		Audience  *string
+		Client_id string
+		Secret    string
+		Tenant_id string
+	}
+
+	Scheduler_job__error_action_web__authentication_basic struct {
+		Password string
+		Username string
+	}
+
+	Scheduler_job__error_action_web__authentication_certificate struct {
+		Expiration   *string
+		Password     string
+		Pfx          string
+		Subject_name *string
+		Thumbprint   *string
+	}
+
+	Scheduler_job__error_action_web struct {
+		Authentication_active_directory *[]Scheduler_job__error_action_web__authentication_active_directory
+		Authentication_basic            *[]Scheduler_job__error_action_web__authentication_basic
+		Authentication_certificate      *[]Scheduler_job__error_action_web__authentication_certificate
+		Body                            *string
+		Headers                         *map[string]string
+		Method                          string
+		Url                             string
+	}
+
+	Scheduler_job__recurrence__monthly_occurrences struct {
+		Day        string
+		Occurrence int64
+	}
+
+	Scheduler_job__recurrence struct {
+		Count               *int64
+		End_time            *string
+		Frequency           string
+		Hours               *[]int64
+		Interval            *int64
+		Minutes             *[]int64
+		Month_days          *[]int64
+		Monthly_occurrences *[]Scheduler_job__recurrence__monthly_occurrences
+		Week_days           *[]string
+	}
+
+	Scheduler_job__retry struct {
+		Count    *int64
+		Interval *string
+	}
+
+	Scheduler_job_collection__quota struct {
+		Max_job_count            *int64
+		Max_recurrence_frequency string
+		Max_recurrence_interval  *int64
+		Max_retry_interval       *int64
+	}
+
+	Service_fabric_cluster__azure_active_directory struct {
+		Client_application_id  string
+		Cluster_application_id string
+		Tenant_id              string
+	}
+
+	Service_fabric_cluster__certificate struct {
+		Thumbprint           string
+		Thumbprint_secondary *string
+		X509_store_name      string
+	}
+
+	Service_fabric_cluster__client_certificate_thumbprint struct {
+		Is_admin   bool
+		Thumbprint string
+	}
+
+	Service_fabric_cluster__diagnostics_config struct {
+		Blob_endpoint              string
+		Protected_account_key_name string
+		Queue_endpoint             string
+		Storage_account_name       string
+		Table_endpoint             string
+	}
+
+	Service_fabric_cluster__fabric_settings struct {
+		Name       string
+		Parameters *map[string]string
+	}
+
+	Service_fabric_cluster__node_type__application_ports struct {
+		End_port   int64
+		Start_port int64
+	}
+
+	Service_fabric_cluster__node_type__ephemeral_ports struct {
+		End_port   int64
+		Start_port int64
+	}
+
+	Service_fabric_cluster__node_type struct {
+		Application_ports           *[]Service_fabric_cluster__node_type__application_ports
+		Client_endpoint_port        int64
+		Durability_level            *string
+		Ephemeral_ports             *[]Service_fabric_cluster__node_type__ephemeral_ports
+		Http_endpoint_port          int64
+		Instance_count              int64
+		Is_primary                  bool
+		Name                        string
+		Reverse_proxy_endpoint_port *int64
+	}
+
+	Service_fabric_cluster__reverse_proxy_certificate struct {
+		Thumbprint           string
+		Thumbprint_secondary *string
+		X509_store_name      string
+	}
+
+	Servicebus_subscription_rule__correlation_filter struct {
+		Content_type        *string
+		Correlation_id      *string
+		Label               *string
+		Message_id          *string
+		Reply_to            *string
+		Reply_to_session_id *string
+		Session_id          *string
+		To                  *string
+	}
+
+	Shared_image__identifier struct {
+		Offer     string
+		Publisher string
+		Sku       string
+	}
+
+	Shared_image_version__target_region struct {
+		Name                   string
+		Regional_replica_count int64
+	}
+
+	Signalr_service__sku struct {
+		Capacity int64
+		Name     string
+	}
+
+	Snapshot__encryption_settings__disk_encryption_key struct {
+		Secret_url      string
+		Source_vault_id string
+	}
+
+	Snapshot__encryption_settings__key_encryption_key struct {
+		Key_url         string
+		Source_vault_id string
+	}
+
+	Snapshot__encryption_settings struct {
+		Disk_encryption_key *[]Snapshot__encryption_settings__disk_encryption_key
+		Enabled             bool
+		Key_encryption_key  *[]Snapshot__encryption_settings__key_encryption_key
+	}
+
+	Sql_database__import struct {
+		Administrator_login          string
+		Administrator_login_password string
+		Authentication_type          string
+		Operation_mode               *string
+		Storage_key                  string
+		Storage_key_type             string
+		Storage_uri                  string
+	}
+
+	Sql_database__threat_detection_policy struct {
+		Disabled_alerts            *[]string
+		Email_account_admins       *string
+		Email_addresses            *[]string
+		Retention_days             *int64
+		State                      *string
+		Storage_account_access_key *string
+		Storage_endpoint           *string
+		Use_server_default         *string
+	}
+
+	Storage_account__custom_domain struct {
+		Name          string
+		Use_subdomain *bool
+	}
+
+	Storage_account__identity struct {
+		Principal_id *string
+		Tenant_id    *string
+		Type         string
+	}
+
+	Storage_account__network_rules struct {
+		Bypass                     *[]string
+		Ip_rules                   *[]string
+		Virtual_network_subnet_ids *[]string
+	}
+
+	Subnet__delegation__service_delegation struct {
+		Actions *[]string
+		Name    string
+	}
+
+	Subnet__delegation struct {
+		Name               string
+		Service_delegation []Subnet__delegation__service_delegation
+	}
+
+	Traffic_manager_profile__dns_config struct {
+		Relative_name string
+		Ttl           int64
+	}
+
+	Traffic_manager_profile__monitor_config struct {
+		Path     *string
+		Port     int64
+		Protocol string
+	}
+
+	Virtual_machine__boot_diagnostics struct {
+		Enabled     bool
+		Storage_uri string
+	}
+
+	Virtual_machine__identity struct {
+		Identity_ids *[]string
+		Principal_id *string
+		Type         string
+	}
+
+	Virtual_machine__os_profile struct {
+		Admin_password *string
+		Admin_username string
+		Computer_name  string
+		Custom_data    *string
+	}
+
+	Virtual_machine__os_profile_linux_config__ssh_keys struct {
+		Key_data string
+		Path     string
+	}
+
+	Virtual_machine__os_profile_linux_config struct {
+		Disable_password_authentication bool
+		Ssh_keys                        *[]Virtual_machine__os_profile_linux_config__ssh_keys
+	}
+
+	Virtual_machine__os_profile_secrets__vault_certificates struct {
+		Certificate_store *string
+		Certificate_url   string
+	}
+
+	Virtual_machine__os_profile_secrets struct {
+		Source_vault_id    string
+		Vault_certificates *[]Virtual_machine__os_profile_secrets__vault_certificates
+	}
+
+	Virtual_machine__os_profile_windows_config__additional_unattend_config struct {
+		Component    string
+		Content      string
+		Pass         string
+		Setting_name string
+	}
+
+	Virtual_machine__os_profile_windows_config__winrm struct {
+		Certificate_url *string
+		Protocol        string
+	}
+
+	Virtual_machine__os_profile_windows_config struct {
+		Additional_unattend_config *[]Virtual_machine__os_profile_windows_config__additional_unattend_config
+		Enable_automatic_upgrades  *bool
+		Provision_vm_agent         *bool
+		Timezone                   *string
+		Winrm                      *[]Virtual_machine__os_profile_windows_config__winrm
+	}
+
+	Virtual_machine__plan struct {
+		Name      string
+		Product   string
+		Publisher string
+	}
+
+	Virtual_machine__storage_data_disk struct {
+		Caching                   *string
+		Create_option             string
+		Disk_size_gb              *int64
+		Lun                       int64
+		Managed_disk_id           *string
+		Managed_disk_type         *string
+		Name                      string
+		Vhd_uri                   *string
+		Write_accelerator_enabled *bool
+	}
+
+	Virtual_machine__storage_image_reference struct {
+		Id        *string
+		Offer     *string
+		Publisher *string
+		Sku       *string
+		Version   *string
+	}
+
+	Virtual_machine__storage_os_disk struct {
+		Caching                   *string
+		Create_option             string
+		Disk_size_gb              *int64
+		Image_uri                 *string
+		Managed_disk_id           *string
+		Managed_disk_type         *string
+		Name                      string
+		Os_type                   *string
+		Vhd_uri                   *string
+		Write_accelerator_enabled *bool
+	}
+
+	Virtual_machine_scale_set__boot_diagnostics struct {
+		Enabled     *bool
+		Storage_uri string
+	}
+
+	Virtual_machine_scale_set__extension struct {
+		Auto_upgrade_minor_version *bool
+		Name                       string
+		Protected_settings         *string
+		Publisher                  string
+		Settings                   *string
+		Type                       string
+		Type_handler_version       string
+	}
+
+	Virtual_machine_scale_set__identity struct {
+		Identity_ids *[]string
+		Principal_id *string
+		Type         string
+	}
+
+	Virtual_machine_scale_set__network_profile__dns_settings struct {
+		Dns_servers []string
+	}
+
+	Virtual_machine_scale_set__network_profile__ip_configuration__public_ip_address_configuration struct {
+		Domain_name_label string
+		Idle_timeout      int64
+		Name              string
+	}
+
+	Virtual_machine_scale_set__network_profile__ip_configuration struct {
+		Application_gateway_backend_address_pool_ids *[]string
+		Application_security_group_ids               *[]string
+		Load_balancer_backend_address_pool_ids       *[]string
+		Load_balancer_inbound_nat_rules_ids          *[]string
+		Name                                         string
+		Primary                                      bool
+		Public_ip_address_configuration              *[]Virtual_machine_scale_set__network_profile__ip_configuration__public_ip_address_configuration
+		Subnet_id                                    string
+	}
+
+	Virtual_machine_scale_set__network_profile struct {
+		Accelerated_networking    *bool
+		Dns_settings              *[]Virtual_machine_scale_set__network_profile__dns_settings
+		Ip_configuration          []Virtual_machine_scale_set__network_profile__ip_configuration
+		Ip_forwarding             *bool
+		Name                      string
+		Network_security_group_id *string
+		Primary                   bool
+	}
+
+	Virtual_machine_scale_set__os_profile struct {
+		Admin_password       *string
+		Admin_username       string
+		Computer_name_prefix string
+		Custom_data          *string
+	}
+
+	Virtual_machine_scale_set__os_profile_linux_config__ssh_keys struct {
+		Key_data *string
+		Path     string
+	}
+
+	Virtual_machine_scale_set__os_profile_linux_config struct {
+		Disable_password_authentication *bool
+		Ssh_keys                        *[]Virtual_machine_scale_set__os_profile_linux_config__ssh_keys
+	}
+
+	Virtual_machine_scale_set__os_profile_secrets__vault_certificates struct {
+		Certificate_store *string
+		Certificate_url   string
+	}
+
+	Virtual_machine_scale_set__os_profile_secrets struct {
+		Source_vault_id    string
+		Vault_certificates *[]Virtual_machine_scale_set__os_profile_secrets__vault_certificates
+	}
+
+	Virtual_machine_scale_set__os_profile_windows_config__additional_unattend_config struct {
+		Component    string
+		Content      string
+		Pass         string
+		Setting_name string
+	}
+
+	Virtual_machine_scale_set__os_profile_windows_config__winrm struct {
+		Certificate_url *string
+		Protocol        string
+	}
+
+	Virtual_machine_scale_set__os_profile_windows_config struct {
+		Additional_unattend_config *[]Virtual_machine_scale_set__os_profile_windows_config__additional_unattend_config
+		Enable_automatic_upgrades  *bool
+		Provision_vm_agent         *bool
+		Winrm                      *[]Virtual_machine_scale_set__os_profile_windows_config__winrm
+	}
+
+	Virtual_machine_scale_set__plan struct {
+		Name      string
+		Product   string
+		Publisher string
+	}
+
+	Virtual_machine_scale_set__rolling_upgrade_policy struct {
+		Max_batch_instance_percent              *int64
+		Max_unhealthy_instance_percent          *int64
+		Max_unhealthy_upgraded_instance_percent *int64
+		Pause_time_between_batches              *string
+	}
+
+	Virtual_machine_scale_set__sku struct {
+		Capacity int64
+		Name     string
+		Tier     *string
+	}
+
+	Virtual_machine_scale_set__storage_profile_data_disk struct {
+		Caching           *string
+		Create_option     string
+		Disk_size_gb      *int64
+		Lun               int64
+		Managed_disk_type *string
+	}
+
+	Virtual_machine_scale_set__storage_profile_image_reference struct {
+		Id        *string
+		Offer     *string
+		Publisher *string
+		Sku       *string
+		Version   *string
+	}
+
+	Virtual_machine_scale_set__storage_profile_os_disk struct {
+		Caching           *string
+		Create_option     string
+		Image             *string
+		Managed_disk_type *string
+		Name              *string
+		Os_type           *string
+		Vhd_containers    *[]string
+	}
+
+	Virtual_network__subnet struct {
+		Address_prefix string
+		Id             *string
+		Name           string
+		Security_group *string
+	}
+
+	Virtual_network_gateway__bgp_settings struct {
+		Asn             *int64
+		Peer_weight     *int64
+		Peering_address *string
+	}
+
+	Virtual_network_gateway__ip_configuration struct {
+		Name                          *string
+		Private_ip_address_allocation *string
+		Public_ip_address_id          *string
+		Subnet_id                     string
+	}
+
+	Virtual_network_gateway__vpn_client_configuration__revoked_certificate struct {
+		Name       string
+		Thumbprint string
+	}
+
+	Virtual_network_gateway__vpn_client_configuration__root_certificate struct {
+		Name             string
+		Public_cert_data string
+	}
+
+	Virtual_network_gateway__vpn_client_configuration struct {
+		Address_space         []string
+		Radius_server_address *string
+		Radius_server_secret  *string
+		Revoked_certificate   *[]Virtual_network_gateway__vpn_client_configuration__revoked_certificate
+		Root_certificate      *[]Virtual_network_gateway__vpn_client_configuration__root_certificate
+		Vpn_client_protocols  *[]string
+	}
+
+	Virtual_network_gateway_connection__ipsec_policy struct {
+		Dh_group         string
+		Ike_encryption   string
+		Ike_integrity    string
+		Ipsec_encryption string
+		Ipsec_integrity  string
+		Pfs_group        string
+		Sa_datasize      *int64
+		Sa_lifetime      *int64
+	}
+)
+
 func Initialize(sb *service.Builder, p *schema.Provider) {
-	var evs []px.Type
+	// Generic handler API
 	sb.RegisterAPI("TerraformAzureRM::GenericHandler", bridge.NewTFHandler(nil, "", nil))
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_api_management{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("gateway_regional_url", "gateway_url", "hostname_configuration", "management_api_url", "notification_sender_email", "portal_url", "public_ip_addresses", "scm_url", "security", "tags")
+	// Registration of resource types with handler
+	var rt px.Type
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Api_management{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("api_managementID", "gateway_regional_url", "gateway_url", "hostname_configuration", "management_api_url", "notification_sender_email", "portal_url", "public_ip_addresses", "scm_url", "security", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_api_managementHandler", bridge.NewTFHandler(p, "azurerm_api_management", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Api_managementHandler", bridge.NewTFHandler(p, "azurerm_api_management", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_app_service{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("app_settings", "client_affinity_enabled", "connection_string", "default_site_hostname", "identity", "outbound_ip_addresses", "possible_outbound_ip_addresses", "site_config", "site_credential", "source_control", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&App_service{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("app_serviceID", "app_settings", "client_affinity_enabled", "connection_string", "default_site_hostname", "identity", "outbound_ip_addresses", "possible_outbound_ip_addresses", "site_config", "site_credential", "source_control", "tags")
 		b.ImmutableAttributes("app_service_plan_id", "location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_app_serviceHandler", bridge.NewTFHandler(p, "azurerm_app_service", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::App_serviceHandler", bridge.NewTFHandler(p, "azurerm_app_service", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_app_service_active_slot{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&App_service_active_slot{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("app_service_active_slotID")
 		b.ImmutableAttributes("app_service_name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_app_service_active_slotHandler", bridge.NewTFHandler(p, "azurerm_app_service_active_slot", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::App_service_active_slotHandler", bridge.NewTFHandler(p, "azurerm_app_service_active_slot", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_app_service_custom_hostname_binding{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&App_service_custom_hostname_binding{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("app_service_custom_hostname_bindingID")
 		b.ImmutableAttributes("app_service_name", "hostname", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_app_service_custom_hostname_bindingHandler", bridge.NewTFHandler(p, "azurerm_app_service_custom_hostname_binding", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::App_service_custom_hostname_bindingHandler", bridge.NewTFHandler(p, "azurerm_app_service_custom_hostname_binding", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_app_service_plan{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("app_service_environment_id", "maximum_number_of_workers", "per_site_scaling", "properties", "reserved", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&App_service_plan{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("app_service_planID", "app_service_environment_id", "maximum_number_of_workers", "per_site_scaling", "properties", "reserved", "tags")
 		b.ImmutableAttributes("app_service_environment_id", "kind", "location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_app_service_planHandler", bridge.NewTFHandler(p, "azurerm_app_service_plan", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::App_service_planHandler", bridge.NewTFHandler(p, "azurerm_app_service_plan", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_app_service_slot{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("app_settings", "client_affinity_enabled", "connection_string", "default_site_hostname", "site_config", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&App_service_slot{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("app_service_slotID", "app_settings", "client_affinity_enabled", "connection_string", "default_site_hostname", "site_config", "tags")
 		b.ImmutableAttributes("app_service_name", "app_service_plan_id", "identity", "location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_app_service_slotHandler", bridge.NewTFHandler(p, "azurerm_app_service_slot", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::App_service_slotHandler", bridge.NewTFHandler(p, "azurerm_app_service_slot", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_application_gateway{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Application_gateway{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("application_gatewayID", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_application_gatewayHandler", bridge.NewTFHandler(p, "azurerm_application_gateway", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Application_gatewayHandler", bridge.NewTFHandler(p, "azurerm_application_gateway", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_application_insights{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("app_id", "instrumentation_key", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Application_insights{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("application_insightsID", "app_id", "instrumentation_key", "tags")
 		b.ImmutableAttributes("application_type", "location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_application_insightsHandler", bridge.NewTFHandler(p, "azurerm_application_insights", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Application_insightsHandler", bridge.NewTFHandler(p, "azurerm_application_insights", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_application_insights_api_key{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("api_key")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Application_insights_api_key{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("application_insights_api_keyID", "api_key")
 		b.ImmutableAttributes("application_insights_id", "name", "read_permissions", "write_permissions")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_application_insights_api_keyHandler", bridge.NewTFHandler(p, "azurerm_application_insights_api_key", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Application_insights_api_keyHandler", bridge.NewTFHandler(p, "azurerm_application_insights_api_key", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_application_security_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Application_security_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("application_security_groupID", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_application_security_groupHandler", bridge.NewTFHandler(p, "azurerm_application_security_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Application_security_groupHandler", bridge.NewTFHandler(p, "azurerm_application_security_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_automation_account{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("dsc_primary_access_key", "dsc_secondary_access_key", "dsc_server_endpoint", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Automation_account{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("automation_accountID", "dsc_primary_access_key", "dsc_secondary_access_key", "dsc_server_endpoint", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_automation_accountHandler", bridge.NewTFHandler(p, "azurerm_automation_account", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Automation_accountHandler", bridge.NewTFHandler(p, "azurerm_automation_account", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_automation_credential{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Automation_credential{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("automation_credentialID")
 		b.ImmutableAttributes("account_name", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_automation_credentialHandler", bridge.NewTFHandler(p, "azurerm_automation_credential", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Automation_credentialHandler", bridge.NewTFHandler(p, "azurerm_automation_credential", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_automation_dsc_configuration{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("state")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Automation_dsc_configuration{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("automation_dsc_configurationID", "state")
 		b.ImmutableAttributes("automation_account_name", "location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_automation_dsc_configurationHandler", bridge.NewTFHandler(p, "azurerm_automation_dsc_configuration", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Automation_dsc_configurationHandler", bridge.NewTFHandler(p, "azurerm_automation_dsc_configuration", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_automation_dsc_nodeconfiguration{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("configuration_name")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Automation_dsc_nodeconfiguration{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("automation_dsc_nodeconfigurationID", "configuration_name")
 		b.ImmutableAttributes("automation_account_name", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_automation_dsc_nodeconfigurationHandler", bridge.NewTFHandler(p, "azurerm_automation_dsc_nodeconfiguration", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Automation_dsc_nodeconfigurationHandler", bridge.NewTFHandler(p, "azurerm_automation_dsc_nodeconfiguration", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_automation_module{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Automation_module{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("automation_moduleID")
 		b.ImmutableAttributes("automation_account_name", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_automation_moduleHandler", bridge.NewTFHandler(p, "azurerm_automation_module", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Automation_moduleHandler", bridge.NewTFHandler(p, "azurerm_automation_module", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_automation_runbook{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("content", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Automation_runbook{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("automation_runbookID", "content", "tags")
 		b.ImmutableAttributes("account_name", "location", "name", "resource_group_name", "runbook_type")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_automation_runbookHandler", bridge.NewTFHandler(p, "azurerm_automation_runbook", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Automation_runbookHandler", bridge.NewTFHandler(p, "azurerm_automation_runbook", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_automation_schedule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("account_name", "automation_account_name", "expiry_time", "interval", "start_time")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Automation_schedule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("automation_scheduleID", "account_name", "automation_account_name", "expiry_time", "interval", "start_time")
 		b.ImmutableAttributes("name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_automation_scheduleHandler", bridge.NewTFHandler(p, "azurerm_automation_schedule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Automation_scheduleHandler", bridge.NewTFHandler(p, "azurerm_automation_schedule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_autoscale_setting{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Autoscale_setting{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("autoscale_settingID", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name", "target_resource_id")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_autoscale_settingHandler", bridge.NewTFHandler(p, "azurerm_autoscale_setting", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Autoscale_settingHandler", bridge.NewTFHandler(p, "azurerm_autoscale_setting", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_availability_set{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Availability_set{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("availability_setID", "tags")
 		b.ImmutableAttributes("location", "managed", "name", "platform_fault_domain_count", "platform_update_domain_count", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_availability_setHandler", bridge.NewTFHandler(p, "azurerm_availability_set", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Availability_setHandler", bridge.NewTFHandler(p, "azurerm_availability_set", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_azuread_application{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("application_id", "homepage", "identifier_uris", "reply_urls")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_azuread_applicationHandler", bridge.NewTFHandler(p, "azurerm_azuread_application", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azuread_application{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("azuread_applicationID", "application_id", "homepage", "identifier_uris", "reply_urls")
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Azuread_applicationHandler", bridge.NewTFHandler(p, "azurerm_azuread_application", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_azuread_service_principal{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("display_name")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azuread_service_principal{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("azuread_service_principalID", "display_name")
 		b.ImmutableAttributes("application_id")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_azuread_service_principalHandler", bridge.NewTFHandler(p, "azurerm_azuread_service_principal", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Azuread_service_principalHandler", bridge.NewTFHandler(p, "azurerm_azuread_service_principal", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_azuread_service_principal_password{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("key_id", "start_date")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azuread_service_principal_password{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("azuread_service_principal_passwordID", "key_id", "start_date")
 		b.ImmutableAttributes("end_date", "key_id", "service_principal_id", "start_date", "value")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_azuread_service_principal_passwordHandler", bridge.NewTFHandler(p, "azurerm_azuread_service_principal_password", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Azuread_service_principal_passwordHandler", bridge.NewTFHandler(p, "azurerm_azuread_service_principal_password", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_batch_account{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("storage_account_id", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Batch_account{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("batch_accountID", "storage_account_id", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_batch_accountHandler", bridge.NewTFHandler(p, "azurerm_batch_account", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Batch_accountHandler", bridge.NewTFHandler(p, "azurerm_batch_account", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_batch_pool{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Batch_pool{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("batch_poolID")
 		b.ImmutableAttributes("account_name", "display_name", "name", "node_agent_sku_id", "resource_group_name", "storage_image_reference", "vm_size")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_batch_poolHandler", bridge.NewTFHandler(p, "azurerm_batch_pool", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Batch_poolHandler", bridge.NewTFHandler(p, "azurerm_batch_pool", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_cdn_endpoint{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("content_types_to_compress", "host_name", "origin_host_header", "origin_path", "probe_path", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Cdn_endpoint{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cdn_endpointID", "content_types_to_compress", "host_name", "origin_host_header", "origin_path", "probe_path", "tags")
 		b.ImmutableAttributes("location", "name", "origin", "profile_name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_cdn_endpointHandler", bridge.NewTFHandler(p, "azurerm_cdn_endpoint", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Cdn_endpointHandler", bridge.NewTFHandler(p, "azurerm_cdn_endpoint", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_cdn_profile{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Cdn_profile{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cdn_profileID", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name", "sku")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_cdn_profileHandler", bridge.NewTFHandler(p, "azurerm_cdn_profile", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Cdn_profileHandler", bridge.NewTFHandler(p, "azurerm_cdn_profile", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_cognitive_account{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("endpoint", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Cognitive_account{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cognitive_accountID", "endpoint", "tags")
 		b.ImmutableAttributes("kind", "location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_cognitive_accountHandler", bridge.NewTFHandler(p, "azurerm_cognitive_account", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Cognitive_accountHandler", bridge.NewTFHandler(p, "azurerm_cognitive_account", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_container_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("fqdn", "ip_address", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Container_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("container_groupID", "fqdn", "ip_address", "tags")
 		b.ImmutableAttributes("container", "dns_name_label", "image_registry_credential", "ip_address_type", "location", "name", "os_type", "resource_group_name", "restart_policy", "tags")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_container_groupHandler", bridge.NewTFHandler(p, "azurerm_container_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Container_groupHandler", bridge.NewTFHandler(p, "azurerm_container_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_container_registry{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("admin_password", "admin_username", "login_server", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Container_registry{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("container_registryID", "admin_password", "admin_username", "login_server", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_container_registryHandler", bridge.NewTFHandler(p, "azurerm_container_registry", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Container_registryHandler", bridge.NewTFHandler(p, "azurerm_container_registry", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_container_service{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Container_service{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("container_serviceID", "tags")
 		b.ImmutableAttributes("location", "name", "orchestration_platform", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_container_serviceHandler", bridge.NewTFHandler(p, "azurerm_container_service", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Container_serviceHandler", bridge.NewTFHandler(p, "azurerm_container_service", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_cosmosdb_account{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("connection_strings", "endpoint", "geo_location", "primary_master_key", "primary_readonly_master_key", "read_endpoints", "secondary_master_key", "secondary_readonly_master_key", "tags", "write_endpoints")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Cosmosdb_account{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cosmosdb_accountID", "connection_strings", "endpoint", "geo_location", "primary_master_key", "primary_readonly_master_key", "read_endpoints", "secondary_master_key", "secondary_readonly_master_key", "tags", "write_endpoints")
 		b.ImmutableAttributes("kind", "location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_cosmosdb_accountHandler", bridge.NewTFHandler(p, "azurerm_cosmosdb_account", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Cosmosdb_accountHandler", bridge.NewTFHandler(p, "azurerm_cosmosdb_account", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_data_lake_analytics_account{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Data_lake_analytics_account{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("data_lake_analytics_accountID", "tags")
 		b.ImmutableAttributes("default_store_account_name", "location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_data_lake_analytics_accountHandler", bridge.NewTFHandler(p, "azurerm_data_lake_analytics_account", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Data_lake_analytics_accountHandler", bridge.NewTFHandler(p, "azurerm_data_lake_analytics_account", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_data_lake_analytics_firewall_rule{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Data_lake_analytics_firewall_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("data_lake_analytics_firewall_ruleID")
 		b.ImmutableAttributes("account_name", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_data_lake_analytics_firewall_ruleHandler", bridge.NewTFHandler(p, "azurerm_data_lake_analytics_firewall_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Data_lake_analytics_firewall_ruleHandler", bridge.NewTFHandler(p, "azurerm_data_lake_analytics_firewall_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_data_lake_store{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("encryption_type", "endpoint", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Data_lake_store{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("data_lake_storeID", "encryption_type", "endpoint", "tags")
 		b.ImmutableAttributes("encryption_state", "encryption_type", "location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_data_lake_storeHandler", bridge.NewTFHandler(p, "azurerm_data_lake_store", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Data_lake_storeHandler", bridge.NewTFHandler(p, "azurerm_data_lake_store", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_data_lake_store_file{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Data_lake_store_file{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("data_lake_store_fileID")
 		b.ImmutableAttributes("account_name", "local_file_path", "remote_file_path")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_data_lake_store_fileHandler", bridge.NewTFHandler(p, "azurerm_data_lake_store_file", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Data_lake_store_fileHandler", bridge.NewTFHandler(p, "azurerm_data_lake_store_file", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_data_lake_store_firewall_rule{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Data_lake_store_firewall_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("data_lake_store_firewall_ruleID")
 		b.ImmutableAttributes("account_name", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_data_lake_store_firewall_ruleHandler", bridge.NewTFHandler(p, "azurerm_data_lake_store_firewall_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Data_lake_store_firewall_ruleHandler", bridge.NewTFHandler(p, "azurerm_data_lake_store_firewall_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_databricks_workspace{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("managed_resource_group_id", "managed_resource_group_name", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Databricks_workspace{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("databricks_workspaceID", "managed_resource_group_id", "managed_resource_group_name", "tags")
 		b.ImmutableAttributes("location", "managed_resource_group_name", "name", "resource_group_name", "sku")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_databricks_workspaceHandler", bridge.NewTFHandler(p, "azurerm_databricks_workspace", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Databricks_workspaceHandler", bridge.NewTFHandler(p, "azurerm_databricks_workspace", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_dev_test_lab{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("artifacts_storage_account_id", "default_premium_storage_account_id", "default_storage_account_id", "key_vault_id", "premium_data_disk_storage_account_id", "tags", "unique_identifier")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Dev_test_lab{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dev_test_labID", "artifacts_storage_account_id", "default_premium_storage_account_id", "default_storage_account_id", "key_vault_id", "premium_data_disk_storage_account_id", "tags", "unique_identifier")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_dev_test_labHandler", bridge.NewTFHandler(p, "azurerm_dev_test_lab", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Dev_test_labHandler", bridge.NewTFHandler(p, "azurerm_dev_test_lab", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_dev_test_linux_virtual_machine{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("fqdn", "tags", "unique_identifier")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Dev_test_linux_virtual_machine{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dev_test_linux_virtual_machineID", "fqdn", "tags", "unique_identifier")
 		b.ImmutableAttributes("disallow_public_ip_address", "inbound_nat_rule", "lab_name", "lab_subnet_name", "lab_virtual_network_id", "location", "name", "password", "resource_group_name", "size", "ssh_key", "username")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_dev_test_linux_virtual_machineHandler", bridge.NewTFHandler(p, "azurerm_dev_test_linux_virtual_machine", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Dev_test_linux_virtual_machineHandler", bridge.NewTFHandler(p, "azurerm_dev_test_linux_virtual_machine", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_dev_test_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Dev_test_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dev_test_policyID", "tags")
 		b.ImmutableAttributes("evaluator_type", "lab_name", "name", "policy_set_name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_dev_test_policyHandler", bridge.NewTFHandler(p, "azurerm_dev_test_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Dev_test_policyHandler", bridge.NewTFHandler(p, "azurerm_dev_test_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_dev_test_virtual_network{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("subnet", "tags", "unique_identifier")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Dev_test_virtual_network{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dev_test_virtual_networkID", "subnet", "tags", "unique_identifier")
 		b.ImmutableAttributes("lab_name", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_dev_test_virtual_networkHandler", bridge.NewTFHandler(p, "azurerm_dev_test_virtual_network", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Dev_test_virtual_networkHandler", bridge.NewTFHandler(p, "azurerm_dev_test_virtual_network", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_dev_test_windows_virtual_machine{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("fqdn", "tags", "unique_identifier")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Dev_test_windows_virtual_machine{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dev_test_windows_virtual_machineID", "fqdn", "tags", "unique_identifier")
 		b.ImmutableAttributes("disallow_public_ip_address", "inbound_nat_rule", "lab_name", "lab_subnet_name", "lab_virtual_network_id", "location", "name", "password", "resource_group_name", "size", "username")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_dev_test_windows_virtual_machineHandler", bridge.NewTFHandler(p, "azurerm_dev_test_windows_virtual_machine", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Dev_test_windows_virtual_machineHandler", bridge.NewTFHandler(p, "azurerm_dev_test_windows_virtual_machine", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_devspace_controller{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("data_plane_fqdn", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Devspace_controller{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("devspace_controllerID", "data_plane_fqdn", "tags")
 		b.ImmutableAttributes("host_suffix", "location", "name", "resource_group_name", "sku", "target_container_host_credentials_base64", "target_container_host_resource_id")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_devspace_controllerHandler", bridge.NewTFHandler(p, "azurerm_devspace_controller", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Devspace_controllerHandler", bridge.NewTFHandler(p, "azurerm_devspace_controller", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_dns_a_record{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Dns_a_record{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dns_a_recordID", "tags")
 		b.ImmutableAttributes("name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_a_recordHandler", bridge.NewTFHandler(p, "azurerm_dns_a_record", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Dns_a_recordHandler", bridge.NewTFHandler(p, "azurerm_dns_a_record", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_dns_aaaa_record{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Dns_aaaa_record{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dns_aaaa_recordID", "tags")
 		b.ImmutableAttributes("name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_aaaa_recordHandler", bridge.NewTFHandler(p, "azurerm_dns_aaaa_record", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Dns_aaaa_recordHandler", bridge.NewTFHandler(p, "azurerm_dns_aaaa_record", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_dns_caa_record{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Dns_caa_record{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dns_caa_recordID", "tags")
 		b.ImmutableAttributes("name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_caa_recordHandler", bridge.NewTFHandler(p, "azurerm_dns_caa_record", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Dns_caa_recordHandler", bridge.NewTFHandler(p, "azurerm_dns_caa_record", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_dns_cname_record{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Dns_cname_record{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dns_cname_recordID", "tags")
 		b.ImmutableAttributes("name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_cname_recordHandler", bridge.NewTFHandler(p, "azurerm_dns_cname_record", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Dns_cname_recordHandler", bridge.NewTFHandler(p, "azurerm_dns_cname_record", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_dns_mx_record{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Dns_mx_record{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dns_mx_recordID", "tags")
 		b.ImmutableAttributes("name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_mx_recordHandler", bridge.NewTFHandler(p, "azurerm_dns_mx_record", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Dns_mx_recordHandler", bridge.NewTFHandler(p, "azurerm_dns_mx_record", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_dns_ns_record{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("record", "records", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Dns_ns_record{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dns_ns_recordID", "record", "records", "tags")
 		b.ImmutableAttributes("name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_ns_recordHandler", bridge.NewTFHandler(p, "azurerm_dns_ns_record", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Dns_ns_recordHandler", bridge.NewTFHandler(p, "azurerm_dns_ns_record", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_dns_ptr_record{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Dns_ptr_record{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dns_ptr_recordID", "tags")
 		b.ImmutableAttributes("name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_ptr_recordHandler", bridge.NewTFHandler(p, "azurerm_dns_ptr_record", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Dns_ptr_recordHandler", bridge.NewTFHandler(p, "azurerm_dns_ptr_record", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_dns_srv_record{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Dns_srv_record{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dns_srv_recordID", "tags")
 		b.ImmutableAttributes("name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_srv_recordHandler", bridge.NewTFHandler(p, "azurerm_dns_srv_record", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Dns_srv_recordHandler", bridge.NewTFHandler(p, "azurerm_dns_srv_record", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_dns_txt_record{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Dns_txt_record{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dns_txt_recordID", "tags")
 		b.ImmutableAttributes("name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_txt_recordHandler", bridge.NewTFHandler(p, "azurerm_dns_txt_record", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Dns_txt_recordHandler", bridge.NewTFHandler(p, "azurerm_dns_txt_record", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_dns_zone{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("max_number_of_record_sets", "name_servers", "number_of_record_sets", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Dns_zone{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dns_zoneID", "max_number_of_record_sets", "name_servers", "number_of_record_sets", "tags")
 		b.ImmutableAttributes("name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_zoneHandler", bridge.NewTFHandler(p, "azurerm_dns_zone", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Dns_zoneHandler", bridge.NewTFHandler(p, "azurerm_dns_zone", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_eventgrid_topic{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("endpoint", "primary_access_key", "secondary_access_key", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Eventgrid_topic{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("eventgrid_topicID", "endpoint", "primary_access_key", "secondary_access_key", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_eventgrid_topicHandler", bridge.NewTFHandler(p, "azurerm_eventgrid_topic", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Eventgrid_topicHandler", bridge.NewTFHandler(p, "azurerm_eventgrid_topic", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_eventhub{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("partition_ids")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Eventhub{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("eventhubID", "partition_ids")
 		b.ImmutableAttributes("location", "name", "namespace_name", "partition_count", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_eventhubHandler", bridge.NewTFHandler(p, "azurerm_eventhub", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::EventhubHandler", bridge.NewTFHandler(p, "azurerm_eventhub", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_eventhub_authorization_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("primary_connection_string", "primary_key", "secondary_connection_string", "secondary_key")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Eventhub_authorization_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("eventhub_authorization_ruleID", "primary_connection_string", "primary_key", "secondary_connection_string", "secondary_key")
 		b.ImmutableAttributes("eventhub_name", "location", "name", "namespace_name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_eventhub_authorization_ruleHandler", bridge.NewTFHandler(p, "azurerm_eventhub_authorization_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Eventhub_authorization_ruleHandler", bridge.NewTFHandler(p, "azurerm_eventhub_authorization_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_eventhub_consumer_group{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Eventhub_consumer_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("eventhub_consumer_groupID")
 		b.ImmutableAttributes("eventhub_name", "location", "name", "namespace_name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_eventhub_consumer_groupHandler", bridge.NewTFHandler(p, "azurerm_eventhub_consumer_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Eventhub_consumer_groupHandler", bridge.NewTFHandler(p, "azurerm_eventhub_consumer_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_eventhub_namespace{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("default_primary_connection_string", "default_primary_key", "default_secondary_connection_string", "default_secondary_key", "maximum_throughput_units", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Eventhub_namespace{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("eventhub_namespaceID", "default_primary_connection_string", "default_primary_key", "default_secondary_connection_string", "default_secondary_key", "maximum_throughput_units", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_eventhub_namespaceHandler", bridge.NewTFHandler(p, "azurerm_eventhub_namespace", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Eventhub_namespaceHandler", bridge.NewTFHandler(p, "azurerm_eventhub_namespace", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_eventhub_namespace_authorization_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("primary_connection_string", "primary_key", "secondary_connection_string", "secondary_key")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Eventhub_namespace_authorization_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("eventhub_namespace_authorization_ruleID", "primary_connection_string", "primary_key", "secondary_connection_string", "secondary_key")
 		b.ImmutableAttributes("location", "name", "namespace_name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_eventhub_namespace_authorization_ruleHandler", bridge.NewTFHandler(p, "azurerm_eventhub_namespace_authorization_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Eventhub_namespace_authorization_ruleHandler", bridge.NewTFHandler(p, "azurerm_eventhub_namespace_authorization_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_express_route_circuit{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("service_key", "service_provider_provisioning_state", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Express_route_circuit{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("express_route_circuitID", "service_key", "service_provider_provisioning_state", "tags")
 		b.ImmutableAttributes("location", "name", "peering_location", "resource_group_name", "service_provider_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_express_route_circuitHandler", bridge.NewTFHandler(p, "azurerm_express_route_circuit", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Express_route_circuitHandler", bridge.NewTFHandler(p, "azurerm_express_route_circuit", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_express_route_circuit_authorization{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("authorization_key", "authorization_use_status")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Express_route_circuit_authorization{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("express_route_circuit_authorizationID", "authorization_key", "authorization_use_status")
 		b.ImmutableAttributes("express_route_circuit_name", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_express_route_circuit_authorizationHandler", bridge.NewTFHandler(p, "azurerm_express_route_circuit_authorization", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Express_route_circuit_authorizationHandler", bridge.NewTFHandler(p, "azurerm_express_route_circuit_authorization", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_express_route_circuit_peering{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("azure_asn", "peer_asn", "primary_azure_port", "secondary_azure_port")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Express_route_circuit_peering{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("express_route_circuit_peeringID", "azure_asn", "peer_asn", "primary_azure_port", "secondary_azure_port")
 		b.ImmutableAttributes("express_route_circuit_name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_express_route_circuit_peeringHandler", bridge.NewTFHandler(p, "azurerm_express_route_circuit_peering", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Express_route_circuit_peeringHandler", bridge.NewTFHandler(p, "azurerm_express_route_circuit_peering", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_firewall{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Firewall{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("firewallID", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_firewallHandler", bridge.NewTFHandler(p, "azurerm_firewall", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::FirewallHandler", bridge.NewTFHandler(p, "azurerm_firewall", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_firewall_application_rule_collection{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Firewall_application_rule_collection{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("firewall_application_rule_collectionID")
 		b.ImmutableAttributes("azure_firewall_name", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_firewall_application_rule_collectionHandler", bridge.NewTFHandler(p, "azurerm_firewall_application_rule_collection", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Firewall_application_rule_collectionHandler", bridge.NewTFHandler(p, "azurerm_firewall_application_rule_collection", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_firewall_network_rule_collection{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Firewall_network_rule_collection{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("firewall_network_rule_collectionID")
 		b.ImmutableAttributes("azure_firewall_name", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_firewall_network_rule_collectionHandler", bridge.NewTFHandler(p, "azurerm_firewall_network_rule_collection", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Firewall_network_rule_collectionHandler", bridge.NewTFHandler(p, "azurerm_firewall_network_rule_collection", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_function_app{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("client_affinity_enabled", "connection_string", "default_hostname", "identity", "outbound_ip_addresses", "site_config", "site_credential", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Function_app{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("function_appID", "client_affinity_enabled", "connection_string", "default_hostname", "identity", "outbound_ip_addresses", "site_config", "site_credential", "tags")
 		b.ImmutableAttributes("app_service_plan_id", "location", "name", "resource_group_name", "storage_connection_string")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_function_appHandler", bridge.NewTFHandler(p, "azurerm_function_app", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Function_appHandler", bridge.NewTFHandler(p, "azurerm_function_app", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_image{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Image{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("imageID", "tags")
 		b.ImmutableAttributes("location", "name", "os_disk", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_imageHandler", bridge.NewTFHandler(p, "azurerm_image", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::ImageHandler", bridge.NewTFHandler(p, "azurerm_image", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_iothub{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("event_hub_events_endpoint", "event_hub_events_path", "event_hub_operations_endpoint", "event_hub_operations_path", "hostname", "shared_access_policy", "tags", "type")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Iothub{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iothubID", "event_hub_events_endpoint", "event_hub_events_path", "event_hub_operations_endpoint", "event_hub_operations_path", "hostname", "shared_access_policy", "tags", "type")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_iothubHandler", bridge.NewTFHandler(p, "azurerm_iothub", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::IothubHandler", bridge.NewTFHandler(p, "azurerm_iothub", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_iothub_consumer_group{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Iothub_consumer_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iothub_consumer_groupID")
 		b.ImmutableAttributes("eventhub_endpoint_name", "iothub_name", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_iothub_consumer_groupHandler", bridge.NewTFHandler(p, "azurerm_iothub_consumer_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Iothub_consumer_groupHandler", bridge.NewTFHandler(p, "azurerm_iothub_consumer_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_key_vault{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("access_policy", "tags", "vault_uri")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Key_vault{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("key_vaultID", "access_policy", "tags", "vault_uri")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_key_vaultHandler", bridge.NewTFHandler(p, "azurerm_key_vault", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Key_vaultHandler", bridge.NewTFHandler(p, "azurerm_key_vault", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_key_vault_access_policy{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Key_vault_access_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("key_vault_access_policyID")
 		b.ImmutableAttributes("application_id", "object_id", "resource_group_name", "tenant_id", "vault_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_key_vault_access_policyHandler", bridge.NewTFHandler(p, "azurerm_key_vault_access_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Key_vault_access_policyHandler", bridge.NewTFHandler(p, "azurerm_key_vault_access_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_key_vault_certificate{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("certificate_data", "secret_id", "tags", "thumbprint", "version")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Key_vault_certificate{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("key_vault_certificateID", "certificate_data", "secret_id", "tags", "thumbprint", "version")
 		b.ImmutableAttributes("certificate", "certificate_policy", "name", "vault_uri")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_key_vault_certificateHandler", bridge.NewTFHandler(p, "azurerm_key_vault_certificate", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Key_vault_certificateHandler", bridge.NewTFHandler(p, "azurerm_key_vault_certificate", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_key_vault_key{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("e", "n", "tags", "version")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Key_vault_key{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("key_vault_keyID", "e", "n", "tags", "version")
 		b.ImmutableAttributes("key_size", "key_type", "name", "vault_uri")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_key_vault_keyHandler", bridge.NewTFHandler(p, "azurerm_key_vault_key", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Key_vault_keyHandler", bridge.NewTFHandler(p, "azurerm_key_vault_key", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_key_vault_secret{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags", "version")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Key_vault_secret{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("key_vault_secretID", "tags", "version")
 		b.ImmutableAttributes("name", "vault_uri")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_key_vault_secretHandler", bridge.NewTFHandler(p, "azurerm_key_vault_secret", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Key_vault_secretHandler", bridge.NewTFHandler(p, "azurerm_key_vault_secret", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_kubernetes_cluster{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("addon_profile", "fqdn", "kube_admin_config", "kube_admin_config_raw", "kube_config", "kube_config_raw", "kubernetes_version", "network_profile", "node_resource_group", "role_based_access_control", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Kubernetes_cluster{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("kubernetes_clusterID", "addon_profile", "fqdn", "kube_admin_config", "kube_admin_config_raw", "kube_config", "kube_config_raw", "kubernetes_version", "network_profile", "node_resource_group", "role_based_access_control", "tags")
 		b.ImmutableAttributes("dns_prefix", "location", "name", "network_profile", "resource_group_name", "role_based_access_control")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_kubernetes_clusterHandler", bridge.NewTFHandler(p, "azurerm_kubernetes_cluster", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Kubernetes_clusterHandler", bridge.NewTFHandler(p, "azurerm_kubernetes_cluster", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_lb{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("private_ip_address", "private_ip_addresses", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Lb{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("lbID", "private_ip_address", "private_ip_addresses", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name", "sku")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_lbHandler", bridge.NewTFHandler(p, "azurerm_lb", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::LbHandler", bridge.NewTFHandler(p, "azurerm_lb", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_lb_backend_address_pool{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("backend_ip_configurations", "load_balancing_rules")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Lb_backend_address_pool{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("lb_backend_address_poolID", "backend_ip_configurations", "load_balancing_rules")
 		b.ImmutableAttributes("loadbalancer_id", "location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_lb_backend_address_poolHandler", bridge.NewTFHandler(p, "azurerm_lb_backend_address_pool", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Lb_backend_address_poolHandler", bridge.NewTFHandler(p, "azurerm_lb_backend_address_pool", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_lb_nat_pool{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("frontend_ip_configuration_id")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Lb_nat_pool{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("lb_nat_poolID", "frontend_ip_configuration_id")
 		b.ImmutableAttributes("loadbalancer_id", "location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_lb_nat_poolHandler", bridge.NewTFHandler(p, "azurerm_lb_nat_pool", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Lb_nat_poolHandler", bridge.NewTFHandler(p, "azurerm_lb_nat_pool", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_lb_nat_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("backend_ip_configuration_id", "enable_floating_ip", "frontend_ip_configuration_id")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Lb_nat_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("lb_nat_ruleID", "backend_ip_configuration_id", "enable_floating_ip", "frontend_ip_configuration_id")
 		b.ImmutableAttributes("loadbalancer_id", "location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_lb_nat_ruleHandler", bridge.NewTFHandler(p, "azurerm_lb_nat_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Lb_nat_ruleHandler", bridge.NewTFHandler(p, "azurerm_lb_nat_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_lb_probe{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("load_balancer_rules", "protocol")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Lb_probe{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("lb_probeID", "load_balancer_rules", "protocol")
 		b.ImmutableAttributes("loadbalancer_id", "location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_lb_probeHandler", bridge.NewTFHandler(p, "azurerm_lb_probe", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Lb_probeHandler", bridge.NewTFHandler(p, "azurerm_lb_probe", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_lb_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("backend_address_pool_id", "frontend_ip_configuration_id", "idle_timeout_in_minutes", "load_distribution", "probe_id")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Lb_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("lb_ruleID", "backend_address_pool_id", "frontend_ip_configuration_id", "idle_timeout_in_minutes", "load_distribution", "probe_id")
 		b.ImmutableAttributes("loadbalancer_id", "location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_lb_ruleHandler", bridge.NewTFHandler(p, "azurerm_lb_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Lb_ruleHandler", bridge.NewTFHandler(p, "azurerm_lb_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_local_network_gateway{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Local_network_gateway{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("local_network_gatewayID", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_local_network_gatewayHandler", bridge.NewTFHandler(p, "azurerm_local_network_gateway", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Local_network_gatewayHandler", bridge.NewTFHandler(p, "azurerm_local_network_gateway", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_log_analytics_solution{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Log_analytics_solution{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("log_analytics_solutionID")
 		b.ImmutableAttributes("location", "resource_group_name", "solution_name", "workspace_name", "workspace_resource_id")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_log_analytics_solutionHandler", bridge.NewTFHandler(p, "azurerm_log_analytics_solution", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Log_analytics_solutionHandler", bridge.NewTFHandler(p, "azurerm_log_analytics_solution", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_log_analytics_workspace{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("portal_url", "primary_shared_key", "retention_in_days", "secondary_shared_key", "tags", "workspace_id")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Log_analytics_workspace{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("log_analytics_workspaceID", "portal_url", "primary_shared_key", "retention_in_days", "secondary_shared_key", "tags", "workspace_id")
 		b.ImmutableAttributes("location", "name", "resource_group_name", "sku")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_log_analytics_workspaceHandler", bridge.NewTFHandler(p, "azurerm_log_analytics_workspace", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Log_analytics_workspaceHandler", bridge.NewTFHandler(p, "azurerm_log_analytics_workspace", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_log_analytics_workspace_linked_service{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("name", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Log_analytics_workspace_linked_service{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("log_analytics_workspace_linked_serviceID", "name", "tags")
 		b.ImmutableAttributes("linked_service_name", "linked_service_properties", "resource_group_name", "workspace_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_log_analytics_workspace_linked_serviceHandler", bridge.NewTFHandler(p, "azurerm_log_analytics_workspace_linked_service", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Log_analytics_workspace_linked_serviceHandler", bridge.NewTFHandler(p, "azurerm_log_analytics_workspace_linked_service", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_logic_app_action_custom{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Logic_app_action_custom{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("logic_app_action_customID")
 		b.ImmutableAttributes("logic_app_id", "name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_logic_app_action_customHandler", bridge.NewTFHandler(p, "azurerm_logic_app_action_custom", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Logic_app_action_customHandler", bridge.NewTFHandler(p, "azurerm_logic_app_action_custom", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_logic_app_action_http{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Logic_app_action_http{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("logic_app_action_httpID")
 		b.ImmutableAttributes("logic_app_id", "name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_logic_app_action_httpHandler", bridge.NewTFHandler(p, "azurerm_logic_app_action_http", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Logic_app_action_httpHandler", bridge.NewTFHandler(p, "azurerm_logic_app_action_http", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_logic_app_trigger_custom{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Logic_app_trigger_custom{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("logic_app_trigger_customID")
 		b.ImmutableAttributes("logic_app_id", "name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_logic_app_trigger_customHandler", bridge.NewTFHandler(p, "azurerm_logic_app_trigger_custom", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Logic_app_trigger_customHandler", bridge.NewTFHandler(p, "azurerm_logic_app_trigger_custom", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_logic_app_trigger_http_request{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Logic_app_trigger_http_request{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("logic_app_trigger_http_requestID")
 		b.ImmutableAttributes("logic_app_id", "name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_logic_app_trigger_http_requestHandler", bridge.NewTFHandler(p, "azurerm_logic_app_trigger_http_request", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Logic_app_trigger_http_requestHandler", bridge.NewTFHandler(p, "azurerm_logic_app_trigger_http_request", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_logic_app_trigger_recurrence{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Logic_app_trigger_recurrence{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("logic_app_trigger_recurrenceID")
 		b.ImmutableAttributes("logic_app_id", "name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_logic_app_trigger_recurrenceHandler", bridge.NewTFHandler(p, "azurerm_logic_app_trigger_recurrence", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Logic_app_trigger_recurrenceHandler", bridge.NewTFHandler(p, "azurerm_logic_app_trigger_recurrence", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_logic_app_workflow{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("access_endpoint", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Logic_app_workflow{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("logic_app_workflowID", "access_endpoint", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name", "workflow_schema", "workflow_version")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_logic_app_workflowHandler", bridge.NewTFHandler(p, "azurerm_logic_app_workflow", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Logic_app_workflowHandler", bridge.NewTFHandler(p, "azurerm_logic_app_workflow", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_managed_disk{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("disk_size_gb", "source_uri", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Managed_disk{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("managed_diskID", "disk_size_gb", "source_uri", "tags")
 		b.ImmutableAttributes("create_option", "image_reference_id", "location", "name", "resource_group_name", "source_resource_id", "source_uri", "zones")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_managed_diskHandler", bridge.NewTFHandler(p, "azurerm_managed_disk", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Managed_diskHandler", bridge.NewTFHandler(p, "azurerm_managed_disk", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_management_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("display_name", "group_id", "parent_management_group_id")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Management_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("management_groupID", "display_name", "group_id", "parent_management_group_id")
 		b.ImmutableAttributes("group_id")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_management_groupHandler", bridge.NewTFHandler(p, "azurerm_management_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Management_groupHandler", bridge.NewTFHandler(p, "azurerm_management_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_management_lock{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Management_lock{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("management_lockID")
 		b.ImmutableAttributes("lock_level", "name", "notes", "scope")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_management_lockHandler", bridge.NewTFHandler(p, "azurerm_management_lock", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Management_lockHandler", bridge.NewTFHandler(p, "azurerm_management_lock", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_mariadb_database{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Mariadb_database{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("mariadb_databaseID")
 		b.ImmutableAttributes("charset", "collation", "name", "resource_group_name", "server_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_mariadb_databaseHandler", bridge.NewTFHandler(p, "azurerm_mariadb_database", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Mariadb_databaseHandler", bridge.NewTFHandler(p, "azurerm_mariadb_database", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_mariadb_server{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("fqdn", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Mariadb_server{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("mariadb_serverID", "fqdn", "tags")
 		b.ImmutableAttributes("administrator_login", "location", "name", "resource_group_name", "version")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_mariadb_serverHandler", bridge.NewTFHandler(p, "azurerm_mariadb_server", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Mariadb_serverHandler", bridge.NewTFHandler(p, "azurerm_mariadb_server", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_metric_alertrule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "email_action", "tags", "webhook_action")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Metric_alertrule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("metric_alertruleID", "description", "email_action", "tags", "webhook_action")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_metric_alertruleHandler", bridge.NewTFHandler(p, "azurerm_metric_alertrule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Metric_alertruleHandler", bridge.NewTFHandler(p, "azurerm_metric_alertrule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_monitor_action_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Monitor_action_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("monitor_action_groupID", "tags")
 		b.ImmutableAttributes("name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_monitor_action_groupHandler", bridge.NewTFHandler(p, "azurerm_monitor_action_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Monitor_action_groupHandler", bridge.NewTFHandler(p, "azurerm_monitor_action_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_monitor_activity_log_alert{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Monitor_activity_log_alert{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("monitor_activity_log_alertID", "tags")
 		b.ImmutableAttributes("name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_monitor_activity_log_alertHandler", bridge.NewTFHandler(p, "azurerm_monitor_activity_log_alert", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Monitor_activity_log_alertHandler", bridge.NewTFHandler(p, "azurerm_monitor_activity_log_alert", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_monitor_diagnostic_setting{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Monitor_diagnostic_setting{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("monitor_diagnostic_settingID")
 		b.ImmutableAttributes("eventhub_authorization_rule_id", "eventhub_name", "log_analytics_workspace_id", "name", "storage_account_id", "target_resource_id")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_monitor_diagnostic_settingHandler", bridge.NewTFHandler(p, "azurerm_monitor_diagnostic_setting", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Monitor_diagnostic_settingHandler", bridge.NewTFHandler(p, "azurerm_monitor_diagnostic_setting", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_monitor_log_profile{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Monitor_log_profile{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("monitor_log_profileID")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_monitor_log_profileHandler", bridge.NewTFHandler(p, "azurerm_monitor_log_profile", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Monitor_log_profileHandler", bridge.NewTFHandler(p, "azurerm_monitor_log_profile", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_monitor_metric_alert{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Monitor_metric_alert{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("monitor_metric_alertID", "tags")
 		b.ImmutableAttributes("name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_monitor_metric_alertHandler", bridge.NewTFHandler(p, "azurerm_monitor_metric_alert", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Monitor_metric_alertHandler", bridge.NewTFHandler(p, "azurerm_monitor_metric_alert", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_mssql_elasticpool{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("elastic_pool_properties", "max_size_bytes", "tags", "zone_redundant")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Mssql_elasticpool{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("mssql_elasticpoolID", "elastic_pool_properties", "max_size_bytes", "tags", "zone_redundant")
 		b.ImmutableAttributes("location", "name", "resource_group_name", "server_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_mssql_elasticpoolHandler", bridge.NewTFHandler(p, "azurerm_mssql_elasticpool", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Mssql_elasticpoolHandler", bridge.NewTFHandler(p, "azurerm_mssql_elasticpool", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_mysql_configuration{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Mysql_configuration{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("mysql_configurationID")
 		b.ImmutableAttributes("name", "resource_group_name", "server_name", "value")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_mysql_configurationHandler", bridge.NewTFHandler(p, "azurerm_mysql_configuration", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Mysql_configurationHandler", bridge.NewTFHandler(p, "azurerm_mysql_configuration", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_mysql_database{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Mysql_database{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("mysql_databaseID")
 		b.ImmutableAttributes("charset", "collation", "name", "resource_group_name", "server_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_mysql_databaseHandler", bridge.NewTFHandler(p, "azurerm_mysql_database", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Mysql_databaseHandler", bridge.NewTFHandler(p, "azurerm_mysql_database", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_mysql_firewall_rule{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Mysql_firewall_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("mysql_firewall_ruleID")
 		b.ImmutableAttributes("name", "resource_group_name", "server_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_mysql_firewall_ruleHandler", bridge.NewTFHandler(p, "azurerm_mysql_firewall_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Mysql_firewall_ruleHandler", bridge.NewTFHandler(p, "azurerm_mysql_firewall_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_mysql_server{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("fqdn", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Mysql_server{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("mysql_serverID", "fqdn", "tags")
 		b.ImmutableAttributes("administrator_login", "location", "name", "resource_group_name", "version")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_mysql_serverHandler", bridge.NewTFHandler(p, "azurerm_mysql_server", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Mysql_serverHandler", bridge.NewTFHandler(p, "azurerm_mysql_server", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_mysql_virtual_network_rule{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Mysql_virtual_network_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("mysql_virtual_network_ruleID")
 		b.ImmutableAttributes("name", "resource_group_name", "server_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_mysql_virtual_network_ruleHandler", bridge.NewTFHandler(p, "azurerm_mysql_virtual_network_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Mysql_virtual_network_ruleHandler", bridge.NewTFHandler(p, "azurerm_mysql_virtual_network_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_network_interface{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("applied_dns_servers", "dns_servers", "internal_dns_name_label", "internal_fqdn", "mac_address", "private_ip_address", "private_ip_addresses", "tags", "virtual_machine_id")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Network_interface{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("network_interfaceID", "applied_dns_servers", "dns_servers", "internal_dns_name_label", "internal_fqdn", "mac_address", "private_ip_address", "private_ip_addresses", "tags", "virtual_machine_id")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_network_interfaceHandler", bridge.NewTFHandler(p, "azurerm_network_interface", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Network_interfaceHandler", bridge.NewTFHandler(p, "azurerm_network_interface", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_network_interface_application_gateway_backend_address_pool_association{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Network_interface_application_gateway_backend_address_pool_association{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("network_interface_application_gateway_backend_address_pool_associationID")
 		b.ImmutableAttributes("backend_address_pool_id", "ip_configuration_name", "network_interface_id")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_network_interface_application_gateway_backend_address_pool_associationHandler", bridge.NewTFHandler(p, "azurerm_network_interface_application_gateway_backend_address_pool_association", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Network_interface_application_gateway_backend_address_pool_associationHandler", bridge.NewTFHandler(p, "azurerm_network_interface_application_gateway_backend_address_pool_association", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_network_interface_backend_address_pool_association{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Network_interface_backend_address_pool_association{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("network_interface_backend_address_pool_associationID")
 		b.ImmutableAttributes("backend_address_pool_id", "ip_configuration_name", "network_interface_id")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_network_interface_backend_address_pool_associationHandler", bridge.NewTFHandler(p, "azurerm_network_interface_backend_address_pool_association", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Network_interface_backend_address_pool_associationHandler", bridge.NewTFHandler(p, "azurerm_network_interface_backend_address_pool_association", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_network_interface_nat_rule_association{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Network_interface_nat_rule_association{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("network_interface_nat_rule_associationID")
 		b.ImmutableAttributes("ip_configuration_name", "nat_rule_id", "network_interface_id")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_network_interface_nat_rule_associationHandler", bridge.NewTFHandler(p, "azurerm_network_interface_nat_rule_association", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Network_interface_nat_rule_associationHandler", bridge.NewTFHandler(p, "azurerm_network_interface_nat_rule_association", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_network_security_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("security_rule", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Network_security_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("network_security_groupID", "security_rule", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_network_security_groupHandler", bridge.NewTFHandler(p, "azurerm_network_security_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Network_security_groupHandler", bridge.NewTFHandler(p, "azurerm_network_security_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_network_security_rule{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Network_security_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("network_security_ruleID")
 		b.ImmutableAttributes("name", "network_security_group_name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_network_security_ruleHandler", bridge.NewTFHandler(p, "azurerm_network_security_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Network_security_ruleHandler", bridge.NewTFHandler(p, "azurerm_network_security_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_network_watcher{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Network_watcher{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("network_watcherID", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_network_watcherHandler", bridge.NewTFHandler(p, "azurerm_network_watcher", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Network_watcherHandler", bridge.NewTFHandler(p, "azurerm_network_watcher", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_notification_hub{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Notification_hub{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("notification_hubID")
 		b.ImmutableAttributes("location", "name", "namespace_name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_notification_hubHandler", bridge.NewTFHandler(p, "azurerm_notification_hub", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Notification_hubHandler", bridge.NewTFHandler(p, "azurerm_notification_hub", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_notification_hub_authorization_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("primary_access_key", "secondary_access_key")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Notification_hub_authorization_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("notification_hub_authorization_ruleID", "primary_access_key", "secondary_access_key")
 		b.ImmutableAttributes("name", "namespace_name", "notification_hub_name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_notification_hub_authorization_ruleHandler", bridge.NewTFHandler(p, "azurerm_notification_hub_authorization_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Notification_hub_authorization_ruleHandler", bridge.NewTFHandler(p, "azurerm_notification_hub_authorization_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_notification_hub_namespace{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("servicebus_endpoint")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Notification_hub_namespace{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("notification_hub_namespaceID", "servicebus_endpoint")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_notification_hub_namespaceHandler", bridge.NewTFHandler(p, "azurerm_notification_hub_namespace", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Notification_hub_namespaceHandler", bridge.NewTFHandler(p, "azurerm_notification_hub_namespace", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_packet_capture{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Packet_capture{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("packet_captureID")
 		b.ImmutableAttributes("filter", "maximum_bytes_per_packet", "maximum_bytes_per_session", "maximum_capture_duration", "name", "network_watcher_name", "resource_group_name", "storage_location", "target_resource_id")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_packet_captureHandler", bridge.NewTFHandler(p, "azurerm_packet_capture", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Packet_captureHandler", bridge.NewTFHandler(p, "azurerm_packet_capture", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_policy_assignment{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("identity")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Policy_assignment{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("policy_assignmentID", "identity")
 		b.ImmutableAttributes("location", "name", "parameters", "policy_definition_id", "scope")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_policy_assignmentHandler", bridge.NewTFHandler(p, "azurerm_policy_assignment", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Policy_assignmentHandler", bridge.NewTFHandler(p, "azurerm_policy_assignment", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_policy_definition{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Policy_definition{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("policy_definitionID")
 		b.ImmutableAttributes("management_group_id", "mode", "name", "policy_type")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_policy_definitionHandler", bridge.NewTFHandler(p, "azurerm_policy_definition", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Policy_definitionHandler", bridge.NewTFHandler(p, "azurerm_policy_definition", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_policy_set_definition{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Policy_set_definition{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("policy_set_definitionID")
 		b.ImmutableAttributes("management_group_id", "name", "policy_type")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_policy_set_definitionHandler", bridge.NewTFHandler(p, "azurerm_policy_set_definition", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Policy_set_definitionHandler", bridge.NewTFHandler(p, "azurerm_policy_set_definition", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_postgresql_configuration{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Postgresql_configuration{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("postgresql_configurationID")
 		b.ImmutableAttributes("name", "resource_group_name", "server_name", "value")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_postgresql_configurationHandler", bridge.NewTFHandler(p, "azurerm_postgresql_configuration", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Postgresql_configurationHandler", bridge.NewTFHandler(p, "azurerm_postgresql_configuration", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_postgresql_database{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Postgresql_database{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("postgresql_databaseID")
 		b.ImmutableAttributes("charset", "collation", "name", "resource_group_name", "server_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_postgresql_databaseHandler", bridge.NewTFHandler(p, "azurerm_postgresql_database", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Postgresql_databaseHandler", bridge.NewTFHandler(p, "azurerm_postgresql_database", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_postgresql_firewall_rule{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Postgresql_firewall_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("postgresql_firewall_ruleID")
 		b.ImmutableAttributes("end_ip_address", "name", "resource_group_name", "server_name", "start_ip_address")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_postgresql_firewall_ruleHandler", bridge.NewTFHandler(p, "azurerm_postgresql_firewall_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Postgresql_firewall_ruleHandler", bridge.NewTFHandler(p, "azurerm_postgresql_firewall_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_postgresql_server{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("fqdn", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Postgresql_server{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("postgresql_serverID", "fqdn", "tags")
 		b.ImmutableAttributes("administrator_login", "location", "name", "resource_group_name", "version")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_postgresql_serverHandler", bridge.NewTFHandler(p, "azurerm_postgresql_server", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Postgresql_serverHandler", bridge.NewTFHandler(p, "azurerm_postgresql_server", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_postgresql_virtual_network_rule{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Postgresql_virtual_network_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("postgresql_virtual_network_ruleID")
 		b.ImmutableAttributes("name", "resource_group_name", "server_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_postgresql_virtual_network_ruleHandler", bridge.NewTFHandler(p, "azurerm_postgresql_virtual_network_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Postgresql_virtual_network_ruleHandler", bridge.NewTFHandler(p, "azurerm_postgresql_virtual_network_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_public_ip{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allocation_method", "fqdn", "ip_address", "public_ip_address_allocation", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Public_ip{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("public_ipID", "allocation_method", "fqdn", "ip_address", "public_ip_address_allocation", "tags")
 		b.ImmutableAttributes("ip_version", "location", "name", "resource_group_name", "sku", "zones")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_public_ipHandler", bridge.NewTFHandler(p, "azurerm_public_ip", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Public_ipHandler", bridge.NewTFHandler(p, "azurerm_public_ip", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_recovery_services_protected_vm{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Recovery_services_protected_vm{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("recovery_services_protected_vmID", "tags")
 		b.ImmutableAttributes("backup_policy_id", "recovery_vault_name", "resource_group_name", "source_vm_id")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_recovery_services_protected_vmHandler", bridge.NewTFHandler(p, "azurerm_recovery_services_protected_vm", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Recovery_services_protected_vmHandler", bridge.NewTFHandler(p, "azurerm_recovery_services_protected_vm", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_recovery_services_protection_policy_vm{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Recovery_services_protection_policy_vm{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("recovery_services_protection_policy_vmID", "tags")
 		b.ImmutableAttributes("name", "recovery_vault_name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_recovery_services_protection_policy_vmHandler", bridge.NewTFHandler(p, "azurerm_recovery_services_protection_policy_vm", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Recovery_services_protection_policy_vmHandler", bridge.NewTFHandler(p, "azurerm_recovery_services_protection_policy_vm", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_recovery_services_vault{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Recovery_services_vault{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("recovery_services_vaultID", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_recovery_services_vaultHandler", bridge.NewTFHandler(p, "azurerm_recovery_services_vault", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Recovery_services_vaultHandler", bridge.NewTFHandler(p, "azurerm_recovery_services_vault", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_redis_cache{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("hostname", "port", "primary_access_key", "private_static_ip_address", "secondary_access_key", "ssl_port", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Redis_cache{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("redis_cacheID", "hostname", "port", "primary_access_key", "private_static_ip_address", "secondary_access_key", "ssl_port", "tags")
 		b.ImmutableAttributes("location", "name", "private_static_ip_address", "resource_group_name", "subnet_id", "zones")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_redis_cacheHandler", bridge.NewTFHandler(p, "azurerm_redis_cache", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Redis_cacheHandler", bridge.NewTFHandler(p, "azurerm_redis_cache", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_redis_firewall_rule{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Redis_firewall_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("redis_firewall_ruleID")
 		b.ImmutableAttributes("name", "redis_cache_name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_redis_firewall_ruleHandler", bridge.NewTFHandler(p, "azurerm_redis_firewall_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Redis_firewall_ruleHandler", bridge.NewTFHandler(p, "azurerm_redis_firewall_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_relay_namespace{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("metric_id", "primary_connection_string", "primary_key", "secondary_connection_string", "secondary_key", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Relay_namespace{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("relay_namespaceID", "metric_id", "primary_connection_string", "primary_key", "secondary_connection_string", "secondary_key", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_relay_namespaceHandler", bridge.NewTFHandler(p, "azurerm_relay_namespace", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Relay_namespaceHandler", bridge.NewTFHandler(p, "azurerm_relay_namespace", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_resource_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Resource_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("resource_groupID", "tags")
 		b.ImmutableAttributes("location", "name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_resource_groupHandler", bridge.NewTFHandler(p, "azurerm_resource_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Resource_groupHandler", bridge.NewTFHandler(p, "azurerm_resource_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_role_assignment{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("name", "role_definition_id", "role_definition_name")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Role_assignment{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("role_assignmentID", "name", "role_definition_id", "role_definition_name")
 		b.ImmutableAttributes("name", "principal_id", "role_definition_id", "role_definition_name", "scope")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_role_assignmentHandler", bridge.NewTFHandler(p, "azurerm_role_assignment", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Role_assignmentHandler", bridge.NewTFHandler(p, "azurerm_role_assignment", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_role_definition{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("role_definition_id")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Role_definition{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("role_definitionID", "role_definition_id")
 		b.ImmutableAttributes("role_definition_id", "scope")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_role_definitionHandler", bridge.NewTFHandler(p, "azurerm_role_definition", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Role_definitionHandler", bridge.NewTFHandler(p, "azurerm_role_definition", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_route{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Route{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("routeID")
 		b.ImmutableAttributes("name", "resource_group_name", "route_table_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_routeHandler", bridge.NewTFHandler(p, "azurerm_route", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::RouteHandler", bridge.NewTFHandler(p, "azurerm_route", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_route_table{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("route", "subnets", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Route_table{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("route_tableID", "route", "subnets", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_route_tableHandler", bridge.NewTFHandler(p, "azurerm_route_table", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Route_tableHandler", bridge.NewTFHandler(p, "azurerm_route_table", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_scheduler_job{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("start_time", "state")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Scheduler_job{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("scheduler_jobID", "start_time", "state")
 		b.ImmutableAttributes("job_collection_name", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_scheduler_jobHandler", bridge.NewTFHandler(p, "azurerm_scheduler_job", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Scheduler_jobHandler", bridge.NewTFHandler(p, "azurerm_scheduler_job", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_scheduler_job_collection{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Scheduler_job_collection{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("scheduler_job_collectionID", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_scheduler_job_collectionHandler", bridge.NewTFHandler(p, "azurerm_scheduler_job_collection", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Scheduler_job_collectionHandler", bridge.NewTFHandler(p, "azurerm_scheduler_job_collection", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_search_service{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("partition_count", "primary_key", "replica_count", "secondary_key", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Search_service{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("search_serviceID", "partition_count", "primary_key", "replica_count", "secondary_key", "tags")
 		b.ImmutableAttributes("location", "name", "partition_count", "replica_count", "resource_group_name", "sku", "tags")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_search_serviceHandler", bridge.NewTFHandler(p, "azurerm_search_service", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Search_serviceHandler", bridge.NewTFHandler(p, "azurerm_search_service", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_security_center_contact{}, func(b service.ResourceTypeBuilder) {
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_security_center_contactHandler", bridge.NewTFHandler(p, "azurerm_security_center_contact", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Security_center_contact{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("security_center_contactID")
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Security_center_contactHandler", bridge.NewTFHandler(p, "azurerm_security_center_contact", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_security_center_subscription_pricing{}, func(b service.ResourceTypeBuilder) {
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_security_center_subscription_pricingHandler", bridge.NewTFHandler(p, "azurerm_security_center_subscription_pricing", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Security_center_subscription_pricing{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("security_center_subscription_pricingID")
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Security_center_subscription_pricingHandler", bridge.NewTFHandler(p, "azurerm_security_center_subscription_pricing", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_security_center_workspace{}, func(b service.ResourceTypeBuilder) {
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_security_center_workspaceHandler", bridge.NewTFHandler(p, "azurerm_security_center_workspace", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Security_center_workspace{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("security_center_workspaceID")
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Security_center_workspaceHandler", bridge.NewTFHandler(p, "azurerm_security_center_workspace", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_service_fabric_cluster{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("cluster_code_version", "cluster_endpoint", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Service_fabric_cluster{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("service_fabric_clusterID", "cluster_code_version", "cluster_endpoint", "tags")
 		b.ImmutableAttributes("azure_active_directory", "diagnostics_config", "location", "management_endpoint", "name", "resource_group_name", "vm_image")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_service_fabric_clusterHandler", bridge.NewTFHandler(p, "azurerm_service_fabric_cluster", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Service_fabric_clusterHandler", bridge.NewTFHandler(p, "azurerm_service_fabric_cluster", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_servicebus_namespace{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("default_primary_connection_string", "default_primary_key", "default_secondary_connection_string", "default_secondary_key", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Servicebus_namespace{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("servicebus_namespaceID", "default_primary_connection_string", "default_primary_key", "default_secondary_connection_string", "default_secondary_key", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name", "sku")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_namespaceHandler", bridge.NewTFHandler(p, "azurerm_servicebus_namespace", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Servicebus_namespaceHandler", bridge.NewTFHandler(p, "azurerm_servicebus_namespace", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_servicebus_namespace_authorization_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("primary_connection_string", "primary_key", "secondary_connection_string", "secondary_key")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Servicebus_namespace_authorization_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("servicebus_namespace_authorization_ruleID", "primary_connection_string", "primary_key", "secondary_connection_string", "secondary_key")
 		b.ImmutableAttributes("name", "namespace_name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_namespace_authorization_ruleHandler", bridge.NewTFHandler(p, "azurerm_servicebus_namespace_authorization_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Servicebus_namespace_authorization_ruleHandler", bridge.NewTFHandler(p, "azurerm_servicebus_namespace_authorization_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_servicebus_queue{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("auto_delete_on_idle", "default_message_ttl", "duplicate_detection_history_time_window", "lock_duration", "max_size_in_megabytes")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Servicebus_queue{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("servicebus_queueID", "auto_delete_on_idle", "default_message_ttl", "duplicate_detection_history_time_window", "lock_duration", "max_size_in_megabytes")
 		b.ImmutableAttributes("enable_partitioning", "location", "name", "namespace_name", "requires_duplicate_detection", "requires_session", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_queueHandler", bridge.NewTFHandler(p, "azurerm_servicebus_queue", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Servicebus_queueHandler", bridge.NewTFHandler(p, "azurerm_servicebus_queue", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_servicebus_queue_authorization_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("primary_connection_string", "primary_key", "secondary_connection_string", "secondary_key")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Servicebus_queue_authorization_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("servicebus_queue_authorization_ruleID", "primary_connection_string", "primary_key", "secondary_connection_string", "secondary_key")
 		b.ImmutableAttributes("name", "namespace_name", "queue_name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_queue_authorization_ruleHandler", bridge.NewTFHandler(p, "azurerm_servicebus_queue_authorization_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Servicebus_queue_authorization_ruleHandler", bridge.NewTFHandler(p, "azurerm_servicebus_queue_authorization_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_servicebus_subscription{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("auto_delete_on_idle", "default_message_ttl", "lock_duration")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Servicebus_subscription{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("servicebus_subscriptionID", "auto_delete_on_idle", "default_message_ttl", "lock_duration")
 		b.ImmutableAttributes("location", "name", "namespace_name", "requires_session", "resource_group_name", "topic_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_subscriptionHandler", bridge.NewTFHandler(p, "azurerm_servicebus_subscription", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Servicebus_subscriptionHandler", bridge.NewTFHandler(p, "azurerm_servicebus_subscription", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_servicebus_subscription_rule{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Servicebus_subscription_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("servicebus_subscription_ruleID")
 		b.ImmutableAttributes("name", "namespace_name", "resource_group_name", "subscription_name", "topic_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_subscription_ruleHandler", bridge.NewTFHandler(p, "azurerm_servicebus_subscription_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Servicebus_subscription_ruleHandler", bridge.NewTFHandler(p, "azurerm_servicebus_subscription_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_servicebus_topic{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("auto_delete_on_idle", "default_message_ttl", "duplicate_detection_history_time_window", "max_size_in_megabytes")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Servicebus_topic{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("servicebus_topicID", "auto_delete_on_idle", "default_message_ttl", "duplicate_detection_history_time_window", "max_size_in_megabytes")
 		b.ImmutableAttributes("enable_partitioning", "location", "name", "namespace_name", "requires_duplicate_detection", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_topicHandler", bridge.NewTFHandler(p, "azurerm_servicebus_topic", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Servicebus_topicHandler", bridge.NewTFHandler(p, "azurerm_servicebus_topic", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_servicebus_topic_authorization_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("primary_connection_string", "primary_key", "secondary_connection_string", "secondary_key")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Servicebus_topic_authorization_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("servicebus_topic_authorization_ruleID", "primary_connection_string", "primary_key", "secondary_connection_string", "secondary_key")
 		b.ImmutableAttributes("name", "namespace_name", "resource_group_name", "topic_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_topic_authorization_ruleHandler", bridge.NewTFHandler(p, "azurerm_servicebus_topic_authorization_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Servicebus_topic_authorization_ruleHandler", bridge.NewTFHandler(p, "azurerm_servicebus_topic_authorization_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_shared_image{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Shared_image{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("shared_imageID", "tags")
 		b.ImmutableAttributes("gallery_name", "location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_shared_imageHandler", bridge.NewTFHandler(p, "azurerm_shared_image", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Shared_imageHandler", bridge.NewTFHandler(p, "azurerm_shared_image", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_shared_image_gallery{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags", "unique_name")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Shared_image_gallery{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("shared_image_galleryID", "tags", "unique_name")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_shared_image_galleryHandler", bridge.NewTFHandler(p, "azurerm_shared_image_gallery", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Shared_image_galleryHandler", bridge.NewTFHandler(p, "azurerm_shared_image_gallery", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_shared_image_version{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Shared_image_version{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("shared_image_versionID", "tags")
 		b.ImmutableAttributes("gallery_name", "image_name", "location", "managed_image_id", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_shared_image_versionHandler", bridge.NewTFHandler(p, "azurerm_shared_image_version", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Shared_image_versionHandler", bridge.NewTFHandler(p, "azurerm_shared_image_version", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_signalr_service{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("hostname", "ip_address", "public_port", "server_port", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Signalr_service{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("signalr_serviceID", "hostname", "ip_address", "public_port", "server_port", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_signalr_serviceHandler", bridge.NewTFHandler(p, "azurerm_signalr_service", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Signalr_serviceHandler", bridge.NewTFHandler(p, "azurerm_signalr_service", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_snapshot{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("disk_size_gb", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Snapshot{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("snapshotID", "disk_size_gb", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name", "source_resource_id", "source_uri", "storage_account_id")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_snapshotHandler", bridge.NewTFHandler(p, "azurerm_snapshot", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::SnapshotHandler", bridge.NewTFHandler(p, "azurerm_snapshot", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_sql_active_directory_administrator{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Sql_active_directory_administrator{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("sql_active_directory_administratorID")
 		b.ImmutableAttributes("resource_group_name", "server_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_sql_active_directory_administratorHandler", bridge.NewTFHandler(p, "azurerm_sql_active_directory_administrator", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Sql_active_directory_administratorHandler", bridge.NewTFHandler(p, "azurerm_sql_active_directory_administrator", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_sql_database{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("collation", "creation_date", "default_secondary_location", "edition", "elastic_pool_name", "encryption", "max_size_bytes", "requested_service_objective_id", "requested_service_objective_name", "restore_point_in_time", "source_database_deletion_date", "source_database_id", "tags", "threat_detection_policy")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Sql_database{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("sql_databaseID", "collation", "creation_date", "default_secondary_location", "edition", "elastic_pool_name", "encryption", "max_size_bytes", "requested_service_objective_id", "requested_service_objective_name", "restore_point_in_time", "source_database_deletion_date", "source_database_id", "tags", "threat_detection_policy")
 		b.ImmutableAttributes("collation", "location", "name", "resource_group_name", "server_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_sql_databaseHandler", bridge.NewTFHandler(p, "azurerm_sql_database", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Sql_databaseHandler", bridge.NewTFHandler(p, "azurerm_sql_database", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_sql_elasticpool{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_date", "db_dtu_max", "db_dtu_min", "pool_size", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Sql_elasticpool{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("sql_elasticpoolID", "creation_date", "db_dtu_max", "db_dtu_min", "pool_size", "tags")
 		b.ImmutableAttributes("edition", "location", "name", "resource_group_name", "server_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_sql_elasticpoolHandler", bridge.NewTFHandler(p, "azurerm_sql_elasticpool", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Sql_elasticpoolHandler", bridge.NewTFHandler(p, "azurerm_sql_elasticpool", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_sql_firewall_rule{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Sql_firewall_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("sql_firewall_ruleID")
 		b.ImmutableAttributes("name", "resource_group_name", "server_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_sql_firewall_ruleHandler", bridge.NewTFHandler(p, "azurerm_sql_firewall_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Sql_firewall_ruleHandler", bridge.NewTFHandler(p, "azurerm_sql_firewall_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_sql_server{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("fully_qualified_domain_name", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Sql_server{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("sql_serverID", "fully_qualified_domain_name", "tags")
 		b.ImmutableAttributes("administrator_login", "location", "name", "resource_group_name", "version")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_sql_serverHandler", bridge.NewTFHandler(p, "azurerm_sql_server", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Sql_serverHandler", bridge.NewTFHandler(p, "azurerm_sql_server", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_sql_virtual_network_rule{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Sql_virtual_network_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("sql_virtual_network_ruleID")
 		b.ImmutableAttributes("name", "resource_group_name", "server_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_sql_virtual_network_ruleHandler", bridge.NewTFHandler(p, "azurerm_sql_virtual_network_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Sql_virtual_network_ruleHandler", bridge.NewTFHandler(p, "azurerm_sql_virtual_network_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_storage_account{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("access_tier", "account_type", "identity", "primary_access_key", "primary_blob_connection_string", "primary_blob_endpoint", "primary_connection_string", "primary_file_endpoint", "primary_location", "primary_queue_endpoint", "primary_table_endpoint", "secondary_access_key", "secondary_blob_connection_string", "secondary_blob_endpoint", "secondary_connection_string", "secondary_location", "secondary_queue_endpoint", "secondary_table_endpoint", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Storage_account{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("storage_accountID", "access_tier", "account_type", "identity", "primary_access_key", "primary_blob_connection_string", "primary_blob_endpoint", "primary_connection_string", "primary_file_endpoint", "primary_location", "primary_queue_endpoint", "primary_table_endpoint", "secondary_access_key", "secondary_blob_connection_string", "secondary_blob_endpoint", "secondary_connection_string", "secondary_location", "secondary_queue_endpoint", "secondary_table_endpoint", "tags")
 		b.ImmutableAttributes("account_kind", "account_tier", "location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_storage_accountHandler", bridge.NewTFHandler(p, "azurerm_storage_account", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Storage_accountHandler", bridge.NewTFHandler(p, "azurerm_storage_account", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_storage_blob{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("url")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Storage_blob{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("storage_blobID", "url")
 		b.ImmutableAttributes("attempts", "name", "parallelism", "resource_group_name", "size", "source", "source_uri", "storage_account_name", "storage_container_name", "type")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_storage_blobHandler", bridge.NewTFHandler(p, "azurerm_storage_blob", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Storage_blobHandler", bridge.NewTFHandler(p, "azurerm_storage_blob", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_storage_container{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("properties")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Storage_container{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("storage_containerID", "properties")
 		b.ImmutableAttributes("name", "resource_group_name", "storage_account_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_storage_containerHandler", bridge.NewTFHandler(p, "azurerm_storage_container", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Storage_containerHandler", bridge.NewTFHandler(p, "azurerm_storage_container", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_storage_queue{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Storage_queue{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("storage_queueID")
 		b.ImmutableAttributes("name", "resource_group_name", "storage_account_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_storage_queueHandler", bridge.NewTFHandler(p, "azurerm_storage_queue", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Storage_queueHandler", bridge.NewTFHandler(p, "azurerm_storage_queue", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_storage_share{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("url")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Storage_share{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("storage_shareID", "url")
 		b.ImmutableAttributes("name", "resource_group_name", "storage_account_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_storage_shareHandler", bridge.NewTFHandler(p, "azurerm_storage_share", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Storage_shareHandler", bridge.NewTFHandler(p, "azurerm_storage_share", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_storage_table{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Storage_table{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("storage_tableID")
 		b.ImmutableAttributes("name", "resource_group_name", "storage_account_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_storage_tableHandler", bridge.NewTFHandler(p, "azurerm_storage_table", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Storage_tableHandler", bridge.NewTFHandler(p, "azurerm_storage_table", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_subnet{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("ip_configurations")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Subnet{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("subnetID", "ip_configurations")
 		b.ImmutableAttributes("name", "resource_group_name", "virtual_network_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_subnetHandler", bridge.NewTFHandler(p, "azurerm_subnet", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::SubnetHandler", bridge.NewTFHandler(p, "azurerm_subnet", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_subnet_network_security_group_association{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Subnet_network_security_group_association{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("subnet_network_security_group_associationID")
 		b.ImmutableAttributes("network_security_group_id", "subnet_id")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_subnet_network_security_group_associationHandler", bridge.NewTFHandler(p, "azurerm_subnet_network_security_group_association", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Subnet_network_security_group_associationHandler", bridge.NewTFHandler(p, "azurerm_subnet_network_security_group_association", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_subnet_route_table_association{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Subnet_route_table_association{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("subnet_route_table_associationID")
 		b.ImmutableAttributes("route_table_id", "subnet_id")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_subnet_route_table_associationHandler", bridge.NewTFHandler(p, "azurerm_subnet_route_table_association", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Subnet_route_table_associationHandler", bridge.NewTFHandler(p, "azurerm_subnet_route_table_association", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_template_deployment{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("outputs", "template_body")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Template_deployment{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("template_deploymentID", "outputs", "template_body")
 		b.ImmutableAttributes("name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_template_deploymentHandler", bridge.NewTFHandler(p, "azurerm_template_deployment", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Template_deploymentHandler", bridge.NewTFHandler(p, "azurerm_template_deployment", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_traffic_manager_endpoint{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("endpoint_location", "endpoint_monitor_status", "endpoint_status", "priority", "target", "weight")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Traffic_manager_endpoint{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("traffic_manager_endpointID", "endpoint_location", "endpoint_monitor_status", "endpoint_status", "priority", "target", "weight")
 		b.ImmutableAttributes("name", "profile_name", "resource_group_name", "type")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_traffic_manager_endpointHandler", bridge.NewTFHandler(p, "azurerm_traffic_manager_endpoint", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Traffic_manager_endpointHandler", bridge.NewTFHandler(p, "azurerm_traffic_manager_endpoint", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_traffic_manager_profile{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("fqdn", "profile_status", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Traffic_manager_profile{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("traffic_manager_profileID", "fqdn", "profile_status", "tags")
 		b.ImmutableAttributes("name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_traffic_manager_profileHandler", bridge.NewTFHandler(p, "azurerm_traffic_manager_profile", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Traffic_manager_profileHandler", bridge.NewTFHandler(p, "azurerm_traffic_manager_profile", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_user_assigned_identity{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("client_id", "principal_id", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&User_assigned_identity{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("user_assigned_identityID", "client_id", "principal_id", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_user_assigned_identityHandler", bridge.NewTFHandler(p, "azurerm_user_assigned_identity", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::User_assigned_identityHandler", bridge.NewTFHandler(p, "azurerm_user_assigned_identity", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_virtual_machine{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("availability_set_id", "identity", "license_type", "storage_data_disk", "storage_image_reference", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Virtual_machine{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("virtual_machineID", "availability_set_id", "identity", "license_type", "storage_data_disk", "storage_image_reference", "tags")
 		b.ImmutableAttributes("availability_set_id", "location", "name", "resource_group_name", "storage_image_reference", "zones")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_machineHandler", bridge.NewTFHandler(p, "azurerm_virtual_machine", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Virtual_machineHandler", bridge.NewTFHandler(p, "azurerm_virtual_machine", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_virtual_machine_data_disk_attachment{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Virtual_machine_data_disk_attachment{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("virtual_machine_data_disk_attachmentID")
 		b.ImmutableAttributes("create_option", "lun", "managed_disk_id", "virtual_machine_id")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_machine_data_disk_attachmentHandler", bridge.NewTFHandler(p, "azurerm_virtual_machine_data_disk_attachment", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Virtual_machine_data_disk_attachmentHandler", bridge.NewTFHandler(p, "azurerm_virtual_machine_data_disk_attachment", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_virtual_machine_extension{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Virtual_machine_extension{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("virtual_machine_extensionID", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name", "virtual_machine_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_machine_extensionHandler", bridge.NewTFHandler(p, "azurerm_virtual_machine_extension", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Virtual_machine_extensionHandler", bridge.NewTFHandler(p, "azurerm_virtual_machine_extension", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_virtual_machine_scale_set{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("identity", "license_type", "os_profile_linux_config", "storage_profile_image_reference", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Virtual_machine_scale_set{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("virtual_machine_scale_setID", "identity", "license_type", "os_profile_linux_config", "storage_profile_image_reference", "tags")
 		b.ImmutableAttributes("eviction_policy", "location", "name", "priority", "resource_group_name", "single_placement_group", "zones")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_machine_scale_setHandler", bridge.NewTFHandler(p, "azurerm_virtual_machine_scale_set", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Virtual_machine_scale_setHandler", bridge.NewTFHandler(p, "azurerm_virtual_machine_scale_set", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_virtual_network{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("subnet", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Virtual_network{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("virtual_networkID", "subnet", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_networkHandler", bridge.NewTFHandler(p, "azurerm_virtual_network", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Virtual_networkHandler", bridge.NewTFHandler(p, "azurerm_virtual_network", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_virtual_network_gateway{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("active_active", "bgp_settings", "enable_bgp", "tags")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Virtual_network_gateway{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("virtual_network_gatewayID", "active_active", "bgp_settings", "enable_bgp", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name", "type", "vpn_type")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_network_gatewayHandler", bridge.NewTFHandler(p, "azurerm_virtual_network_gateway", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Virtual_network_gatewayHandler", bridge.NewTFHandler(p, "azurerm_virtual_network_gateway", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_virtual_network_gateway_connection{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("enable_bgp", "routing_weight", "tags", "use_policy_based_traffic_selectors")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Virtual_network_gateway_connection{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("virtual_network_gateway_connectionID", "enable_bgp", "routing_weight", "tags", "use_policy_based_traffic_selectors")
 		b.ImmutableAttributes("express_route_circuit_id", "location", "name", "peer_virtual_network_gateway_id", "resource_group_name", "type", "virtual_network_gateway_id")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_network_gateway_connectionHandler", bridge.NewTFHandler(p, "azurerm_virtual_network_gateway_connection", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Virtual_network_gateway_connectionHandler", bridge.NewTFHandler(p, "azurerm_virtual_network_gateway_connection", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_virtual_network_peering{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allow_forwarded_traffic", "allow_gateway_transit", "allow_virtual_network_access", "use_remote_gateways")
+	rt = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Virtual_network_peering{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("virtual_network_peeringID", "allow_forwarded_traffic", "allow_gateway_transit", "allow_virtual_network_access", "use_remote_gateways")
 		b.ImmutableAttributes("name", "remote_virtual_network_id", "resource_group_name", "virtual_network_name")
-	}))
-	sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_network_peeringHandler", bridge.NewTFHandler(p, "azurerm_virtual_network_peering", evs[0]), evs[0])
-
-}
-
-type Azurerm_api_management_additional_location_1 struct {
-	Gateway_regional_url *string
-
-	Location string
-
-	Public_ip_addresses *[]string
-}
-
-type Azurerm_api_management_certificate_2 struct {
-	Certificate_password string
-
-	Encoded_certificate string
-
-	Store_name string
-}
-
-type Azurerm_api_management_hostname_configuration_3_management_4 struct {
-	Certificate *string
-
-	Certificate_password *string
-
-	Host_name string
-
-	Key_vault_id *string
-
-	Negotiate_client_certificate *bool
-}
-
-type Azurerm_api_management_hostname_configuration_3_portal_5 struct {
-	Certificate *string
-
-	Certificate_password *string
-
-	Host_name string
-
-	Key_vault_id *string
-
-	Negotiate_client_certificate *bool
-}
-
-type Azurerm_api_management_hostname_configuration_3_proxy_6 struct {
-	Certificate *string
-
-	Certificate_password *string
-
-	Default_ssl_binding *bool
-
-	Host_name string
-
-	Key_vault_id *string
-
-	Negotiate_client_certificate *bool
-}
-
-type Azurerm_api_management_hostname_configuration_3_scm_7 struct {
-	Certificate *string
-
-	Certificate_password *string
-
-	Host_name string
-
-	Key_vault_id *string
-
-	Negotiate_client_certificate *bool
-}
-
-type Azurerm_api_management_hostname_configuration_3 struct {
-	Management *[]Azurerm_api_management_hostname_configuration_3_management_4
-
-	Portal *[]Azurerm_api_management_hostname_configuration_3_portal_5
-
-	Proxy *[]Azurerm_api_management_hostname_configuration_3_proxy_6
-
-	Scm *[]Azurerm_api_management_hostname_configuration_3_scm_7
-}
-
-type Azurerm_api_management_identity_8 struct {
-	Principal_id *string
-
-	Tenant_id *string
-
-	Type string
-}
-
-type Azurerm_api_management_security_9 struct {
-	Disable_backend_ssl30 *bool
-
-	Disable_backend_tls10 *bool
-
-	Disable_backend_tls11 *bool
-
-	Disable_frontend_ssl30 *bool
-
-	Disable_frontend_tls10 *bool
-
-	Disable_frontend_tls11 *bool
-
-	Disable_triple_des_chipers *bool
-}
-
-type Azurerm_api_management_sku_10 struct {
-	Capacity int
-
-	Name string
-}
-
-type Azurerm_api_management struct {
-	Azurerm_api_management_id *string `lyra:"ignore"`
-
-	Additional_location *[]Azurerm_api_management_additional_location_1
-
-	Certificate *[]Azurerm_api_management_certificate_2
-
-	Gateway_regional_url *string
-
-	Gateway_url *string
-
-	Hostname_configuration *[]Azurerm_api_management_hostname_configuration_3
-
-	Identity *[]Azurerm_api_management_identity_8
-
-	Location string
-
-	Management_api_url *string
-
-	Name string
-
-	Notification_sender_email *string
-
-	Portal_url *string
-
-	Public_ip_addresses *[]string
-
-	Publisher_email string
-
-	Publisher_name string
-
-	Resource_group_name string
-
-	Scm_url *string
-
-	Security *[]Azurerm_api_management_security_9
-
-	Sku []Azurerm_api_management_sku_10
-
-	Tags *map[string]string
-}
-
-type Azurerm_app_service_connection_string_11 struct {
-	Name string
-
-	Type string
-
-	Value string
-}
-
-type Azurerm_app_service_identity_12 struct {
-	Principal_id *string
-
-	Tenant_id *string
-
-	Type string
-}
-
-type Azurerm_app_service_site_config_13_ip_restriction_14 struct {
-	Ip_address string
-
-	Subnet_mask *string
-}
-
-type Azurerm_app_service_site_config_13 struct {
-	Always_on *bool
-
-	App_command_line *string
-
-	Default_documents *[]string
-
-	Dotnet_framework_version *string
-
-	Ftps_state *string
-
-	Http2_enabled *bool
-
-	Ip_restriction *[]Azurerm_app_service_site_config_13_ip_restriction_14
-
-	Java_container *string
-
-	Java_container_version *string
-
-	Java_version *string
-
-	Linux_fx_version *string
-
-	Local_mysql_enabled *bool
-
-	Managed_pipeline_mode *string
-
-	Min_tls_version *string
-
-	Php_version *string
-
-	Python_version *string
-
-	Remote_debugging_enabled *bool
-
-	Remote_debugging_version *string
-
-	Scm_type *string
-
-	Use_32_bit_worker_process *bool
-
-	Virtual_network_name *string
-
-	Websockets_enabled *bool
-}
-
-type Azurerm_app_service_site_credential_15 struct {
-	Password *string
-
-	Username *string
-}
-
-type Azurerm_app_service_source_control_16 struct {
-	Branch *string
-
-	Repo_url *string
-}
-
-type Azurerm_app_service struct {
-	Azurerm_app_service_id *string `lyra:"ignore"`
-
-	App_service_plan_id string
-
-	App_settings *map[string]string
-
-	Client_affinity_enabled *bool
-
-	Connection_string *[]Azurerm_app_service_connection_string_11
-
-	Default_site_hostname *string
-
-	Enabled *bool
-
-	Https_only *bool
-
-	Identity *[]Azurerm_app_service_identity_12
-
-	Location string
-
-	Name string
-
-	Outbound_ip_addresses *string
-
-	Possible_outbound_ip_addresses *string
-
-	Resource_group_name string
-
-	Site_config *[]Azurerm_app_service_site_config_13
-
-	Site_credential *[]Azurerm_app_service_site_credential_15
-
-	Source_control *[]Azurerm_app_service_source_control_16
-
-	Tags *map[string]string
-}
-
-type Azurerm_app_service_active_slot struct {
-	Azurerm_app_service_active_slot_id *string `lyra:"ignore"`
-
-	App_service_name string
-
-	App_service_slot_name string
-
-	Resource_group_name string
-}
-
-type Azurerm_app_service_custom_hostname_binding struct {
-	Azurerm_app_service_custom_hostname_binding_id *string `lyra:"ignore"`
-
-	App_service_name string
-
-	Hostname string
-
-	Resource_group_name string
-}
-
-type Azurerm_app_service_plan_properties_17 struct {
-	App_service_environment_id *string
-
-	Per_site_scaling *bool
-
-	Reserved *bool
-}
-
-type Azurerm_app_service_plan_sku_18 struct {
-	Capacity *int
-
-	Size string
-
-	Tier string
-}
-
-type Azurerm_app_service_plan struct {
-	Azurerm_app_service_plan_id *string `lyra:"ignore"`
-
-	App_service_environment_id *string
-
-	Kind *string
-
-	Location string
-
-	Maximum_number_of_workers *int
-
-	Name string
-
-	Per_site_scaling *bool
-
-	Properties *[]Azurerm_app_service_plan_properties_17
-
-	Reserved *bool
-
-	Resource_group_name string
-
-	Sku []Azurerm_app_service_plan_sku_18
-
-	Tags *map[string]string
-}
-
-type Azurerm_app_service_slot_connection_string_19 struct {
-	Name string
-
-	Type string
-
-	Value string
-}
-
-type Azurerm_app_service_slot_identity_20 struct {
-	Principal_id *string
-
-	Tenant_id *string
-
-	Type string
-}
-
-type Azurerm_app_service_slot_site_config_21_ip_restriction_22 struct {
-	Ip_address string
-
-	Subnet_mask *string
-}
-
-type Azurerm_app_service_slot_site_config_21 struct {
-	Always_on *bool
-
-	App_command_line *string
-
-	Default_documents *[]string
-
-	Dotnet_framework_version *string
-
-	Ftps_state *string
-
-	Http2_enabled *bool
-
-	Ip_restriction *[]Azurerm_app_service_slot_site_config_21_ip_restriction_22
-
-	Java_container *string
-
-	Java_container_version *string
-
-	Java_version *string
-
-	Linux_fx_version *string
-
-	Local_mysql_enabled *bool
-
-	Managed_pipeline_mode *string
-
-	Min_tls_version *string
-
-	Php_version *string
-
-	Python_version *string
-
-	Remote_debugging_enabled *bool
-
-	Remote_debugging_version *string
-
-	Scm_type *string
-
-	Use_32_bit_worker_process *bool
-
-	Virtual_network_name *string
-
-	Websockets_enabled *bool
-}
-
-type Azurerm_app_service_slot struct {
-	Azurerm_app_service_slot_id *string `lyra:"ignore"`
-
-	App_service_name string
-
-	App_service_plan_id string
-
-	App_settings *map[string]string
-
-	Client_affinity_enabled *bool
-
-	Connection_string *[]Azurerm_app_service_slot_connection_string_19
-
-	Default_site_hostname *string
-
-	Enabled *bool
-
-	Https_only *bool
-
-	Identity *[]Azurerm_app_service_slot_identity_20
-
-	Location string
-
-	Name string
-
-	Resource_group_name string
-
-	Site_config *[]Azurerm_app_service_slot_site_config_21
-
-	Tags *map[string]string
-}
-
-type Azurerm_application_gateway_authentication_certificate_23 struct {
-	Data string
-
-	Id *string
-
-	Name string
-}
-
-type Azurerm_application_gateway_backend_address_pool_24 struct {
-	Fqdn_list *[]string
-
-	Id *string
-
-	Ip_address_list *[]string
-
-	Name string
-}
-
-type Azurerm_application_gateway_backend_http_settings_25_authentication_certificate_26 struct {
-	Id *string
-
-	Name string
-}
-
-type Azurerm_application_gateway_backend_http_settings_25 struct {
-	Authentication_certificate *[]Azurerm_application_gateway_backend_http_settings_25_authentication_certificate_26
-
-	Cookie_based_affinity string
-
-	Id *string
-
-	Name string
-
-	Port int
-
-	Probe_id *string
-
-	Probe_name *string
-
-	Protocol string
-
-	Request_timeout *int
-}
-
-type Azurerm_application_gateway_frontend_ip_configuration_27 struct {
-	Id *string
-
-	Name string
-
-	Private_ip_address *string
-
-	Private_ip_address_allocation *string
-
-	Public_ip_address_id *string
-
-	Subnet_id *string
-}
-
-type Azurerm_application_gateway_frontend_port_28 struct {
-	Id *string
-
-	Name string
-
-	Port int
-}
-
-type Azurerm_application_gateway_gateway_ip_configuration_29 struct {
-	Id *string
-
-	Name string
-
-	Subnet_id string
-}
-
-type Azurerm_application_gateway_http_listener_30 struct {
-	Frontend_ip_configuration_id *string
-
-	Frontend_ip_configuration_name string
-
-	Frontend_port_id *string
-
-	Frontend_port_name string
-
-	Host_name *string
-
-	Id *string
-
-	Name string
-
-	Protocol string
-
-	Require_sni *bool
-
-	Ssl_certificate_id *string
-
-	Ssl_certificate_name *string
-}
-
-type Azurerm_application_gateway_probe_31_match_32 struct {
-	Body *string
-
-	Status_code *[]string
-}
-
-type Azurerm_application_gateway_probe_31 struct {
-	Host string
-
-	Id *string
-
-	Interval int
-
-	Match *[]Azurerm_application_gateway_probe_31_match_32
-
-	Minimum_servers *int
-
-	Name string
-
-	Path string
-
-	Protocol string
-
-	Timeout int
-
-	Unhealthy_threshold int
-}
-
-type Azurerm_application_gateway_request_routing_rule_33 struct {
-	Backend_address_pool_id *string
-
-	Backend_address_pool_name *string
-
-	Backend_http_settings_id *string
-
-	Backend_http_settings_name *string
-
-	Http_listener_id *string
-
-	Http_listener_name string
-
-	Id *string
-
-	Name string
-
-	Rule_type string
-
-	Url_path_map_id *string
-
-	Url_path_map_name *string
-}
-
-type Azurerm_application_gateway_sku_34 struct {
-	Capacity int
-
-	Name string
-
-	Tier string
-}
-
-type Azurerm_application_gateway_ssl_certificate_35 struct {
-	Data string
-
-	Id *string
-
-	Name string
-
-	Password string
-
-	Public_cert_data *string
-}
-
-type Azurerm_application_gateway_url_path_map_36_path_rule_37 struct {
-	Backend_address_pool_id *string
-
-	Backend_address_pool_name string
-
-	Backend_http_settings_id *string
-
-	Backend_http_settings_name string
-
-	Id *string
-
-	Name string
-
-	Paths []string
-}
-
-type Azurerm_application_gateway_url_path_map_36 struct {
-	Default_backend_address_pool_id *string
-
-	Default_backend_address_pool_name string
-
-	Default_backend_http_settings_id *string
-
-	Default_backend_http_settings_name string
-
-	Id *string
-
-	Name string
-
-	Path_rule []Azurerm_application_gateway_url_path_map_36_path_rule_37
-}
-
-type Azurerm_application_gateway_waf_configuration_38 struct {
-	Enabled bool
-
-	Firewall_mode string
-
-	Rule_set_type *string
-
-	Rule_set_version string
-}
-
-type Azurerm_application_gateway struct {
-	Azurerm_application_gateway_id *string `lyra:"ignore"`
-
-	Authentication_certificate *[]Azurerm_application_gateway_authentication_certificate_23
-
-	Backend_address_pool []Azurerm_application_gateway_backend_address_pool_24
-
-	Backend_http_settings []Azurerm_application_gateway_backend_http_settings_25
-
-	Disabled_ssl_protocols *[]string
-
-	Frontend_ip_configuration []Azurerm_application_gateway_frontend_ip_configuration_27
-
-	Frontend_port []Azurerm_application_gateway_frontend_port_28
-
-	Gateway_ip_configuration []Azurerm_application_gateway_gateway_ip_configuration_29
-
-	Http_listener []Azurerm_application_gateway_http_listener_30
-
-	Location string
-
-	Name string
-
-	Probe *[]Azurerm_application_gateway_probe_31
-
-	Request_routing_rule []Azurerm_application_gateway_request_routing_rule_33
-
-	Resource_group_name string
-
-	Sku []Azurerm_application_gateway_sku_34
-
-	Ssl_certificate *[]Azurerm_application_gateway_ssl_certificate_35
-
-	Tags *map[string]string
-
-	Url_path_map *[]Azurerm_application_gateway_url_path_map_36
-
-	Waf_configuration *[]Azurerm_application_gateway_waf_configuration_38
-}
-
-type Azurerm_application_insights struct {
-	Azurerm_application_insights_id *string `lyra:"ignore"`
-
-	App_id *string
-
-	Application_type string
-
-	Instrumentation_key *string
-
-	Location string
-
-	Name string
-
-	Resource_group_name string
-
-	Tags *map[string]string
-}
-
-type Azurerm_application_insights_api_key struct {
-	Azurerm_application_insights_api_key_id *string `lyra:"ignore"`
-
-	Api_key *string
-
-	Application_insights_id string
-
-	Name string
-
-	Read_permissions *[]string
-
-	Write_permissions *[]string
-}
-
-type Azurerm_application_security_group struct {
-	Azurerm_application_security_group_id *string `lyra:"ignore"`
-
-	Location string
-
-	Name string
-
-	Resource_group_name string
-
-	Tags *map[string]string
-}
-
-type Azurerm_automation_account_sku_39 struct {
-	Name *string
-}
-
-type Azurerm_automation_account struct {
-	Azurerm_automation_account_id *string `lyra:"ignore"`
-
-	Dsc_primary_access_key *string
-
-	Dsc_secondary_access_key *string
-
-	Dsc_server_endpoint *string
-
-	Location string
-
-	Name string
-
-	Resource_group_name string
-
-	Sku []Azurerm_automation_account_sku_39
-
-	Tags *map[string]string
-}
-
-type Azurerm_automation_credential struct {
-	Azurerm_automation_credential_id *string `lyra:"ignore"`
-
-	Account_name string
-
-	Description *string
-
-	Name string
-
-	Password string
-
-	Resource_group_name string
-
-	Username string
-}
-
-type Azurerm_automation_dsc_configuration struct {
-	Azurerm_automation_dsc_configuration_id *string `lyra:"ignore"`
-
-	Automation_account_name string
-
-	Content_embedded string
-
-	Description *string
-
-	Location string
-
-	Log_verbose *bool
-
-	Name string
-
-	Resource_group_name string
-
-	State *string
-}
-
-type Azurerm_automation_dsc_nodeconfiguration struct {
-	Azurerm_automation_dsc_nodeconfiguration_id *string `lyra:"ignore"`
-
-	Automation_account_name string
-
-	Configuration_name *string
-
-	Content_embedded string
-
-	Name string
-
-	Resource_group_name string
-}
-
-type Azurerm_automation_module_module_link_40_hash_41 struct {
-	Algorithm string
-
-	Value string
-}
-
-type Azurerm_automation_module_module_link_40 struct {
-	Hash *[]Azurerm_automation_module_module_link_40_hash_41
-
-	Uri string
-}
-
-type Azurerm_automation_module struct {
-	Azurerm_automation_module_id *string `lyra:"ignore"`
-
-	Automation_account_name string
-
-	Module_link []Azurerm_automation_module_module_link_40
-
-	Name string
-
-	Resource_group_name string
-}
-
-type Azurerm_automation_runbook_publish_content_link_42_hash_43 struct {
-	Algorithm string
-
-	Value string
-}
-
-type Azurerm_automation_runbook_publish_content_link_42 struct {
-	Hash *[]Azurerm_automation_runbook_publish_content_link_42_hash_43
-
-	Uri string
-
-	Version *string
-}
-
-type Azurerm_automation_runbook struct {
-	Azurerm_automation_runbook_id *string `lyra:"ignore"`
-
-	Account_name string
-
-	Content *string
-
-	Description *string
-
-	Location string
-
-	Log_progress bool
-
-	Log_verbose bool
-
-	Name string
-
-	Publish_content_link []Azurerm_automation_runbook_publish_content_link_42
-
-	Resource_group_name string
-
-	Runbook_type string
-
-	Tags *map[string]string
-}
-
-type Azurerm_automation_schedule_monthly_occurrence_44 struct {
-	Day string
-
-	Occurrence int
-}
-
-type Azurerm_automation_schedule struct {
-	Azurerm_automation_schedule_id *string `lyra:"ignore"`
-
-	Account_name *string
-
-	Automation_account_name *string
-
-	Description *string
-
-	Expiry_time *string
-
-	Frequency string
-
-	Interval *int
-
-	Month_days *[]int
-
-	Monthly_occurrence *[]Azurerm_automation_schedule_monthly_occurrence_44
-
-	Name string
-
-	Resource_group_name string
-
-	Start_time *string
-
-	Timezone *string
-
-	Week_days *[]string
-}
-
-type Azurerm_autoscale_setting_notification_45_email_46 struct {
-	Custom_emails *[]string
-
-	Send_to_subscription_administrator *bool
-
-	Send_to_subscription_co_administrator *bool
-}
-
-type Azurerm_autoscale_setting_notification_45_webhook_47 struct {
-	Properties *map[string]string
-
-	Service_uri string
-}
-
-type Azurerm_autoscale_setting_notification_45 struct {
-	Email *[]Azurerm_autoscale_setting_notification_45_email_46
-
-	Webhook *[]Azurerm_autoscale_setting_notification_45_webhook_47
-}
-
-type Azurerm_autoscale_setting_profile_48_capacity_49 struct {
-	Default int
-
-	Maximum int
-
-	Minimum int
-}
-
-type Azurerm_autoscale_setting_profile_48_fixed_date_50 struct {
-	End string
-
-	Start string
-
-	Timezone *string
-}
-
-type Azurerm_autoscale_setting_profile_48_recurrence_51 struct {
-	Days []string
-
-	Hours []int
-
-	Minutes []int
-
-	Timezone *string
-}
-
-type Azurerm_autoscale_setting_profile_48_rule_52_metric_trigger_53 struct {
-	Metric_name string
-
-	Metric_resource_id string
-
-	Operator string
-
-	Statistic string
-
-	Threshold float64
-
-	Time_aggregation string
-
-	Time_grain string
-
-	Time_window string
-}
-
-type Azurerm_autoscale_setting_profile_48_rule_52_scale_action_54 struct {
-	Cooldown string
-
-	Direction string
-
-	Type string
-
-	Value int
-}
-
-type Azurerm_autoscale_setting_profile_48_rule_52 struct {
-	Metric_trigger []Azurerm_autoscale_setting_profile_48_rule_52_metric_trigger_53
-
-	Scale_action []Azurerm_autoscale_setting_profile_48_rule_52_scale_action_54
-}
-
-type Azurerm_autoscale_setting_profile_48 struct {
-	Capacity []Azurerm_autoscale_setting_profile_48_capacity_49
-
-	Fixed_date *[]Azurerm_autoscale_setting_profile_48_fixed_date_50
-
-	Name string
-
-	Recurrence *[]Azurerm_autoscale_setting_profile_48_recurrence_51
-
-	Rule *[]Azurerm_autoscale_setting_profile_48_rule_52
-}
-
-type Azurerm_autoscale_setting struct {
-	Azurerm_autoscale_setting_id *string `lyra:"ignore"`
-
-	Enabled *bool
-
-	Location string
-
-	Name string
-
-	Notification *[]Azurerm_autoscale_setting_notification_45
-
-	Profile []Azurerm_autoscale_setting_profile_48
-
-	Resource_group_name string
-
-	Tags *map[string]string
-
-	Target_resource_id string
-}
-
-type Azurerm_availability_set struct {
-	Azurerm_availability_set_id *string `lyra:"ignore"`
-
-	Location string
-
-	Managed *bool
-
-	Name string
-
-	Platform_fault_domain_count *int
-
-	Platform_update_domain_count *int
-
-	Resource_group_name string
-
-	Tags *map[string]string
-}
-
-type Azurerm_azuread_application struct {
-	Azurerm_azuread_application_id *string `lyra:"ignore"`
-
-	Application_id *string
-
-	Available_to_other_tenants *bool
-
-	Homepage *string
-
-	Identifier_uris *[]string
-
-	Name string
-
-	Oauth2_allow_implicit_flow *bool
-
-	Reply_urls *[]string
-}
-
-type Azurerm_azuread_service_principal struct {
-	Azurerm_azuread_service_principal_id *string `lyra:"ignore"`
-
-	Application_id string
-
-	Display_name *string
-}
-
-type Azurerm_azuread_service_principal_password struct {
-	Azurerm_azuread_service_principal_password_id *string `lyra:"ignore"`
-
-	End_date string
-
-	Key_id *string
-
-	Service_principal_id string
-
-	Start_date *string
-
-	Value string
-}
-
-type Azurerm_batch_account struct {
-	Azurerm_batch_account_id *string `lyra:"ignore"`
-
-	Location string
-
-	Name string
-
-	Pool_allocation_mode *string
-
-	Resource_group_name string
-
-	Storage_account_id *string
-
-	Tags *map[string]string
-}
-
-type Azurerm_batch_pool_auto_scale_55 struct {
-	Evaluation_interval *string
-
-	Formula string
-}
-
-type Azurerm_batch_pool_fixed_scale_56 struct {
-	Resize_timeout *string
-
-	Target_dedicated_nodes *int
-
-	Target_low_priority_nodes *int
-}
-
-type Azurerm_batch_pool_start_task_57_user_identity_58_auto_user_59 struct {
-	Elevation_level *string
-
-	Scope *string
-}
-
-type Azurerm_batch_pool_start_task_57_user_identity_58 struct {
-	Auto_user *[]Azurerm_batch_pool_start_task_57_user_identity_58_auto_user_59
-
-	User_name *string
-}
-
-type Azurerm_batch_pool_start_task_57 struct {
-	Command_line string
-
-	Environment *map[string]string
-
-	Max_task_retry_count *int
-
-	User_identity []Azurerm_batch_pool_start_task_57_user_identity_58
-
-	Wait_for_success *bool
-}
-
-type Azurerm_batch_pool_storage_image_reference_60 struct {
-	Id *string
-
-	Offer string
-
-	Publisher string
-
-	Sku string
-
-	Version string
-}
-
-type Azurerm_batch_pool struct {
-	Azurerm_batch_pool_id *string `lyra:"ignore"`
-
-	Account_name string
-
-	Auto_scale *[]Azurerm_batch_pool_auto_scale_55
-
-	Display_name *string
-
-	Fixed_scale *[]Azurerm_batch_pool_fixed_scale_56
-
-	Name string
-
-	Node_agent_sku_id string
-
-	Resource_group_name string
-
-	Start_task *[]Azurerm_batch_pool_start_task_57
-
-	Stop_pending_resize_operation *bool
-
-	Storage_image_reference []Azurerm_batch_pool_storage_image_reference_60
-
-	Vm_size string
-}
-
-type Azurerm_cdn_endpoint_geo_filter_61 struct {
-	Action string
-
-	Country_codes []string
-
-	Relative_path string
-}
-
-type Azurerm_cdn_endpoint_origin_62 struct {
-	Host_name string
-
-	Http_port *int
-
-	Https_port *int
-
-	Name string
-}
-
-type Azurerm_cdn_endpoint struct {
-	Azurerm_cdn_endpoint_id *string `lyra:"ignore"`
-
-	Content_types_to_compress *[]string
-
-	Geo_filter *[]Azurerm_cdn_endpoint_geo_filter_61
-
-	Host_name *string
-
-	Is_compression_enabled *bool
-
-	Is_http_allowed *bool
-
-	Is_https_allowed *bool
-
-	Location string
-
-	Name string
-
-	Optimization_type *string
-
-	Origin []Azurerm_cdn_endpoint_origin_62
-
-	Origin_host_header *string
-
-	Origin_path *string
-
-	Probe_path *string
-
-	Profile_name string
-
-	Querystring_caching_behaviour *string
-
-	Resource_group_name string
-
-	Tags *map[string]string
-}
-
-type Azurerm_cdn_profile struct {
-	Azurerm_cdn_profile_id *string `lyra:"ignore"`
-
-	Location string
-
-	Name string
-
-	Resource_group_name string
-
-	Sku string
-
-	Tags *map[string]string
-}
-
-type Azurerm_cognitive_account_sku_63 struct {
-	Name string
-
-	Tier string
-}
-
-type Azurerm_cognitive_account struct {
-	Azurerm_cognitive_account_id *string `lyra:"ignore"`
-
-	Endpoint *string
-
-	Kind string
-
-	Location string
-
-	Name string
-
-	Resource_group_name string
-
-	Sku []Azurerm_cognitive_account_sku_63
-
-	Tags *map[string]string
-}
-
-type Azurerm_container_group_container_64_ports_65 struct {
-	Port *int
-
-	Protocol *string
-}
-
-type Azurerm_container_group_container_64_volume_66 struct {
-	Mount_path string
-
-	Name string
-
-	Read_only *bool
-
-	Share_name string
-
-	Storage_account_key string
-
-	Storage_account_name string
-}
-
-type Azurerm_container_group_container_64 struct {
-	Command *string
-
-	Commands *[]string
-
-	Cpu float64
-
-	Environment_variables *map[string]string
-
-	Image string
-
-	Memory float64
-
-	Name string
-
-	Port *int
-
-	Ports *[]Azurerm_container_group_container_64_ports_65
-
-	Protocol *string
-
-	Secure_environment_variables *map[string]string
-
-	Volume *[]Azurerm_container_group_container_64_volume_66
-}
-
-type Azurerm_container_group_image_registry_credential_67 struct {
-	Password string
-
-	Server string
-
-	Username string
-}
-
-type Azurerm_container_group struct {
-	Azurerm_container_group_id *string `lyra:"ignore"`
-
-	Container []Azurerm_container_group_container_64
-
-	Dns_name_label *string
-
-	Fqdn *string
-
-	Image_registry_credential *[]Azurerm_container_group_image_registry_credential_67
-
-	Ip_address *string
-
-	Ip_address_type *string
-
-	Location string
-
-	Name string
-
-	Os_type string
-
-	Resource_group_name string
-
-	Restart_policy *string
-
-	Tags *map[string]string
-}
-
-type Azurerm_container_registry_storage_account_68 struct {
-	Access_key string
-
-	Name string
-}
-
-type Azurerm_container_registry struct {
-	Azurerm_container_registry_id *string `lyra:"ignore"`
-
-	Admin_enabled *bool
-
-	Admin_password *string
-
-	Admin_username *string
-
-	Georeplication_locations *[]string
-
-	Location string
-
-	Login_server *string
-
-	Name string
-
-	Resource_group_name string
-
-	Sku *string
-
-	Storage_account *[]Azurerm_container_registry_storage_account_68
-
-	Storage_account_id *string
-
-	Tags *map[string]string
-}
-
-type Azurerm_container_service_agent_pool_profile_69 struct {
-	Count *int
-
-	Dns_prefix string
-
-	Fqdn *string
-
-	Name string
-
-	Vm_size string
-}
-
-type Azurerm_container_service_diagnostics_profile_70 struct {
-	Enabled bool
-
-	Storage_uri *string
-}
-
-type Azurerm_container_service_linux_profile_71_ssh_key_72 struct {
-	Key_data string
-}
-
-type Azurerm_container_service_linux_profile_71 struct {
-	Admin_username string
-
-	Ssh_key []Azurerm_container_service_linux_profile_71_ssh_key_72
-}
-
-type Azurerm_container_service_master_profile_73 struct {
-	Count *int
-
-	Dns_prefix string
-
-	Fqdn *string
-}
-
-type Azurerm_container_service_service_principal_74 struct {
-	Client_id string
-
-	Client_secret string
-}
-
-type Azurerm_container_service struct {
-	Azurerm_container_service_id *string `lyra:"ignore"`
-
-	Agent_pool_profile []Azurerm_container_service_agent_pool_profile_69
-
-	Diagnostics_profile []Azurerm_container_service_diagnostics_profile_70
-
-	Linux_profile []Azurerm_container_service_linux_profile_71
-
-	Location string
-
-	Master_profile []Azurerm_container_service_master_profile_73
-
-	Name string
-
-	Orchestration_platform string
-
-	Resource_group_name string
-
-	Service_principal *[]Azurerm_container_service_service_principal_74
-
-	Tags *map[string]string
-}
-
-type Azurerm_cosmosdb_account_capabilities_75 struct {
-	Name string
-}
-
-type Azurerm_cosmosdb_account_consistency_policy_76 struct {
-	Consistency_level string
-
-	Max_interval_in_seconds *int
-
-	Max_staleness_prefix *int
-}
-
-type Azurerm_cosmosdb_account_failover_policy_77 struct {
-	Id *string
-
-	Location string
-
-	Priority int
-}
-
-type Azurerm_cosmosdb_account_geo_location_78 struct {
-	Failover_priority int
-
-	Id *string
-
-	Location string
-
-	Prefix *string
-}
-
-type Azurerm_cosmosdb_account_virtual_network_rule_79 struct {
-	Id string
-}
-
-type Azurerm_cosmosdb_account struct {
-	Azurerm_cosmosdb_account_id *string `lyra:"ignore"`
-
-	Capabilities *[]Azurerm_cosmosdb_account_capabilities_75
-
-	Connection_strings *[]string
-
-	Consistency_policy []Azurerm_cosmosdb_account_consistency_policy_76
-
-	Enable_automatic_failover *bool
-
-	Enable_multiple_write_locations *bool
-
-	Endpoint *string
-
-	Failover_policy *[]Azurerm_cosmosdb_account_failover_policy_77
-
-	Geo_location *[]Azurerm_cosmosdb_account_geo_location_78
-
-	Ip_range_filter *string
-
-	Is_virtual_network_filter_enabled *bool
-
-	Kind *string
-
-	Location string
-
-	Name string
-
-	Offer_type string
-
-	Primary_master_key *string
-
-	Primary_readonly_master_key *string
-
-	Read_endpoints *[]string
-
-	Resource_group_name string
-
-	Secondary_master_key *string
-
-	Secondary_readonly_master_key *string
-
-	Tags *map[string]string
-
-	Virtual_network_rule *[]Azurerm_cosmosdb_account_virtual_network_rule_79
-
-	Write_endpoints *[]string
-}
-
-type Azurerm_data_lake_analytics_account struct {
-	Azurerm_data_lake_analytics_account_id *string `lyra:"ignore"`
-
-	Default_store_account_name string
-
-	Location string
-
-	Name string
-
-	Resource_group_name string
-
-	Tags *map[string]string
-
-	Tier *string
-}
-
-type Azurerm_data_lake_analytics_firewall_rule struct {
-	Azurerm_data_lake_analytics_firewall_rule_id *string `lyra:"ignore"`
-
-	Account_name string
-
-	End_ip_address string
-
-	Name string
-
-	Resource_group_name string
-
-	Start_ip_address string
-}
-
-type Azurerm_data_lake_store struct {
-	Azurerm_data_lake_store_id *string `lyra:"ignore"`
-
-	Encryption_state *string
-
-	Encryption_type *string
-
-	Endpoint *string
-
-	Firewall_allow_azure_ips *string
-
-	Firewall_state *string
-
-	Location string
-
-	Name string
-
-	Resource_group_name string
-
-	Tags *map[string]string
-
-	Tier *string
-}
-
-type Azurerm_data_lake_store_file struct {
-	Azurerm_data_lake_store_file_id *string `lyra:"ignore"`
-
-	Account_name string
-
-	Local_file_path string
-
-	Remote_file_path string
-}
-
-type Azurerm_data_lake_store_firewall_rule struct {
-	Azurerm_data_lake_store_firewall_rule_id *string `lyra:"ignore"`
-
-	Account_name string
-
-	End_ip_address string
-
-	Name string
-
-	Resource_group_name string
-
-	Start_ip_address string
-}
-
-type Azurerm_databricks_workspace struct {
-	Azurerm_databricks_workspace_id *string `lyra:"ignore"`
-
-	Location string
-
-	Managed_resource_group_id *string
-
-	Managed_resource_group_name *string
-
-	Name string
-
-	Resource_group_name string
-
-	Sku string
-
-	Tags *map[string]string
-}
-
-type Azurerm_dev_test_lab struct {
-	Azurerm_dev_test_lab_id *string `lyra:"ignore"`
-
-	Artifacts_storage_account_id *string
-
-	Default_premium_storage_account_id *string
-
-	Default_storage_account_id *string
-
-	Key_vault_id *string
-
-	Location string
-
-	Name string
-
-	Premium_data_disk_storage_account_id *string
-
-	Resource_group_name string
-
-	Storage_type *string
-
-	Tags *map[string]string
-
-	Unique_identifier *string
-}
-
-type Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_80 struct {
-	Offer string
-
-	Publisher string
-
-	Sku string
-
-	Version string
-}
-
-type Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_81 struct {
-	Backend_port int
-
-	Frontend_port *int
-
-	Protocol string
-}
-
-type Azurerm_dev_test_linux_virtual_machine struct {
-	Azurerm_dev_test_linux_virtual_machine_id *string `lyra:"ignore"`
-
-	Allow_claim *bool
-
-	Disallow_public_ip_address *bool
-
-	Fqdn *string
-
-	Gallery_image_reference []Azurerm_dev_test_linux_virtual_machine_gallery_image_reference_80
-
-	Inbound_nat_rule *[]Azurerm_dev_test_linux_virtual_machine_inbound_nat_rule_81
-
-	Lab_name string
-
-	Lab_subnet_name string
-
-	Lab_virtual_network_id string
-
-	Location string
-
-	Name string
-
-	Notes *string
-
-	Password *string
-
-	Resource_group_name string
-
-	Size string
-
-	Ssh_key *string
-
-	Storage_type string
-
-	Tags *map[string]string
-
-	Unique_identifier *string
-
-	Username string
-}
-
-type Azurerm_dev_test_policy struct {
-	Azurerm_dev_test_policy_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Evaluator_type string
-
-	Fact_data *string
-
-	Lab_name string
-
-	Name string
-
-	Policy_set_name string
-
-	Resource_group_name string
-
-	Tags *map[string]string
-
-	Threshold string
-}
-
-type Azurerm_dev_test_virtual_network_subnet_82 struct {
-	Name *string
-
-	Use_in_virtual_machine_creation *string
-
-	Use_public_ip_address *string
-}
-
-type Azurerm_dev_test_virtual_network struct {
-	Azurerm_dev_test_virtual_network_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Lab_name string
-
-	Name string
-
-	Resource_group_name string
-
-	Subnet *[]Azurerm_dev_test_virtual_network_subnet_82
-
-	Tags *map[string]string
-
-	Unique_identifier *string
-}
-
-type Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_83 struct {
-	Offer string
-
-	Publisher string
-
-	Sku string
-
-	Version string
-}
-
-type Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_84 struct {
-	Backend_port int
-
-	Frontend_port *int
-
-	Protocol string
-}
-
-type Azurerm_dev_test_windows_virtual_machine struct {
-	Azurerm_dev_test_windows_virtual_machine_id *string `lyra:"ignore"`
-
-	Allow_claim *bool
-
-	Disallow_public_ip_address *bool
-
-	Fqdn *string
-
-	Gallery_image_reference []Azurerm_dev_test_windows_virtual_machine_gallery_image_reference_83
-
-	Inbound_nat_rule *[]Azurerm_dev_test_windows_virtual_machine_inbound_nat_rule_84
-
-	Lab_name string
-
-	Lab_subnet_name string
-
-	Lab_virtual_network_id string
-
-	Location string
-
-	Name string
-
-	Notes *string
-
-	Password string
-
-	Resource_group_name string
-
-	Size string
-
-	Storage_type string
-
-	Tags *map[string]string
-
-	Unique_identifier *string
-
-	Username string
-}
-
-type Azurerm_devspace_controller_sku_85 struct {
-	Name string
-
-	Tier string
-}
-
-type Azurerm_devspace_controller struct {
-	Azurerm_devspace_controller_id *string `lyra:"ignore"`
-
-	Data_plane_fqdn *string
-
-	Host_suffix string
-
-	Location string
-
-	Name string
-
-	Resource_group_name string
-
-	Sku []Azurerm_devspace_controller_sku_85
-
-	Tags *map[string]string
-
-	Target_container_host_credentials_base64 string
-
-	Target_container_host_resource_id string
-}
-
-type Azurerm_dns_a_record struct {
-	Azurerm_dns_a_record_id *string `lyra:"ignore"`
-
-	Name string
-
-	Records []string
-
-	Resource_group_name string
-
-	Tags *map[string]string
-
-	Ttl int
-
-	Zone_name string
-}
-
-type Azurerm_dns_aaaa_record struct {
-	Azurerm_dns_aaaa_record_id *string `lyra:"ignore"`
-
-	Name string
-
-	Records []string
-
-	Resource_group_name string
-
-	Tags *map[string]string
-
-	Ttl int
-
-	Zone_name string
-}
-
-type Azurerm_dns_caa_record_record_86 struct {
-	Flags int
-
-	Tag string
-
-	Value string
-}
-
-type Azurerm_dns_caa_record struct {
-	Azurerm_dns_caa_record_id *string `lyra:"ignore"`
-
-	Name string
-
-	Record []Azurerm_dns_caa_record_record_86
-
-	Resource_group_name string
-
-	Tags *map[string]string
-
-	Ttl int
-
-	Zone_name string
-}
-
-type Azurerm_dns_cname_record struct {
-	Azurerm_dns_cname_record_id *string `lyra:"ignore"`
-
-	Name string
-
-	Record string
-
-	Records *string
-
-	Resource_group_name string
-
-	Tags *map[string]string
-
-	Ttl int
-
-	Zone_name string
-}
-
-type Azurerm_dns_mx_record_record_87 struct {
-	Exchange string
-
-	Preference string
-}
-
-type Azurerm_dns_mx_record struct {
-	Azurerm_dns_mx_record_id *string `lyra:"ignore"`
-
-	Name string
-
-	Record []Azurerm_dns_mx_record_record_87
-
-	Resource_group_name string
-
-	Tags *map[string]string
-
-	Ttl int
-
-	Zone_name string
-}
-
-type Azurerm_dns_ns_record_record_88 struct {
-	Nsdname string
-}
-
-type Azurerm_dns_ns_record struct {
-	Azurerm_dns_ns_record_id *string `lyra:"ignore"`
-
-	Name string
-
-	Record *[]Azurerm_dns_ns_record_record_88
-
-	Records *[]string
-
-	Resource_group_name string
-
-	Tags *map[string]string
-
-	Ttl int
-
-	Zone_name string
-}
-
-type Azurerm_dns_ptr_record struct {
-	Azurerm_dns_ptr_record_id *string `lyra:"ignore"`
-
-	Name string
-
-	Records []string
-
-	Resource_group_name string
-
-	Tags *map[string]string
-
-	Ttl int
-
-	Zone_name string
-}
-
-type Azurerm_dns_srv_record_record_89 struct {
-	Port int
-
-	Priority int
-
-	Target string
-
-	Weight int
-}
-
-type Azurerm_dns_srv_record struct {
-	Azurerm_dns_srv_record_id *string `lyra:"ignore"`
-
-	Name string
-
-	Record []Azurerm_dns_srv_record_record_89
-
-	Resource_group_name string
-
-	Tags *map[string]string
-
-	Ttl int
-
-	Zone_name string
-}
-
-type Azurerm_dns_txt_record_record_90 struct {
-	Value string
-}
-
-type Azurerm_dns_txt_record struct {
-	Azurerm_dns_txt_record_id *string `lyra:"ignore"`
-
-	Name string
-
-	Record []Azurerm_dns_txt_record_record_90
-
-	Resource_group_name string
-
-	Tags *map[string]string
-
-	Ttl int
-
-	Zone_name string
-}
-
-type Azurerm_dns_zone struct {
-	Azurerm_dns_zone_id *string `lyra:"ignore"`
-
-	Max_number_of_record_sets *int
-
-	Name string
-
-	Name_servers *[]string
-
-	Number_of_record_sets *int
-
-	Registration_virtual_network_ids *[]string
-
-	Resolution_virtual_network_ids *[]string
-
-	Resource_group_name string
-
-	Tags *map[string]string
-
-	Zone_type *string
-}
-
-type Azurerm_eventgrid_topic struct {
-	Azurerm_eventgrid_topic_id *string `lyra:"ignore"`
-
-	Endpoint *string
-
-	Location string
-
-	Name string
-
-	Primary_access_key *string
-
-	Resource_group_name string
-
-	Secondary_access_key *string
-
-	Tags *map[string]string
-}
-
-type Azurerm_eventhub_capture_description_91_destination_92 struct {
-	Archive_name_format string
-
-	Blob_container_name string
-
-	Name string
-
-	Storage_account_id string
-}
-
-type Azurerm_eventhub_capture_description_91 struct {
-	Destination []Azurerm_eventhub_capture_description_91_destination_92
-
-	Enabled bool
-
-	Encoding string
-
-	Interval_in_seconds *int
-
-	Size_limit_in_bytes *int
-}
-
-type Azurerm_eventhub struct {
-	Azurerm_eventhub_id *string `lyra:"ignore"`
-
-	Capture_description *[]Azurerm_eventhub_capture_description_91
-
-	Location *string
-
-	Message_retention int
-
-	Name string
-
-	Namespace_name string
-
-	Partition_count int
-
-	Partition_ids *[]string
-
-	Resource_group_name string
-}
-
-type Azurerm_eventhub_authorization_rule struct {
-	Azurerm_eventhub_authorization_rule_id *string `lyra:"ignore"`
-
-	Eventhub_name string
-
-	Listen *bool
-
-	Location *string
-
-	Manage *bool
-
-	Name string
-
-	Namespace_name string
-
-	Primary_connection_string *string
-
-	Primary_key *string
-
-	Resource_group_name string
-
-	Secondary_connection_string *string
-
-	Secondary_key *string
-
-	Send *bool
-}
-
-type Azurerm_eventhub_consumer_group struct {
-	Azurerm_eventhub_consumer_group_id *string `lyra:"ignore"`
-
-	Eventhub_name string
-
-	Location *string
-
-	Name string
-
-	Namespace_name string
-
-	Resource_group_name string
-
-	User_metadata *string
-}
-
-type Azurerm_eventhub_namespace struct {
-	Azurerm_eventhub_namespace_id *string `lyra:"ignore"`
-
-	Auto_inflate_enabled *bool
-
-	Capacity *int
-
-	Default_primary_connection_string *string
-
-	Default_primary_key *string
-
-	Default_secondary_connection_string *string
-
-	Default_secondary_key *string
-
-	Kafka_enabled *bool
-
-	Location string
-
-	Maximum_throughput_units *int
-
-	Name string
-
-	Resource_group_name string
-
-	Sku string
-
-	Tags *map[string]string
-}
-
-type Azurerm_eventhub_namespace_authorization_rule struct {
-	Azurerm_eventhub_namespace_authorization_rule_id *string `lyra:"ignore"`
-
-	Listen *bool
-
-	Location *string
-
-	Manage *bool
-
-	Name string
-
-	Namespace_name string
-
-	Primary_connection_string *string
-
-	Primary_key *string
-
-	Resource_group_name string
-
-	Secondary_connection_string *string
-
-	Secondary_key *string
-
-	Send *bool
-}
-
-type Azurerm_express_route_circuit_sku_93 struct {
-	Family string
-
-	Tier string
-}
-
-type Azurerm_express_route_circuit struct {
-	Azurerm_express_route_circuit_id *string `lyra:"ignore"`
-
-	Allow_classic_operations *bool
-
-	Bandwidth_in_mbps int
-
-	Location string
-
-	Name string
-
-	Peering_location string
-
-	Resource_group_name string
-
-	Service_key *string
-
-	Service_provider_name string
-
-	Service_provider_provisioning_state *string
-
-	Sku []Azurerm_express_route_circuit_sku_93
-
-	Tags *map[string]string
-}
-
-type Azurerm_express_route_circuit_authorization struct {
-	Azurerm_express_route_circuit_authorization_id *string `lyra:"ignore"`
-
-	Authorization_key *string
-
-	Authorization_use_status *string
-
-	Express_route_circuit_name string
-
-	Name string
-
-	Resource_group_name string
-}
-
-type Azurerm_express_route_circuit_peering_microsoft_peering_config_94 struct {
-	Advertised_public_prefixes []string
-}
-
-type Azurerm_express_route_circuit_peering struct {
-	Azurerm_express_route_circuit_peering_id *string `lyra:"ignore"`
-
-	Azure_asn *int
-
-	Express_route_circuit_name string
-
-	Microsoft_peering_config *[]Azurerm_express_route_circuit_peering_microsoft_peering_config_94
-
-	Peer_asn *int
-
-	Peering_type string
-
-	Primary_azure_port *string
-
-	Primary_peer_address_prefix string
-
-	Resource_group_name string
-
-	Secondary_azure_port *string
-
-	Secondary_peer_address_prefix string
-
-	Shared_key *string
-
-	Vlan_id int
-}
-
-type Azurerm_firewall_ip_configuration_95 struct {
-	Internal_public_ip_address_id *string
-
-	Name string
-
-	Private_ip_address *string
-
-	Public_ip_address_id *string
-
-	Subnet_id string
-}
-
-type Azurerm_firewall struct {
-	Azurerm_firewall_id *string `lyra:"ignore"`
-
-	Ip_configuration []Azurerm_firewall_ip_configuration_95
-
-	Location string
-
-	Name string
-
-	Resource_group_name string
-
-	Tags *map[string]string
-}
-
-type Azurerm_firewall_application_rule_collection_rule_96_protocol_97 struct {
-	Port *int
-
-	Type string
-}
-
-type Azurerm_firewall_application_rule_collection_rule_96 struct {
-	Description *string
-
-	Fqdn_tags *[]string
-
-	Name string
-
-	Protocol *[]Azurerm_firewall_application_rule_collection_rule_96_protocol_97
-
-	Source_addresses []string
-
-	Target_fqdns *[]string
-}
-
-type Azurerm_firewall_application_rule_collection struct {
-	Azurerm_firewall_application_rule_collection_id *string `lyra:"ignore"`
-
-	Action string
-
-	Azure_firewall_name string
-
-	Name string
-
-	Priority int
-
-	Resource_group_name string
-
-	Rule []Azurerm_firewall_application_rule_collection_rule_96
-}
-
-type Azurerm_firewall_network_rule_collection_rule_98 struct {
-	Description *string
-
-	Destination_addresses []string
-
-	Destination_ports []string
-
-	Name string
-
-	Protocols []string
-
-	Source_addresses []string
-}
-
-type Azurerm_firewall_network_rule_collection struct {
-	Azurerm_firewall_network_rule_collection_id *string `lyra:"ignore"`
-
-	Action string
-
-	Azure_firewall_name string
-
-	Name string
-
-	Priority int
-
-	Resource_group_name string
-
-	Rule []Azurerm_firewall_network_rule_collection_rule_98
-}
-
-type Azurerm_function_app_connection_string_99 struct {
-	Name string
-
-	Type string
-
-	Value string
-}
-
-type Azurerm_function_app_identity_100 struct {
-	Principal_id *string
-
-	Tenant_id *string
-
-	Type string
-}
-
-type Azurerm_function_app_site_config_101 struct {
-	Always_on *bool
-
-	Use_32_bit_worker_process *bool
-
-	Websockets_enabled *bool
-}
-
-type Azurerm_function_app_site_credential_102 struct {
-	Password *string
-
-	Username *string
-}
-
-type Azurerm_function_app struct {
-	Azurerm_function_app_id *string `lyra:"ignore"`
-
-	App_service_plan_id string
-
-	App_settings *map[string]string
-
-	Client_affinity_enabled *bool
-
-	Connection_string *[]Azurerm_function_app_connection_string_99
-
-	Default_hostname *string
-
-	Enable_builtin_logging *bool
-
-	Enabled *bool
-
-	Https_only *bool
-
-	Identity *[]Azurerm_function_app_identity_100
-
-	Location string
-
-	Name string
-
-	Outbound_ip_addresses *string
-
-	Resource_group_name string
-
-	Site_config *[]Azurerm_function_app_site_config_101
-
-	Site_credential *[]Azurerm_function_app_site_credential_102
-
-	Storage_connection_string string
-
-	Tags *map[string]string
-
-	Version *string
-}
-
-type Azurerm_image_data_disk_103 struct {
-	Blob_uri *string
-
-	Caching *string
-
-	Lun *int
-
-	Managed_disk_id *string
-
-	Size_gb *int
-}
-
-type Azurerm_image_os_disk_104 struct {
-	Blob_uri *string
-
-	Caching *string
-
-	Managed_disk_id *string
-
-	Os_state *string
-
-	Os_type *string
-
-	Size_gb *int
-}
-
-type Azurerm_image struct {
-	Azurerm_image_id *string `lyra:"ignore"`
-
-	Data_disk *[]Azurerm_image_data_disk_103
-
-	Location string
-
-	Name string
-
-	Os_disk *[]Azurerm_image_os_disk_104
-
-	Resource_group_name string
-
-	Source_virtual_machine_id *string
-
-	Tags *map[string]string
-}
-
-type Azurerm_iothub_endpoint_105 struct {
-	Batch_frequency_in_seconds *int
-
-	Connection_string string
-
-	Container_name *string
-
-	Encoding *string
-
-	File_name_format *string
-
-	Max_chunk_size_in_bytes *int
-
-	Name string
-
-	Type string
-}
-
-type Azurerm_iothub_route_106 struct {
-	Condition *string
-
-	Enabled bool
-
-	Endpoint_names []string
-
-	Name string
-
-	Source string
-}
-
-type Azurerm_iothub_shared_access_policy_107 struct {
-	Key_name *string
-
-	Permissions *string
-
-	Primary_key *string
-
-	Secondary_key *string
-}
-
-type Azurerm_iothub_sku_108 struct {
-	Capacity int
-
-	Name string
-
-	Tier string
-}
-
-type Azurerm_iothub struct {
-	Azurerm_iothub_id *string `lyra:"ignore"`
-
-	Endpoint *[]Azurerm_iothub_endpoint_105
-
-	Event_hub_events_endpoint *string
-
-	Event_hub_events_path *string
-
-	Event_hub_operations_endpoint *string
-
-	Event_hub_operations_path *string
-
-	Hostname *string
-
-	Location string
-
-	Name string
-
-	Resource_group_name string
-
-	Route *[]Azurerm_iothub_route_106
-
-	Shared_access_policy *[]Azurerm_iothub_shared_access_policy_107
-
-	Sku []Azurerm_iothub_sku_108
-
-	Tags *map[string]string
-
-	Type *string
-}
-
-type Azurerm_iothub_consumer_group struct {
-	Azurerm_iothub_consumer_group_id *string `lyra:"ignore"`
-
-	Eventhub_endpoint_name string
-
-	Iothub_name string
-
-	Name string
-
-	Resource_group_name string
-}
-
-type Azurerm_key_vault_access_policy_109 struct {
-	Application_id *string
-
-	Certificate_permissions *[]string
-
-	Key_permissions *[]string
-
-	Object_id string
-
-	Secret_permissions *[]string
-
-	Tenant_id string
-}
-
-type Azurerm_key_vault_network_acls_110 struct {
-	Bypass string
-
-	Default_action string
-
-	Ip_rules *[]string
-
-	Virtual_network_subnet_ids *[]string
-}
-
-type Azurerm_key_vault_sku_111 struct {
-	Name string
-}
-
-type Azurerm_key_vault struct {
-	Azurerm_key_vault_id *string `lyra:"ignore"`
-
-	Access_policy *[]Azurerm_key_vault_access_policy_109
-
-	Enabled_for_deployment *bool
-
-	Enabled_for_disk_encryption *bool
-
-	Enabled_for_template_deployment *bool
-
-	Location string
-
-	Name string
-
-	Network_acls *[]Azurerm_key_vault_network_acls_110
-
-	Resource_group_name string
-
-	Sku []Azurerm_key_vault_sku_111
-
-	Tags *map[string]string
-
-	Tenant_id string
-
-	Vault_uri *string
-}
-
-type Azurerm_key_vault_access_policy struct {
-	Azurerm_key_vault_access_policy_id *string `lyra:"ignore"`
-
-	Application_id *string
-
-	Certificate_permissions *[]string
-
-	Key_permissions *[]string
-
-	Object_id string
-
-	Resource_group_name string
-
-	Secret_permissions *[]string
-
-	Tenant_id string
-
-	Vault_name string
-}
-
-type Azurerm_key_vault_certificate_certificate_112 struct {
-	Contents string
-
-	Password *string
-}
-
-type Azurerm_key_vault_certificate_certificate_policy_113_issuer_parameters_114 struct {
-	Name string
-}
-
-type Azurerm_key_vault_certificate_certificate_policy_113_key_properties_115 struct {
-	Exportable bool
-
-	Key_size int
-
-	Key_type string
-
-	Reuse_key bool
-}
-
-type Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116_action_117 struct {
-	Action_type string
-}
-
-type Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116_trigger_118 struct {
-	Days_before_expiry *int
-
-	Lifetime_percentage *int
-}
-
-type Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116 struct {
-	Action []Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116_action_117
-
-	Trigger []Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116_trigger_118
-}
-
-type Azurerm_key_vault_certificate_certificate_policy_113_secret_properties_119 struct {
-	Content_type string
-}
-
-type Azurerm_key_vault_certificate_certificate_policy_113_x509_certificate_properties_120_subject_alternative_names_121 struct {
-	Dns_names *[]string
-
-	Emails *[]string
-
-	Upns *[]string
-}
-
-type Azurerm_key_vault_certificate_certificate_policy_113_x509_certificate_properties_120 struct {
-	Extended_key_usage *[]string
-
-	Key_usage []string
-
-	Subject string
-
-	Subject_alternative_names *[]Azurerm_key_vault_certificate_certificate_policy_113_x509_certificate_properties_120_subject_alternative_names_121
-
-	Validity_in_months int
-}
-
-type Azurerm_key_vault_certificate_certificate_policy_113 struct {
-	Issuer_parameters []Azurerm_key_vault_certificate_certificate_policy_113_issuer_parameters_114
-
-	Key_properties []Azurerm_key_vault_certificate_certificate_policy_113_key_properties_115
-
-	Lifetime_action *[]Azurerm_key_vault_certificate_certificate_policy_113_lifetime_action_116
-
-	Secret_properties []Azurerm_key_vault_certificate_certificate_policy_113_secret_properties_119
-
-	X509_certificate_properties *[]Azurerm_key_vault_certificate_certificate_policy_113_x509_certificate_properties_120
-}
-
-type Azurerm_key_vault_certificate struct {
-	Azurerm_key_vault_certificate_id *string `lyra:"ignore"`
-
-	Certificate *[]Azurerm_key_vault_certificate_certificate_112
-
-	Certificate_data *string
-
-	Certificate_policy []Azurerm_key_vault_certificate_certificate_policy_113
-
-	Name string
-
-	Secret_id *string
-
-	Tags *map[string]string
-
-	Thumbprint *string
-
-	Vault_uri string
-
-	Version *string
-}
-
-type Azurerm_key_vault_key struct {
-	Azurerm_key_vault_key_id *string `lyra:"ignore"`
-
-	E *string
-
-	Key_opts []string
-
-	Key_size int
-
-	Key_type string
-
-	N *string
-
-	Name string
-
-	Tags *map[string]string
-
-	Vault_uri string
-
-	Version *string
-}
-
-type Azurerm_key_vault_secret struct {
-	Azurerm_key_vault_secret_id *string `lyra:"ignore"`
-
-	Content_type *string
-
-	Name string
-
-	Tags *map[string]string
-
-	Value string
-
-	Vault_uri string
-
-	Version *string
-}
-
-type Azurerm_kubernetes_cluster_addon_profile_122_aci_connector_linux_123 struct {
-	Enabled bool
-
-	Subnet_name string
-}
-
-type Azurerm_kubernetes_cluster_addon_profile_122_http_application_routing_124 struct {
-	Enabled bool
-
-	Http_application_routing_zone_name *string
-}
-
-type Azurerm_kubernetes_cluster_addon_profile_122_oms_agent_125 struct {
-	Enabled bool
-
-	Log_analytics_workspace_id string
-}
-
-type Azurerm_kubernetes_cluster_addon_profile_122 struct {
-	Aci_connector_linux *[]Azurerm_kubernetes_cluster_addon_profile_122_aci_connector_linux_123
-
-	Http_application_routing *[]Azurerm_kubernetes_cluster_addon_profile_122_http_application_routing_124
-
-	Oms_agent *[]Azurerm_kubernetes_cluster_addon_profile_122_oms_agent_125
-}
-
-type Azurerm_kubernetes_cluster_agent_pool_profile_126 struct {
-	Count *int
-
-	Dns_prefix *string
-
-	Fqdn *string
-
-	Max_pods *int
-
-	Name string
-
-	Os_disk_size_gb *int
-
-	Os_type *string
-
-	Vm_size string
-
-	Vnet_subnet_id *string
-}
-
-type Azurerm_kubernetes_cluster_kube_admin_config_127 struct {
-	Client_certificate *string
-
-	Client_key *string
-
-	Cluster_ca_certificate *string
-
-	Host *string
-
-	Password *string
-
-	Username *string
-}
-
-type Azurerm_kubernetes_cluster_kube_config_128 struct {
-	Client_certificate *string
-
-	Client_key *string
-
-	Cluster_ca_certificate *string
-
-	Host *string
-
-	Password *string
-
-	Username *string
-}
-
-type Azurerm_kubernetes_cluster_linux_profile_129_ssh_key_130 struct {
-	Key_data string
-}
-
-type Azurerm_kubernetes_cluster_linux_profile_129 struct {
-	Admin_username string
-
-	Ssh_key []Azurerm_kubernetes_cluster_linux_profile_129_ssh_key_130
-}
-
-type Azurerm_kubernetes_cluster_network_profile_131 struct {
-	Dns_service_ip *string
-
-	Docker_bridge_cidr *string
-
-	Network_plugin string
-
-	Pod_cidr *string
-
-	Service_cidr *string
-}
-
-type Azurerm_kubernetes_cluster_role_based_access_control_132_azure_active_directory_133 struct {
-	Client_app_id string
-
-	Server_app_id string
-
-	Server_app_secret string
-
-	Tenant_id *string
-}
-
-type Azurerm_kubernetes_cluster_role_based_access_control_132 struct {
-	Azure_active_directory *[]Azurerm_kubernetes_cluster_role_based_access_control_132_azure_active_directory_133
-
-	Enabled bool
-}
-
-type Azurerm_kubernetes_cluster_service_principal_134 struct {
-	Client_id string
-
-	Client_secret string
-}
-
-type Azurerm_kubernetes_cluster struct {
-	Azurerm_kubernetes_cluster_id *string `lyra:"ignore"`
-
-	Addon_profile *[]Azurerm_kubernetes_cluster_addon_profile_122
-
-	Agent_pool_profile []Azurerm_kubernetes_cluster_agent_pool_profile_126
-
-	Dns_prefix string
-
-	Fqdn *string
-
-	Kube_admin_config *[]Azurerm_kubernetes_cluster_kube_admin_config_127
-
-	Kube_admin_config_raw *string
-
-	Kube_config *[]Azurerm_kubernetes_cluster_kube_config_128
-
-	Kube_config_raw *string
-
-	Kubernetes_version *string
-
-	Linux_profile *[]Azurerm_kubernetes_cluster_linux_profile_129
-
-	Location string
-
-	Name string
-
-	Network_profile *[]Azurerm_kubernetes_cluster_network_profile_131
-
-	Node_resource_group *string
-
-	Resource_group_name string
-
-	Role_based_access_control *[]Azurerm_kubernetes_cluster_role_based_access_control_132
-
-	Service_principal []Azurerm_kubernetes_cluster_service_principal_134
-
-	Tags *map[string]string
-}
-
-type Azurerm_lb_frontend_ip_configuration_135 struct {
-	Inbound_nat_rules *[]string
-
-	Load_balancer_rules *[]string
-
-	Name string
-
-	Private_ip_address *string
-
-	Private_ip_address_allocation *string
-
-	Public_ip_address_id *string
-
-	Subnet_id *string
-
-	Zones *[]string
-}
-
-type Azurerm_lb struct {
-	Azurerm_lb_id *string `lyra:"ignore"`
-
-	Frontend_ip_configuration *[]Azurerm_lb_frontend_ip_configuration_135
-
-	Location string
-
-	Name string
-
-	Private_ip_address *string
-
-	Private_ip_addresses *[]string
-
-	Resource_group_name string
-
-	Sku *string
-
-	Tags *map[string]string
-}
-
-type Azurerm_lb_backend_address_pool struct {
-	Azurerm_lb_backend_address_pool_id *string `lyra:"ignore"`
-
-	Backend_ip_configurations *[]string
-
-	Load_balancing_rules *[]string
-
-	Loadbalancer_id string
-
-	Location *string
-
-	Name string
-
-	Resource_group_name string
-}
-
-type Azurerm_lb_nat_pool struct {
-	Azurerm_lb_nat_pool_id *string `lyra:"ignore"`
-
-	Backend_port int
-
-	Frontend_ip_configuration_id *string
-
-	Frontend_ip_configuration_name string
-
-	Frontend_port_end int
-
-	Frontend_port_start int
-
-	Loadbalancer_id string
-
-	Location *string
-
-	Name string
-
-	Protocol string
-
-	Resource_group_name string
-}
-
-type Azurerm_lb_nat_rule struct {
-	Azurerm_lb_nat_rule_id *string `lyra:"ignore"`
-
-	Backend_ip_configuration_id *string
-
-	Backend_port int
-
-	Enable_floating_ip *bool
-
-	Frontend_ip_configuration_id *string
-
-	Frontend_ip_configuration_name string
-
-	Frontend_port int
-
-	Loadbalancer_id string
-
-	Location *string
-
-	Name string
-
-	Protocol string
-
-	Resource_group_name string
-}
-
-type Azurerm_lb_probe struct {
-	Azurerm_lb_probe_id *string `lyra:"ignore"`
-
-	Interval_in_seconds *int
-
-	Load_balancer_rules *[]string
-
-	Loadbalancer_id string
-
-	Location *string
-
-	Name string
-
-	Number_of_probes *int
-
-	Port int
-
-	Protocol *string
-
-	Request_path *string
-
-	Resource_group_name string
-}
-
-type Azurerm_lb_rule struct {
-	Azurerm_lb_rule_id *string `lyra:"ignore"`
-
-	Backend_address_pool_id *string
-
-	Backend_port int
-
-	Enable_floating_ip *bool
-
-	Frontend_ip_configuration_id *string
-
-	Frontend_ip_configuration_name string
-
-	Frontend_port int
-
-	Idle_timeout_in_minutes *int
-
-	Load_distribution *string
-
-	Loadbalancer_id string
-
-	Location *string
-
-	Name string
-
-	Probe_id *string
-
-	Protocol string
-
-	Resource_group_name string
-}
-
-type Azurerm_local_network_gateway_bgp_settings_136 struct {
-	Asn int
-
-	Bgp_peering_address string
-
-	Peer_weight *int
-}
-
-type Azurerm_local_network_gateway struct {
-	Azurerm_local_network_gateway_id *string `lyra:"ignore"`
-
-	Address_space []string
-
-	Bgp_settings *[]Azurerm_local_network_gateway_bgp_settings_136
-
-	Gateway_address string
-
-	Location string
-
-	Name string
-
-	Resource_group_name string
-
-	Tags *map[string]string
-}
-
-type Azurerm_log_analytics_solution_plan_137 struct {
-	Name *string
-
-	Product string
-
-	Promotion_code *string
-
-	Publisher string
-}
-
-type Azurerm_log_analytics_solution struct {
-	Azurerm_log_analytics_solution_id *string `lyra:"ignore"`
-
-	Location string
-
-	Plan []Azurerm_log_analytics_solution_plan_137
-
-	Resource_group_name string
-
-	Solution_name string
-
-	Workspace_name string
-
-	Workspace_resource_id string
-}
-
-type Azurerm_log_analytics_workspace struct {
-	Azurerm_log_analytics_workspace_id *string `lyra:"ignore"`
-
-	Location string
-
-	Name string
-
-	Portal_url *string
-
-	Primary_shared_key *string
-
-	Resource_group_name string
-
-	Retention_in_days *int
-
-	Secondary_shared_key *string
-
-	Sku string
-
-	Tags *map[string]string
-
-	Workspace_id *string
-}
-
-type Azurerm_log_analytics_workspace_linked_service struct {
-	Azurerm_log_analytics_workspace_linked_service_id *string `lyra:"ignore"`
-
-	Linked_service_name *string
-
-	Linked_service_properties map[string]string
-
-	Name *string
-
-	Resource_group_name string
-
-	Tags *map[string]string
-
-	Workspace_name string
-}
-
-type Azurerm_logic_app_action_custom struct {
-	Azurerm_logic_app_action_custom_id *string `lyra:"ignore"`
-
-	Body string
-
-	Logic_app_id string
-
-	Name string
-}
-
-type Azurerm_logic_app_action_http struct {
-	Azurerm_logic_app_action_http_id *string `lyra:"ignore"`
-
-	Body *string
-
-	Headers *map[string]string
-
-	Logic_app_id string
-
-	Method string
-
-	Name string
-
-	Uri string
-}
-
-type Azurerm_logic_app_trigger_custom struct {
-	Azurerm_logic_app_trigger_custom_id *string `lyra:"ignore"`
-
-	Body string
-
-	Logic_app_id string
-
-	Name string
-}
-
-type Azurerm_logic_app_trigger_http_request struct {
-	Azurerm_logic_app_trigger_http_request_id *string `lyra:"ignore"`
-
-	Logic_app_id string
-
-	Method *string
-
-	Name string
-
-	Relative_path *string
-
-	Schema string
-}
-
-type Azurerm_logic_app_trigger_recurrence struct {
-	Azurerm_logic_app_trigger_recurrence_id *string `lyra:"ignore"`
-
-	Frequency string
-
-	Interval int
-
-	Logic_app_id string
-
-	Name string
-}
-
-type Azurerm_logic_app_workflow struct {
-	Azurerm_logic_app_workflow_id *string `lyra:"ignore"`
-
-	Access_endpoint *string
-
-	Location string
-
-	Name string
-
-	Parameters *map[string]string
-
-	Resource_group_name string
-
-	Tags *map[string]string
-
-	Workflow_schema *string
-
-	Workflow_version *string
-}
-
-type Azurerm_managed_disk_encryption_settings_138_disk_encryption_key_139 struct {
-	Secret_url string
-
-	Source_vault_id string
-}
-
-type Azurerm_managed_disk_encryption_settings_138_key_encryption_key_140 struct {
-	Key_url string
-
-	Source_vault_id string
-}
-
-type Azurerm_managed_disk_encryption_settings_138 struct {
-	Disk_encryption_key *[]Azurerm_managed_disk_encryption_settings_138_disk_encryption_key_139
-
-	Enabled bool
-
-	Key_encryption_key *[]Azurerm_managed_disk_encryption_settings_138_key_encryption_key_140
-}
-
-type Azurerm_managed_disk struct {
-	Azurerm_managed_disk_id *string `lyra:"ignore"`
-
-	Create_option string
-
-	Disk_size_gb *int
-
-	Encryption_settings *[]Azurerm_managed_disk_encryption_settings_138
-
-	Image_reference_id *string
-
-	Location string
-
-	Name string
-
-	Os_type *string
-
-	Resource_group_name string
-
-	Source_resource_id *string
-
-	Source_uri *string
-
-	Storage_account_type string
-
-	Tags *map[string]string
-
-	Zones *[]string
-}
-
-type Azurerm_management_group struct {
-	Azurerm_management_group_id *string `lyra:"ignore"`
-
-	Display_name *string
-
-	Group_id *string
-
-	Parent_management_group_id *string
-
-	Subscription_ids *[]string
-}
-
-type Azurerm_management_lock struct {
-	Azurerm_management_lock_id *string `lyra:"ignore"`
-
-	Lock_level string
-
-	Name string
-
-	Notes *string
-
-	Scope string
-}
-
-type Azurerm_mariadb_database struct {
-	Azurerm_mariadb_database_id *string `lyra:"ignore"`
-
-	Charset string
-
-	Collation string
-
-	Name string
-
-	Resource_group_name string
-
-	Server_name string
-}
-
-type Azurerm_mariadb_server_sku_141 struct {
-	Capacity int
-
-	Family string
-
-	Name string
-
-	Tier string
-}
-
-type Azurerm_mariadb_server_storage_profile_142 struct {
-	Backup_retention_days *int
-
-	Geo_redundant_backup *string
-
-	Storage_mb int
-}
-
-type Azurerm_mariadb_server struct {
-	Azurerm_mariadb_server_id *string `lyra:"ignore"`
-
-	Administrator_login string
-
-	Administrator_login_password string
-
-	Fqdn *string
-
-	Location string
-
-	Name string
-
-	Resource_group_name string
-
-	Sku []Azurerm_mariadb_server_sku_141
-
-	Ssl_enforcement string
-
-	Storage_profile []Azurerm_mariadb_server_storage_profile_142
-
-	Tags *map[string]string
-
-	Version string
-}
-
-type Azurerm_metric_alertrule_email_action_143 struct {
-	Custom_emails *[]string
-
-	Send_to_service_owners *bool
-}
-
-type Azurerm_metric_alertrule_webhook_action_144 struct {
-	Properties *map[string]string
-
-	Service_uri string
-}
-
-type Azurerm_metric_alertrule struct {
-	Azurerm_metric_alertrule_id *string `lyra:"ignore"`
-
-	Aggregation string
-
-	Description *string
-
-	Email_action *[]Azurerm_metric_alertrule_email_action_143
-
-	Enabled *bool
-
-	Location string
-
-	Metric_name string
-
-	Name string
-
-	Operator string
-
-	Period string
-
-	Resource_group_name string
-
-	Resource_id string
-
-	Tags *map[string]string
-
-	Threshold float64
-
-	Webhook_action *[]Azurerm_metric_alertrule_webhook_action_144
-}
-
-type Azurerm_monitor_action_group_email_receiver_145 struct {
-	Email_address string
-
-	Name string
-}
-
-type Azurerm_monitor_action_group_sms_receiver_146 struct {
-	Country_code string
-
-	Name string
-
-	Phone_number string
-}
-
-type Azurerm_monitor_action_group_webhook_receiver_147 struct {
-	Name string
-
-	Service_uri string
-}
-
-type Azurerm_monitor_action_group struct {
-	Azurerm_monitor_action_group_id *string `lyra:"ignore"`
-
-	Email_receiver *[]Azurerm_monitor_action_group_email_receiver_145
-
-	Enabled *bool
-
-	Name string
-
-	Resource_group_name string
-
-	Short_name string
-
-	Sms_receiver *[]Azurerm_monitor_action_group_sms_receiver_146
-
-	Tags *map[string]string
-
-	Webhook_receiver *[]Azurerm_monitor_action_group_webhook_receiver_147
-}
-
-type Azurerm_monitor_activity_log_alert_action_148 struct {
-	Action_group_id string
-
-	Webhook_properties *map[string]string
-}
-
-type Azurerm_monitor_activity_log_alert_criteria_149 struct {
-	Caller *string
-
-	Category string
-
-	Level *string
-
-	Operation_name *string
-
-	Resource_group *string
-
-	Resource_id *string
-
-	Resource_provider *string
-
-	Resource_type *string
-
-	Status *string
-
-	Sub_status *string
-}
-
-type Azurerm_monitor_activity_log_alert struct {
-	Azurerm_monitor_activity_log_alert_id *string `lyra:"ignore"`
-
-	Action *[]Azurerm_monitor_activity_log_alert_action_148
-
-	Criteria []Azurerm_monitor_activity_log_alert_criteria_149
-
-	Description *string
-
-	Enabled *bool
-
-	Name string
-
-	Resource_group_name string
-
-	Scopes []string
-
-	Tags *map[string]string
-}
-
-type Azurerm_monitor_diagnostic_setting_log_150_retention_policy_151 struct {
-	Days *int
-
-	Enabled bool
-}
-
-type Azurerm_monitor_diagnostic_setting_log_150 struct {
-	Category string
-
-	Enabled *bool
-
-	Retention_policy []Azurerm_monitor_diagnostic_setting_log_150_retention_policy_151
-}
-
-type Azurerm_monitor_diagnostic_setting_metric_152_retention_policy_153 struct {
-	Days *int
-
-	Enabled bool
-}
-
-type Azurerm_monitor_diagnostic_setting_metric_152 struct {
-	Category string
-
-	Enabled *bool
-
-	Retention_policy []Azurerm_monitor_diagnostic_setting_metric_152_retention_policy_153
-}
-
-type Azurerm_monitor_diagnostic_setting struct {
-	Azurerm_monitor_diagnostic_setting_id *string `lyra:"ignore"`
-
-	Eventhub_authorization_rule_id *string
-
-	Eventhub_name *string
-
-	Log *[]Azurerm_monitor_diagnostic_setting_log_150
-
-	Log_analytics_workspace_id *string
-
-	Metric *[]Azurerm_monitor_diagnostic_setting_metric_152
-
-	Name string
-
-	Storage_account_id *string
-
-	Target_resource_id string
-}
-
-type Azurerm_monitor_log_profile_retention_policy_154 struct {
-	Days *int
-
-	Enabled bool
-}
-
-type Azurerm_monitor_log_profile struct {
-	Azurerm_monitor_log_profile_id *string `lyra:"ignore"`
-
-	Categories []string
-
-	Locations []string
-
-	Name string
-
-	Retention_policy []Azurerm_monitor_log_profile_retention_policy_154
-
-	Servicebus_rule_id *string
-
-	Storage_account_id *string
-}
-
-type Azurerm_monitor_metric_alert_action_155 struct {
-	Action_group_id string
-
-	Webhook_properties *map[string]string
-}
-
-type Azurerm_monitor_metric_alert_criteria_156_dimension_157 struct {
-	Name string
-
-	Operator string
-
-	Values []string
-}
-
-type Azurerm_monitor_metric_alert_criteria_156 struct {
-	Aggregation string
-
-	Dimension *[]Azurerm_monitor_metric_alert_criteria_156_dimension_157
-
-	Metric_name string
-
-	Metric_namespace string
-
-	Operator string
-
-	Threshold float64
-}
-
-type Azurerm_monitor_metric_alert struct {
-	Azurerm_monitor_metric_alert_id *string `lyra:"ignore"`
-
-	Action *[]Azurerm_monitor_metric_alert_action_155
-
-	Auto_mitigate *bool
-
-	Criteria []Azurerm_monitor_metric_alert_criteria_156
-
-	Description *string
-
-	Enabled *bool
-
-	Frequency *string
-
-	Name string
-
-	Resource_group_name string
-
-	Scopes []string
-
-	Severity *int
-
-	Tags *map[string]string
-
-	Window_size *string
-}
-
-type Azurerm_mssql_elasticpool_elastic_pool_properties_158 struct {
-	Creation_date *string
-
-	License_type *string
-
-	Max_size_bytes *int
-
-	State *string
-
-	Zone_redundant *bool
-}
-
-type Azurerm_mssql_elasticpool_per_database_settings_159 struct {
-	Max_capacity float64
-
-	Min_capacity float64
-}
-
-type Azurerm_mssql_elasticpool_sku_160 struct {
-	Capacity int
-
-	Family *string
-
-	Name string
-
-	Tier string
-}
-
-type Azurerm_mssql_elasticpool struct {
-	Azurerm_mssql_elasticpool_id *string `lyra:"ignore"`
-
-	Elastic_pool_properties *[]Azurerm_mssql_elasticpool_elastic_pool_properties_158
-
-	Location string
-
-	Max_size_bytes *int
-
-	Name string
-
-	Per_database_settings []Azurerm_mssql_elasticpool_per_database_settings_159
-
-	Resource_group_name string
-
-	Server_name string
-
-	Sku []Azurerm_mssql_elasticpool_sku_160
-
-	Tags *map[string]string
-
-	Zone_redundant *bool
-}
-
-type Azurerm_mysql_configuration struct {
-	Azurerm_mysql_configuration_id *string `lyra:"ignore"`
-
-	Name string
-
-	Resource_group_name string
-
-	Server_name string
-
-	Value string
-}
-
-type Azurerm_mysql_database struct {
-	Azurerm_mysql_database_id *string `lyra:"ignore"`
-
-	Charset string
-
-	Collation string
-
-	Name string
-
-	Resource_group_name string
-
-	Server_name string
-}
-
-type Azurerm_mysql_firewall_rule struct {
-	Azurerm_mysql_firewall_rule_id *string `lyra:"ignore"`
-
-	End_ip_address string
-
-	Name string
-
-	Resource_group_name string
-
-	Server_name string
-
-	Start_ip_address string
-}
-
-type Azurerm_mysql_server_sku_161 struct {
-	Capacity int
-
-	Family string
-
-	Name string
-
-	Tier string
-}
-
-type Azurerm_mysql_server_storage_profile_162 struct {
-	Backup_retention_days *int
-
-	Geo_redundant_backup *string
-
-	Storage_mb int
-}
-
-type Azurerm_mysql_server struct {
-	Azurerm_mysql_server_id *string `lyra:"ignore"`
-
-	Administrator_login string
-
-	Administrator_login_password string
-
-	Fqdn *string
-
-	Location string
-
-	Name string
-
-	Resource_group_name string
-
-	Sku []Azurerm_mysql_server_sku_161
-
-	Ssl_enforcement string
-
-	Storage_profile []Azurerm_mysql_server_storage_profile_162
-
-	Tags *map[string]string
-
-	Version string
-}
-
-type Azurerm_mysql_virtual_network_rule struct {
-	Azurerm_mysql_virtual_network_rule_id *string `lyra:"ignore"`
-
-	Name string
-
-	Resource_group_name string
-
-	Server_name string
-
-	Subnet_id string
-}
-
-type Azurerm_network_interface_ip_configuration_163 struct {
-	Application_gateway_backend_address_pools_ids *[]string
-
-	Application_security_group_ids *[]string
-
-	Load_balancer_backend_address_pools_ids *[]string
-
-	Load_balancer_inbound_nat_rules_ids *[]string
-
-	Name string
-
-	Primary *bool
-
-	Private_ip_address *string
-
-	Private_ip_address_allocation string
-
-	Private_ip_address_version *string
-
-	Public_ip_address_id *string
-
-	Subnet_id *string
-}
-
-type Azurerm_network_interface struct {
-	Azurerm_network_interface_id *string `lyra:"ignore"`
-
-	Applied_dns_servers *[]string
-
-	Dns_servers *[]string
-
-	Enable_accelerated_networking *bool
-
-	Enable_ip_forwarding *bool
-
-	Internal_dns_name_label *string
-
-	Internal_fqdn *string
-
-	Ip_configuration []Azurerm_network_interface_ip_configuration_163
-
-	Location string
-
-	Mac_address *string
-
-	Name string
-
-	Network_security_group_id *string
-
-	Private_ip_address *string
-
-	Private_ip_addresses *[]string
-
-	Resource_group_name string
-
-	Tags *map[string]string
-
-	Virtual_machine_id *string
-}
-
-type Azurerm_network_interface_application_gateway_backend_address_pool_association struct {
-	Azurerm_network_interface_application_gateway_backend_address_pool_association_id *string `lyra:"ignore"`
-
-	Backend_address_pool_id string
-
-	Ip_configuration_name string
-
-	Network_interface_id string
-}
-
-type Azurerm_network_interface_backend_address_pool_association struct {
-	Azurerm_network_interface_backend_address_pool_association_id *string `lyra:"ignore"`
-
-	Backend_address_pool_id string
-
-	Ip_configuration_name string
-
-	Network_interface_id string
-}
-
-type Azurerm_network_interface_nat_rule_association struct {
-	Azurerm_network_interface_nat_rule_association_id *string `lyra:"ignore"`
-
-	Ip_configuration_name string
-
-	Nat_rule_id string
-
-	Network_interface_id string
-}
-
-type Azurerm_network_security_group_security_rule_164 struct {
-	Access string
-
-	Description *string
-
-	Destination_address_prefix *string
-
-	Destination_address_prefixes *[]string
-
-	Destination_application_security_group_ids *[]string
-
-	Destination_port_range *string
-
-	Destination_port_ranges *[]string
-
-	Direction string
-
-	Name string
-
-	Priority int
-
-	Protocol string
-
-	Source_address_prefix *string
-
-	Source_address_prefixes *[]string
-
-	Source_application_security_group_ids *[]string
-
-	Source_port_range *string
-
-	Source_port_ranges *[]string
-}
-
-type Azurerm_network_security_group struct {
-	Azurerm_network_security_group_id *string `lyra:"ignore"`
-
-	Location string
-
-	Name string
-
-	Resource_group_name string
-
-	Security_rule *[]Azurerm_network_security_group_security_rule_164
-
-	Tags *map[string]string
-}
-
-type Azurerm_network_security_rule struct {
-	Azurerm_network_security_rule_id *string `lyra:"ignore"`
-
-	Access string
-
-	Description *string
-
-	Destination_address_prefix *string
-
-	Destination_address_prefixes *[]string
-
-	Destination_application_security_group_ids *[]string
-
-	Destination_port_range *string
-
-	Destination_port_ranges *[]string
-
-	Direction string
-
-	Name string
-
-	Network_security_group_name string
-
-	Priority int
-
-	Protocol string
-
-	Resource_group_name string
-
-	Source_address_prefix *string
-
-	Source_address_prefixes *[]string
-
-	Source_application_security_group_ids *[]string
-
-	Source_port_range *string
-
-	Source_port_ranges *[]string
-}
-
-type Azurerm_network_watcher struct {
-	Azurerm_network_watcher_id *string `lyra:"ignore"`
-
-	Location string
-
-	Name string
-
-	Resource_group_name string
-
-	Tags *map[string]string
-}
-
-type Azurerm_notification_hub_apns_credential_165 struct {
-	Application_mode string
-
-	Bundle_id string
-
-	Key_id string
-
-	Team_id string
-
-	Token string
-}
-
-type Azurerm_notification_hub_gcm_credential_166 struct {
-	Api_key string
-}
-
-type Azurerm_notification_hub struct {
-	Azurerm_notification_hub_id *string `lyra:"ignore"`
-
-	Apns_credential *[]Azurerm_notification_hub_apns_credential_165
-
-	Gcm_credential *[]Azurerm_notification_hub_gcm_credential_166
-
-	Location string
-
-	Name string
-
-	Namespace_name string
-
-	Resource_group_name string
-}
-
-type Azurerm_notification_hub_authorization_rule struct {
-	Azurerm_notification_hub_authorization_rule_id *string `lyra:"ignore"`
-
-	Listen *bool
-
-	Manage *bool
-
-	Name string
-
-	Namespace_name string
-
-	Notification_hub_name string
-
-	Primary_access_key *string
-
-	Resource_group_name string
-
-	Secondary_access_key *string
-
-	Send *bool
-}
-
-type Azurerm_notification_hub_namespace_sku_167 struct {
-	Name string
-}
-
-type Azurerm_notification_hub_namespace struct {
-	Azurerm_notification_hub_namespace_id *string `lyra:"ignore"`
-
-	Enabled *bool
-
-	Location string
-
-	Name string
-
-	Namespace_type string
-
-	Resource_group_name string
-
-	Servicebus_endpoint *string
-
-	Sku []Azurerm_notification_hub_namespace_sku_167
-}
-
-type Azurerm_packet_capture_filter_168 struct {
-	Local_ip_address *string
-
-	Local_port *string
-
-	Protocol string
-
-	Remote_ip_address *string
-
-	Remote_port *string
-}
-
-type Azurerm_packet_capture_storage_location_169 struct {
-	File_path *string
-
-	Storage_account_id *string
-
-	Storage_path *string
-}
-
-type Azurerm_packet_capture struct {
-	Azurerm_packet_capture_id *string `lyra:"ignore"`
-
-	Filter *[]Azurerm_packet_capture_filter_168
-
-	Maximum_bytes_per_packet *int
-
-	Maximum_bytes_per_session *int
-
-	Maximum_capture_duration *int
-
-	Name string
-
-	Network_watcher_name string
-
-	Resource_group_name string
-
-	Storage_location []Azurerm_packet_capture_storage_location_169
-
-	Target_resource_id string
-}
-
-type Azurerm_policy_assignment_identity_170 struct {
-	Principal_id *string
-
-	Tenant_id *string
-
-	Type *string
-}
-
-type Azurerm_policy_assignment struct {
-	Azurerm_policy_assignment_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Display_name *string
-
-	Identity *[]Azurerm_policy_assignment_identity_170
-
-	Location *string
-
-	Name string
-
-	Not_scopes *[]string
-
-	Parameters *string
-
-	Policy_definition_id string
-
-	Scope string
-}
-
-type Azurerm_policy_definition struct {
-	Azurerm_policy_definition_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Display_name string
-
-	Management_group_id *string
-
-	Metadata *string
-
-	Mode string
-
-	Name string
-
-	Parameters *string
-
-	Policy_rule *string
-
-	Policy_type string
-}
-
-type Azurerm_policy_set_definition struct {
-	Azurerm_policy_set_definition_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Display_name string
-
-	Management_group_id *string
-
-	Metadata *string
-
-	Name string
-
-	Parameters *string
-
-	Policy_definitions *string
-
-	Policy_type string
-}
-
-type Azurerm_postgresql_configuration struct {
-	Azurerm_postgresql_configuration_id *string `lyra:"ignore"`
-
-	Name string
-
-	Resource_group_name string
-
-	Server_name string
-
-	Value string
-}
-
-type Azurerm_postgresql_database struct {
-	Azurerm_postgresql_database_id *string `lyra:"ignore"`
-
-	Charset string
-
-	Collation string
-
-	Name string
-
-	Resource_group_name string
-
-	Server_name string
-}
-
-type Azurerm_postgresql_firewall_rule struct {
-	Azurerm_postgresql_firewall_rule_id *string `lyra:"ignore"`
-
-	End_ip_address string
-
-	Name string
-
-	Resource_group_name string
-
-	Server_name string
-
-	Start_ip_address string
-}
-
-type Azurerm_postgresql_server_sku_171 struct {
-	Capacity int
-
-	Family string
-
-	Name string
-
-	Tier string
-}
-
-type Azurerm_postgresql_server_storage_profile_172 struct {
-	Backup_retention_days *int
-
-	Geo_redundant_backup *string
-
-	Storage_mb int
-}
-
-type Azurerm_postgresql_server struct {
-	Azurerm_postgresql_server_id *string `lyra:"ignore"`
-
-	Administrator_login string
-
-	Administrator_login_password string
-
-	Fqdn *string
-
-	Location string
-
-	Name string
-
-	Resource_group_name string
-
-	Sku []Azurerm_postgresql_server_sku_171
-
-	Ssl_enforcement string
-
-	Storage_profile []Azurerm_postgresql_server_storage_profile_172
-
-	Tags *map[string]string
-
-	Version string
-}
-
-type Azurerm_postgresql_virtual_network_rule struct {
-	Azurerm_postgresql_virtual_network_rule_id *string `lyra:"ignore"`
-
-	Ignore_missing_vnet_service_endpoint *bool
-
-	Name string
-
-	Resource_group_name string
-
-	Server_name string
-
-	Subnet_id string
-}
-
-type Azurerm_public_ip struct {
-	Azurerm_public_ip_id *string `lyra:"ignore"`
-
-	Allocation_method *string
-
-	Domain_name_label *string
-
-	Fqdn *string
-
-	Idle_timeout_in_minutes *int
-
-	Ip_address *string
-
-	Ip_version *string
-
-	Location string
-
-	Name string
-
-	Public_ip_address_allocation *string
-
-	Resource_group_name string
-
-	Reverse_fqdn *string
-
-	Sku *string
-
-	Tags *map[string]string
-
-	Zones *[]string
-}
-
-type Azurerm_recovery_services_protected_vm struct {
-	Azurerm_recovery_services_protected_vm_id *string `lyra:"ignore"`
-
-	Backup_policy_id string
-
-	Recovery_vault_name string
-
-	Resource_group_name string
-
-	Source_vm_id string
-
-	Tags *map[string]string
-}
-
-type Azurerm_recovery_services_protection_policy_vm_backup_173 struct {
-	Frequency string
-
-	Time string
-
-	Weekdays *[]string
-}
-
-type Azurerm_recovery_services_protection_policy_vm_retention_daily_174 struct {
-	Count int
-}
-
-type Azurerm_recovery_services_protection_policy_vm_retention_monthly_175 struct {
-	Count int
-
-	Weekdays []string
-
-	Weeks []string
-}
-
-type Azurerm_recovery_services_protection_policy_vm_retention_weekly_176 struct {
-	Count int
-
-	Weekdays []string
-}
-
-type Azurerm_recovery_services_protection_policy_vm_retention_yearly_177 struct {
-	Count int
-
-	Months []string
-
-	Weekdays []string
-
-	Weeks []string
-}
-
-type Azurerm_recovery_services_protection_policy_vm struct {
-	Azurerm_recovery_services_protection_policy_vm_id *string `lyra:"ignore"`
-
-	Backup []Azurerm_recovery_services_protection_policy_vm_backup_173
-
-	Name string
-
-	Recovery_vault_name string
-
-	Resource_group_name string
-
-	Retention_daily *[]Azurerm_recovery_services_protection_policy_vm_retention_daily_174
-
-	Retention_monthly *[]Azurerm_recovery_services_protection_policy_vm_retention_monthly_175
-
-	Retention_weekly *[]Azurerm_recovery_services_protection_policy_vm_retention_weekly_176
-
-	Retention_yearly *[]Azurerm_recovery_services_protection_policy_vm_retention_yearly_177
-
-	Tags *map[string]string
-
-	Timezone *string
-}
-
-type Azurerm_recovery_services_vault struct {
-	Azurerm_recovery_services_vault_id *string `lyra:"ignore"`
-
-	Location string
-
-	Name string
-
-	Resource_group_name string
-
-	Sku string
-
-	Tags *map[string]string
-}
-
-type Azurerm_redis_cache_patch_schedule_178 struct {
-	Day_of_week string
-
-	Start_hour_utc *int
-}
-
-type Azurerm_redis_cache_redis_configuration_179 struct {
-	Maxclients *int
-
-	Maxmemory_delta *int
-
-	Maxmemory_policy *string
-
-	Maxmemory_reserved *int
-
-	Notify_keyspace_events *string
-
-	Rdb_backup_enabled *bool
-
-	Rdb_backup_frequency *int
-
-	Rdb_backup_max_snapshot_count *int
-
-	Rdb_storage_connection_string *string
-}
-
-type Azurerm_redis_cache struct {
-	Azurerm_redis_cache_id *string `lyra:"ignore"`
-
-	Capacity int
-
-	Enable_non_ssl_port *bool
-
-	Family string
-
-	Hostname *string
-
-	Location string
-
-	Name string
-
-	Patch_schedule *[]Azurerm_redis_cache_patch_schedule_178
-
-	Port *int
-
-	Primary_access_key *string
-
-	Private_static_ip_address *string
-
-	Redis_configuration []Azurerm_redis_cache_redis_configuration_179
-
-	Resource_group_name string
-
-	Secondary_access_key *string
-
-	Shard_count *int
-
-	Sku_name string
-
-	Ssl_port *int
-
-	Subnet_id *string
-
-	Tags *map[string]string
-
-	Zones *[]string
-}
-
-type Azurerm_redis_firewall_rule struct {
-	Azurerm_redis_firewall_rule_id *string `lyra:"ignore"`
-
-	End_ip string
-
-	Name string
-
-	Redis_cache_name string
-
-	Resource_group_name string
-
-	Start_ip string
-}
-
-type Azurerm_relay_namespace_sku_180 struct {
-	Name string
-}
-
-type Azurerm_relay_namespace struct {
-	Azurerm_relay_namespace_id *string `lyra:"ignore"`
-
-	Location string
-
-	Metric_id *string
-
-	Name string
-
-	Primary_connection_string *string
-
-	Primary_key *string
-
-	Resource_group_name string
-
-	Secondary_connection_string *string
-
-	Secondary_key *string
-
-	Sku []Azurerm_relay_namespace_sku_180
-
-	Tags *map[string]string
-}
-
-type Azurerm_resource_group struct {
-	Azurerm_resource_group_id *string `lyra:"ignore"`
-
-	Location string
-
-	Name string
-
-	Tags *map[string]string
-}
-
-type Azurerm_role_assignment struct {
-	Azurerm_role_assignment_id *string `lyra:"ignore"`
-
-	Name *string
-
-	Principal_id string
-
-	Role_definition_id *string
-
-	Role_definition_name *string
-
-	Scope string
-}
-
-type Azurerm_role_definition_permissions_181 struct {
-	Actions *[]string
-
-	Data_actions *[]string
-
-	Not_actions *[]string
-
-	Not_data_actions *[]string
-}
-
-type Azurerm_role_definition struct {
-	Azurerm_role_definition_id *string `lyra:"ignore"`
-
-	Assignable_scopes []string
-
-	Description *string
-
-	Name string
-
-	Permissions []Azurerm_role_definition_permissions_181
-
-	Role_definition_id *string
-
-	Scope string
-}
-
-type Azurerm_route struct {
-	Azurerm_route_id *string `lyra:"ignore"`
-
-	Address_prefix string
-
-	Name string
-
-	Next_hop_in_ip_address *string
-
-	Next_hop_type string
-
-	Resource_group_name string
-
-	Route_table_name string
-}
-
-type Azurerm_route_table_route_182 struct {
-	Address_prefix string
-
-	Name string
-
-	Next_hop_in_ip_address *string
-
-	Next_hop_type string
-}
-
-type Azurerm_route_table struct {
-	Azurerm_route_table_id *string `lyra:"ignore"`
-
-	Disable_bgp_route_propagation *bool
-
-	Location string
-
-	Name string
-
-	Resource_group_name string
-
-	Route *[]Azurerm_route_table_route_182
-
-	Subnets *[]string
-
-	Tags *map[string]string
-}
-
-type Azurerm_scheduler_job_action_storage_queue_183 struct {
-	Message string
-
-	Sas_token string
-
-	Storage_account_name string
-
-	Storage_queue_name string
-}
-
-type Azurerm_scheduler_job_action_web_184_authentication_active_directory_185 struct {
-	Audience *string
-
-	Client_id string
-
-	Secret string
-
-	Tenant_id string
-}
-
-type Azurerm_scheduler_job_action_web_184_authentication_basic_186 struct {
-	Password string
-
-	Username string
-}
-
-type Azurerm_scheduler_job_action_web_184_authentication_certificate_187 struct {
-	Expiration *string
-
-	Password string
-
-	Pfx string
-
-	Subject_name *string
-
-	Thumbprint *string
-}
-
-type Azurerm_scheduler_job_action_web_184 struct {
-	Authentication_active_directory *[]Azurerm_scheduler_job_action_web_184_authentication_active_directory_185
-
-	Authentication_basic *[]Azurerm_scheduler_job_action_web_184_authentication_basic_186
-
-	Authentication_certificate *[]Azurerm_scheduler_job_action_web_184_authentication_certificate_187
-
-	Body *string
-
-	Headers *map[string]string
-
-	Method string
-
-	Url string
-}
-
-type Azurerm_scheduler_job_error_action_storage_queue_188 struct {
-	Message string
-
-	Sas_token string
-
-	Storage_account_name string
-
-	Storage_queue_name string
-}
-
-type Azurerm_scheduler_job_error_action_web_189_authentication_active_directory_190 struct {
-	Audience *string
-
-	Client_id string
-
-	Secret string
-
-	Tenant_id string
-}
-
-type Azurerm_scheduler_job_error_action_web_189_authentication_basic_191 struct {
-	Password string
-
-	Username string
-}
-
-type Azurerm_scheduler_job_error_action_web_189_authentication_certificate_192 struct {
-	Expiration *string
-
-	Password string
-
-	Pfx string
-
-	Subject_name *string
-
-	Thumbprint *string
-}
-
-type Azurerm_scheduler_job_error_action_web_189 struct {
-	Authentication_active_directory *[]Azurerm_scheduler_job_error_action_web_189_authentication_active_directory_190
-
-	Authentication_basic *[]Azurerm_scheduler_job_error_action_web_189_authentication_basic_191
-
-	Authentication_certificate *[]Azurerm_scheduler_job_error_action_web_189_authentication_certificate_192
-
-	Body *string
-
-	Headers *map[string]string
-
-	Method string
-
-	Url string
-}
-
-type Azurerm_scheduler_job_recurrence_193_monthly_occurrences_194 struct {
-	Day string
-
-	Occurrence int
-}
-
-type Azurerm_scheduler_job_recurrence_193 struct {
-	Count *int
-
-	End_time *string
-
-	Frequency string
-
-	Hours *[]int
-
-	Interval *int
-
-	Minutes *[]int
-
-	Month_days *[]int
-
-	Monthly_occurrences *[]Azurerm_scheduler_job_recurrence_193_monthly_occurrences_194
-
-	Week_days *[]string
-}
-
-type Azurerm_scheduler_job_retry_195 struct {
-	Count *int
-
-	Interval *string
-}
-
-type Azurerm_scheduler_job struct {
-	Azurerm_scheduler_job_id *string `lyra:"ignore"`
-
-	Action_storage_queue *[]Azurerm_scheduler_job_action_storage_queue_183
-
-	Action_web *[]Azurerm_scheduler_job_action_web_184
-
-	Error_action_storage_queue *[]Azurerm_scheduler_job_error_action_storage_queue_188
-
-	Error_action_web *[]Azurerm_scheduler_job_error_action_web_189
-
-	Job_collection_name string
-
-	Name string
-
-	Recurrence *[]Azurerm_scheduler_job_recurrence_193
-
-	Resource_group_name string
-
-	Retry *[]Azurerm_scheduler_job_retry_195
-
-	Start_time *string
-
-	State *string
-}
-
-type Azurerm_scheduler_job_collection_quota_196 struct {
-	Max_job_count *int
-
-	Max_recurrence_frequency string
-
-	Max_recurrence_interval *int
-
-	Max_retry_interval *int
-}
-
-type Azurerm_scheduler_job_collection struct {
-	Azurerm_scheduler_job_collection_id *string `lyra:"ignore"`
-
-	Location string
-
-	Name string
-
-	Quota *[]Azurerm_scheduler_job_collection_quota_196
-
-	Resource_group_name string
-
-	Sku string
-
-	State *string
-
-	Tags *map[string]string
-}
-
-type Azurerm_search_service struct {
-	Azurerm_search_service_id *string `lyra:"ignore"`
-
-	Location string
-
-	Name string
-
-	Partition_count *int
-
-	Primary_key *string
-
-	Replica_count *int
-
-	Resource_group_name string
-
-	Secondary_key *string
-
-	Sku string
-
-	Tags *map[string]string
-}
-
-type Azurerm_security_center_contact struct {
-	Azurerm_security_center_contact_id *string `lyra:"ignore"`
-
-	Alert_notifications bool
-
-	Alerts_to_admins bool
-
-	Email string
-
-	Phone string
-}
-
-type Azurerm_security_center_subscription_pricing struct {
-	Azurerm_security_center_subscription_pricing_id *string `lyra:"ignore"`
-
-	Tier string
-}
-
-type Azurerm_security_center_workspace struct {
-	Azurerm_security_center_workspace_id *string `lyra:"ignore"`
-
-	Scope string
-
-	Workspace_id string
-}
-
-type Azurerm_service_fabric_cluster_azure_active_directory_197 struct {
-	Client_application_id string
-
-	Cluster_application_id string
-
-	Tenant_id string
-}
-
-type Azurerm_service_fabric_cluster_certificate_198 struct {
-	Thumbprint string
-
-	Thumbprint_secondary *string
-
-	X509_store_name string
-}
-
-type Azurerm_service_fabric_cluster_client_certificate_thumbprint_199 struct {
-	Is_admin bool
-
-	Thumbprint string
-}
-
-type Azurerm_service_fabric_cluster_diagnostics_config_200 struct {
-	Blob_endpoint string
-
-	Protected_account_key_name string
-
-	Queue_endpoint string
-
-	Storage_account_name string
-
-	Table_endpoint string
-}
-
-type Azurerm_service_fabric_cluster_fabric_settings_201 struct {
-	Name string
-
-	Parameters *map[string]string
-}
-
-type Azurerm_service_fabric_cluster_node_type_202_application_ports_203 struct {
-	End_port int
-
-	Start_port int
-}
-
-type Azurerm_service_fabric_cluster_node_type_202_ephemeral_ports_204 struct {
-	End_port int
-
-	Start_port int
-}
-
-type Azurerm_service_fabric_cluster_node_type_202 struct {
-	Application_ports *[]Azurerm_service_fabric_cluster_node_type_202_application_ports_203
-
-	Client_endpoint_port int
-
-	Durability_level *string
-
-	Ephemeral_ports *[]Azurerm_service_fabric_cluster_node_type_202_ephemeral_ports_204
-
-	Http_endpoint_port int
-
-	Instance_count int
-
-	Is_primary bool
-
-	Name string
-
-	Reverse_proxy_endpoint_port *int
-}
-
-type Azurerm_service_fabric_cluster_reverse_proxy_certificate_205 struct {
-	Thumbprint string
-
-	Thumbprint_secondary *string
-
-	X509_store_name string
-}
-
-type Azurerm_service_fabric_cluster struct {
-	Azurerm_service_fabric_cluster_id *string `lyra:"ignore"`
-
-	Add_on_features *[]string
-
-	Azure_active_directory *[]Azurerm_service_fabric_cluster_azure_active_directory_197
-
-	Certificate *[]Azurerm_service_fabric_cluster_certificate_198
-
-	Client_certificate_thumbprint *[]Azurerm_service_fabric_cluster_client_certificate_thumbprint_199
-
-	Cluster_code_version *string
-
-	Cluster_endpoint *string
-
-	Diagnostics_config *[]Azurerm_service_fabric_cluster_diagnostics_config_200
-
-	Fabric_settings *[]Azurerm_service_fabric_cluster_fabric_settings_201
-
-	Location string
-
-	Management_endpoint string
-
-	Name string
-
-	Node_type []Azurerm_service_fabric_cluster_node_type_202
-
-	Reliability_level string
-
-	Resource_group_name string
-
-	Reverse_proxy_certificate *[]Azurerm_service_fabric_cluster_reverse_proxy_certificate_205
-
-	Tags *map[string]string
-
-	Upgrade_mode string
-
-	Vm_image string
-}
-
-type Azurerm_servicebus_namespace struct {
-	Azurerm_servicebus_namespace_id *string `lyra:"ignore"`
-
-	Capacity *int
-
-	Default_primary_connection_string *string
-
-	Default_primary_key *string
-
-	Default_secondary_connection_string *string
-
-	Default_secondary_key *string
-
-	Location string
-
-	Name string
-
-	Resource_group_name string
-
-	Sku string
-
-	Tags *map[string]string
-}
-
-type Azurerm_servicebus_namespace_authorization_rule struct {
-	Azurerm_servicebus_namespace_authorization_rule_id *string `lyra:"ignore"`
-
-	Listen *bool
-
-	Manage *bool
-
-	Name string
-
-	Namespace_name string
-
-	Primary_connection_string *string
-
-	Primary_key *string
-
-	Resource_group_name string
-
-	Secondary_connection_string *string
-
-	Secondary_key *string
-
-	Send *bool
-}
-
-type Azurerm_servicebus_queue struct {
-	Azurerm_servicebus_queue_id *string `lyra:"ignore"`
-
-	Auto_delete_on_idle *string
-
-	Dead_lettering_on_message_expiration *bool
-
-	Default_message_ttl *string
-
-	Duplicate_detection_history_time_window *string
-
-	Enable_batched_operations *bool
-
-	Enable_express *bool
-
-	Enable_partitioning *bool
-
-	Location *string
-
-	Lock_duration *string
-
-	Max_delivery_count *int
-
-	Max_size_in_megabytes *int
-
-	Name string
-
-	Namespace_name string
-
-	Requires_duplicate_detection *bool
-
-	Requires_session *bool
-
-	Resource_group_name string
-
-	Support_ordering *bool
-}
-
-type Azurerm_servicebus_queue_authorization_rule struct {
-	Azurerm_servicebus_queue_authorization_rule_id *string `lyra:"ignore"`
-
-	Listen *bool
-
-	Manage *bool
-
-	Name string
-
-	Namespace_name string
-
-	Primary_connection_string *string
-
-	Primary_key *string
-
-	Queue_name string
-
-	Resource_group_name string
-
-	Secondary_connection_string *string
-
-	Secondary_key *string
-
-	Send *bool
-}
-
-type Azurerm_servicebus_subscription struct {
-	Azurerm_servicebus_subscription_id *string `lyra:"ignore"`
-
-	Auto_delete_on_idle *string
-
-	Dead_lettering_on_filter_evaluation_exceptions *bool
-
-	Dead_lettering_on_message_expiration *bool
-
-	Default_message_ttl *string
-
-	Enable_batched_operations *bool
-
-	Forward_to *string
-
-	Location *string
-
-	Lock_duration *string
-
-	Max_delivery_count int
-
-	Name string
-
-	Namespace_name string
-
-	Requires_session *bool
-
-	Resource_group_name string
-
-	Topic_name string
-}
-
-type Azurerm_servicebus_subscription_rule_correlation_filter_206 struct {
-	Content_type *string
-
-	Correlation_id *string
-
-	Label *string
-
-	Message_id *string
-
-	Reply_to *string
-
-	Reply_to_session_id *string
-
-	Session_id *string
-
-	To *string
-}
-
-type Azurerm_servicebus_subscription_rule struct {
-	Azurerm_servicebus_subscription_rule_id *string `lyra:"ignore"`
-
-	Action *string
-
-	Correlation_filter *[]Azurerm_servicebus_subscription_rule_correlation_filter_206
-
-	Filter_type string
-
-	Name string
-
-	Namespace_name string
-
-	Resource_group_name string
-
-	Sql_filter *string
-
-	Subscription_name string
-
-	Topic_name string
-}
-
-type Azurerm_servicebus_topic struct {
-	Azurerm_servicebus_topic_id *string `lyra:"ignore"`
-
-	Auto_delete_on_idle *string
-
-	Default_message_ttl *string
-
-	Duplicate_detection_history_time_window *string
-
-	Enable_batched_operations *bool
-
-	Enable_express *bool
-
-	Enable_filtering_messages_before_publishing *bool
-
-	Enable_partitioning *bool
-
-	Location *string
-
-	Max_size_in_megabytes *int
-
-	Name string
-
-	Namespace_name string
-
-	Requires_duplicate_detection *bool
-
-	Resource_group_name string
-
-	Status *string
-
-	Support_ordering *bool
-}
-
-type Azurerm_servicebus_topic_authorization_rule struct {
-	Azurerm_servicebus_topic_authorization_rule_id *string `lyra:"ignore"`
-
-	Listen *bool
-
-	Manage *bool
-
-	Name string
-
-	Namespace_name string
-
-	Primary_connection_string *string
-
-	Primary_key *string
-
-	Resource_group_name string
-
-	Secondary_connection_string *string
-
-	Secondary_key *string
-
-	Send *bool
-
-	Topic_name string
-}
-
-type Azurerm_shared_image_identifier_207 struct {
-	Offer string
-
-	Publisher string
-
-	Sku string
-}
-
-type Azurerm_shared_image struct {
-	Azurerm_shared_image_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Eula *string
-
-	Gallery_name string
-
-	Identifier []Azurerm_shared_image_identifier_207
-
-	Location string
-
-	Name string
-
-	Os_type string
-
-	Privacy_statement_uri *string
-
-	Release_note_uri *string
-
-	Resource_group_name string
-
-	Tags *map[string]string
-}
-
-type Azurerm_shared_image_gallery struct {
-	Azurerm_shared_image_gallery_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Location string
-
-	Name string
-
-	Resource_group_name string
-
-	Tags *map[string]string
-
-	Unique_name *string
-}
-
-type Azurerm_shared_image_version_target_region_208 struct {
-	Name string
-
-	Regional_replica_count int
-}
-
-type Azurerm_shared_image_version struct {
-	Azurerm_shared_image_version_id *string `lyra:"ignore"`
-
-	Exclude_from_latest *bool
-
-	Gallery_name string
-
-	Image_name string
-
-	Location string
-
-	Managed_image_id string
-
-	Name string
-
-	Resource_group_name string
-
-	Tags *map[string]string
-
-	Target_region []Azurerm_shared_image_version_target_region_208
-}
-
-type Azurerm_signalr_service_sku_209 struct {
-	Capacity int
-
-	Name string
-}
-
-type Azurerm_signalr_service struct {
-	Azurerm_signalr_service_id *string `lyra:"ignore"`
-
-	Hostname *string
-
-	Ip_address *string
-
-	Location string
-
-	Name string
-
-	Public_port *int
-
-	Resource_group_name string
-
-	Server_port *int
-
-	Sku []Azurerm_signalr_service_sku_209
-
-	Tags *map[string]string
-}
-
-type Azurerm_snapshot_encryption_settings_210_disk_encryption_key_211 struct {
-	Secret_url string
-
-	Source_vault_id string
-}
-
-type Azurerm_snapshot_encryption_settings_210_key_encryption_key_212 struct {
-	Key_url string
-
-	Source_vault_id string
-}
-
-type Azurerm_snapshot_encryption_settings_210 struct {
-	Disk_encryption_key *[]Azurerm_snapshot_encryption_settings_210_disk_encryption_key_211
-
-	Enabled bool
-
-	Key_encryption_key *[]Azurerm_snapshot_encryption_settings_210_key_encryption_key_212
-}
-
-type Azurerm_snapshot struct {
-	Azurerm_snapshot_id *string `lyra:"ignore"`
-
-	Create_option string
-
-	Disk_size_gb *int
-
-	Encryption_settings *[]Azurerm_snapshot_encryption_settings_210
-
-	Location string
-
-	Name string
-
-	Resource_group_name string
-
-	Source_resource_id *string
-
-	Source_uri *string
-
-	Storage_account_id *string
-
-	Tags *map[string]string
-}
-
-type Azurerm_sql_active_directory_administrator struct {
-	Azurerm_sql_active_directory_administrator_id *string `lyra:"ignore"`
-
-	Login string
-
-	Object_id string
-
-	Resource_group_name string
-
-	Server_name string
-
-	Tenant_id string
-}
-
-type Azurerm_sql_database_import_213 struct {
-	Administrator_login string
-
-	Administrator_login_password string
-
-	Authentication_type string
-
-	Operation_mode *string
-
-	Storage_key string
-
-	Storage_key_type string
-
-	Storage_uri string
-}
-
-type Azurerm_sql_database_threat_detection_policy_214 struct {
-	Disabled_alerts *[]string
-
-	Email_account_admins *string
-
-	Email_addresses *[]string
-
-	Retention_days *int
-
-	State *string
-
-	Storage_account_access_key *string
-
-	Storage_endpoint *string
-
-	Use_server_default *string
-}
-
-type Azurerm_sql_database struct {
-	Azurerm_sql_database_id *string `lyra:"ignore"`
-
-	Collation *string
-
-	Create_mode *string
-
-	Creation_date *string
-
-	Default_secondary_location *string
-
-	Edition *string
-
-	Elastic_pool_name *string
-
-	Encryption *string
-
-	Import *[]Azurerm_sql_database_import_213
-
-	Location string
-
-	Max_size_bytes *string
-
-	Name string
-
-	Requested_service_objective_id *string
-
-	Requested_service_objective_name *string
-
-	Resource_group_name string
-
-	Restore_point_in_time *string
-
-	Server_name string
-
-	Source_database_deletion_date *string
-
-	Source_database_id *string
-
-	Tags *map[string]string
-
-	Threat_detection_policy *[]Azurerm_sql_database_threat_detection_policy_214
-}
-
-type Azurerm_sql_elasticpool struct {
-	Azurerm_sql_elasticpool_id *string `lyra:"ignore"`
-
-	Creation_date *string
-
-	Db_dtu_max *int
-
-	Db_dtu_min *int
-
-	Dtu int
-
-	Edition string
-
-	Location string
-
-	Name string
-
-	Pool_size *int
-
-	Resource_group_name string
-
-	Server_name string
-
-	Tags *map[string]string
-}
-
-type Azurerm_sql_firewall_rule struct {
-	Azurerm_sql_firewall_rule_id *string `lyra:"ignore"`
-
-	End_ip_address string
-
-	Name string
-
-	Resource_group_name string
-
-	Server_name string
-
-	Start_ip_address string
-}
-
-type Azurerm_sql_server struct {
-	Azurerm_sql_server_id *string `lyra:"ignore"`
-
-	Administrator_login string
-
-	Administrator_login_password string
-
-	Fully_qualified_domain_name *string
-
-	Location string
-
-	Name string
-
-	Resource_group_name string
-
-	Tags *map[string]string
-
-	Version string
-}
-
-type Azurerm_sql_virtual_network_rule struct {
-	Azurerm_sql_virtual_network_rule_id *string `lyra:"ignore"`
-
-	Ignore_missing_vnet_service_endpoint *bool
-
-	Name string
-
-	Resource_group_name string
-
-	Server_name string
-
-	Subnet_id string
-}
-
-type Azurerm_storage_account_custom_domain_215 struct {
-	Name string
-
-	Use_subdomain *bool
-}
-
-type Azurerm_storage_account_identity_216 struct {
-	Principal_id *string
-
-	Tenant_id *string
-
-	Type string
-}
-
-type Azurerm_storage_account_network_rules_217 struct {
-	Bypass *[]string
-
-	Ip_rules *[]string
-
-	Virtual_network_subnet_ids *[]string
-}
-
-type Azurerm_storage_account struct {
-	Azurerm_storage_account_id *string `lyra:"ignore"`
-
-	Access_tier *string
-
-	Account_encryption_source *string
-
-	Account_kind *string
-
-	Account_replication_type string
-
-	Account_tier string
-
-	Account_type *string
-
-	Custom_domain *[]Azurerm_storage_account_custom_domain_215
-
-	Enable_blob_encryption *bool
-
-	Enable_file_encryption *bool
-
-	Enable_https_traffic_only *bool
-
-	Identity *[]Azurerm_storage_account_identity_216
-
-	Location string
-
-	Name string
-
-	Network_rules *[]Azurerm_storage_account_network_rules_217
-
-	Primary_access_key *string
-
-	Primary_blob_connection_string *string
-
-	Primary_blob_endpoint *string
-
-	Primary_connection_string *string
-
-	Primary_file_endpoint *string
-
-	Primary_location *string
-
-	Primary_queue_endpoint *string
-
-	Primary_table_endpoint *string
-
-	Resource_group_name string
-
-	Secondary_access_key *string
-
-	Secondary_blob_connection_string *string
-
-	Secondary_blob_endpoint *string
-
-	Secondary_connection_string *string
-
-	Secondary_location *string
-
-	Secondary_queue_endpoint *string
-
-	Secondary_table_endpoint *string
-
-	Tags *map[string]string
-}
-
-type Azurerm_storage_blob struct {
-	Azurerm_storage_blob_id *string `lyra:"ignore"`
-
-	Attempts *int
-
-	Content_type *string
-
-	Name string
-
-	Parallelism *int
-
-	Resource_group_name string
-
-	Size *int
-
-	Source *string
-
-	Source_uri *string
-
-	Storage_account_name string
-
-	Storage_container_name string
-
-	Type *string
-
-	Url *string
-}
-
-type Azurerm_storage_container struct {
-	Azurerm_storage_container_id *string `lyra:"ignore"`
-
-	Container_access_type *string
-
-	Name string
-
-	Properties *map[string]string
-
-	Resource_group_name string
-
-	Storage_account_name string
-}
-
-type Azurerm_storage_queue struct {
-	Azurerm_storage_queue_id *string `lyra:"ignore"`
-
-	Name string
-
-	Resource_group_name string
-
-	Storage_account_name string
-}
-
-type Azurerm_storage_share struct {
-	Azurerm_storage_share_id *string `lyra:"ignore"`
-
-	Name string
-
-	Quota *int
-
-	Resource_group_name string
-
-	Storage_account_name string
-
-	Url *string
-}
-
-type Azurerm_storage_table struct {
-	Azurerm_storage_table_id *string `lyra:"ignore"`
-
-	Name string
-
-	Resource_group_name string
-
-	Storage_account_name string
-}
-
-type Azurerm_subnet_delegation_218_service_delegation_219 struct {
-	Actions *[]string
-
-	Name string
-}
-
-type Azurerm_subnet_delegation_218 struct {
-	Name string
-
-	Service_delegation []Azurerm_subnet_delegation_218_service_delegation_219
-}
-
-type Azurerm_subnet struct {
-	Azurerm_subnet_id *string `lyra:"ignore"`
-
-	Address_prefix string
-
-	Delegation *[]Azurerm_subnet_delegation_218
-
-	Ip_configurations *[]string
-
-	Name string
-
-	Network_security_group_id *string
-
-	Resource_group_name string
-
-	Route_table_id *string
-
-	Service_endpoints *[]string
-
-	Virtual_network_name string
-}
-
-type Azurerm_subnet_network_security_group_association struct {
-	Azurerm_subnet_network_security_group_association_id *string `lyra:"ignore"`
-
-	Network_security_group_id string
-
-	Subnet_id string
-}
-
-type Azurerm_subnet_route_table_association struct {
-	Azurerm_subnet_route_table_association_id *string `lyra:"ignore"`
-
-	Route_table_id string
-
-	Subnet_id string
-}
-
-type Azurerm_template_deployment struct {
-	Azurerm_template_deployment_id *string `lyra:"ignore"`
-
-	Deployment_mode string
-
-	Name string
-
-	Outputs *map[string]string
-
-	Parameters *map[string]string
-
-	Parameters_body *string
-
-	Resource_group_name string
-
-	Template_body *string
-}
-
-type Azurerm_traffic_manager_endpoint struct {
-	Azurerm_traffic_manager_endpoint_id *string `lyra:"ignore"`
-
-	Endpoint_location *string
-
-	Endpoint_monitor_status *string
-
-	Endpoint_status *string
-
-	Geo_mappings *[]string
-
-	Min_child_endpoints *int
-
-	Name string
-
-	Priority *int
-
-	Profile_name string
-
-	Resource_group_name string
-
-	Target *string
-
-	Target_resource_id *string
-
-	Type string
-
-	Weight *int
-}
-
-type Azurerm_traffic_manager_profile_dns_config_220 struct {
-	Relative_name string
-
-	Ttl int
-}
-
-type Azurerm_traffic_manager_profile_monitor_config_221 struct {
-	Path *string
-
-	Port int
-
-	Protocol string
-}
-
-type Azurerm_traffic_manager_profile struct {
-	Azurerm_traffic_manager_profile_id *string `lyra:"ignore"`
-
-	Dns_config []Azurerm_traffic_manager_profile_dns_config_220
-
-	Fqdn *string
-
-	Monitor_config []Azurerm_traffic_manager_profile_monitor_config_221
-
-	Name string
-
-	Profile_status *string
-
-	Resource_group_name string
-
-	Tags *map[string]string
-
-	Traffic_routing_method string
-}
-
-type Azurerm_user_assigned_identity struct {
-	Azurerm_user_assigned_identity_id *string `lyra:"ignore"`
-
-	Client_id *string
-
-	Location string
-
-	Name string
-
-	Principal_id *string
-
-	Resource_group_name string
-
-	Tags *map[string]string
-}
-
-type Azurerm_virtual_machine_boot_diagnostics_222 struct {
-	Enabled bool
-
-	Storage_uri string
-}
-
-type Azurerm_virtual_machine_identity_223 struct {
-	Identity_ids *[]string
-
-	Principal_id *string
-
-	Type string
-}
-
-type Azurerm_virtual_machine_os_profile_224 struct {
-	Admin_password *string
-
-	Admin_username string
-
-	Computer_name string
-
-	Custom_data *string
-}
-
-type Azurerm_virtual_machine_os_profile_linux_config_225_ssh_keys_226 struct {
-	Key_data string
-
-	Path string
-}
-
-type Azurerm_virtual_machine_os_profile_linux_config_225 struct {
-	Disable_password_authentication bool
-
-	Ssh_keys *[]Azurerm_virtual_machine_os_profile_linux_config_225_ssh_keys_226
-}
-
-type Azurerm_virtual_machine_os_profile_secrets_227_vault_certificates_228 struct {
-	Certificate_store *string
-
-	Certificate_url string
-}
-
-type Azurerm_virtual_machine_os_profile_secrets_227 struct {
-	Source_vault_id string
-
-	Vault_certificates *[]Azurerm_virtual_machine_os_profile_secrets_227_vault_certificates_228
-}
-
-type Azurerm_virtual_machine_os_profile_windows_config_229_additional_unattend_config_230 struct {
-	Component string
-
-	Content string
-
-	Pass string
-
-	Setting_name string
-}
-
-type Azurerm_virtual_machine_os_profile_windows_config_229_winrm_231 struct {
-	Certificate_url *string
-
-	Protocol string
-}
-
-type Azurerm_virtual_machine_os_profile_windows_config_229 struct {
-	Additional_unattend_config *[]Azurerm_virtual_machine_os_profile_windows_config_229_additional_unattend_config_230
-
-	Enable_automatic_upgrades *bool
-
-	Provision_vm_agent *bool
-
-	Timezone *string
-
-	Winrm *[]Azurerm_virtual_machine_os_profile_windows_config_229_winrm_231
-}
-
-type Azurerm_virtual_machine_plan_232 struct {
-	Name string
-
-	Product string
-
-	Publisher string
-}
-
-type Azurerm_virtual_machine_storage_data_disk_233 struct {
-	Caching *string
-
-	Create_option string
-
-	Disk_size_gb *int
-
-	Lun int
-
-	Managed_disk_id *string
-
-	Managed_disk_type *string
-
-	Name string
-
-	Vhd_uri *string
-
-	Write_accelerator_enabled *bool
-}
-
-type Azurerm_virtual_machine_storage_image_reference_234 struct {
-	Id *string
-
-	Offer *string
-
-	Publisher *string
-
-	Sku *string
-
-	Version *string
-}
-
-type Azurerm_virtual_machine_storage_os_disk_235 struct {
-	Caching *string
-
-	Create_option string
-
-	Disk_size_gb *int
-
-	Image_uri *string
-
-	Managed_disk_id *string
-
-	Managed_disk_type *string
-
-	Name string
-
-	Os_type *string
-
-	Vhd_uri *string
-
-	Write_accelerator_enabled *bool
-}
-
-type Azurerm_virtual_machine struct {
-	Azurerm_virtual_machine_id *string `lyra:"ignore"`
-
-	Availability_set_id *string
-
-	Boot_diagnostics *[]Azurerm_virtual_machine_boot_diagnostics_222
-
-	Delete_data_disks_on_termination *bool
-
-	Delete_os_disk_on_termination *bool
-
-	Identity *[]Azurerm_virtual_machine_identity_223
-
-	License_type *string
-
-	Location string
-
-	Name string
-
-	Network_interface_ids []string
-
-	Os_profile *[]Azurerm_virtual_machine_os_profile_224
-
-	Os_profile_linux_config *[]Azurerm_virtual_machine_os_profile_linux_config_225
-
-	Os_profile_secrets *[]Azurerm_virtual_machine_os_profile_secrets_227
-
-	Os_profile_windows_config *[]Azurerm_virtual_machine_os_profile_windows_config_229
-
-	Plan *[]Azurerm_virtual_machine_plan_232
-
-	Primary_network_interface_id *string
-
-	Resource_group_name string
-
-	Storage_data_disk *[]Azurerm_virtual_machine_storage_data_disk_233
-
-	Storage_image_reference *[]Azurerm_virtual_machine_storage_image_reference_234
-
-	Storage_os_disk []Azurerm_virtual_machine_storage_os_disk_235
-
-	Tags *map[string]string
-
-	Vm_size string
-
-	Zones *[]string
-}
-
-type Azurerm_virtual_machine_data_disk_attachment struct {
-	Azurerm_virtual_machine_data_disk_attachment_id *string `lyra:"ignore"`
-
-	Caching string
-
-	Create_option *string
-
-	Lun int
-
-	Managed_disk_id string
-
-	Virtual_machine_id string
-
-	Write_accelerator_enabled *bool
-}
-
-type Azurerm_virtual_machine_extension struct {
-	Azurerm_virtual_machine_extension_id *string `lyra:"ignore"`
-
-	Auto_upgrade_minor_version *bool
-
-	Location string
-
-	Name string
-
-	Protected_settings *string
-
-	Publisher string
-
-	Resource_group_name string
-
-	Settings *string
-
-	Tags *map[string]string
-
-	Type string
-
-	Type_handler_version string
-
-	Virtual_machine_name string
-}
-
-type Azurerm_virtual_machine_scale_set_boot_diagnostics_236 struct {
-	Enabled *bool
-
-	Storage_uri string
-}
-
-type Azurerm_virtual_machine_scale_set_extension_237 struct {
-	Auto_upgrade_minor_version *bool
-
-	Name string
-
-	Protected_settings *string
-
-	Publisher string
-
-	Settings *string
-
-	Type string
-
-	Type_handler_version string
-}
-
-type Azurerm_virtual_machine_scale_set_identity_238 struct {
-	Identity_ids *[]string
-
-	Principal_id *string
-
-	Type string
-}
-
-type Azurerm_virtual_machine_scale_set_network_profile_239_dns_settings_240 struct {
-	Dns_servers []string
-}
-
-type Azurerm_virtual_machine_scale_set_network_profile_239_ip_configuration_241_public_ip_address_configuration_242 struct {
-	Domain_name_label string
-
-	Idle_timeout int
-
-	Name string
-}
-
-type Azurerm_virtual_machine_scale_set_network_profile_239_ip_configuration_241 struct {
-	Application_gateway_backend_address_pool_ids *[]string
-
-	Application_security_group_ids *[]string
-
-	Load_balancer_backend_address_pool_ids *[]string
-
-	Load_balancer_inbound_nat_rules_ids *[]string
-
-	Name string
-
-	Primary bool
-
-	Public_ip_address_configuration *[]Azurerm_virtual_machine_scale_set_network_profile_239_ip_configuration_241_public_ip_address_configuration_242
-
-	Subnet_id string
-}
-
-type Azurerm_virtual_machine_scale_set_network_profile_239 struct {
-	Accelerated_networking *bool
-
-	Dns_settings *[]Azurerm_virtual_machine_scale_set_network_profile_239_dns_settings_240
-
-	Ip_configuration []Azurerm_virtual_machine_scale_set_network_profile_239_ip_configuration_241
-
-	Ip_forwarding *bool
-
-	Name string
-
-	Network_security_group_id *string
-
-	Primary bool
-}
-
-type Azurerm_virtual_machine_scale_set_os_profile_243 struct {
-	Admin_password *string
-
-	Admin_username string
-
-	Computer_name_prefix string
-
-	Custom_data *string
-}
-
-type Azurerm_virtual_machine_scale_set_os_profile_linux_config_244_ssh_keys_245 struct {
-	Key_data *string
-
-	Path string
-}
-
-type Azurerm_virtual_machine_scale_set_os_profile_linux_config_244 struct {
-	Disable_password_authentication *bool
-
-	Ssh_keys *[]Azurerm_virtual_machine_scale_set_os_profile_linux_config_244_ssh_keys_245
-}
-
-type Azurerm_virtual_machine_scale_set_os_profile_secrets_246_vault_certificates_247 struct {
-	Certificate_store *string
-
-	Certificate_url string
-}
-
-type Azurerm_virtual_machine_scale_set_os_profile_secrets_246 struct {
-	Source_vault_id string
-
-	Vault_certificates *[]Azurerm_virtual_machine_scale_set_os_profile_secrets_246_vault_certificates_247
-}
-
-type Azurerm_virtual_machine_scale_set_os_profile_windows_config_248_additional_unattend_config_249 struct {
-	Component string
-
-	Content string
-
-	Pass string
-
-	Setting_name string
-}
-
-type Azurerm_virtual_machine_scale_set_os_profile_windows_config_248_winrm_250 struct {
-	Certificate_url *string
-
-	Protocol string
-}
-
-type Azurerm_virtual_machine_scale_set_os_profile_windows_config_248 struct {
-	Additional_unattend_config *[]Azurerm_virtual_machine_scale_set_os_profile_windows_config_248_additional_unattend_config_249
-
-	Enable_automatic_upgrades *bool
-
-	Provision_vm_agent *bool
-
-	Winrm *[]Azurerm_virtual_machine_scale_set_os_profile_windows_config_248_winrm_250
-}
-
-type Azurerm_virtual_machine_scale_set_plan_251 struct {
-	Name string
-
-	Product string
-
-	Publisher string
-}
-
-type Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_252 struct {
-	Max_batch_instance_percent *int
-
-	Max_unhealthy_instance_percent *int
-
-	Max_unhealthy_upgraded_instance_percent *int
-
-	Pause_time_between_batches *string
-}
-
-type Azurerm_virtual_machine_scale_set_sku_253 struct {
-	Capacity int
-
-	Name string
-
-	Tier *string
-}
-
-type Azurerm_virtual_machine_scale_set_storage_profile_data_disk_254 struct {
-	Caching *string
-
-	Create_option string
-
-	Disk_size_gb *int
-
-	Lun int
-
-	Managed_disk_type *string
-}
-
-type Azurerm_virtual_machine_scale_set_storage_profile_image_reference_255 struct {
-	Id *string
-
-	Offer *string
-
-	Publisher *string
-
-	Sku *string
-
-	Version *string
-}
-
-type Azurerm_virtual_machine_scale_set_storage_profile_os_disk_256 struct {
-	Caching *string
-
-	Create_option string
-
-	Image *string
-
-	Managed_disk_type *string
-
-	Name *string
-
-	Os_type *string
-
-	Vhd_containers *[]string
-}
-
-type Azurerm_virtual_machine_scale_set struct {
-	Azurerm_virtual_machine_scale_set_id *string `lyra:"ignore"`
-
-	Automatic_os_upgrade *bool
-
-	Boot_diagnostics *[]Azurerm_virtual_machine_scale_set_boot_diagnostics_236
-
-	Eviction_policy *string
-
-	Extension *[]Azurerm_virtual_machine_scale_set_extension_237
-
-	Health_probe_id *string
-
-	Identity *[]Azurerm_virtual_machine_scale_set_identity_238
-
-	License_type *string
-
-	Location string
-
-	Name string
-
-	Network_profile []Azurerm_virtual_machine_scale_set_network_profile_239
-
-	Os_profile []Azurerm_virtual_machine_scale_set_os_profile_243
-
-	Os_profile_linux_config *[]Azurerm_virtual_machine_scale_set_os_profile_linux_config_244
-
-	Os_profile_secrets *[]Azurerm_virtual_machine_scale_set_os_profile_secrets_246
-
-	Os_profile_windows_config *[]Azurerm_virtual_machine_scale_set_os_profile_windows_config_248
-
-	Overprovision *bool
-
-	Plan *[]Azurerm_virtual_machine_scale_set_plan_251
-
-	Priority *string
-
-	Resource_group_name string
-
-	Rolling_upgrade_policy *[]Azurerm_virtual_machine_scale_set_rolling_upgrade_policy_252
-
-	Single_placement_group *bool
-
-	Sku []Azurerm_virtual_machine_scale_set_sku_253
-
-	Storage_profile_data_disk *[]Azurerm_virtual_machine_scale_set_storage_profile_data_disk_254
-
-	Storage_profile_image_reference *[]Azurerm_virtual_machine_scale_set_storage_profile_image_reference_255
-
-	Storage_profile_os_disk []Azurerm_virtual_machine_scale_set_storage_profile_os_disk_256
-
-	Tags *map[string]string
-
-	Upgrade_policy_mode string
-
-	Zones *[]string
-}
-
-type Azurerm_virtual_network_subnet_257 struct {
-	Address_prefix string
-
-	Id *string
-
-	Name string
-
-	Security_group *string
-}
-
-type Azurerm_virtual_network struct {
-	Azurerm_virtual_network_id *string `lyra:"ignore"`
-
-	Address_space []string
-
-	Dns_servers *[]string
-
-	Location string
-
-	Name string
-
-	Resource_group_name string
-
-	Subnet *[]Azurerm_virtual_network_subnet_257
-
-	Tags *map[string]string
-}
-
-type Azurerm_virtual_network_gateway_bgp_settings_258 struct {
-	Asn *int
-
-	Peer_weight *int
-
-	Peering_address *string
-}
-
-type Azurerm_virtual_network_gateway_ip_configuration_259 struct {
-	Name *string
-
-	Private_ip_address_allocation *string
-
-	Public_ip_address_id *string
-
-	Subnet_id string
-}
-
-type Azurerm_virtual_network_gateway_vpn_client_configuration_260_revoked_certificate_261 struct {
-	Name string
-
-	Thumbprint string
-}
-
-type Azurerm_virtual_network_gateway_vpn_client_configuration_260_root_certificate_262 struct {
-	Name string
-
-	Public_cert_data string
-}
-
-type Azurerm_virtual_network_gateway_vpn_client_configuration_260 struct {
-	Address_space []string
-
-	Radius_server_address *string
-
-	Radius_server_secret *string
-
-	Revoked_certificate *[]Azurerm_virtual_network_gateway_vpn_client_configuration_260_revoked_certificate_261
-
-	Root_certificate *[]Azurerm_virtual_network_gateway_vpn_client_configuration_260_root_certificate_262
-
-	Vpn_client_protocols *[]string
-}
-
-type Azurerm_virtual_network_gateway struct {
-	Azurerm_virtual_network_gateway_id *string `lyra:"ignore"`
-
-	Active_active *bool
-
-	Bgp_settings *[]Azurerm_virtual_network_gateway_bgp_settings_258
-
-	Default_local_network_gateway_id *string
-
-	Enable_bgp *bool
-
-	Ip_configuration []Azurerm_virtual_network_gateway_ip_configuration_259
-
-	Location string
-
-	Name string
-
-	Resource_group_name string
-
-	Sku string
-
-	Tags *map[string]string
-
-	Type string
-
-	Vpn_client_configuration *[]Azurerm_virtual_network_gateway_vpn_client_configuration_260
-
-	Vpn_type *string
-}
-
-type Azurerm_virtual_network_gateway_connection_ipsec_policy_263 struct {
-	Dh_group string
-
-	Ike_encryption string
-
-	Ike_integrity string
-
-	Ipsec_encryption string
-
-	Ipsec_integrity string
-
-	Pfs_group string
-
-	Sa_datasize *int
-
-	Sa_lifetime *int
-}
-
-type Azurerm_virtual_network_gateway_connection struct {
-	Azurerm_virtual_network_gateway_connection_id *string `lyra:"ignore"`
-
-	Authorization_key *string
-
-	Enable_bgp *bool
-
-	Express_route_circuit_id *string
-
-	Ipsec_policy *[]Azurerm_virtual_network_gateway_connection_ipsec_policy_263
-
-	Local_network_gateway_id *string
-
-	Location string
-
-	Name string
-
-	Peer_virtual_network_gateway_id *string
-
-	Resource_group_name string
-
-	Routing_weight *int
-
-	Shared_key *string
-
-	Tags *map[string]string
-
-	Type string
-
-	Use_policy_based_traffic_selectors *bool
-
-	Virtual_network_gateway_id string
-}
-
-type Azurerm_virtual_network_peering struct {
-	Azurerm_virtual_network_peering_id *string `lyra:"ignore"`
-
-	Allow_forwarded_traffic *bool
-
-	Allow_gateway_transit *bool
-
-	Allow_virtual_network_access *bool
-
-	Name string
-
-	Remote_virtual_network_id string
-
-	Resource_group_name string
-
-	Use_remote_gateways *bool
-
-	Virtual_network_name string
+	}))[0]
+	sb.RegisterHandler("TerraformAzureRM::Virtual_network_peeringHandler", bridge.NewTFHandler(p, "azurerm_virtual_network_peering", rt), rt)
+
+	// Registration of non-resource types
+	sb.RegisterTypes("TerraformAzureRM",
+		&Api_management__additional_location{},
+		&Api_management__certificate{},
+		&Api_management__hostname_configuration__management{},
+		&Api_management__hostname_configuration__portal{},
+		&Api_management__hostname_configuration__proxy{},
+		&Api_management__hostname_configuration__scm{},
+		&Api_management__hostname_configuration{},
+		&Api_management__identity{},
+		&Api_management__security{},
+		&Api_management__sku{},
+		&App_service__connection_string{},
+		&App_service__identity{},
+		&App_service__site_config__ip_restriction{},
+		&App_service__site_config{},
+		&App_service__site_credential{},
+		&App_service__source_control{},
+		&App_service_plan__properties{},
+		&App_service_plan__sku{},
+		&App_service_slot__connection_string{},
+		&App_service_slot__identity{},
+		&App_service_slot__site_config__ip_restriction{},
+		&App_service_slot__site_config{},
+		&Application_gateway__authentication_certificate{},
+		&Application_gateway__backend_address_pool{},
+		&Application_gateway__backend_http_settings__authentication_certificate{},
+		&Application_gateway__backend_http_settings{},
+		&Application_gateway__frontend_ip_configuration{},
+		&Application_gateway__frontend_port{},
+		&Application_gateway__gateway_ip_configuration{},
+		&Application_gateway__http_listener{},
+		&Application_gateway__probe__match{},
+		&Application_gateway__probe{},
+		&Application_gateway__request_routing_rule{},
+		&Application_gateway__sku{},
+		&Application_gateway__ssl_certificate{},
+		&Application_gateway__url_path_map__path_rule{},
+		&Application_gateway__url_path_map{},
+		&Application_gateway__waf_configuration{},
+		&Automation_account__sku{},
+		&Automation_module__module_link__hash{},
+		&Automation_module__module_link{},
+		&Automation_runbook__publish_content_link__hash{},
+		&Automation_runbook__publish_content_link{},
+		&Automation_schedule__monthly_occurrence{},
+		&Autoscale_setting__notification__email{},
+		&Autoscale_setting__notification__webhook{},
+		&Autoscale_setting__notification{},
+		&Autoscale_setting__profile__capacity{},
+		&Autoscale_setting__profile__fixed_date{},
+		&Autoscale_setting__profile__recurrence{},
+		&Autoscale_setting__profile__rule__metric_trigger{},
+		&Autoscale_setting__profile__rule__scale_action{},
+		&Autoscale_setting__profile__rule{},
+		&Autoscale_setting__profile{},
+		&Batch_pool__auto_scale{},
+		&Batch_pool__fixed_scale{},
+		&Batch_pool__start_task__user_identity__auto_user{},
+		&Batch_pool__start_task__user_identity{},
+		&Batch_pool__start_task{},
+		&Batch_pool__storage_image_reference{},
+		&Cdn_endpoint__geo_filter{},
+		&Cdn_endpoint__origin{},
+		&Cognitive_account__sku{},
+		&Container_group__container__ports{},
+		&Container_group__container__volume{},
+		&Container_group__container{},
+		&Container_group__image_registry_credential{},
+		&Container_registry__storage_account{},
+		&Container_service__agent_pool_profile{},
+		&Container_service__diagnostics_profile{},
+		&Container_service__linux_profile__ssh_key{},
+		&Container_service__linux_profile{},
+		&Container_service__master_profile{},
+		&Container_service__service_principal{},
+		&Cosmosdb_account__capabilities{},
+		&Cosmosdb_account__consistency_policy{},
+		&Cosmosdb_account__failover_policy{},
+		&Cosmosdb_account__geo_location{},
+		&Cosmosdb_account__virtual_network_rule{},
+		&Dev_test_linux_virtual_machine__gallery_image_reference{},
+		&Dev_test_linux_virtual_machine__inbound_nat_rule{},
+		&Dev_test_virtual_network__subnet{},
+		&Dev_test_windows_virtual_machine__gallery_image_reference{},
+		&Dev_test_windows_virtual_machine__inbound_nat_rule{},
+		&Devspace_controller__sku{},
+		&Dns_caa_record__record{},
+		&Dns_mx_record__record{},
+		&Dns_ns_record__record{},
+		&Dns_srv_record__record{},
+		&Dns_txt_record__record{},
+		&Eventhub__capture_description__destination{},
+		&Eventhub__capture_description{},
+		&Express_route_circuit__sku{},
+		&Express_route_circuit_peering__microsoft_peering_config{},
+		&Firewall__ip_configuration{},
+		&Firewall_application_rule_collection__rule__protocol{},
+		&Firewall_application_rule_collection__rule{},
+		&Firewall_network_rule_collection__rule{},
+		&Function_app__connection_string{},
+		&Function_app__identity{},
+		&Function_app__site_config{},
+		&Function_app__site_credential{},
+		&Image__data_disk{},
+		&Image__os_disk{},
+		&Iothub__endpoint{},
+		&Iothub__route{},
+		&Iothub__shared_access_policy{},
+		&Iothub__sku{},
+		&Key_vault__access_policy{},
+		&Key_vault__network_acls{},
+		&Key_vault__sku{},
+		&Key_vault_certificate__certificate{},
+		&Key_vault_certificate__certificate_policy__issuer_parameters{},
+		&Key_vault_certificate__certificate_policy__key_properties{},
+		&Key_vault_certificate__certificate_policy__lifetime_action__action{},
+		&Key_vault_certificate__certificate_policy__lifetime_action__trigger{},
+		&Key_vault_certificate__certificate_policy__lifetime_action{},
+		&Key_vault_certificate__certificate_policy__secret_properties{},
+		&Key_vault_certificate__certificate_policy__x509_certificate_properties__subject_alternative_names{},
+		&Key_vault_certificate__certificate_policy__x509_certificate_properties{},
+		&Key_vault_certificate__certificate_policy{},
+		&Kubernetes_cluster__addon_profile__aci_connector_linux{},
+		&Kubernetes_cluster__addon_profile__http_application_routing{},
+		&Kubernetes_cluster__addon_profile__oms_agent{},
+		&Kubernetes_cluster__addon_profile{},
+		&Kubernetes_cluster__agent_pool_profile{},
+		&Kubernetes_cluster__kube_admin_config{},
+		&Kubernetes_cluster__kube_config{},
+		&Kubernetes_cluster__linux_profile__ssh_key{},
+		&Kubernetes_cluster__linux_profile{},
+		&Kubernetes_cluster__network_profile{},
+		&Kubernetes_cluster__role_based_access_control__azure_active_directory{},
+		&Kubernetes_cluster__role_based_access_control{},
+		&Kubernetes_cluster__service_principal{},
+		&Lb__frontend_ip_configuration{},
+		&Local_network_gateway__bgp_settings{},
+		&Log_analytics_solution__plan{},
+		&Log_analytics_workspace_linked_service__linked_service_properties{},
+		&Managed_disk__encryption_settings__disk_encryption_key{},
+		&Managed_disk__encryption_settings__key_encryption_key{},
+		&Managed_disk__encryption_settings{},
+		&Mariadb_server__sku{},
+		&Mariadb_server__storage_profile{},
+		&Metric_alertrule__email_action{},
+		&Metric_alertrule__webhook_action{},
+		&Monitor_action_group__email_receiver{},
+		&Monitor_action_group__sms_receiver{},
+		&Monitor_action_group__webhook_receiver{},
+		&Monitor_activity_log_alert__action{},
+		&Monitor_activity_log_alert__criteria{},
+		&Monitor_diagnostic_setting__log__retention_policy{},
+		&Monitor_diagnostic_setting__log{},
+		&Monitor_diagnostic_setting__metric__retention_policy{},
+		&Monitor_diagnostic_setting__metric{},
+		&Monitor_log_profile__retention_policy{},
+		&Monitor_metric_alert__action{},
+		&Monitor_metric_alert__criteria__dimension{},
+		&Monitor_metric_alert__criteria{},
+		&Mssql_elasticpool__elastic_pool_properties{},
+		&Mssql_elasticpool__per_database_settings{},
+		&Mssql_elasticpool__sku{},
+		&Mysql_server__sku{},
+		&Mysql_server__storage_profile{},
+		&Network_interface__ip_configuration{},
+		&Network_security_group__security_rule{},
+		&Notification_hub__apns_credential{},
+		&Notification_hub__gcm_credential{},
+		&Notification_hub_namespace__sku{},
+		&Packet_capture__filter{},
+		&Packet_capture__storage_location{},
+		&Policy_assignment__identity{},
+		&Postgresql_server__sku{},
+		&Postgresql_server__storage_profile{},
+		&Recovery_services_protection_policy_vm__backup{},
+		&Recovery_services_protection_policy_vm__retention_daily{},
+		&Recovery_services_protection_policy_vm__retention_monthly{},
+		&Recovery_services_protection_policy_vm__retention_weekly{},
+		&Recovery_services_protection_policy_vm__retention_yearly{},
+		&Redis_cache__patch_schedule{},
+		&Redis_cache__redis_configuration{},
+		&Relay_namespace__sku{},
+		&Role_definition__permissions{},
+		&Route_table__route{},
+		&Scheduler_job__action_storage_queue{},
+		&Scheduler_job__action_web__authentication_active_directory{},
+		&Scheduler_job__action_web__authentication_basic{},
+		&Scheduler_job__action_web__authentication_certificate{},
+		&Scheduler_job__action_web{},
+		&Scheduler_job__error_action_storage_queue{},
+		&Scheduler_job__error_action_web__authentication_active_directory{},
+		&Scheduler_job__error_action_web__authentication_basic{},
+		&Scheduler_job__error_action_web__authentication_certificate{},
+		&Scheduler_job__error_action_web{},
+		&Scheduler_job__recurrence__monthly_occurrences{},
+		&Scheduler_job__recurrence{},
+		&Scheduler_job__retry{},
+		&Scheduler_job_collection__quota{},
+		&Service_fabric_cluster__azure_active_directory{},
+		&Service_fabric_cluster__certificate{},
+		&Service_fabric_cluster__client_certificate_thumbprint{},
+		&Service_fabric_cluster__diagnostics_config{},
+		&Service_fabric_cluster__fabric_settings{},
+		&Service_fabric_cluster__node_type__application_ports{},
+		&Service_fabric_cluster__node_type__ephemeral_ports{},
+		&Service_fabric_cluster__node_type{},
+		&Service_fabric_cluster__reverse_proxy_certificate{},
+		&Servicebus_subscription_rule__correlation_filter{},
+		&Shared_image__identifier{},
+		&Shared_image_version__target_region{},
+		&Signalr_service__sku{},
+		&Snapshot__encryption_settings__disk_encryption_key{},
+		&Snapshot__encryption_settings__key_encryption_key{},
+		&Snapshot__encryption_settings{},
+		&Sql_database__import{},
+		&Sql_database__threat_detection_policy{},
+		&Storage_account__custom_domain{},
+		&Storage_account__identity{},
+		&Storage_account__network_rules{},
+		&Subnet__delegation__service_delegation{},
+		&Subnet__delegation{},
+		&Traffic_manager_profile__dns_config{},
+		&Traffic_manager_profile__monitor_config{},
+		&Virtual_machine__boot_diagnostics{},
+		&Virtual_machine__identity{},
+		&Virtual_machine__os_profile{},
+		&Virtual_machine__os_profile_linux_config__ssh_keys{},
+		&Virtual_machine__os_profile_linux_config{},
+		&Virtual_machine__os_profile_secrets__vault_certificates{},
+		&Virtual_machine__os_profile_secrets{},
+		&Virtual_machine__os_profile_windows_config__additional_unattend_config{},
+		&Virtual_machine__os_profile_windows_config__winrm{},
+		&Virtual_machine__os_profile_windows_config{},
+		&Virtual_machine__plan{},
+		&Virtual_machine__storage_data_disk{},
+		&Virtual_machine__storage_image_reference{},
+		&Virtual_machine__storage_os_disk{},
+		&Virtual_machine_scale_set__boot_diagnostics{},
+		&Virtual_machine_scale_set__extension{},
+		&Virtual_machine_scale_set__identity{},
+		&Virtual_machine_scale_set__network_profile__dns_settings{},
+		&Virtual_machine_scale_set__network_profile__ip_configuration__public_ip_address_configuration{},
+		&Virtual_machine_scale_set__network_profile__ip_configuration{},
+		&Virtual_machine_scale_set__network_profile{},
+		&Virtual_machine_scale_set__os_profile{},
+		&Virtual_machine_scale_set__os_profile_linux_config__ssh_keys{},
+		&Virtual_machine_scale_set__os_profile_linux_config{},
+		&Virtual_machine_scale_set__os_profile_secrets__vault_certificates{},
+		&Virtual_machine_scale_set__os_profile_secrets{},
+		&Virtual_machine_scale_set__os_profile_windows_config__additional_unattend_config{},
+		&Virtual_machine_scale_set__os_profile_windows_config__winrm{},
+		&Virtual_machine_scale_set__os_profile_windows_config{},
+		&Virtual_machine_scale_set__plan{},
+		&Virtual_machine_scale_set__rolling_upgrade_policy{},
+		&Virtual_machine_scale_set__sku{},
+		&Virtual_machine_scale_set__storage_profile_data_disk{},
+		&Virtual_machine_scale_set__storage_profile_image_reference{},
+		&Virtual_machine_scale_set__storage_profile_os_disk{},
+		&Virtual_network__subnet{},
+		&Virtual_network_gateway__bgp_settings{},
+		&Virtual_network_gateway__ip_configuration{},
+		&Virtual_network_gateway__vpn_client_configuration__revoked_certificate{},
+		&Virtual_network_gateway__vpn_client_configuration__root_certificate{},
+		&Virtual_network_gateway__vpn_client_configuration{},
+		&Virtual_network_gateway_connection__ipsec_policy{})
 }

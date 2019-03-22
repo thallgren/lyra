@@ -3,17359 +3,12874 @@
 // This code is generated on a per-Provider basis using "tf-gen"
 // Long term our hope is to remove this generation step and adopt dynamic approach
 
-package generated
+package aws
 
 import (
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/lyraproj/lyra/pkg/bridge"
 	"github.com/lyraproj/pcore/px"
 	"github.com/lyraproj/servicesdk/service"
+	"time"
+)
+
+type (
+	Acm_certificate struct {
+		Acm_certificateID         *string `lyra:"ignore"`
+		Arn                       *string
+		Certificate_body          *string
+		Certificate_chain         *string
+		Domain_name               *string
+		Domain_validation_options *[]Acm_certificate__domain_validation_options
+		Private_key               *string
+		Subject_alternative_names *[]string
+		Tags                      *map[string]string
+		Validation_emails         *[]string
+		Validation_method         *string
+	}
+
+	Acm_certificate_validation struct {
+		Acm_certificate_validationID *string `lyra:"ignore"`
+		Certificate_arn              string
+		Validation_record_fqdns      *[]string
+	}
+
+	Acmpca_certificate_authority struct {
+		Acmpca_certificate_authorityID      *string `lyra:"ignore"`
+		Arn                                 *string
+		Certificate                         *string
+		Certificate_authority_configuration []Acmpca_certificate_authority__certificate_authority_configuration
+		Certificate_chain                   *string
+		Certificate_signing_request         *string
+		Enabled                             *bool
+		Not_after                           *string
+		Not_before                          *string
+		Revocation_configuration            *[]Acmpca_certificate_authority__revocation_configuration
+		Serial                              *string
+		Status                              *string
+		Tags                                *map[string]string
+		Type                                *string
+	}
+
+	Alb struct {
+		AlbID                            *string `lyra:"ignore"`
+		Access_logs                      *[]Alb__access_logs
+		Arn                              *string
+		Arn_suffix                       *string
+		Dns_name                         *string
+		Enable_cross_zone_load_balancing *bool
+		Enable_deletion_protection       *bool
+		Enable_http2                     *bool
+		Idle_timeout                     *int64
+		Internal                         *bool
+		Ip_address_type                  *string
+		Load_balancer_type               *string
+		Name                             *string
+		Name_prefix                      *string
+		Security_groups                  *[]string
+		Subnet_mapping                   *[]Alb__subnet_mapping
+		Subnets                          *[]string
+		Tags                             *map[string]string
+		Vpc_id                           *string
+		Zone_id                          *string
+	}
+
+	Alb_listener struct {
+		Alb_listenerID    *string `lyra:"ignore"`
+		Arn               *string
+		Certificate_arn   *string
+		Default_action    []Alb_listener__default_action
+		Load_balancer_arn string
+		Port              int64
+		Protocol          *string
+		Ssl_policy        *string
+	}
+
+	Alb_listener_certificate struct {
+		Alb_listener_certificateID *string `lyra:"ignore"`
+		Certificate_arn            string
+		Listener_arn               string
+	}
+
+	Alb_listener_rule struct {
+		Alb_listener_ruleID *string `lyra:"ignore"`
+		Action              []Alb_listener_rule__action
+		Arn                 *string
+		Condition           []Alb_listener_rule__condition
+		Listener_arn        string
+		Priority            *int64
+	}
+
+	Alb_target_group struct {
+		Alb_target_groupID   *string `lyra:"ignore"`
+		Arn                  *string
+		Arn_suffix           *string
+		Deregistration_delay *int64
+		Health_check         *[]Alb_target_group__health_check
+		Name                 *string
+		Name_prefix          *string
+		Port                 *int64
+		Protocol             *string
+		Proxy_protocol_v2    *bool
+		Slow_start           *int64
+		Stickiness           *[]Alb_target_group__stickiness
+		Tags                 *map[string]string
+		Target_type          *string
+		Vpc_id               *string
+	}
+
+	Alb_target_group_attachment struct {
+		Alb_target_group_attachmentID *string `lyra:"ignore"`
+		Availability_zone             *string
+		Port                          *int64
+		Target_group_arn              string
+		Target_id                     string
+	}
+
+	Ami struct {
+		AmiID                  *string `lyra:"ignore"`
+		Architecture           *string
+		Description            *string
+		Ebs_block_device       *[]Ami__ebs_block_device
+		Ena_support            *bool
+		Ephemeral_block_device *[]Ami__ephemeral_block_device
+		Image_location         *string
+		Kernel_id              *string
+		Manage_ebs_snapshots   *bool
+		Name                   string
+		Ramdisk_id             *string
+		Root_device_name       *string
+		Root_snapshot_id       *string
+		Sriov_net_support      *string
+		Tags                   *map[string]string
+		Virtualization_type    *string
+	}
+
+	Ami_copy struct {
+		Ami_copyID             *string `lyra:"ignore"`
+		Architecture           *string
+		Description            *string
+		Ebs_block_device       *[]Ami_copy__ebs_block_device
+		Ena_support            *bool
+		Encrypted              *bool
+		Ephemeral_block_device *[]Ami_copy__ephemeral_block_device
+		Image_location         *string
+		Kernel_id              *string
+		Kms_key_id             *string
+		Manage_ebs_snapshots   *bool
+		Name                   string
+		Ramdisk_id             *string
+		Root_device_name       *string
+		Root_snapshot_id       *string
+		Source_ami_id          string
+		Source_ami_region      string
+		Sriov_net_support      *string
+		Tags                   *map[string]string
+		Virtualization_type    *string
+	}
+
+	Ami_from_instance struct {
+		Ami_from_instanceID     *string `lyra:"ignore"`
+		Architecture            *string
+		Description             *string
+		Ebs_block_device        *[]Ami_from_instance__ebs_block_device
+		Ena_support             *bool
+		Ephemeral_block_device  *[]Ami_from_instance__ephemeral_block_device
+		Image_location          *string
+		Kernel_id               *string
+		Manage_ebs_snapshots    *bool
+		Name                    string
+		Ramdisk_id              *string
+		Root_device_name        *string
+		Root_snapshot_id        *string
+		Snapshot_without_reboot *bool
+		Source_instance_id      string
+		Sriov_net_support       *string
+		Tags                    *map[string]string
+		Virtualization_type     *string
+	}
+
+	Ami_launch_permission struct {
+		Ami_launch_permissionID *string `lyra:"ignore"`
+		Account_id              string
+		Image_id                string
+	}
+
+	Api_gateway_account struct {
+		Api_gateway_accountID *string `lyra:"ignore"`
+		Cloudwatch_role_arn   *string
+		Throttle_settings     *[]Api_gateway_account__throttle_settings
+	}
+
+	Api_gateway_api_key struct {
+		Api_gateway_api_keyID *string `lyra:"ignore"`
+		Created_date          *string
+		Description           *string
+		Enabled               *bool
+		Last_updated_date     *string
+		Name                  string
+		Stage_key             *[]Api_gateway_api_key__stage_key
+		Value                 *string
+	}
+
+	Api_gateway_authorizer struct {
+		Api_gateway_authorizerID         *string `lyra:"ignore"`
+		Authorizer_credentials           *string
+		Authorizer_result_ttl_in_seconds *int64
+		Authorizer_uri                   *string
+		Identity_source                  *string
+		Identity_validation_expression   *string
+		Name                             string
+		Provider_arns                    *[]string
+		Rest_api_id                      string
+		Type                             *string
+	}
+
+	Api_gateway_base_path_mapping struct {
+		Api_gateway_base_path_mappingID *string `lyra:"ignore"`
+		Api_id                          string
+		Base_path                       *string
+		Domain_name                     string
+		Stage_name                      *string
+	}
+
+	Api_gateway_client_certificate struct {
+		Api_gateway_client_certificateID *string `lyra:"ignore"`
+		Created_date                     *string
+		Description                      *string
+		Expiration_date                  *string
+		Pem_encoded_certificate          *string
+	}
+
+	Api_gateway_deployment struct {
+		Api_gateway_deploymentID *string `lyra:"ignore"`
+		Created_date             *string
+		Description              *string
+		Execution_arn            *string
+		Invoke_url               *string
+		Rest_api_id              string
+		Stage_description        *string
+		Stage_name               string
+		Variables                *map[string]string
+	}
+
+	Api_gateway_documentation_part struct {
+		Api_gateway_documentation_partID *string `lyra:"ignore"`
+		Location                         []Api_gateway_documentation_part__location
+		Properties                       string
+		Rest_api_id                      string
+	}
+
+	Api_gateway_documentation_version struct {
+		Api_gateway_documentation_versionID *string `lyra:"ignore"`
+		Description                         *string
+		Rest_api_id                         string
+		Version                             string
+	}
+
+	Api_gateway_domain_name struct {
+		Api_gateway_domain_nameID *string `lyra:"ignore"`
+		Certificate_arn           *string
+		Certificate_body          *string
+		Certificate_chain         *string
+		Certificate_name          *string
+		Certificate_private_key   *string
+		Certificate_upload_date   *string
+		Cloudfront_domain_name    *string
+		Cloudfront_zone_id        *string
+		Domain_name               string
+		Endpoint_configuration    *[]Api_gateway_domain_name__endpoint_configuration
+		Regional_certificate_arn  *string
+		Regional_certificate_name *string
+		Regional_domain_name      *string
+		Regional_zone_id          *string
+	}
+
+	Api_gateway_gateway_response struct {
+		Api_gateway_gateway_responseID *string `lyra:"ignore"`
+		Response_parameters            *map[string]string
+		Response_templates             *map[string]string
+		Response_type                  string
+		Rest_api_id                    string
+		Status_code                    *string
+	}
+
+	Api_gateway_integration struct {
+		Api_gateway_integrationID  *string `lyra:"ignore"`
+		Cache_key_parameters       *[]string
+		Cache_namespace            *string
+		Connection_id              *string
+		Connection_type            *string
+		Content_handling           *string
+		Credentials                *string
+		Http_method                string
+		Integration_http_method    *string
+		Passthrough_behavior       *string
+		Request_parameters         *map[string]string
+		Request_parameters_in_json *string
+		Request_templates          *map[string]string
+		Resource_id                string
+		Rest_api_id                string
+		Timeout_milliseconds       *int64
+		Type                       string
+		Uri                        *string
+	}
+
+	Api_gateway_integration_response struct {
+		Api_gateway_integration_responseID *string `lyra:"ignore"`
+		Content_handling                   *string
+		Http_method                        string
+		Resource_id                        string
+		Response_parameters                *map[string]string
+		Response_parameters_in_json        *string
+		Response_templates                 *map[string]string
+		Rest_api_id                        string
+		Selection_pattern                  *string
+		Status_code                        string
+	}
+
+	Api_gateway_method struct {
+		Api_gateway_methodID       *string `lyra:"ignore"`
+		Api_key_required           *bool
+		Authorization              string
+		Authorization_scopes       *[]string
+		Authorizer_id              *string
+		Http_method                string
+		Request_models             *map[string]string
+		Request_parameters         *map[string]bool
+		Request_parameters_in_json *string
+		Request_validator_id       *string
+		Resource_id                string
+		Rest_api_id                string
+	}
+
+	Api_gateway_method_response struct {
+		Api_gateway_method_responseID *string `lyra:"ignore"`
+		Http_method                   string
+		Resource_id                   string
+		Response_models               *map[string]string
+		Response_parameters           *map[string]bool
+		Response_parameters_in_json   *string
+		Rest_api_id                   string
+		Status_code                   string
+	}
+
+	Api_gateway_method_settings struct {
+		Api_gateway_method_settingsID *string `lyra:"ignore"`
+		Method_path                   string
+		Rest_api_id                   string
+		Settings                      []Api_gateway_method_settings__settings
+		Stage_name                    string
+	}
+
+	Api_gateway_model struct {
+		Api_gateway_modelID *string `lyra:"ignore"`
+		Content_type        string
+		Description         *string
+		Name                string
+		Rest_api_id         string
+		Schema              *string
+	}
+
+	Api_gateway_request_validator struct {
+		Api_gateway_request_validatorID *string `lyra:"ignore"`
+		Name                            string
+		Rest_api_id                     string
+		Validate_request_body           *bool
+		Validate_request_parameters     *bool
+	}
+
+	Api_gateway_resource struct {
+		Api_gateway_resourceID *string `lyra:"ignore"`
+		Parent_id              string
+		Path                   *string
+		Path_part              string
+		Rest_api_id            string
+	}
+
+	Api_gateway_rest_api struct {
+		Api_gateway_rest_apiID   *string `lyra:"ignore"`
+		Api_key_source           *string
+		Binary_media_types       *[]string
+		Body                     *string
+		Created_date             *string
+		Description              *string
+		Endpoint_configuration   *[]Api_gateway_rest_api__endpoint_configuration
+		Execution_arn            *string
+		Minimum_compression_size *int64
+		Name                     string
+		Policy                   *string
+		Root_resource_id         *string
+	}
+
+	Api_gateway_stage struct {
+		Api_gateway_stageID   *string `lyra:"ignore"`
+		Access_log_settings   *[]Api_gateway_stage__access_log_settings
+		Cache_cluster_enabled *bool
+		Cache_cluster_size    *string
+		Client_certificate_id *string
+		Deployment_id         string
+		Description           *string
+		Documentation_version *string
+		Execution_arn         *string
+		Invoke_url            *string
+		Rest_api_id           string
+		Stage_name            string
+		Tags                  *map[string]string
+		Variables             *map[string]string
+		Xray_tracing_enabled  *bool
+	}
+
+	Api_gateway_usage_plan struct {
+		Api_gateway_usage_planID *string `lyra:"ignore"`
+		Api_stages               *[]Api_gateway_usage_plan__api_stages
+		Description              *string
+		Name                     string
+		Product_code             *string
+		Quota_settings           *[]Api_gateway_usage_plan__quota_settings
+		Throttle_settings        *[]Api_gateway_usage_plan__throttle_settings
+	}
+
+	Api_gateway_usage_plan_key struct {
+		Api_gateway_usage_plan_keyID *string `lyra:"ignore"`
+		Key_id                       string
+		Key_type                     string
+		Name                         *string
+		Usage_plan_id                string
+		Value                        *string
+	}
+
+	Api_gateway_vpc_link struct {
+		Api_gateway_vpc_linkID *string `lyra:"ignore"`
+		Description            *string
+		Name                   string
+		Target_arns            []string
+	}
+
+	App_cookie_stickiness_policy struct {
+		App_cookie_stickiness_policyID *string `lyra:"ignore"`
+		Cookie_name                    string
+		Lb_port                        int64
+		Load_balancer                  string
+		Name                           string
+	}
+
+	Appautoscaling_policy struct {
+		Appautoscaling_policyID                      *string `lyra:"ignore"`
+		Adjustment_type                              *string
+		Alarms                                       *[]string
+		Arn                                          *string
+		Cooldown                                     *int64
+		Metric_aggregation_type                      *string
+		Min_adjustment_magnitude                     *int64
+		Name                                         string
+		Policy_type                                  *string
+		Resource_id                                  string
+		Scalable_dimension                           string
+		Service_namespace                            string
+		Step_adjustment                              *[]Appautoscaling_policy__step_adjustment
+		Step_scaling_policy_configuration            *[]Appautoscaling_policy__step_scaling_policy_configuration
+		Target_tracking_scaling_policy_configuration *[]Appautoscaling_policy__target_tracking_scaling_policy_configuration
+	}
+
+	Appautoscaling_scheduled_action struct {
+		Appautoscaling_scheduled_actionID *string `lyra:"ignore"`
+		Arn                               *string
+		End_time                          *string
+		Name                              string
+		Resource_id                       string
+		Scalable_dimension                *string
+		Scalable_target_action            *[]Appautoscaling_scheduled_action__scalable_target_action
+		Schedule                          *string
+		Service_namespace                 string
+		Start_time                        *string
+	}
+
+	Appautoscaling_target struct {
+		Appautoscaling_targetID *string `lyra:"ignore"`
+		Max_capacity            int64
+		Min_capacity            int64
+		Resource_id             string
+		Role_arn                *string
+		Scalable_dimension      string
+		Service_namespace       string
+	}
+
+	Appmesh_mesh struct {
+		Appmesh_meshID    *string `lyra:"ignore"`
+		Arn               *string
+		Created_date      *string
+		Last_updated_date *string
+		Name              string
+	}
+
+	Appmesh_route struct {
+		Appmesh_routeID     *string `lyra:"ignore"`
+		Arn                 *string
+		Created_date        *string
+		Last_updated_date   *string
+		Mesh_name           string
+		Name                string
+		Spec                []Appmesh_route__spec
+		Virtual_router_name string
+	}
+
+	Appmesh_virtual_node struct {
+		Appmesh_virtual_nodeID *string `lyra:"ignore"`
+		Arn                    *string
+		Created_date           *string
+		Last_updated_date      *string
+		Mesh_name              string
+		Name                   string
+		Spec                   []Appmesh_virtual_node__spec
+	}
+
+	Appmesh_virtual_router struct {
+		Appmesh_virtual_routerID *string `lyra:"ignore"`
+		Arn                      *string
+		Created_date             *string
+		Last_updated_date        *string
+		Mesh_name                string
+		Name                     string
+		Spec                     []Appmesh_virtual_router__spec
+	}
+
+	Appsync_api_key struct {
+		Appsync_api_keyID *string `lyra:"ignore"`
+		Api_id            string
+		Description       *string
+		Expires           *time.Time
+		Key               *string
+	}
+
+	Appsync_datasource struct {
+		Appsync_datasourceID *string `lyra:"ignore"`
+		Api_id               string
+		Arn                  *string
+		Description          *string
+		Dynamodb_config      *[]Appsync_datasource__dynamodb_config
+		Elasticsearch_config *[]Appsync_datasource__elasticsearch_config
+		Http_config          *[]Appsync_datasource__http_config
+		Lambda_config        *[]Appsync_datasource__lambda_config
+		Name                 string
+		Service_role_arn     *string
+		Type                 string
+	}
+
+	Appsync_graphql_api struct {
+		Appsync_graphql_apiID *string `lyra:"ignore"`
+		Arn                   *string
+		Authentication_type   string
+		Log_config            *[]Appsync_graphql_api__log_config
+		Name                  string
+		Openid_connect_config *[]Appsync_graphql_api__openid_connect_config
+		Uris                  *map[string]string
+		User_pool_config      *[]Appsync_graphql_api__user_pool_config
+	}
+
+	Athena_database struct {
+		Athena_databaseID        *string `lyra:"ignore"`
+		Bucket                   string
+		Encryption_configuration *[]Athena_database__encryption_configuration
+		Force_destroy            *bool
+		Name                     string
+	}
+
+	Athena_named_query struct {
+		Athena_named_queryID *string `lyra:"ignore"`
+		Database             string
+		Description          *string
+		Name                 string
+		Query                string
+	}
+
+	Autoscaling_attachment struct {
+		Autoscaling_attachmentID *string `lyra:"ignore"`
+		Alb_target_group_arn     *string
+		Autoscaling_group_name   string
+		Elb                      *string
+	}
+
+	Autoscaling_group struct {
+		Autoscaling_groupID       *string `lyra:"ignore"`
+		Arn                       *string
+		Availability_zones        *[]string
+		Default_cooldown          *int64
+		Desired_capacity          *int64
+		Enabled_metrics           *[]string
+		Force_delete              *bool
+		Health_check_grace_period *int64
+		Health_check_type         *string
+		Initial_lifecycle_hook    *[]Autoscaling_group__initial_lifecycle_hook
+		Launch_configuration      *string
+		Launch_template           *[]Autoscaling_group__launch_template
+		Load_balancers            *[]string
+		Max_size                  int64
+		Metrics_granularity       *string
+		Min_elb_capacity          *int64
+		Min_size                  int64
+		Mixed_instances_policy    *[]Autoscaling_group__mixed_instances_policy
+		Name                      *string
+		Name_prefix               *string
+		Placement_group           *string
+		Protect_from_scale_in     *bool
+		Service_linked_role_arn   *string
+		Suspended_processes       *[]string
+		Tag                       *[]Autoscaling_group__tag
+		Tags                      *[]map[string]string
+		Target_group_arns         *[]string
+		Termination_policies      *[]string
+		Vpc_zone_identifier       *[]string
+		Wait_for_capacity_timeout *string
+		Wait_for_elb_capacity     *int64
+	}
+
+	Autoscaling_lifecycle_hook struct {
+		Autoscaling_lifecycle_hookID *string `lyra:"ignore"`
+		Autoscaling_group_name       string
+		Default_result               *string
+		Heartbeat_timeout            *int64
+		Lifecycle_transition         string
+		Name                         string
+		Notification_metadata        *string
+		Notification_target_arn      *string
+		Role_arn                     *string
+	}
+
+	Autoscaling_notification struct {
+		Autoscaling_notificationID *string `lyra:"ignore"`
+		Group_names                []string
+		Notifications              []string
+		Topic_arn                  string
+	}
+
+	Autoscaling_policy struct {
+		Autoscaling_policyID          *string `lyra:"ignore"`
+		Adjustment_type               *string
+		Arn                           *string
+		Autoscaling_group_name        string
+		Cooldown                      *int64
+		Estimated_instance_warmup     *int64
+		Metric_aggregation_type       *string
+		Min_adjustment_magnitude      *int64
+		Min_adjustment_step           *int64
+		Name                          string
+		Policy_type                   *string
+		Scaling_adjustment            *int64
+		Step_adjustment               *[]Autoscaling_policy__step_adjustment
+		Target_tracking_configuration *[]Autoscaling_policy__target_tracking_configuration
+	}
+
+	Autoscaling_schedule struct {
+		Autoscaling_scheduleID *string `lyra:"ignore"`
+		Arn                    *string
+		Autoscaling_group_name string
+		Desired_capacity       *int64
+		End_time               *string
+		Max_size               *int64
+		Min_size               *int64
+		Recurrence             *string
+		Scheduled_action_name  string
+		Start_time             *string
+	}
+
+	Batch_compute_environment struct {
+		Batch_compute_environmentID *string `lyra:"ignore"`
+		Arn                         *string
+		Compute_environment_name    string
+		Compute_resources           *[]Batch_compute_environment__compute_resources
+		Ecc_cluster_arn             *string
+		Ecs_cluster_arn             *string
+		Service_role                string
+		State                       *string
+		Status                      *string
+		Status_reason               *string
+		Type                        string
+	}
+
+	Batch_job_definition struct {
+		Batch_job_definitionID *string `lyra:"ignore"`
+		Arn                    *string
+		Container_properties   *string
+		Name                   string
+		Parameters             *map[string]string
+		Retry_strategy         *[]Batch_job_definition__retry_strategy
+		Revision               *int64
+		Timeout                *[]Batch_job_definition__timeout
+		Type                   string
+	}
+
+	Batch_job_queue struct {
+		Batch_job_queueID    *string `lyra:"ignore"`
+		Arn                  *string
+		Compute_environments []string
+		Name                 string
+		Priority             int64
+		State                string
+	}
+
+	Budgets_budget struct {
+		Budgets_budgetID  *string `lyra:"ignore"`
+		Account_id        *string
+		Budget_type       string
+		Cost_filters      *map[string]string
+		Cost_types        *[]Budgets_budget__cost_types
+		Limit_amount      string
+		Limit_unit        string
+		Name              *string
+		Name_prefix       *string
+		Time_period_end   *string
+		Time_period_start string
+		Time_unit         string
+	}
+
+	Cloud9_environment_ec2 struct {
+		Cloud9_environment_ec2ID    *string `lyra:"ignore"`
+		Arn                         *string
+		Automatic_stop_time_minutes *int64
+		Description                 *string
+		Instance_type               string
+		Name                        string
+		Owner_arn                   *string
+		Subnet_id                   *string
+		Type                        *string
+	}
+
+	Cloudformation_stack struct {
+		Cloudformation_stackID *string `lyra:"ignore"`
+		Capabilities           *[]string
+		Disable_rollback       *bool
+		Iam_role_arn           *string
+		Name                   string
+		Notification_arns      *[]string
+		On_failure             *string
+		Outputs                *map[string]string
+		Parameters             *map[string]string
+		Policy_body            *string
+		Policy_url             *string
+		Tags                   *map[string]string
+		Template_body          *string
+		Template_url           *string
+		Timeout_in_minutes     *int64
+	}
+
+	Cloudfront_distribution struct {
+		Cloudfront_distributionID      *string `lyra:"ignore"`
+		Active_trusted_signers         *map[string]string
+		Aliases                        *[]string
+		Arn                            *string
+		Cache_behavior                 *[]Cloudfront_distribution__cache_behavior
+		Caller_reference               *string
+		Comment                        *string
+		Custom_error_response          *[]Cloudfront_distribution__custom_error_response
+		Default_cache_behavior         []Cloudfront_distribution__default_cache_behavior
+		Default_root_object            *string
+		Domain_name                    *string
+		Enabled                        bool
+		Etag                           *string
+		Hosted_zone_id                 *string
+		Http_version                   *string
+		In_progress_validation_batches *int64
+		Is_ipv6_enabled                *bool
+		Last_modified_time             *string
+		Logging_config                 *[]Cloudfront_distribution__logging_config
+		Ordered_cache_behavior         *[]Cloudfront_distribution__ordered_cache_behavior
+		Origin                         []Cloudfront_distribution__origin
+		Price_class                    *string
+		Restrictions                   []Cloudfront_distribution__restrictions
+		Retain_on_delete               *bool
+		Status                         *string
+		Tags                           *map[string]string
+		Viewer_certificate             []Cloudfront_distribution__viewer_certificate
+		Web_acl_id                     *string
+	}
+
+	Cloudfront_origin_access_identity struct {
+		Cloudfront_origin_access_identityID *string `lyra:"ignore"`
+		Caller_reference                    *string
+		Cloudfront_access_identity_path     *string
+		Comment                             *string
+		Etag                                *string
+		Iam_arn                             *string
+		S3_canonical_user_id                *string
+	}
+
+	Cloudfront_public_key struct {
+		Cloudfront_public_keyID *string `lyra:"ignore"`
+		Caller_reference        *string
+		Comment                 *string
+		Encoded_key             string
+		Etag                    *string
+		Name                    *string
+		Name_prefix             *string
+	}
+
+	Cloudhsm_v2_cluster struct {
+		Cloudhsm_v2_clusterID    *string `lyra:"ignore"`
+		Cluster_certificates     *[]Cloudhsm_v2_cluster__cluster_certificates
+		Cluster_id               *string
+		Cluster_state            *string
+		Hsm_type                 string
+		Security_group_id        *string
+		Source_backup_identifier *string
+		Subnet_ids               []string
+		Tags                     *map[string]string
+		Vpc_id                   *string
+	}
+
+	Cloudhsm_v2_hsm struct {
+		Cloudhsm_v2_hsmID *string `lyra:"ignore"`
+		Availability_zone *string
+		Cluster_id        string
+		Hsm_eni_id        *string
+		Hsm_id            *string
+		Hsm_state         *string
+		Ip_address        *string
+		Subnet_id         *string
+	}
+
+	Cloudtrail struct {
+		CloudtrailID                  *string `lyra:"ignore"`
+		Arn                           *string
+		Cloud_watch_logs_group_arn    *string
+		Cloud_watch_logs_role_arn     *string
+		Enable_log_file_validation    *bool
+		Enable_logging                *bool
+		Event_selector                *[]Cloudtrail__event_selector
+		Home_region                   *string
+		Include_global_service_events *bool
+		Is_multi_region_trail         *bool
+		Is_organization_trail         *bool
+		Kms_key_id                    *string
+		Name                          string
+		S3_bucket_name                string
+		S3_key_prefix                 *string
+		Sns_topic_name                *string
+		Tags                          *map[string]string
+	}
+
+	Cloudwatch_dashboard struct {
+		Cloudwatch_dashboardID *string `lyra:"ignore"`
+		Dashboard_arn          *string
+		Dashboard_body         string
+		Dashboard_name         string
+	}
+
+	Cloudwatch_event_permission struct {
+		Cloudwatch_event_permissionID *string `lyra:"ignore"`
+		Action                        *string
+		Condition                     *[]Cloudwatch_event_permission__condition
+		Principal                     string
+		Statement_id                  string
+	}
+
+	Cloudwatch_event_rule struct {
+		Cloudwatch_event_ruleID *string `lyra:"ignore"`
+		Arn                     *string
+		Description             *string
+		Event_pattern           *string
+		Is_enabled              *bool
+		Name                    *string
+		Name_prefix             *string
+		Role_arn                *string
+		Schedule_expression     *string
+	}
+
+	Cloudwatch_event_target struct {
+		Cloudwatch_event_targetID *string `lyra:"ignore"`
+		Arn                       string
+		Batch_target              *[]Cloudwatch_event_target__batch_target
+		Ecs_target                *[]Cloudwatch_event_target__ecs_target
+		Input                     *string
+		Input_path                *string
+		Input_transformer         *[]Cloudwatch_event_target__input_transformer
+		Kinesis_target            *[]Cloudwatch_event_target__kinesis_target
+		Role_arn                  *string
+		Rule                      string
+		Run_command_targets       *[]Cloudwatch_event_target__run_command_targets
+		Sqs_target                *[]Cloudwatch_event_target__sqs_target
+		Target_id                 *string
+	}
+
+	Cloudwatch_log_destination struct {
+		Cloudwatch_log_destinationID *string `lyra:"ignore"`
+		Arn                          *string
+		Name                         string
+		Role_arn                     string
+		Target_arn                   string
+	}
+
+	Cloudwatch_log_destination_policy struct {
+		Cloudwatch_log_destination_policyID *string `lyra:"ignore"`
+		Access_policy                       string
+		Destination_name                    string
+	}
+
+	Cloudwatch_log_group struct {
+		Cloudwatch_log_groupID *string `lyra:"ignore"`
+		Arn                    *string
+		Kms_key_id             *string
+		Name                   *string
+		Name_prefix            *string
+		Retention_in_days      *int64
+		Tags                   *map[string]string
+	}
+
+	Cloudwatch_log_metric_filter struct {
+		Cloudwatch_log_metric_filterID *string `lyra:"ignore"`
+		Log_group_name                 string
+		Metric_transformation          []Cloudwatch_log_metric_filter__metric_transformation
+		Name                           string
+		Pattern                        string
+	}
+
+	Cloudwatch_log_resource_policy struct {
+		Cloudwatch_log_resource_policyID *string `lyra:"ignore"`
+		Policy_document                  string
+		Policy_name                      string
+	}
+
+	Cloudwatch_log_stream struct {
+		Cloudwatch_log_streamID *string `lyra:"ignore"`
+		Arn                     *string
+		Log_group_name          string
+		Name                    string
+	}
+
+	Cloudwatch_log_subscription_filter struct {
+		Cloudwatch_log_subscription_filterID *string `lyra:"ignore"`
+		Destination_arn                      string
+		Distribution                         *string
+		Filter_pattern                       string
+		Log_group_name                       string
+		Name                                 string
+		Role_arn                             *string
+	}
+
+	Cloudwatch_metric_alarm struct {
+		Cloudwatch_metric_alarmID             *string `lyra:"ignore"`
+		Actions_enabled                       *bool
+		Alarm_actions                         *[]string
+		Alarm_description                     *string
+		Alarm_name                            string
+		Arn                                   *string
+		Comparison_operator                   string
+		Datapoints_to_alarm                   *int64
+		Dimensions                            *map[string]string
+		Evaluate_low_sample_count_percentiles *string
+		Evaluation_periods                    int64
+		Extended_statistic                    *string
+		Insufficient_data_actions             *[]string
+		Metric_name                           string
+		Namespace                             string
+		Ok_actions                            *[]string
+		Period                                int64
+		Statistic                             *string
+		Threshold                             float64
+		Treat_missing_data                    *string
+		Unit                                  *string
+	}
+
+	Codebuild_project struct {
+		Codebuild_projectID *string `lyra:"ignore"`
+		Arn                 *string
+		Artifacts           []Codebuild_project__artifacts
+		Badge_enabled       *bool
+		Badge_url           *string
+		Build_timeout       *int64
+		Cache               *[]Codebuild_project__cache
+		Description         *string
+		Encryption_key      *string
+		Environment         []Codebuild_project__environment
+		Name                string
+		Secondary_artifacts *[]Codebuild_project__secondary_artifacts
+		Secondary_sources   *[]Codebuild_project__secondary_sources
+		Service_role        string
+		Source              []Codebuild_project__source
+		Tags                *map[string]string
+		Timeout             *int64
+		Vpc_config          *[]Codebuild_project__vpc_config
+	}
+
+	Codebuild_webhook struct {
+		Codebuild_webhookID *string `lyra:"ignore"`
+		Branch_filter       *string
+		Payload_url         *string
+		Project_name        string
+		Secret              *string
+		Url                 *string
+	}
+
+	Codecommit_repository struct {
+		Codecommit_repositoryID *string `lyra:"ignore"`
+		Arn                     *string
+		Clone_url_http          *string
+		Clone_url_ssh           *string
+		Default_branch          *string
+		Description             *string
+		Repository_id           *string
+		Repository_name         string
+	}
+
+	Codecommit_trigger struct {
+		Codecommit_triggerID *string `lyra:"ignore"`
+		Configuration_id     *string
+		Repository_name      string
+		Trigger              []Codecommit_trigger__trigger
+	}
+
+	Codedeploy_app struct {
+		Codedeploy_appID *string `lyra:"ignore"`
+		Compute_platform *string
+		Name             string
+		Unique_id        *string
+	}
+
+	Codedeploy_deployment_config struct {
+		Codedeploy_deployment_configID *string `lyra:"ignore"`
+		Compute_platform               *string
+		Deployment_config_id           *string
+		Deployment_config_name         string
+		Minimum_healthy_hosts          *[]Codedeploy_deployment_config__minimum_healthy_hosts
+		Traffic_routing_config         *[]Codedeploy_deployment_config__traffic_routing_config
+	}
+
+	Codedeploy_deployment_group struct {
+		Codedeploy_deployment_groupID   *string `lyra:"ignore"`
+		Alarm_configuration             *[]Codedeploy_deployment_group__alarm_configuration
+		App_name                        string
+		Auto_rollback_configuration     *[]Codedeploy_deployment_group__auto_rollback_configuration
+		Autoscaling_groups              *[]string
+		Blue_green_deployment_config    *[]Codedeploy_deployment_group__blue_green_deployment_config
+		Deployment_config_name          *string
+		Deployment_group_name           string
+		Deployment_style                *[]Codedeploy_deployment_group__deployment_style
+		Ec2_tag_filter                  *[]Codedeploy_deployment_group__ec2_tag_filter
+		Ec2_tag_set                     *[]Codedeploy_deployment_group__ec2_tag_set
+		Ecs_service                     *[]Codedeploy_deployment_group__ecs_service
+		Load_balancer_info              *[]Codedeploy_deployment_group__load_balancer_info
+		On_premises_instance_tag_filter *[]Codedeploy_deployment_group__on_premises_instance_tag_filter
+		Service_role_arn                string
+		Trigger_configuration           *[]Codedeploy_deployment_group__trigger_configuration
+	}
+
+	Codepipeline struct {
+		CodepipelineID *string `lyra:"ignore"`
+		Arn            *string
+		Artifact_store []Codepipeline__artifact_store
+		Name           string
+		Role_arn       string
+		Stage          []Codepipeline__stage
+	}
+
+	Codepipeline_webhook struct {
+		Codepipeline_webhookID       *string `lyra:"ignore"`
+		Authentication               string
+		Authentication_configuration *[]Codepipeline_webhook__authentication_configuration
+		Filter                       []Codepipeline_webhook__filter
+		Name                         string
+		Target_action                string
+		Target_pipeline              string
+		Url                          *string
+	}
+
+	Cognito_identity_pool struct {
+		Cognito_identity_poolID          *string `lyra:"ignore"`
+		Allow_unauthenticated_identities *bool
+		Arn                              *string
+		Cognito_identity_providers       *[]Cognito_identity_pool__cognito_identity_providers
+		Developer_provider_name          *string
+		Identity_pool_name               string
+		Openid_connect_provider_arns     *[]string
+		Saml_provider_arns               *[]string
+		Supported_login_providers        *map[string]string
+	}
+
+	Cognito_identity_pool_roles_attachment struct {
+		Cognito_identity_pool_roles_attachmentID *string `lyra:"ignore"`
+		Identity_pool_id                         string
+		Role_mapping                             *[]Cognito_identity_pool_roles_attachment__role_mapping
+		Roles                                    map[string]Cognito_identity_pool_roles_attachment__roles
+	}
+
+	Cognito_identity_provider struct {
+		Cognito_identity_providerID *string `lyra:"ignore"`
+		Attribute_mapping           *map[string]string
+		Idp_identifiers             *[]string
+		Provider_details            map[string]string
+		Provider_name               string
+		Provider_type               string
+		User_pool_id                string
+	}
+
+	Cognito_resource_server struct {
+		Cognito_resource_serverID *string `lyra:"ignore"`
+		Identifier                string
+		Name                      string
+		Scope                     *[]Cognito_resource_server__scope
+		Scope_identifiers         *[]string
+		User_pool_id              string
+	}
+
+	Cognito_user_group struct {
+		Cognito_user_groupID *string `lyra:"ignore"`
+		Description          *string
+		Name                 string
+		Precedence           *int64
+		Role_arn             *string
+		User_pool_id         string
+	}
+
+	Cognito_user_pool struct {
+		Cognito_user_poolID           *string `lyra:"ignore"`
+		Admin_create_user_config      *[]Cognito_user_pool__admin_create_user_config
+		Alias_attributes              *[]string
+		Arn                           *string
+		Auto_verified_attributes      *[]string
+		Creation_date                 *string
+		Device_configuration          *[]Cognito_user_pool__device_configuration
+		Email_configuration           *[]Cognito_user_pool__email_configuration
+		Email_verification_message    *string
+		Email_verification_subject    *string
+		Endpoint                      *string
+		Lambda_config                 *[]Cognito_user_pool__lambda_config
+		Last_modified_date            *string
+		Mfa_configuration             *string
+		Name                          string
+		Password_policy               *[]Cognito_user_pool__password_policy
+		Schema                        *[]Cognito_user_pool__schema
+		Sms_authentication_message    *string
+		Sms_configuration             *[]Cognito_user_pool__sms_configuration
+		Sms_verification_message      *string
+		Tags                          *map[string]string
+		Username_attributes           *[]string
+		Verification_message_template *[]Cognito_user_pool__verification_message_template
+	}
+
+	Cognito_user_pool_client struct {
+		Cognito_user_pool_clientID           *string `lyra:"ignore"`
+		Allowed_oauth_flows                  *[]string
+		Allowed_oauth_flows_user_pool_client *bool
+		Allowed_oauth_scopes                 *[]string
+		Callback_urls                        *[]string
+		Client_secret                        *string
+		Default_redirect_uri                 *string
+		Explicit_auth_flows                  *[]string
+		Generate_secret                      *bool
+		Logout_urls                          *[]string
+		Name                                 string
+		Read_attributes                      *[]string
+		Refresh_token_validity               *int64
+		Supported_identity_providers         *[]string
+		User_pool_id                         string
+		Write_attributes                     *[]string
+	}
+
+	Cognito_user_pool_domain struct {
+		Cognito_user_pool_domainID  *string `lyra:"ignore"`
+		Aws_account_id              *string
+		Certificate_arn             *string
+		Cloudfront_distribution_arn *string
+		Domain                      string
+		S3_bucket                   *string
+		User_pool_id                string
+		Version                     *string
+	}
+
+	Config_aggregate_authorization struct {
+		Config_aggregate_authorizationID *string `lyra:"ignore"`
+		Account_id                       string
+		Arn                              *string
+		Region                           string
+	}
+
+	Config_config_rule struct {
+		Config_config_ruleID        *string `lyra:"ignore"`
+		Arn                         *string
+		Description                 *string
+		Input_parameters            *string
+		Maximum_execution_frequency *string
+		Name                        string
+		Rule_id                     *string
+		Scope                       *[]Config_config_rule__scope
+		Source                      []Config_config_rule__source
+	}
+
+	Config_configuration_aggregator struct {
+		Config_configuration_aggregatorID *string `lyra:"ignore"`
+		Account_aggregation_source        *[]Config_configuration_aggregator__account_aggregation_source
+		Arn                               *string
+		Name                              string
+		Organization_aggregation_source   *[]Config_configuration_aggregator__organization_aggregation_source
+	}
+
+	Config_configuration_recorder struct {
+		Config_configuration_recorderID *string `lyra:"ignore"`
+		Name                            *string
+		Recording_group                 *[]Config_configuration_recorder__recording_group
+		Role_arn                        string
+	}
+
+	Config_configuration_recorder_status struct {
+		Config_configuration_recorder_statusID *string `lyra:"ignore"`
+		Is_enabled                             bool
+		Name                                   string
+	}
+
+	Config_delivery_channel struct {
+		Config_delivery_channelID    *string `lyra:"ignore"`
+		Name                         *string
+		S3_bucket_name               string
+		S3_key_prefix                *string
+		Snapshot_delivery_properties *[]Config_delivery_channel__snapshot_delivery_properties
+		Sns_topic_arn                *string
+	}
+
+	Customer_gateway struct {
+		Customer_gatewayID *string `lyra:"ignore"`
+		Bgp_asn            int64
+		Ip_address         string
+		Tags               *map[string]string
+		Type               string
+	}
+
+	Datasync_agent struct {
+		Datasync_agentID *string `lyra:"ignore"`
+		Activation_key   *string
+		Arn              *string
+		Ip_address       *string
+		Name             *string
+		Tags             *map[string]string
+	}
+
+	Datasync_location_efs struct {
+		Datasync_location_efsID *string `lyra:"ignore"`
+		Arn                     *string
+		Ec2_config              []Datasync_location_efs__ec2_config
+		Efs_file_system_arn     string
+		Subdirectory            *string
+		Tags                    *map[string]string
+		Uri                     *string
+	}
+
+	Datasync_location_nfs struct {
+		Datasync_location_nfsID *string `lyra:"ignore"`
+		Arn                     *string
+		On_prem_config          []Datasync_location_nfs__on_prem_config
+		Server_hostname         string
+		Subdirectory            string
+		Tags                    *map[string]string
+		Uri                     *string
+	}
+
+	Datasync_location_s3 struct {
+		Datasync_location_s3ID *string `lyra:"ignore"`
+		Arn                    *string
+		S3_bucket_arn          string
+		S3_config              []Datasync_location_s3__s3_config
+		Subdirectory           string
+		Tags                   *map[string]string
+		Uri                    *string
+	}
+
+	Datasync_task struct {
+		Datasync_taskID          *string `lyra:"ignore"`
+		Arn                      *string
+		Cloudwatch_log_group_arn *string
+		Destination_location_arn string
+		Name                     *string
+		Options                  *[]Datasync_task__options
+		Source_location_arn      string
+		Tags                     *map[string]string
+	}
+
+	Dax_cluster struct {
+		Dax_clusterID          *string `lyra:"ignore"`
+		Arn                    *string
+		Availability_zones     *[]string
+		Cluster_address        *string
+		Cluster_name           string
+		Configuration_endpoint *string
+		Description            *string
+		Iam_role_arn           string
+		Maintenance_window     *string
+		Node_type              string
+		Nodes                  *[]Dax_cluster__nodes
+		Notification_topic_arn *string
+		Parameter_group_name   *string
+		Port                   *int64
+		Replication_factor     int64
+		Security_group_ids     *[]string
+		Server_side_encryption *[]Dax_cluster__server_side_encryption
+		Subnet_group_name      *string
+		Tags                   *map[string]string
+	}
+
+	Dax_parameter_group struct {
+		Dax_parameter_groupID *string `lyra:"ignore"`
+		Description           *string
+		Name                  string
+		Parameters            *[]Dax_parameter_group__parameters
+	}
+
+	Dax_subnet_group struct {
+		Dax_subnet_groupID *string `lyra:"ignore"`
+		Description        *string
+		Name               string
+		Subnet_ids         []string
+		Vpc_id             *string
+	}
+
+	Db_cluster_snapshot struct {
+		Db_cluster_snapshotID          *string `lyra:"ignore"`
+		Allocated_storage              *int64
+		Availability_zones             *[]string
+		Db_cluster_identifier          string
+		Db_cluster_snapshot_arn        *string
+		Db_cluster_snapshot_identifier string
+		Engine                         *string
+		Engine_version                 *string
+		Kms_key_id                     *string
+		License_model                  *string
+		Port                           *int64
+		Snapshot_type                  *string
+		Source_db_cluster_snapshot_arn *string
+		Status                         *string
+		Storage_encrypted              *bool
+		Vpc_id                         *string
+	}
+
+	Db_event_subscription struct {
+		Db_event_subscriptionID *string `lyra:"ignore"`
+		Arn                     *string
+		Customer_aws_id         *string
+		Enabled                 *bool
+		Event_categories        *[]string
+		Name                    *string
+		Name_prefix             *string
+		Sns_topic               string
+		Source_ids              *[]string
+		Source_type             *string
+		Tags                    *map[string]string
+	}
+
+	Db_instance struct {
+		Db_instanceID                       *string `lyra:"ignore"`
+		Address                             *string
+		Allocated_storage                   *int64
+		Allow_major_version_upgrade         *bool
+		Apply_immediately                   *bool
+		Arn                                 *string
+		Auto_minor_version_upgrade          *bool
+		Availability_zone                   *string
+		Backup_retention_period             *int64
+		Backup_window                       *string
+		Ca_cert_identifier                  *string
+		Character_set_name                  *string
+		Copy_tags_to_snapshot               *bool
+		Db_subnet_group_name                *string
+		Deletion_protection                 *bool
+		Domain                              *string
+		Domain_iam_role_name                *string
+		Enabled_cloudwatch_logs_exports     *[]string
+		Endpoint                            *string
+		Engine                              *string
+		Engine_version                      *string
+		Final_snapshot_identifier           *string
+		Hosted_zone_id                      *string
+		Iam_database_authentication_enabled *bool
+		Identifier                          *string
+		Identifier_prefix                   *string
+		Instance_class                      string
+		Iops                                *int64
+		Kms_key_id                          *string
+		License_model                       *string
+		Maintenance_window                  *string
+		Monitoring_interval                 *int64
+		Monitoring_role_arn                 *string
+		Multi_az                            *bool
+		Name                                *string
+		Option_group_name                   *string
+		Parameter_group_name                *string
+		Password                            *string
+		Port                                *int64
+		Publicly_accessible                 *bool
+		Replicas                            *[]string
+		Replicate_source_db                 *string
+		Resource_id                         *string
+		S3_import                           *[]Db_instance__s3_import
+		Security_group_names                *[]string
+		Skip_final_snapshot                 *bool
+		Snapshot_identifier                 *string
+		Status                              *string
+		Storage_encrypted                   *bool
+		Storage_type                        *string
+		Tags                                *map[string]string
+		Timezone                            *string
+		Username                            *string
+		Vpc_security_group_ids              *[]string
+	}
+
+	Db_option_group struct {
+		Db_option_groupID        *string `lyra:"ignore"`
+		Arn                      *string
+		Engine_name              string
+		Major_engine_version     string
+		Name                     *string
+		Name_prefix              *string
+		Option                   *[]Db_option_group__option
+		Option_group_description *string
+		Tags                     *map[string]string
+	}
+
+	Db_parameter_group struct {
+		Db_parameter_groupID *string `lyra:"ignore"`
+		Arn                  *string
+		Description          *string
+		Family               string
+		Name                 *string
+		Name_prefix          *string
+		Parameter            *[]Db_parameter_group__parameter
+		Tags                 *map[string]string
+	}
+
+	Db_security_group struct {
+		Db_security_groupID *string `lyra:"ignore"`
+		Arn                 *string
+		Description         *string
+		Ingress             []Db_security_group__ingress
+		Name                string
+		Tags                *map[string]string
+	}
+
+	Db_snapshot struct {
+		Db_snapshotID                 *string `lyra:"ignore"`
+		Allocated_storage             *int64
+		Availability_zone             *string
+		Db_instance_identifier        string
+		Db_snapshot_arn               *string
+		Db_snapshot_identifier        string
+		Encrypted                     *bool
+		Engine                        *string
+		Engine_version                *string
+		Iops                          *int64
+		Kms_key_id                    *string
+		License_model                 *string
+		Option_group_name             *string
+		Port                          *int64
+		Snapshot_type                 *string
+		Source_db_snapshot_identifier *string
+		Source_region                 *string
+		Status                        *string
+		Storage_type                  *string
+		Tags                          *map[string]string
+		Vpc_id                        *string
+	}
+
+	Db_subnet_group struct {
+		Db_subnet_groupID *string `lyra:"ignore"`
+		Arn               *string
+		Description       *string
+		Name              *string
+		Name_prefix       *string
+		Subnet_ids        []string
+		Tags              *map[string]string
+	}
+
+	Default_network_acl struct {
+		Default_network_aclID  *string `lyra:"ignore"`
+		Default_network_acl_id string
+		Egress                 *[]Default_network_acl__egress
+		Ingress                *[]Default_network_acl__ingress
+		Owner_id               *string
+		Subnet_ids             *[]string
+		Tags                   *map[string]string
+		Vpc_id                 *string
+	}
+
+	Default_route_table struct {
+		Default_route_tableID  *string `lyra:"ignore"`
+		Default_route_table_id string
+		Owner_id               *string
+		Propagating_vgws       *[]string
+		Route                  *[]Default_route_table__route
+		Tags                   *map[string]string
+		Vpc_id                 *string
+	}
+
+	Default_security_group struct {
+		Default_security_groupID *string `lyra:"ignore"`
+		Arn                      *string
+		Egress                   *[]Default_security_group__egress
+		Ingress                  *[]Default_security_group__ingress
+		Name                     *string
+		Owner_id                 *string
+		Revoke_rules_on_delete   *bool
+		Tags                     *map[string]string
+		Vpc_id                   *string
+	}
+
+	Default_subnet struct {
+		Default_subnetID                *string `lyra:"ignore"`
+		Arn                             *string
+		Assign_ipv6_address_on_creation *bool
+		Availability_zone               string
+		Availability_zone_id            *string
+		Cidr_block                      *string
+		Ipv6_cidr_block                 *string
+		Ipv6_cidr_block_association_id  *string
+		Map_public_ip_on_launch         *bool
+		Owner_id                        *string
+		Tags                            *map[string]string
+		Vpc_id                          *string
+	}
+
+	Default_vpc struct {
+		Default_vpcID                    *string `lyra:"ignore"`
+		Arn                              *string
+		Assign_generated_ipv6_cidr_block *bool
+		Cidr_block                       *string
+		Default_network_acl_id           *string
+		Default_route_table_id           *string
+		Default_security_group_id        *string
+		Dhcp_options_id                  *string
+		Enable_classiclink               *bool
+		Enable_classiclink_dns_support   *bool
+		Enable_dns_hostnames             *bool
+		Enable_dns_support               *bool
+		Instance_tenancy                 *string
+		Ipv6_association_id              *string
+		Ipv6_cidr_block                  *string
+		Main_route_table_id              *string
+		Owner_id                         *string
+		Tags                             *map[string]string
+	}
+
+	Default_vpc_dhcp_options struct {
+		Default_vpc_dhcp_optionsID *string `lyra:"ignore"`
+		Domain_name                *string
+		Domain_name_servers        *string
+		Netbios_name_servers       *[]string
+		Netbios_node_type          *string
+		Ntp_servers                *string
+		Owner_id                   *string
+		Tags                       *map[string]string
+	}
+
+	Devicefarm_project struct {
+		Devicefarm_projectID *string `lyra:"ignore"`
+		Arn                  *string
+		Name                 string
+	}
+
+	Directory_service_conditional_forwarder struct {
+		Directory_service_conditional_forwarderID *string `lyra:"ignore"`
+		Directory_id                              string
+		Dns_ips                                   []string
+		Remote_domain_name                        string
+	}
+
+	Directory_service_directory struct {
+		Directory_service_directoryID *string `lyra:"ignore"`
+		Access_url                    *string
+		Alias                         *string
+		Connect_settings              *[]Directory_service_directory__connect_settings
+		Description                   *string
+		Dns_ip_addresses              *[]string
+		Edition                       *string
+		Enable_sso                    *bool
+		Name                          string
+		Password                      string
+		Security_group_id             *string
+		Short_name                    *string
+		Size                          *string
+		Tags                          *map[string]string
+		Type                          *string
+		Vpc_settings                  *[]Directory_service_directory__vpc_settings
+	}
+
+	Dlm_lifecycle_policy struct {
+		Dlm_lifecycle_policyID *string `lyra:"ignore"`
+		Description            string
+		Execution_role_arn     string
+		Policy_details         []Dlm_lifecycle_policy__policy_details
+		State                  *string
+	}
+
+	Dms_certificate struct {
+		Dms_certificateID  *string `lyra:"ignore"`
+		Certificate_arn    *string
+		Certificate_id     string
+		Certificate_pem    *string
+		Certificate_wallet *string
+	}
+
+	Dms_endpoint struct {
+		Dms_endpointID              *string `lyra:"ignore"`
+		Certificate_arn             *string
+		Database_name               *string
+		Endpoint_arn                *string
+		Endpoint_id                 string
+		Endpoint_type               string
+		Engine_name                 string
+		Extra_connection_attributes *string
+		Kms_key_arn                 *string
+		Mongodb_settings            *[]Dms_endpoint__mongodb_settings
+		Password                    *string
+		Port                        *int64
+		S3_settings                 *[]Dms_endpoint__s3_settings
+		Server_name                 *string
+		Service_access_role         *string
+		Ssl_mode                    *string
+		Tags                        *map[string]string
+		Username                    *string
+	}
+
+	Dms_replication_instance struct {
+		Dms_replication_instanceID       *string `lyra:"ignore"`
+		Allocated_storage                *int64
+		Apply_immediately                *bool
+		Auto_minor_version_upgrade       *bool
+		Availability_zone                *string
+		Engine_version                   *string
+		Kms_key_arn                      *string
+		Multi_az                         *bool
+		Preferred_maintenance_window     *string
+		Publicly_accessible              *bool
+		Replication_instance_arn         *string
+		Replication_instance_class       string
+		Replication_instance_id          string
+		Replication_instance_private_ips *[]string
+		Replication_instance_public_ips  *[]string
+		Replication_subnet_group_id      *string
+		Tags                             *map[string]string
+		Vpc_security_group_ids           *[]string
+	}
+
+	Dms_replication_subnet_group struct {
+		Dms_replication_subnet_groupID       *string `lyra:"ignore"`
+		Replication_subnet_group_arn         *string
+		Replication_subnet_group_description string
+		Replication_subnet_group_id          string
+		Subnet_ids                           []string
+		Tags                                 *map[string]string
+		Vpc_id                               *string
+	}
+
+	Dms_replication_task struct {
+		Dms_replication_taskID    *string `lyra:"ignore"`
+		Cdc_start_time            *string
+		Migration_type            string
+		Replication_instance_arn  string
+		Replication_task_arn      *string
+		Replication_task_id       string
+		Replication_task_settings *string
+		Source_endpoint_arn       string
+		Table_mappings            string
+		Tags                      *map[string]string
+		Target_endpoint_arn       string
+	}
+
+	Docdb_cluster_parameter_group struct {
+		Docdb_cluster_parameter_groupID *string `lyra:"ignore"`
+		Arn                             *string
+		Description                     *string
+		Family                          string
+		Name                            *string
+		Name_prefix                     *string
+		Parameter                       *[]Docdb_cluster_parameter_group__parameter
+		Tags                            *map[string]string
+	}
+
+	Docdb_subnet_group struct {
+		Docdb_subnet_groupID *string `lyra:"ignore"`
+		Arn                  *string
+		Description          *string
+		Name                 *string
+		Name_prefix          *string
+		Subnet_ids           []string
+		Tags                 *map[string]string
+	}
+
+	Dx_bgp_peer struct {
+		Dx_bgp_peerID        *string `lyra:"ignore"`
+		Address_family       string
+		Amazon_address       *string
+		Bgp_asn              int64
+		Bgp_auth_key         *string
+		Bgp_status           *string
+		Customer_address     *string
+		Virtual_interface_id string
+	}
+
+	Dx_connection struct {
+		Dx_connectionID     *string `lyra:"ignore"`
+		Arn                 *string
+		Bandwidth           string
+		Jumbo_frame_capable *bool
+		Location            string
+		Name                string
+		Tags                *map[string]string
+	}
+
+	Dx_connection_association struct {
+		Dx_connection_associationID *string `lyra:"ignore"`
+		Connection_id               string
+		Lag_id                      string
+	}
+
+	Dx_gateway struct {
+		Dx_gatewayID    *string `lyra:"ignore"`
+		Amazon_side_asn string
+		Name            string
+	}
+
+	Dx_gateway_association struct {
+		Dx_gateway_associationID *string `lyra:"ignore"`
+		Dx_gateway_id            string
+		Vpn_gateway_id           string
+	}
+
+	Dx_hosted_private_virtual_interface struct {
+		Dx_hosted_private_virtual_interfaceID *string `lyra:"ignore"`
+		Address_family                        string
+		Amazon_address                        *string
+		Arn                                   *string
+		Bgp_asn                               int64
+		Bgp_auth_key                          *string
+		Connection_id                         string
+		Customer_address                      *string
+		Jumbo_frame_capable                   *bool
+		Mtu                                   *int64
+		Name                                  string
+		Owner_account_id                      string
+		Vlan                                  int64
+	}
+
+	Dx_hosted_private_virtual_interface_accepter struct {
+		Dx_hosted_private_virtual_interface_accepterID *string `lyra:"ignore"`
+		Arn                                            *string
+		Dx_gateway_id                                  *string
+		Tags                                           *map[string]string
+		Virtual_interface_id                           string
+		Vpn_gateway_id                                 *string
+	}
+
+	Dx_hosted_public_virtual_interface struct {
+		Dx_hosted_public_virtual_interfaceID *string `lyra:"ignore"`
+		Address_family                       string
+		Amazon_address                       *string
+		Arn                                  *string
+		Bgp_asn                              int64
+		Bgp_auth_key                         *string
+		Connection_id                        string
+		Customer_address                     *string
+		Name                                 string
+		Owner_account_id                     string
+		Route_filter_prefixes                []string
+		Vlan                                 int64
+	}
+
+	Dx_hosted_public_virtual_interface_accepter struct {
+		Dx_hosted_public_virtual_interface_accepterID *string `lyra:"ignore"`
+		Arn                                           *string
+		Tags                                          *map[string]string
+		Virtual_interface_id                          string
+	}
+
+	Dx_lag struct {
+		Dx_lagID              *string `lyra:"ignore"`
+		Arn                   *string
+		Connections_bandwidth string
+		Force_destroy         *bool
+		Location              string
+		Name                  string
+		Number_of_connections *int64
+		Tags                  *map[string]string
+	}
+
+	Dx_private_virtual_interface struct {
+		Dx_private_virtual_interfaceID *string `lyra:"ignore"`
+		Address_family                 string
+		Amazon_address                 *string
+		Arn                            *string
+		Bgp_asn                        int64
+		Bgp_auth_key                   *string
+		Connection_id                  string
+		Customer_address               *string
+		Dx_gateway_id                  *string
+		Jumbo_frame_capable            *bool
+		Mtu                            *int64
+		Name                           string
+		Tags                           *map[string]string
+		Vlan                           int64
+		Vpn_gateway_id                 *string
+	}
+
+	Dx_public_virtual_interface struct {
+		Dx_public_virtual_interfaceID *string `lyra:"ignore"`
+		Address_family                string
+		Amazon_address                *string
+		Arn                           *string
+		Bgp_asn                       int64
+		Bgp_auth_key                  *string
+		Connection_id                 string
+		Customer_address              *string
+		Name                          string
+		Route_filter_prefixes         []string
+		Tags                          *map[string]string
+		Vlan                          int64
+	}
+
+	Dynamodb_global_table struct {
+		Dynamodb_global_tableID *string `lyra:"ignore"`
+		Arn                     *string
+		Name                    string
+		Replica                 []Dynamodb_global_table__replica
+	}
+
+	Dynamodb_table struct {
+		Dynamodb_tableID       *string `lyra:"ignore"`
+		Arn                    *string
+		Attribute              []Dynamodb_table__attribute
+		Billing_mode           *string
+		Global_secondary_index *[]Dynamodb_table__global_secondary_index
+		Hash_key               string
+		Local_secondary_index  *[]Dynamodb_table__local_secondary_index
+		Name                   string
+		Point_in_time_recovery *[]Dynamodb_table__point_in_time_recovery
+		Range_key              *string
+		Read_capacity          *int64
+		Server_side_encryption *[]Dynamodb_table__server_side_encryption
+		Stream_arn             *string
+		Stream_enabled         *bool
+		Stream_label           *string
+		Stream_view_type       *string
+		Tags                   *map[string]string
+		Ttl                    *[]Dynamodb_table__ttl
+		Write_capacity         *int64
+	}
+
+	Dynamodb_table_item struct {
+		Dynamodb_table_itemID *string `lyra:"ignore"`
+		Hash_key              string
+		Item                  string
+		Range_key             *string
+		Table_name            string
+	}
+
+	Ebs_snapshot struct {
+		Ebs_snapshotID         *string `lyra:"ignore"`
+		Data_encryption_key_id *string
+		Description            *string
+		Encrypted              *bool
+		Kms_key_id             *string
+		Owner_alias            *string
+		Owner_id               *string
+		Tags                   *map[string]string
+		Volume_id              string
+		Volume_size            *int64
+	}
+
+	Ebs_snapshot_copy struct {
+		Ebs_snapshot_copyID    *string `lyra:"ignore"`
+		Data_encryption_key_id *string
+		Description            *string
+		Encrypted              *bool
+		Kms_key_id             *string
+		Owner_alias            *string
+		Owner_id               *string
+		Source_region          string
+		Source_snapshot_id     string
+		Tags                   *map[string]string
+		Volume_id              *string
+		Volume_size            *int64
+	}
+
+	Ebs_volume struct {
+		Ebs_volumeID      *string `lyra:"ignore"`
+		Arn               *string
+		Availability_zone string
+		Encrypted         *bool
+		Iops              *int64
+		Kms_key_id        *string
+		Size              *int64
+		Snapshot_id       *string
+		Tags              *map[string]string
+		Type              *string
+	}
+
+	Ec2_capacity_reservation struct {
+		Ec2_capacity_reservationID *string `lyra:"ignore"`
+		Availability_zone          string
+		Ebs_optimized              *bool
+		End_date                   *time.Time
+		End_date_type              *string
+		Ephemeral_storage          *bool
+		Instance_count             int64
+		Instance_match_criteria    *string
+		Instance_platform          string
+		Instance_type              string
+		Tags                       *map[string]string
+		Tenancy                    *string
+	}
+
+	Ec2_fleet struct {
+		Ec2_fleetID                         *string `lyra:"ignore"`
+		Excess_capacity_termination_policy  *string
+		Launch_template_config              []Ec2_fleet__launch_template_config
+		On_demand_options                   *[]Ec2_fleet__on_demand_options
+		Replace_unhealthy_instances         *bool
+		Spot_options                        *[]Ec2_fleet__spot_options
+		Tags                                *map[string]string
+		Target_capacity_specification       []Ec2_fleet__target_capacity_specification
+		Terminate_instances                 *bool
+		Terminate_instances_with_expiration *bool
+		Type                                *string
+	}
+
+	Ec2_transit_gateway struct {
+		Ec2_transit_gatewayID              *string `lyra:"ignore"`
+		Amazon_side_asn                    *int64
+		Arn                                *string
+		Association_default_route_table_id *string
+		Auto_accept_shared_attachments     *string
+		Default_route_table_association    *string
+		Default_route_table_propagation    *string
+		Description                        *string
+		Dns_support                        *string
+		Owner_id                           *string
+		Propagation_default_route_table_id *string
+		Tags                               *map[string]string
+		Vpn_ecmp_support                   *string
+	}
+
+	Ec2_transit_gateway_route struct {
+		Ec2_transit_gateway_routeID    *string `lyra:"ignore"`
+		Destination_cidr_block         string
+		Transit_gateway_attachment_id  string
+		Transit_gateway_route_table_id string
+	}
+
+	Ec2_transit_gateway_route_table struct {
+		Ec2_transit_gateway_route_tableID *string `lyra:"ignore"`
+		Default_association_route_table   *bool
+		Default_propagation_route_table   *bool
+		Tags                              *map[string]string
+		Transit_gateway_id                string
+	}
+
+	Ec2_transit_gateway_route_table_association struct {
+		Ec2_transit_gateway_route_table_associationID *string `lyra:"ignore"`
+		Resource_id                                   *string
+		Resource_type                                 *string
+		Transit_gateway_attachment_id                 string
+		Transit_gateway_route_table_id                string
+	}
+
+	Ec2_transit_gateway_route_table_propagation struct {
+		Ec2_transit_gateway_route_table_propagationID *string `lyra:"ignore"`
+		Resource_id                                   *string
+		Resource_type                                 *string
+		Transit_gateway_attachment_id                 string
+		Transit_gateway_route_table_id                string
+	}
+
+	Ec2_transit_gateway_vpc_attachment struct {
+		Ec2_transit_gateway_vpc_attachmentID            *string `lyra:"ignore"`
+		Dns_support                                     *string
+		Ipv6_support                                    *string
+		Subnet_ids                                      []string
+		Tags                                            *map[string]string
+		Transit_gateway_default_route_table_association *bool
+		Transit_gateway_default_route_table_propagation *bool
+		Transit_gateway_id                              string
+		Vpc_id                                          string
+		Vpc_owner_id                                    *string
+	}
+
+	Ecr_lifecycle_policy struct {
+		Ecr_lifecycle_policyID *string `lyra:"ignore"`
+		Policy                 string
+		Registry_id            *string
+		Repository             string
+	}
+
+	Ecr_repository struct {
+		Ecr_repositoryID *string `lyra:"ignore"`
+		Arn              *string
+		Name             string
+		Registry_id      *string
+		Repository_url   *string
+		Tags             *map[string]string
+	}
+
+	Ecr_repository_policy struct {
+		Ecr_repository_policyID *string `lyra:"ignore"`
+		Policy                  string
+		Registry_id             *string
+		Repository              string
+	}
+
+	Ecs_cluster struct {
+		Ecs_clusterID *string `lyra:"ignore"`
+		Arn           *string
+		Name          string
+		Tags          *map[string]string
+	}
+
+	Ecs_service struct {
+		Ecs_serviceID                      *string `lyra:"ignore"`
+		Cluster                            *string
+		Deployment_controller              *[]Ecs_service__deployment_controller
+		Deployment_maximum_percent         *int64
+		Deployment_minimum_healthy_percent *int64
+		Desired_count                      *int64
+		Enable_ecs_managed_tags            *bool
+		Health_check_grace_period_seconds  *int64
+		Iam_role                           *string
+		Launch_type                        *string
+		Load_balancer                      *[]Ecs_service__load_balancer
+		Name                               string
+		Network_configuration              *[]Ecs_service__network_configuration
+		Ordered_placement_strategy         *[]Ecs_service__ordered_placement_strategy
+		Placement_constraints              *[]Ecs_service__placement_constraints
+		Placement_strategy                 *[]Ecs_service__placement_strategy
+		Platform_version                   *string
+		Propagate_tags                     *string
+		Scheduling_strategy                *string
+		Service_registries                 *[]Ecs_service__service_registries
+		Tags                               *map[string]string
+		Task_definition                    string
+	}
+
+	Ecs_task_definition struct {
+		Ecs_task_definitionID    *string `lyra:"ignore"`
+		Arn                      *string
+		Container_definitions    string
+		Cpu                      *string
+		Execution_role_arn       *string
+		Family                   string
+		Ipc_mode                 *string
+		Memory                   *string
+		Network_mode             *string
+		Pid_mode                 *string
+		Placement_constraints    *[]Ecs_task_definition__placement_constraints
+		Requires_compatibilities *[]string
+		Revision                 *int64
+		Tags                     *map[string]string
+		Task_role_arn            *string
+		Volume                   *[]Ecs_task_definition__volume
+	}
+
+	Efs_file_system struct {
+		Efs_file_systemID               *string `lyra:"ignore"`
+		Arn                             *string
+		Creation_token                  *string
+		Dns_name                        *string
+		Encrypted                       *bool
+		Kms_key_id                      *string
+		Performance_mode                *string
+		Provisioned_throughput_in_mibps *float64
+		Reference_name                  *string
+		Tags                            *map[string]string
+		Throughput_mode                 *string
+	}
+
+	Efs_mount_target struct {
+		Efs_mount_targetID   *string `lyra:"ignore"`
+		Dns_name             *string
+		File_system_arn      *string
+		File_system_id       string
+		Ip_address           *string
+		Network_interface_id *string
+		Security_groups      *[]string
+		Subnet_id            string
+	}
+
+	Egress_only_internet_gateway struct {
+		Egress_only_internet_gatewayID *string `lyra:"ignore"`
+		Vpc_id                         string
+	}
+
+	Eip struct {
+		EipID                     *string `lyra:"ignore"`
+		Allocation_id             *string
+		Associate_with_private_ip *string
+		Association_id            *string
+		Domain                    *string
+		Instance                  *string
+		Network_interface         *string
+		Private_ip                *string
+		Public_ip                 *string
+		Public_ipv4_pool          *string
+		Tags                      *map[string]string
+		Vpc                       *bool
+	}
+
+	Eip_association struct {
+		Eip_associationID    *string `lyra:"ignore"`
+		Allocation_id        *string
+		Allow_reassociation  *bool
+		Instance_id          *string
+		Network_interface_id *string
+		Private_ip_address   *string
+		Public_ip            *string
+	}
+
+	Eks_cluster struct {
+		Eks_clusterID         *string `lyra:"ignore"`
+		Arn                   *string
+		Certificate_authority *[]Eks_cluster__certificate_authority
+		Created_at            *string
+		Endpoint              *string
+		Name                  string
+		Platform_version      *string
+		Role_arn              string
+		Version               *string
+		Vpc_config            []Eks_cluster__vpc_config
+	}
+
+	Elastic_beanstalk_application struct {
+		Elastic_beanstalk_applicationID *string `lyra:"ignore"`
+		Appversion_lifecycle            *[]Elastic_beanstalk_application__appversion_lifecycle
+		Description                     *string
+		Name                            string
+	}
+
+	Elastic_beanstalk_application_version struct {
+		Elastic_beanstalk_application_versionID *string `lyra:"ignore"`
+		Application                             string
+		Bucket                                  string
+		Description                             *string
+		Force_delete                            *bool
+		Key                                     string
+		Name                                    string
+	}
+
+	Elastic_beanstalk_configuration_template struct {
+		Elastic_beanstalk_configuration_templateID *string `lyra:"ignore"`
+		Application                                string
+		Description                                *string
+		Environment_id                             *string
+		Name                                       string
+		Setting                                    *[]Elastic_beanstalk_configuration_template__setting
+		Solution_stack_name                        *string
+	}
+
+	Elastic_beanstalk_environment struct {
+		Elastic_beanstalk_environmentID *string `lyra:"ignore"`
+		All_settings                    *[]Elastic_beanstalk_environment__all_settings
+		Application                     string
+		Arn                             *string
+		Autoscaling_groups              *[]string
+		Cname                           *string
+		Cname_prefix                    *string
+		Description                     *string
+		Instances                       *[]string
+		Launch_configurations           *[]string
+		Load_balancers                  *[]string
+		Name                            string
+		Platform_arn                    *string
+		Poll_interval                   *string
+		Queues                          *[]string
+		Setting                         *[]Elastic_beanstalk_environment__setting
+		Solution_stack_name             *string
+		Tags                            *map[string]string
+		Template_name                   *string
+		Tier                            *string
+		Triggers                        *[]string
+		Version_label                   *string
+		Wait_for_ready_timeout          *string
+	}
+
+	Elasticache_cluster struct {
+		Elasticache_clusterID        *string `lyra:"ignore"`
+		Apply_immediately            *bool
+		Availability_zone            *string
+		Availability_zones           *[]string
+		Az_mode                      *string
+		Cache_nodes                  *[]Elasticache_cluster__cache_nodes
+		Cluster_address              *string
+		Cluster_id                   string
+		Configuration_endpoint       *string
+		Engine                       *string
+		Engine_version               *string
+		Maintenance_window           *string
+		Node_type                    *string
+		Notification_topic_arn       *string
+		Num_cache_nodes              *int64
+		Parameter_group_name         *string
+		Port                         *int64
+		Preferred_availability_zones *[]string
+		Replication_group_id         *string
+		Security_group_ids           *[]string
+		Security_group_names         *[]string
+		Snapshot_arns                *[]string
+		Snapshot_name                *string
+		Snapshot_retention_limit     *int64
+		Snapshot_window              *string
+		Subnet_group_name            *string
+		Tags                         *map[string]string
+	}
+
+	Elasticache_parameter_group struct {
+		Elasticache_parameter_groupID *string `lyra:"ignore"`
+		Description                   *string
+		Family                        string
+		Name                          string
+		Parameter                     *[]Elasticache_parameter_group__parameter
+	}
+
+	Elasticache_replication_group struct {
+		Elasticache_replication_groupID *string `lyra:"ignore"`
+		Apply_immediately               *bool
+		At_rest_encryption_enabled      *bool
+		Auth_token                      *string
+		Auto_minor_version_upgrade      *bool
+		Automatic_failover_enabled      *bool
+		Availability_zones              *[]string
+		Cluster_mode                    *[]Elasticache_replication_group__cluster_mode
+		Configuration_endpoint_address  *string
+		Engine                          *string
+		Engine_version                  *string
+		Maintenance_window              *string
+		Member_clusters                 *[]string
+		Node_type                       *string
+		Notification_topic_arn          *string
+		Number_cache_clusters           *int64
+		Parameter_group_name            *string
+		Port                            *int64
+		Primary_endpoint_address        *string
+		Replication_group_description   string
+		Replication_group_id            string
+		Security_group_ids              *[]string
+		Security_group_names            *[]string
+		Snapshot_arns                   *[]string
+		Snapshot_name                   *string
+		Snapshot_retention_limit        *int64
+		Snapshot_window                 *string
+		Subnet_group_name               *string
+		Tags                            *map[string]string
+		Transit_encryption_enabled      *bool
+	}
+
+	Elasticache_security_group struct {
+		Elasticache_security_groupID *string `lyra:"ignore"`
+		Description                  *string
+		Name                         string
+		Security_group_names         []string
+	}
+
+	Elasticache_subnet_group struct {
+		Elasticache_subnet_groupID *string `lyra:"ignore"`
+		Description                *string
+		Name                       string
+		Subnet_ids                 []string
+	}
+
+	Elasticsearch_domain struct {
+		Elasticsearch_domainID  *string `lyra:"ignore"`
+		Access_policies         *string
+		Advanced_options        *map[string]string
+		Arn                     *string
+		Cluster_config          *[]Elasticsearch_domain__cluster_config
+		Cognito_options         *[]Elasticsearch_domain__cognito_options
+		Domain_id               *string
+		Domain_name             string
+		Ebs_options             *[]Elasticsearch_domain__ebs_options
+		Elasticsearch_version   *string
+		Encrypt_at_rest         *[]Elasticsearch_domain__encrypt_at_rest
+		Endpoint                *string
+		Kibana_endpoint         *string
+		Log_publishing_options  *[]Elasticsearch_domain__log_publishing_options
+		Node_to_node_encryption *[]Elasticsearch_domain__node_to_node_encryption
+		Snapshot_options        *[]Elasticsearch_domain__snapshot_options
+		Tags                    *map[string]string
+		Vpc_options             *[]Elasticsearch_domain__vpc_options
+	}
+
+	Elasticsearch_domain_policy struct {
+		Elasticsearch_domain_policyID *string `lyra:"ignore"`
+		Access_policies               string
+		Domain_name                   string
+	}
+
+	Elastictranscoder_pipeline struct {
+		Elastictranscoder_pipelineID *string `lyra:"ignore"`
+		Arn                          *string
+		Aws_kms_key_arn              *string
+		Content_config               *[]Elastictranscoder_pipeline__content_config
+		Content_config_permissions   *[]Elastictranscoder_pipeline__content_config_permissions
+		Input_bucket                 string
+		Name                         *string
+		Notifications                *[]Elastictranscoder_pipeline__notifications
+		Output_bucket                *string
+		Role                         string
+		Thumbnail_config             *[]Elastictranscoder_pipeline__thumbnail_config
+		Thumbnail_config_permissions *[]Elastictranscoder_pipeline__thumbnail_config_permissions
+	}
+
+	Elastictranscoder_preset struct {
+		Elastictranscoder_presetID *string `lyra:"ignore"`
+		Arn                        *string
+		Audio                      *[]Elastictranscoder_preset__audio
+		Audio_codec_options        *[]Elastictranscoder_preset__audio_codec_options
+		Container                  string
+		Description                *string
+		Name                       *string
+		Thumbnails                 *[]Elastictranscoder_preset__thumbnails
+		Type                       *string
+		Video                      *[]Elastictranscoder_preset__video
+		Video_codec_options        *map[string]string
+		Video_watermarks           *[]Elastictranscoder_preset__video_watermarks
+	}
+
+	Elb struct {
+		ElbID                       *string `lyra:"ignore"`
+		Access_logs                 *[]Elb__access_logs
+		Arn                         *string
+		Availability_zones          *[]string
+		Connection_draining         *bool
+		Connection_draining_timeout *int64
+		Cross_zone_load_balancing   *bool
+		Dns_name                    *string
+		Health_check                *[]Elb__health_check
+		Idle_timeout                *int64
+		Instances                   *[]string
+		Internal                    *bool
+		Listener                    []Elb__listener
+		Name                        *string
+		Name_prefix                 *string
+		Security_groups             *[]string
+		Source_security_group       *string
+		Source_security_group_id    *string
+		Subnets                     *[]string
+		Tags                        *map[string]string
+		Zone_id                     *string
+	}
+
+	Elb_attachment struct {
+		Elb_attachmentID *string `lyra:"ignore"`
+		Elb              string
+		Instance         string
+	}
+
+	Emr_cluster struct {
+		Emr_clusterID                     *string `lyra:"ignore"`
+		Additional_info                   *string
+		Applications                      *[]string
+		Autoscaling_role                  *string
+		Bootstrap_action                  *[]Emr_cluster__bootstrap_action
+		Cluster_state                     *string
+		Configurations                    *string
+		Configurations_json               *string
+		Core_instance_count               *int64
+		Core_instance_type                *string
+		Custom_ami_id                     *string
+		Ebs_root_volume_size              *int64
+		Ec2_attributes                    *[]Emr_cluster__ec2_attributes
+		Instance_group                    *[]Emr_cluster__instance_group
+		Keep_job_flow_alive_when_no_steps *bool
+		Kerberos_attributes               *[]Emr_cluster__kerberos_attributes
+		Log_uri                           *string
+		Master_instance_type              *string
+		Master_public_dns                 *string
+		Name                              string
+		Release_label                     string
+		Scale_down_behavior               *string
+		Security_configuration            *string
+		Service_role                      string
+		Step                              *[]Emr_cluster__step
+		Tags                              *map[string]string
+		Termination_protection            *bool
+		Visible_to_all_users              *bool
+	}
+
+	Emr_instance_group struct {
+		Emr_instance_groupID   *string `lyra:"ignore"`
+		Cluster_id             string
+		Ebs_config             *[]Emr_instance_group__ebs_config
+		Ebs_optimized          *bool
+		Instance_count         *int64
+		Instance_type          string
+		Name                   *string
+		Running_instance_count *int64
+		Status                 *string
+	}
+
+	Emr_security_configuration struct {
+		Emr_security_configurationID *string `lyra:"ignore"`
+		Configuration                string
+		Creation_date                *string
+		Name                         *string
+		Name_prefix                  *string
+	}
+
+	Flow_log struct {
+		Flow_logID           *string `lyra:"ignore"`
+		Eni_id               *string
+		Iam_role_arn         *string
+		Log_destination      *string
+		Log_destination_type *string
+		Log_group_name       *string
+		Subnet_id            *string
+		Traffic_type         string
+		Vpc_id               *string
+	}
+
+	Gamelift_alias struct {
+		Gamelift_aliasID *string `lyra:"ignore"`
+		Arn              *string
+		Description      *string
+		Name             string
+		Routing_strategy []Gamelift_alias__routing_strategy
+	}
+
+	Gamelift_build struct {
+		Gamelift_buildID *string `lyra:"ignore"`
+		Name             string
+		Operating_system string
+		Storage_location []Gamelift_build__storage_location
+		Version          *string
+	}
+
+	Gamelift_fleet struct {
+		Gamelift_fleetID                   *string `lyra:"ignore"`
+		Arn                                *string
+		Build_id                           string
+		Description                        *string
+		Ec2_inbound_permission             *[]Gamelift_fleet__ec2_inbound_permission
+		Ec2_instance_type                  string
+		Log_paths                          *[]string
+		Metric_groups                      *[]string
+		Name                               string
+		New_game_session_protection_policy *string
+		Operating_system                   *string
+		Resource_creation_limit_policy     *[]Gamelift_fleet__resource_creation_limit_policy
+		Runtime_configuration              *[]Gamelift_fleet__runtime_configuration
+	}
+
+	Gamelift_game_session_queue struct {
+		Gamelift_game_session_queueID *string `lyra:"ignore"`
+		Arn                           *string
+		Destinations                  *[]string
+		Name                          string
+		Player_latency_policy         *[]Gamelift_game_session_queue__player_latency_policy
+		Timeout_in_seconds            *int64
+	}
+
+	Glacier_vault struct {
+		Glacier_vaultID *string `lyra:"ignore"`
+		Access_policy   *string
+		Arn             *string
+		Location        *string
+		Name            string
+		Notification    *[]Glacier_vault__notification
+		Tags            *map[string]string
+	}
+
+	Glacier_vault_lock struct {
+		Glacier_vault_lockID  *string `lyra:"ignore"`
+		Complete_lock         bool
+		Ignore_deletion_error *bool
+		Policy                string
+		Vault_name            string
+	}
+
+	Globalaccelerator_accelerator struct {
+		Globalaccelerator_acceleratorID *string `lyra:"ignore"`
+		Attributes                      *[]Globalaccelerator_accelerator__attributes
+		Enabled                         *bool
+		Ip_address_type                 *string
+		Ip_sets                         *[]Globalaccelerator_accelerator__ip_sets
+		Name                            string
+	}
+
+	Glue_catalog_database struct {
+		Glue_catalog_databaseID *string `lyra:"ignore"`
+		Catalog_id              *string
+		Description             *string
+		Location_uri            *string
+		Name                    string
+		Parameters              *map[string]string
+	}
+
+	Glue_catalog_table struct {
+		Glue_catalog_tableID *string `lyra:"ignore"`
+		Catalog_id           *string
+		Database_name        string
+		Description          *string
+		Name                 string
+		Owner                *string
+		Parameters           *map[string]string
+		Partition_keys       *[]Glue_catalog_table__partition_keys
+		Retention            *int64
+		Storage_descriptor   *[]Glue_catalog_table__storage_descriptor
+		Table_type           *string
+		View_expanded_text   *string
+		View_original_text   *string
+	}
+
+	Glue_classifier struct {
+		Glue_classifierID *string `lyra:"ignore"`
+		Grok_classifier   *[]Glue_classifier__grok_classifier
+		Json_classifier   *[]Glue_classifier__json_classifier
+		Name              string
+		Xml_classifier    *[]Glue_classifier__xml_classifier
+	}
+
+	Glue_connection struct {
+		Glue_connectionID                *string `lyra:"ignore"`
+		Catalog_id                       *string
+		Connection_properties            map[string]string
+		Connection_type                  *string
+		Description                      *string
+		Match_criteria                   *[]string
+		Name                             string
+		Physical_connection_requirements *[]Glue_connection__physical_connection_requirements
+	}
+
+	Glue_crawler struct {
+		Glue_crawlerID         *string `lyra:"ignore"`
+		Classifiers            *[]string
+		Configuration          *string
+		Database_name          string
+		Description            *string
+		Dynamodb_target        *[]Glue_crawler__dynamodb_target
+		Jdbc_target            *[]Glue_crawler__jdbc_target
+		Name                   string
+		Role                   string
+		S3_target              *[]Glue_crawler__s3_target
+		Schedule               *string
+		Schema_change_policy   *[]Glue_crawler__schema_change_policy
+		Security_configuration *string
+		Table_prefix           *string
+	}
+
+	Glue_job struct {
+		Glue_jobID             *string `lyra:"ignore"`
+		Allocated_capacity     *int64
+		Command                []Glue_job__command
+		Connections            *[]string
+		Default_arguments      *map[string]string
+		Description            *string
+		Execution_property     *[]Glue_job__execution_property
+		Max_retries            *int64
+		Name                   string
+		Role_arn               string
+		Security_configuration *string
+		Timeout                *int64
+	}
+
+	Glue_security_configuration struct {
+		Glue_security_configurationID *string `lyra:"ignore"`
+		Encryption_configuration      []Glue_security_configuration__encryption_configuration
+		Name                          string
+	}
+
+	Glue_trigger struct {
+		Glue_triggerID *string `lyra:"ignore"`
+		Actions        []Glue_trigger__actions
+		Description    *string
+		Enabled        *bool
+		Name           string
+		Predicate      *[]Glue_trigger__predicate
+		Schedule       *string
+		Type           string
+	}
+
+	Guardduty_detector struct {
+		Guardduty_detectorID         *string `lyra:"ignore"`
+		Account_id                   *string
+		Enable                       *bool
+		Finding_publishing_frequency *string
+	}
+
+	Guardduty_ipset struct {
+		Guardduty_ipsetID *string `lyra:"ignore"`
+		Activate          bool
+		Detector_id       string
+		Format            string
+		Location          string
+		Name              string
+	}
+
+	Guardduty_member struct {
+		Guardduty_memberID         *string `lyra:"ignore"`
+		Account_id                 string
+		Detector_id                string
+		Disable_email_notification *bool
+		Email                      string
+		Invitation_message         *string
+		Invite                     *bool
+		Relationship_status        *string
+	}
+
+	Guardduty_threatintelset struct {
+		Guardduty_threatintelsetID *string `lyra:"ignore"`
+		Activate                   bool
+		Detector_id                string
+		Format                     string
+		Location                   string
+		Name                       string
+	}
+
+	Iam_access_key struct {
+		Iam_access_keyID  *string `lyra:"ignore"`
+		Encrypted_secret  *string
+		Key_fingerprint   *string
+		Pgp_key           *string
+		Secret            *string
+		Ses_smtp_password *string
+		Status            *string
+		User              string
+	}
+
+	Iam_account_alias struct {
+		Iam_account_aliasID *string `lyra:"ignore"`
+		Account_alias       string
+	}
+
+	Iam_account_password_policy struct {
+		Iam_account_password_policyID  *string `lyra:"ignore"`
+		Allow_users_to_change_password *bool
+		Expire_passwords               *bool
+		Hard_expiry                    *bool
+		Max_password_age               *int64
+		Minimum_password_length        *int64
+		Password_reuse_prevention      *int64
+		Require_lowercase_characters   *bool
+		Require_numbers                *bool
+		Require_symbols                *bool
+		Require_uppercase_characters   *bool
+	}
+
+	Iam_group struct {
+		Iam_groupID *string `lyra:"ignore"`
+		Arn         *string
+		Name        string
+		Path        *string
+		Unique_id   *string
+	}
+
+	Iam_group_membership struct {
+		Iam_group_membershipID *string `lyra:"ignore"`
+		Group                  string
+		Name                   string
+		Users                  []string
+	}
+
+	Iam_group_policy struct {
+		Iam_group_policyID *string `lyra:"ignore"`
+		Group              string
+		Name               *string
+		Name_prefix        *string
+		Policy             string
+	}
+
+	Iam_group_policy_attachment struct {
+		Iam_group_policy_attachmentID *string `lyra:"ignore"`
+		Group                         string
+		Policy_arn                    string
+	}
+
+	Iam_instance_profile struct {
+		Iam_instance_profileID *string `lyra:"ignore"`
+		Arn                    *string
+		Create_date            *string
+		Name                   *string
+		Name_prefix            *string
+		Path                   *string
+		Role                   *string
+		Roles                  *[]string
+		Unique_id              *string
+	}
+
+	Iam_openid_connect_provider struct {
+		Iam_openid_connect_providerID *string `lyra:"ignore"`
+		Arn                           *string
+		Client_id_list                []string
+		Thumbprint_list               []string
+		Url                           string
+	}
+
+	Iam_policy struct {
+		Iam_policyID *string `lyra:"ignore"`
+		Arn          *string
+		Description  *string
+		Name         *string
+		Name_prefix  *string
+		Path         *string
+		Policy       string
+	}
+
+	Iam_policy_attachment struct {
+		Iam_policy_attachmentID *string `lyra:"ignore"`
+		Groups                  *[]string
+		Name                    string
+		Policy_arn              string
+		Roles                   *[]string
+		Users                   *[]string
+	}
+
+	Iam_role struct {
+		Iam_roleID            *string `lyra:"ignore"`
+		Arn                   *string
+		Assume_role_policy    string
+		Create_date           *string
+		Description           *string
+		Force_detach_policies *bool
+		Max_session_duration  *int64
+		Name                  *string
+		Name_prefix           *string
+		Path                  *string
+		Permissions_boundary  *string
+		Tags                  *map[string]string
+		Unique_id             *string
+	}
+
+	Iam_role_policy struct {
+		Iam_role_policyID *string `lyra:"ignore"`
+		Name              *string
+		Name_prefix       *string
+		Policy            string
+		Role              string
+	}
+
+	Iam_role_policy_attachment struct {
+		Iam_role_policy_attachmentID *string `lyra:"ignore"`
+		Policy_arn                   string
+		Role                         string
+	}
+
+	Iam_saml_provider struct {
+		Iam_saml_providerID    *string `lyra:"ignore"`
+		Arn                    *string
+		Name                   string
+		Saml_metadata_document string
+		Valid_until            *string
+	}
+
+	Iam_server_certificate struct {
+		Iam_server_certificateID *string `lyra:"ignore"`
+		Arn                      *string
+		Certificate_body         string
+		Certificate_chain        *string
+		Name                     *string
+		Name_prefix              *string
+		Path                     *string
+		Private_key              string
+	}
+
+	Iam_service_linked_role struct {
+		Iam_service_linked_roleID *string `lyra:"ignore"`
+		Arn                       *string
+		Aws_service_name          string
+		Create_date               *string
+		Custom_suffix             *string
+		Description               *string
+		Name                      *string
+		Path                      *string
+		Unique_id                 *string
+	}
+
+	Iam_user struct {
+		Iam_userID           *string `lyra:"ignore"`
+		Arn                  *string
+		Force_destroy        *bool
+		Name                 string
+		Path                 *string
+		Permissions_boundary *string
+		Tags                 *map[string]string
+		Unique_id            *string
+	}
+
+	Iam_user_group_membership struct {
+		Iam_user_group_membershipID *string `lyra:"ignore"`
+		Groups                      []string
+		User                        string
+	}
+
+	Iam_user_login_profile struct {
+		Iam_user_login_profileID *string `lyra:"ignore"`
+		Encrypted_password       *string
+		Key_fingerprint          *string
+		Password_length          *int64
+		Password_reset_required  *bool
+		Pgp_key                  string
+		User                     string
+	}
+
+	Iam_user_policy struct {
+		Iam_user_policyID *string `lyra:"ignore"`
+		Name              *string
+		Name_prefix       *string
+		Policy            string
+		User              string
+	}
+
+	Iam_user_policy_attachment struct {
+		Iam_user_policy_attachmentID *string `lyra:"ignore"`
+		Policy_arn                   string
+		User                         string
+	}
+
+	Iam_user_ssh_key struct {
+		Iam_user_ssh_keyID *string `lyra:"ignore"`
+		Encoding           string
+		Fingerprint        *string
+		Public_key         string
+		Ssh_public_key_id  *string
+		Status             *string
+		Username           string
+	}
+
+	Inspector_assessment_target struct {
+		Inspector_assessment_targetID *string `lyra:"ignore"`
+		Arn                           *string
+		Name                          string
+		Resource_group_arn            *string
+	}
+
+	Inspector_assessment_template struct {
+		Inspector_assessment_templateID *string `lyra:"ignore"`
+		Arn                             *string
+		Duration                        int64
+		Name                            string
+		Rules_package_arns              []string
+		Target_arn                      string
+	}
+
+	Inspector_resource_group struct {
+		Inspector_resource_groupID *string `lyra:"ignore"`
+		Arn                        *string
+		Tags                       map[string]string
+	}
+
+	Instance struct {
+		InstanceID                           *string `lyra:"ignore"`
+		Ami                                  string
+		Arn                                  *string
+		Associate_public_ip_address          *bool
+		Availability_zone                    *string
+		Block_device                         *map[string]string
+		Cpu_core_count                       *int64
+		Cpu_threads_per_core                 *int64
+		Credit_specification                 *[]Instance__credit_specification
+		Disable_api_termination              *bool
+		Ebs_block_device                     *[]Instance__ebs_block_device
+		Ebs_optimized                        *bool
+		Ephemeral_block_device               *[]Instance__ephemeral_block_device
+		Get_password_data                    *bool
+		Host_id                              *string
+		Iam_instance_profile                 *string
+		Instance_initiated_shutdown_behavior *string
+		Instance_state                       *string
+		Instance_type                        string
+		Ipv6_address_count                   *int64
+		Ipv6_addresses                       *[]string
+		Key_name                             *string
+		Monitoring                           *bool
+		Network_interface                    *[]Instance__network_interface
+		Network_interface_id                 *string
+		Password_data                        *string
+		Placement_group                      *string
+		Primary_network_interface_id         *string
+		Private_dns                          *string
+		Private_ip                           *string
+		Public_dns                           *string
+		Public_ip                            *string
+		Root_block_device                    *[]Instance__root_block_device
+		Security_groups                      *[]string
+		Source_dest_check                    *bool
+		Subnet_id                            *string
+		Tags                                 *map[string]string
+		Tenancy                              *string
+		User_data                            *string
+		User_data_base64                     *string
+		Volume_tags                          *map[string]string
+		Vpc_security_group_ids               *[]string
+	}
+
+	Internet_gateway struct {
+		Internet_gatewayID *string `lyra:"ignore"`
+		Owner_id           *string
+		Tags               *map[string]string
+		Vpc_id             *string
+	}
+
+	Iot_certificate struct {
+		Iot_certificateID *string `lyra:"ignore"`
+		Active            bool
+		Arn               *string
+		Csr               string
+	}
+
+	Iot_policy struct {
+		Iot_policyID       *string `lyra:"ignore"`
+		Arn                *string
+		Default_version_id *string
+		Name               string
+		Policy             string
+	}
+
+	Iot_policy_attachment struct {
+		Iot_policy_attachmentID *string `lyra:"ignore"`
+		Policy                  string
+		Target                  string
+	}
+
+	Iot_thing struct {
+		Iot_thingID       *string `lyra:"ignore"`
+		Arn               *string
+		Attributes        *map[string]string
+		Default_client_id *string
+		Name              string
+		Thing_type_name   *string
+		Version           *int64
+	}
+
+	Iot_thing_principal_attachment struct {
+		Iot_thing_principal_attachmentID *string `lyra:"ignore"`
+		Principal                        string
+		Thing                            string
+	}
+
+	Iot_thing_type struct {
+		Iot_thing_typeID *string `lyra:"ignore"`
+		Arn              *string
+		Deprecated       *bool
+		Name             string
+		Properties       *[]Iot_thing_type__properties
+	}
+
+	Iot_topic_rule struct {
+		Iot_topic_ruleID  *string `lyra:"ignore"`
+		Arn               *string
+		Cloudwatch_alarm  *[]Iot_topic_rule__cloudwatch_alarm
+		Cloudwatch_metric *[]Iot_topic_rule__cloudwatch_metric
+		Description       *string
+		Dynamodb          *[]Iot_topic_rule__dynamodb
+		Elasticsearch     *[]Iot_topic_rule__elasticsearch
+		Enabled           bool
+		Firehose          *[]Iot_topic_rule__firehose
+		Kinesis           *[]Iot_topic_rule__kinesis
+		Lambda            *[]Iot_topic_rule__lambda
+		Name              string
+		Republish         *[]Iot_topic_rule__republish
+		S3                *[]Iot_topic_rule__s3
+		Sns               *[]Iot_topic_rule__sns
+		Sql               string
+		Sql_version       string
+		Sqs               *[]Iot_topic_rule__sqs
+	}
+
+	Key_pair struct {
+		Key_pairID      *string `lyra:"ignore"`
+		Fingerprint     *string
+		Key_name        *string
+		Key_name_prefix *string
+		Public_key      string
+	}
+
+	Kinesis_analytics_application struct {
+		Kinesis_analytics_applicationID *string `lyra:"ignore"`
+		Arn                             *string
+		Cloudwatch_logging_options      *[]Kinesis_analytics_application__cloudwatch_logging_options
+		Code                            *string
+		Create_timestamp                *string
+		Description                     *string
+		Inputs                          *[]Kinesis_analytics_application__inputs
+		Last_update_timestamp           *string
+		Name                            string
+		Outputs                         *[]Kinesis_analytics_application__outputs
+		Reference_data_sources          *[]Kinesis_analytics_application__reference_data_sources
+		Status                          *string
+		Version                         *int64
+	}
+
+	Kinesis_firehose_delivery_stream struct {
+		Kinesis_firehose_delivery_streamID *string `lyra:"ignore"`
+		Arn                                *string
+		Destination                        string
+		Destination_id                     *string
+		Elasticsearch_configuration        *[]Kinesis_firehose_delivery_stream__elasticsearch_configuration
+		Extended_s3_configuration          *[]Kinesis_firehose_delivery_stream__extended_s3_configuration
+		Kinesis_source_configuration       *[]Kinesis_firehose_delivery_stream__kinesis_source_configuration
+		Name                               string
+		Redshift_configuration             *[]Kinesis_firehose_delivery_stream__redshift_configuration
+		S3_configuration                   *[]Kinesis_firehose_delivery_stream__s3_configuration
+		Splunk_configuration               *[]Kinesis_firehose_delivery_stream__splunk_configuration
+		Tags                               *map[string]string
+		Version_id                         *string
+	}
+
+	Kinesis_stream struct {
+		Kinesis_streamID    *string `lyra:"ignore"`
+		Arn                 *string
+		Encryption_type     *string
+		Kms_key_id          *string
+		Name                string
+		Retention_period    *int64
+		Shard_count         int64
+		Shard_level_metrics *[]string
+		Tags                *map[string]string
+	}
+
+	Kms_alias struct {
+		Kms_aliasID    *string `lyra:"ignore"`
+		Arn            *string
+		Name           *string
+		Name_prefix    *string
+		Target_key_arn *string
+		Target_key_id  string
+	}
+
+	Kms_grant struct {
+		Kms_grantID           *string `lyra:"ignore"`
+		Constraints           *[]Kms_grant__constraints
+		Grant_creation_tokens *[]string
+		Grant_id              *string
+		Grant_token           *string
+		Grantee_principal     string
+		Key_id                string
+		Name                  *string
+		Operations            []string
+		Retire_on_delete      *bool
+		Retiring_principal    *string
+	}
+
+	Kms_key struct {
+		Kms_keyID               *string `lyra:"ignore"`
+		Arn                     *string
+		Deletion_window_in_days *int64
+		Description             *string
+		Enable_key_rotation     *bool
+		Is_enabled              *bool
+		Key_id                  *string
+		Key_usage               *string
+		Policy                  *string
+		Tags                    *map[string]string
+	}
+
+	Lambda_alias struct {
+		Lambda_aliasID   *string `lyra:"ignore"`
+		Arn              *string
+		Description      *string
+		Function_name    string
+		Function_version string
+		Invoke_arn       *string
+		Name             string
+		Routing_config   *[]Lambda_alias__routing_config
+	}
+
+	Lambda_event_source_mapping struct {
+		Lambda_event_source_mappingID *string `lyra:"ignore"`
+		Batch_size                    *int64
+		Enabled                       *bool
+		Event_source_arn              string
+		Function_arn                  *string
+		Function_name                 string
+		Last_modified                 *string
+		Last_processing_result        *string
+		Starting_position             *string
+		Starting_position_timestamp   *time.Time
+		State                         *string
+		State_transition_reason       *string
+		Uuid                          *string
+	}
+
+	Lambda_function struct {
+		Lambda_functionID              *string `lyra:"ignore"`
+		Arn                            *string
+		Dead_letter_config             *[]Lambda_function__dead_letter_config
+		Description                    *string
+		Environment                    *[]Lambda_function__environment
+		Filename                       *string
+		Function_name                  string
+		Handler                        string
+		Invoke_arn                     *string
+		Kms_key_arn                    *string
+		Last_modified                  *string
+		Layers                         *[]string
+		Memory_size                    *int64
+		Publish                        *bool
+		Qualified_arn                  *string
+		Reserved_concurrent_executions *int64
+		Role                           string
+		Runtime                        string
+		S3_bucket                      *string
+		S3_key                         *string
+		S3_object_version              *string
+		Source_code_hash               *string
+		Source_code_size               *int64
+		Tags                           *map[string]string
+		Timeout                        *int64
+		Tracing_config                 *[]Lambda_function__tracing_config
+		Version                        *string
+		Vpc_config                     *[]Lambda_function__vpc_config
+	}
+
+	Lambda_layer_version struct {
+		Lambda_layer_versionID *string `lyra:"ignore"`
+		Arn                    *string
+		Compatible_runtimes    *[]string
+		Created_date           *string
+		Description            *string
+		Filename               *string
+		Layer_arn              *string
+		Layer_name             string
+		License_info           *string
+		S3_bucket              *string
+		S3_key                 *string
+		S3_object_version      *string
+		Source_code_hash       *string
+		Source_code_size       *int64
+		Version                *string
+	}
+
+	Lambda_permission struct {
+		Lambda_permissionID *string `lyra:"ignore"`
+		Action              string
+		Event_source_token  *string
+		Function_name       string
+		Principal           string
+		Qualifier           *string
+		Source_account      *string
+		Source_arn          *string
+		Statement_id        *string
+		Statement_id_prefix *string
+	}
+
+	Launch_configuration struct {
+		Launch_configurationID           *string `lyra:"ignore"`
+		Associate_public_ip_address      *bool
+		Ebs_block_device                 *[]Launch_configuration__ebs_block_device
+		Ebs_optimized                    *bool
+		Enable_monitoring                *bool
+		Ephemeral_block_device           *[]Launch_configuration__ephemeral_block_device
+		Iam_instance_profile             *string
+		Image_id                         string
+		Instance_type                    string
+		Key_name                         *string
+		Name                             *string
+		Name_prefix                      *string
+		Placement_tenancy                *string
+		Root_block_device                *[]Launch_configuration__root_block_device
+		Security_groups                  *[]string
+		Spot_price                       *string
+		User_data                        *string
+		User_data_base64                 *string
+		Vpc_classic_link_id              *string
+		Vpc_classic_link_security_groups *[]string
+	}
+
+	Launch_template struct {
+		Launch_templateID                    *string `lyra:"ignore"`
+		Arn                                  *string
+		Block_device_mappings                *[]Launch_template__block_device_mappings
+		Capacity_reservation_specification   *[]Launch_template__capacity_reservation_specification
+		Credit_specification                 *[]Launch_template__credit_specification
+		Default_version                      *int64
+		Description                          *string
+		Disable_api_termination              *bool
+		Ebs_optimized                        *string
+		Elastic_gpu_specifications           *[]Launch_template__elastic_gpu_specifications
+		Iam_instance_profile                 *[]Launch_template__iam_instance_profile
+		Image_id                             *string
+		Instance_initiated_shutdown_behavior *string
+		Instance_market_options              *[]Launch_template__instance_market_options
+		Instance_type                        *string
+		Kernel_id                            *string
+		Key_name                             *string
+		Latest_version                       *int64
+		License_specification                *[]Launch_template__license_specification
+		Monitoring                           *[]Launch_template__monitoring
+		Name                                 *string
+		Name_prefix                          *string
+		Network_interfaces                   *[]Launch_template__network_interfaces
+		Placement                            *[]Launch_template__placement
+		Ram_disk_id                          *string
+		Security_group_names                 *[]string
+		Tag_specifications                   *[]Launch_template__tag_specifications
+		Tags                                 *map[string]string
+		User_data                            *string
+		Vpc_security_group_ids               *[]string
+	}
+
+	Lb struct {
+		LbID                             *string `lyra:"ignore"`
+		Access_logs                      *[]Lb__access_logs
+		Arn                              *string
+		Arn_suffix                       *string
+		Dns_name                         *string
+		Enable_cross_zone_load_balancing *bool
+		Enable_deletion_protection       *bool
+		Enable_http2                     *bool
+		Idle_timeout                     *int64
+		Internal                         *bool
+		Ip_address_type                  *string
+		Load_balancer_type               *string
+		Name                             *string
+		Name_prefix                      *string
+		Security_groups                  *[]string
+		Subnet_mapping                   *[]Lb__subnet_mapping
+		Subnets                          *[]string
+		Tags                             *map[string]string
+		Vpc_id                           *string
+		Zone_id                          *string
+	}
+
+	Lb_cookie_stickiness_policy struct {
+		Lb_cookie_stickiness_policyID *string `lyra:"ignore"`
+		Cookie_expiration_period      *int64
+		Lb_port                       int64
+		Load_balancer                 string
+		Name                          string
+	}
+
+	Lb_listener struct {
+		Lb_listenerID     *string `lyra:"ignore"`
+		Arn               *string
+		Certificate_arn   *string
+		Default_action    []Lb_listener__default_action
+		Load_balancer_arn string
+		Port              int64
+		Protocol          *string
+		Ssl_policy        *string
+	}
+
+	Lb_listener_certificate struct {
+		Lb_listener_certificateID *string `lyra:"ignore"`
+		Certificate_arn           string
+		Listener_arn              string
+	}
+
+	Lb_listener_rule struct {
+		Lb_listener_ruleID *string `lyra:"ignore"`
+		Action             []Lb_listener_rule__action
+		Arn                *string
+		Condition          []Lb_listener_rule__condition
+		Listener_arn       string
+		Priority           *int64
+	}
+
+	Lb_ssl_negotiation_policy struct {
+		Lb_ssl_negotiation_policyID *string `lyra:"ignore"`
+		Attribute                   *[]Lb_ssl_negotiation_policy__attribute
+		Lb_port                     int64
+		Load_balancer               string
+		Name                        string
+	}
+
+	Lb_target_group struct {
+		Lb_target_groupID    *string `lyra:"ignore"`
+		Arn                  *string
+		Arn_suffix           *string
+		Deregistration_delay *int64
+		Health_check         *[]Lb_target_group__health_check
+		Name                 *string
+		Name_prefix          *string
+		Port                 *int64
+		Protocol             *string
+		Proxy_protocol_v2    *bool
+		Slow_start           *int64
+		Stickiness           *[]Lb_target_group__stickiness
+		Tags                 *map[string]string
+		Target_type          *string
+		Vpc_id               *string
+	}
+
+	Lb_target_group_attachment struct {
+		Lb_target_group_attachmentID *string `lyra:"ignore"`
+		Availability_zone            *string
+		Port                         *int64
+		Target_group_arn             string
+		Target_id                    string
+	}
+
+	Licensemanager_association struct {
+		Licensemanager_associationID *string `lyra:"ignore"`
+		License_configuration_arn    string
+		Resource_arn                 string
+	}
+
+	Licensemanager_license_configuration struct {
+		Licensemanager_license_configurationID *string `lyra:"ignore"`
+		Description                            *string
+		License_count                          *int64
+		License_count_hard_limit               *bool
+		License_counting_type                  string
+		License_rules                          *[]string
+		Name                                   string
+		Tags                                   *map[string]string
+	}
+
+	Lightsail_domain struct {
+		Lightsail_domainID *string `lyra:"ignore"`
+		Arn                *string
+		Domain_name        string
+	}
+
+	Lightsail_instance struct {
+		Lightsail_instanceID *string `lyra:"ignore"`
+		Arn                  *string
+		Availability_zone    string
+		Blueprint_id         string
+		Bundle_id            string
+		Cpu_count            *int64
+		Created_at           *string
+		Ipv6_address         *string
+		Is_static_ip         *bool
+		Key_pair_name        *string
+		Name                 string
+		Private_ip_address   *string
+		Public_ip_address    *string
+		Ram_size             *int64
+		User_data            *string
+		Username             *string
+	}
+
+	Lightsail_key_pair struct {
+		Lightsail_key_pairID  *string `lyra:"ignore"`
+		Arn                   *string
+		Encrypted_fingerprint *string
+		Encrypted_private_key *string
+		Fingerprint           *string
+		Name                  *string
+		Name_prefix           *string
+		Pgp_key               *string
+		Private_key           *string
+		Public_key            *string
+	}
+
+	Lightsail_static_ip struct {
+		Lightsail_static_ipID *string `lyra:"ignore"`
+		Arn                   *string
+		Ip_address            *string
+		Name                  string
+		Support_code          *string
+	}
+
+	Lightsail_static_ip_attachment struct {
+		Lightsail_static_ip_attachmentID *string `lyra:"ignore"`
+		Instance_name                    string
+		Static_ip_name                   string
+	}
+
+	Load_balancer_backend_server_policy struct {
+		Load_balancer_backend_server_policyID *string `lyra:"ignore"`
+		Instance_port                         int64
+		Load_balancer_name                    string
+		Policy_names                          *[]string
+	}
+
+	Load_balancer_listener_policy struct {
+		Load_balancer_listener_policyID *string `lyra:"ignore"`
+		Load_balancer_name              string
+		Load_balancer_port              int64
+		Policy_names                    *[]string
+	}
+
+	Load_balancer_policy struct {
+		Load_balancer_policyID *string `lyra:"ignore"`
+		Load_balancer_name     string
+		Policy_attribute       *[]Load_balancer_policy__policy_attribute
+		Policy_name            string
+		Policy_type_name       string
+	}
+
+	Macie_member_account_association struct {
+		Macie_member_account_associationID *string `lyra:"ignore"`
+		Member_account_id                  string
+	}
+
+	Macie_s3_bucket_association struct {
+		Macie_s3_bucket_associationID *string `lyra:"ignore"`
+		Bucket_name                   string
+		Classification_type           *[]Macie_s3_bucket_association__classification_type
+		Member_account_id             *string
+		Prefix                        *string
+	}
+
+	Main_route_table_association struct {
+		Main_route_table_associationID *string `lyra:"ignore"`
+		Original_route_table_id        *string
+		Route_table_id                 string
+		Vpc_id                         string
+	}
+
+	Media_package_channel struct {
+		Media_package_channelID *string `lyra:"ignore"`
+		Arn                     *string
+		Channel_id              string
+		Description             *string
+		Hls_ingest              *[]Media_package_channel__hls_ingest
+	}
+
+	Media_store_container struct {
+		Media_store_containerID *string `lyra:"ignore"`
+		Arn                     *string
+		Endpoint                *string
+		Name                    string
+	}
+
+	Media_store_container_policy struct {
+		Media_store_container_policyID *string `lyra:"ignore"`
+		Container_name                 string
+		Policy                         string
+	}
+
+	Mq_broker struct {
+		Mq_brokerID                   *string `lyra:"ignore"`
+		Apply_immediately             *bool
+		Arn                           *string
+		Auto_minor_version_upgrade    *bool
+		Broker_name                   string
+		Configuration                 *[]Mq_broker__configuration
+		Deployment_mode               *string
+		Engine_type                   string
+		Engine_version                string
+		Host_instance_type            string
+		Instances                     *[]Mq_broker__instances
+		Logs                          *[]Mq_broker__logs
+		Maintenance_window_start_time *[]Mq_broker__maintenance_window_start_time
+		Publicly_accessible           *bool
+		Security_groups               []string
+		Subnet_ids                    *[]string
+		Tags                          *map[string]string
+		User                          []Mq_broker__user
+	}
+
+	Mq_configuration struct {
+		Mq_configurationID *string `lyra:"ignore"`
+		Arn                *string
+		Data               string
+		Description        *string
+		Engine_type        string
+		Engine_version     string
+		Latest_revision    *int64
+		Name               string
+		Tags               *map[string]string
+	}
+
+	Nat_gateway struct {
+		Nat_gatewayID        *string `lyra:"ignore"`
+		Allocation_id        string
+		Network_interface_id *string
+		Private_ip           *string
+		Public_ip            *string
+		Subnet_id            string
+		Tags                 *map[string]string
+	}
+
+	Neptune_cluster struct {
+		Neptune_clusterID                    *string `lyra:"ignore"`
+		Apply_immediately                    *bool
+		Arn                                  *string
+		Availability_zones                   *[]string
+		Backup_retention_period              *int64
+		Cluster_identifier                   *string
+		Cluster_identifier_prefix            *string
+		Cluster_members                      *[]string
+		Cluster_resource_id                  *string
+		Endpoint                             *string
+		Engine                               *string
+		Engine_version                       *string
+		Final_snapshot_identifier            *string
+		Hosted_zone_id                       *string
+		Iam_database_authentication_enabled  *bool
+		Iam_roles                            *[]string
+		Kms_key_arn                          *string
+		Neptune_cluster_parameter_group_name *string
+		Neptune_subnet_group_name            *string
+		Port                                 *int64
+		Preferred_backup_window              *string
+		Preferred_maintenance_window         *string
+		Reader_endpoint                      *string
+		Replication_source_identifier        *string
+		Skip_final_snapshot                  *bool
+		Snapshot_identifier                  *string
+		Storage_encrypted                    *bool
+		Tags                                 *map[string]string
+		Vpc_security_group_ids               *[]string
+	}
+
+	Neptune_cluster_instance struct {
+		Neptune_cluster_instanceID   *string `lyra:"ignore"`
+		Address                      *string
+		Apply_immediately            *bool
+		Arn                          *string
+		Auto_minor_version_upgrade   *bool
+		Availability_zone            *string
+		Cluster_identifier           string
+		Dbi_resource_id              *string
+		Endpoint                     *string
+		Engine                       *string
+		Engine_version               *string
+		Identifier                   *string
+		Identifier_prefix            *string
+		Instance_class               string
+		Kms_key_arn                  *string
+		Neptune_parameter_group_name *string
+		Neptune_subnet_group_name    *string
+		Port                         *int64
+		Preferred_backup_window      *string
+		Preferred_maintenance_window *string
+		Promotion_tier               *int64
+		Publicly_accessible          *bool
+		Storage_encrypted            *bool
+		Tags                         *map[string]string
+		Writer                       *bool
+	}
+
+	Neptune_cluster_parameter_group struct {
+		Neptune_cluster_parameter_groupID *string `lyra:"ignore"`
+		Arn                               *string
+		Description                       *string
+		Family                            string
+		Name                              *string
+		Name_prefix                       *string
+		Parameter                         *[]Neptune_cluster_parameter_group__parameter
+		Tags                              *map[string]string
+	}
+
+	Neptune_cluster_snapshot struct {
+		Neptune_cluster_snapshotID     *string `lyra:"ignore"`
+		Allocated_storage              *int64
+		Availability_zones             *[]string
+		Db_cluster_identifier          string
+		Db_cluster_snapshot_arn        *string
+		Db_cluster_snapshot_identifier string
+		Engine                         *string
+		Engine_version                 *string
+		Kms_key_id                     *string
+		License_model                  *string
+		Port                           *int64
+		Snapshot_type                  *string
+		Source_db_cluster_snapshot_arn *string
+		Status                         *string
+		Storage_encrypted              *bool
+		Vpc_id                         *string
+	}
+
+	Neptune_event_subscription struct {
+		Neptune_event_subscriptionID *string `lyra:"ignore"`
+		Arn                          *string
+		Customer_aws_id              *string
+		Enabled                      *bool
+		Event_categories             *[]string
+		Name                         *string
+		Name_prefix                  *string
+		Sns_topic_arn                string
+		Source_ids                   *[]string
+		Source_type                  *string
+		Tags                         *map[string]string
+	}
+
+	Neptune_parameter_group struct {
+		Neptune_parameter_groupID *string `lyra:"ignore"`
+		Arn                       *string
+		Description               *string
+		Family                    string
+		Name                      string
+		Parameter                 *[]Neptune_parameter_group__parameter
+		Tags                      *map[string]string
+	}
+
+	Neptune_subnet_group struct {
+		Neptune_subnet_groupID *string `lyra:"ignore"`
+		Arn                    *string
+		Description            *string
+		Name                   *string
+		Name_prefix            *string
+		Subnet_ids             []string
+		Tags                   *map[string]string
+	}
+
+	Network_acl struct {
+		Network_aclID *string `lyra:"ignore"`
+		Egress        *[]Network_acl__egress
+		Ingress       *[]Network_acl__ingress
+		Owner_id      *string
+		Subnet_id     *string
+		Subnet_ids    *[]string
+		Tags          *map[string]string
+		Vpc_id        string
+	}
+
+	Network_acl_rule struct {
+		Network_acl_ruleID *string `lyra:"ignore"`
+		Cidr_block         *string
+		Egress             *bool
+		From_port          *int64
+		Icmp_code          *string
+		Icmp_type          *string
+		Ipv6_cidr_block    *string
+		Network_acl_id     string
+		Protocol           string
+		Rule_action        string
+		Rule_number        int64
+		To_port            *int64
+	}
+
+	Network_interface struct {
+		Network_interfaceID *string `lyra:"ignore"`
+		Attachment          *[]Network_interface__attachment
+		Description         *string
+		Private_dns_name    *string
+		Private_ip          *string
+		Private_ips         *[]string
+		Private_ips_count   *int64
+		Security_groups     *[]string
+		Source_dest_check   *bool
+		Subnet_id           string
+		Tags                *map[string]string
+	}
+
+	Network_interface_attachment struct {
+		Network_interface_attachmentID *string `lyra:"ignore"`
+		Attachment_id                  *string
+		Device_index                   int64
+		Instance_id                    string
+		Network_interface_id           string
+		Status                         *string
+	}
+
+	Network_interface_sg_attachment struct {
+		Network_interface_sg_attachmentID *string `lyra:"ignore"`
+		Network_interface_id              string
+		Security_group_id                 string
+	}
+
+	Opsworks_application struct {
+		Opsworks_applicationID    *string `lyra:"ignore"`
+		App_source                *[]Opsworks_application__app_source
+		Auto_bundle_on_deploy     *string
+		Aws_flow_ruby_settings    *string
+		Data_source_arn           *string
+		Data_source_database_name *string
+		Data_source_type          *string
+		Description               *string
+		Document_root             *string
+		Domains                   *[]string
+		Enable_ssl                *bool
+		Environment               *[]Opsworks_application__environment
+		Name                      string
+		Rails_env                 *string
+		Short_name                *string
+		Ssl_configuration         *[]Opsworks_application__ssl_configuration
+		Stack_id                  string
+		Type                      string
+	}
+
+	Opsworks_custom_layer struct {
+		Opsworks_custom_layerID     *string `lyra:"ignore"`
+		Auto_assign_elastic_ips     *bool
+		Auto_assign_public_ips      *bool
+		Auto_healing                *bool
+		Custom_configure_recipes    *[]string
+		Custom_deploy_recipes       *[]string
+		Custom_instance_profile_arn *string
+		Custom_json                 *string
+		Custom_security_group_ids   *[]string
+		Custom_setup_recipes        *[]string
+		Custom_shutdown_recipes     *[]string
+		Custom_undeploy_recipes     *[]string
+		Drain_elb_on_shutdown       *bool
+		Ebs_volume                  *[]Opsworks_custom_layer__ebs_volume
+		Elastic_load_balancer       *string
+		Install_updates_on_boot     *bool
+		Instance_shutdown_timeout   *int64
+		Name                        string
+		Short_name                  string
+		Stack_id                    string
+		System_packages             *[]string
+		Use_ebs_optimized_instances *bool
+	}
+
+	Opsworks_ganglia_layer struct {
+		Opsworks_ganglia_layerID    *string `lyra:"ignore"`
+		Auto_assign_elastic_ips     *bool
+		Auto_assign_public_ips      *bool
+		Auto_healing                *bool
+		Custom_configure_recipes    *[]string
+		Custom_deploy_recipes       *[]string
+		Custom_instance_profile_arn *string
+		Custom_json                 *string
+		Custom_security_group_ids   *[]string
+		Custom_setup_recipes        *[]string
+		Custom_shutdown_recipes     *[]string
+		Custom_undeploy_recipes     *[]string
+		Drain_elb_on_shutdown       *bool
+		Ebs_volume                  *[]Opsworks_ganglia_layer__ebs_volume
+		Elastic_load_balancer       *string
+		Install_updates_on_boot     *bool
+		Instance_shutdown_timeout   *int64
+		Name                        *string
+		Password                    string
+		Stack_id                    string
+		System_packages             *[]string
+		Url                         *string
+		Use_ebs_optimized_instances *bool
+		Username                    *string
+	}
+
+	Opsworks_haproxy_layer struct {
+		Opsworks_haproxy_layerID    *string `lyra:"ignore"`
+		Auto_assign_elastic_ips     *bool
+		Auto_assign_public_ips      *bool
+		Auto_healing                *bool
+		Custom_configure_recipes    *[]string
+		Custom_deploy_recipes       *[]string
+		Custom_instance_profile_arn *string
+		Custom_json                 *string
+		Custom_security_group_ids   *[]string
+		Custom_setup_recipes        *[]string
+		Custom_shutdown_recipes     *[]string
+		Custom_undeploy_recipes     *[]string
+		Drain_elb_on_shutdown       *bool
+		Ebs_volume                  *[]Opsworks_haproxy_layer__ebs_volume
+		Elastic_load_balancer       *string
+		Healthcheck_method          *string
+		Healthcheck_url             *string
+		Install_updates_on_boot     *bool
+		Instance_shutdown_timeout   *int64
+		Name                        *string
+		Stack_id                    string
+		Stats_enabled               *bool
+		Stats_password              string
+		Stats_url                   *string
+		Stats_user                  *string
+		System_packages             *[]string
+		Use_ebs_optimized_instances *bool
+	}
+
+	Opsworks_instance struct {
+		Opsworks_instanceID          *string `lyra:"ignore"`
+		Agent_version                *string
+		Ami_id                       *string
+		Architecture                 *string
+		Auto_scaling_type            *string
+		Availability_zone            *string
+		Created_at                   *string
+		Delete_ebs                   *bool
+		Delete_eip                   *bool
+		Ebs_block_device             *[]Opsworks_instance__ebs_block_device
+		Ebs_optimized                *bool
+		Ec2_instance_id              *string
+		Ecs_cluster_arn              *string
+		Elastic_ip                   *string
+		Ephemeral_block_device       *[]Opsworks_instance__ephemeral_block_device
+		Hostname                     *string
+		Infrastructure_class         *string
+		Install_updates_on_boot      *bool
+		Instance_profile_arn         *string
+		Instance_type                *string
+		Last_service_error_id        *string
+		Layer_ids                    []string
+		Os                           *string
+		Platform                     *string
+		Private_dns                  *string
+		Private_ip                   *string
+		Public_dns                   *string
+		Public_ip                    *string
+		Registered_by                *string
+		Reported_agent_version       *string
+		Reported_os_family           *string
+		Reported_os_name             *string
+		Reported_os_version          *string
+		Root_block_device            *[]Opsworks_instance__root_block_device
+		Root_device_type             *string
+		Root_device_volume_id        *string
+		Security_group_ids           *[]string
+		Ssh_host_dsa_key_fingerprint *string
+		Ssh_host_rsa_key_fingerprint *string
+		Ssh_key_name                 *string
+		Stack_id                     string
+		State                        *string
+		Status                       *string
+		Subnet_id                    *string
+		Tenancy                      *string
+		Virtualization_type          *string
+	}
+
+	Opsworks_java_app_layer struct {
+		Opsworks_java_app_layerID   *string `lyra:"ignore"`
+		App_server                  *string
+		App_server_version          *string
+		Auto_assign_elastic_ips     *bool
+		Auto_assign_public_ips      *bool
+		Auto_healing                *bool
+		Custom_configure_recipes    *[]string
+		Custom_deploy_recipes       *[]string
+		Custom_instance_profile_arn *string
+		Custom_json                 *string
+		Custom_security_group_ids   *[]string
+		Custom_setup_recipes        *[]string
+		Custom_shutdown_recipes     *[]string
+		Custom_undeploy_recipes     *[]string
+		Drain_elb_on_shutdown       *bool
+		Ebs_volume                  *[]Opsworks_java_app_layer__ebs_volume
+		Elastic_load_balancer       *string
+		Install_updates_on_boot     *bool
+		Instance_shutdown_timeout   *int64
+		Jvm_options                 *string
+		Jvm_type                    *string
+		Jvm_version                 *string
+		Name                        *string
+		Stack_id                    string
+		System_packages             *[]string
+		Use_ebs_optimized_instances *bool
+	}
+
+	Opsworks_memcached_layer struct {
+		Opsworks_memcached_layerID  *string `lyra:"ignore"`
+		Allocated_memory            *int64
+		Auto_assign_elastic_ips     *bool
+		Auto_assign_public_ips      *bool
+		Auto_healing                *bool
+		Custom_configure_recipes    *[]string
+		Custom_deploy_recipes       *[]string
+		Custom_instance_profile_arn *string
+		Custom_json                 *string
+		Custom_security_group_ids   *[]string
+		Custom_setup_recipes        *[]string
+		Custom_shutdown_recipes     *[]string
+		Custom_undeploy_recipes     *[]string
+		Drain_elb_on_shutdown       *bool
+		Ebs_volume                  *[]Opsworks_memcached_layer__ebs_volume
+		Elastic_load_balancer       *string
+		Install_updates_on_boot     *bool
+		Instance_shutdown_timeout   *int64
+		Name                        *string
+		Stack_id                    string
+		System_packages             *[]string
+		Use_ebs_optimized_instances *bool
+	}
+
+	Opsworks_mysql_layer struct {
+		Opsworks_mysql_layerID         *string `lyra:"ignore"`
+		Auto_assign_elastic_ips        *bool
+		Auto_assign_public_ips         *bool
+		Auto_healing                   *bool
+		Custom_configure_recipes       *[]string
+		Custom_deploy_recipes          *[]string
+		Custom_instance_profile_arn    *string
+		Custom_json                    *string
+		Custom_security_group_ids      *[]string
+		Custom_setup_recipes           *[]string
+		Custom_shutdown_recipes        *[]string
+		Custom_undeploy_recipes        *[]string
+		Drain_elb_on_shutdown          *bool
+		Ebs_volume                     *[]Opsworks_mysql_layer__ebs_volume
+		Elastic_load_balancer          *string
+		Install_updates_on_boot        *bool
+		Instance_shutdown_timeout      *int64
+		Name                           *string
+		Root_password                  *string
+		Root_password_on_all_instances *bool
+		Stack_id                       string
+		System_packages                *[]string
+		Use_ebs_optimized_instances    *bool
+	}
+
+	Opsworks_nodejs_app_layer struct {
+		Opsworks_nodejs_app_layerID *string `lyra:"ignore"`
+		Auto_assign_elastic_ips     *bool
+		Auto_assign_public_ips      *bool
+		Auto_healing                *bool
+		Custom_configure_recipes    *[]string
+		Custom_deploy_recipes       *[]string
+		Custom_instance_profile_arn *string
+		Custom_json                 *string
+		Custom_security_group_ids   *[]string
+		Custom_setup_recipes        *[]string
+		Custom_shutdown_recipes     *[]string
+		Custom_undeploy_recipes     *[]string
+		Drain_elb_on_shutdown       *bool
+		Ebs_volume                  *[]Opsworks_nodejs_app_layer__ebs_volume
+		Elastic_load_balancer       *string
+		Install_updates_on_boot     *bool
+		Instance_shutdown_timeout   *int64
+		Name                        *string
+		Nodejs_version              *string
+		Stack_id                    string
+		System_packages             *[]string
+		Use_ebs_optimized_instances *bool
+	}
+
+	Opsworks_permission struct {
+		Opsworks_permissionID *string `lyra:"ignore"`
+		Allow_ssh             *bool
+		Allow_sudo            *bool
+		Level                 *string
+		Stack_id              *string
+		User_arn              string
+	}
+
+	Opsworks_php_app_layer struct {
+		Opsworks_php_app_layerID    *string `lyra:"ignore"`
+		Auto_assign_elastic_ips     *bool
+		Auto_assign_public_ips      *bool
+		Auto_healing                *bool
+		Custom_configure_recipes    *[]string
+		Custom_deploy_recipes       *[]string
+		Custom_instance_profile_arn *string
+		Custom_json                 *string
+		Custom_security_group_ids   *[]string
+		Custom_setup_recipes        *[]string
+		Custom_shutdown_recipes     *[]string
+		Custom_undeploy_recipes     *[]string
+		Drain_elb_on_shutdown       *bool
+		Ebs_volume                  *[]Opsworks_php_app_layer__ebs_volume
+		Elastic_load_balancer       *string
+		Install_updates_on_boot     *bool
+		Instance_shutdown_timeout   *int64
+		Name                        *string
+		Stack_id                    string
+		System_packages             *[]string
+		Use_ebs_optimized_instances *bool
+	}
+
+	Opsworks_rails_app_layer struct {
+		Opsworks_rails_app_layerID  *string `lyra:"ignore"`
+		App_server                  *string
+		Auto_assign_elastic_ips     *bool
+		Auto_assign_public_ips      *bool
+		Auto_healing                *bool
+		Bundler_version             *string
+		Custom_configure_recipes    *[]string
+		Custom_deploy_recipes       *[]string
+		Custom_instance_profile_arn *string
+		Custom_json                 *string
+		Custom_security_group_ids   *[]string
+		Custom_setup_recipes        *[]string
+		Custom_shutdown_recipes     *[]string
+		Custom_undeploy_recipes     *[]string
+		Drain_elb_on_shutdown       *bool
+		Ebs_volume                  *[]Opsworks_rails_app_layer__ebs_volume
+		Elastic_load_balancer       *string
+		Install_updates_on_boot     *bool
+		Instance_shutdown_timeout   *int64
+		Manage_bundler              *bool
+		Name                        *string
+		Passenger_version           *string
+		Ruby_version                *string
+		Rubygems_version            *string
+		Stack_id                    string
+		System_packages             *[]string
+		Use_ebs_optimized_instances *bool
+	}
+
+	Opsworks_rds_db_instance struct {
+		Opsworks_rds_db_instanceID *string `lyra:"ignore"`
+		Db_password                string
+		Db_user                    string
+		Rds_db_instance_arn        string
+		Stack_id                   string
+	}
+
+	Opsworks_stack struct {
+		Opsworks_stackID              *string `lyra:"ignore"`
+		Agent_version                 *string
+		Arn                           *string
+		Berkshelf_version             *string
+		Color                         *string
+		Configuration_manager_name    *string
+		Configuration_manager_version *string
+		Custom_cookbooks_source       *[]Opsworks_stack__custom_cookbooks_source
+		Custom_json                   *string
+		Default_availability_zone     *string
+		Default_instance_profile_arn  string
+		Default_os                    *string
+		Default_root_device_type      *string
+		Default_ssh_key_name          *string
+		Default_subnet_id             *string
+		Hostname_theme                *string
+		Manage_berkshelf              *bool
+		Name                          string
+		Region                        string
+		Service_role_arn              string
+		Stack_endpoint                *string
+		Tags                          *map[string]string
+		Use_custom_cookbooks          *bool
+		Use_opsworks_security_groups  *bool
+		Vpc_id                        *string
+	}
+
+	Opsworks_static_web_layer struct {
+		Opsworks_static_web_layerID *string `lyra:"ignore"`
+		Auto_assign_elastic_ips     *bool
+		Auto_assign_public_ips      *bool
+		Auto_healing                *bool
+		Custom_configure_recipes    *[]string
+		Custom_deploy_recipes       *[]string
+		Custom_instance_profile_arn *string
+		Custom_json                 *string
+		Custom_security_group_ids   *[]string
+		Custom_setup_recipes        *[]string
+		Custom_shutdown_recipes     *[]string
+		Custom_undeploy_recipes     *[]string
+		Drain_elb_on_shutdown       *bool
+		Ebs_volume                  *[]Opsworks_static_web_layer__ebs_volume
+		Elastic_load_balancer       *string
+		Install_updates_on_boot     *bool
+		Instance_shutdown_timeout   *int64
+		Name                        *string
+		Stack_id                    string
+		System_packages             *[]string
+		Use_ebs_optimized_instances *bool
+	}
+
+	Opsworks_user_profile struct {
+		Opsworks_user_profileID *string `lyra:"ignore"`
+		Allow_self_management   *bool
+		Ssh_public_key          *string
+		Ssh_username            string
+		User_arn                string
+	}
+
+	Organizations_account struct {
+		Organizations_accountID    *string `lyra:"ignore"`
+		Arn                        *string
+		Email                      string
+		Iam_user_access_to_billing *string
+		Joined_method              *string
+		Joined_timestamp           *string
+		Name                       string
+		Role_name                  *string
+		Status                     *string
+	}
+
+	Organizations_organization struct {
+		Organizations_organizationID  *string `lyra:"ignore"`
+		Arn                           *string
+		Aws_service_access_principals *[]string
+		Feature_set                   *string
+		Master_account_arn            *string
+		Master_account_email          *string
+		Master_account_id             *string
+	}
+
+	Organizations_policy struct {
+		Organizations_policyID *string `lyra:"ignore"`
+		Arn                    *string
+		Content                string
+		Description            *string
+		Name                   string
+		Type                   *string
+	}
+
+	Organizations_policy_attachment struct {
+		Organizations_policy_attachmentID *string `lyra:"ignore"`
+		Policy_id                         string
+		Target_id                         string
+	}
+
+	Pinpoint_adm_channel struct {
+		Pinpoint_adm_channelID *string `lyra:"ignore"`
+		Application_id         string
+		Client_id              string
+		Client_secret          string
+		Enabled                *bool
+	}
+
+	Pinpoint_apns_channel struct {
+		Pinpoint_apns_channelID       *string `lyra:"ignore"`
+		Application_id                string
+		Bundle_id                     *string
+		Certificate                   *string
+		Default_authentication_method *string
+		Enabled                       *bool
+		Private_key                   *string
+		Team_id                       *string
+		Token_key                     *string
+		Token_key_id                  *string
+	}
+
+	Pinpoint_apns_sandbox_channel struct {
+		Pinpoint_apns_sandbox_channelID *string `lyra:"ignore"`
+		Application_id                  string
+		Bundle_id                       *string
+		Certificate                     *string
+		Default_authentication_method   *string
+		Enabled                         *bool
+		Private_key                     *string
+		Team_id                         *string
+		Token_key                       *string
+		Token_key_id                    *string
+	}
+
+	Pinpoint_apns_voip_channel struct {
+		Pinpoint_apns_voip_channelID  *string `lyra:"ignore"`
+		Application_id                string
+		Bundle_id                     *string
+		Certificate                   *string
+		Default_authentication_method *string
+		Enabled                       *bool
+		Private_key                   *string
+		Team_id                       *string
+		Token_key                     *string
+		Token_key_id                  *string
+	}
+
+	Pinpoint_apns_voip_sandbox_channel struct {
+		Pinpoint_apns_voip_sandbox_channelID *string `lyra:"ignore"`
+		Application_id                       string
+		Bundle_id                            *string
+		Certificate                          *string
+		Default_authentication_method        *string
+		Enabled                              *bool
+		Private_key                          *string
+		Team_id                              *string
+		Token_key                            *string
+		Token_key_id                         *string
+	}
+
+	Pinpoint_app struct {
+		Pinpoint_appID *string `lyra:"ignore"`
+		Application_id *string
+		Campaign_hook  *[]Pinpoint_app__campaign_hook
+		Limits         *[]Pinpoint_app__limits
+		Name           *string
+		Name_prefix    *string
+		Quiet_time     *[]Pinpoint_app__quiet_time
+	}
+
+	Pinpoint_baidu_channel struct {
+		Pinpoint_baidu_channelID *string `lyra:"ignore"`
+		Api_key                  string
+		Application_id           string
+		Enabled                  *bool
+		Secret_key               string
+	}
+
+	Pinpoint_email_channel struct {
+		Pinpoint_email_channelID *string `lyra:"ignore"`
+		Application_id           string
+		Enabled                  *bool
+		From_address             string
+		Identity                 string
+		Messages_per_second      *int64
+		Role_arn                 string
+	}
+
+	Pinpoint_event_stream struct {
+		Pinpoint_event_streamID *string `lyra:"ignore"`
+		Application_id          string
+		Destination_stream_arn  string
+		Role_arn                string
+	}
+
+	Pinpoint_gcm_channel struct {
+		Pinpoint_gcm_channelID *string `lyra:"ignore"`
+		Api_key                string
+		Application_id         string
+		Enabled                *bool
+	}
+
+	Pinpoint_sms_channel struct {
+		Pinpoint_sms_channelID            *string `lyra:"ignore"`
+		Application_id                    string
+		Enabled                           *bool
+		Promotional_messages_per_second   *int64
+		Sender_id                         *string
+		Short_code                        *string
+		Transactional_messages_per_second *int64
+	}
+
+	Placement_group struct {
+		Placement_groupID *string `lyra:"ignore"`
+		Name              string
+		Strategy          string
+	}
+
+	Proxy_protocol_policy struct {
+		Proxy_protocol_policyID *string `lyra:"ignore"`
+		Instance_ports          []string
+		Load_balancer           string
+	}
+
+	Ram_resource_share struct {
+		Ram_resource_shareID      *string `lyra:"ignore"`
+		Allow_external_principals *bool
+		Name                      string
+		Tags                      *map[string]string
+	}
+
+	Rds_cluster struct {
+		Rds_clusterID                       *string `lyra:"ignore"`
+		Apply_immediately                   *bool
+		Arn                                 *string
+		Availability_zones                  *[]string
+		Backtrack_window                    *int64
+		Backup_retention_period             *int64
+		Cluster_identifier                  *string
+		Cluster_identifier_prefix           *string
+		Cluster_members                     *[]string
+		Cluster_resource_id                 *string
+		Database_name                       *string
+		Db_cluster_parameter_group_name     *string
+		Db_subnet_group_name                *string
+		Deletion_protection                 *bool
+		Enabled_cloudwatch_logs_exports     *[]string
+		Endpoint                            *string
+		Engine                              *string
+		Engine_mode                         *string
+		Engine_version                      *string
+		Final_snapshot_identifier           *string
+		Global_cluster_identifier           *string
+		Hosted_zone_id                      *string
+		Iam_database_authentication_enabled *bool
+		Iam_roles                           *[]string
+		Kms_key_id                          *string
+		Master_password                     *string
+		Master_username                     *string
+		Port                                *int64
+		Preferred_backup_window             *string
+		Preferred_maintenance_window        *string
+		Reader_endpoint                     *string
+		Replication_source_identifier       *string
+		S3_import                           *[]Rds_cluster__s3_import
+		Scaling_configuration               *[]Rds_cluster__scaling_configuration
+		Skip_final_snapshot                 *bool
+		Snapshot_identifier                 *string
+		Source_region                       *string
+		Storage_encrypted                   *bool
+		Tags                                *map[string]string
+		Vpc_security_group_ids              *[]string
+	}
+
+	Rds_cluster_endpoint struct {
+		Rds_cluster_endpointID      *string `lyra:"ignore"`
+		Arn                         *string
+		Cluster_endpoint_identifier string
+		Cluster_identifier          string
+		Custom_endpoint_type        string
+		Endpoint                    *string
+		Excluded_members            *[]string
+		Static_members              *[]string
+	}
+
+	Rds_cluster_instance struct {
+		Rds_cluster_instanceID          *string `lyra:"ignore"`
+		Apply_immediately               *bool
+		Arn                             *string
+		Auto_minor_version_upgrade      *bool
+		Availability_zone               *string
+		Cluster_identifier              string
+		Copy_tags_to_snapshot           *bool
+		Db_parameter_group_name         *string
+		Db_subnet_group_name            *string
+		Dbi_resource_id                 *string
+		Endpoint                        *string
+		Engine                          *string
+		Engine_version                  *string
+		Identifier                      *string
+		Identifier_prefix               *string
+		Instance_class                  string
+		Kms_key_id                      *string
+		Monitoring_interval             *int64
+		Monitoring_role_arn             *string
+		Performance_insights_enabled    *bool
+		Performance_insights_kms_key_id *string
+		Port                            *int64
+		Preferred_backup_window         *string
+		Preferred_maintenance_window    *string
+		Promotion_tier                  *int64
+		Publicly_accessible             *bool
+		Storage_encrypted               *bool
+		Tags                            *map[string]string
+		Writer                          *bool
+	}
+
+	Rds_cluster_parameter_group struct {
+		Rds_cluster_parameter_groupID *string `lyra:"ignore"`
+		Arn                           *string
+		Description                   *string
+		Family                        string
+		Name                          *string
+		Name_prefix                   *string
+		Parameter                     *[]Rds_cluster_parameter_group__parameter
+		Tags                          *map[string]string
+	}
+
+	Rds_global_cluster struct {
+		Rds_global_clusterID       *string `lyra:"ignore"`
+		Arn                        *string
+		Database_name              *string
+		Deletion_protection        *bool
+		Engine                     *string
+		Engine_version             *string
+		Global_cluster_identifier  string
+		Global_cluster_resource_id *string
+		Storage_encrypted          *bool
+	}
+
+	Redshift_cluster struct {
+		Redshift_clusterID                  *string `lyra:"ignore"`
+		Allow_version_upgrade               *bool
+		Automated_snapshot_retention_period *int64
+		Availability_zone                   *string
+		Bucket_name                         *string
+		Cluster_identifier                  string
+		Cluster_parameter_group_name        *string
+		Cluster_public_key                  *string
+		Cluster_revision_number             *string
+		Cluster_security_groups             *[]string
+		Cluster_subnet_group_name           *string
+		Cluster_type                        *string
+		Cluster_version                     *string
+		Database_name                       *string
+		Dns_name                            *string
+		Elastic_ip                          *string
+		Enable_logging                      *bool
+		Encrypted                           *bool
+		Endpoint                            *string
+		Enhanced_vpc_routing                *bool
+		Final_snapshot_identifier           *string
+		Iam_roles                           *[]string
+		Kms_key_id                          *string
+		Logging                             *[]Redshift_cluster__logging
+		Master_password                     *string
+		Master_username                     *string
+		Node_type                           string
+		Number_of_nodes                     *int64
+		Owner_account                       *string
+		Port                                *int64
+		Preferred_maintenance_window        *string
+		Publicly_accessible                 *bool
+		S3_key_prefix                       *string
+		Skip_final_snapshot                 *bool
+		Snapshot_cluster_identifier         *string
+		Snapshot_copy                       *[]Redshift_cluster__snapshot_copy
+		Snapshot_identifier                 *string
+		Tags                                *map[string]string
+		Vpc_security_group_ids              *[]string
+	}
+
+	Redshift_event_subscription struct {
+		Redshift_event_subscriptionID *string `lyra:"ignore"`
+		Customer_aws_id               *string
+		Enabled                       *bool
+		Event_categories              *[]string
+		Name                          string
+		Severity                      *string
+		Sns_topic_arn                 string
+		Source_ids                    *[]string
+		Source_type                   *string
+		Status                        *string
+		Tags                          *map[string]string
+	}
+
+	Redshift_parameter_group struct {
+		Redshift_parameter_groupID *string `lyra:"ignore"`
+		Description                *string
+		Family                     string
+		Name                       string
+		Parameter                  *[]Redshift_parameter_group__parameter
+	}
+
+	Redshift_security_group struct {
+		Redshift_security_groupID *string `lyra:"ignore"`
+		Description               *string
+		Ingress                   []Redshift_security_group__ingress
+		Name                      string
+	}
+
+	Redshift_snapshot_copy_grant struct {
+		Redshift_snapshot_copy_grantID *string `lyra:"ignore"`
+		Kms_key_id                     *string
+		Snapshot_copy_grant_name       string
+		Tags                           *map[string]string
+	}
+
+	Redshift_subnet_group struct {
+		Redshift_subnet_groupID *string `lyra:"ignore"`
+		Description             *string
+		Name                    string
+		Subnet_ids              []string
+		Tags                    *map[string]string
+	}
+
+	Resourcegroups_group struct {
+		Resourcegroups_groupID *string `lyra:"ignore"`
+		Arn                    *string
+		Description            *string
+		Name                   string
+		Resource_query         []Resourcegroups_group__resource_query
+	}
+
+	Route struct {
+		RouteID                     *string `lyra:"ignore"`
+		Destination_cidr_block      *string
+		Destination_ipv6_cidr_block *string
+		Destination_prefix_list_id  *string
+		Egress_only_gateway_id      *string
+		Gateway_id                  *string
+		Instance_id                 *string
+		Instance_owner_id           *string
+		Nat_gateway_id              *string
+		Network_interface_id        *string
+		Origin                      *string
+		Route_table_id              string
+		State                       *string
+		Transit_gateway_id          *string
+		Vpc_peering_connection_id   *string
+	}
+
+	Route53_delegation_set struct {
+		Route53_delegation_setID *string `lyra:"ignore"`
+		Name_servers             *[]string
+		Reference_name           *string
+	}
+
+	Route53_health_check struct {
+		Route53_health_checkID          *string `lyra:"ignore"`
+		Child_health_threshold          *int64
+		Child_healthchecks              *[]string
+		Cloudwatch_alarm_name           *string
+		Cloudwatch_alarm_region         *string
+		Enable_sni                      *bool
+		Failure_threshold               *int64
+		Fqdn                            *string
+		Insufficient_data_health_status *string
+		Invert_healthcheck              *bool
+		Ip_address                      *string
+		Measure_latency                 *bool
+		Port                            *int64
+		Reference_name                  *string
+		Regions                         *[]string
+		Request_interval                *int64
+		Resource_path                   *string
+		Search_string                   *string
+		Tags                            *map[string]string
+		Type                            string
+	}
+
+	Route53_query_log struct {
+		Route53_query_logID      *string `lyra:"ignore"`
+		Cloudwatch_log_group_arn string
+		Zone_id                  string
+	}
+
+	Route53_record struct {
+		Route53_recordID                 *string `lyra:"ignore"`
+		Alias                            *[]Route53_record__alias
+		Allow_overwrite                  *bool
+		Failover                         *string
+		Failover_routing_policy          *[]Route53_record__failover_routing_policy
+		Fqdn                             *string
+		Geolocation_routing_policy       *[]Route53_record__geolocation_routing_policy
+		Health_check_id                  *string
+		Latency_routing_policy           *[]Route53_record__latency_routing_policy
+		Multivalue_answer_routing_policy *bool
+		Name                             string
+		Records                          *[]string
+		Set_identifier                   *string
+		Ttl                              *int64
+		Type                             string
+		Weight                           *int64
+		Weighted_routing_policy          *[]Route53_record__weighted_routing_policy
+		Zone_id                          string
+	}
+
+	Route53_zone struct {
+		Route53_zoneID    *string `lyra:"ignore"`
+		Comment           *string
+		Delegation_set_id *string
+		Force_destroy     *bool
+		Name              string
+		Name_servers      *[]string
+		Tags              *map[string]string
+		Vpc               *[]Route53_zone__vpc
+		Vpc_id            *string
+		Vpc_region        *string
+		Zone_id           *string
+	}
+
+	Route53_zone_association struct {
+		Route53_zone_associationID *string `lyra:"ignore"`
+		Vpc_id                     string
+		Vpc_region                 *string
+		Zone_id                    string
+	}
+
+	Route_table struct {
+		Route_tableID    *string `lyra:"ignore"`
+		Owner_id         *string
+		Propagating_vgws *[]string
+		Route            *[]Route_table__route
+		Tags             *map[string]string
+		Vpc_id           string
+	}
+
+	Route_table_association struct {
+		Route_table_associationID *string `lyra:"ignore"`
+		Route_table_id            string
+		Subnet_id                 string
+	}
+
+	S3_account_public_access_block struct {
+		S3_account_public_access_blockID *string `lyra:"ignore"`
+		Account_id                       *string
+		Block_public_acls                *bool
+		Block_public_policy              *bool
+		Ignore_public_acls               *bool
+		Restrict_public_buckets          *bool
+	}
+
+	S3_bucket struct {
+		S3_bucketID                          *string `lyra:"ignore"`
+		Acceleration_status                  *string
+		Acl                                  *string
+		Arn                                  *string
+		Bucket                               *string
+		Bucket_domain_name                   *string
+		Bucket_prefix                        *string
+		Bucket_regional_domain_name          *string
+		Cors_rule                            *[]S3_bucket__cors_rule
+		Force_destroy                        *bool
+		Hosted_zone_id                       *string
+		Lifecycle_rule                       *[]S3_bucket__lifecycle_rule
+		Logging                              *[]S3_bucket__logging
+		Object_lock_configuration            *[]S3_bucket__object_lock_configuration
+		Policy                               *string
+		Region                               *string
+		Replication_configuration            *[]S3_bucket__replication_configuration
+		Request_payer                        *string
+		Server_side_encryption_configuration *[]S3_bucket__server_side_encryption_configuration
+		Tags                                 *map[string]string
+		Versioning                           *[]S3_bucket__versioning
+		Website                              *[]S3_bucket__website
+		Website_domain                       *string
+		Website_endpoint                     *string
+	}
+
+	S3_bucket_inventory struct {
+		S3_bucket_inventoryID    *string `lyra:"ignore"`
+		Bucket                   string
+		Destination              []S3_bucket_inventory__destination
+		Enabled                  *bool
+		Filter                   *[]S3_bucket_inventory__filter
+		Included_object_versions string
+		Name                     string
+		Optional_fields          *[]string
+		Schedule                 []S3_bucket_inventory__schedule
+	}
+
+	S3_bucket_metric struct {
+		S3_bucket_metricID *string `lyra:"ignore"`
+		Bucket             string
+		Filter             *[]S3_bucket_metric__filter
+		Name               string
+	}
+
+	S3_bucket_notification struct {
+		S3_bucket_notificationID *string `lyra:"ignore"`
+		Bucket                   string
+		Lambda_function          *[]S3_bucket_notification__lambda_function
+		Queue                    *[]S3_bucket_notification__queue
+		Topic                    *[]S3_bucket_notification__topic
+	}
+
+	S3_bucket_object struct {
+		S3_bucket_objectID     *string `lyra:"ignore"`
+		Acl                    *string
+		Bucket                 string
+		Cache_control          *string
+		Content                *string
+		Content_base64         *string
+		Content_disposition    *string
+		Content_encoding       *string
+		Content_language       *string
+		Content_type           *string
+		Etag                   *string
+		Key                    string
+		Kms_key_id             *string
+		Server_side_encryption *string
+		Source                 *string
+		Storage_class          *string
+		Tags                   *map[string]string
+		Version_id             *string
+		Website_redirect       *string
+	}
+
+	S3_bucket_policy struct {
+		S3_bucket_policyID *string `lyra:"ignore"`
+		Bucket             string
+		Policy             string
+	}
+
+	S3_bucket_public_access_block struct {
+		S3_bucket_public_access_blockID *string `lyra:"ignore"`
+		Block_public_acls               *bool
+		Block_public_policy             *bool
+		Bucket                          string
+		Ignore_public_acls              *bool
+		Restrict_public_buckets         *bool
+	}
+
+	Sagemaker_notebook_instance struct {
+		Sagemaker_notebook_instanceID *string `lyra:"ignore"`
+		Arn                           *string
+		Instance_type                 string
+		Kms_key_id                    *string
+		Name                          string
+		Role_arn                      string
+		Security_groups               *[]string
+		Subnet_id                     *string
+		Tags                          *map[string]string
+	}
+
+	Secretsmanager_secret struct {
+		Secretsmanager_secretID *string `lyra:"ignore"`
+		Arn                     *string
+		Description             *string
+		Kms_key_id              *string
+		Name                    *string
+		Name_prefix             *string
+		Policy                  *string
+		Recovery_window_in_days *int64
+		Rotation_enabled        *bool
+		Rotation_lambda_arn     *string
+		Rotation_rules          *[]Secretsmanager_secret__rotation_rules
+		Tags                    *map[string]string
+	}
+
+	Secretsmanager_secret_version struct {
+		Secretsmanager_secret_versionID *string `lyra:"ignore"`
+		Arn                             *string
+		Secret_binary                   *string
+		Secret_id                       string
+		Secret_string                   *string
+		Version_id                      *string
+		Version_stages                  *[]string
+	}
+
+	Security_group struct {
+		Security_groupID       *string `lyra:"ignore"`
+		Arn                    *string
+		Description            *string
+		Egress                 *[]Security_group__egress
+		Ingress                *[]Security_group__ingress
+		Name                   *string
+		Name_prefix            *string
+		Owner_id               *string
+		Revoke_rules_on_delete *bool
+		Tags                   *map[string]string
+		Vpc_id                 *string
+	}
+
+	Security_group_rule struct {
+		Security_group_ruleID    *string `lyra:"ignore"`
+		Cidr_blocks              *[]string
+		Description              *string
+		From_port                int64
+		Ipv6_cidr_blocks         *[]string
+		Prefix_list_ids          *[]string
+		Protocol                 string
+		Security_group_id        string
+		Self                     *bool
+		Source_security_group_id *string
+		To_port                  int64
+		Type                     string
+	}
+
+	Securityhub_account struct {
+		Securityhub_accountID *string `lyra:"ignore"`
+	}
+
+	Securityhub_product_subscription struct {
+		Securityhub_product_subscriptionID *string `lyra:"ignore"`
+		Arn                                *string
+		Product_arn                        string
+	}
+
+	Securityhub_standards_subscription struct {
+		Securityhub_standards_subscriptionID *string `lyra:"ignore"`
+		Standards_arn                        string
+	}
+
+	Service_discovery_http_namespace struct {
+		Service_discovery_http_namespaceID *string `lyra:"ignore"`
+		Arn                                *string
+		Description                        *string
+		Name                               string
+	}
+
+	Service_discovery_private_dns_namespace struct {
+		Service_discovery_private_dns_namespaceID *string `lyra:"ignore"`
+		Arn                                       *string
+		Description                               *string
+		Hosted_zone                               *string
+		Name                                      string
+		Vpc                                       string
+	}
+
+	Service_discovery_public_dns_namespace struct {
+		Service_discovery_public_dns_namespaceID *string `lyra:"ignore"`
+		Arn                                      *string
+		Description                              *string
+		Hosted_zone                              *string
+		Name                                     string
+	}
+
+	Service_discovery_service struct {
+		Service_discovery_serviceID *string `lyra:"ignore"`
+		Arn                         *string
+		Description                 *string
+		Dns_config                  []Service_discovery_service__dns_config
+		Health_check_config         *[]Service_discovery_service__health_check_config
+		Health_check_custom_config  *[]Service_discovery_service__health_check_custom_config
+		Name                        string
+	}
+
+	Servicecatalog_portfolio struct {
+		Servicecatalog_portfolioID *string `lyra:"ignore"`
+		Arn                        *string
+		Created_time               *string
+		Description                *string
+		Name                       string
+		Provider_name              *string
+		Tags                       *map[string]string
+	}
+
+	Ses_active_receipt_rule_set struct {
+		Ses_active_receipt_rule_setID *string `lyra:"ignore"`
+		Rule_set_name                 string
+	}
+
+	Ses_configuration_set struct {
+		Ses_configuration_setID *string `lyra:"ignore"`
+		Name                    string
+	}
+
+	Ses_domain_dkim struct {
+		Ses_domain_dkimID *string `lyra:"ignore"`
+		Dkim_tokens       *[]string
+		Domain            string
+	}
+
+	Ses_domain_identity struct {
+		Ses_domain_identityID *string `lyra:"ignore"`
+		Arn                   *string
+		Domain                string
+		Verification_token    *string
+	}
+
+	Ses_domain_identity_verification struct {
+		Ses_domain_identity_verificationID *string `lyra:"ignore"`
+		Arn                                *string
+		Domain                             string
+	}
+
+	Ses_domain_mail_from struct {
+		Ses_domain_mail_fromID *string `lyra:"ignore"`
+		Behavior_on_mx_failure *string
+		Domain                 string
+		Mail_from_domain       string
+	}
+
+	Ses_event_destination struct {
+		Ses_event_destinationID *string `lyra:"ignore"`
+		Cloudwatch_destination  *[]Ses_event_destination__cloudwatch_destination
+		Configuration_set_name  string
+		Enabled                 *bool
+		Kinesis_destination     *[]Ses_event_destination__kinesis_destination
+		Matching_types          []string
+		Name                    string
+		Sns_destination         *[]Ses_event_destination__sns_destination
+	}
+
+	Ses_identity_notification_topic struct {
+		Ses_identity_notification_topicID *string `lyra:"ignore"`
+		Identity                          string
+		Notification_type                 string
+		Topic_arn                         *string
+	}
+
+	Ses_receipt_filter struct {
+		Ses_receipt_filterID *string `lyra:"ignore"`
+		Cidr                 string
+		Name                 string
+		Policy               string
+	}
+
+	Ses_receipt_rule struct {
+		Ses_receipt_ruleID *string `lyra:"ignore"`
+		Add_header_action  *[]Ses_receipt_rule__add_header_action
+		After              *string
+		Bounce_action      *[]Ses_receipt_rule__bounce_action
+		Enabled            *bool
+		Lambda_action      *[]Ses_receipt_rule__lambda_action
+		Name               string
+		Recipients         *[]string
+		Rule_set_name      string
+		S3_action          *[]Ses_receipt_rule__s3_action
+		Scan_enabled       *bool
+		Sns_action         *[]Ses_receipt_rule__sns_action
+		Stop_action        *[]Ses_receipt_rule__stop_action
+		Tls_policy         *string
+		Workmail_action    *[]Ses_receipt_rule__workmail_action
+	}
+
+	Ses_receipt_rule_set struct {
+		Ses_receipt_rule_setID *string `lyra:"ignore"`
+		Rule_set_name          string
+	}
+
+	Ses_template struct {
+		Ses_templateID *string `lyra:"ignore"`
+		Html           *string
+		Name           string
+		Subject        *string
+		Text           *string
+	}
+
+	Sfn_activity struct {
+		Sfn_activityID *string `lyra:"ignore"`
+		Creation_date  *string
+		Name           string
+		Tags           *map[string]string
+	}
+
+	Sfn_state_machine struct {
+		Sfn_state_machineID *string `lyra:"ignore"`
+		Creation_date       *string
+		Definition          string
+		Name                string
+		Role_arn            string
+		Status              *string
+		Tags                *map[string]string
+	}
+
+	Simpledb_domain struct {
+		Simpledb_domainID *string `lyra:"ignore"`
+		Name              string
+	}
+
+	Snapshot_create_volume_permission struct {
+		Snapshot_create_volume_permissionID *string `lyra:"ignore"`
+		Account_id                          string
+		Snapshot_id                         string
+	}
+
+	Sns_platform_application struct {
+		Sns_platform_applicationID       *string `lyra:"ignore"`
+		Arn                              *string
+		Event_delivery_failure_topic_arn *string
+		Event_endpoint_created_topic_arn *string
+		Event_endpoint_deleted_topic_arn *string
+		Event_endpoint_updated_topic_arn *string
+		Failure_feedback_role_arn        *string
+		Name                             string
+		Platform                         string
+		Platform_credential              string
+		Platform_principal               *string
+		Success_feedback_role_arn        *string
+		Success_feedback_sample_rate     *string
+	}
+
+	Sns_sms_preferences struct {
+		Sns_sms_preferencesID                 *string `lyra:"ignore"`
+		Default_sender_id                     *string
+		Default_sms_type                      *string
+		Delivery_status_iam_role_arn          *string
+		Delivery_status_success_sampling_rate *string
+		Monthly_spend_limit                   *string
+		Usage_report_s3_bucket                *string
+	}
+
+	Sns_topic struct {
+		Sns_topicID                              *string `lyra:"ignore"`
+		Application_failure_feedback_role_arn    *string
+		Application_success_feedback_role_arn    *string
+		Application_success_feedback_sample_rate *int64
+		Arn                                      *string
+		Delivery_policy                          *string
+		Display_name                             *string
+		Http_failure_feedback_role_arn           *string
+		Http_success_feedback_role_arn           *string
+		Http_success_feedback_sample_rate        *int64
+		Kms_master_key_id                        *string
+		Lambda_failure_feedback_role_arn         *string
+		Lambda_success_feedback_role_arn         *string
+		Lambda_success_feedback_sample_rate      *int64
+		Name                                     *string
+		Name_prefix                              *string
+		Policy                                   *string
+		Sqs_failure_feedback_role_arn            *string
+		Sqs_success_feedback_role_arn            *string
+		Sqs_success_feedback_sample_rate         *int64
+	}
+
+	Sns_topic_policy struct {
+		Sns_topic_policyID *string `lyra:"ignore"`
+		Arn                string
+		Policy             string
+	}
+
+	Sns_topic_subscription struct {
+		Sns_topic_subscriptionID        *string `lyra:"ignore"`
+		Arn                             *string
+		Confirmation_timeout_in_minutes *int64
+		Delivery_policy                 *string
+		Endpoint                        string
+		Endpoint_auto_confirms          *bool
+		Filter_policy                   *string
+		Protocol                        string
+		Raw_message_delivery            *bool
+		Topic_arn                       string
+	}
+
+	Spot_datafeed_subscription struct {
+		Spot_datafeed_subscriptionID *string `lyra:"ignore"`
+		Bucket                       string
+		Prefix                       *string
+	}
+
+	Spot_fleet_request struct {
+		Spot_fleet_requestID                *string `lyra:"ignore"`
+		Allocation_strategy                 *string
+		Client_token                        *string
+		Excess_capacity_termination_policy  *string
+		Fleet_type                          *string
+		Iam_fleet_role                      string
+		Instance_interruption_behaviour     *string
+		Instance_pools_to_use_count         *int64
+		Launch_specification                []Spot_fleet_request__launch_specification
+		Load_balancers                      *[]string
+		Replace_unhealthy_instances         *bool
+		Spot_price                          *string
+		Spot_request_state                  *string
+		Target_capacity                     int64
+		Target_group_arns                   *[]string
+		Terminate_instances_with_expiration *bool
+		Valid_from                          *time.Time
+		Valid_until                         *time.Time
+		Wait_for_fulfillment                *bool
+	}
+
+	Spot_instance_request struct {
+		Spot_instance_requestID              *string `lyra:"ignore"`
+		Ami                                  string
+		Arn                                  *string
+		Associate_public_ip_address          *bool
+		Availability_zone                    *string
+		Block_device                         *map[string]string
+		Block_duration_minutes               *int64
+		Cpu_core_count                       *int64
+		Cpu_threads_per_core                 *int64
+		Credit_specification                 *[]Spot_instance_request__credit_specification
+		Disable_api_termination              *bool
+		Ebs_block_device                     *[]Spot_instance_request__ebs_block_device
+		Ebs_optimized                        *bool
+		Ephemeral_block_device               *[]Spot_instance_request__ephemeral_block_device
+		Get_password_data                    *bool
+		Host_id                              *string
+		Iam_instance_profile                 *string
+		Instance_initiated_shutdown_behavior *string
+		Instance_interruption_behaviour      *string
+		Instance_state                       *string
+		Instance_type                        string
+		Ipv6_address_count                   *int64
+		Ipv6_addresses                       *[]string
+		Key_name                             *string
+		Launch_group                         *string
+		Monitoring                           *bool
+		Network_interface                    *[]Spot_instance_request__network_interface
+		Network_interface_id                 *string
+		Password_data                        *string
+		Placement_group                      *string
+		Primary_network_interface_id         *string
+		Private_dns                          *string
+		Private_ip                           *string
+		Public_dns                           *string
+		Public_ip                            *string
+		Root_block_device                    *[]Spot_instance_request__root_block_device
+		Security_groups                      *[]string
+		Source_dest_check                    *bool
+		Spot_bid_status                      *string
+		Spot_instance_id                     *string
+		Spot_price                           *string
+		Spot_request_state                   *string
+		Spot_type                            *string
+		Subnet_id                            *string
+		Tags                                 *map[string]string
+		Tenancy                              *string
+		User_data                            *string
+		User_data_base64                     *string
+		Valid_from                           *time.Time
+		Valid_until                          *time.Time
+		Volume_tags                          *map[string]string
+		Vpc_security_group_ids               *[]string
+		Wait_for_fulfillment                 *bool
+	}
+
+	Sqs_queue struct {
+		Sqs_queueID                       *string `lyra:"ignore"`
+		Arn                               *string
+		Content_based_deduplication       *bool
+		Delay_seconds                     *int64
+		Fifo_queue                        *bool
+		Kms_data_key_reuse_period_seconds *int64
+		Kms_master_key_id                 *string
+		Max_message_size                  *int64
+		Message_retention_seconds         *int64
+		Name                              *string
+		Name_prefix                       *string
+		Policy                            *string
+		Receive_wait_time_seconds         *int64
+		Redrive_policy                    *string
+		Tags                              *map[string]string
+		Visibility_timeout_seconds        *int64
+	}
+
+	Sqs_queue_policy struct {
+		Sqs_queue_policyID *string `lyra:"ignore"`
+		Policy             string
+		Queue_url          string
+	}
+
+	Ssm_activation struct {
+		Ssm_activationID   *string `lyra:"ignore"`
+		Activation_code    *string
+		Description        *string
+		Expiration_date    *time.Time
+		Expired            *string
+		Iam_role           string
+		Name               *string
+		Registration_count *int64
+		Registration_limit *int64
+	}
+
+	Ssm_association struct {
+		Ssm_associationID   *string `lyra:"ignore"`
+		Association_id      *string
+		Association_name    *string
+		Document_version    *string
+		Instance_id         *string
+		Name                string
+		Output_location     *[]Ssm_association__output_location
+		Parameters          *map[string]string
+		Schedule_expression *string
+		Targets             *[]Ssm_association__targets
+	}
+
+	Ssm_document struct {
+		Ssm_documentID  *string `lyra:"ignore"`
+		Arn             *string
+		Content         string
+		Created_date    *string
+		Default_version *string
+		Description     *string
+		Document_format *string
+		Document_type   string
+		Hash            *string
+		Hash_type       *string
+		Latest_version  *string
+		Name            string
+		Owner           *string
+		Parameter       *[]Ssm_document__parameter
+		Permissions     *map[string]Ssm_document__permissions
+		Platform_types  *[]string
+		Schema_version  *string
+		Status          *string
+		Tags            *map[string]string
+	}
+
+	Ssm_maintenance_window struct {
+		Ssm_maintenance_windowID   *string `lyra:"ignore"`
+		Allow_unassociated_targets *bool
+		Cutoff                     int64
+		Duration                   int64
+		Enabled                    *bool
+		End_date                   *string
+		Name                       string
+		Schedule                   string
+		Schedule_timezone          *string
+		Start_date                 *string
+	}
+
+	Ssm_maintenance_window_target struct {
+		Ssm_maintenance_window_targetID *string `lyra:"ignore"`
+		Owner_information               *string
+		Resource_type                   string
+		Targets                         []Ssm_maintenance_window_target__targets
+		Window_id                       string
+	}
+
+	Ssm_maintenance_window_task struct {
+		Ssm_maintenance_window_taskID *string `lyra:"ignore"`
+		Description                   *string
+		Logging_info                  *[]Ssm_maintenance_window_task__logging_info
+		Max_concurrency               string
+		Max_errors                    string
+		Name                          *string
+		Priority                      *int64
+		Service_role_arn              string
+		Targets                       []Ssm_maintenance_window_task__targets
+		Task_arn                      string
+		Task_parameters               *[]Ssm_maintenance_window_task__task_parameters
+		Task_type                     string
+		Window_id                     string
+	}
+
+	Ssm_parameter struct {
+		Ssm_parameterID *string `lyra:"ignore"`
+		Allowed_pattern *string
+		Arn             *string
+		Description     *string
+		Key_id          *string
+		Name            string
+		Overwrite       *bool
+		Tags            *map[string]string
+		Type            string
+		Value           string
+	}
+
+	Ssm_patch_baseline struct {
+		Ssm_patch_baselineID              *string `lyra:"ignore"`
+		Approval_rule                     *[]Ssm_patch_baseline__approval_rule
+		Approved_patches                  *[]string
+		Approved_patches_compliance_level *string
+		Description                       *string
+		Global_filter                     *[]Ssm_patch_baseline__global_filter
+		Name                              string
+		Operating_system                  *string
+		Rejected_patches                  *[]string
+	}
+
+	Ssm_patch_group struct {
+		Ssm_patch_groupID *string `lyra:"ignore"`
+		Baseline_id       string
+		Patch_group       string
+	}
+
+	Ssm_resource_data_sync struct {
+		Ssm_resource_data_syncID *string `lyra:"ignore"`
+		Name                     string
+		S3_destination           []Ssm_resource_data_sync__s3_destination
+	}
+
+	Storagegateway_cache struct {
+		Storagegateway_cacheID *string `lyra:"ignore"`
+		Disk_id                string
+		Gateway_arn            string
+	}
+
+	Storagegateway_cached_iscsi_volume struct {
+		Storagegateway_cached_iscsi_volumeID *string `lyra:"ignore"`
+		Arn                                  *string
+		Chap_enabled                         *bool
+		Gateway_arn                          string
+		Lun_number                           *int64
+		Network_interface_id                 string
+		Network_interface_port               *int64
+		Snapshot_id                          *string
+		Source_volume_arn                    *string
+		Target_arn                           *string
+		Target_name                          string
+		Volume_arn                           *string
+		Volume_id                            *string
+		Volume_size_in_bytes                 int64
+	}
+
+	Storagegateway_gateway struct {
+		Storagegateway_gatewayID      *string `lyra:"ignore"`
+		Activation_key                *string
+		Arn                           *string
+		Gateway_id                    *string
+		Gateway_ip_address            *string
+		Gateway_name                  string
+		Gateway_timezone              string
+		Gateway_type                  *string
+		Medium_changer_type           *string
+		Smb_active_directory_settings *[]Storagegateway_gateway__smb_active_directory_settings
+		Smb_guest_password            *string
+		Tape_drive_type               *string
+	}
+
+	Storagegateway_nfs_file_share struct {
+		Storagegateway_nfs_file_shareID *string `lyra:"ignore"`
+		Arn                             *string
+		Client_list                     []string
+		Default_storage_class           *string
+		Fileshare_id                    *string
+		Gateway_arn                     string
+		Guess_mime_type_enabled         *bool
+		Kms_encrypted                   *bool
+		Kms_key_arn                     *string
+		Location_arn                    string
+		Nfs_file_share_defaults         *[]Storagegateway_nfs_file_share__nfs_file_share_defaults
+		Object_acl                      *string
+		Read_only                       *bool
+		Requester_pays                  *bool
+		Role_arn                        string
+		Squash                          *string
+	}
+
+	Storagegateway_smb_file_share struct {
+		Storagegateway_smb_file_shareID *string `lyra:"ignore"`
+		Arn                             *string
+		Authentication                  *string
+		Default_storage_class           *string
+		Fileshare_id                    *string
+		Gateway_arn                     string
+		Guess_mime_type_enabled         *bool
+		Invalid_user_list               *[]string
+		Kms_encrypted                   *bool
+		Kms_key_arn                     *string
+		Location_arn                    string
+		Object_acl                      *string
+		Read_only                       *bool
+		Requester_pays                  *bool
+		Role_arn                        string
+		Valid_user_list                 *[]string
+	}
+
+	Storagegateway_upload_buffer struct {
+		Storagegateway_upload_bufferID *string `lyra:"ignore"`
+		Disk_id                        string
+		Gateway_arn                    string
+	}
+
+	Storagegateway_working_storage struct {
+		Storagegateway_working_storageID *string `lyra:"ignore"`
+		Disk_id                          string
+		Gateway_arn                      string
+	}
+
+	Subnet struct {
+		SubnetID                        *string `lyra:"ignore"`
+		Arn                             *string
+		Assign_ipv6_address_on_creation *bool
+		Availability_zone               *string
+		Availability_zone_id            *string
+		Cidr_block                      string
+		Ipv6_cidr_block                 *string
+		Ipv6_cidr_block_association_id  *string
+		Map_public_ip_on_launch         *bool
+		Owner_id                        *string
+		Tags                            *map[string]string
+		Vpc_id                          string
+	}
+
+	Swf_domain struct {
+		Swf_domainID                                *string `lyra:"ignore"`
+		Description                                 *string
+		Name                                        *string
+		Name_prefix                                 *string
+		Workflow_execution_retention_period_in_days string
+	}
+
+	Transfer_server struct {
+		Transfer_serverID      *string `lyra:"ignore"`
+		Arn                    *string
+		Endpoint               *string
+		Force_destroy          *bool
+		Identity_provider_type *string
+		Invocation_role        *string
+		Logging_role           *string
+		Tags                   *map[string]string
+		Url                    *string
+	}
+
+	Transfer_ssh_key struct {
+		Transfer_ssh_keyID *string `lyra:"ignore"`
+		Body               string
+		Server_id          string
+		User_name          string
+	}
+
+	Transfer_user struct {
+		Transfer_userID *string `lyra:"ignore"`
+		Arn             *string
+		Home_directory  *string
+		Policy          *string
+		Role            string
+		Server_id       string
+		Tags            *map[string]string
+		User_name       string
+	}
+
+	Volume_attachment struct {
+		Volume_attachmentID *string `lyra:"ignore"`
+		Device_name         string
+		Force_detach        *bool
+		Instance_id         string
+		Skip_destroy        *bool
+		Volume_id           string
+	}
+
+	Vpc struct {
+		VpcID                            *string `lyra:"ignore"`
+		Arn                              *string
+		Assign_generated_ipv6_cidr_block *bool
+		Cidr_block                       string
+		Default_network_acl_id           *string
+		Default_route_table_id           *string
+		Default_security_group_id        *string
+		Dhcp_options_id                  *string
+		Enable_classiclink               *bool
+		Enable_classiclink_dns_support   *bool
+		Enable_dns_hostnames             *bool
+		Enable_dns_support               *bool
+		Instance_tenancy                 *string
+		Ipv6_association_id              *string
+		Ipv6_cidr_block                  *string
+		Main_route_table_id              *string
+		Owner_id                         *string
+		Tags                             *map[string]string
+	}
+
+	Vpc_dhcp_options struct {
+		Vpc_dhcp_optionsID   *string `lyra:"ignore"`
+		Domain_name          *string
+		Domain_name_servers  *[]string
+		Netbios_name_servers *[]string
+		Netbios_node_type    *string
+		Ntp_servers          *[]string
+		Owner_id             *string
+		Tags                 *map[string]string
+	}
+
+	Vpc_dhcp_options_association struct {
+		Vpc_dhcp_options_associationID *string `lyra:"ignore"`
+		Dhcp_options_id                string
+		Vpc_id                         string
+	}
+
+	Vpc_endpoint struct {
+		Vpc_endpointID        *string `lyra:"ignore"`
+		Auto_accept           *bool
+		Cidr_blocks           *[]string
+		Dns_entry             *[]Vpc_endpoint__dns_entry
+		Network_interface_ids *[]string
+		Policy                *string
+		Prefix_list_id        *string
+		Private_dns_enabled   *bool
+		Route_table_ids       *[]string
+		Security_group_ids    *[]string
+		Service_name          string
+		State                 *string
+		Subnet_ids            *[]string
+		Vpc_endpoint_type     *string
+		Vpc_id                string
+	}
+
+	Vpc_endpoint_connection_notification struct {
+		Vpc_endpoint_connection_notificationID *string `lyra:"ignore"`
+		Connection_events                      []string
+		Connection_notification_arn            string
+		Notification_type                      *string
+		State                                  *string
+		Vpc_endpoint_id                        *string
+		Vpc_endpoint_service_id                *string
+	}
+
+	Vpc_endpoint_route_table_association struct {
+		Vpc_endpoint_route_table_associationID *string `lyra:"ignore"`
+		Route_table_id                         string
+		Vpc_endpoint_id                        string
+	}
+
+	Vpc_endpoint_service struct {
+		Vpc_endpoint_serviceID     *string `lyra:"ignore"`
+		Acceptance_required        bool
+		Allowed_principals         *[]string
+		Availability_zones         *[]string
+		Base_endpoint_dns_names    *[]string
+		Network_load_balancer_arns []string
+		Private_dns_name           *string
+		Service_name               *string
+		Service_type               *string
+		State                      *string
+	}
+
+	Vpc_endpoint_service_allowed_principal struct {
+		Vpc_endpoint_service_allowed_principalID *string `lyra:"ignore"`
+		Principal_arn                            string
+		Vpc_endpoint_service_id                  string
+	}
+
+	Vpc_endpoint_subnet_association struct {
+		Vpc_endpoint_subnet_associationID *string `lyra:"ignore"`
+		Subnet_id                         string
+		Vpc_endpoint_id                   string
+	}
+
+	Vpc_ipv4_cidr_block_association struct {
+		Vpc_ipv4_cidr_block_associationID *string `lyra:"ignore"`
+		Cidr_block                        string
+		Vpc_id                            string
+	}
+
+	Vpc_peering_connection struct {
+		Vpc_peering_connectionID *string `lyra:"ignore"`
+		Accept_status            *string
+		Accepter                 *[]Vpc_peering_connection__accepter
+		Auto_accept              *bool
+		Peer_owner_id            *string
+		Peer_region              *string
+		Peer_vpc_id              string
+		Requester                *[]Vpc_peering_connection__requester
+		Tags                     *map[string]string
+		Vpc_id                   string
+	}
+
+	Vpc_peering_connection_accepter struct {
+		Vpc_peering_connection_accepterID *string `lyra:"ignore"`
+		Accept_status                     *string
+		Accepter                          *[]Vpc_peering_connection_accepter__accepter
+		Auto_accept                       *bool
+		Peer_owner_id                     *string
+		Peer_region                       *string
+		Peer_vpc_id                       *string
+		Requester                         *[]Vpc_peering_connection_accepter__requester
+		Tags                              *map[string]string
+		Vpc_id                            *string
+		Vpc_peering_connection_id         string
+	}
+
+	Vpc_peering_connection_options struct {
+		Vpc_peering_connection_optionsID *string `lyra:"ignore"`
+		Accepter                         *[]Vpc_peering_connection_options__accepter
+		Requester                        *[]Vpc_peering_connection_options__requester
+		Vpc_peering_connection_id        string
+	}
+
+	Vpn_connection struct {
+		Vpn_connectionID               *string `lyra:"ignore"`
+		Customer_gateway_configuration *string
+		Customer_gateway_id            string
+		Routes                         *[]Vpn_connection__routes
+		Static_routes_only             *bool
+		Tags                           *map[string]string
+		Transit_gateway_id             *string
+		Tunnel1_address                *string
+		Tunnel1_bgp_asn                *string
+		Tunnel1_bgp_holdtime           *int64
+		Tunnel1_cgw_inside_address     *string
+		Tunnel1_inside_cidr            *string
+		Tunnel1_preshared_key          *string
+		Tunnel1_vgw_inside_address     *string
+		Tunnel2_address                *string
+		Tunnel2_bgp_asn                *string
+		Tunnel2_bgp_holdtime           *int64
+		Tunnel2_cgw_inside_address     *string
+		Tunnel2_inside_cidr            *string
+		Tunnel2_preshared_key          *string
+		Tunnel2_vgw_inside_address     *string
+		Type                           string
+		Vgw_telemetry                  *[]Vpn_connection__vgw_telemetry
+		Vpn_gateway_id                 *string
+	}
+
+	Vpn_connection_route struct {
+		Vpn_connection_routeID *string `lyra:"ignore"`
+		Destination_cidr_block string
+		Vpn_connection_id      string
+	}
+
+	Vpn_gateway struct {
+		Vpn_gatewayID     *string `lyra:"ignore"`
+		Amazon_side_asn   *string
+		Availability_zone *string
+		Tags              *map[string]string
+		Vpc_id            *string
+	}
+
+	Vpn_gateway_attachment struct {
+		Vpn_gateway_attachmentID *string `lyra:"ignore"`
+		Vpc_id                   string
+		Vpn_gateway_id           string
+	}
+
+	Vpn_gateway_route_propagation struct {
+		Vpn_gateway_route_propagationID *string `lyra:"ignore"`
+		Route_table_id                  string
+		Vpn_gateway_id                  string
+	}
+
+	Waf_byte_match_set struct {
+		Waf_byte_match_setID *string `lyra:"ignore"`
+		Byte_match_tuples    *[]Waf_byte_match_set__byte_match_tuples
+		Name                 string
+	}
+
+	Waf_geo_match_set struct {
+		Waf_geo_match_setID  *string `lyra:"ignore"`
+		Geo_match_constraint *[]Waf_geo_match_set__geo_match_constraint
+		Name                 string
+	}
+
+	Waf_ipset struct {
+		Waf_ipsetID        *string `lyra:"ignore"`
+		Arn                *string
+		Ip_set_descriptors *[]Waf_ipset__ip_set_descriptors
+		Name               string
+	}
+
+	Waf_rate_based_rule struct {
+		Waf_rate_based_ruleID *string `lyra:"ignore"`
+		Metric_name           string
+		Name                  string
+		Predicates            *[]Waf_rate_based_rule__predicates
+		Rate_key              string
+		Rate_limit            int64
+	}
+
+	Waf_regex_match_set struct {
+		Waf_regex_match_setID *string `lyra:"ignore"`
+		Name                  string
+		Regex_match_tuple     *[]Waf_regex_match_set__regex_match_tuple
+	}
+
+	Waf_regex_pattern_set struct {
+		Waf_regex_pattern_setID *string `lyra:"ignore"`
+		Name                    string
+		Regex_pattern_strings   *[]string
+	}
+
+	Waf_rule struct {
+		Waf_ruleID  *string `lyra:"ignore"`
+		Metric_name string
+		Name        string
+		Predicates  *[]Waf_rule__predicates
+	}
+
+	Waf_rule_group struct {
+		Waf_rule_groupID *string `lyra:"ignore"`
+		Activated_rule   *[]Waf_rule_group__activated_rule
+		Metric_name      string
+		Name             string
+	}
+
+	Waf_size_constraint_set struct {
+		Waf_size_constraint_setID *string `lyra:"ignore"`
+		Name                      string
+		Size_constraints          *[]Waf_size_constraint_set__size_constraints
+	}
+
+	Waf_sql_injection_match_set struct {
+		Waf_sql_injection_match_setID *string `lyra:"ignore"`
+		Name                          string
+		Sql_injection_match_tuples    *[]Waf_sql_injection_match_set__sql_injection_match_tuples
+	}
+
+	Waf_web_acl struct {
+		Waf_web_aclID  *string `lyra:"ignore"`
+		Default_action []Waf_web_acl__default_action
+		Metric_name    string
+		Name           string
+		Rules          *[]Waf_web_acl__rules
+	}
+
+	Waf_xss_match_set struct {
+		Waf_xss_match_setID *string `lyra:"ignore"`
+		Name                string
+		Xss_match_tuples    *[]Waf_xss_match_set__xss_match_tuples
+	}
+
+	Wafregional_byte_match_set struct {
+		Wafregional_byte_match_setID *string `lyra:"ignore"`
+		Byte_match_tuple             *[]Wafregional_byte_match_set__byte_match_tuple
+		Byte_match_tuples            *[]Wafregional_byte_match_set__byte_match_tuples
+		Name                         string
+	}
+
+	Wafregional_geo_match_set struct {
+		Wafregional_geo_match_setID *string `lyra:"ignore"`
+		Geo_match_constraint        *[]Wafregional_geo_match_set__geo_match_constraint
+		Name                        string
+	}
+
+	Wafregional_ipset struct {
+		Wafregional_ipsetID *string `lyra:"ignore"`
+		Arn                 *string
+		Ip_set_descriptor   *[]Wafregional_ipset__ip_set_descriptor
+		Name                string
+	}
+
+	Wafregional_rate_based_rule struct {
+		Wafregional_rate_based_ruleID *string `lyra:"ignore"`
+		Metric_name                   string
+		Name                          string
+		Predicate                     *[]Wafregional_rate_based_rule__predicate
+		Rate_key                      string
+		Rate_limit                    int64
+	}
+
+	Wafregional_regex_match_set struct {
+		Wafregional_regex_match_setID *string `lyra:"ignore"`
+		Name                          string
+		Regex_match_tuple             *[]Wafregional_regex_match_set__regex_match_tuple
+	}
+
+	Wafregional_regex_pattern_set struct {
+		Wafregional_regex_pattern_setID *string `lyra:"ignore"`
+		Name                            string
+		Regex_pattern_strings           *[]string
+	}
+
+	Wafregional_rule struct {
+		Wafregional_ruleID *string `lyra:"ignore"`
+		Metric_name        string
+		Name               string
+		Predicate          *[]Wafregional_rule__predicate
+	}
+
+	Wafregional_rule_group struct {
+		Wafregional_rule_groupID *string `lyra:"ignore"`
+		Activated_rule           *[]Wafregional_rule_group__activated_rule
+		Metric_name              string
+		Name                     string
+	}
+
+	Wafregional_size_constraint_set struct {
+		Wafregional_size_constraint_setID *string `lyra:"ignore"`
+		Name                              string
+		Size_constraints                  *[]Wafregional_size_constraint_set__size_constraints
+	}
+
+	Wafregional_sql_injection_match_set struct {
+		Wafregional_sql_injection_match_setID *string `lyra:"ignore"`
+		Name                                  string
+		Sql_injection_match_tuple             *[]Wafregional_sql_injection_match_set__sql_injection_match_tuple
+	}
+
+	Wafregional_web_acl struct {
+		Wafregional_web_aclID *string `lyra:"ignore"`
+		Default_action        []Wafregional_web_acl__default_action
+		Metric_name           string
+		Name                  string
+		Rule                  *[]Wafregional_web_acl__rule
+	}
+
+	Wafregional_web_acl_association struct {
+		Wafregional_web_acl_associationID *string `lyra:"ignore"`
+		Resource_arn                      string
+		Web_acl_id                        string
+	}
+
+	Wafregional_xss_match_set struct {
+		Wafregional_xss_match_setID *string `lyra:"ignore"`
+		Name                        string
+		Xss_match_tuple             *[]Wafregional_xss_match_set__xss_match_tuple
+	}
+
+	Acm_certificate__domain_validation_options struct {
+		Domain_name           *string
+		Resource_record_name  *string
+		Resource_record_type  *string
+		Resource_record_value *string
+	}
+
+	Acmpca_certificate_authority__certificate_authority_configuration__subject struct {
+		Common_name                  *string
+		Country                      *string
+		Distinguished_name_qualifier *string
+		Generation_qualifier         *string
+		Given_name                   *string
+		Initials                     *string
+		Locality                     *string
+		Organization                 *string
+		Organizational_unit          *string
+		Pseudonym                    *string
+		State                        *string
+		Surname                      *string
+		Title                        *string
+	}
+
+	Acmpca_certificate_authority__certificate_authority_configuration struct {
+		Key_algorithm     string
+		Signing_algorithm string
+		Subject           []Acmpca_certificate_authority__certificate_authority_configuration__subject
+	}
+
+	Acmpca_certificate_authority__revocation_configuration__crl_configuration struct {
+		Custom_cname       *string
+		Enabled            *bool
+		Expiration_in_days int64
+		S3_bucket_name     *string
+	}
+
+	Acmpca_certificate_authority__revocation_configuration struct {
+		Crl_configuration *[]Acmpca_certificate_authority__revocation_configuration__crl_configuration
+	}
+
+	Alb__access_logs struct {
+		Bucket  string
+		Enabled *bool
+		Prefix  *string
+	}
+
+	Alb__subnet_mapping struct {
+		Allocation_id *string
+		Subnet_id     string
+	}
+
+	Alb_listener__default_action__authenticate_cognito struct {
+		Authentication_request_extra_params *map[string]string
+		On_unauthenticated_request          *string
+		Scope                               *string
+		Session_cookie_name                 *string
+		Session_timeout                     *int64
+		User_pool_arn                       string
+		User_pool_client_id                 string
+		User_pool_domain                    string
+	}
+
+	Alb_listener__default_action__authenticate_oidc struct {
+		Authentication_request_extra_params *map[string]string
+		Authorization_endpoint              string
+		Client_id                           string
+		Client_secret                       string
+		Issuer                              string
+		On_unauthenticated_request          *string
+		Scope                               *string
+		Session_cookie_name                 *string
+		Session_timeout                     *int64
+		Token_endpoint                      string
+		User_info_endpoint                  string
+	}
+
+	Alb_listener__default_action__fixed_response struct {
+		Content_type string
+		Message_body *string
+		Status_code  *string
+	}
+
+	Alb_listener__default_action__redirect struct {
+		Host        *string
+		Path        *string
+		Port        *string
+		Protocol    *string
+		Query       *string
+		Status_code string
+	}
+
+	Alb_listener__default_action struct {
+		Authenticate_cognito *[]Alb_listener__default_action__authenticate_cognito
+		Authenticate_oidc    *[]Alb_listener__default_action__authenticate_oidc
+		Fixed_response       *[]Alb_listener__default_action__fixed_response
+		Order                *int64
+		Redirect             *[]Alb_listener__default_action__redirect
+		Target_group_arn     *string
+		Type                 string
+	}
+
+	Alb_listener_rule__action__authenticate_cognito struct {
+		Authentication_request_extra_params *map[string]string
+		On_unauthenticated_request          *string
+		Scope                               *string
+		Session_cookie_name                 *string
+		Session_timeout                     *int64
+		User_pool_arn                       string
+		User_pool_client_id                 string
+		User_pool_domain                    string
+	}
+
+	Alb_listener_rule__action__authenticate_oidc struct {
+		Authentication_request_extra_params *map[string]string
+		Authorization_endpoint              string
+		Client_id                           string
+		Client_secret                       string
+		Issuer                              string
+		On_unauthenticated_request          *string
+		Scope                               *string
+		Session_cookie_name                 *string
+		Session_timeout                     *int64
+		Token_endpoint                      string
+		User_info_endpoint                  string
+	}
+
+	Alb_listener_rule__action__fixed_response struct {
+		Content_type string
+		Message_body *string
+		Status_code  *string
+	}
+
+	Alb_listener_rule__action__redirect struct {
+		Host        *string
+		Path        *string
+		Port        *string
+		Protocol    *string
+		Query       *string
+		Status_code string
+	}
+
+	Alb_listener_rule__action struct {
+		Authenticate_cognito *[]Alb_listener_rule__action__authenticate_cognito
+		Authenticate_oidc    *[]Alb_listener_rule__action__authenticate_oidc
+		Fixed_response       *[]Alb_listener_rule__action__fixed_response
+		Order                *int64
+		Redirect             *[]Alb_listener_rule__action__redirect
+		Target_group_arn     *string
+		Type                 string
+	}
+
+	Alb_listener_rule__condition struct {
+		Field  *string
+		Values *[]string
+	}
+
+	Alb_target_group__health_check struct {
+		Healthy_threshold   *int64
+		Interval            *int64
+		Matcher             *string
+		Path                *string
+		Port                *string
+		Protocol            *string
+		Timeout             *int64
+		Unhealthy_threshold *int64
+	}
+
+	Alb_target_group__stickiness struct {
+		Cookie_duration *int64
+		Enabled         *bool
+		Type            string
+	}
+
+	Ami__ebs_block_device struct {
+		Delete_on_termination *bool
+		Device_name           string
+		Encrypted             *bool
+		Iops                  *int64
+		Snapshot_id           *string
+		Volume_size           *int64
+		Volume_type           *string
+	}
+
+	Ami__ephemeral_block_device struct {
+		Device_name  string
+		Virtual_name string
+	}
+
+	Ami_copy__ebs_block_device struct {
+		Delete_on_termination *bool
+		Device_name           *string
+		Encrypted             *bool
+		Iops                  *int64
+		Snapshot_id           *string
+		Volume_size           *int64
+		Volume_type           *string
+	}
+
+	Ami_copy__ephemeral_block_device struct {
+		Device_name  *string
+		Virtual_name *string
+	}
+
+	Ami_from_instance__ebs_block_device struct {
+		Delete_on_termination *bool
+		Device_name           *string
+		Encrypted             *bool
+		Iops                  *int64
+		Snapshot_id           *string
+		Volume_size           *int64
+		Volume_type           *string
+	}
+
+	Ami_from_instance__ephemeral_block_device struct {
+		Device_name  *string
+		Virtual_name *string
+	}
+
+	Api_gateway_account__throttle_settings struct {
+		Burst_limit *int64
+		Rate_limit  *float64
+	}
+
+	Api_gateway_api_key__stage_key struct {
+		Rest_api_id string
+		Stage_name  string
+	}
+
+	Api_gateway_documentation_part__location struct {
+		Method      *string
+		Name        *string
+		Path        *string
+		Status_code *string
+		Type        string
+	}
+
+	Api_gateway_domain_name__endpoint_configuration struct {
+		Types []string
+	}
+
+	Api_gateway_method_settings__settings struct {
+		Cache_data_encrypted                       *bool
+		Cache_ttl_in_seconds                       *int64
+		Caching_enabled                            *bool
+		Data_trace_enabled                         *bool
+		Logging_level                              *string
+		Metrics_enabled                            *bool
+		Require_authorization_for_cache_control    *bool
+		Throttling_burst_limit                     *int64
+		Throttling_rate_limit                      *float64
+		Unauthorized_cache_control_header_strategy *string
+	}
+
+	Api_gateway_rest_api__endpoint_configuration struct {
+		Types []string
+	}
+
+	Api_gateway_stage__access_log_settings struct {
+		Destination_arn string
+		Format          string
+	}
+
+	Api_gateway_usage_plan__api_stages struct {
+		Api_id string
+		Stage  string
+	}
+
+	Api_gateway_usage_plan__quota_settings struct {
+		Limit  int64
+		Offset *int64
+		Period string
+	}
+
+	Api_gateway_usage_plan__throttle_settings struct {
+		Burst_limit *int64
+		Rate_limit  *float64
+	}
+
+	Appautoscaling_policy__step_adjustment struct {
+		Metric_interval_lower_bound *string
+		Metric_interval_upper_bound *string
+		Scaling_adjustment          int64
+	}
+
+	Appautoscaling_policy__step_scaling_policy_configuration__step_adjustment struct {
+		Metric_interval_lower_bound *string
+		Metric_interval_upper_bound *string
+		Scaling_adjustment          int64
+	}
+
+	Appautoscaling_policy__step_scaling_policy_configuration struct {
+		Adjustment_type          *string
+		Cooldown                 *int64
+		Metric_aggregation_type  *string
+		Min_adjustment_magnitude *int64
+		Step_adjustment          *[]Appautoscaling_policy__step_scaling_policy_configuration__step_adjustment
+	}
+
+	Appautoscaling_policy__target_tracking_scaling_policy_configuration__customized_metric_specification__dimensions struct {
+		Name  string
+		Value string
+	}
+
+	Appautoscaling_policy__target_tracking_scaling_policy_configuration__customized_metric_specification struct {
+		Dimensions  *[]Appautoscaling_policy__target_tracking_scaling_policy_configuration__customized_metric_specification__dimensions
+		Metric_name string
+		Namespace   string
+		Statistic   string
+		Unit        *string
+	}
+
+	Appautoscaling_policy__target_tracking_scaling_policy_configuration__predefined_metric_specification struct {
+		Predefined_metric_type string
+		Resource_label         *string
+	}
+
+	Appautoscaling_policy__target_tracking_scaling_policy_configuration struct {
+		Customized_metric_specification *[]Appautoscaling_policy__target_tracking_scaling_policy_configuration__customized_metric_specification
+		Disable_scale_in                *bool
+		Predefined_metric_specification *[]Appautoscaling_policy__target_tracking_scaling_policy_configuration__predefined_metric_specification
+		Scale_in_cooldown               *int64
+		Scale_out_cooldown              *int64
+		Target_value                    float64
+	}
+
+	Appautoscaling_scheduled_action__scalable_target_action struct {
+		Max_capacity *int64
+		Min_capacity *int64
+	}
+
+	Appmesh_route__spec__http_route__action__weighted_target struct {
+		Virtual_node string
+		Weight       int64
+	}
+
+	Appmesh_route__spec__http_route__action struct {
+		Weighted_target []Appmesh_route__spec__http_route__action__weighted_target
+	}
+
+	Appmesh_route__spec__http_route__match struct {
+		Prefix string
+	}
+
+	Appmesh_route__spec__http_route struct {
+		Action []Appmesh_route__spec__http_route__action
+		Match  []Appmesh_route__spec__http_route__match
+	}
+
+	Appmesh_route__spec struct {
+		Http_route *[]Appmesh_route__spec__http_route
+	}
+
+	Appmesh_virtual_node__spec__listener__port_mapping struct {
+		Port     int64
+		Protocol string
+	}
+
+	Appmesh_virtual_node__spec__listener struct {
+		Port_mapping []Appmesh_virtual_node__spec__listener__port_mapping
+	}
+
+	Appmesh_virtual_node__spec__service_discovery__dns struct {
+		Service_name string
+	}
+
+	Appmesh_virtual_node__spec__service_discovery struct {
+		Dns []Appmesh_virtual_node__spec__service_discovery__dns
+	}
+
+	Appmesh_virtual_node__spec struct {
+		Backends          *[]string
+		Listener          *[]Appmesh_virtual_node__spec__listener
+		Service_discovery *[]Appmesh_virtual_node__spec__service_discovery
+	}
+
+	Appmesh_virtual_router__spec struct {
+		Service_names []string
+	}
+
+	Appsync_datasource__dynamodb_config struct {
+		Region                 *string
+		Table_name             string
+		Use_caller_credentials *bool
+	}
+
+	Appsync_datasource__elasticsearch_config struct {
+		Endpoint string
+		Region   *string
+	}
+
+	Appsync_datasource__http_config struct {
+		Endpoint string
+	}
+
+	Appsync_datasource__lambda_config struct {
+		Function_arn string
+	}
+
+	Appsync_graphql_api__log_config struct {
+		Cloudwatch_logs_role_arn string
+		Field_log_level          string
+	}
+
+	Appsync_graphql_api__openid_connect_config struct {
+		Auth_ttl  *int64
+		Client_id *string
+		Iat_ttl   *int64
+		Issuer    string
+	}
+
+	Appsync_graphql_api__user_pool_config struct {
+		App_id_client_regex *string
+		Aws_region          *string
+		Default_action      string
+		User_pool_id        string
+	}
+
+	Athena_database__encryption_configuration struct {
+		Encryption_option string
+		Kms_key           *string
+	}
+
+	Autoscaling_group__initial_lifecycle_hook struct {
+		Default_result          *string
+		Heartbeat_timeout       *int64
+		Lifecycle_transition    string
+		Name                    string
+		Notification_metadata   *string
+		Notification_target_arn *string
+		Role_arn                *string
+	}
+
+	Autoscaling_group__launch_template struct {
+		Id      *string
+		Name    *string
+		Version *string
+	}
+
+	Autoscaling_group__mixed_instances_policy__instances_distribution struct {
+		On_demand_allocation_strategy            *string
+		On_demand_base_capacity                  *int64
+		On_demand_percentage_above_base_capacity *int64
+		Spot_allocation_strategy                 *string
+		Spot_instance_pools                      *int64
+		Spot_max_price                           *string
+	}
+
+	Autoscaling_group__mixed_instances_policy__launch_template__launch_template_specification struct {
+		Launch_template_id   *string
+		Launch_template_name *string
+		Version              *string
+	}
+
+	Autoscaling_group__mixed_instances_policy__launch_template__override struct {
+		Instance_type *string
+	}
+
+	Autoscaling_group__mixed_instances_policy__launch_template struct {
+		Launch_template_specification []Autoscaling_group__mixed_instances_policy__launch_template__launch_template_specification
+		Override                      *[]Autoscaling_group__mixed_instances_policy__launch_template__override
+	}
+
+	Autoscaling_group__mixed_instances_policy struct {
+		Instances_distribution *[]Autoscaling_group__mixed_instances_policy__instances_distribution
+		Launch_template        []Autoscaling_group__mixed_instances_policy__launch_template
+	}
+
+	Autoscaling_group__tag struct {
+		Key                 string
+		Propagate_at_launch bool
+		Value               string
+	}
+
+	Autoscaling_policy__step_adjustment struct {
+		Metric_interval_lower_bound *string
+		Metric_interval_upper_bound *string
+		Scaling_adjustment          int64
+	}
+
+	Autoscaling_policy__target_tracking_configuration__customized_metric_specification__metric_dimension struct {
+		Name  string
+		Value string
+	}
+
+	Autoscaling_policy__target_tracking_configuration__customized_metric_specification struct {
+		Metric_dimension *[]Autoscaling_policy__target_tracking_configuration__customized_metric_specification__metric_dimension
+		Metric_name      string
+		Namespace        string
+		Statistic        string
+		Unit             *string
+	}
+
+	Autoscaling_policy__target_tracking_configuration__predefined_metric_specification struct {
+		Predefined_metric_type string
+		Resource_label         *string
+	}
+
+	Autoscaling_policy__target_tracking_configuration struct {
+		Customized_metric_specification *[]Autoscaling_policy__target_tracking_configuration__customized_metric_specification
+		Disable_scale_in                *bool
+		Predefined_metric_specification *[]Autoscaling_policy__target_tracking_configuration__predefined_metric_specification
+		Target_value                    float64
+	}
+
+	Batch_compute_environment__compute_resources struct {
+		Bid_percentage      *int64
+		Desired_vcpus       *int64
+		Ec2_key_pair        *string
+		Image_id            *string
+		Instance_role       string
+		Instance_type       []string
+		Max_vcpus           int64
+		Min_vcpus           int64
+		Security_group_ids  []string
+		Spot_iam_fleet_role *string
+		Subnets             []string
+		Tags                *map[string]string
+		Type                string
+	}
+
+	Batch_job_definition__retry_strategy struct {
+		Attempts *int64
+	}
+
+	Batch_job_definition__timeout struct {
+		Attempt_duration_seconds *int64
+	}
+
+	Budgets_budget__cost_types struct {
+		Include_credit             *bool
+		Include_discount           *bool
+		Include_other_subscription *bool
+		Include_recurring          *bool
+		Include_refund             *bool
+		Include_subscription       *bool
+		Include_support            *bool
+		Include_tax                *bool
+		Include_upfront            *bool
+		Use_amortized              *bool
+		Use_blended                *bool
+	}
+
+	Cloudfront_distribution__cache_behavior__forwarded_values__cookies struct {
+		Forward           string
+		Whitelisted_names *[]string
+	}
+
+	Cloudfront_distribution__cache_behavior__forwarded_values struct {
+		Cookies                 []Cloudfront_distribution__cache_behavior__forwarded_values__cookies
+		Headers                 *[]string
+		Query_string            bool
+		Query_string_cache_keys *[]string
+	}
+
+	Cloudfront_distribution__cache_behavior__lambda_function_association struct {
+		Event_type   string
+		Include_body *bool
+		Lambda_arn   string
+	}
+
+	Cloudfront_distribution__cache_behavior struct {
+		Allowed_methods             []string
+		Cached_methods              []string
+		Compress                    *bool
+		Default_ttl                 *int64
+		Field_level_encryption_id   *string
+		Forwarded_values            []Cloudfront_distribution__cache_behavior__forwarded_values
+		Lambda_function_association *[]Cloudfront_distribution__cache_behavior__lambda_function_association
+		Max_ttl                     *int64
+		Min_ttl                     *int64
+		Path_pattern                string
+		Smooth_streaming            *bool
+		Target_origin_id            string
+		Trusted_signers             *[]string
+		Viewer_protocol_policy      string
+	}
+
+	Cloudfront_distribution__custom_error_response struct {
+		Error_caching_min_ttl *int64
+		Error_code            int64
+		Response_code         *int64
+		Response_page_path    *string
+	}
+
+	Cloudfront_distribution__default_cache_behavior__forwarded_values__cookies struct {
+		Forward           string
+		Whitelisted_names *[]string
+	}
+
+	Cloudfront_distribution__default_cache_behavior__forwarded_values struct {
+		Cookies                 []Cloudfront_distribution__default_cache_behavior__forwarded_values__cookies
+		Headers                 *[]string
+		Query_string            bool
+		Query_string_cache_keys *[]string
+	}
+
+	Cloudfront_distribution__default_cache_behavior__lambda_function_association struct {
+		Event_type   string
+		Include_body *bool
+		Lambda_arn   string
+	}
+
+	Cloudfront_distribution__default_cache_behavior struct {
+		Allowed_methods             []string
+		Cached_methods              []string
+		Compress                    *bool
+		Default_ttl                 *int64
+		Field_level_encryption_id   *string
+		Forwarded_values            []Cloudfront_distribution__default_cache_behavior__forwarded_values
+		Lambda_function_association *[]Cloudfront_distribution__default_cache_behavior__lambda_function_association
+		Max_ttl                     *int64
+		Min_ttl                     *int64
+		Smooth_streaming            *bool
+		Target_origin_id            string
+		Trusted_signers             *[]string
+		Viewer_protocol_policy      string
+	}
+
+	Cloudfront_distribution__logging_config struct {
+		Bucket          string
+		Include_cookies *bool
+		Prefix          *string
+	}
+
+	Cloudfront_distribution__ordered_cache_behavior__forwarded_values__cookies struct {
+		Forward           string
+		Whitelisted_names *[]string
+	}
+
+	Cloudfront_distribution__ordered_cache_behavior__forwarded_values struct {
+		Cookies                 []Cloudfront_distribution__ordered_cache_behavior__forwarded_values__cookies
+		Headers                 *[]string
+		Query_string            bool
+		Query_string_cache_keys *[]string
+	}
+
+	Cloudfront_distribution__ordered_cache_behavior__lambda_function_association struct {
+		Event_type   string
+		Include_body *bool
+		Lambda_arn   string
+	}
+
+	Cloudfront_distribution__ordered_cache_behavior struct {
+		Allowed_methods             []string
+		Cached_methods              []string
+		Compress                    *bool
+		Default_ttl                 *int64
+		Field_level_encryption_id   *string
+		Forwarded_values            []Cloudfront_distribution__ordered_cache_behavior__forwarded_values
+		Lambda_function_association *[]Cloudfront_distribution__ordered_cache_behavior__lambda_function_association
+		Max_ttl                     *int64
+		Min_ttl                     *int64
+		Path_pattern                string
+		Smooth_streaming            *bool
+		Target_origin_id            string
+		Trusted_signers             *[]string
+		Viewer_protocol_policy      string
+	}
+
+	Cloudfront_distribution__origin__custom_header struct {
+		Name  string
+		Value string
+	}
+
+	Cloudfront_distribution__origin__custom_origin_config struct {
+		Http_port                int64
+		Https_port               int64
+		Origin_keepalive_timeout *int64
+		Origin_protocol_policy   string
+		Origin_read_timeout      *int64
+		Origin_ssl_protocols     []string
+	}
+
+	Cloudfront_distribution__origin__s3_origin_config struct {
+		Origin_access_identity string
+	}
+
+	Cloudfront_distribution__origin struct {
+		Custom_header        *[]Cloudfront_distribution__origin__custom_header
+		Custom_origin_config *[]Cloudfront_distribution__origin__custom_origin_config
+		Domain_name          string
+		Origin_id            string
+		Origin_path          *string
+		S3_origin_config     *[]Cloudfront_distribution__origin__s3_origin_config
+	}
+
+	Cloudfront_distribution__restrictions__geo_restriction struct {
+		Locations        *[]string
+		Restriction_type string
+	}
+
+	Cloudfront_distribution__restrictions struct {
+		Geo_restriction []Cloudfront_distribution__restrictions__geo_restriction
+	}
+
+	Cloudfront_distribution__viewer_certificate struct {
+		Acm_certificate_arn            *string
+		Cloudfront_default_certificate *bool
+		Iam_certificate_id             *string
+		Minimum_protocol_version       *string
+		Ssl_support_method             *string
+	}
+
+	Cloudhsm_v2_cluster__cluster_certificates struct {
+		Aws_hardware_certificate          *string
+		Cluster_certificate               *string
+		Cluster_csr                       *string
+		Hsm_certificate                   *string
+		Manufacturer_hardware_certificate *string
+	}
+
+	Cloudtrail__event_selector__data_resource struct {
+		Type   string
+		Values []string
+	}
+
+	Cloudtrail__event_selector struct {
+		Data_resource             *[]Cloudtrail__event_selector__data_resource
+		Include_management_events *bool
+		Read_write_type           *string
+	}
+
+	Cloudwatch_event_permission__condition struct {
+		Key   string
+		Type  string
+		Value string
+	}
+
+	Cloudwatch_event_target__batch_target struct {
+		Array_size     *int64
+		Job_attempts   *int64
+		Job_definition string
+		Job_name       string
+	}
+
+	Cloudwatch_event_target__ecs_target__network_configuration struct {
+		Assign_public_ip *bool
+		Security_groups  *[]string
+		Subnets          []string
+	}
+
+	Cloudwatch_event_target__ecs_target struct {
+		Group                 *string
+		Launch_type           *string
+		Network_configuration *[]Cloudwatch_event_target__ecs_target__network_configuration
+		Platform_version      *string
+		Task_count            *int64
+		Task_definition_arn   string
+	}
+
+	Cloudwatch_event_target__input_transformer struct {
+		Input_paths    *map[string]string
+		Input_template string
+	}
+
+	Cloudwatch_event_target__kinesis_target struct {
+		Partition_key_path *string
+	}
+
+	Cloudwatch_event_target__run_command_targets struct {
+		Key    string
+		Values []string
+	}
+
+	Cloudwatch_event_target__sqs_target struct {
+		Message_group_id *string
+	}
+
+	Cloudwatch_log_metric_filter__metric_transformation struct {
+		Default_value *string
+		Name          string
+		Namespace     string
+		Value         string
+	}
+
+	Codebuild_project__artifacts struct {
+		Encryption_disabled *bool
+		Location            *string
+		Name                *string
+		Namespace_type      *string
+		Packaging           *string
+		Path                *string
+		Type                string
+	}
+
+	Codebuild_project__cache struct {
+		Location *string
+		Type     *string
+	}
+
+	Codebuild_project__environment__environment_variable struct {
+		Name  string
+		Type  *string
+		Value string
+	}
+
+	Codebuild_project__environment struct {
+		Certificate          *string
+		Compute_type         string
+		Environment_variable *[]Codebuild_project__environment__environment_variable
+		Image                string
+		Privileged_mode      *bool
+		Type                 string
+	}
+
+	Codebuild_project__secondary_artifacts struct {
+		Artifact_identifier string
+		Encryption_disabled *bool
+		Location            *string
+		Name                *string
+		Namespace_type      *string
+		Packaging           *string
+		Path                *string
+		Type                string
+	}
+
+	Codebuild_project__secondary_sources__auth struct {
+		Resource *string
+		Type     string
+	}
+
+	Codebuild_project__secondary_sources struct {
+		Auth                *[]Codebuild_project__secondary_sources__auth
+		Buildspec           *string
+		Git_clone_depth     *int64
+		Insecure_ssl        *bool
+		Location            *string
+		Report_build_status *bool
+		Source_identifier   string
+		Type                string
+	}
+
+	Codebuild_project__source__auth struct {
+		Resource *string
+		Type     string
+	}
+
+	Codebuild_project__source struct {
+		Auth                *[]Codebuild_project__source__auth
+		Buildspec           *string
+		Git_clone_depth     *int64
+		Insecure_ssl        *bool
+		Location            *string
+		Report_build_status *bool
+		Type                string
+	}
+
+	Codebuild_project__vpc_config struct {
+		Security_group_ids []string
+		Subnets            []string
+		Vpc_id             string
+	}
+
+	Codecommit_trigger__trigger struct {
+		Branches        *[]string
+		Custom_data     *string
+		Destination_arn string
+		Events          []string
+		Name            string
+	}
+
+	Codedeploy_deployment_config__minimum_healthy_hosts struct {
+		Type  *string
+		Value *int64
+	}
+
+	Codedeploy_deployment_config__traffic_routing_config__time_based_canary struct {
+		Interval   *int64
+		Percentage *int64
+	}
+
+	Codedeploy_deployment_config__traffic_routing_config__time_based_linear struct {
+		Interval   *int64
+		Percentage *int64
+	}
+
+	Codedeploy_deployment_config__traffic_routing_config struct {
+		Time_based_canary *[]Codedeploy_deployment_config__traffic_routing_config__time_based_canary
+		Time_based_linear *[]Codedeploy_deployment_config__traffic_routing_config__time_based_linear
+		Type              *string
+	}
+
+	Codedeploy_deployment_group__alarm_configuration struct {
+		Alarms                    *[]string
+		Enabled                   *bool
+		Ignore_poll_alarm_failure *bool
+	}
+
+	Codedeploy_deployment_group__auto_rollback_configuration struct {
+		Enabled *bool
+		Events  *[]string
+	}
+
+	Codedeploy_deployment_group__blue_green_deployment_config__deployment_ready_option struct {
+		Action_on_timeout    *string
+		Wait_time_in_minutes *int64
+	}
+
+	Codedeploy_deployment_group__blue_green_deployment_config__green_fleet_provisioning_option struct {
+		Action *string
+	}
+
+	Codedeploy_deployment_group__blue_green_deployment_config__terminate_blue_instances_on_deployment_success struct {
+		Action                           *string
+		Termination_wait_time_in_minutes *int64
+	}
+
+	Codedeploy_deployment_group__blue_green_deployment_config struct {
+		Deployment_ready_option                        *[]Codedeploy_deployment_group__blue_green_deployment_config__deployment_ready_option
+		Green_fleet_provisioning_option                *[]Codedeploy_deployment_group__blue_green_deployment_config__green_fleet_provisioning_option
+		Terminate_blue_instances_on_deployment_success *[]Codedeploy_deployment_group__blue_green_deployment_config__terminate_blue_instances_on_deployment_success
+	}
+
+	Codedeploy_deployment_group__deployment_style struct {
+		Deployment_option *string
+		Deployment_type   *string
+	}
+
+	Codedeploy_deployment_group__ec2_tag_filter struct {
+		Key   *string
+		Type  *string
+		Value *string
+	}
+
+	Codedeploy_deployment_group__ec2_tag_set__ec2_tag_filter struct {
+		Key   *string
+		Type  *string
+		Value *string
+	}
+
+	Codedeploy_deployment_group__ec2_tag_set struct {
+		Ec2_tag_filter *[]Codedeploy_deployment_group__ec2_tag_set__ec2_tag_filter
+	}
+
+	Codedeploy_deployment_group__ecs_service struct {
+		Cluster_name string
+		Service_name string
+	}
+
+	Codedeploy_deployment_group__load_balancer_info__elb_info struct {
+		Name *string
+	}
+
+	Codedeploy_deployment_group__load_balancer_info__target_group_info struct {
+		Name *string
+	}
+
+	Codedeploy_deployment_group__load_balancer_info__target_group_pair_info__prod_traffic_route struct {
+		Listener_arns []string
+	}
+
+	Codedeploy_deployment_group__load_balancer_info__target_group_pair_info__target_group struct {
+		Name string
+	}
+
+	Codedeploy_deployment_group__load_balancer_info__target_group_pair_info__test_traffic_route struct {
+		Listener_arns []string
+	}
+
+	Codedeploy_deployment_group__load_balancer_info__target_group_pair_info struct {
+		Prod_traffic_route []Codedeploy_deployment_group__load_balancer_info__target_group_pair_info__prod_traffic_route
+		Target_group       []Codedeploy_deployment_group__load_balancer_info__target_group_pair_info__target_group
+		Test_traffic_route *[]Codedeploy_deployment_group__load_balancer_info__target_group_pair_info__test_traffic_route
+	}
+
+	Codedeploy_deployment_group__load_balancer_info struct {
+		Elb_info               *[]Codedeploy_deployment_group__load_balancer_info__elb_info
+		Target_group_info      *[]Codedeploy_deployment_group__load_balancer_info__target_group_info
+		Target_group_pair_info *[]Codedeploy_deployment_group__load_balancer_info__target_group_pair_info
+	}
+
+	Codedeploy_deployment_group__on_premises_instance_tag_filter struct {
+		Key   *string
+		Type  *string
+		Value *string
+	}
+
+	Codedeploy_deployment_group__trigger_configuration struct {
+		Trigger_events     []string
+		Trigger_name       string
+		Trigger_target_arn string
+	}
+
+	Codepipeline__artifact_store__encryption_key struct {
+		Id   string
+		Type string
+	}
+
+	Codepipeline__artifact_store struct {
+		Encryption_key *[]Codepipeline__artifact_store__encryption_key
+		Location       string
+		Type           string
+	}
+
+	Codepipeline__stage__action struct {
+		Category         string
+		Configuration    *map[string]string
+		Input_artifacts  *[]string
+		Name             string
+		Output_artifacts *[]string
+		Owner            string
+		Provider         string
+		Role_arn         *string
+		Run_order        *int64
+		Version          string
+	}
+
+	Codepipeline__stage struct {
+		Action []Codepipeline__stage__action
+		Name   string
+	}
+
+	Codepipeline_webhook__authentication_configuration struct {
+		Allowed_ip_range *string
+		Secret_token     *string
+	}
+
+	Codepipeline_webhook__filter struct {
+		Json_path    string
+		Match_equals string
+	}
+
+	Cognito_identity_pool__cognito_identity_providers struct {
+		Client_id               *string
+		Provider_name           *string
+		Server_side_token_check *bool
+	}
+
+	Cognito_identity_pool_roles_attachment__role_mapping__mapping_rule struct {
+		Claim      string
+		Match_type string
+		Role_arn   string
+		Value      string
+	}
+
+	Cognito_identity_pool_roles_attachment__role_mapping struct {
+		Ambiguous_role_resolution *string
+		Identity_provider         string
+		Mapping_rule              *[]Cognito_identity_pool_roles_attachment__role_mapping__mapping_rule
+		Type                      string
+	}
+
+	Cognito_identity_pool_roles_attachment__roles struct {
+		Authenticated   *string
+		Unauthenticated *string
+	}
+
+	Cognito_resource_server__scope struct {
+		Scope_description string
+		Scope_name        string
+	}
+
+	Cognito_user_pool__admin_create_user_config__invite_message_template struct {
+		Email_message *string
+		Email_subject *string
+		Sms_message   *string
+	}
+
+	Cognito_user_pool__admin_create_user_config struct {
+		Allow_admin_create_user_only *bool
+		Invite_message_template      *[]Cognito_user_pool__admin_create_user_config__invite_message_template
+		Unused_account_validity_days *int64
+	}
+
+	Cognito_user_pool__device_configuration struct {
+		Challenge_required_on_new_device      *bool
+		Device_only_remembered_on_user_prompt *bool
+	}
+
+	Cognito_user_pool__email_configuration struct {
+		Reply_to_email_address *string
+		Source_arn             *string
+	}
+
+	Cognito_user_pool__lambda_config struct {
+		Create_auth_challenge          *string
+		Custom_message                 *string
+		Define_auth_challenge          *string
+		Post_authentication            *string
+		Post_confirmation              *string
+		Pre_authentication             *string
+		Pre_sign_up                    *string
+		Pre_token_generation           *string
+		User_migration                 *string
+		Verify_auth_challenge_response *string
+	}
+
+	Cognito_user_pool__password_policy struct {
+		Minimum_length    *int64
+		Require_lowercase *bool
+		Require_numbers   *bool
+		Require_symbols   *bool
+		Require_uppercase *bool
+	}
+
+	Cognito_user_pool__schema__number_attribute_constraints struct {
+		Max_value *string
+		Min_value *string
+	}
+
+	Cognito_user_pool__schema__string_attribute_constraints struct {
+		Max_length *string
+		Min_length *string
+	}
+
+	Cognito_user_pool__schema struct {
+		Attribute_data_type          string
+		Developer_only_attribute     *bool
+		Mutable                      *bool
+		Name                         string
+		Number_attribute_constraints *[]Cognito_user_pool__schema__number_attribute_constraints
+		Required                     *bool
+		String_attribute_constraints *[]Cognito_user_pool__schema__string_attribute_constraints
+	}
+
+	Cognito_user_pool__sms_configuration struct {
+		External_id    string
+		Sns_caller_arn string
+	}
+
+	Cognito_user_pool__verification_message_template struct {
+		Default_email_option  *string
+		Email_message         *string
+		Email_message_by_link *string
+		Email_subject         *string
+		Email_subject_by_link *string
+		Sms_message           *string
+	}
+
+	Config_config_rule__scope struct {
+		Compliance_resource_id    *string
+		Compliance_resource_types *[]string
+		Tag_key                   *string
+		Tag_value                 *string
+	}
+
+	Config_config_rule__source__source_detail struct {
+		Event_source                *string
+		Maximum_execution_frequency *string
+		Message_type                *string
+	}
+
+	Config_config_rule__source struct {
+		Owner             string
+		Source_detail     *[]Config_config_rule__source__source_detail
+		Source_identifier string
+	}
+
+	Config_configuration_aggregator__account_aggregation_source struct {
+		Account_ids []string
+		All_regions *bool
+		Regions     *[]string
+	}
+
+	Config_configuration_aggregator__organization_aggregation_source struct {
+		All_regions *bool
+		Regions     *[]string
+		Role_arn    string
+	}
+
+	Config_configuration_recorder__recording_group struct {
+		All_supported                 *bool
+		Include_global_resource_types *bool
+		Resource_types                *[]string
+	}
+
+	Config_delivery_channel__snapshot_delivery_properties struct {
+		Delivery_frequency *string
+	}
+
+	Datasync_location_efs__ec2_config struct {
+		Security_group_arns []string
+		Subnet_arn          string
+	}
+
+	Datasync_location_nfs__on_prem_config struct {
+		Agent_arns []string
+	}
+
+	Datasync_location_s3__s3_config struct {
+		Bucket_access_role_arn string
+	}
+
+	Datasync_task__options struct {
+		Atime                  *string
+		Bytes_per_second       *int64
+		Gid                    *string
+		Mtime                  *string
+		Posix_permissions      *string
+		Preserve_deleted_files *string
+		Preserve_devices       *string
+		Uid                    *string
+		Verify_mode            *string
+	}
+
+	Dax_cluster__nodes struct {
+		Address           *string
+		Availability_zone *string
+		Id                *string
+		Port              *int64
+	}
+
+	Dax_cluster__server_side_encryption struct {
+		Enabled *bool
+	}
+
+	Dax_parameter_group__parameters struct {
+		Name  string
+		Value string
+	}
+
+	Db_instance__s3_import struct {
+		Bucket_name           string
+		Bucket_prefix         *string
+		Ingestion_role        string
+		Source_engine         string
+		Source_engine_version string
+	}
+
+	Db_option_group__option__option_settings struct {
+		Name  string
+		Value string
+	}
+
+	Db_option_group__option struct {
+		Db_security_group_memberships  *[]string
+		Option_name                    string
+		Option_settings                *[]Db_option_group__option__option_settings
+		Port                           *int64
+		Version                        *string
+		Vpc_security_group_memberships *[]string
+	}
+
+	Db_parameter_group__parameter struct {
+		Apply_method *string
+		Name         string
+		Value        string
+	}
+
+	Db_security_group__ingress struct {
+		Cidr                    *string
+		Security_group_id       *string
+		Security_group_name     *string
+		Security_group_owner_id *string
+	}
+
+	Default_network_acl__egress struct {
+		Action          string
+		Cidr_block      *string
+		From_port       int64
+		Icmp_code       *int64
+		Icmp_type       *int64
+		Ipv6_cidr_block *string
+		Protocol        string
+		Rule_no         int64
+		To_port         int64
+	}
+
+	Default_network_acl__ingress struct {
+		Action          string
+		Cidr_block      *string
+		From_port       int64
+		Icmp_code       *int64
+		Icmp_type       *int64
+		Ipv6_cidr_block *string
+		Protocol        string
+		Rule_no         int64
+		To_port         int64
+	}
+
+	Default_route_table__route struct {
+		Cidr_block                *string
+		Egress_only_gateway_id    *string
+		Gateway_id                *string
+		Instance_id               *string
+		Ipv6_cidr_block           *string
+		Nat_gateway_id            *string
+		Network_interface_id      *string
+		Transit_gateway_id        *string
+		Vpc_peering_connection_id *string
+	}
+
+	Default_security_group__egress struct {
+		Cidr_blocks      *[]string
+		Description      *string
+		From_port        int64
+		Ipv6_cidr_blocks *[]string
+		Prefix_list_ids  *[]string
+		Protocol         string
+		Security_groups  *[]string
+		Self             *bool
+		To_port          int64
+	}
+
+	Default_security_group__ingress struct {
+		Cidr_blocks      *[]string
+		Description      *string
+		From_port        int64
+		Ipv6_cidr_blocks *[]string
+		Prefix_list_ids  *[]string
+		Protocol         string
+		Security_groups  *[]string
+		Self             *bool
+		To_port          int64
+	}
+
+	Directory_service_directory__connect_settings struct {
+		Customer_dns_ips  []string
+		Customer_username string
+		Subnet_ids        []string
+		Vpc_id            string
+	}
+
+	Directory_service_directory__vpc_settings struct {
+		Subnet_ids []string
+		Vpc_id     string
+	}
+
+	Dlm_lifecycle_policy__policy_details__schedule__create_rule struct {
+		Interval      int64
+		Interval_unit *string
+		Times         *[]string
+	}
+
+	Dlm_lifecycle_policy__policy_details__schedule__retain_rule struct {
+		Count int64
+	}
+
+	Dlm_lifecycle_policy__policy_details__schedule struct {
+		Copy_tags   *bool
+		Create_rule []Dlm_lifecycle_policy__policy_details__schedule__create_rule
+		Name        string
+		Retain_rule []Dlm_lifecycle_policy__policy_details__schedule__retain_rule
+		Tags_to_add *map[string]string
+	}
+
+	Dlm_lifecycle_policy__policy_details struct {
+		Resource_types []string
+		Schedule       []Dlm_lifecycle_policy__policy_details__schedule
+		Target_tags    map[string]string
+	}
+
+	Dms_endpoint__mongodb_settings struct {
+		Auth_mechanism      *string
+		Auth_source         *string
+		Auth_type           *string
+		Docs_to_investigate *string
+		Extract_doc_id      *string
+		Nesting_level       *string
+	}
+
+	Dms_endpoint__s3_settings struct {
+		Bucket_folder             *string
+		Bucket_name               *string
+		Compression_type          *string
+		Csv_delimiter             *string
+		Csv_row_delimiter         *string
+		External_table_definition *string
+		Service_access_role_arn   *string
+	}
+
+	Docdb_cluster_parameter_group__parameter struct {
+		Apply_method *string
+		Name         string
+		Value        string
+	}
+
+	Dynamodb_global_table__replica struct {
+		Region_name string
+	}
+
+	Dynamodb_table__attribute struct {
+		Name string
+		Type string
+	}
+
+	Dynamodb_table__global_secondary_index struct {
+		Hash_key           string
+		Name               string
+		Non_key_attributes *[]string
+		Projection_type    string
+		Range_key          *string
+		Read_capacity      *int64
+		Write_capacity     *int64
+	}
+
+	Dynamodb_table__local_secondary_index struct {
+		Name               string
+		Non_key_attributes *[]string
+		Projection_type    string
+		Range_key          string
+	}
+
+	Dynamodb_table__point_in_time_recovery struct {
+		Enabled bool
+	}
+
+	Dynamodb_table__server_side_encryption struct {
+		Enabled bool
+	}
+
+	Dynamodb_table__ttl struct {
+		Attribute_name string
+		Enabled        bool
+	}
+
+	Ec2_fleet__launch_template_config__launch_template_specification struct {
+		Launch_template_id   *string
+		Launch_template_name *string
+		Version              string
+	}
+
+	Ec2_fleet__launch_template_config__override struct {
+		Availability_zone *string
+		Instance_type     *string
+		Max_price         *string
+		Priority          *float64
+		Subnet_id         *string
+		Weighted_capacity *float64
+	}
+
+	Ec2_fleet__launch_template_config struct {
+		Launch_template_specification []Ec2_fleet__launch_template_config__launch_template_specification
+		Override                      *[]Ec2_fleet__launch_template_config__override
+	}
+
+	Ec2_fleet__on_demand_options struct {
+		Allocation_strategy *string
+	}
+
+	Ec2_fleet__spot_options struct {
+		Allocation_strategy            *string
+		Instance_interruption_behavior *string
+		Instance_pools_to_use_count    *int64
+	}
+
+	Ec2_fleet__target_capacity_specification struct {
+		Default_target_capacity_type string
+		On_demand_target_capacity    *int64
+		Spot_target_capacity         *int64
+		Total_target_capacity        int64
+	}
+
+	Ecs_service__deployment_controller struct {
+		Type *string
+	}
+
+	Ecs_service__load_balancer struct {
+		Container_name   string
+		Container_port   int64
+		Elb_name         *string
+		Target_group_arn *string
+	}
+
+	Ecs_service__network_configuration struct {
+		Assign_public_ip *bool
+		Security_groups  *[]string
+		Subnets          []string
+	}
+
+	Ecs_service__ordered_placement_strategy struct {
+		Field *string
+		Type  string
+	}
+
+	Ecs_service__placement_constraints struct {
+		Expression *string
+		Type       string
+	}
+
+	Ecs_service__placement_strategy struct {
+		Field *string
+		Type  string
+	}
+
+	Ecs_service__service_registries struct {
+		Container_name *string
+		Container_port *int64
+		Port           *int64
+		Registry_arn   string
+	}
+
+	Ecs_task_definition__placement_constraints struct {
+		Expression *string
+		Type       string
+	}
+
+	Ecs_task_definition__volume__docker_volume_configuration struct {
+		Autoprovision *bool
+		Driver        *string
+		Driver_opts   *map[string]string
+		Labels        *map[string]string
+		Scope         *string
+	}
+
+	Ecs_task_definition__volume struct {
+		Docker_volume_configuration *[]Ecs_task_definition__volume__docker_volume_configuration
+		Host_path                   *string
+		Name                        string
+	}
+
+	Eks_cluster__certificate_authority struct {
+		Data *string
+	}
+
+	Eks_cluster__vpc_config struct {
+		Security_group_ids *[]string
+		Subnet_ids         []string
+		Vpc_id             *string
+	}
+
+	Elastic_beanstalk_application__appversion_lifecycle struct {
+		Delete_source_from_s3 *bool
+		Max_age_in_days       *int64
+		Max_count             *int64
+		Service_role          string
+	}
+
+	Elastic_beanstalk_configuration_template__setting struct {
+		Name      string
+		Namespace string
+		Resource  *string
+		Value     string
+	}
+
+	Elastic_beanstalk_environment__all_settings struct {
+		Name      string
+		Namespace string
+		Resource  *string
+		Value     string
+	}
+
+	Elastic_beanstalk_environment__setting struct {
+		Name      string
+		Namespace string
+		Resource  *string
+		Value     string
+	}
+
+	Elasticache_cluster__cache_nodes struct {
+		Address           *string
+		Availability_zone *string
+		Id                *string
+		Port              *int64
+	}
+
+	Elasticache_parameter_group__parameter struct {
+		Name  string
+		Value string
+	}
+
+	Elasticache_replication_group__cluster_mode struct {
+		Num_node_groups         int64
+		Replicas_per_node_group int64
+	}
+
+	Elasticsearch_domain__cluster_config struct {
+		Dedicated_master_count   *int64
+		Dedicated_master_enabled *bool
+		Dedicated_master_type    *string
+		Instance_count           *int64
+		Instance_type            *string
+		Zone_awareness_enabled   *bool
+	}
+
+	Elasticsearch_domain__cognito_options struct {
+		Enabled          *bool
+		Identity_pool_id string
+		Role_arn         string
+		User_pool_id     string
+	}
+
+	Elasticsearch_domain__ebs_options struct {
+		Ebs_enabled bool
+		Iops        *int64
+		Volume_size *int64
+		Volume_type *string
+	}
+
+	Elasticsearch_domain__encrypt_at_rest struct {
+		Enabled    bool
+		Kms_key_id *string
+	}
+
+	Elasticsearch_domain__log_publishing_options struct {
+		Cloudwatch_log_group_arn string
+		Enabled                  *bool
+		Log_type                 string
+	}
+
+	Elasticsearch_domain__node_to_node_encryption struct {
+		Enabled bool
+	}
+
+	Elasticsearch_domain__snapshot_options struct {
+		Automated_snapshot_start_hour int64
+	}
+
+	Elasticsearch_domain__vpc_options struct {
+		Availability_zones *[]string
+		Security_group_ids *[]string
+		Subnet_ids         *[]string
+		Vpc_id             *string
+	}
+
+	Elastictranscoder_pipeline__content_config struct {
+		Bucket        *string
+		Storage_class *string
+	}
+
+	Elastictranscoder_pipeline__content_config_permissions struct {
+		Access       *[]string
+		Grantee      *string
+		Grantee_type *string
+	}
+
+	Elastictranscoder_pipeline__notifications struct {
+		Completed   *string
+		Error       *string
+		Progressing *string
+		Warning     *string
+	}
+
+	Elastictranscoder_pipeline__thumbnail_config struct {
+		Bucket        *string
+		Storage_class *string
+	}
+
+	Elastictranscoder_pipeline__thumbnail_config_permissions struct {
+		Access       *[]string
+		Grantee      *string
+		Grantee_type *string
+	}
+
+	Elastictranscoder_preset__audio struct {
+		Audio_packing_mode *string
+		Bit_rate           *string
+		Channels           *string
+		Codec              *string
+		Sample_rate        *string
+	}
+
+	Elastictranscoder_preset__audio_codec_options struct {
+		Bit_depth *string
+		Bit_order *string
+		Profile   *string
+		Signed    *string
+	}
+
+	Elastictranscoder_preset__thumbnails struct {
+		Aspect_ratio   *string
+		Format         *string
+		Interval       *string
+		Max_height     *string
+		Max_width      *string
+		Padding_policy *string
+		Resolution     *string
+		Sizing_policy  *string
+	}
+
+	Elastictranscoder_preset__video struct {
+		Aspect_ratio         *string
+		Bit_rate             *string
+		Codec                *string
+		Display_aspect_ratio *string
+		Fixed_gop            *string
+		Frame_rate           *string
+		Keyframes_max_dist   *string
+		Max_frame_rate       *string
+		Max_height           *string
+		Max_width            *string
+		Padding_policy       *string
+		Resolution           *string
+		Sizing_policy        *string
+	}
+
+	Elastictranscoder_preset__video_watermarks struct {
+		Horizontal_align  *string
+		Horizontal_offset *string
+		Id                *string
+		Max_height        *string
+		Max_width         *string
+		Opacity           *string
+		Sizing_policy     *string
+		Target            *string
+		Vertical_align    *string
+		Vertical_offset   *string
+	}
+
+	Elb__access_logs struct {
+		Bucket        string
+		Bucket_prefix *string
+		Enabled       *bool
+		Interval      *int64
+	}
+
+	Elb__health_check struct {
+		Healthy_threshold   int64
+		Interval            int64
+		Target              string
+		Timeout             int64
+		Unhealthy_threshold int64
+	}
+
+	Elb__listener struct {
+		Instance_port      int64
+		Instance_protocol  string
+		Lb_port            int64
+		Lb_protocol        string
+		Ssl_certificate_id *string
+	}
+
+	Emr_cluster__bootstrap_action struct {
+		Args *[]string
+		Name string
+		Path string
+	}
+
+	Emr_cluster__ec2_attributes struct {
+		Additional_master_security_groups *string
+		Additional_slave_security_groups  *string
+		Emr_managed_master_security_group *string
+		Emr_managed_slave_security_group  *string
+		Instance_profile                  string
+		Key_name                          *string
+		Service_access_security_group     *string
+		Subnet_id                         *string
+	}
+
+	Emr_cluster__instance_group__ebs_config struct {
+		Iops                 *int64
+		Size                 int64
+		Type                 string
+		Volumes_per_instance *int64
+	}
+
+	Emr_cluster__instance_group struct {
+		Autoscaling_policy *string
+		Bid_price          *string
+		Ebs_config         *[]Emr_cluster__instance_group__ebs_config
+		Id                 *string
+		Instance_count     *int64
+		Instance_role      string
+		Instance_type      string
+		Name               *string
+	}
+
+	Emr_cluster__kerberos_attributes struct {
+		Ad_domain_join_password              *string
+		Ad_domain_join_user                  *string
+		Cross_realm_trust_principal_password *string
+		Kdc_admin_password                   string
+		Realm                                string
+	}
+
+	Emr_cluster__step__hadoop_jar_step struct {
+		Args       *[]string
+		Jar        string
+		Main_class *string
+		Properties *map[string]string
+	}
+
+	Emr_cluster__step struct {
+		Action_on_failure string
+		Hadoop_jar_step   []Emr_cluster__step__hadoop_jar_step
+		Name              string
+	}
+
+	Emr_instance_group__ebs_config struct {
+		Iops                 *int64
+		Size                 int64
+		Type                 string
+		Volumes_per_instance *int64
+	}
+
+	Gamelift_alias__routing_strategy struct {
+		Fleet_id *string
+		Message  *string
+		Type     string
+	}
+
+	Gamelift_build__storage_location struct {
+		Bucket   string
+		Key      string
+		Role_arn string
+	}
+
+	Gamelift_fleet__ec2_inbound_permission struct {
+		From_port int64
+		Ip_range  string
+		Protocol  string
+		To_port   int64
+	}
+
+	Gamelift_fleet__resource_creation_limit_policy struct {
+		New_game_sessions_per_creator *int64
+		Policy_period_in_minutes      *int64
+	}
+
+	Gamelift_fleet__runtime_configuration__server_process struct {
+		Concurrent_executions int64
+		Launch_path           string
+		Parameters            *string
+	}
+
+	Gamelift_fleet__runtime_configuration struct {
+		Game_session_activation_timeout_seconds *int64
+		Max_concurrent_game_session_activations *int64
+		Server_process                          *[]Gamelift_fleet__runtime_configuration__server_process
+	}
+
+	Gamelift_game_session_queue__player_latency_policy struct {
+		Maximum_individual_player_latency_milliseconds int64
+		Policy_duration_seconds                        *int64
+	}
+
+	Glacier_vault__notification struct {
+		Events    []string
+		Sns_topic string
+	}
+
+	Globalaccelerator_accelerator__attributes struct {
+		Flow_logs_enabled   *bool
+		Flow_logs_s3_bucket *string
+		Flow_logs_s3_prefix *string
+	}
+
+	Globalaccelerator_accelerator__ip_sets struct {
+		Ip_addresses *[]string
+		Ip_family    *string
+	}
+
+	Glue_catalog_table__partition_keys struct {
+		Comment *string
+		Name    string
+		Type    *string
+	}
+
+	Glue_catalog_table__storage_descriptor__columns struct {
+		Comment *string
+		Name    string
+		Type    *string
+	}
+
+	Glue_catalog_table__storage_descriptor__ser_de_info struct {
+		Name                  *string
+		Parameters            *map[string]string
+		Serialization_library *string
+	}
+
+	Glue_catalog_table__storage_descriptor__skewed_info struct {
+		Skewed_column_names               *[]string
+		Skewed_column_value_location_maps *map[string]string
+		Skewed_column_values              *[]string
+	}
+
+	Glue_catalog_table__storage_descriptor__sort_columns struct {
+		Column     string
+		Sort_order int64
+	}
+
+	Glue_catalog_table__storage_descriptor struct {
+		Bucket_columns            *[]string
+		Columns                   *[]Glue_catalog_table__storage_descriptor__columns
+		Compressed                *bool
+		Input_format              *string
+		Location                  *string
+		Number_of_buckets         *int64
+		Output_format             *string
+		Parameters                *map[string]string
+		Ser_de_info               *[]Glue_catalog_table__storage_descriptor__ser_de_info
+		Skewed_info               *[]Glue_catalog_table__storage_descriptor__skewed_info
+		Sort_columns              *[]Glue_catalog_table__storage_descriptor__sort_columns
+		Stored_as_sub_directories *bool
+	}
+
+	Glue_classifier__grok_classifier struct {
+		Classification  string
+		Custom_patterns *string
+		Grok_pattern    string
+	}
+
+	Glue_classifier__json_classifier struct {
+		Json_path string
+	}
+
+	Glue_classifier__xml_classifier struct {
+		Classification string
+		Row_tag        string
+	}
+
+	Glue_connection__physical_connection_requirements struct {
+		Availability_zone      *string
+		Security_group_id_list *[]string
+		Subnet_id              *string
+	}
+
+	Glue_crawler__dynamodb_target struct {
+		Path string
+	}
+
+	Glue_crawler__jdbc_target struct {
+		Connection_name string
+		Exclusions      *[]string
+		Path            string
+	}
+
+	Glue_crawler__s3_target struct {
+		Exclusions *[]string
+		Path       string
+	}
+
+	Glue_crawler__schema_change_policy struct {
+		Delete_behavior *string
+		Update_behavior *string
+	}
+
+	Glue_job__command struct {
+		Name            *string
+		Script_location string
+	}
+
+	Glue_job__execution_property struct {
+		Max_concurrent_runs *int64
+	}
+
+	Glue_security_configuration__encryption_configuration__cloudwatch_encryption struct {
+		Cloudwatch_encryption_mode *string
+		Kms_key_arn                *string
+	}
+
+	Glue_security_configuration__encryption_configuration__job_bookmarks_encryption struct {
+		Job_bookmarks_encryption_mode *string
+		Kms_key_arn                   *string
+	}
+
+	Glue_security_configuration__encryption_configuration__s3_encryption struct {
+		Kms_key_arn        *string
+		S3_encryption_mode *string
+	}
+
+	Glue_security_configuration__encryption_configuration struct {
+		Cloudwatch_encryption    []Glue_security_configuration__encryption_configuration__cloudwatch_encryption
+		Job_bookmarks_encryption []Glue_security_configuration__encryption_configuration__job_bookmarks_encryption
+		S3_encryption            []Glue_security_configuration__encryption_configuration__s3_encryption
+	}
+
+	Glue_trigger__actions struct {
+		Arguments *map[string]string
+		Job_name  string
+		Timeout   *int64
+	}
+
+	Glue_trigger__predicate__conditions struct {
+		Job_name         string
+		Logical_operator *string
+		State            string
+	}
+
+	Glue_trigger__predicate struct {
+		Conditions []Glue_trigger__predicate__conditions
+		Logical    *string
+	}
+
+	Instance__credit_specification struct {
+		Cpu_credits *string
+	}
+
+	Instance__ebs_block_device struct {
+		Delete_on_termination *bool
+		Device_name           string
+		Encrypted             *bool
+		Iops                  *int64
+		Snapshot_id           *string
+		Volume_id             *string
+		Volume_size           *int64
+		Volume_type           *string
+	}
+
+	Instance__ephemeral_block_device struct {
+		Device_name  string
+		No_device    *bool
+		Virtual_name *string
+	}
+
+	Instance__network_interface struct {
+		Delete_on_termination *bool
+		Device_index          int64
+		Network_interface_id  string
+	}
+
+	Instance__root_block_device struct {
+		Delete_on_termination *bool
+		Iops                  *int64
+		Volume_id             *string
+		Volume_size           *int64
+		Volume_type           *string
+	}
+
+	Iot_thing_type__properties struct {
+		Description           *string
+		Searchable_attributes *[]string
+	}
+
+	Iot_topic_rule__cloudwatch_alarm struct {
+		Alarm_name   string
+		Role_arn     string
+		State_reason string
+		State_value  string
+	}
+
+	Iot_topic_rule__cloudwatch_metric struct {
+		Metric_name      string
+		Metric_namespace string
+		Metric_timestamp *string
+		Metric_unit      string
+		Metric_value     string
+		Role_arn         string
+	}
+
+	Iot_topic_rule__dynamodb struct {
+		Hash_key_field  string
+		Hash_key_type   *string
+		Hash_key_value  string
+		Payload_field   *string
+		Range_key_field string
+		Range_key_type  *string
+		Range_key_value string
+		Role_arn        string
+		Table_name      string
+	}
+
+	Iot_topic_rule__elasticsearch struct {
+		Endpoint string
+		Id       string
+		Index    string
+		Role_arn string
+		Type     string
+	}
+
+	Iot_topic_rule__firehose struct {
+		Delivery_stream_name string
+		Role_arn             string
+		Separator            *string
+	}
+
+	Iot_topic_rule__kinesis struct {
+		Partition_key *string
+		Role_arn      string
+		Stream_name   string
+	}
+
+	Iot_topic_rule__lambda struct {
+		Function_arn string
+	}
+
+	Iot_topic_rule__republish struct {
+		Role_arn string
+		Topic    string
+	}
+
+	Iot_topic_rule__s3 struct {
+		Bucket_name string
+		Key         string
+		Role_arn    string
+	}
+
+	Iot_topic_rule__sns struct {
+		Message_format *string
+		Role_arn       string
+		Target_arn     string
+	}
+
+	Iot_topic_rule__sqs struct {
+		Queue_url  string
+		Role_arn   string
+		Use_base64 bool
+	}
+
+	Kinesis_analytics_application__cloudwatch_logging_options struct {
+		Id             *string
+		Log_stream_arn string
+		Role_arn       string
+	}
+
+	Kinesis_analytics_application__inputs__kinesis_firehose struct {
+		Resource_arn string
+		Role_arn     string
+	}
+
+	Kinesis_analytics_application__inputs__kinesis_stream struct {
+		Resource_arn string
+		Role_arn     string
+	}
+
+	Kinesis_analytics_application__inputs__parallelism struct {
+		Count int64
+	}
+
+	Kinesis_analytics_application__inputs__processing_configuration__lambda struct {
+		Resource_arn string
+		Role_arn     string
+	}
+
+	Kinesis_analytics_application__inputs__processing_configuration struct {
+		Lambda []Kinesis_analytics_application__inputs__processing_configuration__lambda
+	}
+
+	Kinesis_analytics_application__inputs__schema__record_columns struct {
+		Mapping  *string
+		Name     string
+		Sql_type string
+	}
+
+	Kinesis_analytics_application__inputs__schema__record_format__mapping_parameters__csv struct {
+		Record_column_delimiter string
+		Record_row_delimiter    string
+	}
+
+	Kinesis_analytics_application__inputs__schema__record_format__mapping_parameters__json struct {
+		Record_row_path string
+	}
+
+	Kinesis_analytics_application__inputs__schema__record_format__mapping_parameters struct {
+		Csv  *[]Kinesis_analytics_application__inputs__schema__record_format__mapping_parameters__csv
+		Json *[]Kinesis_analytics_application__inputs__schema__record_format__mapping_parameters__json
+	}
+
+	Kinesis_analytics_application__inputs__schema__record_format struct {
+		Mapping_parameters *[]Kinesis_analytics_application__inputs__schema__record_format__mapping_parameters
+		Record_format_type *string
+	}
+
+	Kinesis_analytics_application__inputs__schema struct {
+		Record_columns  []Kinesis_analytics_application__inputs__schema__record_columns
+		Record_encoding *string
+		Record_format   []Kinesis_analytics_application__inputs__schema__record_format
+	}
+
+	Kinesis_analytics_application__inputs__starting_position_configuration struct {
+		Starting_position *string
+	}
+
+	Kinesis_analytics_application__inputs struct {
+		Id                              *string
+		Kinesis_firehose                *[]Kinesis_analytics_application__inputs__kinesis_firehose
+		Kinesis_stream                  *[]Kinesis_analytics_application__inputs__kinesis_stream
+		Name_prefix                     string
+		Parallelism                     *[]Kinesis_analytics_application__inputs__parallelism
+		Processing_configuration        *[]Kinesis_analytics_application__inputs__processing_configuration
+		Schema                          []Kinesis_analytics_application__inputs__schema
+		Starting_position_configuration *[]Kinesis_analytics_application__inputs__starting_position_configuration
+		Stream_names                    *[]string
+	}
+
+	Kinesis_analytics_application__outputs__kinesis_firehose struct {
+		Resource_arn string
+		Role_arn     string
+	}
+
+	Kinesis_analytics_application__outputs__kinesis_stream struct {
+		Resource_arn string
+		Role_arn     string
+	}
+
+	Kinesis_analytics_application__outputs__lambda struct {
+		Resource_arn string
+		Role_arn     string
+	}
+
+	Kinesis_analytics_application__outputs__schema struct {
+		Record_format_type *string
+	}
+
+	Kinesis_analytics_application__outputs struct {
+		Id               *string
+		Kinesis_firehose *[]Kinesis_analytics_application__outputs__kinesis_firehose
+		Kinesis_stream   *[]Kinesis_analytics_application__outputs__kinesis_stream
+		Lambda           *[]Kinesis_analytics_application__outputs__lambda
+		Name             string
+		Schema           []Kinesis_analytics_application__outputs__schema
+	}
+
+	Kinesis_analytics_application__reference_data_sources__s3 struct {
+		Bucket_arn string
+		File_key   string
+		Role_arn   string
+	}
+
+	Kinesis_analytics_application__reference_data_sources__schema__record_columns struct {
+		Mapping  *string
+		Name     string
+		Sql_type string
+	}
+
+	Kinesis_analytics_application__reference_data_sources__schema__record_format__mapping_parameters__csv struct {
+		Record_column_delimiter string
+		Record_row_delimiter    string
+	}
+
+	Kinesis_analytics_application__reference_data_sources__schema__record_format__mapping_parameters__json struct {
+		Record_row_path string
+	}
+
+	Kinesis_analytics_application__reference_data_sources__schema__record_format__mapping_parameters struct {
+		Csv  *[]Kinesis_analytics_application__reference_data_sources__schema__record_format__mapping_parameters__csv
+		Json *[]Kinesis_analytics_application__reference_data_sources__schema__record_format__mapping_parameters__json
+	}
+
+	Kinesis_analytics_application__reference_data_sources__schema__record_format struct {
+		Mapping_parameters *[]Kinesis_analytics_application__reference_data_sources__schema__record_format__mapping_parameters
+		Record_format_type *string
+	}
+
+	Kinesis_analytics_application__reference_data_sources__schema struct {
+		Record_columns  []Kinesis_analytics_application__reference_data_sources__schema__record_columns
+		Record_encoding *string
+		Record_format   []Kinesis_analytics_application__reference_data_sources__schema__record_format
+	}
+
+	Kinesis_analytics_application__reference_data_sources struct {
+		Id         *string
+		S3         []Kinesis_analytics_application__reference_data_sources__s3
+		Schema     []Kinesis_analytics_application__reference_data_sources__schema
+		Table_name string
+	}
+
+	Kinesis_firehose_delivery_stream__elasticsearch_configuration__cloudwatch_logging_options struct {
+		Enabled         *bool
+		Log_group_name  *string
+		Log_stream_name *string
+	}
+
+	Kinesis_firehose_delivery_stream__elasticsearch_configuration__processing_configuration__processors__parameters struct {
+		Parameter_name  string
+		Parameter_value string
+	}
+
+	Kinesis_firehose_delivery_stream__elasticsearch_configuration__processing_configuration__processors struct {
+		Parameters *[]Kinesis_firehose_delivery_stream__elasticsearch_configuration__processing_configuration__processors__parameters
+		Type       string
+	}
+
+	Kinesis_firehose_delivery_stream__elasticsearch_configuration__processing_configuration struct {
+		Enabled    *bool
+		Processors *[]Kinesis_firehose_delivery_stream__elasticsearch_configuration__processing_configuration__processors
+	}
+
+	Kinesis_firehose_delivery_stream__elasticsearch_configuration struct {
+		Buffering_interval         *int64
+		Buffering_size             *int64
+		Cloudwatch_logging_options *[]Kinesis_firehose_delivery_stream__elasticsearch_configuration__cloudwatch_logging_options
+		Domain_arn                 string
+		Index_name                 string
+		Index_rotation_period      *string
+		Processing_configuration   *[]Kinesis_firehose_delivery_stream__elasticsearch_configuration__processing_configuration
+		Retry_duration             *int64
+		Role_arn                   string
+		S3_backup_mode             *string
+		Type_name                  *string
+	}
+
+	Kinesis_firehose_delivery_stream__extended_s3_configuration__cloudwatch_logging_options struct {
+		Enabled         *bool
+		Log_group_name  *string
+		Log_stream_name *string
+	}
+
+	Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration__input_format_configuration__deserializer__hive_json_ser_de struct {
+		Timestamp_formats *[]string
+	}
+
+	Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration__input_format_configuration__deserializer__open_x_json_ser_de struct {
+		Case_insensitive                         *bool
+		Column_to_json_key_mappings              *map[string]string
+		Convert_dots_in_json_keys_to_underscores *bool
+	}
+
+	Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration__input_format_configuration__deserializer struct {
+		Hive_json_ser_de   *[]Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration__input_format_configuration__deserializer__hive_json_ser_de
+		Open_x_json_ser_de *[]Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration__input_format_configuration__deserializer__open_x_json_ser_de
+	}
+
+	Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration__input_format_configuration struct {
+		Deserializer []Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration__input_format_configuration__deserializer
+	}
+
+	Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration__output_format_configuration__serializer__orc_ser_de struct {
+		Block_size_bytes                        *int64
+		Bloom_filter_columns                    *[]string
+		Bloom_filter_false_positive_probability *float64
+		Compression                             *string
+		Dictionary_key_threshold                *float64
+		Enable_padding                          *bool
+		Format_version                          *string
+		Padding_tolerance                       *float64
+		Row_index_stride                        *int64
+		Stripe_size_bytes                       *int64
+	}
+
+	Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration__output_format_configuration__serializer__parquet_ser_de struct {
+		Block_size_bytes              *int64
+		Compression                   *string
+		Enable_dictionary_compression *bool
+		Max_padding_bytes             *int64
+		Page_size_bytes               *int64
+		Writer_version                *string
+	}
+
+	Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration__output_format_configuration__serializer struct {
+		Orc_ser_de     *[]Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration__output_format_configuration__serializer__orc_ser_de
+		Parquet_ser_de *[]Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration__output_format_configuration__serializer__parquet_ser_de
+	}
+
+	Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration__output_format_configuration struct {
+		Serializer []Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration__output_format_configuration__serializer
+	}
+
+	Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration__schema_configuration struct {
+		Catalog_id    *string
+		Database_name string
+		Region        *string
+		Role_arn      string
+		Table_name    string
+		Version_id    *string
+	}
+
+	Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration struct {
+		Enabled                     *bool
+		Input_format_configuration  []Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration__input_format_configuration
+		Output_format_configuration []Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration__output_format_configuration
+		Schema_configuration        []Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration__schema_configuration
+	}
+
+	Kinesis_firehose_delivery_stream__extended_s3_configuration__processing_configuration__processors__parameters struct {
+		Parameter_name  string
+		Parameter_value string
+	}
+
+	Kinesis_firehose_delivery_stream__extended_s3_configuration__processing_configuration__processors struct {
+		Parameters *[]Kinesis_firehose_delivery_stream__extended_s3_configuration__processing_configuration__processors__parameters
+		Type       string
+	}
+
+	Kinesis_firehose_delivery_stream__extended_s3_configuration__processing_configuration struct {
+		Enabled    *bool
+		Processors *[]Kinesis_firehose_delivery_stream__extended_s3_configuration__processing_configuration__processors
+	}
+
+	Kinesis_firehose_delivery_stream__extended_s3_configuration__s3_backup_configuration__cloudwatch_logging_options struct {
+		Enabled         *bool
+		Log_group_name  *string
+		Log_stream_name *string
+	}
+
+	Kinesis_firehose_delivery_stream__extended_s3_configuration__s3_backup_configuration struct {
+		Bucket_arn                 string
+		Buffer_interval            *int64
+		Buffer_size                *int64
+		Cloudwatch_logging_options *[]Kinesis_firehose_delivery_stream__extended_s3_configuration__s3_backup_configuration__cloudwatch_logging_options
+		Compression_format         *string
+		Kms_key_arn                *string
+		Prefix                     *string
+		Role_arn                   string
+	}
+
+	Kinesis_firehose_delivery_stream__extended_s3_configuration struct {
+		Bucket_arn                           string
+		Buffer_interval                      *int64
+		Buffer_size                          *int64
+		Cloudwatch_logging_options           *[]Kinesis_firehose_delivery_stream__extended_s3_configuration__cloudwatch_logging_options
+		Compression_format                   *string
+		Data_format_conversion_configuration *[]Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration
+		Error_output_prefix                  *string
+		Kms_key_arn                          *string
+		Prefix                               *string
+		Processing_configuration             *[]Kinesis_firehose_delivery_stream__extended_s3_configuration__processing_configuration
+		Role_arn                             string
+		S3_backup_configuration              *[]Kinesis_firehose_delivery_stream__extended_s3_configuration__s3_backup_configuration
+		S3_backup_mode                       *string
+	}
+
+	Kinesis_firehose_delivery_stream__kinesis_source_configuration struct {
+		Kinesis_stream_arn string
+		Role_arn           string
+	}
+
+	Kinesis_firehose_delivery_stream__redshift_configuration__cloudwatch_logging_options struct {
+		Enabled         *bool
+		Log_group_name  *string
+		Log_stream_name *string
+	}
+
+	Kinesis_firehose_delivery_stream__redshift_configuration__processing_configuration__processors__parameters struct {
+		Parameter_name  string
+		Parameter_value string
+	}
+
+	Kinesis_firehose_delivery_stream__redshift_configuration__processing_configuration__processors struct {
+		Parameters *[]Kinesis_firehose_delivery_stream__redshift_configuration__processing_configuration__processors__parameters
+		Type       string
+	}
+
+	Kinesis_firehose_delivery_stream__redshift_configuration__processing_configuration struct {
+		Enabled    *bool
+		Processors *[]Kinesis_firehose_delivery_stream__redshift_configuration__processing_configuration__processors
+	}
+
+	Kinesis_firehose_delivery_stream__redshift_configuration__s3_backup_configuration__cloudwatch_logging_options struct {
+		Enabled         *bool
+		Log_group_name  *string
+		Log_stream_name *string
+	}
+
+	Kinesis_firehose_delivery_stream__redshift_configuration__s3_backup_configuration struct {
+		Bucket_arn                 string
+		Buffer_interval            *int64
+		Buffer_size                *int64
+		Cloudwatch_logging_options *[]Kinesis_firehose_delivery_stream__redshift_configuration__s3_backup_configuration__cloudwatch_logging_options
+		Compression_format         *string
+		Kms_key_arn                *string
+		Prefix                     *string
+		Role_arn                   string
+	}
+
+	Kinesis_firehose_delivery_stream__redshift_configuration struct {
+		Cloudwatch_logging_options *[]Kinesis_firehose_delivery_stream__redshift_configuration__cloudwatch_logging_options
+		Cluster_jdbcurl            string
+		Copy_options               *string
+		Data_table_columns         *string
+		Data_table_name            string
+		Password                   string
+		Processing_configuration   *[]Kinesis_firehose_delivery_stream__redshift_configuration__processing_configuration
+		Retry_duration             *int64
+		Role_arn                   string
+		S3_backup_configuration    *[]Kinesis_firehose_delivery_stream__redshift_configuration__s3_backup_configuration
+		S3_backup_mode             *string
+		Username                   string
+	}
+
+	Kinesis_firehose_delivery_stream__s3_configuration__cloudwatch_logging_options struct {
+		Enabled         *bool
+		Log_group_name  *string
+		Log_stream_name *string
+	}
+
+	Kinesis_firehose_delivery_stream__s3_configuration struct {
+		Bucket_arn                 string
+		Buffer_interval            *int64
+		Buffer_size                *int64
+		Cloudwatch_logging_options *[]Kinesis_firehose_delivery_stream__s3_configuration__cloudwatch_logging_options
+		Compression_format         *string
+		Kms_key_arn                *string
+		Prefix                     *string
+		Role_arn                   string
+	}
+
+	Kinesis_firehose_delivery_stream__splunk_configuration__cloudwatch_logging_options struct {
+		Enabled         *bool
+		Log_group_name  *string
+		Log_stream_name *string
+	}
+
+	Kinesis_firehose_delivery_stream__splunk_configuration__processing_configuration__processors__parameters struct {
+		Parameter_name  string
+		Parameter_value string
+	}
+
+	Kinesis_firehose_delivery_stream__splunk_configuration__processing_configuration__processors struct {
+		Parameters *[]Kinesis_firehose_delivery_stream__splunk_configuration__processing_configuration__processors__parameters
+		Type       string
+	}
+
+	Kinesis_firehose_delivery_stream__splunk_configuration__processing_configuration struct {
+		Enabled    *bool
+		Processors *[]Kinesis_firehose_delivery_stream__splunk_configuration__processing_configuration__processors
+	}
+
+	Kinesis_firehose_delivery_stream__splunk_configuration struct {
+		Cloudwatch_logging_options *[]Kinesis_firehose_delivery_stream__splunk_configuration__cloudwatch_logging_options
+		Hec_acknowledgment_timeout *int64
+		Hec_endpoint               string
+		Hec_endpoint_type          *string
+		Hec_token                  string
+		Processing_configuration   *[]Kinesis_firehose_delivery_stream__splunk_configuration__processing_configuration
+		Retry_duration             *int64
+		S3_backup_mode             *string
+	}
+
+	Kms_grant__constraints struct {
+		Encryption_context_equals *map[string]string
+		Encryption_context_subset *map[string]string
+	}
+
+	Lambda_alias__routing_config struct {
+		Additional_version_weights *map[string]float64
+	}
+
+	Lambda_function__dead_letter_config struct {
+		Target_arn string
+	}
+
+	Lambda_function__environment struct {
+		Variables *map[string]string
+	}
+
+	Lambda_function__tracing_config struct {
+		Mode string
+	}
+
+	Lambda_function__vpc_config struct {
+		Security_group_ids []string
+		Subnet_ids         []string
+		Vpc_id             *string
+	}
+
+	Launch_configuration__ebs_block_device struct {
+		Delete_on_termination *bool
+		Device_name           string
+		Encrypted             *bool
+		Iops                  *int64
+		No_device             *bool
+		Snapshot_id           *string
+		Volume_size           *int64
+		Volume_type           *string
+	}
+
+	Launch_configuration__ephemeral_block_device struct {
+		Device_name  string
+		Virtual_name string
+	}
+
+	Launch_configuration__root_block_device struct {
+		Delete_on_termination *bool
+		Iops                  *int64
+		Volume_size           *int64
+		Volume_type           *string
+	}
+
+	Launch_template__block_device_mappings__ebs struct {
+		Delete_on_termination *string
+		Encrypted             *string
+		Iops                  *int64
+		Kms_key_id            *string
+		Snapshot_id           *string
+		Volume_size           *int64
+		Volume_type           *string
+	}
+
+	Launch_template__block_device_mappings struct {
+		Device_name  *string
+		Ebs          *[]Launch_template__block_device_mappings__ebs
+		No_device    *string
+		Virtual_name *string
+	}
+
+	Launch_template__capacity_reservation_specification__capacity_reservation_target struct {
+		Capacity_reservation_id *string
+	}
+
+	Launch_template__capacity_reservation_specification struct {
+		Capacity_reservation_preference *string
+		Capacity_reservation_target     *[]Launch_template__capacity_reservation_specification__capacity_reservation_target
+	}
+
+	Launch_template__credit_specification struct {
+		Cpu_credits *string
+	}
+
+	Launch_template__elastic_gpu_specifications struct {
+		Type string
+	}
+
+	Launch_template__iam_instance_profile struct {
+		Arn  *string
+		Name *string
+	}
+
+	Launch_template__instance_market_options__spot_options struct {
+		Block_duration_minutes         *int64
+		Instance_interruption_behavior *string
+		Max_price                      *string
+		Spot_instance_type             *string
+		Valid_until                    *time.Time
+	}
+
+	Launch_template__instance_market_options struct {
+		Market_type  *string
+		Spot_options *[]Launch_template__instance_market_options__spot_options
+	}
+
+	Launch_template__license_specification struct {
+		License_configuration_arn string
+	}
+
+	Launch_template__monitoring struct {
+		Enabled *bool
+	}
+
+	Launch_template__network_interfaces struct {
+		Associate_public_ip_address *bool
+		Delete_on_termination       *bool
+		Description                 *string
+		Device_index                *int64
+		Ipv4_address_count          *int64
+		Ipv4_addresses              *[]string
+		Ipv6_address_count          *int64
+		Ipv6_addresses              *[]string
+		Network_interface_id        *string
+		Private_ip_address          *string
+		Security_groups             *[]string
+		Subnet_id                   *string
+	}
+
+	Launch_template__placement struct {
+		Affinity          *string
+		Availability_zone *string
+		Group_name        *string
+		Host_id           *string
+		Spread_domain     *string
+		Tenancy           *string
+	}
+
+	Launch_template__tag_specifications struct {
+		Resource_type *string
+		Tags          *map[string]string
+	}
+
+	Lb__access_logs struct {
+		Bucket  string
+		Enabled *bool
+		Prefix  *string
+	}
+
+	Lb__subnet_mapping struct {
+		Allocation_id *string
+		Subnet_id     string
+	}
+
+	Lb_listener__default_action__authenticate_cognito struct {
+		Authentication_request_extra_params *map[string]string
+		On_unauthenticated_request          *string
+		Scope                               *string
+		Session_cookie_name                 *string
+		Session_timeout                     *int64
+		User_pool_arn                       string
+		User_pool_client_id                 string
+		User_pool_domain                    string
+	}
+
+	Lb_listener__default_action__authenticate_oidc struct {
+		Authentication_request_extra_params *map[string]string
+		Authorization_endpoint              string
+		Client_id                           string
+		Client_secret                       string
+		Issuer                              string
+		On_unauthenticated_request          *string
+		Scope                               *string
+		Session_cookie_name                 *string
+		Session_timeout                     *int64
+		Token_endpoint                      string
+		User_info_endpoint                  string
+	}
+
+	Lb_listener__default_action__fixed_response struct {
+		Content_type string
+		Message_body *string
+		Status_code  *string
+	}
+
+	Lb_listener__default_action__redirect struct {
+		Host        *string
+		Path        *string
+		Port        *string
+		Protocol    *string
+		Query       *string
+		Status_code string
+	}
+
+	Lb_listener__default_action struct {
+		Authenticate_cognito *[]Lb_listener__default_action__authenticate_cognito
+		Authenticate_oidc    *[]Lb_listener__default_action__authenticate_oidc
+		Fixed_response       *[]Lb_listener__default_action__fixed_response
+		Order                *int64
+		Redirect             *[]Lb_listener__default_action__redirect
+		Target_group_arn     *string
+		Type                 string
+	}
+
+	Lb_listener_rule__action__authenticate_cognito struct {
+		Authentication_request_extra_params *map[string]string
+		On_unauthenticated_request          *string
+		Scope                               *string
+		Session_cookie_name                 *string
+		Session_timeout                     *int64
+		User_pool_arn                       string
+		User_pool_client_id                 string
+		User_pool_domain                    string
+	}
+
+	Lb_listener_rule__action__authenticate_oidc struct {
+		Authentication_request_extra_params *map[string]string
+		Authorization_endpoint              string
+		Client_id                           string
+		Client_secret                       string
+		Issuer                              string
+		On_unauthenticated_request          *string
+		Scope                               *string
+		Session_cookie_name                 *string
+		Session_timeout                     *int64
+		Token_endpoint                      string
+		User_info_endpoint                  string
+	}
+
+	Lb_listener_rule__action__fixed_response struct {
+		Content_type string
+		Message_body *string
+		Status_code  *string
+	}
+
+	Lb_listener_rule__action__redirect struct {
+		Host        *string
+		Path        *string
+		Port        *string
+		Protocol    *string
+		Query       *string
+		Status_code string
+	}
+
+	Lb_listener_rule__action struct {
+		Authenticate_cognito *[]Lb_listener_rule__action__authenticate_cognito
+		Authenticate_oidc    *[]Lb_listener_rule__action__authenticate_oidc
+		Fixed_response       *[]Lb_listener_rule__action__fixed_response
+		Order                *int64
+		Redirect             *[]Lb_listener_rule__action__redirect
+		Target_group_arn     *string
+		Type                 string
+	}
+
+	Lb_listener_rule__condition struct {
+		Field  *string
+		Values *[]string
+	}
+
+	Lb_ssl_negotiation_policy__attribute struct {
+		Name  string
+		Value string
+	}
+
+	Lb_target_group__health_check struct {
+		Healthy_threshold   *int64
+		Interval            *int64
+		Matcher             *string
+		Path                *string
+		Port                *string
+		Protocol            *string
+		Timeout             *int64
+		Unhealthy_threshold *int64
+	}
+
+	Lb_target_group__stickiness struct {
+		Cookie_duration *int64
+		Enabled         *bool
+		Type            string
+	}
+
+	Load_balancer_policy__policy_attribute struct {
+		Name  *string
+		Value *string
+	}
+
+	Macie_s3_bucket_association__classification_type struct {
+		Continuous *string
+		One_time   *string
+	}
+
+	Media_package_channel__hls_ingest__ingest_endpoints struct {
+		Password *string
+		Url      *string
+		Username *string
+	}
+
+	Media_package_channel__hls_ingest struct {
+		Ingest_endpoints *[]Media_package_channel__hls_ingest__ingest_endpoints
+	}
+
+	Mq_broker__configuration struct {
+		Id       *string
+		Revision *int64
+	}
+
+	Mq_broker__instances struct {
+		Console_url *string
+		Endpoints   *[]string
+		Ip_address  *string
+	}
+
+	Mq_broker__logs struct {
+		Audit   *bool
+		General *bool
+	}
+
+	Mq_broker__maintenance_window_start_time struct {
+		Day_of_week string
+		Time_of_day string
+		Time_zone   string
+	}
+
+	Mq_broker__user struct {
+		Console_access *bool
+		Groups         *[]string
+		Password       string
+		Username       string
+	}
+
+	Neptune_cluster_parameter_group__parameter struct {
+		Apply_method *string
+		Name         string
+		Value        string
+	}
+
+	Neptune_parameter_group__parameter struct {
+		Apply_method *string
+		Name         string
+		Value        string
+	}
+
+	Network_acl__egress struct {
+		Action          string
+		Cidr_block      *string
+		From_port       int64
+		Icmp_code       *int64
+		Icmp_type       *int64
+		Ipv6_cidr_block *string
+		Protocol        string
+		Rule_no         int64
+		To_port         int64
+	}
+
+	Network_acl__ingress struct {
+		Action          string
+		Cidr_block      *string
+		From_port       int64
+		Icmp_code       *int64
+		Icmp_type       *int64
+		Ipv6_cidr_block *string
+		Protocol        string
+		Rule_no         int64
+		To_port         int64
+	}
+
+	Network_interface__attachment struct {
+		Attachment_id *string
+		Device_index  int64
+		Instance      string
+	}
+
+	Opsworks_application__app_source struct {
+		Password *string
+		Revision *string
+		Ssh_key  *string
+		Type     string
+		Url      *string
+		Username *string
+	}
+
+	Opsworks_application__environment struct {
+		Key    string
+		Secure *bool
+		Value  string
+	}
+
+	Opsworks_application__ssl_configuration struct {
+		Certificate string
+		Chain       *string
+		Private_key string
+	}
+
+	Opsworks_custom_layer__ebs_volume struct {
+		Iops            *int64
+		Mount_point     string
+		Number_of_disks int64
+		Raid_level      *string
+		Size            int64
+		Type            *string
+	}
+
+	Opsworks_ganglia_layer__ebs_volume struct {
+		Iops            *int64
+		Mount_point     string
+		Number_of_disks int64
+		Raid_level      *string
+		Size            int64
+		Type            *string
+	}
+
+	Opsworks_haproxy_layer__ebs_volume struct {
+		Iops            *int64
+		Mount_point     string
+		Number_of_disks int64
+		Raid_level      *string
+		Size            int64
+		Type            *string
+	}
+
+	Opsworks_instance__ebs_block_device struct {
+		Delete_on_termination *bool
+		Device_name           string
+		Iops                  *int64
+		Snapshot_id           *string
+		Volume_size           *int64
+		Volume_type           *string
+	}
+
+	Opsworks_instance__ephemeral_block_device struct {
+		Device_name  string
+		Virtual_name string
+	}
+
+	Opsworks_instance__root_block_device struct {
+		Delete_on_termination *bool
+		Iops                  *int64
+		Volume_size           *int64
+		Volume_type           *string
+	}
+
+	Opsworks_java_app_layer__ebs_volume struct {
+		Iops            *int64
+		Mount_point     string
+		Number_of_disks int64
+		Raid_level      *string
+		Size            int64
+		Type            *string
+	}
+
+	Opsworks_memcached_layer__ebs_volume struct {
+		Iops            *int64
+		Mount_point     string
+		Number_of_disks int64
+		Raid_level      *string
+		Size            int64
+		Type            *string
+	}
+
+	Opsworks_mysql_layer__ebs_volume struct {
+		Iops            *int64
+		Mount_point     string
+		Number_of_disks int64
+		Raid_level      *string
+		Size            int64
+		Type            *string
+	}
+
+	Opsworks_nodejs_app_layer__ebs_volume struct {
+		Iops            *int64
+		Mount_point     string
+		Number_of_disks int64
+		Raid_level      *string
+		Size            int64
+		Type            *string
+	}
+
+	Opsworks_php_app_layer__ebs_volume struct {
+		Iops            *int64
+		Mount_point     string
+		Number_of_disks int64
+		Raid_level      *string
+		Size            int64
+		Type            *string
+	}
+
+	Opsworks_rails_app_layer__ebs_volume struct {
+		Iops            *int64
+		Mount_point     string
+		Number_of_disks int64
+		Raid_level      *string
+		Size            int64
+		Type            *string
+	}
+
+	Opsworks_stack__custom_cookbooks_source struct {
+		Password *string
+		Revision *string
+		Ssh_key  *string
+		Type     string
+		Url      string
+		Username *string
+	}
+
+	Opsworks_static_web_layer__ebs_volume struct {
+		Iops            *int64
+		Mount_point     string
+		Number_of_disks int64
+		Raid_level      *string
+		Size            int64
+		Type            *string
+	}
+
+	Pinpoint_app__campaign_hook struct {
+		Lambda_function_name *string
+		Mode                 *string
+		Web_url              *string
+	}
+
+	Pinpoint_app__limits struct {
+		Daily               *int64
+		Maximum_duration    *int64
+		Messages_per_second *int64
+		Total               *int64
+	}
+
+	Pinpoint_app__quiet_time struct {
+		End   *string
+		Start *string
+	}
+
+	Rds_cluster__s3_import struct {
+		Bucket_name           string
+		Bucket_prefix         *string
+		Ingestion_role        string
+		Source_engine         string
+		Source_engine_version string
+	}
+
+	Rds_cluster__scaling_configuration struct {
+		Auto_pause               *bool
+		Max_capacity             *int64
+		Min_capacity             *int64
+		Seconds_until_auto_pause *int64
+	}
+
+	Rds_cluster_parameter_group__parameter struct {
+		Apply_method *string
+		Name         string
+		Value        string
+	}
+
+	Redshift_cluster__logging struct {
+		Bucket_name   *string
+		Enable        bool
+		S3_key_prefix *string
+	}
+
+	Redshift_cluster__snapshot_copy struct {
+		Destination_region string
+		Grant_name         *string
+		Retention_period   *int64
+	}
+
+	Redshift_parameter_group__parameter struct {
+		Name  string
+		Value string
+	}
+
+	Redshift_security_group__ingress struct {
+		Cidr                    *string
+		Security_group_name     *string
+		Security_group_owner_id *string
+	}
+
+	Resourcegroups_group__resource_query struct {
+		Query string
+		Type  *string
+	}
+
+	Route53_record__alias struct {
+		Evaluate_target_health bool
+		Name                   string
+		Zone_id                string
+	}
+
+	Route53_record__failover_routing_policy struct {
+		Type string
+	}
+
+	Route53_record__geolocation_routing_policy struct {
+		Continent   *string
+		Country     *string
+		Subdivision *string
+	}
+
+	Route53_record__latency_routing_policy struct {
+		Region string
+	}
+
+	Route53_record__weighted_routing_policy struct {
+		Weight int64
+	}
+
+	Route53_zone__vpc struct {
+		Vpc_id     string
+		Vpc_region *string
+	}
+
+	Route_table__route struct {
+		Cidr_block                *string
+		Egress_only_gateway_id    *string
+		Gateway_id                *string
+		Instance_id               *string
+		Ipv6_cidr_block           *string
+		Nat_gateway_id            *string
+		Network_interface_id      *string
+		Transit_gateway_id        *string
+		Vpc_peering_connection_id *string
+	}
+
+	S3_bucket__cors_rule struct {
+		Allowed_headers *[]string
+		Allowed_methods []string
+		Allowed_origins []string
+		Expose_headers  *[]string
+		Max_age_seconds *int64
+	}
+
+	S3_bucket__lifecycle_rule__expiration struct {
+		Date                         *string
+		Days                         *int64
+		Expired_object_delete_marker *bool
+	}
+
+	S3_bucket__lifecycle_rule__noncurrent_version_expiration struct {
+		Days *int64
+	}
+
+	S3_bucket__lifecycle_rule__noncurrent_version_transition struct {
+		Days          *int64
+		Storage_class string
+	}
+
+	S3_bucket__lifecycle_rule__transition struct {
+		Date          *string
+		Days          *int64
+		Storage_class string
+	}
+
+	S3_bucket__lifecycle_rule struct {
+		Abort_incomplete_multipart_upload_days *int64
+		Enabled                                bool
+		Expiration                             *[]S3_bucket__lifecycle_rule__expiration
+		Id                                     *string
+		Noncurrent_version_expiration          *[]S3_bucket__lifecycle_rule__noncurrent_version_expiration
+		Noncurrent_version_transition          *[]S3_bucket__lifecycle_rule__noncurrent_version_transition
+		Prefix                                 *string
+		Tags                                   *map[string]string
+		Transition                             *[]S3_bucket__lifecycle_rule__transition
+	}
+
+	S3_bucket__logging struct {
+		Target_bucket string
+		Target_prefix *string
+	}
+
+	S3_bucket__object_lock_configuration__rule__default_retention struct {
+		Days  *int64
+		Mode  string
+		Years *int64
+	}
+
+	S3_bucket__object_lock_configuration__rule struct {
+		Default_retention []S3_bucket__object_lock_configuration__rule__default_retention
+	}
+
+	S3_bucket__object_lock_configuration struct {
+		Object_lock_enabled string
+		Rule                *[]S3_bucket__object_lock_configuration__rule
+	}
+
+	S3_bucket__replication_configuration__rules__destination__access_control_translation struct {
+		Owner string
+	}
+
+	S3_bucket__replication_configuration__rules__destination struct {
+		Access_control_translation *[]S3_bucket__replication_configuration__rules__destination__access_control_translation
+		Account_id                 *string
+		Bucket                     string
+		Replica_kms_key_id         *string
+		Storage_class              *string
+	}
+
+	S3_bucket__replication_configuration__rules__filter struct {
+		Prefix *string
+		Tags   *map[string]string
+	}
+
+	S3_bucket__replication_configuration__rules__source_selection_criteria__sse_kms_encrypted_objects struct {
+		Enabled bool
+	}
+
+	S3_bucket__replication_configuration__rules__source_selection_criteria struct {
+		Sse_kms_encrypted_objects *[]S3_bucket__replication_configuration__rules__source_selection_criteria__sse_kms_encrypted_objects
+	}
+
+	S3_bucket__replication_configuration__rules struct {
+		Destination               []S3_bucket__replication_configuration__rules__destination
+		Filter                    *[]S3_bucket__replication_configuration__rules__filter
+		Id                        *string
+		Prefix                    *string
+		Priority                  *int64
+		Source_selection_criteria *[]S3_bucket__replication_configuration__rules__source_selection_criteria
+		Status                    string
+	}
+
+	S3_bucket__replication_configuration struct {
+		Role  string
+		Rules []S3_bucket__replication_configuration__rules
+	}
+
+	S3_bucket__server_side_encryption_configuration__rule__apply_server_side_encryption_by_default struct {
+		Kms_master_key_id *string
+		Sse_algorithm     string
+	}
+
+	S3_bucket__server_side_encryption_configuration__rule struct {
+		Apply_server_side_encryption_by_default []S3_bucket__server_side_encryption_configuration__rule__apply_server_side_encryption_by_default
+	}
+
+	S3_bucket__server_side_encryption_configuration struct {
+		Rule []S3_bucket__server_side_encryption_configuration__rule
+	}
+
+	S3_bucket__versioning struct {
+		Enabled    *bool
+		Mfa_delete *bool
+	}
+
+	S3_bucket__website struct {
+		Error_document           *string
+		Index_document           *string
+		Redirect_all_requests_to *string
+		Routing_rules            *string
+	}
+
+	S3_bucket_inventory__destination__bucket__encryption__sse_kms struct {
+		Key_id string
+	}
+
+	S3_bucket_inventory__destination__bucket__encryption__sse_s3 struct {
+	}
+
+	S3_bucket_inventory__destination__bucket__encryption struct {
+		Sse_kms *[]S3_bucket_inventory__destination__bucket__encryption__sse_kms
+		Sse_s3  *[]S3_bucket_inventory__destination__bucket__encryption__sse_s3
+	}
+
+	S3_bucket_inventory__destination__bucket struct {
+		Account_id *string
+		Bucket_arn string
+		Encryption *[]S3_bucket_inventory__destination__bucket__encryption
+		Format     string
+		Prefix     *string
+	}
+
+	S3_bucket_inventory__destination struct {
+		Bucket []S3_bucket_inventory__destination__bucket
+	}
+
+	S3_bucket_inventory__filter struct {
+		Prefix *string
+	}
+
+	S3_bucket_inventory__schedule struct {
+		Frequency string
+	}
+
+	S3_bucket_metric__filter struct {
+		Prefix *string
+		Tags   *map[string]string
+	}
+
+	S3_bucket_notification__lambda_function struct {
+		Events              []string
+		Filter_prefix       *string
+		Filter_suffix       *string
+		Id                  *string
+		Lambda_function_arn *string
+	}
+
+	S3_bucket_notification__queue struct {
+		Events        []string
+		Filter_prefix *string
+		Filter_suffix *string
+		Id            *string
+		Queue_arn     string
+	}
+
+	S3_bucket_notification__topic struct {
+		Events        []string
+		Filter_prefix *string
+		Filter_suffix *string
+		Id            *string
+		Topic_arn     string
+	}
+
+	Secretsmanager_secret__rotation_rules struct {
+		Automatically_after_days int64
+	}
+
+	Security_group__egress struct {
+		Cidr_blocks      *[]string
+		Description      *string
+		From_port        int64
+		Ipv6_cidr_blocks *[]string
+		Prefix_list_ids  *[]string
+		Protocol         string
+		Security_groups  *[]string
+		Self             *bool
+		To_port          int64
+	}
+
+	Security_group__ingress struct {
+		Cidr_blocks      *[]string
+		Description      *string
+		From_port        int64
+		Ipv6_cidr_blocks *[]string
+		Prefix_list_ids  *[]string
+		Protocol         string
+		Security_groups  *[]string
+		Self             *bool
+		To_port          int64
+	}
+
+	Service_discovery_service__dns_config__dns_records struct {
+		Ttl  int64
+		Type string
+	}
+
+	Service_discovery_service__dns_config struct {
+		Dns_records    []Service_discovery_service__dns_config__dns_records
+		Namespace_id   string
+		Routing_policy *string
+	}
+
+	Service_discovery_service__health_check_config struct {
+		Failure_threshold *int64
+		Resource_path     *string
+		Type              *string
+	}
+
+	Service_discovery_service__health_check_custom_config struct {
+		Failure_threshold *int64
+	}
+
+	Ses_event_destination__cloudwatch_destination struct {
+		Default_value  string
+		Dimension_name string
+		Value_source   string
+	}
+
+	Ses_event_destination__kinesis_destination struct {
+		Role_arn   string
+		Stream_arn string
+	}
+
+	Ses_event_destination__sns_destination struct {
+		Topic_arn string
+	}
+
+	Ses_receipt_rule__add_header_action struct {
+		Header_name  string
+		Header_value string
+		Position     int64
+	}
+
+	Ses_receipt_rule__bounce_action struct {
+		Message         string
+		Position        int64
+		Sender          string
+		Smtp_reply_code string
+		Status_code     *string
+		Topic_arn       *string
+	}
+
+	Ses_receipt_rule__lambda_action struct {
+		Function_arn    string
+		Invocation_type *string
+		Position        int64
+		Topic_arn       *string
+	}
+
+	Ses_receipt_rule__s3_action struct {
+		Bucket_name       string
+		Kms_key_arn       *string
+		Object_key_prefix *string
+		Position          int64
+		Topic_arn         *string
+	}
+
+	Ses_receipt_rule__sns_action struct {
+		Position  int64
+		Topic_arn string
+	}
+
+	Ses_receipt_rule__stop_action struct {
+		Position  int64
+		Scope     string
+		Topic_arn *string
+	}
+
+	Ses_receipt_rule__workmail_action struct {
+		Organization_arn string
+		Position         int64
+		Topic_arn        *string
+	}
+
+	Spot_fleet_request__launch_specification__ebs_block_device struct {
+		Delete_on_termination *bool
+		Device_name           string
+		Encrypted             *bool
+		Iops                  *int64
+		Snapshot_id           *string
+		Volume_size           *int64
+		Volume_type           *string
+	}
+
+	Spot_fleet_request__launch_specification__ephemeral_block_device struct {
+		Device_name  string
+		Virtual_name string
+	}
+
+	Spot_fleet_request__launch_specification__root_block_device struct {
+		Delete_on_termination *bool
+		Iops                  *int64
+		Volume_size           *int64
+		Volume_type           *string
+	}
+
+	Spot_fleet_request__launch_specification struct {
+		Ami                         string
+		Associate_public_ip_address *bool
+		Availability_zone           *string
+		Ebs_block_device            *[]Spot_fleet_request__launch_specification__ebs_block_device
+		Ebs_optimized               *bool
+		Ephemeral_block_device      *[]Spot_fleet_request__launch_specification__ephemeral_block_device
+		Iam_instance_profile        *string
+		Iam_instance_profile_arn    *string
+		Instance_type               string
+		Key_name                    *string
+		Monitoring                  *bool
+		Placement_group             *string
+		Placement_tenancy           *string
+		Root_block_device           *[]Spot_fleet_request__launch_specification__root_block_device
+		Spot_price                  *string
+		Subnet_id                   *string
+		Tags                        *map[string]string
+		User_data                   *string
+		Vpc_security_group_ids      *[]string
+		Weighted_capacity           *string
+	}
+
+	Spot_instance_request__credit_specification struct {
+		Cpu_credits *string
+	}
+
+	Spot_instance_request__ebs_block_device struct {
+		Delete_on_termination *bool
+		Device_name           string
+		Encrypted             *bool
+		Iops                  *int64
+		Snapshot_id           *string
+		Volume_id             *string
+		Volume_size           *int64
+		Volume_type           *string
+	}
+
+	Spot_instance_request__ephemeral_block_device struct {
+		Device_name  string
+		No_device    *bool
+		Virtual_name *string
+	}
+
+	Spot_instance_request__network_interface struct {
+		Delete_on_termination *bool
+		Device_index          int64
+		Network_interface_id  string
+	}
+
+	Spot_instance_request__root_block_device struct {
+		Delete_on_termination *bool
+		Iops                  *int64
+		Volume_id             *string
+		Volume_size           *int64
+		Volume_type           *string
+	}
+
+	Ssm_association__output_location struct {
+		S3_bucket_name string
+		S3_key_prefix  *string
+	}
+
+	Ssm_association__targets struct {
+		Key    string
+		Values []string
+	}
+
+	Ssm_document__parameter struct {
+		Default_value *string
+		Description   *string
+		Name          *string
+		Type          *string
+	}
+
+	Ssm_document__permissions struct {
+		Account_ids string
+		Type        string
+	}
+
+	Ssm_maintenance_window_target__targets struct {
+		Key    string
+		Values []string
+	}
+
+	Ssm_maintenance_window_task__logging_info struct {
+		S3_bucket_name   string
+		S3_bucket_prefix *string
+		S3_region        string
+	}
+
+	Ssm_maintenance_window_task__targets struct {
+		Key    string
+		Values []string
+	}
+
+	Ssm_maintenance_window_task__task_parameters struct {
+		Name   string
+		Values []string
+	}
+
+	Ssm_patch_baseline__approval_rule__patch_filter struct {
+		Key    string
+		Values []string
+	}
+
+	Ssm_patch_baseline__approval_rule struct {
+		Approve_after_days  int64
+		Compliance_level    *string
+		Enable_non_security *bool
+		Patch_filter        []Ssm_patch_baseline__approval_rule__patch_filter
+	}
+
+	Ssm_patch_baseline__global_filter struct {
+		Key    string
+		Values []string
+	}
+
+	Ssm_resource_data_sync__s3_destination struct {
+		Bucket_name string
+		Kms_key_arn *string
+		Prefix      *string
+		Region      string
+		Sync_format *string
+	}
+
+	Storagegateway_gateway__smb_active_directory_settings struct {
+		Domain_name string
+		Password    string
+		Username    string
+	}
+
+	Storagegateway_nfs_file_share__nfs_file_share_defaults struct {
+		Directory_mode *string
+		File_mode      *string
+		Group_id       *int64
+		Owner_id       *int64
+	}
+
+	Vpc_endpoint__dns_entry struct {
+		Dns_name       *string
+		Hosted_zone_id *string
+	}
+
+	Vpc_peering_connection__accepter struct {
+		Allow_classic_link_to_remote_vpc *bool
+		Allow_remote_vpc_dns_resolution  *bool
+		Allow_vpc_to_remote_classic_link *bool
+	}
+
+	Vpc_peering_connection__requester struct {
+		Allow_classic_link_to_remote_vpc *bool
+		Allow_remote_vpc_dns_resolution  *bool
+		Allow_vpc_to_remote_classic_link *bool
+	}
+
+	Vpc_peering_connection_accepter__accepter struct {
+		Allow_classic_link_to_remote_vpc *bool
+		Allow_remote_vpc_dns_resolution  *bool
+		Allow_vpc_to_remote_classic_link *bool
+	}
+
+	Vpc_peering_connection_accepter__requester struct {
+		Allow_classic_link_to_remote_vpc *bool
+		Allow_remote_vpc_dns_resolution  *bool
+		Allow_vpc_to_remote_classic_link *bool
+	}
+
+	Vpc_peering_connection_options__accepter struct {
+		Allow_classic_link_to_remote_vpc *bool
+		Allow_remote_vpc_dns_resolution  *bool
+		Allow_vpc_to_remote_classic_link *bool
+	}
+
+	Vpc_peering_connection_options__requester struct {
+		Allow_classic_link_to_remote_vpc *bool
+		Allow_remote_vpc_dns_resolution  *bool
+		Allow_vpc_to_remote_classic_link *bool
+	}
+
+	Vpn_connection__routes struct {
+		Destination_cidr_block *string
+		Source                 *string
+		State                  *string
+	}
+
+	Vpn_connection__vgw_telemetry struct {
+		Accepted_route_count *int64
+		Last_status_change   *string
+		Outside_ip_address   *string
+		Status               *string
+		Status_message       *string
+	}
+
+	Waf_byte_match_set__byte_match_tuples__field_to_match struct {
+		Data *string
+		Type string
+	}
+
+	Waf_byte_match_set__byte_match_tuples struct {
+		Field_to_match        []Waf_byte_match_set__byte_match_tuples__field_to_match
+		Positional_constraint string
+		Target_string         *string
+		Text_transformation   string
+	}
+
+	Waf_geo_match_set__geo_match_constraint struct {
+		Type  string
+		Value string
+	}
+
+	Waf_ipset__ip_set_descriptors struct {
+		Type  string
+		Value string
+	}
+
+	Waf_rate_based_rule__predicates struct {
+		Data_id string
+		Negated bool
+		Type    string
+	}
+
+	Waf_regex_match_set__regex_match_tuple__field_to_match struct {
+		Data *string
+		Type string
+	}
+
+	Waf_regex_match_set__regex_match_tuple struct {
+		Field_to_match       []Waf_regex_match_set__regex_match_tuple__field_to_match
+		Regex_pattern_set_id string
+		Text_transformation  string
+	}
+
+	Waf_rule__predicates struct {
+		Data_id string
+		Negated bool
+		Type    string
+	}
+
+	Waf_rule_group__activated_rule__action struct {
+		Type string
+	}
+
+	Waf_rule_group__activated_rule struct {
+		Action   []Waf_rule_group__activated_rule__action
+		Priority int64
+		Rule_id  string
+		Type     *string
+	}
+
+	Waf_size_constraint_set__size_constraints__field_to_match struct {
+		Data *string
+		Type string
+	}
+
+	Waf_size_constraint_set__size_constraints struct {
+		Comparison_operator string
+		Field_to_match      []Waf_size_constraint_set__size_constraints__field_to_match
+		Size                int64
+		Text_transformation string
+	}
+
+	Waf_sql_injection_match_set__sql_injection_match_tuples__field_to_match struct {
+		Data *string
+		Type string
+	}
+
+	Waf_sql_injection_match_set__sql_injection_match_tuples struct {
+		Field_to_match      []Waf_sql_injection_match_set__sql_injection_match_tuples__field_to_match
+		Text_transformation string
+	}
+
+	Waf_web_acl__default_action struct {
+		Type string
+	}
+
+	Waf_web_acl__rules__action struct {
+		Type string
+	}
+
+	Waf_web_acl__rules__override_action struct {
+		Type string
+	}
+
+	Waf_web_acl__rules struct {
+		Action          *[]Waf_web_acl__rules__action
+		Override_action *[]Waf_web_acl__rules__override_action
+		Priority        int64
+		Rule_id         string
+		Type            *string
+	}
+
+	Waf_xss_match_set__xss_match_tuples__field_to_match struct {
+		Data *string
+		Type string
+	}
+
+	Waf_xss_match_set__xss_match_tuples struct {
+		Field_to_match      []Waf_xss_match_set__xss_match_tuples__field_to_match
+		Text_transformation string
+	}
+
+	Wafregional_byte_match_set__byte_match_tuple__field_to_match struct {
+		Data *string
+		Type string
+	}
+
+	Wafregional_byte_match_set__byte_match_tuple struct {
+		Field_to_match        []Wafregional_byte_match_set__byte_match_tuple__field_to_match
+		Positional_constraint string
+		Target_string         *string
+		Text_transformation   string
+	}
+
+	Wafregional_byte_match_set__byte_match_tuples__field_to_match struct {
+		Data *string
+		Type string
+	}
+
+	Wafregional_byte_match_set__byte_match_tuples struct {
+		Field_to_match        []Wafregional_byte_match_set__byte_match_tuples__field_to_match
+		Positional_constraint string
+		Target_string         *string
+		Text_transformation   string
+	}
+
+	Wafregional_geo_match_set__geo_match_constraint struct {
+		Type  string
+		Value string
+	}
+
+	Wafregional_ipset__ip_set_descriptor struct {
+		Type  string
+		Value string
+	}
+
+	Wafregional_rate_based_rule__predicate struct {
+		Data_id string
+		Negated bool
+		Type    string
+	}
+
+	Wafregional_regex_match_set__regex_match_tuple__field_to_match struct {
+		Data *string
+		Type string
+	}
+
+	Wafregional_regex_match_set__regex_match_tuple struct {
+		Field_to_match       []Wafregional_regex_match_set__regex_match_tuple__field_to_match
+		Regex_pattern_set_id string
+		Text_transformation  string
+	}
+
+	Wafregional_rule__predicate struct {
+		Data_id string
+		Negated bool
+		Type    string
+	}
+
+	Wafregional_rule_group__activated_rule__action struct {
+		Type string
+	}
+
+	Wafregional_rule_group__activated_rule struct {
+		Action   []Wafregional_rule_group__activated_rule__action
+		Priority int64
+		Rule_id  string
+		Type     *string
+	}
+
+	Wafregional_size_constraint_set__size_constraints__field_to_match struct {
+		Data *string
+		Type string
+	}
+
+	Wafregional_size_constraint_set__size_constraints struct {
+		Comparison_operator string
+		Field_to_match      []Wafregional_size_constraint_set__size_constraints__field_to_match
+		Size                int64
+		Text_transformation string
+	}
+
+	Wafregional_sql_injection_match_set__sql_injection_match_tuple__field_to_match struct {
+		Data *string
+		Type string
+	}
+
+	Wafregional_sql_injection_match_set__sql_injection_match_tuple struct {
+		Field_to_match      []Wafregional_sql_injection_match_set__sql_injection_match_tuple__field_to_match
+		Text_transformation string
+	}
+
+	Wafregional_web_acl__default_action struct {
+		Type string
+	}
+
+	Wafregional_web_acl__rule__action struct {
+		Type string
+	}
+
+	Wafregional_web_acl__rule__override_action struct {
+		Type string
+	}
+
+	Wafregional_web_acl__rule struct {
+		Action          *[]Wafregional_web_acl__rule__action
+		Override_action *[]Wafregional_web_acl__rule__override_action
+		Priority        int64
+		Rule_id         string
+		Type            *string
+	}
+
+	Wafregional_xss_match_set__xss_match_tuple__field_to_match struct {
+		Data *string
+		Type string
+	}
+
+	Wafregional_xss_match_set__xss_match_tuple struct {
+		Field_to_match      []Wafregional_xss_match_set__xss_match_tuple__field_to_match
+		Text_transformation string
+	}
 )
 
 func Initialize(sb *service.Builder, p *schema.Provider) {
-	var evs []px.Type
+	// Generic handler API
 	sb.RegisterAPI("TerraformAws::GenericHandler", bridge.NewTFHandler(nil, "", nil))
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_acm_certificate{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "domain_name", "domain_validation_options", "subject_alternative_names", "validation_emails", "validation_method")
+	// Registration of resource types with handler
+	var rt px.Type
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Acm_certificate{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("acm_certificateID", "arn", "domain_name", "domain_validation_options", "subject_alternative_names", "validation_emails", "validation_method")
 		b.ImmutableAttributes("domain_name", "subject_alternative_names", "validation_method")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_acm_certificateHandler", bridge.NewTFHandler(p, "aws_acm_certificate", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Acm_certificateHandler", bridge.NewTFHandler(p, "aws_acm_certificate", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_acm_certificate_validation{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Acm_certificate_validation{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("acm_certificate_validationID")
 		b.ImmutableAttributes("certificate_arn", "validation_record_fqdns")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_acm_certificate_validationHandler", bridge.NewTFHandler(p, "aws_acm_certificate_validation", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Acm_certificate_validationHandler", bridge.NewTFHandler(p, "aws_acm_certificate_validation", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_acmpca_certificate_authority{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "certificate", "certificate_chain", "certificate_signing_request", "not_after", "not_before", "serial", "status")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_acmpca_certificate_authorityHandler", bridge.NewTFHandler(p, "aws_acmpca_certificate_authority", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Acmpca_certificate_authority{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("acmpca_certificate_authorityID", "arn", "certificate", "certificate_chain", "certificate_signing_request", "not_after", "not_before", "serial", "status")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Acmpca_certificate_authorityHandler", bridge.NewTFHandler(p, "aws_acmpca_certificate_authority", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_alb{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("access_logs", "arn", "arn_suffix", "dns_name", "internal", "ip_address_type", "name", "security_groups", "subnet_mapping", "subnets", "vpc_id", "zone_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Alb{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("albID", "access_logs", "arn", "arn_suffix", "dns_name", "internal", "ip_address_type", "name", "security_groups", "subnet_mapping", "subnets", "vpc_id", "zone_id")
 		b.ImmutableAttributes("internal", "load_balancer_type", "name", "name_prefix", "subnet_mapping")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_albHandler", bridge.NewTFHandler(p, "aws_alb", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::AlbHandler", bridge.NewTFHandler(p, "aws_alb", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_alb_listener{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "ssl_policy")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Alb_listener{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("alb_listenerID", "arn", "ssl_policy")
 		b.ImmutableAttributes("load_balancer_arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_alb_listenerHandler", bridge.NewTFHandler(p, "aws_alb_listener", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Alb_listenerHandler", bridge.NewTFHandler(p, "aws_alb_listener", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_alb_listener_certificate{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Alb_listener_certificate{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("alb_listener_certificateID")
 		b.ImmutableAttributes("certificate_arn", "listener_arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_alb_listener_certificateHandler", bridge.NewTFHandler(p, "aws_alb_listener_certificate", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Alb_listener_certificateHandler", bridge.NewTFHandler(p, "aws_alb_listener_certificate", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_alb_listener_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "priority")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Alb_listener_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("alb_listener_ruleID", "arn", "priority")
 		b.ImmutableAttributes("listener_arn", "priority")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_alb_listener_ruleHandler", bridge.NewTFHandler(p, "aws_alb_listener_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Alb_listener_ruleHandler", bridge.NewTFHandler(p, "aws_alb_listener_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_alb_target_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "arn_suffix", "health_check", "name", "stickiness")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Alb_target_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("alb_target_groupID", "arn", "arn_suffix", "health_check", "name", "stickiness")
 		b.ImmutableAttributes("name", "name_prefix", "port", "protocol", "target_type", "vpc_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_alb_target_groupHandler", bridge.NewTFHandler(p, "aws_alb_target_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Alb_target_groupHandler", bridge.NewTFHandler(p, "aws_alb_target_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_alb_target_group_attachment{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Alb_target_group_attachment{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("alb_target_group_attachmentID")
 		b.ImmutableAttributes("availability_zone", "port", "target_group_arn", "target_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_alb_target_group_attachmentHandler", bridge.NewTFHandler(p, "aws_alb_target_group_attachment", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Alb_target_group_attachmentHandler", bridge.NewTFHandler(p, "aws_alb_target_group_attachment", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ami{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("ebs_block_device", "ephemeral_block_device", "image_location", "manage_ebs_snapshots", "root_snapshot_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ami{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("amiID", "ebs_block_device", "ephemeral_block_device", "image_location", "manage_ebs_snapshots", "root_snapshot_id")
 		b.ImmutableAttributes("architecture", "ena_support", "ephemeral_block_device", "image_location", "kernel_id", "manage_ebs_snapshots", "name", "ramdisk_id", "root_device_name", "sriov_net_support", "virtualization_type")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_amiHandler", bridge.NewTFHandler(p, "aws_ami", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::AmiHandler", bridge.NewTFHandler(p, "aws_ami", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ami_copy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("architecture", "ebs_block_device", "ena_support", "ephemeral_block_device", "image_location", "kernel_id", "kms_key_id", "manage_ebs_snapshots", "ramdisk_id", "root_device_name", "root_snapshot_id", "sriov_net_support", "virtualization_type")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ami_copy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ami_copyID", "architecture", "ebs_block_device", "ena_support", "ephemeral_block_device", "image_location", "kernel_id", "kms_key_id", "manage_ebs_snapshots", "ramdisk_id", "root_device_name", "root_snapshot_id", "sriov_net_support", "virtualization_type")
 		b.ImmutableAttributes("encrypted", "ephemeral_block_device", "kms_key_id", "manage_ebs_snapshots", "name", "source_ami_id", "source_ami_region")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ami_copyHandler", bridge.NewTFHandler(p, "aws_ami_copy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ami_copyHandler", bridge.NewTFHandler(p, "aws_ami_copy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ami_from_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("architecture", "ebs_block_device", "ena_support", "ephemeral_block_device", "image_location", "kernel_id", "manage_ebs_snapshots", "ramdisk_id", "root_device_name", "root_snapshot_id", "sriov_net_support", "virtualization_type")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ami_from_instance{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ami_from_instanceID", "architecture", "ebs_block_device", "ena_support", "ephemeral_block_device", "image_location", "kernel_id", "manage_ebs_snapshots", "ramdisk_id", "root_device_name", "root_snapshot_id", "sriov_net_support", "virtualization_type")
 		b.ImmutableAttributes("ephemeral_block_device", "manage_ebs_snapshots", "name", "snapshot_without_reboot", "source_instance_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ami_from_instanceHandler", bridge.NewTFHandler(p, "aws_ami_from_instance", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ami_from_instanceHandler", bridge.NewTFHandler(p, "aws_ami_from_instance", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ami_launch_permission{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ami_launch_permission{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ami_launch_permissionID")
 		b.ImmutableAttributes("account_id", "image_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ami_launch_permissionHandler", bridge.NewTFHandler(p, "aws_ami_launch_permission", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ami_launch_permissionHandler", bridge.NewTFHandler(p, "aws_ami_launch_permission", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_account{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("throttle_settings")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_api_gateway_accountHandler", bridge.NewTFHandler(p, "aws_api_gateway_account", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Api_gateway_account{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("api_gateway_accountID", "throttle_settings")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Api_gateway_accountHandler", bridge.NewTFHandler(p, "aws_api_gateway_account", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_api_key{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("created_date", "last_updated_date", "value")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Api_gateway_api_key{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("api_gateway_api_keyID", "created_date", "last_updated_date", "value")
 		b.ImmutableAttributes("name", "value")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_api_gateway_api_keyHandler", bridge.NewTFHandler(p, "aws_api_gateway_api_key", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Api_gateway_api_keyHandler", bridge.NewTFHandler(p, "aws_api_gateway_api_key", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_authorizer{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Api_gateway_authorizer{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("api_gateway_authorizerID")
 		b.ImmutableAttributes("rest_api_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_api_gateway_authorizerHandler", bridge.NewTFHandler(p, "aws_api_gateway_authorizer", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Api_gateway_authorizerHandler", bridge.NewTFHandler(p, "aws_api_gateway_authorizer", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_base_path_mapping{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Api_gateway_base_path_mapping{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("api_gateway_base_path_mappingID")
 		b.ImmutableAttributes("api_id", "base_path", "domain_name", "stage_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_api_gateway_base_path_mappingHandler", bridge.NewTFHandler(p, "aws_api_gateway_base_path_mapping", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Api_gateway_base_path_mappingHandler", bridge.NewTFHandler(p, "aws_api_gateway_base_path_mapping", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_client_certificate{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("created_date", "expiration_date", "pem_encoded_certificate")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_api_gateway_client_certificateHandler", bridge.NewTFHandler(p, "aws_api_gateway_client_certificate", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Api_gateway_client_certificate{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("api_gateway_client_certificateID", "created_date", "expiration_date", "pem_encoded_certificate")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Api_gateway_client_certificateHandler", bridge.NewTFHandler(p, "aws_api_gateway_client_certificate", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_deployment{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("created_date", "execution_arn", "invoke_url")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Api_gateway_deployment{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("api_gateway_deploymentID", "created_date", "execution_arn", "invoke_url")
 		b.ImmutableAttributes("rest_api_id", "stage_description", "stage_name", "variables")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_api_gateway_deploymentHandler", bridge.NewTFHandler(p, "aws_api_gateway_deployment", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Api_gateway_deploymentHandler", bridge.NewTFHandler(p, "aws_api_gateway_deployment", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_documentation_part{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Api_gateway_documentation_part{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("api_gateway_documentation_partID")
 		b.ImmutableAttributes("location", "rest_api_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_api_gateway_documentation_partHandler", bridge.NewTFHandler(p, "aws_api_gateway_documentation_part", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Api_gateway_documentation_partHandler", bridge.NewTFHandler(p, "aws_api_gateway_documentation_part", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_documentation_version{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Api_gateway_documentation_version{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("api_gateway_documentation_versionID")
 		b.ImmutableAttributes("rest_api_id", "version")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_api_gateway_documentation_versionHandler", bridge.NewTFHandler(p, "aws_api_gateway_documentation_version", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Api_gateway_documentation_versionHandler", bridge.NewTFHandler(p, "aws_api_gateway_documentation_version", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_domain_name{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("certificate_upload_date", "cloudfront_domain_name", "cloudfront_zone_id", "endpoint_configuration", "regional_domain_name", "regional_zone_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Api_gateway_domain_name{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("api_gateway_domain_nameID", "certificate_upload_date", "cloudfront_domain_name", "cloudfront_zone_id", "endpoint_configuration", "regional_domain_name", "regional_zone_id")
 		b.ImmutableAttributes("certificate_body", "certificate_chain", "certificate_private_key", "domain_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_api_gateway_domain_nameHandler", bridge.NewTFHandler(p, "aws_api_gateway_domain_name", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Api_gateway_domain_nameHandler", bridge.NewTFHandler(p, "aws_api_gateway_domain_name", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_gateway_response{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Api_gateway_gateway_response{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("api_gateway_gateway_responseID")
 		b.ImmutableAttributes("response_type", "rest_api_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_api_gateway_gateway_responseHandler", bridge.NewTFHandler(p, "aws_api_gateway_gateway_response", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Api_gateway_gateway_responseHandler", bridge.NewTFHandler(p, "aws_api_gateway_gateway_response", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_integration{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("cache_namespace", "passthrough_behavior")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Api_gateway_integration{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("api_gateway_integrationID", "cache_namespace", "passthrough_behavior")
 		b.ImmutableAttributes("credentials", "http_method", "integration_http_method", "passthrough_behavior", "resource_id", "rest_api_id", "type")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_api_gateway_integrationHandler", bridge.NewTFHandler(p, "aws_api_gateway_integration", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Api_gateway_integrationHandler", bridge.NewTFHandler(p, "aws_api_gateway_integration", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_integration_response{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Api_gateway_integration_response{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("api_gateway_integration_responseID")
 		b.ImmutableAttributes("http_method", "resource_id", "rest_api_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_api_gateway_integration_responseHandler", bridge.NewTFHandler(p, "aws_api_gateway_integration_response", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Api_gateway_integration_responseHandler", bridge.NewTFHandler(p, "aws_api_gateway_integration_response", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_method{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Api_gateway_method{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("api_gateway_methodID")
 		b.ImmutableAttributes("http_method", "resource_id", "rest_api_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_api_gateway_methodHandler", bridge.NewTFHandler(p, "aws_api_gateway_method", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Api_gateway_methodHandler", bridge.NewTFHandler(p, "aws_api_gateway_method", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_method_response{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Api_gateway_method_response{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("api_gateway_method_responseID")
 		b.ImmutableAttributes("http_method", "resource_id", "rest_api_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_api_gateway_method_responseHandler", bridge.NewTFHandler(p, "aws_api_gateway_method_response", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Api_gateway_method_responseHandler", bridge.NewTFHandler(p, "aws_api_gateway_method_response", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_method_settings{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Api_gateway_method_settings{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("api_gateway_method_settingsID")
 		b.ImmutableAttributes("method_path", "rest_api_id", "stage_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_api_gateway_method_settingsHandler", bridge.NewTFHandler(p, "aws_api_gateway_method_settings", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Api_gateway_method_settingsHandler", bridge.NewTFHandler(p, "aws_api_gateway_method_settings", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_model{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Api_gateway_model{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("api_gateway_modelID")
 		b.ImmutableAttributes("content_type", "name", "rest_api_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_api_gateway_modelHandler", bridge.NewTFHandler(p, "aws_api_gateway_model", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Api_gateway_modelHandler", bridge.NewTFHandler(p, "aws_api_gateway_model", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_request_validator{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Api_gateway_request_validator{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("api_gateway_request_validatorID")
 		b.ImmutableAttributes("rest_api_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_api_gateway_request_validatorHandler", bridge.NewTFHandler(p, "aws_api_gateway_request_validator", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Api_gateway_request_validatorHandler", bridge.NewTFHandler(p, "aws_api_gateway_request_validator", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_resource{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("path")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Api_gateway_resource{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("api_gateway_resourceID", "path")
 		b.ImmutableAttributes("rest_api_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_api_gateway_resourceHandler", bridge.NewTFHandler(p, "aws_api_gateway_resource", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Api_gateway_resourceHandler", bridge.NewTFHandler(p, "aws_api_gateway_resource", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_rest_api{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("created_date", "endpoint_configuration", "execution_arn", "root_resource_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_api_gateway_rest_apiHandler", bridge.NewTFHandler(p, "aws_api_gateway_rest_api", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Api_gateway_rest_api{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("api_gateway_rest_apiID", "created_date", "endpoint_configuration", "execution_arn", "root_resource_id")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Api_gateway_rest_apiHandler", bridge.NewTFHandler(p, "aws_api_gateway_rest_api", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_stage{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("execution_arn", "invoke_url")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Api_gateway_stage{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("api_gateway_stageID", "execution_arn", "invoke_url")
 		b.ImmutableAttributes("rest_api_id", "stage_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_api_gateway_stageHandler", bridge.NewTFHandler(p, "aws_api_gateway_stage", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Api_gateway_stageHandler", bridge.NewTFHandler(p, "aws_api_gateway_stage", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_usage_plan{}, func(b service.ResourceTypeBuilder) {
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_api_gateway_usage_planHandler", bridge.NewTFHandler(p, "aws_api_gateway_usage_plan", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Api_gateway_usage_plan{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("api_gateway_usage_planID")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Api_gateway_usage_planHandler", bridge.NewTFHandler(p, "aws_api_gateway_usage_plan", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_usage_plan_key{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("name", "value")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Api_gateway_usage_plan_key{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("api_gateway_usage_plan_keyID", "name", "value")
 		b.ImmutableAttributes("key_id", "key_type", "usage_plan_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_api_gateway_usage_plan_keyHandler", bridge.NewTFHandler(p, "aws_api_gateway_usage_plan_key", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Api_gateway_usage_plan_keyHandler", bridge.NewTFHandler(p, "aws_api_gateway_usage_plan_key", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_vpc_link{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Api_gateway_vpc_link{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("api_gateway_vpc_linkID")
 		b.ImmutableAttributes("target_arns")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_api_gateway_vpc_linkHandler", bridge.NewTFHandler(p, "aws_api_gateway_vpc_link", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Api_gateway_vpc_linkHandler", bridge.NewTFHandler(p, "aws_api_gateway_vpc_link", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_app_cookie_stickiness_policy{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&App_cookie_stickiness_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("app_cookie_stickiness_policyID")
 		b.ImmutableAttributes("cookie_name", "lb_port", "load_balancer", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_app_cookie_stickiness_policyHandler", bridge.NewTFHandler(p, "aws_app_cookie_stickiness_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::App_cookie_stickiness_policyHandler", bridge.NewTFHandler(p, "aws_app_cookie_stickiness_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_appautoscaling_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Appautoscaling_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("appautoscaling_policyID", "arn")
 		b.ImmutableAttributes("alarms", "name", "scalable_dimension", "service_namespace")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_appautoscaling_policyHandler", bridge.NewTFHandler(p, "aws_appautoscaling_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Appautoscaling_policyHandler", bridge.NewTFHandler(p, "aws_appautoscaling_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_appautoscaling_scheduled_action{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Appautoscaling_scheduled_action{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("appautoscaling_scheduled_actionID", "arn")
 		b.ImmutableAttributes("end_time", "name", "resource_id", "scalable_dimension", "scalable_target_action", "schedule", "service_namespace", "start_time")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_appautoscaling_scheduled_actionHandler", bridge.NewTFHandler(p, "aws_appautoscaling_scheduled_action", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Appautoscaling_scheduled_actionHandler", bridge.NewTFHandler(p, "aws_appautoscaling_scheduled_action", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_appautoscaling_target{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("role_arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Appautoscaling_target{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("appautoscaling_targetID", "role_arn")
 		b.ImmutableAttributes("resource_id", "scalable_dimension", "service_namespace")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_appautoscaling_targetHandler", bridge.NewTFHandler(p, "aws_appautoscaling_target", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Appautoscaling_targetHandler", bridge.NewTFHandler(p, "aws_appautoscaling_target", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_appmesh_mesh{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "created_date", "last_updated_date")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Appmesh_mesh{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("appmesh_meshID", "arn", "created_date", "last_updated_date")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_appmesh_meshHandler", bridge.NewTFHandler(p, "aws_appmesh_mesh", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Appmesh_meshHandler", bridge.NewTFHandler(p, "aws_appmesh_mesh", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_appmesh_route{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "created_date", "last_updated_date")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Appmesh_route{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("appmesh_routeID", "arn", "created_date", "last_updated_date")
 		b.ImmutableAttributes("mesh_name", "name", "virtual_router_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_appmesh_routeHandler", bridge.NewTFHandler(p, "aws_appmesh_route", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Appmesh_routeHandler", bridge.NewTFHandler(p, "aws_appmesh_route", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_appmesh_virtual_node{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "created_date", "last_updated_date")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Appmesh_virtual_node{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("appmesh_virtual_nodeID", "arn", "created_date", "last_updated_date")
 		b.ImmutableAttributes("mesh_name", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_appmesh_virtual_nodeHandler", bridge.NewTFHandler(p, "aws_appmesh_virtual_node", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Appmesh_virtual_nodeHandler", bridge.NewTFHandler(p, "aws_appmesh_virtual_node", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_appmesh_virtual_router{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "created_date", "last_updated_date")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Appmesh_virtual_router{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("appmesh_virtual_routerID", "arn", "created_date", "last_updated_date")
 		b.ImmutableAttributes("mesh_name", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_appmesh_virtual_routerHandler", bridge.NewTFHandler(p, "aws_appmesh_virtual_router", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Appmesh_virtual_routerHandler", bridge.NewTFHandler(p, "aws_appmesh_virtual_router", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_appsync_api_key{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("key")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_appsync_api_keyHandler", bridge.NewTFHandler(p, "aws_appsync_api_key", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Appsync_api_key{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("appsync_api_keyID", "key")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Appsync_api_keyHandler", bridge.NewTFHandler(p, "aws_appsync_api_key", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_appsync_datasource{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_appsync_datasourceHandler", bridge.NewTFHandler(p, "aws_appsync_datasource", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Appsync_datasource{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("appsync_datasourceID", "arn")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Appsync_datasourceHandler", bridge.NewTFHandler(p, "aws_appsync_datasource", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_appsync_graphql_api{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "uris")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_appsync_graphql_apiHandler", bridge.NewTFHandler(p, "aws_appsync_graphql_api", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Appsync_graphql_api{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("appsync_graphql_apiID", "arn", "uris")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Appsync_graphql_apiHandler", bridge.NewTFHandler(p, "aws_appsync_graphql_api", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_athena_database{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Athena_database{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("athena_databaseID")
 		b.ImmutableAttributes("bucket", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_athena_databaseHandler", bridge.NewTFHandler(p, "aws_athena_database", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Athena_databaseHandler", bridge.NewTFHandler(p, "aws_athena_database", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_athena_named_query{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Athena_named_query{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("athena_named_queryID")
 		b.ImmutableAttributes("database", "description", "name", "query")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_athena_named_queryHandler", bridge.NewTFHandler(p, "aws_athena_named_query", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Athena_named_queryHandler", bridge.NewTFHandler(p, "aws_athena_named_query", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_autoscaling_attachment{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Autoscaling_attachment{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("autoscaling_attachmentID")
 		b.ImmutableAttributes("alb_target_group_arn", "autoscaling_group_name", "elb")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_autoscaling_attachmentHandler", bridge.NewTFHandler(p, "aws_autoscaling_attachment", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Autoscaling_attachmentHandler", bridge.NewTFHandler(p, "aws_autoscaling_attachment", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_autoscaling_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "availability_zones", "default_cooldown", "desired_capacity", "health_check_type", "load_balancers", "name", "service_linked_role_arn", "target_group_arns", "vpc_zone_identifier")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Autoscaling_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("autoscaling_groupID", "arn", "availability_zones", "default_cooldown", "desired_capacity", "health_check_type", "load_balancers", "name", "service_linked_role_arn", "target_group_arns", "vpc_zone_identifier")
 		b.ImmutableAttributes("name", "name_prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_autoscaling_groupHandler", bridge.NewTFHandler(p, "aws_autoscaling_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Autoscaling_groupHandler", bridge.NewTFHandler(p, "aws_autoscaling_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_autoscaling_lifecycle_hook{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("default_result")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Autoscaling_lifecycle_hook{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("autoscaling_lifecycle_hookID", "default_result")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_autoscaling_lifecycle_hookHandler", bridge.NewTFHandler(p, "aws_autoscaling_lifecycle_hook", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Autoscaling_lifecycle_hookHandler", bridge.NewTFHandler(p, "aws_autoscaling_lifecycle_hook", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_autoscaling_notification{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Autoscaling_notification{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("autoscaling_notificationID")
 		b.ImmutableAttributes("topic_arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_autoscaling_notificationHandler", bridge.NewTFHandler(p, "aws_autoscaling_notification", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Autoscaling_notificationHandler", bridge.NewTFHandler(p, "aws_autoscaling_notification", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_autoscaling_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "metric_aggregation_type")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Autoscaling_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("autoscaling_policyID", "arn", "metric_aggregation_type")
 		b.ImmutableAttributes("autoscaling_group_name", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_autoscaling_policyHandler", bridge.NewTFHandler(p, "aws_autoscaling_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Autoscaling_policyHandler", bridge.NewTFHandler(p, "aws_autoscaling_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_autoscaling_schedule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "desired_capacity", "end_time", "max_size", "min_size", "recurrence", "start_time")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Autoscaling_schedule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("autoscaling_scheduleID", "arn", "desired_capacity", "end_time", "max_size", "min_size", "recurrence", "start_time")
 		b.ImmutableAttributes("autoscaling_group_name", "scheduled_action_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_autoscaling_scheduleHandler", bridge.NewTFHandler(p, "aws_autoscaling_schedule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Autoscaling_scheduleHandler", bridge.NewTFHandler(p, "aws_autoscaling_schedule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_batch_compute_environment{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "ecc_cluster_arn", "ecs_cluster_arn", "status", "status_reason")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Batch_compute_environment{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("batch_compute_environmentID", "arn", "ecc_cluster_arn", "ecs_cluster_arn", "status", "status_reason")
 		b.ImmutableAttributes("compute_environment_name", "type")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_batch_compute_environmentHandler", bridge.NewTFHandler(p, "aws_batch_compute_environment", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Batch_compute_environmentHandler", bridge.NewTFHandler(p, "aws_batch_compute_environment", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_batch_job_definition{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "revision")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Batch_job_definition{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("batch_job_definitionID", "arn", "revision")
 		b.ImmutableAttributes("container_properties", "name", "parameters", "retry_strategy", "timeout", "type")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_batch_job_definitionHandler", bridge.NewTFHandler(p, "aws_batch_job_definition", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Batch_job_definitionHandler", bridge.NewTFHandler(p, "aws_batch_job_definition", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_batch_job_queue{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_batch_job_queueHandler", bridge.NewTFHandler(p, "aws_batch_job_queue", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Batch_job_queue{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("batch_job_queueID", "arn")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Batch_job_queueHandler", bridge.NewTFHandler(p, "aws_batch_job_queue", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_budgets_budget{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("account_id", "cost_filters", "cost_types", "name", "name_prefix")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Budgets_budget{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("budgets_budgetID", "account_id", "cost_filters", "cost_types", "name", "name_prefix")
 		b.ImmutableAttributes("account_id", "name", "name_prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_budgets_budgetHandler", bridge.NewTFHandler(p, "aws_budgets_budget", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Budgets_budgetHandler", bridge.NewTFHandler(p, "aws_budgets_budget", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloud9_environment_ec2{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "owner_arn", "type")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cloud9_environment_ec2{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cloud9_environment_ec2ID", "arn", "owner_arn", "type")
 		b.ImmutableAttributes("automatic_stop_time_minutes", "instance_type", "owner_arn", "subnet_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cloud9_environment_ec2Handler", bridge.NewTFHandler(p, "aws_cloud9_environment_ec2", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Cloud9_environment_ec2Handler", bridge.NewTFHandler(p, "aws_cloud9_environment_ec2", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudformation_stack{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("outputs", "parameters", "policy_body", "template_body")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cloudformation_stack{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cloudformation_stackID", "outputs", "parameters", "policy_body", "template_body")
 		b.ImmutableAttributes("disable_rollback", "name", "on_failure", "timeout_in_minutes")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cloudformation_stackHandler", bridge.NewTFHandler(p, "aws_cloudformation_stack", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Cloudformation_stackHandler", bridge.NewTFHandler(p, "aws_cloudformation_stack", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudfront_distribution{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("active_trusted_signers", "arn", "caller_reference", "domain_name", "etag", "hosted_zone_id", "in_progress_validation_batches", "last_modified_time", "status")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cloudfront_distributionHandler", bridge.NewTFHandler(p, "aws_cloudfront_distribution", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cloudfront_distribution{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cloudfront_distributionID", "active_trusted_signers", "arn", "caller_reference", "domain_name", "etag", "hosted_zone_id", "in_progress_validation_batches", "last_modified_time", "status")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Cloudfront_distributionHandler", bridge.NewTFHandler(p, "aws_cloudfront_distribution", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudfront_origin_access_identity{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("caller_reference", "cloudfront_access_identity_path", "etag", "iam_arn", "s3_canonical_user_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cloudfront_origin_access_identityHandler", bridge.NewTFHandler(p, "aws_cloudfront_origin_access_identity", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cloudfront_origin_access_identity{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cloudfront_origin_access_identityID", "caller_reference", "cloudfront_access_identity_path", "etag", "iam_arn", "s3_canonical_user_id")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Cloudfront_origin_access_identityHandler", bridge.NewTFHandler(p, "aws_cloudfront_origin_access_identity", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudfront_public_key{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("caller_reference", "etag", "name", "name_prefix")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cloudfront_public_key{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cloudfront_public_keyID", "caller_reference", "etag", "name", "name_prefix")
 		b.ImmutableAttributes("encoded_key", "name", "name_prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cloudfront_public_keyHandler", bridge.NewTFHandler(p, "aws_cloudfront_public_key", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Cloudfront_public_keyHandler", bridge.NewTFHandler(p, "aws_cloudfront_public_key", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudhsm_v2_cluster{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("cluster_certificates", "cluster_id", "cluster_state", "security_group_id", "vpc_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cloudhsm_v2_cluster{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cloudhsm_v2_clusterID", "cluster_certificates", "cluster_id", "cluster_state", "security_group_id", "vpc_id")
 		b.ImmutableAttributes("hsm_type", "source_backup_identifier", "subnet_ids")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cloudhsm_v2_clusterHandler", bridge.NewTFHandler(p, "aws_cloudhsm_v2_cluster", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Cloudhsm_v2_clusterHandler", bridge.NewTFHandler(p, "aws_cloudhsm_v2_cluster", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudhsm_v2_hsm{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("availability_zone", "hsm_eni_id", "hsm_id", "hsm_state", "ip_address", "subnet_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cloudhsm_v2_hsm{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cloudhsm_v2_hsmID", "availability_zone", "hsm_eni_id", "hsm_id", "hsm_state", "ip_address", "subnet_id")
 		b.ImmutableAttributes("availability_zone", "cluster_id", "ip_address", "subnet_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cloudhsm_v2_hsmHandler", bridge.NewTFHandler(p, "aws_cloudhsm_v2_hsm", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Cloudhsm_v2_hsmHandler", bridge.NewTFHandler(p, "aws_cloudhsm_v2_hsm", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudtrail{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "home_region")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cloudtrail{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cloudtrailID", "arn", "home_region")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cloudtrailHandler", bridge.NewTFHandler(p, "aws_cloudtrail", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::CloudtrailHandler", bridge.NewTFHandler(p, "aws_cloudtrail", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudwatch_dashboard{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("dashboard_arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cloudwatch_dashboardHandler", bridge.NewTFHandler(p, "aws_cloudwatch_dashboard", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cloudwatch_dashboard{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cloudwatch_dashboardID", "dashboard_arn")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Cloudwatch_dashboardHandler", bridge.NewTFHandler(p, "aws_cloudwatch_dashboard", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudwatch_event_permission{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cloudwatch_event_permission{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cloudwatch_event_permissionID")
 		b.ImmutableAttributes("statement_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cloudwatch_event_permissionHandler", bridge.NewTFHandler(p, "aws_cloudwatch_event_permission", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Cloudwatch_event_permissionHandler", bridge.NewTFHandler(p, "aws_cloudwatch_event_permission", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudwatch_event_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "name")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cloudwatch_event_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cloudwatch_event_ruleID", "arn", "name")
 		b.ImmutableAttributes("name", "name_prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cloudwatch_event_ruleHandler", bridge.NewTFHandler(p, "aws_cloudwatch_event_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Cloudwatch_event_ruleHandler", bridge.NewTFHandler(p, "aws_cloudwatch_event_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudwatch_event_target{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("target_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cloudwatch_event_target{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cloudwatch_event_targetID", "target_id")
 		b.ImmutableAttributes("rule", "target_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cloudwatch_event_targetHandler", bridge.NewTFHandler(p, "aws_cloudwatch_event_target", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Cloudwatch_event_targetHandler", bridge.NewTFHandler(p, "aws_cloudwatch_event_target", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudwatch_log_destination{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cloudwatch_log_destination{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cloudwatch_log_destinationID", "arn")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cloudwatch_log_destinationHandler", bridge.NewTFHandler(p, "aws_cloudwatch_log_destination", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Cloudwatch_log_destinationHandler", bridge.NewTFHandler(p, "aws_cloudwatch_log_destination", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudwatch_log_destination_policy{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cloudwatch_log_destination_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cloudwatch_log_destination_policyID")
 		b.ImmutableAttributes("destination_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cloudwatch_log_destination_policyHandler", bridge.NewTFHandler(p, "aws_cloudwatch_log_destination_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Cloudwatch_log_destination_policyHandler", bridge.NewTFHandler(p, "aws_cloudwatch_log_destination_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudwatch_log_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "name")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cloudwatch_log_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cloudwatch_log_groupID", "arn", "name")
 		b.ImmutableAttributes("name", "name_prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cloudwatch_log_groupHandler", bridge.NewTFHandler(p, "aws_cloudwatch_log_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Cloudwatch_log_groupHandler", bridge.NewTFHandler(p, "aws_cloudwatch_log_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudwatch_log_metric_filter{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cloudwatch_log_metric_filter{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cloudwatch_log_metric_filterID")
 		b.ImmutableAttributes("log_group_name", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cloudwatch_log_metric_filterHandler", bridge.NewTFHandler(p, "aws_cloudwatch_log_metric_filter", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Cloudwatch_log_metric_filterHandler", bridge.NewTFHandler(p, "aws_cloudwatch_log_metric_filter", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudwatch_log_resource_policy{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cloudwatch_log_resource_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cloudwatch_log_resource_policyID")
 		b.ImmutableAttributes("policy_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cloudwatch_log_resource_policyHandler", bridge.NewTFHandler(p, "aws_cloudwatch_log_resource_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Cloudwatch_log_resource_policyHandler", bridge.NewTFHandler(p, "aws_cloudwatch_log_resource_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudwatch_log_stream{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cloudwatch_log_stream{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cloudwatch_log_streamID", "arn")
 		b.ImmutableAttributes("log_group_name", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cloudwatch_log_streamHandler", bridge.NewTFHandler(p, "aws_cloudwatch_log_stream", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Cloudwatch_log_streamHandler", bridge.NewTFHandler(p, "aws_cloudwatch_log_stream", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudwatch_log_subscription_filter{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("role_arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cloudwatch_log_subscription_filter{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cloudwatch_log_subscription_filterID", "role_arn")
 		b.ImmutableAttributes("destination_arn", "log_group_name", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cloudwatch_log_subscription_filterHandler", bridge.NewTFHandler(p, "aws_cloudwatch_log_subscription_filter", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Cloudwatch_log_subscription_filterHandler", bridge.NewTFHandler(p, "aws_cloudwatch_log_subscription_filter", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudwatch_metric_alarm{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "evaluate_low_sample_count_percentiles")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cloudwatch_metric_alarm{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cloudwatch_metric_alarmID", "arn", "evaluate_low_sample_count_percentiles")
 		b.ImmutableAttributes("alarm_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cloudwatch_metric_alarmHandler", bridge.NewTFHandler(p, "aws_cloudwatch_metric_alarm", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Cloudwatch_metric_alarmHandler", bridge.NewTFHandler(p, "aws_cloudwatch_metric_alarm", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_codebuild_project{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "badge_url", "description", "encryption_key")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Codebuild_project{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("codebuild_projectID", "arn", "badge_url", "description", "encryption_key")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_codebuild_projectHandler", bridge.NewTFHandler(p, "aws_codebuild_project", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Codebuild_projectHandler", bridge.NewTFHandler(p, "aws_codebuild_project", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_codebuild_webhook{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("payload_url", "secret", "url")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Codebuild_webhook{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("codebuild_webhookID", "payload_url", "secret", "url")
 		b.ImmutableAttributes("project_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_codebuild_webhookHandler", bridge.NewTFHandler(p, "aws_codebuild_webhook", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Codebuild_webhookHandler", bridge.NewTFHandler(p, "aws_codebuild_webhook", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_codecommit_repository{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "clone_url_http", "clone_url_ssh", "repository_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Codecommit_repository{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("codecommit_repositoryID", "arn", "clone_url_http", "clone_url_ssh", "repository_id")
 		b.ImmutableAttributes("repository_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_codecommit_repositoryHandler", bridge.NewTFHandler(p, "aws_codecommit_repository", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Codecommit_repositoryHandler", bridge.NewTFHandler(p, "aws_codecommit_repository", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_codecommit_trigger{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("configuration_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Codecommit_trigger{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("codecommit_triggerID", "configuration_id")
 		b.ImmutableAttributes("repository_name", "trigger")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_codecommit_triggerHandler", bridge.NewTFHandler(p, "aws_codecommit_trigger", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Codecommit_triggerHandler", bridge.NewTFHandler(p, "aws_codecommit_trigger", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_codedeploy_app{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("unique_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Codedeploy_app{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("codedeploy_appID", "unique_id")
 		b.ImmutableAttributes("compute_platform", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_codedeploy_appHandler", bridge.NewTFHandler(p, "aws_codedeploy_app", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Codedeploy_appHandler", bridge.NewTFHandler(p, "aws_codedeploy_app", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_codedeploy_deployment_config{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("deployment_config_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Codedeploy_deployment_config{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("codedeploy_deployment_configID", "deployment_config_id")
 		b.ImmutableAttributes("compute_platform", "deployment_config_name", "minimum_healthy_hosts", "traffic_routing_config")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_codedeploy_deployment_configHandler", bridge.NewTFHandler(p, "aws_codedeploy_deployment_config", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Codedeploy_deployment_configHandler", bridge.NewTFHandler(p, "aws_codedeploy_deployment_config", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_codedeploy_deployment_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("blue_green_deployment_config", "deployment_style", "load_balancer_info")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Codedeploy_deployment_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("codedeploy_deployment_groupID", "blue_green_deployment_config", "deployment_style", "load_balancer_info")
 		b.ImmutableAttributes("deployment_group_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_codedeploy_deployment_groupHandler", bridge.NewTFHandler(p, "aws_codedeploy_deployment_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Codedeploy_deployment_groupHandler", bridge.NewTFHandler(p, "aws_codedeploy_deployment_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_codepipeline{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Codepipeline{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("codepipelineID", "arn")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_codepipelineHandler", bridge.NewTFHandler(p, "aws_codepipeline", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::CodepipelineHandler", bridge.NewTFHandler(p, "aws_codepipeline", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_codepipeline_webhook{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("url")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Codepipeline_webhook{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("codepipeline_webhookID", "url")
 		b.ImmutableAttributes("authentication", "authentication_configuration", "filter", "name", "target_action", "target_pipeline")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_codepipeline_webhookHandler", bridge.NewTFHandler(p, "aws_codepipeline_webhook", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Codepipeline_webhookHandler", bridge.NewTFHandler(p, "aws_codepipeline_webhook", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cognito_identity_pool{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cognito_identity_pool{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cognito_identity_poolID", "arn")
 		b.ImmutableAttributes("developer_provider_name", "identity_pool_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cognito_identity_poolHandler", bridge.NewTFHandler(p, "aws_cognito_identity_pool", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Cognito_identity_poolHandler", bridge.NewTFHandler(p, "aws_cognito_identity_pool", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cognito_identity_pool_roles_attachment{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cognito_identity_pool_roles_attachment{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cognito_identity_pool_roles_attachmentID")
 		b.ImmutableAttributes("identity_pool_id", "roles")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cognito_identity_pool_roles_attachmentHandler", bridge.NewTFHandler(p, "aws_cognito_identity_pool_roles_attachment", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Cognito_identity_pool_roles_attachmentHandler", bridge.NewTFHandler(p, "aws_cognito_identity_pool_roles_attachment", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cognito_identity_provider{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cognito_identity_provider{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cognito_identity_providerID")
 		b.ImmutableAttributes("user_pool_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cognito_identity_providerHandler", bridge.NewTFHandler(p, "aws_cognito_identity_provider", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Cognito_identity_providerHandler", bridge.NewTFHandler(p, "aws_cognito_identity_provider", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cognito_resource_server{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("scope_identifiers")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cognito_resource_server{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cognito_resource_serverID", "scope_identifiers")
 		b.ImmutableAttributes("identifier", "name", "user_pool_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cognito_resource_serverHandler", bridge.NewTFHandler(p, "aws_cognito_resource_server", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Cognito_resource_serverHandler", bridge.NewTFHandler(p, "aws_cognito_resource_server", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cognito_user_group{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cognito_user_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cognito_user_groupID")
 		b.ImmutableAttributes("name", "user_pool_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cognito_user_groupHandler", bridge.NewTFHandler(p, "aws_cognito_user_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Cognito_user_groupHandler", bridge.NewTFHandler(p, "aws_cognito_user_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cognito_user_pool{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("admin_create_user_config", "arn", "creation_date", "email_verification_message", "email_verification_subject", "endpoint", "lambda_config", "last_modified_date", "password_policy", "verification_message_template")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cognito_user_pool{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cognito_user_poolID", "admin_create_user_config", "arn", "creation_date", "email_verification_message", "email_verification_subject", "endpoint", "lambda_config", "last_modified_date", "password_policy", "verification_message_template")
 		b.ImmutableAttributes("alias_attributes", "name", "schema", "username_attributes")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cognito_user_poolHandler", bridge.NewTFHandler(p, "aws_cognito_user_pool", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Cognito_user_poolHandler", bridge.NewTFHandler(p, "aws_cognito_user_pool", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cognito_user_pool_client{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("client_secret")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cognito_user_pool_client{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cognito_user_pool_clientID", "client_secret")
 		b.ImmutableAttributes("generate_secret", "user_pool_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cognito_user_pool_clientHandler", bridge.NewTFHandler(p, "aws_cognito_user_pool_client", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Cognito_user_pool_clientHandler", bridge.NewTFHandler(p, "aws_cognito_user_pool_client", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cognito_user_pool_domain{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("aws_account_id", "cloudfront_distribution_arn", "s3_bucket", "version")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Cognito_user_pool_domain{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("cognito_user_pool_domainID", "aws_account_id", "cloudfront_distribution_arn", "s3_bucket", "version")
 		b.ImmutableAttributes("certificate_arn", "domain", "user_pool_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_cognito_user_pool_domainHandler", bridge.NewTFHandler(p, "aws_cognito_user_pool_domain", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Cognito_user_pool_domainHandler", bridge.NewTFHandler(p, "aws_cognito_user_pool_domain", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_config_aggregate_authorization{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Config_aggregate_authorization{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("config_aggregate_authorizationID", "arn")
 		b.ImmutableAttributes("account_id", "region")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_config_aggregate_authorizationHandler", bridge.NewTFHandler(p, "aws_config_aggregate_authorization", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Config_aggregate_authorizationHandler", bridge.NewTFHandler(p, "aws_config_aggregate_authorization", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_config_config_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "rule_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_config_config_ruleHandler", bridge.NewTFHandler(p, "aws_config_config_rule", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Config_config_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("config_config_ruleID", "arn", "rule_id")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Config_config_ruleHandler", bridge.NewTFHandler(p, "aws_config_config_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_config_configuration_aggregator{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Config_configuration_aggregator{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("config_configuration_aggregatorID", "arn")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_config_configuration_aggregatorHandler", bridge.NewTFHandler(p, "aws_config_configuration_aggregator", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Config_configuration_aggregatorHandler", bridge.NewTFHandler(p, "aws_config_configuration_aggregator", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_config_configuration_recorder{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("recording_group")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Config_configuration_recorder{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("config_configuration_recorderID", "recording_group")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_config_configuration_recorderHandler", bridge.NewTFHandler(p, "aws_config_configuration_recorder", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Config_configuration_recorderHandler", bridge.NewTFHandler(p, "aws_config_configuration_recorder", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_config_configuration_recorder_status{}, func(b service.ResourceTypeBuilder) {
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_config_configuration_recorder_statusHandler", bridge.NewTFHandler(p, "aws_config_configuration_recorder_status", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Config_configuration_recorder_status{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("config_configuration_recorder_statusID")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Config_configuration_recorder_statusHandler", bridge.NewTFHandler(p, "aws_config_configuration_recorder_status", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_config_delivery_channel{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Config_delivery_channel{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("config_delivery_channelID")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_config_delivery_channelHandler", bridge.NewTFHandler(p, "aws_config_delivery_channel", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Config_delivery_channelHandler", bridge.NewTFHandler(p, "aws_config_delivery_channel", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_customer_gateway{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Customer_gateway{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("customer_gatewayID")
 		b.ImmutableAttributes("bgp_asn", "ip_address", "type")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_customer_gatewayHandler", bridge.NewTFHandler(p, "aws_customer_gateway", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Customer_gatewayHandler", bridge.NewTFHandler(p, "aws_customer_gateway", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_datasync_agent{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("activation_key", "arn", "ip_address")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Datasync_agent{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("datasync_agentID", "activation_key", "arn", "ip_address")
 		b.ImmutableAttributes("activation_key", "ip_address")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_datasync_agentHandler", bridge.NewTFHandler(p, "aws_datasync_agent", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Datasync_agentHandler", bridge.NewTFHandler(p, "aws_datasync_agent", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_datasync_location_efs{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "uri")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Datasync_location_efs{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("datasync_location_efsID", "arn", "uri")
 		b.ImmutableAttributes("ec2_config", "efs_file_system_arn", "subdirectory")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_datasync_location_efsHandler", bridge.NewTFHandler(p, "aws_datasync_location_efs", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Datasync_location_efsHandler", bridge.NewTFHandler(p, "aws_datasync_location_efs", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_datasync_location_nfs{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "uri")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Datasync_location_nfs{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("datasync_location_nfsID", "arn", "uri")
 		b.ImmutableAttributes("on_prem_config", "server_hostname", "subdirectory")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_datasync_location_nfsHandler", bridge.NewTFHandler(p, "aws_datasync_location_nfs", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Datasync_location_nfsHandler", bridge.NewTFHandler(p, "aws_datasync_location_nfs", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_datasync_location_s3{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "uri")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Datasync_location_s3{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("datasync_location_s3ID", "arn", "uri")
 		b.ImmutableAttributes("s3_bucket_arn", "s3_config", "subdirectory")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_datasync_location_s3Handler", bridge.NewTFHandler(p, "aws_datasync_location_s3", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Datasync_location_s3Handler", bridge.NewTFHandler(p, "aws_datasync_location_s3", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_datasync_task{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Datasync_task{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("datasync_taskID", "arn")
 		b.ImmutableAttributes("cloudwatch_log_group_arn", "destination_location_arn", "source_location_arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_datasync_taskHandler", bridge.NewTFHandler(p, "aws_datasync_task", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Datasync_taskHandler", bridge.NewTFHandler(p, "aws_datasync_task", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dax_cluster{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "cluster_address", "configuration_endpoint", "maintenance_window", "nodes", "parameter_group_name", "port", "security_group_ids", "subnet_group_name")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Dax_cluster{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dax_clusterID", "arn", "cluster_address", "configuration_endpoint", "maintenance_window", "nodes", "parameter_group_name", "port", "security_group_ids", "subnet_group_name")
 		b.ImmutableAttributes("availability_zones", "cluster_name", "iam_role_arn", "node_type", "subnet_group_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_dax_clusterHandler", bridge.NewTFHandler(p, "aws_dax_cluster", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Dax_clusterHandler", bridge.NewTFHandler(p, "aws_dax_cluster", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dax_parameter_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("parameters")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Dax_parameter_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dax_parameter_groupID", "parameters")
 		b.ImmutableAttributes("description", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_dax_parameter_groupHandler", bridge.NewTFHandler(p, "aws_dax_parameter_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Dax_parameter_groupHandler", bridge.NewTFHandler(p, "aws_dax_parameter_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dax_subnet_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("vpc_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Dax_subnet_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dax_subnet_groupID", "vpc_id")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_dax_subnet_groupHandler", bridge.NewTFHandler(p, "aws_dax_subnet_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Dax_subnet_groupHandler", bridge.NewTFHandler(p, "aws_dax_subnet_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_db_cluster_snapshot{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allocated_storage", "availability_zones", "db_cluster_snapshot_arn", "engine", "engine_version", "kms_key_id", "license_model", "port", "snapshot_type", "source_db_cluster_snapshot_arn", "status", "storage_encrypted", "vpc_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Db_cluster_snapshot{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("db_cluster_snapshotID", "allocated_storage", "availability_zones", "db_cluster_snapshot_arn", "engine", "engine_version", "kms_key_id", "license_model", "port", "snapshot_type", "source_db_cluster_snapshot_arn", "status", "storage_encrypted", "vpc_id")
 		b.ImmutableAttributes("db_cluster_identifier", "db_cluster_snapshot_identifier")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_db_cluster_snapshotHandler", bridge.NewTFHandler(p, "aws_db_cluster_snapshot", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Db_cluster_snapshotHandler", bridge.NewTFHandler(p, "aws_db_cluster_snapshot", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_db_event_subscription{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "customer_aws_id", "name")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Db_event_subscription{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("db_event_subscriptionID", "arn", "customer_aws_id", "name")
 		b.ImmutableAttributes("name", "name_prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_db_event_subscriptionHandler", bridge.NewTFHandler(p, "aws_db_event_subscription", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Db_event_subscriptionHandler", bridge.NewTFHandler(p, "aws_db_event_subscription", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_db_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("address", "allocated_storage", "apply_immediately", "arn", "availability_zone", "backup_retention_period", "backup_window", "ca_cert_identifier", "character_set_name", "db_subnet_group_name", "endpoint", "engine", "engine_version", "hosted_zone_id", "identifier", "identifier_prefix", "kms_key_id", "license_model", "maintenance_window", "monitoring_role_arn", "multi_az", "name", "option_group_name", "parameter_group_name", "port", "replicas", "resource_id", "status", "storage_type", "timezone", "username", "vpc_security_group_ids")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Db_instance{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("db_instanceID", "address", "allocated_storage", "apply_immediately", "arn", "availability_zone", "backup_retention_period", "backup_window", "ca_cert_identifier", "character_set_name", "db_subnet_group_name", "endpoint", "engine", "engine_version", "hosted_zone_id", "identifier", "identifier_prefix", "kms_key_id", "license_model", "maintenance_window", "monitoring_role_arn", "multi_az", "name", "option_group_name", "parameter_group_name", "port", "replicas", "resource_id", "status", "storage_type", "timezone", "username", "vpc_security_group_ids")
 		b.ImmutableAttributes("availability_zone", "character_set_name", "engine", "identifier", "identifier_prefix", "kms_key_id", "name", "snapshot_identifier", "storage_encrypted", "timezone", "username")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_db_instanceHandler", bridge.NewTFHandler(p, "aws_db_instance", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Db_instanceHandler", bridge.NewTFHandler(p, "aws_db_instance", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_db_option_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "name", "name_prefix")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Db_option_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("db_option_groupID", "arn", "name", "name_prefix")
 		b.ImmutableAttributes("engine_name", "major_engine_version", "name", "name_prefix", "option_group_description")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_db_option_groupHandler", bridge.NewTFHandler(p, "aws_db_option_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Db_option_groupHandler", bridge.NewTFHandler(p, "aws_db_option_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_db_parameter_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "name", "name_prefix")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Db_parameter_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("db_parameter_groupID", "arn", "name", "name_prefix")
 		b.ImmutableAttributes("description", "family", "name", "name_prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_db_parameter_groupHandler", bridge.NewTFHandler(p, "aws_db_parameter_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Db_parameter_groupHandler", bridge.NewTFHandler(p, "aws_db_parameter_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_db_security_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Db_security_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("db_security_groupID", "arn")
 		b.ImmutableAttributes("description", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_db_security_groupHandler", bridge.NewTFHandler(p, "aws_db_security_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Db_security_groupHandler", bridge.NewTFHandler(p, "aws_db_security_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_db_snapshot{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allocated_storage", "availability_zone", "db_snapshot_arn", "encrypted", "engine", "engine_version", "iops", "kms_key_id", "license_model", "option_group_name", "port", "snapshot_type", "source_db_snapshot_identifier", "source_region", "status", "storage_type", "vpc_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Db_snapshot{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("db_snapshotID", "allocated_storage", "availability_zone", "db_snapshot_arn", "encrypted", "engine", "engine_version", "iops", "kms_key_id", "license_model", "option_group_name", "port", "snapshot_type", "source_db_snapshot_identifier", "source_region", "status", "storage_type", "vpc_id")
 		b.ImmutableAttributes("db_instance_identifier", "db_snapshot_identifier")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_db_snapshotHandler", bridge.NewTFHandler(p, "aws_db_snapshot", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Db_snapshotHandler", bridge.NewTFHandler(p, "aws_db_snapshot", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_db_subnet_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "name", "name_prefix")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Db_subnet_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("db_subnet_groupID", "arn", "name", "name_prefix")
 		b.ImmutableAttributes("name", "name_prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_db_subnet_groupHandler", bridge.NewTFHandler(p, "aws_db_subnet_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Db_subnet_groupHandler", bridge.NewTFHandler(p, "aws_db_subnet_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_default_network_acl{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("owner_id", "vpc_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Default_network_acl{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("default_network_aclID", "owner_id", "vpc_id")
 		b.ImmutableAttributes("default_network_acl_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_default_network_aclHandler", bridge.NewTFHandler(p, "aws_default_network_acl", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Default_network_aclHandler", bridge.NewTFHandler(p, "aws_default_network_acl", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_default_route_table{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("owner_id", "route", "vpc_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Default_route_table{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("default_route_tableID", "owner_id", "route", "vpc_id")
 		b.ImmutableAttributes("default_route_table_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_default_route_tableHandler", bridge.NewTFHandler(p, "aws_default_route_table", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Default_route_tableHandler", bridge.NewTFHandler(p, "aws_default_route_table", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_default_security_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "name", "owner_id", "vpc_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Default_security_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("default_security_groupID", "arn", "name", "owner_id", "vpc_id")
 		b.ImmutableAttributes("vpc_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_default_security_groupHandler", bridge.NewTFHandler(p, "aws_default_security_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Default_security_groupHandler", bridge.NewTFHandler(p, "aws_default_security_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_default_subnet{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "assign_ipv6_address_on_creation", "availability_zone_id", "cidr_block", "ipv6_cidr_block", "ipv6_cidr_block_association_id", "map_public_ip_on_launch", "owner_id", "vpc_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_default_subnetHandler", bridge.NewTFHandler(p, "aws_default_subnet", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Default_subnet{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("default_subnetID", "arn", "assign_ipv6_address_on_creation", "availability_zone_id", "cidr_block", "ipv6_cidr_block", "ipv6_cidr_block_association_id", "map_public_ip_on_launch", "owner_id", "vpc_id")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Default_subnetHandler", bridge.NewTFHandler(p, "aws_default_subnet", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_default_vpc{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "assign_generated_ipv6_cidr_block", "cidr_block", "default_network_acl_id", "default_route_table_id", "default_security_group_id", "dhcp_options_id", "enable_classiclink", "enable_classiclink_dns_support", "enable_dns_hostnames", "instance_tenancy", "ipv6_association_id", "ipv6_cidr_block", "main_route_table_id", "owner_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_default_vpcHandler", bridge.NewTFHandler(p, "aws_default_vpc", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Default_vpc{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("default_vpcID", "arn", "assign_generated_ipv6_cidr_block", "cidr_block", "default_network_acl_id", "default_route_table_id", "default_security_group_id", "dhcp_options_id", "enable_classiclink", "enable_classiclink_dns_support", "enable_dns_hostnames", "instance_tenancy", "ipv6_association_id", "ipv6_cidr_block", "main_route_table_id", "owner_id")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Default_vpcHandler", bridge.NewTFHandler(p, "aws_default_vpc", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_default_vpc_dhcp_options{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("domain_name", "domain_name_servers", "ntp_servers", "owner_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Default_vpc_dhcp_options{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("default_vpc_dhcp_optionsID", "domain_name", "domain_name_servers", "ntp_servers", "owner_id")
 		b.ImmutableAttributes("netbios_name_servers", "netbios_node_type")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_default_vpc_dhcp_optionsHandler", bridge.NewTFHandler(p, "aws_default_vpc_dhcp_options", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Default_vpc_dhcp_optionsHandler", bridge.NewTFHandler(p, "aws_default_vpc_dhcp_options", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_devicefarm_project{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_devicefarm_projectHandler", bridge.NewTFHandler(p, "aws_devicefarm_project", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Devicefarm_project{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("devicefarm_projectID", "arn")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Devicefarm_projectHandler", bridge.NewTFHandler(p, "aws_devicefarm_project", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_directory_service_conditional_forwarder{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Directory_service_conditional_forwarder{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("directory_service_conditional_forwarderID")
 		b.ImmutableAttributes("directory_id", "remote_domain_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_directory_service_conditional_forwarderHandler", bridge.NewTFHandler(p, "aws_directory_service_conditional_forwarder", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Directory_service_conditional_forwarderHandler", bridge.NewTFHandler(p, "aws_directory_service_conditional_forwarder", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_directory_service_directory{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("access_url", "alias", "dns_ip_addresses", "edition", "security_group_id", "short_name", "size")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Directory_service_directory{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("directory_service_directoryID", "access_url", "alias", "dns_ip_addresses", "edition", "security_group_id", "short_name", "size")
 		b.ImmutableAttributes("alias", "connect_settings", "description", "edition", "name", "password", "short_name", "size", "type", "vpc_settings")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_directory_service_directoryHandler", bridge.NewTFHandler(p, "aws_directory_service_directory", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Directory_service_directoryHandler", bridge.NewTFHandler(p, "aws_directory_service_directory", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dlm_lifecycle_policy{}, func(b service.ResourceTypeBuilder) {
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_dlm_lifecycle_policyHandler", bridge.NewTFHandler(p, "aws_dlm_lifecycle_policy", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Dlm_lifecycle_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dlm_lifecycle_policyID")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Dlm_lifecycle_policyHandler", bridge.NewTFHandler(p, "aws_dlm_lifecycle_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dms_certificate{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("certificate_arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Dms_certificate{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dms_certificateID", "certificate_arn")
 		b.ImmutableAttributes("certificate_id", "certificate_pem", "certificate_wallet")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_dms_certificateHandler", bridge.NewTFHandler(p, "aws_dms_certificate", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Dms_certificateHandler", bridge.NewTFHandler(p, "aws_dms_certificate", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dms_endpoint{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("certificate_arn", "endpoint_arn", "extra_connection_attributes", "kms_key_arn", "ssl_mode")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Dms_endpoint{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dms_endpointID", "certificate_arn", "endpoint_arn", "extra_connection_attributes", "kms_key_arn", "ssl_mode")
 		b.ImmutableAttributes("endpoint_id", "kms_key_arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_dms_endpointHandler", bridge.NewTFHandler(p, "aws_dms_endpoint", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Dms_endpointHandler", bridge.NewTFHandler(p, "aws_dms_endpoint", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dms_replication_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allocated_storage", "auto_minor_version_upgrade", "availability_zone", "engine_version", "kms_key_arn", "multi_az", "preferred_maintenance_window", "publicly_accessible", "replication_instance_arn", "replication_instance_private_ips", "replication_instance_public_ips", "replication_subnet_group_id", "vpc_security_group_ids")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Dms_replication_instance{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dms_replication_instanceID", "allocated_storage", "auto_minor_version_upgrade", "availability_zone", "engine_version", "kms_key_arn", "multi_az", "preferred_maintenance_window", "publicly_accessible", "replication_instance_arn", "replication_instance_private_ips", "replication_instance_public_ips", "replication_subnet_group_id", "vpc_security_group_ids")
 		b.ImmutableAttributes("availability_zone", "kms_key_arn", "publicly_accessible", "replication_instance_id", "replication_subnet_group_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_dms_replication_instanceHandler", bridge.NewTFHandler(p, "aws_dms_replication_instance", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Dms_replication_instanceHandler", bridge.NewTFHandler(p, "aws_dms_replication_instance", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dms_replication_subnet_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("replication_subnet_group_arn", "vpc_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Dms_replication_subnet_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dms_replication_subnet_groupID", "replication_subnet_group_arn", "vpc_id")
 		b.ImmutableAttributes("replication_subnet_group_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_dms_replication_subnet_groupHandler", bridge.NewTFHandler(p, "aws_dms_replication_subnet_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Dms_replication_subnet_groupHandler", bridge.NewTFHandler(p, "aws_dms_replication_subnet_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dms_replication_task{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("replication_task_arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Dms_replication_task{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dms_replication_taskID", "replication_task_arn")
 		b.ImmutableAttributes("replication_instance_arn", "replication_task_id", "source_endpoint_arn", "target_endpoint_arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_dms_replication_taskHandler", bridge.NewTFHandler(p, "aws_dms_replication_task", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Dms_replication_taskHandler", bridge.NewTFHandler(p, "aws_dms_replication_task", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_docdb_cluster_parameter_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "name", "name_prefix")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Docdb_cluster_parameter_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("docdb_cluster_parameter_groupID", "arn", "name", "name_prefix")
 		b.ImmutableAttributes("description", "family", "name", "name_prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_docdb_cluster_parameter_groupHandler", bridge.NewTFHandler(p, "aws_docdb_cluster_parameter_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Docdb_cluster_parameter_groupHandler", bridge.NewTFHandler(p, "aws_docdb_cluster_parameter_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_docdb_subnet_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "name", "name_prefix")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Docdb_subnet_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("docdb_subnet_groupID", "arn", "name", "name_prefix")
 		b.ImmutableAttributes("name", "name_prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_docdb_subnet_groupHandler", bridge.NewTFHandler(p, "aws_docdb_subnet_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Docdb_subnet_groupHandler", bridge.NewTFHandler(p, "aws_docdb_subnet_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dx_bgp_peer{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("amazon_address", "bgp_auth_key", "bgp_status", "customer_address")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Dx_bgp_peer{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dx_bgp_peerID", "amazon_address", "bgp_auth_key", "bgp_status", "customer_address")
 		b.ImmutableAttributes("address_family", "amazon_address", "bgp_asn", "bgp_auth_key", "customer_address", "virtual_interface_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_dx_bgp_peerHandler", bridge.NewTFHandler(p, "aws_dx_bgp_peer", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Dx_bgp_peerHandler", bridge.NewTFHandler(p, "aws_dx_bgp_peer", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dx_connection{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "jumbo_frame_capable")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Dx_connection{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dx_connectionID", "arn", "jumbo_frame_capable")
 		b.ImmutableAttributes("bandwidth", "location", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_dx_connectionHandler", bridge.NewTFHandler(p, "aws_dx_connection", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Dx_connectionHandler", bridge.NewTFHandler(p, "aws_dx_connection", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dx_connection_association{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Dx_connection_association{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dx_connection_associationID")
 		b.ImmutableAttributes("connection_id", "lag_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_dx_connection_associationHandler", bridge.NewTFHandler(p, "aws_dx_connection_association", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Dx_connection_associationHandler", bridge.NewTFHandler(p, "aws_dx_connection_association", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dx_gateway{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Dx_gateway{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dx_gatewayID")
 		b.ImmutableAttributes("amazon_side_asn", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_dx_gatewayHandler", bridge.NewTFHandler(p, "aws_dx_gateway", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Dx_gatewayHandler", bridge.NewTFHandler(p, "aws_dx_gateway", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dx_gateway_association{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Dx_gateway_association{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dx_gateway_associationID")
 		b.ImmutableAttributes("dx_gateway_id", "vpn_gateway_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_dx_gateway_associationHandler", bridge.NewTFHandler(p, "aws_dx_gateway_association", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Dx_gateway_associationHandler", bridge.NewTFHandler(p, "aws_dx_gateway_association", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dx_hosted_private_virtual_interface{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("amazon_address", "arn", "bgp_auth_key", "customer_address", "jumbo_frame_capable")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Dx_hosted_private_virtual_interface{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dx_hosted_private_virtual_interfaceID", "amazon_address", "arn", "bgp_auth_key", "customer_address", "jumbo_frame_capable")
 		b.ImmutableAttributes("address_family", "amazon_address", "bgp_asn", "bgp_auth_key", "connection_id", "customer_address", "mtu", "name", "owner_account_id", "vlan")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_dx_hosted_private_virtual_interfaceHandler", bridge.NewTFHandler(p, "aws_dx_hosted_private_virtual_interface", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Dx_hosted_private_virtual_interfaceHandler", bridge.NewTFHandler(p, "aws_dx_hosted_private_virtual_interface", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dx_hosted_private_virtual_interface_accepter{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Dx_hosted_private_virtual_interface_accepter{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dx_hosted_private_virtual_interface_accepterID", "arn")
 		b.ImmutableAttributes("dx_gateway_id", "virtual_interface_id", "vpn_gateway_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_dx_hosted_private_virtual_interface_accepterHandler", bridge.NewTFHandler(p, "aws_dx_hosted_private_virtual_interface_accepter", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Dx_hosted_private_virtual_interface_accepterHandler", bridge.NewTFHandler(p, "aws_dx_hosted_private_virtual_interface_accepter", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dx_hosted_public_virtual_interface{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("amazon_address", "arn", "bgp_auth_key", "customer_address")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Dx_hosted_public_virtual_interface{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dx_hosted_public_virtual_interfaceID", "amazon_address", "arn", "bgp_auth_key", "customer_address")
 		b.ImmutableAttributes("address_family", "amazon_address", "bgp_asn", "bgp_auth_key", "connection_id", "customer_address", "name", "owner_account_id", "route_filter_prefixes", "vlan")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_dx_hosted_public_virtual_interfaceHandler", bridge.NewTFHandler(p, "aws_dx_hosted_public_virtual_interface", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Dx_hosted_public_virtual_interfaceHandler", bridge.NewTFHandler(p, "aws_dx_hosted_public_virtual_interface", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dx_hosted_public_virtual_interface_accepter{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Dx_hosted_public_virtual_interface_accepter{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dx_hosted_public_virtual_interface_accepterID", "arn")
 		b.ImmutableAttributes("virtual_interface_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_dx_hosted_public_virtual_interface_accepterHandler", bridge.NewTFHandler(p, "aws_dx_hosted_public_virtual_interface_accepter", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Dx_hosted_public_virtual_interface_accepterHandler", bridge.NewTFHandler(p, "aws_dx_hosted_public_virtual_interface_accepter", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dx_lag{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "number_of_connections")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Dx_lag{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dx_lagID", "arn", "number_of_connections")
 		b.ImmutableAttributes("connections_bandwidth", "location", "number_of_connections")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_dx_lagHandler", bridge.NewTFHandler(p, "aws_dx_lag", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Dx_lagHandler", bridge.NewTFHandler(p, "aws_dx_lag", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dx_private_virtual_interface{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("amazon_address", "arn", "bgp_auth_key", "customer_address", "jumbo_frame_capable")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Dx_private_virtual_interface{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dx_private_virtual_interfaceID", "amazon_address", "arn", "bgp_auth_key", "customer_address", "jumbo_frame_capable")
 		b.ImmutableAttributes("address_family", "amazon_address", "bgp_asn", "bgp_auth_key", "connection_id", "customer_address", "dx_gateway_id", "name", "vlan", "vpn_gateway_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_dx_private_virtual_interfaceHandler", bridge.NewTFHandler(p, "aws_dx_private_virtual_interface", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Dx_private_virtual_interfaceHandler", bridge.NewTFHandler(p, "aws_dx_private_virtual_interface", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dx_public_virtual_interface{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("amazon_address", "arn", "bgp_auth_key", "customer_address")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Dx_public_virtual_interface{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dx_public_virtual_interfaceID", "amazon_address", "arn", "bgp_auth_key", "customer_address")
 		b.ImmutableAttributes("address_family", "amazon_address", "bgp_asn", "bgp_auth_key", "connection_id", "customer_address", "name", "route_filter_prefixes", "vlan")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_dx_public_virtual_interfaceHandler", bridge.NewTFHandler(p, "aws_dx_public_virtual_interface", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Dx_public_virtual_interfaceHandler", bridge.NewTFHandler(p, "aws_dx_public_virtual_interface", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dynamodb_global_table{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Dynamodb_global_table{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dynamodb_global_tableID", "arn")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_dynamodb_global_tableHandler", bridge.NewTFHandler(p, "aws_dynamodb_global_table", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Dynamodb_global_tableHandler", bridge.NewTFHandler(p, "aws_dynamodb_global_table", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dynamodb_table{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "point_in_time_recovery", "server_side_encryption", "stream_arn", "stream_label", "stream_view_type")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Dynamodb_table{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dynamodb_tableID", "arn", "point_in_time_recovery", "server_side_encryption", "stream_arn", "stream_label", "stream_view_type")
 		b.ImmutableAttributes("hash_key", "local_secondary_index", "name", "range_key")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_dynamodb_tableHandler", bridge.NewTFHandler(p, "aws_dynamodb_table", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Dynamodb_tableHandler", bridge.NewTFHandler(p, "aws_dynamodb_table", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dynamodb_table_item{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Dynamodb_table_item{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("dynamodb_table_itemID")
 		b.ImmutableAttributes("hash_key", "range_key", "table_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_dynamodb_table_itemHandler", bridge.NewTFHandler(p, "aws_dynamodb_table_item", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Dynamodb_table_itemHandler", bridge.NewTFHandler(p, "aws_dynamodb_table_item", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ebs_snapshot{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("data_encryption_key_id", "encrypted", "kms_key_id", "owner_alias", "owner_id", "volume_size")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ebs_snapshot{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ebs_snapshotID", "data_encryption_key_id", "encrypted", "kms_key_id", "owner_alias", "owner_id", "volume_size")
 		b.ImmutableAttributes("description", "tags", "volume_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ebs_snapshotHandler", bridge.NewTFHandler(p, "aws_ebs_snapshot", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ebs_snapshotHandler", bridge.NewTFHandler(p, "aws_ebs_snapshot", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ebs_snapshot_copy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("data_encryption_key_id", "owner_alias", "owner_id", "volume_id", "volume_size")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ebs_snapshot_copy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ebs_snapshot_copyID", "data_encryption_key_id", "owner_alias", "owner_id", "volume_id", "volume_size")
 		b.ImmutableAttributes("description", "encrypted", "kms_key_id", "source_region", "source_snapshot_id", "tags")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ebs_snapshot_copyHandler", bridge.NewTFHandler(p, "aws_ebs_snapshot_copy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ebs_snapshot_copyHandler", bridge.NewTFHandler(p, "aws_ebs_snapshot_copy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ebs_volume{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "encrypted", "iops", "kms_key_id", "size", "snapshot_id", "type")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ebs_volume{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ebs_volumeID", "arn", "encrypted", "iops", "kms_key_id", "size", "snapshot_id", "type")
 		b.ImmutableAttributes("availability_zone", "encrypted", "kms_key_id", "snapshot_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ebs_volumeHandler", bridge.NewTFHandler(p, "aws_ebs_volume", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ebs_volumeHandler", bridge.NewTFHandler(p, "aws_ebs_volume", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ec2_capacity_reservation{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ec2_capacity_reservation{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ec2_capacity_reservationID")
 		b.ImmutableAttributes("availability_zone", "ebs_optimized", "ephemeral_storage", "instance_match_criteria", "instance_platform", "instance_type", "tenancy")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ec2_capacity_reservationHandler", bridge.NewTFHandler(p, "aws_ec2_capacity_reservation", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ec2_capacity_reservationHandler", bridge.NewTFHandler(p, "aws_ec2_capacity_reservation", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ec2_fleet{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ec2_fleet{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ec2_fleetID")
 		b.ImmutableAttributes("launch_template_config", "replace_unhealthy_instances", "tags", "terminate_instances_with_expiration", "type")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ec2_fleetHandler", bridge.NewTFHandler(p, "aws_ec2_fleet", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ec2_fleetHandler", bridge.NewTFHandler(p, "aws_ec2_fleet", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ec2_transit_gateway{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "association_default_route_table_id", "owner_id", "propagation_default_route_table_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ec2_transit_gateway{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ec2_transit_gatewayID", "arn", "association_default_route_table_id", "owner_id", "propagation_default_route_table_id")
 		b.ImmutableAttributes("amazon_side_asn", "auto_accept_shared_attachments", "default_route_table_association", "default_route_table_propagation", "description", "dns_support", "vpn_ecmp_support")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ec2_transit_gatewayHandler", bridge.NewTFHandler(p, "aws_ec2_transit_gateway", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ec2_transit_gatewayHandler", bridge.NewTFHandler(p, "aws_ec2_transit_gateway", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ec2_transit_gateway_route{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ec2_transit_gateway_route{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ec2_transit_gateway_routeID")
 		b.ImmutableAttributes("destination_cidr_block", "transit_gateway_attachment_id", "transit_gateway_route_table_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ec2_transit_gateway_routeHandler", bridge.NewTFHandler(p, "aws_ec2_transit_gateway_route", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ec2_transit_gateway_routeHandler", bridge.NewTFHandler(p, "aws_ec2_transit_gateway_route", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ec2_transit_gateway_route_table{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("default_association_route_table", "default_propagation_route_table")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ec2_transit_gateway_route_table{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ec2_transit_gateway_route_tableID", "default_association_route_table", "default_propagation_route_table")
 		b.ImmutableAttributes("transit_gateway_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ec2_transit_gateway_route_tableHandler", bridge.NewTFHandler(p, "aws_ec2_transit_gateway_route_table", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ec2_transit_gateway_route_tableHandler", bridge.NewTFHandler(p, "aws_ec2_transit_gateway_route_table", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ec2_transit_gateway_route_table_association{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("resource_id", "resource_type")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ec2_transit_gateway_route_table_association{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ec2_transit_gateway_route_table_associationID", "resource_id", "resource_type")
 		b.ImmutableAttributes("transit_gateway_attachment_id", "transit_gateway_route_table_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ec2_transit_gateway_route_table_associationHandler", bridge.NewTFHandler(p, "aws_ec2_transit_gateway_route_table_association", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ec2_transit_gateway_route_table_associationHandler", bridge.NewTFHandler(p, "aws_ec2_transit_gateway_route_table_association", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ec2_transit_gateway_route_table_propagation{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("resource_id", "resource_type")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ec2_transit_gateway_route_table_propagation{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ec2_transit_gateway_route_table_propagationID", "resource_id", "resource_type")
 		b.ImmutableAttributes("transit_gateway_attachment_id", "transit_gateway_route_table_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ec2_transit_gateway_route_table_propagationHandler", bridge.NewTFHandler(p, "aws_ec2_transit_gateway_route_table_propagation", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ec2_transit_gateway_route_table_propagationHandler", bridge.NewTFHandler(p, "aws_ec2_transit_gateway_route_table_propagation", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ec2_transit_gateway_vpc_attachment{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("vpc_owner_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ec2_transit_gateway_vpc_attachment{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ec2_transit_gateway_vpc_attachmentID", "vpc_owner_id")
 		b.ImmutableAttributes("transit_gateway_id", "vpc_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ec2_transit_gateway_vpc_attachmentHandler", bridge.NewTFHandler(p, "aws_ec2_transit_gateway_vpc_attachment", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ec2_transit_gateway_vpc_attachmentHandler", bridge.NewTFHandler(p, "aws_ec2_transit_gateway_vpc_attachment", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ecr_lifecycle_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("registry_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ecr_lifecycle_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ecr_lifecycle_policyID", "registry_id")
 		b.ImmutableAttributes("policy", "repository")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ecr_lifecycle_policyHandler", bridge.NewTFHandler(p, "aws_ecr_lifecycle_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ecr_lifecycle_policyHandler", bridge.NewTFHandler(p, "aws_ecr_lifecycle_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ecr_repository{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "registry_id", "repository_url")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ecr_repository{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ecr_repositoryID", "arn", "registry_id", "repository_url")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ecr_repositoryHandler", bridge.NewTFHandler(p, "aws_ecr_repository", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ecr_repositoryHandler", bridge.NewTFHandler(p, "aws_ecr_repository", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ecr_repository_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("registry_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ecr_repository_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ecr_repository_policyID", "registry_id")
 		b.ImmutableAttributes("repository")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ecr_repository_policyHandler", bridge.NewTFHandler(p, "aws_ecr_repository_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ecr_repository_policyHandler", bridge.NewTFHandler(p, "aws_ecr_repository_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ecs_cluster{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ecs_cluster{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ecs_clusterID", "arn")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ecs_clusterHandler", bridge.NewTFHandler(p, "aws_ecs_cluster", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ecs_clusterHandler", bridge.NewTFHandler(p, "aws_ecs_cluster", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ecs_service{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("cluster", "iam_role", "platform_version")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ecs_service{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ecs_serviceID", "cluster", "iam_role", "platform_version")
 		b.ImmutableAttributes("cluster", "iam_role", "launch_type", "load_balancer", "name", "ordered_placement_strategy", "placement_constraints", "placement_strategy", "propagate_tags", "scheduling_strategy", "service_registries")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ecs_serviceHandler", bridge.NewTFHandler(p, "aws_ecs_service", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ecs_serviceHandler", bridge.NewTFHandler(p, "aws_ecs_service", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ecs_task_definition{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "network_mode", "revision")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ecs_task_definition{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ecs_task_definitionID", "arn", "network_mode", "revision")
 		b.ImmutableAttributes("container_definitions", "cpu", "execution_role_arn", "family", "ipc_mode", "memory", "network_mode", "pid_mode", "placement_constraints", "requires_compatibilities", "task_role_arn", "volume")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ecs_task_definitionHandler", bridge.NewTFHandler(p, "aws_ecs_task_definition", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ecs_task_definitionHandler", bridge.NewTFHandler(p, "aws_ecs_task_definition", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_efs_file_system{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "creation_token", "dns_name", "encrypted", "kms_key_id", "performance_mode", "reference_name")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Efs_file_system{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("efs_file_systemID", "arn", "creation_token", "dns_name", "encrypted", "kms_key_id", "performance_mode", "reference_name")
 		b.ImmutableAttributes("creation_token", "encrypted", "kms_key_id", "performance_mode")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_efs_file_systemHandler", bridge.NewTFHandler(p, "aws_efs_file_system", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Efs_file_systemHandler", bridge.NewTFHandler(p, "aws_efs_file_system", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_efs_mount_target{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("dns_name", "file_system_arn", "ip_address", "network_interface_id", "security_groups")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Efs_mount_target{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("efs_mount_targetID", "dns_name", "file_system_arn", "ip_address", "network_interface_id", "security_groups")
 		b.ImmutableAttributes("file_system_id", "ip_address", "subnet_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_efs_mount_targetHandler", bridge.NewTFHandler(p, "aws_efs_mount_target", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Efs_mount_targetHandler", bridge.NewTFHandler(p, "aws_efs_mount_target", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_egress_only_internet_gateway{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Egress_only_internet_gateway{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("egress_only_internet_gatewayID")
 		b.ImmutableAttributes("vpc_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_egress_only_internet_gatewayHandler", bridge.NewTFHandler(p, "aws_egress_only_internet_gateway", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Egress_only_internet_gatewayHandler", bridge.NewTFHandler(p, "aws_egress_only_internet_gateway", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_eip{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allocation_id", "association_id", "domain", "instance", "network_interface", "private_ip", "public_ip", "public_ipv4_pool", "vpc")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Eip{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("eipID", "allocation_id", "association_id", "domain", "instance", "network_interface", "private_ip", "public_ip", "public_ipv4_pool", "vpc")
 		b.ImmutableAttributes("public_ipv4_pool", "vpc")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_eipHandler", bridge.NewTFHandler(p, "aws_eip", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::EipHandler", bridge.NewTFHandler(p, "aws_eip", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_eip_association{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allocation_id", "instance_id", "network_interface_id", "private_ip_address", "public_ip")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Eip_association{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("eip_associationID", "allocation_id", "instance_id", "network_interface_id", "private_ip_address", "public_ip")
 		b.ImmutableAttributes("allocation_id", "allow_reassociation", "instance_id", "network_interface_id", "private_ip_address", "public_ip")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_eip_associationHandler", bridge.NewTFHandler(p, "aws_eip_association", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Eip_associationHandler", bridge.NewTFHandler(p, "aws_eip_association", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_eks_cluster{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "certificate_authority", "created_at", "endpoint", "platform_version", "version")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Eks_cluster{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("eks_clusterID", "arn", "certificate_authority", "created_at", "endpoint", "platform_version", "version")
 		b.ImmutableAttributes("name", "role_arn", "vpc_config")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_eks_clusterHandler", bridge.NewTFHandler(p, "aws_eks_cluster", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Eks_clusterHandler", bridge.NewTFHandler(p, "aws_eks_cluster", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elastic_beanstalk_application{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Elastic_beanstalk_application{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("elastic_beanstalk_applicationID")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_elastic_beanstalk_applicationHandler", bridge.NewTFHandler(p, "aws_elastic_beanstalk_application", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Elastic_beanstalk_applicationHandler", bridge.NewTFHandler(p, "aws_elastic_beanstalk_application", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elastic_beanstalk_application_version{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Elastic_beanstalk_application_version{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("elastic_beanstalk_application_versionID")
 		b.ImmutableAttributes("application", "bucket", "key", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_elastic_beanstalk_application_versionHandler", bridge.NewTFHandler(p, "aws_elastic_beanstalk_application_version", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Elastic_beanstalk_application_versionHandler", bridge.NewTFHandler(p, "aws_elastic_beanstalk_application_version", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elastic_beanstalk_configuration_template{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("setting")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Elastic_beanstalk_configuration_template{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("elastic_beanstalk_configuration_templateID", "setting")
 		b.ImmutableAttributes("application", "environment_id", "name", "solution_stack_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_elastic_beanstalk_configuration_templateHandler", bridge.NewTFHandler(p, "aws_elastic_beanstalk_configuration_template", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Elastic_beanstalk_configuration_templateHandler", bridge.NewTFHandler(p, "aws_elastic_beanstalk_configuration_template", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elastic_beanstalk_environment{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("all_settings", "arn", "autoscaling_groups", "cname", "cname_prefix", "instances", "launch_configurations", "load_balancers", "platform_arn", "queues", "solution_stack_name", "triggers", "version_label")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Elastic_beanstalk_environment{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("elastic_beanstalk_environmentID", "all_settings", "arn", "autoscaling_groups", "cname", "cname_prefix", "instances", "launch_configurations", "load_balancers", "platform_arn", "queues", "solution_stack_name", "triggers", "version_label")
 		b.ImmutableAttributes("cname_prefix", "name", "tier")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_elastic_beanstalk_environmentHandler", bridge.NewTFHandler(p, "aws_elastic_beanstalk_environment", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Elastic_beanstalk_environmentHandler", bridge.NewTFHandler(p, "aws_elastic_beanstalk_environment", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elasticache_cluster{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("apply_immediately", "availability_zone", "az_mode", "cache_nodes", "cluster_address", "configuration_endpoint", "engine", "engine_version", "maintenance_window", "node_type", "num_cache_nodes", "parameter_group_name", "replication_group_id", "security_group_ids", "security_group_names", "snapshot_window", "subnet_group_name")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Elasticache_cluster{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("elasticache_clusterID", "apply_immediately", "availability_zone", "az_mode", "cache_nodes", "cluster_address", "configuration_endpoint", "engine", "engine_version", "maintenance_window", "node_type", "num_cache_nodes", "parameter_group_name", "replication_group_id", "security_group_ids", "security_group_names", "snapshot_window", "subnet_group_name")
 		b.ImmutableAttributes("availability_zone", "availability_zones", "cluster_id", "engine", "port", "replication_group_id", "security_group_names", "snapshot_arns", "snapshot_name", "subnet_group_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_elasticache_clusterHandler", bridge.NewTFHandler(p, "aws_elasticache_cluster", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Elasticache_clusterHandler", bridge.NewTFHandler(p, "aws_elasticache_cluster", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elasticache_parameter_group{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Elasticache_parameter_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("elasticache_parameter_groupID")
 		b.ImmutableAttributes("description", "family", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_elasticache_parameter_groupHandler", bridge.NewTFHandler(p, "aws_elasticache_parameter_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Elasticache_parameter_groupHandler", bridge.NewTFHandler(p, "aws_elasticache_parameter_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elasticache_replication_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("apply_immediately", "cluster_mode", "configuration_endpoint_address", "engine_version", "maintenance_window", "member_clusters", "node_type", "number_cache_clusters", "parameter_group_name", "primary_endpoint_address", "security_group_ids", "security_group_names", "snapshot_window", "subnet_group_name")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Elasticache_replication_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("elasticache_replication_groupID", "apply_immediately", "cluster_mode", "configuration_endpoint_address", "engine_version", "maintenance_window", "member_clusters", "node_type", "number_cache_clusters", "parameter_group_name", "primary_endpoint_address", "security_group_ids", "security_group_names", "snapshot_window", "subnet_group_name")
 		b.ImmutableAttributes("at_rest_encryption_enabled", "auth_token", "availability_zones", "engine", "port", "replication_group_id", "security_group_names", "snapshot_arns", "snapshot_name", "subnet_group_name", "transit_encryption_enabled")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_elasticache_replication_groupHandler", bridge.NewTFHandler(p, "aws_elasticache_replication_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Elasticache_replication_groupHandler", bridge.NewTFHandler(p, "aws_elasticache_replication_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elasticache_security_group{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Elasticache_security_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("elasticache_security_groupID")
 		b.ImmutableAttributes("description", "name", "security_group_names")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_elasticache_security_groupHandler", bridge.NewTFHandler(p, "aws_elasticache_security_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Elasticache_security_groupHandler", bridge.NewTFHandler(p, "aws_elasticache_security_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elasticache_subnet_group{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Elasticache_subnet_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("elasticache_subnet_groupID")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_elasticache_subnet_groupHandler", bridge.NewTFHandler(p, "aws_elasticache_subnet_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Elasticache_subnet_groupHandler", bridge.NewTFHandler(p, "aws_elasticache_subnet_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elasticsearch_domain{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("access_policies", "advanced_options", "arn", "cluster_config", "domain_id", "ebs_options", "encrypt_at_rest", "endpoint", "kibana_endpoint", "node_to_node_encryption")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Elasticsearch_domain{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("elasticsearch_domainID", "access_policies", "advanced_options", "arn", "cluster_config", "domain_id", "ebs_options", "encrypt_at_rest", "endpoint", "kibana_endpoint", "node_to_node_encryption")
 		b.ImmutableAttributes("domain_name", "vpc_options")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_elasticsearch_domainHandler", bridge.NewTFHandler(p, "aws_elasticsearch_domain", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Elasticsearch_domainHandler", bridge.NewTFHandler(p, "aws_elasticsearch_domain", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elasticsearch_domain_policy{}, func(b service.ResourceTypeBuilder) {
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_elasticsearch_domain_policyHandler", bridge.NewTFHandler(p, "aws_elasticsearch_domain_policy", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Elasticsearch_domain_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("elasticsearch_domain_policyID")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Elasticsearch_domain_policyHandler", bridge.NewTFHandler(p, "aws_elasticsearch_domain_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elastictranscoder_pipeline{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "content_config", "name", "output_bucket", "thumbnail_config")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Elastictranscoder_pipeline{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("elastictranscoder_pipelineID", "arn", "content_config", "name", "output_bucket", "thumbnail_config")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_elastictranscoder_pipelineHandler", bridge.NewTFHandler(p, "aws_elastictranscoder_pipeline", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Elastictranscoder_pipelineHandler", bridge.NewTFHandler(p, "aws_elastictranscoder_pipeline", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elastictranscoder_preset{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "name", "type")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Elastictranscoder_preset{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("elastictranscoder_presetID", "arn", "name", "type")
 		b.ImmutableAttributes("audio", "audio_codec_options", "container", "description", "name", "thumbnails", "video", "video_codec_options", "video_watermarks")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_elastictranscoder_presetHandler", bridge.NewTFHandler(p, "aws_elastictranscoder_preset", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Elastictranscoder_presetHandler", bridge.NewTFHandler(p, "aws_elastictranscoder_preset", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elb{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "availability_zones", "dns_name", "health_check", "instances", "internal", "name", "security_groups", "source_security_group", "source_security_group_id", "subnets", "zone_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Elb{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("elbID", "arn", "availability_zones", "dns_name", "health_check", "instances", "internal", "name", "security_groups", "source_security_group", "source_security_group_id", "subnets", "zone_id")
 		b.ImmutableAttributes("internal", "name", "name_prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_elbHandler", bridge.NewTFHandler(p, "aws_elb", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::ElbHandler", bridge.NewTFHandler(p, "aws_elb", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elb_attachment{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Elb_attachment{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("elb_attachmentID")
 		b.ImmutableAttributes("elb", "instance")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_elb_attachmentHandler", bridge.NewTFHandler(p, "aws_elb_attachment", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Elb_attachmentHandler", bridge.NewTFHandler(p, "aws_elb_attachment", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_emr_cluster{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("cluster_state", "core_instance_count", "core_instance_type", "instance_group", "keep_job_flow_alive_when_no_steps", "master_instance_type", "master_public_dns", "scale_down_behavior", "step", "termination_protection")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Emr_cluster{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("emr_clusterID", "cluster_state", "core_instance_count", "core_instance_type", "instance_group", "keep_job_flow_alive_when_no_steps", "master_instance_type", "master_public_dns", "scale_down_behavior", "step", "termination_protection")
 		b.ImmutableAttributes("additional_info", "applications", "autoscaling_role", "bootstrap_action", "configurations", "configurations_json", "core_instance_type", "custom_ami_id", "ebs_root_volume_size", "ec2_attributes", "instance_group", "keep_job_flow_alive_when_no_steps", "kerberos_attributes", "log_uri", "master_instance_type", "name", "release_label", "scale_down_behavior", "security_configuration", "service_role", "step")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_emr_clusterHandler", bridge.NewTFHandler(p, "aws_emr_cluster", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Emr_clusterHandler", bridge.NewTFHandler(p, "aws_emr_cluster", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_emr_instance_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("running_instance_count", "status")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Emr_instance_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("emr_instance_groupID", "running_instance_count", "status")
 		b.ImmutableAttributes("cluster_id", "ebs_config", "ebs_optimized", "instance_type", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_emr_instance_groupHandler", bridge.NewTFHandler(p, "aws_emr_instance_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Emr_instance_groupHandler", bridge.NewTFHandler(p, "aws_emr_instance_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_emr_security_configuration{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_date", "name")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Emr_security_configuration{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("emr_security_configurationID", "creation_date", "name")
 		b.ImmutableAttributes("configuration", "name", "name_prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_emr_security_configurationHandler", bridge.NewTFHandler(p, "aws_emr_security_configuration", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Emr_security_configurationHandler", bridge.NewTFHandler(p, "aws_emr_security_configuration", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_flow_log{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("log_destination", "log_group_name")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Flow_log{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("flow_logID", "log_destination", "log_group_name")
 		b.ImmutableAttributes("eni_id", "iam_role_arn", "log_destination", "log_destination_type", "log_group_name", "subnet_id", "traffic_type", "vpc_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_flow_logHandler", bridge.NewTFHandler(p, "aws_flow_log", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Flow_logHandler", bridge.NewTFHandler(p, "aws_flow_log", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_gamelift_alias{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_gamelift_aliasHandler", bridge.NewTFHandler(p, "aws_gamelift_alias", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Gamelift_alias{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("gamelift_aliasID", "arn")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Gamelift_aliasHandler", bridge.NewTFHandler(p, "aws_gamelift_alias", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_gamelift_build{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Gamelift_build{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("gamelift_buildID")
 		b.ImmutableAttributes("operating_system", "storage_location")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_gamelift_buildHandler", bridge.NewTFHandler(p, "aws_gamelift_build", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Gamelift_buildHandler", bridge.NewTFHandler(p, "aws_gamelift_build", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_gamelift_fleet{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "log_paths", "metric_groups", "operating_system")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Gamelift_fleet{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("gamelift_fleetID", "arn", "log_paths", "metric_groups", "operating_system")
 		b.ImmutableAttributes("build_id", "ec2_instance_type")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_gamelift_fleetHandler", bridge.NewTFHandler(p, "aws_gamelift_fleet", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Gamelift_fleetHandler", bridge.NewTFHandler(p, "aws_gamelift_fleet", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_gamelift_game_session_queue{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Gamelift_game_session_queue{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("gamelift_game_session_queueID", "arn")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_gamelift_game_session_queueHandler", bridge.NewTFHandler(p, "aws_gamelift_game_session_queue", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Gamelift_game_session_queueHandler", bridge.NewTFHandler(p, "aws_gamelift_game_session_queue", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_glacier_vault{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "location")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Glacier_vault{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("glacier_vaultID", "arn", "location")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_glacier_vaultHandler", bridge.NewTFHandler(p, "aws_glacier_vault", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Glacier_vaultHandler", bridge.NewTFHandler(p, "aws_glacier_vault", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_glacier_vault_lock{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Glacier_vault_lock{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("glacier_vault_lockID")
 		b.ImmutableAttributes("complete_lock", "policy", "vault_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_glacier_vault_lockHandler", bridge.NewTFHandler(p, "aws_glacier_vault_lock", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Glacier_vault_lockHandler", bridge.NewTFHandler(p, "aws_glacier_vault_lock", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_globalaccelerator_accelerator{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("ip_sets")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_globalaccelerator_acceleratorHandler", bridge.NewTFHandler(p, "aws_globalaccelerator_accelerator", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Globalaccelerator_accelerator{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("globalaccelerator_acceleratorID", "ip_sets")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Globalaccelerator_acceleratorHandler", bridge.NewTFHandler(p, "aws_globalaccelerator_accelerator", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_glue_catalog_database{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("catalog_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Glue_catalog_database{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("glue_catalog_databaseID", "catalog_id")
 		b.ImmutableAttributes("catalog_id", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_glue_catalog_databaseHandler", bridge.NewTFHandler(p, "aws_glue_catalog_database", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Glue_catalog_databaseHandler", bridge.NewTFHandler(p, "aws_glue_catalog_database", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_glue_catalog_table{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("catalog_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Glue_catalog_table{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("glue_catalog_tableID", "catalog_id")
 		b.ImmutableAttributes("catalog_id", "database_name", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_glue_catalog_tableHandler", bridge.NewTFHandler(p, "aws_glue_catalog_table", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Glue_catalog_tableHandler", bridge.NewTFHandler(p, "aws_glue_catalog_table", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_glue_classifier{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Glue_classifier{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("glue_classifierID")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_glue_classifierHandler", bridge.NewTFHandler(p, "aws_glue_classifier", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Glue_classifierHandler", bridge.NewTFHandler(p, "aws_glue_classifier", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_glue_connection{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("catalog_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Glue_connection{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("glue_connectionID", "catalog_id")
 		b.ImmutableAttributes("catalog_id", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_glue_connectionHandler", bridge.NewTFHandler(p, "aws_glue_connection", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Glue_connectionHandler", bridge.NewTFHandler(p, "aws_glue_connection", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_glue_crawler{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Glue_crawler{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("glue_crawlerID")
 		b.ImmutableAttributes("database_name", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_glue_crawlerHandler", bridge.NewTFHandler(p, "aws_glue_crawler", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Glue_crawlerHandler", bridge.NewTFHandler(p, "aws_glue_crawler", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_glue_job{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("execution_property")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Glue_job{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("glue_jobID", "execution_property")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_glue_jobHandler", bridge.NewTFHandler(p, "aws_glue_job", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Glue_jobHandler", bridge.NewTFHandler(p, "aws_glue_job", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_glue_security_configuration{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Glue_security_configuration{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("glue_security_configurationID")
 		b.ImmutableAttributes("encryption_configuration", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_glue_security_configurationHandler", bridge.NewTFHandler(p, "aws_glue_security_configuration", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Glue_security_configurationHandler", bridge.NewTFHandler(p, "aws_glue_security_configuration", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_glue_trigger{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Glue_trigger{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("glue_triggerID")
 		b.ImmutableAttributes("name", "type")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_glue_triggerHandler", bridge.NewTFHandler(p, "aws_glue_trigger", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Glue_triggerHandler", bridge.NewTFHandler(p, "aws_glue_trigger", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_guardduty_detector{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("account_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_guardduty_detectorHandler", bridge.NewTFHandler(p, "aws_guardduty_detector", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Guardduty_detector{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("guardduty_detectorID", "account_id")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Guardduty_detectorHandler", bridge.NewTFHandler(p, "aws_guardduty_detector", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_guardduty_ipset{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Guardduty_ipset{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("guardduty_ipsetID")
 		b.ImmutableAttributes("detector_id", "format")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_guardduty_ipsetHandler", bridge.NewTFHandler(p, "aws_guardduty_ipset", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Guardduty_ipsetHandler", bridge.NewTFHandler(p, "aws_guardduty_ipset", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_guardduty_member{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("relationship_status")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Guardduty_member{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("guardduty_memberID", "relationship_status")
 		b.ImmutableAttributes("account_id", "detector_id", "disable_email_notification", "email", "invitation_message")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_guardduty_memberHandler", bridge.NewTFHandler(p, "aws_guardduty_member", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Guardduty_memberHandler", bridge.NewTFHandler(p, "aws_guardduty_member", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_guardduty_threatintelset{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Guardduty_threatintelset{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("guardduty_threatintelsetID")
 		b.ImmutableAttributes("detector_id", "format")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_guardduty_threatintelsetHandler", bridge.NewTFHandler(p, "aws_guardduty_threatintelset", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Guardduty_threatintelsetHandler", bridge.NewTFHandler(p, "aws_guardduty_threatintelset", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_access_key{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("encrypted_secret", "key_fingerprint", "secret", "ses_smtp_password", "status")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iam_access_key{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iam_access_keyID", "encrypted_secret", "key_fingerprint", "secret", "ses_smtp_password", "status")
 		b.ImmutableAttributes("pgp_key", "user")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iam_access_keyHandler", bridge.NewTFHandler(p, "aws_iam_access_key", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iam_access_keyHandler", bridge.NewTFHandler(p, "aws_iam_access_key", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_account_alias{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iam_account_alias{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iam_account_aliasID")
 		b.ImmutableAttributes("account_alias")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iam_account_aliasHandler", bridge.NewTFHandler(p, "aws_iam_account_alias", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iam_account_aliasHandler", bridge.NewTFHandler(p, "aws_iam_account_alias", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_account_password_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("expire_passwords", "hard_expiry", "max_password_age", "password_reuse_prevention", "require_lowercase_characters", "require_numbers", "require_symbols", "require_uppercase_characters")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iam_account_password_policyHandler", bridge.NewTFHandler(p, "aws_iam_account_password_policy", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iam_account_password_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iam_account_password_policyID", "expire_passwords", "hard_expiry", "max_password_age", "password_reuse_prevention", "require_lowercase_characters", "require_numbers", "require_symbols", "require_uppercase_characters")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iam_account_password_policyHandler", bridge.NewTFHandler(p, "aws_iam_account_password_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "unique_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iam_groupHandler", bridge.NewTFHandler(p, "aws_iam_group", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iam_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iam_groupID", "arn", "unique_id")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iam_groupHandler", bridge.NewTFHandler(p, "aws_iam_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_group_membership{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iam_group_membership{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iam_group_membershipID")
 		b.ImmutableAttributes("group", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iam_group_membershipHandler", bridge.NewTFHandler(p, "aws_iam_group_membership", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iam_group_membershipHandler", bridge.NewTFHandler(p, "aws_iam_group_membership", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_group_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("name")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iam_group_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iam_group_policyID", "name")
 		b.ImmutableAttributes("group", "name", "name_prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iam_group_policyHandler", bridge.NewTFHandler(p, "aws_iam_group_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iam_group_policyHandler", bridge.NewTFHandler(p, "aws_iam_group_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_group_policy_attachment{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iam_group_policy_attachment{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iam_group_policy_attachmentID")
 		b.ImmutableAttributes("group", "policy_arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iam_group_policy_attachmentHandler", bridge.NewTFHandler(p, "aws_iam_group_policy_attachment", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iam_group_policy_attachmentHandler", bridge.NewTFHandler(p, "aws_iam_group_policy_attachment", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_instance_profile{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "create_date", "name", "role", "roles", "unique_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iam_instance_profile{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iam_instance_profileID", "arn", "create_date", "name", "role", "roles", "unique_id")
 		b.ImmutableAttributes("name", "name_prefix", "path")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iam_instance_profileHandler", bridge.NewTFHandler(p, "aws_iam_instance_profile", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iam_instance_profileHandler", bridge.NewTFHandler(p, "aws_iam_instance_profile", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_openid_connect_provider{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iam_openid_connect_provider{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iam_openid_connect_providerID", "arn")
 		b.ImmutableAttributes("client_id_list", "url")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iam_openid_connect_providerHandler", bridge.NewTFHandler(p, "aws_iam_openid_connect_provider", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iam_openid_connect_providerHandler", bridge.NewTFHandler(p, "aws_iam_openid_connect_provider", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "name")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iam_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iam_policyID", "arn", "name")
 		b.ImmutableAttributes("description", "name", "name_prefix", "path")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iam_policyHandler", bridge.NewTFHandler(p, "aws_iam_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iam_policyHandler", bridge.NewTFHandler(p, "aws_iam_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_policy_attachment{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iam_policy_attachment{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iam_policy_attachmentID")
 		b.ImmutableAttributes("name", "policy_arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iam_policy_attachmentHandler", bridge.NewTFHandler(p, "aws_iam_policy_attachment", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iam_policy_attachmentHandler", bridge.NewTFHandler(p, "aws_iam_policy_attachment", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_role{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "create_date", "name", "unique_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iam_role{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iam_roleID", "arn", "create_date", "name", "unique_id")
 		b.ImmutableAttributes("name", "name_prefix", "path")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iam_roleHandler", bridge.NewTFHandler(p, "aws_iam_role", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iam_roleHandler", bridge.NewTFHandler(p, "aws_iam_role", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_role_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("name")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iam_role_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iam_role_policyID", "name")
 		b.ImmutableAttributes("name", "name_prefix", "role")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iam_role_policyHandler", bridge.NewTFHandler(p, "aws_iam_role_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iam_role_policyHandler", bridge.NewTFHandler(p, "aws_iam_role_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_role_policy_attachment{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iam_role_policy_attachment{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iam_role_policy_attachmentID")
 		b.ImmutableAttributes("policy_arn", "role")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iam_role_policy_attachmentHandler", bridge.NewTFHandler(p, "aws_iam_role_policy_attachment", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iam_role_policy_attachmentHandler", bridge.NewTFHandler(p, "aws_iam_role_policy_attachment", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_saml_provider{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "valid_until")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iam_saml_provider{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iam_saml_providerID", "arn", "valid_until")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iam_saml_providerHandler", bridge.NewTFHandler(p, "aws_iam_saml_provider", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iam_saml_providerHandler", bridge.NewTFHandler(p, "aws_iam_saml_provider", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_server_certificate{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "name")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iam_server_certificate{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iam_server_certificateID", "arn", "name")
 		b.ImmutableAttributes("certificate_body", "certificate_chain", "name", "name_prefix", "path", "private_key")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iam_server_certificateHandler", bridge.NewTFHandler(p, "aws_iam_server_certificate", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iam_server_certificateHandler", bridge.NewTFHandler(p, "aws_iam_server_certificate", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_service_linked_role{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "create_date", "name", "path", "unique_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iam_service_linked_role{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iam_service_linked_roleID", "arn", "create_date", "name", "path", "unique_id")
 		b.ImmutableAttributes("aws_service_name", "custom_suffix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iam_service_linked_roleHandler", bridge.NewTFHandler(p, "aws_iam_service_linked_role", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iam_service_linked_roleHandler", bridge.NewTFHandler(p, "aws_iam_service_linked_role", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_user{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "unique_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iam_userHandler", bridge.NewTFHandler(p, "aws_iam_user", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iam_user{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iam_userID", "arn", "unique_id")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iam_userHandler", bridge.NewTFHandler(p, "aws_iam_user", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_user_group_membership{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iam_user_group_membership{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iam_user_group_membershipID")
 		b.ImmutableAttributes("user")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iam_user_group_membershipHandler", bridge.NewTFHandler(p, "aws_iam_user_group_membership", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iam_user_group_membershipHandler", bridge.NewTFHandler(p, "aws_iam_user_group_membership", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_user_login_profile{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("encrypted_password", "key_fingerprint")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iam_user_login_profileHandler", bridge.NewTFHandler(p, "aws_iam_user_login_profile", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iam_user_login_profile{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iam_user_login_profileID", "encrypted_password", "key_fingerprint")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iam_user_login_profileHandler", bridge.NewTFHandler(p, "aws_iam_user_login_profile", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_user_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("name")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iam_user_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iam_user_policyID", "name")
 		b.ImmutableAttributes("name", "name_prefix", "user")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iam_user_policyHandler", bridge.NewTFHandler(p, "aws_iam_user_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iam_user_policyHandler", bridge.NewTFHandler(p, "aws_iam_user_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_user_policy_attachment{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iam_user_policy_attachment{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iam_user_policy_attachmentID")
 		b.ImmutableAttributes("policy_arn", "user")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iam_user_policy_attachmentHandler", bridge.NewTFHandler(p, "aws_iam_user_policy_attachment", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iam_user_policy_attachmentHandler", bridge.NewTFHandler(p, "aws_iam_user_policy_attachment", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_user_ssh_key{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("fingerprint", "ssh_public_key_id", "status")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iam_user_ssh_key{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iam_user_ssh_keyID", "fingerprint", "ssh_public_key_id", "status")
 		b.ImmutableAttributes("encoding", "public_key", "username")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iam_user_ssh_keyHandler", bridge.NewTFHandler(p, "aws_iam_user_ssh_key", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iam_user_ssh_keyHandler", bridge.NewTFHandler(p, "aws_iam_user_ssh_key", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_inspector_assessment_target{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Inspector_assessment_target{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("inspector_assessment_targetID", "arn")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_inspector_assessment_targetHandler", bridge.NewTFHandler(p, "aws_inspector_assessment_target", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Inspector_assessment_targetHandler", bridge.NewTFHandler(p, "aws_inspector_assessment_target", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_inspector_assessment_template{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Inspector_assessment_template{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("inspector_assessment_templateID", "arn")
 		b.ImmutableAttributes("arn", "duration", "name", "rules_package_arns", "target_arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_inspector_assessment_templateHandler", bridge.NewTFHandler(p, "aws_inspector_assessment_template", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Inspector_assessment_templateHandler", bridge.NewTFHandler(p, "aws_inspector_assessment_template", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_inspector_resource_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Inspector_resource_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("inspector_resource_groupID", "arn")
 		b.ImmutableAttributes("tags")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_inspector_resource_groupHandler", bridge.NewTFHandler(p, "aws_inspector_resource_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Inspector_resource_groupHandler", bridge.NewTFHandler(p, "aws_inspector_resource_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "associate_public_ip_address", "availability_zone", "cpu_core_count", "cpu_threads_per_core", "ebs_block_device", "ephemeral_block_device", "host_id", "instance_state", "ipv6_address_count", "ipv6_addresses", "key_name", "network_interface", "network_interface_id", "password_data", "placement_group", "primary_network_interface_id", "private_dns", "private_ip", "public_dns", "public_ip", "root_block_device", "security_groups", "subnet_id", "tenancy", "volume_tags", "vpc_security_group_ids")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Instance{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("instanceID", "arn", "associate_public_ip_address", "availability_zone", "cpu_core_count", "cpu_threads_per_core", "ebs_block_device", "ephemeral_block_device", "host_id", "instance_state", "ipv6_address_count", "ipv6_addresses", "key_name", "network_interface", "network_interface_id", "password_data", "placement_group", "primary_network_interface_id", "private_dns", "private_ip", "public_dns", "public_ip", "root_block_device", "security_groups", "subnet_id", "tenancy", "volume_tags", "vpc_security_group_ids")
 		b.ImmutableAttributes("ami", "associate_public_ip_address", "availability_zone", "cpu_core_count", "cpu_threads_per_core", "ebs_optimized", "ephemeral_block_device", "host_id", "ipv6_address_count", "ipv6_addresses", "key_name", "placement_group", "private_ip", "security_groups", "subnet_id", "tenancy", "user_data", "user_data_base64")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_instanceHandler", bridge.NewTFHandler(p, "aws_instance", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::InstanceHandler", bridge.NewTFHandler(p, "aws_instance", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_internet_gateway{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("owner_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_internet_gatewayHandler", bridge.NewTFHandler(p, "aws_internet_gateway", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Internet_gateway{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("internet_gatewayID", "owner_id")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Internet_gatewayHandler", bridge.NewTFHandler(p, "aws_internet_gateway", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iot_certificate{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iot_certificate{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iot_certificateID", "arn")
 		b.ImmutableAttributes("csr")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iot_certificateHandler", bridge.NewTFHandler(p, "aws_iot_certificate", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iot_certificateHandler", bridge.NewTFHandler(p, "aws_iot_certificate", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iot_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "default_version_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iot_policyHandler", bridge.NewTFHandler(p, "aws_iot_policy", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iot_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iot_policyID", "arn", "default_version_id")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iot_policyHandler", bridge.NewTFHandler(p, "aws_iot_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iot_policy_attachment{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iot_policy_attachment{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iot_policy_attachmentID")
 		b.ImmutableAttributes("policy", "target")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iot_policy_attachmentHandler", bridge.NewTFHandler(p, "aws_iot_policy_attachment", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iot_policy_attachmentHandler", bridge.NewTFHandler(p, "aws_iot_policy_attachment", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iot_thing{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "default_client_id", "version")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iot_thing{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iot_thingID", "arn", "default_client_id", "version")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iot_thingHandler", bridge.NewTFHandler(p, "aws_iot_thing", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iot_thingHandler", bridge.NewTFHandler(p, "aws_iot_thing", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iot_thing_principal_attachment{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iot_thing_principal_attachment{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iot_thing_principal_attachmentID")
 		b.ImmutableAttributes("principal", "thing")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iot_thing_principal_attachmentHandler", bridge.NewTFHandler(p, "aws_iot_thing_principal_attachment", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iot_thing_principal_attachmentHandler", bridge.NewTFHandler(p, "aws_iot_thing_principal_attachment", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iot_thing_type{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iot_thing_type{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iot_thing_typeID", "arn")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iot_thing_typeHandler", bridge.NewTFHandler(p, "aws_iot_thing_type", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iot_thing_typeHandler", bridge.NewTFHandler(p, "aws_iot_thing_type", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iot_topic_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_iot_topic_ruleHandler", bridge.NewTFHandler(p, "aws_iot_topic_rule", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Iot_topic_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("iot_topic_ruleID", "arn")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Iot_topic_ruleHandler", bridge.NewTFHandler(p, "aws_iot_topic_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_key_pair{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("fingerprint", "key_name")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Key_pair{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("key_pairID", "fingerprint", "key_name")
 		b.ImmutableAttributes("key_name", "key_name_prefix", "public_key")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_key_pairHandler", bridge.NewTFHandler(p, "aws_key_pair", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Key_pairHandler", bridge.NewTFHandler(p, "aws_key_pair", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_kinesis_analytics_application{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "create_timestamp", "last_update_timestamp", "status", "version")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Kinesis_analytics_application{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("kinesis_analytics_applicationID", "arn", "create_timestamp", "last_update_timestamp", "status", "version")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_kinesis_analytics_applicationHandler", bridge.NewTFHandler(p, "aws_kinesis_analytics_application", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Kinesis_analytics_applicationHandler", bridge.NewTFHandler(p, "aws_kinesis_analytics_application", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_kinesis_firehose_delivery_stream{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "destination_id", "version_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Kinesis_firehose_delivery_stream{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("kinesis_firehose_delivery_streamID", "arn", "destination_id", "version_id")
 		b.ImmutableAttributes("destination", "kinesis_source_configuration", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_kinesis_firehose_delivery_streamHandler", bridge.NewTFHandler(p, "aws_kinesis_firehose_delivery_stream", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Kinesis_firehose_delivery_streamHandler", bridge.NewTFHandler(p, "aws_kinesis_firehose_delivery_stream", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_kinesis_stream{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Kinesis_stream{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("kinesis_streamID", "arn")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_kinesis_streamHandler", bridge.NewTFHandler(p, "aws_kinesis_stream", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Kinesis_streamHandler", bridge.NewTFHandler(p, "aws_kinesis_stream", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_kms_alias{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "target_key_arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Kms_alias{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("kms_aliasID", "arn", "target_key_arn")
 		b.ImmutableAttributes("name", "name_prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_kms_aliasHandler", bridge.NewTFHandler(p, "aws_kms_alias", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Kms_aliasHandler", bridge.NewTFHandler(p, "aws_kms_alias", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_kms_grant{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("grant_id", "grant_token")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Kms_grant{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("kms_grantID", "grant_id", "grant_token")
 		b.ImmutableAttributes("constraints", "grant_creation_tokens", "grantee_principal", "key_id", "name", "operations", "retire_on_delete", "retiring_principal")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_kms_grantHandler", bridge.NewTFHandler(p, "aws_kms_grant", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Kms_grantHandler", bridge.NewTFHandler(p, "aws_kms_grant", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_kms_key{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "description", "key_id", "key_usage", "policy")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Kms_key{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("kms_keyID", "arn", "description", "key_id", "key_usage", "policy")
 		b.ImmutableAttributes("key_usage")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_kms_keyHandler", bridge.NewTFHandler(p, "aws_kms_key", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Kms_keyHandler", bridge.NewTFHandler(p, "aws_kms_key", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lambda_alias{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "invoke_arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Lambda_alias{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("lambda_aliasID", "arn", "invoke_arn")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_lambda_aliasHandler", bridge.NewTFHandler(p, "aws_lambda_alias", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Lambda_aliasHandler", bridge.NewTFHandler(p, "aws_lambda_alias", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lambda_event_source_mapping{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("function_arn", "last_modified", "last_processing_result", "state", "state_transition_reason", "uuid")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Lambda_event_source_mapping{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("lambda_event_source_mappingID", "function_arn", "last_modified", "last_processing_result", "state", "state_transition_reason", "uuid")
 		b.ImmutableAttributes("event_source_arn", "starting_position", "starting_position_timestamp")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_lambda_event_source_mappingHandler", bridge.NewTFHandler(p, "aws_lambda_event_source_mapping", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Lambda_event_source_mappingHandler", bridge.NewTFHandler(p, "aws_lambda_event_source_mapping", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lambda_function{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "invoke_arn", "last_modified", "qualified_arn", "source_code_hash", "source_code_size", "tracing_config", "version")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Lambda_function{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("lambda_functionID", "arn", "invoke_arn", "last_modified", "qualified_arn", "source_code_hash", "source_code_size", "tracing_config", "version")
 		b.ImmutableAttributes("function_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_lambda_functionHandler", bridge.NewTFHandler(p, "aws_lambda_function", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Lambda_functionHandler", bridge.NewTFHandler(p, "aws_lambda_function", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lambda_layer_version{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "created_date", "layer_arn", "source_code_hash", "source_code_size", "version")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Lambda_layer_version{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("lambda_layer_versionID", "arn", "created_date", "layer_arn", "source_code_hash", "source_code_size", "version")
 		b.ImmutableAttributes("compatible_runtimes", "description", "filename", "layer_name", "license_info", "s3_bucket", "s3_key", "s3_object_version", "source_code_hash")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_lambda_layer_versionHandler", bridge.NewTFHandler(p, "aws_lambda_layer_version", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Lambda_layer_versionHandler", bridge.NewTFHandler(p, "aws_lambda_layer_version", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lambda_permission{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("statement_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Lambda_permission{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("lambda_permissionID", "statement_id")
 		b.ImmutableAttributes("action", "event_source_token", "function_name", "principal", "qualifier", "source_account", "source_arn", "statement_id", "statement_id_prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_lambda_permissionHandler", bridge.NewTFHandler(p, "aws_lambda_permission", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Lambda_permissionHandler", bridge.NewTFHandler(p, "aws_lambda_permission", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_launch_configuration{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("ebs_block_device", "ebs_optimized", "key_name", "name", "root_block_device")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Launch_configuration{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("launch_configurationID", "ebs_block_device", "ebs_optimized", "key_name", "name", "root_block_device")
 		b.ImmutableAttributes("associate_public_ip_address", "ebs_optimized", "enable_monitoring", "ephemeral_block_device", "iam_instance_profile", "image_id", "instance_type", "key_name", "name", "name_prefix", "placement_tenancy", "security_groups", "spot_price", "user_data", "user_data_base64", "vpc_classic_link_id", "vpc_classic_link_security_groups")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_launch_configurationHandler", bridge.NewTFHandler(p, "aws_launch_configuration", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Launch_configurationHandler", bridge.NewTFHandler(p, "aws_launch_configuration", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_launch_template{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "default_version", "latest_version", "name")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Launch_template{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("launch_templateID", "arn", "default_version", "latest_version", "name")
 		b.ImmutableAttributes("name", "name_prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_launch_templateHandler", bridge.NewTFHandler(p, "aws_launch_template", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Launch_templateHandler", bridge.NewTFHandler(p, "aws_launch_template", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lb{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("access_logs", "arn", "arn_suffix", "dns_name", "internal", "ip_address_type", "name", "security_groups", "subnet_mapping", "subnets", "vpc_id", "zone_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Lb{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("lbID", "access_logs", "arn", "arn_suffix", "dns_name", "internal", "ip_address_type", "name", "security_groups", "subnet_mapping", "subnets", "vpc_id", "zone_id")
 		b.ImmutableAttributes("internal", "load_balancer_type", "name", "name_prefix", "subnet_mapping")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_lbHandler", bridge.NewTFHandler(p, "aws_lb", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::LbHandler", bridge.NewTFHandler(p, "aws_lb", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lb_cookie_stickiness_policy{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Lb_cookie_stickiness_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("lb_cookie_stickiness_policyID")
 		b.ImmutableAttributes("cookie_expiration_period", "lb_port", "load_balancer", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_lb_cookie_stickiness_policyHandler", bridge.NewTFHandler(p, "aws_lb_cookie_stickiness_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Lb_cookie_stickiness_policyHandler", bridge.NewTFHandler(p, "aws_lb_cookie_stickiness_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lb_listener{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "ssl_policy")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Lb_listener{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("lb_listenerID", "arn", "ssl_policy")
 		b.ImmutableAttributes("load_balancer_arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_lb_listenerHandler", bridge.NewTFHandler(p, "aws_lb_listener", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Lb_listenerHandler", bridge.NewTFHandler(p, "aws_lb_listener", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lb_listener_certificate{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Lb_listener_certificate{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("lb_listener_certificateID")
 		b.ImmutableAttributes("certificate_arn", "listener_arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_lb_listener_certificateHandler", bridge.NewTFHandler(p, "aws_lb_listener_certificate", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Lb_listener_certificateHandler", bridge.NewTFHandler(p, "aws_lb_listener_certificate", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lb_listener_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "priority")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Lb_listener_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("lb_listener_ruleID", "arn", "priority")
 		b.ImmutableAttributes("listener_arn", "priority")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_lb_listener_ruleHandler", bridge.NewTFHandler(p, "aws_lb_listener_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Lb_listener_ruleHandler", bridge.NewTFHandler(p, "aws_lb_listener_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lb_ssl_negotiation_policy{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Lb_ssl_negotiation_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("lb_ssl_negotiation_policyID")
 		b.ImmutableAttributes("attribute", "lb_port", "load_balancer", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_lb_ssl_negotiation_policyHandler", bridge.NewTFHandler(p, "aws_lb_ssl_negotiation_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Lb_ssl_negotiation_policyHandler", bridge.NewTFHandler(p, "aws_lb_ssl_negotiation_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lb_target_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "arn_suffix", "health_check", "name", "stickiness")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Lb_target_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("lb_target_groupID", "arn", "arn_suffix", "health_check", "name", "stickiness")
 		b.ImmutableAttributes("name", "name_prefix", "port", "protocol", "target_type", "vpc_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_lb_target_groupHandler", bridge.NewTFHandler(p, "aws_lb_target_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Lb_target_groupHandler", bridge.NewTFHandler(p, "aws_lb_target_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lb_target_group_attachment{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Lb_target_group_attachment{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("lb_target_group_attachmentID")
 		b.ImmutableAttributes("availability_zone", "port", "target_group_arn", "target_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_lb_target_group_attachmentHandler", bridge.NewTFHandler(p, "aws_lb_target_group_attachment", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Lb_target_group_attachmentHandler", bridge.NewTFHandler(p, "aws_lb_target_group_attachment", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_licensemanager_association{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Licensemanager_association{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("licensemanager_associationID")
 		b.ImmutableAttributes("license_configuration_arn", "resource_arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_licensemanager_associationHandler", bridge.NewTFHandler(p, "aws_licensemanager_association", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Licensemanager_associationHandler", bridge.NewTFHandler(p, "aws_licensemanager_association", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_licensemanager_license_configuration{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Licensemanager_license_configuration{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("licensemanager_license_configurationID")
 		b.ImmutableAttributes("license_counting_type", "license_rules")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_licensemanager_license_configurationHandler", bridge.NewTFHandler(p, "aws_licensemanager_license_configuration", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Licensemanager_license_configurationHandler", bridge.NewTFHandler(p, "aws_licensemanager_license_configuration", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lightsail_domain{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Lightsail_domain{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("lightsail_domainID", "arn")
 		b.ImmutableAttributes("domain_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_lightsail_domainHandler", bridge.NewTFHandler(p, "aws_lightsail_domain", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Lightsail_domainHandler", bridge.NewTFHandler(p, "aws_lightsail_domain", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lightsail_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "cpu_count", "created_at", "ipv6_address", "is_static_ip", "private_ip_address", "public_ip_address", "ram_size", "username")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Lightsail_instance{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("lightsail_instanceID", "arn", "cpu_count", "created_at", "ipv6_address", "is_static_ip", "private_ip_address", "public_ip_address", "ram_size", "username")
 		b.ImmutableAttributes("availability_zone", "blueprint_id", "bundle_id", "key_pair_name", "name", "user_data")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_lightsail_instanceHandler", bridge.NewTFHandler(p, "aws_lightsail_instance", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Lightsail_instanceHandler", bridge.NewTFHandler(p, "aws_lightsail_instance", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lightsail_key_pair{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "encrypted_fingerprint", "encrypted_private_key", "fingerprint", "name", "private_key", "public_key")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Lightsail_key_pair{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("lightsail_key_pairID", "arn", "encrypted_fingerprint", "encrypted_private_key", "fingerprint", "name", "private_key", "public_key")
 		b.ImmutableAttributes("name", "name_prefix", "pgp_key", "public_key")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_lightsail_key_pairHandler", bridge.NewTFHandler(p, "aws_lightsail_key_pair", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Lightsail_key_pairHandler", bridge.NewTFHandler(p, "aws_lightsail_key_pair", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lightsail_static_ip{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "ip_address", "support_code")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Lightsail_static_ip{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("lightsail_static_ipID", "arn", "ip_address", "support_code")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_lightsail_static_ipHandler", bridge.NewTFHandler(p, "aws_lightsail_static_ip", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Lightsail_static_ipHandler", bridge.NewTFHandler(p, "aws_lightsail_static_ip", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lightsail_static_ip_attachment{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Lightsail_static_ip_attachment{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("lightsail_static_ip_attachmentID")
 		b.ImmutableAttributes("instance_name", "static_ip_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_lightsail_static_ip_attachmentHandler", bridge.NewTFHandler(p, "aws_lightsail_static_ip_attachment", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Lightsail_static_ip_attachmentHandler", bridge.NewTFHandler(p, "aws_lightsail_static_ip_attachment", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_load_balancer_backend_server_policy{}, func(b service.ResourceTypeBuilder) {
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_load_balancer_backend_server_policyHandler", bridge.NewTFHandler(p, "aws_load_balancer_backend_server_policy", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Load_balancer_backend_server_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("load_balancer_backend_server_policyID")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Load_balancer_backend_server_policyHandler", bridge.NewTFHandler(p, "aws_load_balancer_backend_server_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_load_balancer_listener_policy{}, func(b service.ResourceTypeBuilder) {
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_load_balancer_listener_policyHandler", bridge.NewTFHandler(p, "aws_load_balancer_listener_policy", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Load_balancer_listener_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("load_balancer_listener_policyID")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Load_balancer_listener_policyHandler", bridge.NewTFHandler(p, "aws_load_balancer_listener_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_load_balancer_policy{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Load_balancer_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("load_balancer_policyID")
 		b.ImmutableAttributes("load_balancer_name", "policy_name", "policy_type_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_load_balancer_policyHandler", bridge.NewTFHandler(p, "aws_load_balancer_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Load_balancer_policyHandler", bridge.NewTFHandler(p, "aws_load_balancer_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_macie_member_account_association{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Macie_member_account_association{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("macie_member_account_associationID")
 		b.ImmutableAttributes("member_account_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_macie_member_account_associationHandler", bridge.NewTFHandler(p, "aws_macie_member_account_association", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Macie_member_account_associationHandler", bridge.NewTFHandler(p, "aws_macie_member_account_association", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_macie_s3_bucket_association{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("classification_type")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Macie_s3_bucket_association{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("macie_s3_bucket_associationID", "classification_type")
 		b.ImmutableAttributes("bucket_name", "member_account_id", "prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_macie_s3_bucket_associationHandler", bridge.NewTFHandler(p, "aws_macie_s3_bucket_association", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Macie_s3_bucket_associationHandler", bridge.NewTFHandler(p, "aws_macie_s3_bucket_association", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_main_route_table_association{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("original_route_table_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_main_route_table_associationHandler", bridge.NewTFHandler(p, "aws_main_route_table_association", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Main_route_table_association{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("main_route_table_associationID", "original_route_table_id")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Main_route_table_associationHandler", bridge.NewTFHandler(p, "aws_main_route_table_association", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_media_package_channel{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "hls_ingest")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Media_package_channel{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("media_package_channelID", "arn", "hls_ingest")
 		b.ImmutableAttributes("channel_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_media_package_channelHandler", bridge.NewTFHandler(p, "aws_media_package_channel", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Media_package_channelHandler", bridge.NewTFHandler(p, "aws_media_package_channel", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_media_store_container{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "endpoint")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Media_store_container{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("media_store_containerID", "arn", "endpoint")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_media_store_containerHandler", bridge.NewTFHandler(p, "aws_media_store_container", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Media_store_containerHandler", bridge.NewTFHandler(p, "aws_media_store_container", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_media_store_container_policy{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Media_store_container_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("media_store_container_policyID")
 		b.ImmutableAttributes("container_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_media_store_container_policyHandler", bridge.NewTFHandler(p, "aws_media_store_container_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Media_store_container_policyHandler", bridge.NewTFHandler(p, "aws_media_store_container_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_mq_broker{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "configuration", "instances", "maintenance_window_start_time", "subnet_ids")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Mq_broker{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("mq_brokerID", "arn", "configuration", "instances", "maintenance_window_start_time", "subnet_ids")
 		b.ImmutableAttributes("auto_minor_version_upgrade", "broker_name", "deployment_mode", "engine_type", "engine_version", "host_instance_type", "maintenance_window_start_time", "publicly_accessible", "security_groups", "subnet_ids")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_mq_brokerHandler", bridge.NewTFHandler(p, "aws_mq_broker", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Mq_brokerHandler", bridge.NewTFHandler(p, "aws_mq_broker", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_mq_configuration{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "latest_revision")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Mq_configuration{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("mq_configurationID", "arn", "latest_revision")
 		b.ImmutableAttributes("engine_type", "engine_version", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_mq_configurationHandler", bridge.NewTFHandler(p, "aws_mq_configuration", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Mq_configurationHandler", bridge.NewTFHandler(p, "aws_mq_configuration", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_nat_gateway{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("network_interface_id", "private_ip", "public_ip")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Nat_gateway{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("nat_gatewayID", "network_interface_id", "private_ip", "public_ip")
 		b.ImmutableAttributes("allocation_id", "subnet_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_nat_gatewayHandler", bridge.NewTFHandler(p, "aws_nat_gateway", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Nat_gatewayHandler", bridge.NewTFHandler(p, "aws_nat_gateway", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_neptune_cluster{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("apply_immediately", "arn", "availability_zones", "cluster_identifier", "cluster_identifier_prefix", "cluster_members", "cluster_resource_id", "endpoint", "engine_version", "hosted_zone_id", "kms_key_arn", "neptune_subnet_group_name", "preferred_backup_window", "preferred_maintenance_window", "reader_endpoint", "vpc_security_group_ids")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Neptune_cluster{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("neptune_clusterID", "apply_immediately", "arn", "availability_zones", "cluster_identifier", "cluster_identifier_prefix", "cluster_members", "cluster_resource_id", "endpoint", "engine_version", "hosted_zone_id", "kms_key_arn", "neptune_subnet_group_name", "preferred_backup_window", "preferred_maintenance_window", "reader_endpoint", "vpc_security_group_ids")
 		b.ImmutableAttributes("availability_zones", "cluster_identifier", "cluster_identifier_prefix", "engine", "engine_version", "kms_key_arn", "neptune_subnet_group_name", "port", "storage_encrypted")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_neptune_clusterHandler", bridge.NewTFHandler(p, "aws_neptune_cluster", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Neptune_clusterHandler", bridge.NewTFHandler(p, "aws_neptune_cluster", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_neptune_cluster_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("address", "apply_immediately", "arn", "availability_zone", "dbi_resource_id", "endpoint", "engine_version", "identifier", "identifier_prefix", "kms_key_arn", "neptune_subnet_group_name", "preferred_backup_window", "preferred_maintenance_window", "storage_encrypted", "writer")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Neptune_cluster_instance{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("neptune_cluster_instanceID", "address", "apply_immediately", "arn", "availability_zone", "dbi_resource_id", "endpoint", "engine_version", "identifier", "identifier_prefix", "kms_key_arn", "neptune_subnet_group_name", "preferred_backup_window", "preferred_maintenance_window", "storage_encrypted", "writer")
 		b.ImmutableAttributes("availability_zone", "cluster_identifier", "engine", "engine_version", "identifier", "identifier_prefix", "neptune_subnet_group_name", "port", "publicly_accessible")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_neptune_cluster_instanceHandler", bridge.NewTFHandler(p, "aws_neptune_cluster_instance", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Neptune_cluster_instanceHandler", bridge.NewTFHandler(p, "aws_neptune_cluster_instance", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_neptune_cluster_parameter_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "name", "name_prefix")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Neptune_cluster_parameter_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("neptune_cluster_parameter_groupID", "arn", "name", "name_prefix")
 		b.ImmutableAttributes("description", "family", "name", "name_prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_neptune_cluster_parameter_groupHandler", bridge.NewTFHandler(p, "aws_neptune_cluster_parameter_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Neptune_cluster_parameter_groupHandler", bridge.NewTFHandler(p, "aws_neptune_cluster_parameter_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_neptune_cluster_snapshot{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allocated_storage", "availability_zones", "db_cluster_snapshot_arn", "engine", "engine_version", "kms_key_id", "license_model", "port", "snapshot_type", "source_db_cluster_snapshot_arn", "status", "storage_encrypted", "vpc_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Neptune_cluster_snapshot{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("neptune_cluster_snapshotID", "allocated_storage", "availability_zones", "db_cluster_snapshot_arn", "engine", "engine_version", "kms_key_id", "license_model", "port", "snapshot_type", "source_db_cluster_snapshot_arn", "status", "storage_encrypted", "vpc_id")
 		b.ImmutableAttributes("db_cluster_identifier", "db_cluster_snapshot_identifier")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_neptune_cluster_snapshotHandler", bridge.NewTFHandler(p, "aws_neptune_cluster_snapshot", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Neptune_cluster_snapshotHandler", bridge.NewTFHandler(p, "aws_neptune_cluster_snapshot", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_neptune_event_subscription{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "customer_aws_id", "name", "name_prefix")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Neptune_event_subscription{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("neptune_event_subscriptionID", "arn", "customer_aws_id", "name", "name_prefix")
 		b.ImmutableAttributes("name", "name_prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_neptune_event_subscriptionHandler", bridge.NewTFHandler(p, "aws_neptune_event_subscription", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Neptune_event_subscriptionHandler", bridge.NewTFHandler(p, "aws_neptune_event_subscription", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_neptune_parameter_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Neptune_parameter_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("neptune_parameter_groupID", "arn")
 		b.ImmutableAttributes("description", "family", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_neptune_parameter_groupHandler", bridge.NewTFHandler(p, "aws_neptune_parameter_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Neptune_parameter_groupHandler", bridge.NewTFHandler(p, "aws_neptune_parameter_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_neptune_subnet_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "name", "name_prefix")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Neptune_subnet_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("neptune_subnet_groupID", "arn", "name", "name_prefix")
 		b.ImmutableAttributes("name", "name_prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_neptune_subnet_groupHandler", bridge.NewTFHandler(p, "aws_neptune_subnet_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Neptune_subnet_groupHandler", bridge.NewTFHandler(p, "aws_neptune_subnet_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_network_acl{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("egress", "ingress", "owner_id", "subnet_ids")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Network_acl{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("network_aclID", "egress", "ingress", "owner_id", "subnet_ids")
 		b.ImmutableAttributes("subnet_id", "vpc_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_network_aclHandler", bridge.NewTFHandler(p, "aws_network_acl", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Network_aclHandler", bridge.NewTFHandler(p, "aws_network_acl", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_network_acl_rule{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Network_acl_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("network_acl_ruleID")
 		b.ImmutableAttributes("cidr_block", "egress", "from_port", "icmp_code", "icmp_type", "ipv6_cidr_block", "network_acl_id", "protocol", "rule_action", "rule_number", "to_port")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_network_acl_ruleHandler", bridge.NewTFHandler(p, "aws_network_acl_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Network_acl_ruleHandler", bridge.NewTFHandler(p, "aws_network_acl_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_network_interface{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("attachment", "private_dns_name", "private_ip", "private_ips", "private_ips_count", "security_groups")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Network_interface{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("network_interfaceID", "attachment", "private_dns_name", "private_ip", "private_ips", "private_ips_count", "security_groups")
 		b.ImmutableAttributes("subnet_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_network_interfaceHandler", bridge.NewTFHandler(p, "aws_network_interface", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Network_interfaceHandler", bridge.NewTFHandler(p, "aws_network_interface", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_network_interface_attachment{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("attachment_id", "status")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Network_interface_attachment{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("network_interface_attachmentID", "attachment_id", "status")
 		b.ImmutableAttributes("device_index", "instance_id", "network_interface_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_network_interface_attachmentHandler", bridge.NewTFHandler(p, "aws_network_interface_attachment", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Network_interface_attachmentHandler", bridge.NewTFHandler(p, "aws_network_interface_attachment", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_network_interface_sg_attachment{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Network_interface_sg_attachment{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("network_interface_sg_attachmentID")
 		b.ImmutableAttributes("network_interface_id", "security_group_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_network_interface_sg_attachmentHandler", bridge.NewTFHandler(p, "aws_network_interface_sg_attachment", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Network_interface_sg_attachmentHandler", bridge.NewTFHandler(p, "aws_network_interface_sg_attachment", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_application{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("app_source", "short_name")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Opsworks_application{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("opsworks_applicationID", "app_source", "short_name")
 		b.ImmutableAttributes("short_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_opsworks_applicationHandler", bridge.NewTFHandler(p, "aws_opsworks_application", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Opsworks_applicationHandler", bridge.NewTFHandler(p, "aws_opsworks_application", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_custom_layer{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Opsworks_custom_layer{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("opsworks_custom_layerID")
 		b.ImmutableAttributes("stack_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_opsworks_custom_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_custom_layer", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Opsworks_custom_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_custom_layer", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_ganglia_layer{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Opsworks_ganglia_layer{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("opsworks_ganglia_layerID")
 		b.ImmutableAttributes("stack_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_opsworks_ganglia_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_ganglia_layer", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Opsworks_ganglia_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_ganglia_layer", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_haproxy_layer{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Opsworks_haproxy_layer{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("opsworks_haproxy_layerID")
 		b.ImmutableAttributes("stack_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_opsworks_haproxy_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_haproxy_layer", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Opsworks_haproxy_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_haproxy_layer", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("ami_id", "availability_zone", "created_at", "ebs_block_device", "ec2_instance_id", "ecs_cluster_arn", "elastic_ip", "ephemeral_block_device", "hostname", "infrastructure_class", "instance_profile_arn", "last_service_error_id", "os", "platform", "private_dns", "private_ip", "public_dns", "public_ip", "registered_by", "reported_agent_version", "reported_os_family", "reported_os_name", "reported_os_version", "root_block_device", "root_device_type", "root_device_volume_id", "security_group_ids", "ssh_host_dsa_key_fingerprint", "ssh_host_rsa_key_fingerprint", "ssh_key_name", "status", "subnet_id", "tenancy", "virtualization_type")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Opsworks_instance{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("opsworks_instanceID", "ami_id", "availability_zone", "created_at", "ebs_block_device", "ec2_instance_id", "ecs_cluster_arn", "elastic_ip", "ephemeral_block_device", "hostname", "infrastructure_class", "instance_profile_arn", "last_service_error_id", "os", "platform", "private_dns", "private_ip", "public_dns", "public_ip", "registered_by", "reported_agent_version", "reported_os_family", "reported_os_name", "reported_os_version", "root_block_device", "root_device_type", "root_device_volume_id", "security_group_ids", "ssh_host_dsa_key_fingerprint", "ssh_host_rsa_key_fingerprint", "ssh_key_name", "status", "subnet_id", "tenancy", "virtualization_type")
 		b.ImmutableAttributes("ami_id", "availability_zone", "ebs_block_device", "ebs_optimized", "ephemeral_block_device", "hostname", "os", "root_block_device", "root_device_type", "stack_id", "subnet_id", "tenancy", "virtualization_type")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_opsworks_instanceHandler", bridge.NewTFHandler(p, "aws_opsworks_instance", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Opsworks_instanceHandler", bridge.NewTFHandler(p, "aws_opsworks_instance", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_java_app_layer{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Opsworks_java_app_layer{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("opsworks_java_app_layerID")
 		b.ImmutableAttributes("stack_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_opsworks_java_app_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_java_app_layer", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Opsworks_java_app_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_java_app_layer", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_memcached_layer{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Opsworks_memcached_layer{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("opsworks_memcached_layerID")
 		b.ImmutableAttributes("stack_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_opsworks_memcached_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_memcached_layer", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Opsworks_memcached_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_memcached_layer", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_mysql_layer{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Opsworks_mysql_layer{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("opsworks_mysql_layerID")
 		b.ImmutableAttributes("stack_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_opsworks_mysql_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_mysql_layer", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Opsworks_mysql_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_mysql_layer", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_nodejs_app_layer{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Opsworks_nodejs_app_layer{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("opsworks_nodejs_app_layerID")
 		b.ImmutableAttributes("stack_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_opsworks_nodejs_app_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_nodejs_app_layer", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Opsworks_nodejs_app_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_nodejs_app_layer", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_permission{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allow_ssh", "allow_sudo", "level", "stack_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_opsworks_permissionHandler", bridge.NewTFHandler(p, "aws_opsworks_permission", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Opsworks_permission{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("opsworks_permissionID", "allow_ssh", "allow_sudo", "level", "stack_id")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Opsworks_permissionHandler", bridge.NewTFHandler(p, "aws_opsworks_permission", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_php_app_layer{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Opsworks_php_app_layer{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("opsworks_php_app_layerID")
 		b.ImmutableAttributes("stack_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_opsworks_php_app_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_php_app_layer", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Opsworks_php_app_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_php_app_layer", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_rails_app_layer{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Opsworks_rails_app_layer{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("opsworks_rails_app_layerID")
 		b.ImmutableAttributes("stack_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_opsworks_rails_app_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_rails_app_layer", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Opsworks_rails_app_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_rails_app_layer", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_rds_db_instance{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Opsworks_rds_db_instance{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("opsworks_rds_db_instanceID")
 		b.ImmutableAttributes("rds_db_instance_arn", "stack_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_opsworks_rds_db_instanceHandler", bridge.NewTFHandler(p, "aws_opsworks_rds_db_instance", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Opsworks_rds_db_instanceHandler", bridge.NewTFHandler(p, "aws_opsworks_rds_db_instance", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_stack{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("agent_version", "arn", "custom_cookbooks_source", "default_availability_zone", "default_subnet_id", "stack_endpoint", "vpc_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Opsworks_stack{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("opsworks_stackID", "agent_version", "arn", "custom_cookbooks_source", "default_availability_zone", "default_subnet_id", "stack_endpoint", "vpc_id")
 		b.ImmutableAttributes("region", "service_role_arn", "vpc_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_opsworks_stackHandler", bridge.NewTFHandler(p, "aws_opsworks_stack", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Opsworks_stackHandler", bridge.NewTFHandler(p, "aws_opsworks_stack", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_static_web_layer{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Opsworks_static_web_layer{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("opsworks_static_web_layerID")
 		b.ImmutableAttributes("stack_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_opsworks_static_web_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_static_web_layer", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Opsworks_static_web_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_static_web_layer", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_user_profile{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Opsworks_user_profile{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("opsworks_user_profileID")
 		b.ImmutableAttributes("user_arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_opsworks_user_profileHandler", bridge.NewTFHandler(p, "aws_opsworks_user_profile", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Opsworks_user_profileHandler", bridge.NewTFHandler(p, "aws_opsworks_user_profile", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_organizations_account{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "joined_method", "joined_timestamp", "status")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Organizations_account{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("organizations_accountID", "arn", "joined_method", "joined_timestamp", "status")
 		b.ImmutableAttributes("email", "iam_user_access_to_billing", "name", "role_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_organizations_accountHandler", bridge.NewTFHandler(p, "aws_organizations_account", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Organizations_accountHandler", bridge.NewTFHandler(p, "aws_organizations_account", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_organizations_organization{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "master_account_arn", "master_account_email", "master_account_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Organizations_organization{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("organizations_organizationID", "arn", "master_account_arn", "master_account_email", "master_account_id")
 		b.ImmutableAttributes("feature_set")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_organizations_organizationHandler", bridge.NewTFHandler(p, "aws_organizations_organization", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Organizations_organizationHandler", bridge.NewTFHandler(p, "aws_organizations_organization", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_organizations_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Organizations_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("organizations_policyID", "arn")
 		b.ImmutableAttributes("type")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_organizations_policyHandler", bridge.NewTFHandler(p, "aws_organizations_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Organizations_policyHandler", bridge.NewTFHandler(p, "aws_organizations_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_organizations_policy_attachment{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Organizations_policy_attachment{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("organizations_policy_attachmentID")
 		b.ImmutableAttributes("policy_id", "target_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_organizations_policy_attachmentHandler", bridge.NewTFHandler(p, "aws_organizations_policy_attachment", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Organizations_policy_attachmentHandler", bridge.NewTFHandler(p, "aws_organizations_policy_attachment", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_pinpoint_adm_channel{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Pinpoint_adm_channel{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("pinpoint_adm_channelID")
 		b.ImmutableAttributes("application_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_pinpoint_adm_channelHandler", bridge.NewTFHandler(p, "aws_pinpoint_adm_channel", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Pinpoint_adm_channelHandler", bridge.NewTFHandler(p, "aws_pinpoint_adm_channel", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_pinpoint_apns_channel{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Pinpoint_apns_channel{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("pinpoint_apns_channelID")
 		b.ImmutableAttributes("application_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_pinpoint_apns_channelHandler", bridge.NewTFHandler(p, "aws_pinpoint_apns_channel", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Pinpoint_apns_channelHandler", bridge.NewTFHandler(p, "aws_pinpoint_apns_channel", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_pinpoint_apns_sandbox_channel{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Pinpoint_apns_sandbox_channel{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("pinpoint_apns_sandbox_channelID")
 		b.ImmutableAttributes("application_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_pinpoint_apns_sandbox_channelHandler", bridge.NewTFHandler(p, "aws_pinpoint_apns_sandbox_channel", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Pinpoint_apns_sandbox_channelHandler", bridge.NewTFHandler(p, "aws_pinpoint_apns_sandbox_channel", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_pinpoint_apns_voip_channel{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Pinpoint_apns_voip_channel{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("pinpoint_apns_voip_channelID")
 		b.ImmutableAttributes("application_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_pinpoint_apns_voip_channelHandler", bridge.NewTFHandler(p, "aws_pinpoint_apns_voip_channel", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Pinpoint_apns_voip_channelHandler", bridge.NewTFHandler(p, "aws_pinpoint_apns_voip_channel", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_pinpoint_apns_voip_sandbox_channel{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Pinpoint_apns_voip_sandbox_channel{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("pinpoint_apns_voip_sandbox_channelID")
 		b.ImmutableAttributes("application_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_pinpoint_apns_voip_sandbox_channelHandler", bridge.NewTFHandler(p, "aws_pinpoint_apns_voip_sandbox_channel", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Pinpoint_apns_voip_sandbox_channelHandler", bridge.NewTFHandler(p, "aws_pinpoint_apns_voip_sandbox_channel", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_pinpoint_app{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("application_id", "name")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Pinpoint_app{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("pinpoint_appID", "application_id", "name")
 		b.ImmutableAttributes("name", "name_prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_pinpoint_appHandler", bridge.NewTFHandler(p, "aws_pinpoint_app", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Pinpoint_appHandler", bridge.NewTFHandler(p, "aws_pinpoint_app", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_pinpoint_baidu_channel{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Pinpoint_baidu_channel{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("pinpoint_baidu_channelID")
 		b.ImmutableAttributes("application_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_pinpoint_baidu_channelHandler", bridge.NewTFHandler(p, "aws_pinpoint_baidu_channel", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Pinpoint_baidu_channelHandler", bridge.NewTFHandler(p, "aws_pinpoint_baidu_channel", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_pinpoint_email_channel{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("messages_per_second")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Pinpoint_email_channel{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("pinpoint_email_channelID", "messages_per_second")
 		b.ImmutableAttributes("application_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_pinpoint_email_channelHandler", bridge.NewTFHandler(p, "aws_pinpoint_email_channel", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Pinpoint_email_channelHandler", bridge.NewTFHandler(p, "aws_pinpoint_email_channel", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_pinpoint_event_stream{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Pinpoint_event_stream{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("pinpoint_event_streamID")
 		b.ImmutableAttributes("application_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_pinpoint_event_streamHandler", bridge.NewTFHandler(p, "aws_pinpoint_event_stream", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Pinpoint_event_streamHandler", bridge.NewTFHandler(p, "aws_pinpoint_event_stream", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_pinpoint_gcm_channel{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Pinpoint_gcm_channel{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("pinpoint_gcm_channelID")
 		b.ImmutableAttributes("application_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_pinpoint_gcm_channelHandler", bridge.NewTFHandler(p, "aws_pinpoint_gcm_channel", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Pinpoint_gcm_channelHandler", bridge.NewTFHandler(p, "aws_pinpoint_gcm_channel", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_pinpoint_sms_channel{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("promotional_messages_per_second", "transactional_messages_per_second")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Pinpoint_sms_channel{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("pinpoint_sms_channelID", "promotional_messages_per_second", "transactional_messages_per_second")
 		b.ImmutableAttributes("application_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_pinpoint_sms_channelHandler", bridge.NewTFHandler(p, "aws_pinpoint_sms_channel", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Pinpoint_sms_channelHandler", bridge.NewTFHandler(p, "aws_pinpoint_sms_channel", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_placement_group{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Placement_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("placement_groupID")
 		b.ImmutableAttributes("name", "strategy")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_placement_groupHandler", bridge.NewTFHandler(p, "aws_placement_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Placement_groupHandler", bridge.NewTFHandler(p, "aws_placement_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_proxy_protocol_policy{}, func(b service.ResourceTypeBuilder) {
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_proxy_protocol_policyHandler", bridge.NewTFHandler(p, "aws_proxy_protocol_policy", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Proxy_protocol_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("proxy_protocol_policyID")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Proxy_protocol_policyHandler", bridge.NewTFHandler(p, "aws_proxy_protocol_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ram_resource_share{}, func(b service.ResourceTypeBuilder) {
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ram_resource_shareHandler", bridge.NewTFHandler(p, "aws_ram_resource_share", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ram_resource_share{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ram_resource_shareID")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ram_resource_shareHandler", bridge.NewTFHandler(p, "aws_ram_resource_share", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_rds_cluster{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("apply_immediately", "arn", "availability_zones", "cluster_identifier", "cluster_identifier_prefix", "cluster_members", "cluster_resource_id", "database_name", "db_cluster_parameter_group_name", "db_subnet_group_name", "endpoint", "engine_version", "hosted_zone_id", "kms_key_id", "master_username", "port", "preferred_backup_window", "preferred_maintenance_window", "reader_endpoint", "vpc_security_group_ids")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Rds_cluster{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("rds_clusterID", "apply_immediately", "arn", "availability_zones", "cluster_identifier", "cluster_identifier_prefix", "cluster_members", "cluster_resource_id", "database_name", "db_cluster_parameter_group_name", "db_subnet_group_name", "endpoint", "engine_version", "hosted_zone_id", "kms_key_id", "master_username", "port", "preferred_backup_window", "preferred_maintenance_window", "reader_endpoint", "vpc_security_group_ids")
 		b.ImmutableAttributes("availability_zones", "cluster_identifier", "cluster_identifier_prefix", "database_name", "db_subnet_group_name", "engine", "engine_mode", "kms_key_id", "master_username", "port", "source_region", "storage_encrypted")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_rds_clusterHandler", bridge.NewTFHandler(p, "aws_rds_cluster", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Rds_clusterHandler", bridge.NewTFHandler(p, "aws_rds_cluster", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_rds_cluster_endpoint{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "endpoint")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Rds_cluster_endpoint{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("rds_cluster_endpointID", "arn", "endpoint")
 		b.ImmutableAttributes("cluster_endpoint_identifier", "cluster_identifier")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_rds_cluster_endpointHandler", bridge.NewTFHandler(p, "aws_rds_cluster_endpoint", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Rds_cluster_endpointHandler", bridge.NewTFHandler(p, "aws_rds_cluster_endpoint", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_rds_cluster_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("apply_immediately", "arn", "availability_zone", "db_parameter_group_name", "db_subnet_group_name", "dbi_resource_id", "endpoint", "engine_version", "identifier", "identifier_prefix", "kms_key_id", "monitoring_role_arn", "performance_insights_enabled", "performance_insights_kms_key_id", "port", "preferred_backup_window", "preferred_maintenance_window", "storage_encrypted", "writer")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Rds_cluster_instance{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("rds_cluster_instanceID", "apply_immediately", "arn", "availability_zone", "db_parameter_group_name", "db_subnet_group_name", "dbi_resource_id", "endpoint", "engine_version", "identifier", "identifier_prefix", "kms_key_id", "monitoring_role_arn", "performance_insights_enabled", "performance_insights_kms_key_id", "port", "preferred_backup_window", "preferred_maintenance_window", "storage_encrypted", "writer")
 		b.ImmutableAttributes("availability_zone", "cluster_identifier", "db_subnet_group_name", "engine", "engine_version", "identifier", "identifier_prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_rds_cluster_instanceHandler", bridge.NewTFHandler(p, "aws_rds_cluster_instance", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Rds_cluster_instanceHandler", bridge.NewTFHandler(p, "aws_rds_cluster_instance", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_rds_cluster_parameter_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "name", "name_prefix")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Rds_cluster_parameter_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("rds_cluster_parameter_groupID", "arn", "name", "name_prefix")
 		b.ImmutableAttributes("description", "family", "name", "name_prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_rds_cluster_parameter_groupHandler", bridge.NewTFHandler(p, "aws_rds_cluster_parameter_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Rds_cluster_parameter_groupHandler", bridge.NewTFHandler(p, "aws_rds_cluster_parameter_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_rds_global_cluster{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "engine_version", "global_cluster_resource_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Rds_global_cluster{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("rds_global_clusterID", "arn", "engine_version", "global_cluster_resource_id")
 		b.ImmutableAttributes("database_name", "engine", "engine_version", "global_cluster_identifier", "storage_encrypted")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_rds_global_clusterHandler", bridge.NewTFHandler(p, "aws_rds_global_cluster", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Rds_global_clusterHandler", bridge.NewTFHandler(p, "aws_rds_global_cluster", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_redshift_cluster{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("availability_zone", "bucket_name", "cluster_parameter_group_name", "cluster_public_key", "cluster_revision_number", "cluster_security_groups", "cluster_subnet_group_name", "cluster_type", "database_name", "dns_name", "enable_logging", "endpoint", "enhanced_vpc_routing", "iam_roles", "kms_key_id", "preferred_maintenance_window", "s3_key_prefix", "vpc_security_group_ids")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Redshift_cluster{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("redshift_clusterID", "availability_zone", "bucket_name", "cluster_parameter_group_name", "cluster_public_key", "cluster_revision_number", "cluster_security_groups", "cluster_subnet_group_name", "cluster_type", "database_name", "dns_name", "enable_logging", "endpoint", "enhanced_vpc_routing", "iam_roles", "kms_key_id", "preferred_maintenance_window", "s3_key_prefix", "vpc_security_group_ids")
 		b.ImmutableAttributes("availability_zone", "cluster_identifier", "cluster_subnet_group_name", "master_username", "snapshot_cluster_identifier", "snapshot_identifier")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_redshift_clusterHandler", bridge.NewTFHandler(p, "aws_redshift_cluster", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Redshift_clusterHandler", bridge.NewTFHandler(p, "aws_redshift_cluster", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_redshift_event_subscription{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("customer_aws_id", "status")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Redshift_event_subscription{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("redshift_event_subscriptionID", "customer_aws_id", "status")
 		b.ImmutableAttributes("name", "tags")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_redshift_event_subscriptionHandler", bridge.NewTFHandler(p, "aws_redshift_event_subscription", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Redshift_event_subscriptionHandler", bridge.NewTFHandler(p, "aws_redshift_event_subscription", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_redshift_parameter_group{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Redshift_parameter_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("redshift_parameter_groupID")
 		b.ImmutableAttributes("description", "family", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_redshift_parameter_groupHandler", bridge.NewTFHandler(p, "aws_redshift_parameter_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Redshift_parameter_groupHandler", bridge.NewTFHandler(p, "aws_redshift_parameter_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_redshift_security_group{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Redshift_security_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("redshift_security_groupID")
 		b.ImmutableAttributes("description", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_redshift_security_groupHandler", bridge.NewTFHandler(p, "aws_redshift_security_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Redshift_security_groupHandler", bridge.NewTFHandler(p, "aws_redshift_security_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_redshift_snapshot_copy_grant{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("kms_key_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Redshift_snapshot_copy_grant{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("redshift_snapshot_copy_grantID", "kms_key_id")
 		b.ImmutableAttributes("kms_key_id", "snapshot_copy_grant_name", "tags")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_redshift_snapshot_copy_grantHandler", bridge.NewTFHandler(p, "aws_redshift_snapshot_copy_grant", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Redshift_snapshot_copy_grantHandler", bridge.NewTFHandler(p, "aws_redshift_snapshot_copy_grant", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_redshift_subnet_group{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Redshift_subnet_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("redshift_subnet_groupID")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_redshift_subnet_groupHandler", bridge.NewTFHandler(p, "aws_redshift_subnet_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Redshift_subnet_groupHandler", bridge.NewTFHandler(p, "aws_redshift_subnet_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_resourcegroups_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Resourcegroups_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("resourcegroups_groupID", "arn")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_resourcegroups_groupHandler", bridge.NewTFHandler(p, "aws_resourcegroups_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Resourcegroups_groupHandler", bridge.NewTFHandler(p, "aws_resourcegroups_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_route{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("destination_prefix_list_id", "egress_only_gateway_id", "gateway_id", "instance_id", "instance_owner_id", "nat_gateway_id", "network_interface_id", "origin", "state")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Route{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("routeID", "destination_prefix_list_id", "egress_only_gateway_id", "gateway_id", "instance_id", "instance_owner_id", "nat_gateway_id", "network_interface_id", "origin", "state")
 		b.ImmutableAttributes("destination_cidr_block", "destination_ipv6_cidr_block", "route_table_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_routeHandler", bridge.NewTFHandler(p, "aws_route", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::RouteHandler", bridge.NewTFHandler(p, "aws_route", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_route53_delegation_set{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("name_servers")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Route53_delegation_set{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("route53_delegation_setID", "name_servers")
 		b.ImmutableAttributes("reference_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_route53_delegation_setHandler", bridge.NewTFHandler(p, "aws_route53_delegation_set", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Route53_delegation_setHandler", bridge.NewTFHandler(p, "aws_route53_delegation_set", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_route53_health_check{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("enable_sni")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Route53_health_check{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("route53_health_checkID", "enable_sni")
 		b.ImmutableAttributes("ip_address", "measure_latency", "reference_name", "request_interval", "type")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_route53_health_checkHandler", bridge.NewTFHandler(p, "aws_route53_health_check", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Route53_health_checkHandler", bridge.NewTFHandler(p, "aws_route53_health_check", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_route53_query_log{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Route53_query_log{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("route53_query_logID")
 		b.ImmutableAttributes("cloudwatch_log_group_arn", "zone_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_route53_query_logHandler", bridge.NewTFHandler(p, "aws_route53_query_log", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Route53_query_logHandler", bridge.NewTFHandler(p, "aws_route53_query_log", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_route53_record{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("fqdn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Route53_record{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("route53_recordID", "fqdn")
 		b.ImmutableAttributes("name", "zone_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_route53_recordHandler", bridge.NewTFHandler(p, "aws_route53_record", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Route53_recordHandler", bridge.NewTFHandler(p, "aws_route53_record", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_route53_zone{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("name_servers", "vpc", "vpc_id", "vpc_region", "zone_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Route53_zone{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("route53_zoneID", "name_servers", "vpc", "vpc_id", "vpc_region", "zone_id")
 		b.ImmutableAttributes("delegation_set_id", "name", "vpc_id", "vpc_region")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_route53_zoneHandler", bridge.NewTFHandler(p, "aws_route53_zone", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Route53_zoneHandler", bridge.NewTFHandler(p, "aws_route53_zone", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_route53_zone_association{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("vpc_region")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_route53_zone_associationHandler", bridge.NewTFHandler(p, "aws_route53_zone_association", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Route53_zone_association{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("route53_zone_associationID", "vpc_region")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Route53_zone_associationHandler", bridge.NewTFHandler(p, "aws_route53_zone_association", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_route_table{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("owner_id", "propagating_vgws", "route")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Route_table{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("route_tableID", "owner_id", "propagating_vgws", "route")
 		b.ImmutableAttributes("vpc_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_route_tableHandler", bridge.NewTFHandler(p, "aws_route_table", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Route_tableHandler", bridge.NewTFHandler(p, "aws_route_table", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_route_table_association{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Route_table_association{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("route_table_associationID")
 		b.ImmutableAttributes("subnet_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_route_table_associationHandler", bridge.NewTFHandler(p, "aws_route_table_association", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Route_table_associationHandler", bridge.NewTFHandler(p, "aws_route_table_association", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_s3_account_public_access_block{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("account_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&S3_account_public_access_block{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("s3_account_public_access_blockID", "account_id")
 		b.ImmutableAttributes("account_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_s3_account_public_access_blockHandler", bridge.NewTFHandler(p, "aws_s3_account_public_access_block", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::S3_account_public_access_blockHandler", bridge.NewTFHandler(p, "aws_s3_account_public_access_block", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_s3_bucket{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("acceleration_status", "arn", "bucket", "bucket_domain_name", "bucket_regional_domain_name", "hosted_zone_id", "region", "request_payer", "versioning", "website_domain", "website_endpoint")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&S3_bucket{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("s3_bucketID", "acceleration_status", "arn", "bucket", "bucket_domain_name", "bucket_regional_domain_name", "hosted_zone_id", "region", "request_payer", "versioning", "website_domain", "website_endpoint")
 		b.ImmutableAttributes("bucket", "bucket_prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_s3_bucketHandler", bridge.NewTFHandler(p, "aws_s3_bucket", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::S3_bucketHandler", bridge.NewTFHandler(p, "aws_s3_bucket", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_s3_bucket_inventory{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&S3_bucket_inventory{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("s3_bucket_inventoryID")
 		b.ImmutableAttributes("bucket", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_s3_bucket_inventoryHandler", bridge.NewTFHandler(p, "aws_s3_bucket_inventory", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::S3_bucket_inventoryHandler", bridge.NewTFHandler(p, "aws_s3_bucket_inventory", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_s3_bucket_metric{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&S3_bucket_metric{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("s3_bucket_metricID")
 		b.ImmutableAttributes("bucket", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_s3_bucket_metricHandler", bridge.NewTFHandler(p, "aws_s3_bucket_metric", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::S3_bucket_metricHandler", bridge.NewTFHandler(p, "aws_s3_bucket_metric", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_s3_bucket_notification{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&S3_bucket_notification{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("s3_bucket_notificationID")
 		b.ImmutableAttributes("bucket")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_s3_bucket_notificationHandler", bridge.NewTFHandler(p, "aws_s3_bucket_notification", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::S3_bucket_notificationHandler", bridge.NewTFHandler(p, "aws_s3_bucket_notification", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_s3_bucket_object{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("content_type", "etag", "server_side_encryption", "storage_class", "version_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&S3_bucket_object{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("s3_bucket_objectID", "content_type", "etag", "server_side_encryption", "storage_class", "version_id")
 		b.ImmutableAttributes("bucket", "key")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_s3_bucket_objectHandler", bridge.NewTFHandler(p, "aws_s3_bucket_object", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::S3_bucket_objectHandler", bridge.NewTFHandler(p, "aws_s3_bucket_object", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_s3_bucket_policy{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&S3_bucket_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("s3_bucket_policyID")
 		b.ImmutableAttributes("bucket")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_s3_bucket_policyHandler", bridge.NewTFHandler(p, "aws_s3_bucket_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::S3_bucket_policyHandler", bridge.NewTFHandler(p, "aws_s3_bucket_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_s3_bucket_public_access_block{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&S3_bucket_public_access_block{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("s3_bucket_public_access_blockID")
 		b.ImmutableAttributes("bucket")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_s3_bucket_public_access_blockHandler", bridge.NewTFHandler(p, "aws_s3_bucket_public_access_block", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::S3_bucket_public_access_blockHandler", bridge.NewTFHandler(p, "aws_s3_bucket_public_access_block", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_sagemaker_notebook_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "security_groups")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Sagemaker_notebook_instance{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("sagemaker_notebook_instanceID", "arn", "security_groups")
 		b.ImmutableAttributes("kms_key_id", "name", "security_groups", "subnet_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_sagemaker_notebook_instanceHandler", bridge.NewTFHandler(p, "aws_sagemaker_notebook_instance", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Sagemaker_notebook_instanceHandler", bridge.NewTFHandler(p, "aws_sagemaker_notebook_instance", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_secretsmanager_secret{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "name", "name_prefix", "rotation_enabled")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Secretsmanager_secret{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("secretsmanager_secretID", "arn", "name", "name_prefix", "rotation_enabled")
 		b.ImmutableAttributes("name", "name_prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_secretsmanager_secretHandler", bridge.NewTFHandler(p, "aws_secretsmanager_secret", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Secretsmanager_secretHandler", bridge.NewTFHandler(p, "aws_secretsmanager_secret", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_secretsmanager_secret_version{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "version_id", "version_stages")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Secretsmanager_secret_version{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("secretsmanager_secret_versionID", "arn", "version_id", "version_stages")
 		b.ImmutableAttributes("secret_binary", "secret_id", "secret_string")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_secretsmanager_secret_versionHandler", bridge.NewTFHandler(p, "aws_secretsmanager_secret_version", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Secretsmanager_secret_versionHandler", bridge.NewTFHandler(p, "aws_secretsmanager_secret_version", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_security_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "egress", "ingress", "name", "owner_id", "vpc_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Security_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("security_groupID", "arn", "egress", "ingress", "name", "owner_id", "vpc_id")
 		b.ImmutableAttributes("description", "name", "name_prefix", "vpc_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_security_groupHandler", bridge.NewTFHandler(p, "aws_security_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Security_groupHandler", bridge.NewTFHandler(p, "aws_security_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_security_group_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("source_security_group_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Security_group_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("security_group_ruleID", "source_security_group_id")
 		b.ImmutableAttributes("cidr_blocks", "from_port", "ipv6_cidr_blocks", "prefix_list_ids", "protocol", "security_group_id", "self", "source_security_group_id", "to_port", "type")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_security_group_ruleHandler", bridge.NewTFHandler(p, "aws_security_group_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Security_group_ruleHandler", bridge.NewTFHandler(p, "aws_security_group_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_securityhub_account{}, func(b service.ResourceTypeBuilder) {
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_securityhub_accountHandler", bridge.NewTFHandler(p, "aws_securityhub_account", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Securityhub_account{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("securityhub_accountID")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Securityhub_accountHandler", bridge.NewTFHandler(p, "aws_securityhub_account", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_securityhub_product_subscription{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Securityhub_product_subscription{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("securityhub_product_subscriptionID", "arn")
 		b.ImmutableAttributes("product_arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_securityhub_product_subscriptionHandler", bridge.NewTFHandler(p, "aws_securityhub_product_subscription", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Securityhub_product_subscriptionHandler", bridge.NewTFHandler(p, "aws_securityhub_product_subscription", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_securityhub_standards_subscription{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Securityhub_standards_subscription{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("securityhub_standards_subscriptionID")
 		b.ImmutableAttributes("standards_arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_securityhub_standards_subscriptionHandler", bridge.NewTFHandler(p, "aws_securityhub_standards_subscription", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Securityhub_standards_subscriptionHandler", bridge.NewTFHandler(p, "aws_securityhub_standards_subscription", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_service_discovery_http_namespace{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Service_discovery_http_namespace{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("service_discovery_http_namespaceID", "arn")
 		b.ImmutableAttributes("description", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_service_discovery_http_namespaceHandler", bridge.NewTFHandler(p, "aws_service_discovery_http_namespace", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Service_discovery_http_namespaceHandler", bridge.NewTFHandler(p, "aws_service_discovery_http_namespace", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_service_discovery_private_dns_namespace{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "hosted_zone")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Service_discovery_private_dns_namespace{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("service_discovery_private_dns_namespaceID", "arn", "hosted_zone")
 		b.ImmutableAttributes("description", "name", "vpc")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_service_discovery_private_dns_namespaceHandler", bridge.NewTFHandler(p, "aws_service_discovery_private_dns_namespace", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Service_discovery_private_dns_namespaceHandler", bridge.NewTFHandler(p, "aws_service_discovery_private_dns_namespace", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_service_discovery_public_dns_namespace{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "hosted_zone")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Service_discovery_public_dns_namespace{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("service_discovery_public_dns_namespaceID", "arn", "hosted_zone")
 		b.ImmutableAttributes("description", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_service_discovery_public_dns_namespaceHandler", bridge.NewTFHandler(p, "aws_service_discovery_public_dns_namespace", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Service_discovery_public_dns_namespaceHandler", bridge.NewTFHandler(p, "aws_service_discovery_public_dns_namespace", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_service_discovery_service{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Service_discovery_service{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("service_discovery_serviceID", "arn")
 		b.ImmutableAttributes("health_check_custom_config", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_service_discovery_serviceHandler", bridge.NewTFHandler(p, "aws_service_discovery_service", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Service_discovery_serviceHandler", bridge.NewTFHandler(p, "aws_service_discovery_service", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_servicecatalog_portfolio{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "created_time", "description")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_servicecatalog_portfolioHandler", bridge.NewTFHandler(p, "aws_servicecatalog_portfolio", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Servicecatalog_portfolio{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("servicecatalog_portfolioID", "arn", "created_time", "description")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Servicecatalog_portfolioHandler", bridge.NewTFHandler(p, "aws_servicecatalog_portfolio", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ses_active_receipt_rule_set{}, func(b service.ResourceTypeBuilder) {
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ses_active_receipt_rule_setHandler", bridge.NewTFHandler(p, "aws_ses_active_receipt_rule_set", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ses_active_receipt_rule_set{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ses_active_receipt_rule_setID")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ses_active_receipt_rule_setHandler", bridge.NewTFHandler(p, "aws_ses_active_receipt_rule_set", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ses_configuration_set{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ses_configuration_set{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ses_configuration_setID")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ses_configuration_setHandler", bridge.NewTFHandler(p, "aws_ses_configuration_set", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ses_configuration_setHandler", bridge.NewTFHandler(p, "aws_ses_configuration_set", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ses_domain_dkim{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("dkim_tokens")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ses_domain_dkim{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ses_domain_dkimID", "dkim_tokens")
 		b.ImmutableAttributes("domain")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ses_domain_dkimHandler", bridge.NewTFHandler(p, "aws_ses_domain_dkim", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ses_domain_dkimHandler", bridge.NewTFHandler(p, "aws_ses_domain_dkim", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ses_domain_identity{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "verification_token")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ses_domain_identity{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ses_domain_identityID", "arn", "verification_token")
 		b.ImmutableAttributes("domain")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ses_domain_identityHandler", bridge.NewTFHandler(p, "aws_ses_domain_identity", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ses_domain_identityHandler", bridge.NewTFHandler(p, "aws_ses_domain_identity", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ses_domain_identity_verification{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ses_domain_identity_verification{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ses_domain_identity_verificationID", "arn")
 		b.ImmutableAttributes("domain")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ses_domain_identity_verificationHandler", bridge.NewTFHandler(p, "aws_ses_domain_identity_verification", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ses_domain_identity_verificationHandler", bridge.NewTFHandler(p, "aws_ses_domain_identity_verification", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ses_domain_mail_from{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ses_domain_mail_from{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ses_domain_mail_fromID")
 		b.ImmutableAttributes("domain")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ses_domain_mail_fromHandler", bridge.NewTFHandler(p, "aws_ses_domain_mail_from", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ses_domain_mail_fromHandler", bridge.NewTFHandler(p, "aws_ses_domain_mail_from", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ses_event_destination{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ses_event_destination{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ses_event_destinationID")
 		b.ImmutableAttributes("cloudwatch_destination", "configuration_set_name", "enabled", "kinesis_destination", "matching_types", "name", "sns_destination")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ses_event_destinationHandler", bridge.NewTFHandler(p, "aws_ses_event_destination", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ses_event_destinationHandler", bridge.NewTFHandler(p, "aws_ses_event_destination", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ses_identity_notification_topic{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ses_identity_notification_topic{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ses_identity_notification_topicID")
 		b.ImmutableAttributes("identity", "notification_type")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ses_identity_notification_topicHandler", bridge.NewTFHandler(p, "aws_ses_identity_notification_topic", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ses_identity_notification_topicHandler", bridge.NewTFHandler(p, "aws_ses_identity_notification_topic", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ses_receipt_filter{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ses_receipt_filter{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ses_receipt_filterID")
 		b.ImmutableAttributes("cidr", "name", "policy")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ses_receipt_filterHandler", bridge.NewTFHandler(p, "aws_ses_receipt_filter", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ses_receipt_filterHandler", bridge.NewTFHandler(p, "aws_ses_receipt_filter", rt), rt)
 
-
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ses_receipt_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("enabled", "scan_enabled", "tls_policy")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ses_receipt_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ses_receipt_ruleID", "enabled", "scan_enabled", "tls_policy")
 		b.ImmutableAttributes("name", "rule_set_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ses_receipt_ruleHandler", bridge.NewTFHandler(p, "aws_ses_receipt_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ses_receipt_ruleHandler", bridge.NewTFHandler(p, "aws_ses_receipt_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ses_receipt_rule_set{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ses_receipt_rule_set{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ses_receipt_rule_setID")
 		b.ImmutableAttributes("rule_set_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ses_receipt_rule_setHandler", bridge.NewTFHandler(p, "aws_ses_receipt_rule_set", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ses_receipt_rule_setHandler", bridge.NewTFHandler(p, "aws_ses_receipt_rule_set", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ses_template{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ses_template{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ses_templateID")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ses_templateHandler", bridge.NewTFHandler(p, "aws_ses_template", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ses_templateHandler", bridge.NewTFHandler(p, "aws_ses_template", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_sfn_activity{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_date")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Sfn_activity{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("sfn_activityID", "creation_date")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_sfn_activityHandler", bridge.NewTFHandler(p, "aws_sfn_activity", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Sfn_activityHandler", bridge.NewTFHandler(p, "aws_sfn_activity", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_sfn_state_machine{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_date", "status")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Sfn_state_machine{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("sfn_state_machineID", "creation_date", "status")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_sfn_state_machineHandler", bridge.NewTFHandler(p, "aws_sfn_state_machine", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Sfn_state_machineHandler", bridge.NewTFHandler(p, "aws_sfn_state_machine", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_simpledb_domain{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Simpledb_domain{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("simpledb_domainID")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_simpledb_domainHandler", bridge.NewTFHandler(p, "aws_simpledb_domain", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Simpledb_domainHandler", bridge.NewTFHandler(p, "aws_simpledb_domain", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_snapshot_create_volume_permission{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Snapshot_create_volume_permission{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("snapshot_create_volume_permissionID")
 		b.ImmutableAttributes("account_id", "snapshot_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_snapshot_create_volume_permissionHandler", bridge.NewTFHandler(p, "aws_snapshot_create_volume_permission", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Snapshot_create_volume_permissionHandler", bridge.NewTFHandler(p, "aws_snapshot_create_volume_permission", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_sns_platform_application{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Sns_platform_application{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("sns_platform_applicationID", "arn")
 		b.ImmutableAttributes("name", "platform")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_sns_platform_applicationHandler", bridge.NewTFHandler(p, "aws_sns_platform_application", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Sns_platform_applicationHandler", bridge.NewTFHandler(p, "aws_sns_platform_application", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_sns_sms_preferences{}, func(b service.ResourceTypeBuilder) {
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_sns_sms_preferencesHandler", bridge.NewTFHandler(p, "aws_sns_sms_preferences", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Sns_sms_preferences{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("sns_sms_preferencesID")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Sns_sms_preferencesHandler", bridge.NewTFHandler(p, "aws_sns_sms_preferences", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_sns_topic{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "name", "policy")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Sns_topic{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("sns_topicID", "arn", "name", "policy")
 		b.ImmutableAttributes("name", "name_prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_sns_topicHandler", bridge.NewTFHandler(p, "aws_sns_topic", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Sns_topicHandler", bridge.NewTFHandler(p, "aws_sns_topic", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_sns_topic_policy{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Sns_topic_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("sns_topic_policyID")
 		b.ImmutableAttributes("arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_sns_topic_policyHandler", bridge.NewTFHandler(p, "aws_sns_topic_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Sns_topic_policyHandler", bridge.NewTFHandler(p, "aws_sns_topic_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_sns_topic_subscription{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Sns_topic_subscription{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("sns_topic_subscriptionID", "arn")
 		b.ImmutableAttributes("endpoint", "protocol", "topic_arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_sns_topic_subscriptionHandler", bridge.NewTFHandler(p, "aws_sns_topic_subscription", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Sns_topic_subscriptionHandler", bridge.NewTFHandler(p, "aws_sns_topic_subscription", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_spot_datafeed_subscription{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Spot_datafeed_subscription{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("spot_datafeed_subscriptionID")
 		b.ImmutableAttributes("bucket", "prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_spot_datafeed_subscriptionHandler", bridge.NewTFHandler(p, "aws_spot_datafeed_subscription", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Spot_datafeed_subscriptionHandler", bridge.NewTFHandler(p, "aws_spot_datafeed_subscription", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_spot_fleet_request{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("client_token", "load_balancers", "spot_request_state", "target_group_arns")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Spot_fleet_request{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("spot_fleet_requestID", "client_token", "load_balancers", "spot_request_state", "target_group_arns")
 		b.ImmutableAttributes("allocation_strategy", "fleet_type", "iam_fleet_role", "instance_interruption_behaviour", "instance_pools_to_use_count", "launch_specification", "load_balancers", "replace_unhealthy_instances", "spot_price", "target_group_arns", "terminate_instances_with_expiration", "valid_from", "valid_until")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_spot_fleet_requestHandler", bridge.NewTFHandler(p, "aws_spot_fleet_request", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Spot_fleet_requestHandler", bridge.NewTFHandler(p, "aws_spot_fleet_request", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_spot_instance_request{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "associate_public_ip_address", "availability_zone", "cpu_core_count", "cpu_threads_per_core", "ebs_block_device", "ephemeral_block_device", "host_id", "instance_state", "ipv6_address_count", "ipv6_addresses", "key_name", "network_interface", "network_interface_id", "password_data", "placement_group", "primary_network_interface_id", "private_dns", "private_ip", "public_dns", "public_ip", "root_block_device", "security_groups", "spot_bid_status", "spot_instance_id", "spot_request_state", "subnet_id", "tenancy", "valid_from", "valid_until", "vpc_security_group_ids")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Spot_instance_request{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("spot_instance_requestID", "arn", "associate_public_ip_address", "availability_zone", "cpu_core_count", "cpu_threads_per_core", "ebs_block_device", "ephemeral_block_device", "host_id", "instance_state", "ipv6_address_count", "ipv6_addresses", "key_name", "network_interface", "network_interface_id", "password_data", "placement_group", "primary_network_interface_id", "private_dns", "private_ip", "public_dns", "public_ip", "root_block_device", "security_groups", "spot_bid_status", "spot_instance_id", "spot_request_state", "subnet_id", "tenancy", "valid_from", "valid_until", "vpc_security_group_ids")
 		b.ImmutableAttributes("ami", "arn", "associate_public_ip_address", "availability_zone", "block_device", "block_duration_minutes", "cpu_core_count", "cpu_threads_per_core", "credit_specification", "disable_api_termination", "ebs_block_device", "ebs_optimized", "ephemeral_block_device", "get_password_data", "host_id", "iam_instance_profile", "instance_initiated_shutdown_behavior", "instance_interruption_behaviour", "instance_state", "instance_type", "ipv6_address_count", "ipv6_addresses", "key_name", "launch_group", "monitoring", "network_interface", "network_interface_id", "password_data", "placement_group", "primary_network_interface_id", "private_dns", "private_ip", "public_dns", "public_ip", "root_block_device", "security_groups", "source_dest_check", "spot_price", "subnet_id", "tenancy", "user_data", "user_data_base64", "valid_from", "valid_until", "vpc_security_group_ids")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_spot_instance_requestHandler", bridge.NewTFHandler(p, "aws_spot_instance_request", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Spot_instance_requestHandler", bridge.NewTFHandler(p, "aws_spot_instance_request", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_sqs_queue{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "kms_data_key_reuse_period_seconds", "name", "policy")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Sqs_queue{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("sqs_queueID", "arn", "kms_data_key_reuse_period_seconds", "name", "policy")
 		b.ImmutableAttributes("fifo_queue", "name", "name_prefix")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_sqs_queueHandler", bridge.NewTFHandler(p, "aws_sqs_queue", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Sqs_queueHandler", bridge.NewTFHandler(p, "aws_sqs_queue", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_sqs_queue_policy{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Sqs_queue_policy{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("sqs_queue_policyID")
 		b.ImmutableAttributes("queue_url")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_sqs_queue_policyHandler", bridge.NewTFHandler(p, "aws_sqs_queue_policy", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Sqs_queue_policyHandler", bridge.NewTFHandler(p, "aws_sqs_queue_policy", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ssm_activation{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("activation_code", "expired", "registration_count")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ssm_activation{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ssm_activationID", "activation_code", "expired", "registration_count")
 		b.ImmutableAttributes("description", "expiration_date", "iam_role", "name", "registration_limit")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ssm_activationHandler", bridge.NewTFHandler(p, "aws_ssm_activation", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ssm_activationHandler", bridge.NewTFHandler(p, "aws_ssm_activation", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ssm_association{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("association_id", "document_version", "parameters", "targets")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ssm_association{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ssm_associationID", "association_id", "document_version", "parameters", "targets")
 		b.ImmutableAttributes("instance_id", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ssm_associationHandler", bridge.NewTFHandler(p, "aws_ssm_association", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ssm_associationHandler", bridge.NewTFHandler(p, "aws_ssm_association", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ssm_document{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "created_date", "default_version", "description", "hash", "hash_type", "latest_version", "owner", "parameter", "platform_types", "schema_version", "status")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ssm_documentHandler", bridge.NewTFHandler(p, "aws_ssm_document", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ssm_document{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ssm_documentID", "arn", "created_date", "default_version", "description", "hash", "hash_type", "latest_version", "owner", "parameter", "platform_types", "schema_version", "status")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ssm_documentHandler", bridge.NewTFHandler(p, "aws_ssm_document", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ssm_maintenance_window{}, func(b service.ResourceTypeBuilder) {
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ssm_maintenance_windowHandler", bridge.NewTFHandler(p, "aws_ssm_maintenance_window", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ssm_maintenance_window{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ssm_maintenance_windowID")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ssm_maintenance_windowHandler", bridge.NewTFHandler(p, "aws_ssm_maintenance_window", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ssm_maintenance_window_target{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ssm_maintenance_window_target{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ssm_maintenance_window_targetID")
 		b.ImmutableAttributes("resource_type", "window_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ssm_maintenance_window_targetHandler", bridge.NewTFHandler(p, "aws_ssm_maintenance_window_target", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ssm_maintenance_window_targetHandler", bridge.NewTFHandler(p, "aws_ssm_maintenance_window_target", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ssm_maintenance_window_task{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ssm_maintenance_window_task{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ssm_maintenance_window_taskID")
 		b.ImmutableAttributes("description", "logging_info", "max_concurrency", "max_errors", "name", "priority", "service_role_arn", "targets", "task_arn", "task_parameters", "task_type", "window_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ssm_maintenance_window_taskHandler", bridge.NewTFHandler(p, "aws_ssm_maintenance_window_task", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ssm_maintenance_window_taskHandler", bridge.NewTFHandler(p, "aws_ssm_maintenance_window_task", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ssm_parameter{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "key_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ssm_parameter{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ssm_parameterID", "arn", "key_id")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ssm_parameterHandler", bridge.NewTFHandler(p, "aws_ssm_parameter", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ssm_parameterHandler", bridge.NewTFHandler(p, "aws_ssm_parameter", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ssm_patch_baseline{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ssm_patch_baseline{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ssm_patch_baselineID")
 		b.ImmutableAttributes("operating_system")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ssm_patch_baselineHandler", bridge.NewTFHandler(p, "aws_ssm_patch_baseline", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ssm_patch_baselineHandler", bridge.NewTFHandler(p, "aws_ssm_patch_baseline", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ssm_patch_group{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ssm_patch_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ssm_patch_groupID")
 		b.ImmutableAttributes("baseline_id", "patch_group")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ssm_patch_groupHandler", bridge.NewTFHandler(p, "aws_ssm_patch_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ssm_patch_groupHandler", bridge.NewTFHandler(p, "aws_ssm_patch_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ssm_resource_data_sync{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Ssm_resource_data_sync{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("ssm_resource_data_syncID")
 		b.ImmutableAttributes("name", "s3_destination")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_ssm_resource_data_syncHandler", bridge.NewTFHandler(p, "aws_ssm_resource_data_sync", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Ssm_resource_data_syncHandler", bridge.NewTFHandler(p, "aws_ssm_resource_data_sync", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_storagegateway_cache{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Storagegateway_cache{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("storagegateway_cacheID")
 		b.ImmutableAttributes("disk_id", "gateway_arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_storagegateway_cacheHandler", bridge.NewTFHandler(p, "aws_storagegateway_cache", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Storagegateway_cacheHandler", bridge.NewTFHandler(p, "aws_storagegateway_cache", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_storagegateway_cached_iscsi_volume{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "chap_enabled", "lun_number", "network_interface_port", "target_arn", "volume_arn", "volume_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Storagegateway_cached_iscsi_volume{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("storagegateway_cached_iscsi_volumeID", "arn", "chap_enabled", "lun_number", "network_interface_port", "target_arn", "volume_arn", "volume_id")
 		b.ImmutableAttributes("gateway_arn", "network_interface_id", "snapshot_id", "source_volume_arn", "target_name", "volume_size_in_bytes")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_storagegateway_cached_iscsi_volumeHandler", bridge.NewTFHandler(p, "aws_storagegateway_cached_iscsi_volume", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Storagegateway_cached_iscsi_volumeHandler", bridge.NewTFHandler(p, "aws_storagegateway_cached_iscsi_volume", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_storagegateway_gateway{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("activation_key", "arn", "gateway_id", "gateway_ip_address")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Storagegateway_gateway{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("storagegateway_gatewayID", "activation_key", "arn", "gateway_id", "gateway_ip_address")
 		b.ImmutableAttributes("activation_key", "gateway_ip_address", "gateway_type", "medium_changer_type", "tape_drive_type")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_storagegateway_gatewayHandler", bridge.NewTFHandler(p, "aws_storagegateway_gateway", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Storagegateway_gatewayHandler", bridge.NewTFHandler(p, "aws_storagegateway_gateway", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_storagegateway_nfs_file_share{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "fileshare_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Storagegateway_nfs_file_share{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("storagegateway_nfs_file_shareID", "arn", "fileshare_id")
 		b.ImmutableAttributes("gateway_arn", "location_arn", "role_arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_storagegateway_nfs_file_shareHandler", bridge.NewTFHandler(p, "aws_storagegateway_nfs_file_share", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Storagegateway_nfs_file_shareHandler", bridge.NewTFHandler(p, "aws_storagegateway_nfs_file_share", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_storagegateway_smb_file_share{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "fileshare_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Storagegateway_smb_file_share{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("storagegateway_smb_file_shareID", "arn", "fileshare_id")
 		b.ImmutableAttributes("authentication", "gateway_arn", "location_arn", "role_arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_storagegateway_smb_file_shareHandler", bridge.NewTFHandler(p, "aws_storagegateway_smb_file_share", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Storagegateway_smb_file_shareHandler", bridge.NewTFHandler(p, "aws_storagegateway_smb_file_share", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_storagegateway_upload_buffer{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Storagegateway_upload_buffer{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("storagegateway_upload_bufferID")
 		b.ImmutableAttributes("disk_id", "gateway_arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_storagegateway_upload_bufferHandler", bridge.NewTFHandler(p, "aws_storagegateway_upload_buffer", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Storagegateway_upload_bufferHandler", bridge.NewTFHandler(p, "aws_storagegateway_upload_buffer", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_storagegateway_working_storage{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Storagegateway_working_storage{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("storagegateway_working_storageID")
 		b.ImmutableAttributes("disk_id", "gateway_arn")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_storagegateway_working_storageHandler", bridge.NewTFHandler(p, "aws_storagegateway_working_storage", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Storagegateway_working_storageHandler", bridge.NewTFHandler(p, "aws_storagegateway_working_storage", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_subnet{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "availability_zone", "availability_zone_id", "ipv6_cidr_block", "ipv6_cidr_block_association_id", "owner_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Subnet{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("subnetID", "arn", "availability_zone", "availability_zone_id", "ipv6_cidr_block", "ipv6_cidr_block_association_id", "owner_id")
 		b.ImmutableAttributes("availability_zone", "availability_zone_id", "cidr_block", "vpc_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_subnetHandler", bridge.NewTFHandler(p, "aws_subnet", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::SubnetHandler", bridge.NewTFHandler(p, "aws_subnet", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_swf_domain{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("name")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Swf_domain{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("swf_domainID", "name")
 		b.ImmutableAttributes("description", "name", "name_prefix", "workflow_execution_retention_period_in_days")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_swf_domainHandler", bridge.NewTFHandler(p, "aws_swf_domain", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Swf_domainHandler", bridge.NewTFHandler(p, "aws_swf_domain", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_transfer_server{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "endpoint")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Transfer_server{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("transfer_serverID", "arn", "endpoint")
 		b.ImmutableAttributes("identity_provider_type")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_transfer_serverHandler", bridge.NewTFHandler(p, "aws_transfer_server", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Transfer_serverHandler", bridge.NewTFHandler(p, "aws_transfer_server", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_transfer_ssh_key{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Transfer_ssh_key{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("transfer_ssh_keyID")
 		b.ImmutableAttributes("body", "server_id", "user_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_transfer_ssh_keyHandler", bridge.NewTFHandler(p, "aws_transfer_ssh_key", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Transfer_ssh_keyHandler", bridge.NewTFHandler(p, "aws_transfer_ssh_key", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_transfer_user{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Transfer_user{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("transfer_userID", "arn")
 		b.ImmutableAttributes("server_id", "user_name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_transfer_userHandler", bridge.NewTFHandler(p, "aws_transfer_user", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Transfer_userHandler", bridge.NewTFHandler(p, "aws_transfer_user", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_volume_attachment{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Volume_attachment{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("volume_attachmentID")
 		b.ImmutableAttributes("device_name", "instance_id", "volume_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_volume_attachmentHandler", bridge.NewTFHandler(p, "aws_volume_attachment", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Volume_attachmentHandler", bridge.NewTFHandler(p, "aws_volume_attachment", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_vpc{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "default_network_acl_id", "default_route_table_id", "default_security_group_id", "dhcp_options_id", "enable_classiclink", "enable_classiclink_dns_support", "enable_dns_hostnames", "ipv6_association_id", "ipv6_cidr_block", "main_route_table_id", "owner_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Vpc{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("vpcID", "arn", "default_network_acl_id", "default_route_table_id", "default_security_group_id", "dhcp_options_id", "enable_classiclink", "enable_classiclink_dns_support", "enable_dns_hostnames", "ipv6_association_id", "ipv6_cidr_block", "main_route_table_id", "owner_id")
 		b.ImmutableAttributes("cidr_block")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_vpcHandler", bridge.NewTFHandler(p, "aws_vpc", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::VpcHandler", bridge.NewTFHandler(p, "aws_vpc", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_vpc_dhcp_options{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("owner_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Vpc_dhcp_options{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("vpc_dhcp_optionsID", "owner_id")
 		b.ImmutableAttributes("domain_name", "domain_name_servers", "netbios_name_servers", "netbios_node_type", "ntp_servers")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_vpc_dhcp_optionsHandler", bridge.NewTFHandler(p, "aws_vpc_dhcp_options", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Vpc_dhcp_optionsHandler", bridge.NewTFHandler(p, "aws_vpc_dhcp_options", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_vpc_dhcp_options_association{}, func(b service.ResourceTypeBuilder) {
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_vpc_dhcp_options_associationHandler", bridge.NewTFHandler(p, "aws_vpc_dhcp_options_association", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Vpc_dhcp_options_association{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("vpc_dhcp_options_associationID")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Vpc_dhcp_options_associationHandler", bridge.NewTFHandler(p, "aws_vpc_dhcp_options_association", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_vpc_endpoint{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("cidr_blocks", "dns_entry", "network_interface_ids", "policy", "prefix_list_id", "route_table_ids", "security_group_ids", "state", "subnet_ids")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Vpc_endpoint{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("vpc_endpointID", "cidr_blocks", "dns_entry", "network_interface_ids", "policy", "prefix_list_id", "route_table_ids", "security_group_ids", "state", "subnet_ids")
 		b.ImmutableAttributes("service_name", "vpc_endpoint_type", "vpc_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_vpc_endpointHandler", bridge.NewTFHandler(p, "aws_vpc_endpoint", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Vpc_endpointHandler", bridge.NewTFHandler(p, "aws_vpc_endpoint", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_vpc_endpoint_connection_notification{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("notification_type", "state")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Vpc_endpoint_connection_notification{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("vpc_endpoint_connection_notificationID", "notification_type", "state")
 		b.ImmutableAttributes("vpc_endpoint_id", "vpc_endpoint_service_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_vpc_endpoint_connection_notificationHandler", bridge.NewTFHandler(p, "aws_vpc_endpoint_connection_notification", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Vpc_endpoint_connection_notificationHandler", bridge.NewTFHandler(p, "aws_vpc_endpoint_connection_notification", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_vpc_endpoint_route_table_association{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Vpc_endpoint_route_table_association{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("vpc_endpoint_route_table_associationID")
 		b.ImmutableAttributes("route_table_id", "vpc_endpoint_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_vpc_endpoint_route_table_associationHandler", bridge.NewTFHandler(p, "aws_vpc_endpoint_route_table_association", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Vpc_endpoint_route_table_associationHandler", bridge.NewTFHandler(p, "aws_vpc_endpoint_route_table_association", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_vpc_endpoint_service{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allowed_principals", "availability_zones", "base_endpoint_dns_names", "private_dns_name", "service_name", "service_type", "state")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_vpc_endpoint_serviceHandler", bridge.NewTFHandler(p, "aws_vpc_endpoint_service", evs[0]), evs[0])
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Vpc_endpoint_service{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("vpc_endpoint_serviceID", "allowed_principals", "availability_zones", "base_endpoint_dns_names", "private_dns_name", "service_name", "service_type", "state")
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Vpc_endpoint_serviceHandler", bridge.NewTFHandler(p, "aws_vpc_endpoint_service", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_vpc_endpoint_service_allowed_principal{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Vpc_endpoint_service_allowed_principal{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("vpc_endpoint_service_allowed_principalID")
 		b.ImmutableAttributes("principal_arn", "vpc_endpoint_service_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_vpc_endpoint_service_allowed_principalHandler", bridge.NewTFHandler(p, "aws_vpc_endpoint_service_allowed_principal", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Vpc_endpoint_service_allowed_principalHandler", bridge.NewTFHandler(p, "aws_vpc_endpoint_service_allowed_principal", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_vpc_endpoint_subnet_association{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Vpc_endpoint_subnet_association{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("vpc_endpoint_subnet_associationID")
 		b.ImmutableAttributes("subnet_id", "vpc_endpoint_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_vpc_endpoint_subnet_associationHandler", bridge.NewTFHandler(p, "aws_vpc_endpoint_subnet_association", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Vpc_endpoint_subnet_associationHandler", bridge.NewTFHandler(p, "aws_vpc_endpoint_subnet_association", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_vpc_ipv4_cidr_block_association{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Vpc_ipv4_cidr_block_association{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("vpc_ipv4_cidr_block_associationID")
 		b.ImmutableAttributes("cidr_block", "vpc_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_vpc_ipv4_cidr_block_associationHandler", bridge.NewTFHandler(p, "aws_vpc_ipv4_cidr_block_association", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Vpc_ipv4_cidr_block_associationHandler", bridge.NewTFHandler(p, "aws_vpc_ipv4_cidr_block_association", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_vpc_peering_connection{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("accept_status", "accepter", "peer_owner_id", "peer_region", "requester")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Vpc_peering_connection{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("vpc_peering_connectionID", "accept_status", "accepter", "peer_owner_id", "peer_region", "requester")
 		b.ImmutableAttributes("peer_owner_id", "peer_region", "peer_vpc_id", "vpc_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_vpc_peering_connectionHandler", bridge.NewTFHandler(p, "aws_vpc_peering_connection", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Vpc_peering_connectionHandler", bridge.NewTFHandler(p, "aws_vpc_peering_connection", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_vpc_peering_connection_accepter{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("accept_status", "accepter", "peer_owner_id", "peer_region", "peer_vpc_id", "requester", "vpc_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Vpc_peering_connection_accepter{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("vpc_peering_connection_accepterID", "accept_status", "accepter", "peer_owner_id", "peer_region", "peer_vpc_id", "requester", "vpc_id")
 		b.ImmutableAttributes("vpc_peering_connection_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_vpc_peering_connection_accepterHandler", bridge.NewTFHandler(p, "aws_vpc_peering_connection_accepter", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Vpc_peering_connection_accepterHandler", bridge.NewTFHandler(p, "aws_vpc_peering_connection_accepter", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_vpc_peering_connection_options{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("accepter", "requester")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Vpc_peering_connection_options{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("vpc_peering_connection_optionsID", "accepter", "requester")
 		b.ImmutableAttributes("vpc_peering_connection_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_vpc_peering_connection_optionsHandler", bridge.NewTFHandler(p, "aws_vpc_peering_connection_options", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Vpc_peering_connection_optionsHandler", bridge.NewTFHandler(p, "aws_vpc_peering_connection_options", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_vpn_connection{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("customer_gateway_configuration", "routes", "static_routes_only", "tunnel1_address", "tunnel1_bgp_asn", "tunnel1_bgp_holdtime", "tunnel1_cgw_inside_address", "tunnel1_inside_cidr", "tunnel1_preshared_key", "tunnel1_vgw_inside_address", "tunnel2_address", "tunnel2_bgp_asn", "tunnel2_bgp_holdtime", "tunnel2_cgw_inside_address", "tunnel2_inside_cidr", "tunnel2_preshared_key", "tunnel2_vgw_inside_address", "vgw_telemetry")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Vpn_connection{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("vpn_connectionID", "customer_gateway_configuration", "routes", "static_routes_only", "tunnel1_address", "tunnel1_bgp_asn", "tunnel1_bgp_holdtime", "tunnel1_cgw_inside_address", "tunnel1_inside_cidr", "tunnel1_preshared_key", "tunnel1_vgw_inside_address", "tunnel2_address", "tunnel2_bgp_asn", "tunnel2_bgp_holdtime", "tunnel2_cgw_inside_address", "tunnel2_inside_cidr", "tunnel2_preshared_key", "tunnel2_vgw_inside_address", "vgw_telemetry")
 		b.ImmutableAttributes("customer_gateway_id", "static_routes_only", "transit_gateway_id", "tunnel1_inside_cidr", "tunnel1_preshared_key", "tunnel2_inside_cidr", "tunnel2_preshared_key", "type", "vpn_gateway_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_vpn_connectionHandler", bridge.NewTFHandler(p, "aws_vpn_connection", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Vpn_connectionHandler", bridge.NewTFHandler(p, "aws_vpn_connection", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_vpn_connection_route{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Vpn_connection_route{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("vpn_connection_routeID")
 		b.ImmutableAttributes("destination_cidr_block", "vpn_connection_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_vpn_connection_routeHandler", bridge.NewTFHandler(p, "aws_vpn_connection_route", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Vpn_connection_routeHandler", bridge.NewTFHandler(p, "aws_vpn_connection_route", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_vpn_gateway{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("amazon_side_asn", "vpc_id")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Vpn_gateway{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("vpn_gatewayID", "amazon_side_asn", "vpc_id")
 		b.ImmutableAttributes("amazon_side_asn", "availability_zone")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_vpn_gatewayHandler", bridge.NewTFHandler(p, "aws_vpn_gateway", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Vpn_gatewayHandler", bridge.NewTFHandler(p, "aws_vpn_gateway", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_vpn_gateway_attachment{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Vpn_gateway_attachment{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("vpn_gateway_attachmentID")
 		b.ImmutableAttributes("vpc_id", "vpn_gateway_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_vpn_gateway_attachmentHandler", bridge.NewTFHandler(p, "aws_vpn_gateway_attachment", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Vpn_gateway_attachmentHandler", bridge.NewTFHandler(p, "aws_vpn_gateway_attachment", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_vpn_gateway_route_propagation{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Vpn_gateway_route_propagation{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("vpn_gateway_route_propagationID")
 		b.ImmutableAttributes("route_table_id", "vpn_gateway_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_vpn_gateway_route_propagationHandler", bridge.NewTFHandler(p, "aws_vpn_gateway_route_propagation", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Vpn_gateway_route_propagationHandler", bridge.NewTFHandler(p, "aws_vpn_gateway_route_propagation", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_waf_byte_match_set{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Waf_byte_match_set{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("waf_byte_match_setID")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_waf_byte_match_setHandler", bridge.NewTFHandler(p, "aws_waf_byte_match_set", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Waf_byte_match_setHandler", bridge.NewTFHandler(p, "aws_waf_byte_match_set", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_waf_geo_match_set{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Waf_geo_match_set{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("waf_geo_match_setID")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_waf_geo_match_setHandler", bridge.NewTFHandler(p, "aws_waf_geo_match_set", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Waf_geo_match_setHandler", bridge.NewTFHandler(p, "aws_waf_geo_match_set", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_waf_ipset{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Waf_ipset{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("waf_ipsetID", "arn")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_waf_ipsetHandler", bridge.NewTFHandler(p, "aws_waf_ipset", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Waf_ipsetHandler", bridge.NewTFHandler(p, "aws_waf_ipset", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_waf_rate_based_rule{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Waf_rate_based_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("waf_rate_based_ruleID")
 		b.ImmutableAttributes("metric_name", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_waf_rate_based_ruleHandler", bridge.NewTFHandler(p, "aws_waf_rate_based_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Waf_rate_based_ruleHandler", bridge.NewTFHandler(p, "aws_waf_rate_based_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_waf_regex_match_set{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Waf_regex_match_set{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("waf_regex_match_setID")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_waf_regex_match_setHandler", bridge.NewTFHandler(p, "aws_waf_regex_match_set", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Waf_regex_match_setHandler", bridge.NewTFHandler(p, "aws_waf_regex_match_set", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_waf_regex_pattern_set{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Waf_regex_pattern_set{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("waf_regex_pattern_setID")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_waf_regex_pattern_setHandler", bridge.NewTFHandler(p, "aws_waf_regex_pattern_set", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Waf_regex_pattern_setHandler", bridge.NewTFHandler(p, "aws_waf_regex_pattern_set", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_waf_rule{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Waf_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("waf_ruleID")
 		b.ImmutableAttributes("metric_name", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_waf_ruleHandler", bridge.NewTFHandler(p, "aws_waf_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Waf_ruleHandler", bridge.NewTFHandler(p, "aws_waf_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_waf_rule_group{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Waf_rule_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("waf_rule_groupID")
 		b.ImmutableAttributes("metric_name", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_waf_rule_groupHandler", bridge.NewTFHandler(p, "aws_waf_rule_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Waf_rule_groupHandler", bridge.NewTFHandler(p, "aws_waf_rule_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_waf_size_constraint_set{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Waf_size_constraint_set{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("waf_size_constraint_setID")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_waf_size_constraint_setHandler", bridge.NewTFHandler(p, "aws_waf_size_constraint_set", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Waf_size_constraint_setHandler", bridge.NewTFHandler(p, "aws_waf_size_constraint_set", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_waf_sql_injection_match_set{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Waf_sql_injection_match_set{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("waf_sql_injection_match_setID")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_waf_sql_injection_match_setHandler", bridge.NewTFHandler(p, "aws_waf_sql_injection_match_set", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Waf_sql_injection_match_setHandler", bridge.NewTFHandler(p, "aws_waf_sql_injection_match_set", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_waf_web_acl{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Waf_web_acl{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("waf_web_aclID")
 		b.ImmutableAttributes("metric_name", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_waf_web_aclHandler", bridge.NewTFHandler(p, "aws_waf_web_acl", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Waf_web_aclHandler", bridge.NewTFHandler(p, "aws_waf_web_acl", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_waf_xss_match_set{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Waf_xss_match_set{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("waf_xss_match_setID")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_waf_xss_match_setHandler", bridge.NewTFHandler(p, "aws_waf_xss_match_set", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Waf_xss_match_setHandler", bridge.NewTFHandler(p, "aws_waf_xss_match_set", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_wafregional_byte_match_set{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Wafregional_byte_match_set{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("wafregional_byte_match_setID")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_wafregional_byte_match_setHandler", bridge.NewTFHandler(p, "aws_wafregional_byte_match_set", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Wafregional_byte_match_setHandler", bridge.NewTFHandler(p, "aws_wafregional_byte_match_set", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_wafregional_geo_match_set{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Wafregional_geo_match_set{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("wafregional_geo_match_setID")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_wafregional_geo_match_setHandler", bridge.NewTFHandler(p, "aws_wafregional_geo_match_set", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Wafregional_geo_match_setHandler", bridge.NewTFHandler(p, "aws_wafregional_geo_match_set", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_wafregional_ipset{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn")
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Wafregional_ipset{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("wafregional_ipsetID", "arn")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_wafregional_ipsetHandler", bridge.NewTFHandler(p, "aws_wafregional_ipset", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Wafregional_ipsetHandler", bridge.NewTFHandler(p, "aws_wafregional_ipset", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_wafregional_rate_based_rule{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Wafregional_rate_based_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("wafregional_rate_based_ruleID")
 		b.ImmutableAttributes("metric_name", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_wafregional_rate_based_ruleHandler", bridge.NewTFHandler(p, "aws_wafregional_rate_based_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Wafregional_rate_based_ruleHandler", bridge.NewTFHandler(p, "aws_wafregional_rate_based_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_wafregional_regex_match_set{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Wafregional_regex_match_set{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("wafregional_regex_match_setID")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_wafregional_regex_match_setHandler", bridge.NewTFHandler(p, "aws_wafregional_regex_match_set", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Wafregional_regex_match_setHandler", bridge.NewTFHandler(p, "aws_wafregional_regex_match_set", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_wafregional_regex_pattern_set{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Wafregional_regex_pattern_set{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("wafregional_regex_pattern_setID")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_wafregional_regex_pattern_setHandler", bridge.NewTFHandler(p, "aws_wafregional_regex_pattern_set", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Wafregional_regex_pattern_setHandler", bridge.NewTFHandler(p, "aws_wafregional_regex_pattern_set", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_wafregional_rule{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Wafregional_rule{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("wafregional_ruleID")
 		b.ImmutableAttributes("metric_name", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_wafregional_ruleHandler", bridge.NewTFHandler(p, "aws_wafregional_rule", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Wafregional_ruleHandler", bridge.NewTFHandler(p, "aws_wafregional_rule", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_wafregional_rule_group{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Wafregional_rule_group{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("wafregional_rule_groupID")
 		b.ImmutableAttributes("metric_name", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_wafregional_rule_groupHandler", bridge.NewTFHandler(p, "aws_wafregional_rule_group", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Wafregional_rule_groupHandler", bridge.NewTFHandler(p, "aws_wafregional_rule_group", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_wafregional_size_constraint_set{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Wafregional_size_constraint_set{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("wafregional_size_constraint_setID")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_wafregional_size_constraint_setHandler", bridge.NewTFHandler(p, "aws_wafregional_size_constraint_set", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Wafregional_size_constraint_setHandler", bridge.NewTFHandler(p, "aws_wafregional_size_constraint_set", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_wafregional_sql_injection_match_set{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Wafregional_sql_injection_match_set{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("wafregional_sql_injection_match_setID")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_wafregional_sql_injection_match_setHandler", bridge.NewTFHandler(p, "aws_wafregional_sql_injection_match_set", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Wafregional_sql_injection_match_setHandler", bridge.NewTFHandler(p, "aws_wafregional_sql_injection_match_set", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_wafregional_web_acl{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Wafregional_web_acl{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("wafregional_web_aclID")
 		b.ImmutableAttributes("metric_name", "name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_wafregional_web_aclHandler", bridge.NewTFHandler(p, "aws_wafregional_web_acl", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Wafregional_web_aclHandler", bridge.NewTFHandler(p, "aws_wafregional_web_acl", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_wafregional_web_acl_association{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Wafregional_web_acl_association{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("wafregional_web_acl_associationID")
 		b.ImmutableAttributes("resource_arn", "web_acl_id")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_wafregional_web_acl_associationHandler", bridge.NewTFHandler(p, "aws_wafregional_web_acl_association", evs[0]), evs[0])
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Wafregional_web_acl_associationHandler", bridge.NewTFHandler(p, "aws_wafregional_web_acl_association", rt), rt)
 
-	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_wafregional_xss_match_set{}, func(b service.ResourceTypeBuilder) {
+	rt = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Wafregional_xss_match_set{}, func(b service.ResourceTypeBuilder) {
+		b.ProvidedAttributes("wafregional_xss_match_setID")
 		b.ImmutableAttributes("name")
-	}))
-	sb.RegisterHandler("TerraformAws::Aws_wafregional_xss_match_setHandler", bridge.NewTFHandler(p, "aws_wafregional_xss_match_set", evs[0]), evs[0])
-
-}
-
-type Aws_acm_certificate_domain_validation_options_1 struct {
-	Domain_name *string
-
-	Resource_record_name *string
-
-	Resource_record_type *string
-
-	Resource_record_value *string
-}
-
-type Aws_acm_certificate struct {
-	Aws_acm_certificate_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Certificate_body *string
-
-	Certificate_chain *string
-
-	Domain_name *string
-
-	Domain_validation_options *[]Aws_acm_certificate_domain_validation_options_1
-
-	Private_key *string
-
-	Subject_alternative_names *[]string
-
-	Tags *map[string]string
-
-	Validation_emails *[]string
-
-	Validation_method *string
-}
-
-type Aws_acm_certificate_validation struct {
-	Aws_acm_certificate_validation_id *string `lyra:"ignore"`
-
-	Certificate_arn string
-
-	Validation_record_fqdns *[]string
-}
-
-type Aws_acmpca_certificate_authority_certificate_authority_configuration_2_subject_3 struct {
-	Common_name *string
-
-	Country *string
-
-	Distinguished_name_qualifier *string
-
-	Generation_qualifier *string
-
-	Given_name *string
-
-	Initials *string
-
-	Locality *string
-
-	Organization *string
-
-	Organizational_unit *string
-
-	Pseudonym *string
-
-	State *string
-
-	Surname *string
-
-	Title *string
-}
-
-type Aws_acmpca_certificate_authority_certificate_authority_configuration_2 struct {
-	Key_algorithm string
-
-	Signing_algorithm string
-
-	Subject []Aws_acmpca_certificate_authority_certificate_authority_configuration_2_subject_3
-}
-
-type Aws_acmpca_certificate_authority_revocation_configuration_4_crl_configuration_5 struct {
-	Custom_cname *string
-
-	Enabled *bool
-
-	Expiration_in_days int
-
-	S3_bucket_name *string
-}
-
-type Aws_acmpca_certificate_authority_revocation_configuration_4 struct {
-	Crl_configuration *[]Aws_acmpca_certificate_authority_revocation_configuration_4_crl_configuration_5
-}
-
-type Aws_acmpca_certificate_authority struct {
-	Aws_acmpca_certificate_authority_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Certificate *string
-
-	Certificate_authority_configuration []Aws_acmpca_certificate_authority_certificate_authority_configuration_2
-
-	Certificate_chain *string
-
-	Certificate_signing_request *string
-
-	Enabled *bool
-
-	Not_after *string
-
-	Not_before *string
-
-	Revocation_configuration *[]Aws_acmpca_certificate_authority_revocation_configuration_4
-
-	Serial *string
-
-	Status *string
-
-	Tags *map[string]string
-
-	Type *string
-}
-
-type Aws_alb_access_logs_6 struct {
-	Bucket string
-
-	Enabled *bool
-
-	Prefix *string
-}
-
-type Aws_alb_subnet_mapping_7 struct {
-	Allocation_id *string
-
-	Subnet_id string
-}
-
-type Aws_alb struct {
-	Aws_alb_id *string `lyra:"ignore"`
-
-	Access_logs *[]Aws_alb_access_logs_6
-
-	Arn *string
-
-	Arn_suffix *string
-
-	Dns_name *string
-
-	Enable_cross_zone_load_balancing *bool
-
-	Enable_deletion_protection *bool
-
-	Enable_http2 *bool
-
-	Idle_timeout *int
-
-	Internal *bool
-
-	Ip_address_type *string
-
-	Load_balancer_type *string
-
-	Name *string
-
-	Name_prefix *string
-
-	Security_groups *[]string
-
-	Subnet_mapping *[]Aws_alb_subnet_mapping_7
-
-	Subnets *[]string
-
-	Tags *map[string]string
-
-	Vpc_id *string
-
-	Zone_id *string
-}
-
-type Aws_alb_listener_default_action_8_authenticate_cognito_9 struct {
-	Authentication_request_extra_params *map[string]string
-
-	On_unauthenticated_request *string
-
-	Scope *string
-
-	Session_cookie_name *string
-
-	Session_timeout *int
-
-	User_pool_arn string
-
-	User_pool_client_id string
-
-	User_pool_domain string
-}
-
-type Aws_alb_listener_default_action_8_authenticate_oidc_10 struct {
-	Authentication_request_extra_params *map[string]string
-
-	Authorization_endpoint string
-
-	Client_id string
-
-	Client_secret string
-
-	Issuer string
-
-	On_unauthenticated_request *string
-
-	Scope *string
-
-	Session_cookie_name *string
-
-	Session_timeout *int
-
-	Token_endpoint string
-
-	User_info_endpoint string
-}
-
-type Aws_alb_listener_default_action_8_fixed_response_11 struct {
-	Content_type string
-
-	Message_body *string
-
-	Status_code *string
-}
-
-type Aws_alb_listener_default_action_8_redirect_12 struct {
-	Host *string
-
-	Path *string
-
-	Port *string
-
-	Protocol *string
-
-	Query *string
-
-	Status_code string
-}
-
-type Aws_alb_listener_default_action_8 struct {
-	Authenticate_cognito *[]Aws_alb_listener_default_action_8_authenticate_cognito_9
-
-	Authenticate_oidc *[]Aws_alb_listener_default_action_8_authenticate_oidc_10
-
-	Fixed_response *[]Aws_alb_listener_default_action_8_fixed_response_11
-
-	Order *int
-
-	Redirect *[]Aws_alb_listener_default_action_8_redirect_12
-
-	Target_group_arn *string
-
-	Type string
-}
-
-type Aws_alb_listener struct {
-	Aws_alb_listener_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Certificate_arn *string
-
-	Default_action []Aws_alb_listener_default_action_8
-
-	Load_balancer_arn string
-
-	Port int
-
-	Protocol *string
-
-	Ssl_policy *string
-}
-
-type Aws_alb_listener_certificate struct {
-	Aws_alb_listener_certificate_id *string `lyra:"ignore"`
-
-	Certificate_arn string
-
-	Listener_arn string
-}
-
-type Aws_alb_listener_rule_action_13_authenticate_cognito_14 struct {
-	Authentication_request_extra_params *map[string]string
-
-	On_unauthenticated_request *string
-
-	Scope *string
-
-	Session_cookie_name *string
-
-	Session_timeout *int
-
-	User_pool_arn string
-
-	User_pool_client_id string
-
-	User_pool_domain string
-}
-
-type Aws_alb_listener_rule_action_13_authenticate_oidc_15 struct {
-	Authentication_request_extra_params *map[string]string
-
-	Authorization_endpoint string
-
-	Client_id string
-
-	Client_secret string
-
-	Issuer string
-
-	On_unauthenticated_request *string
-
-	Scope *string
-
-	Session_cookie_name *string
-
-	Session_timeout *int
-
-	Token_endpoint string
-
-	User_info_endpoint string
-}
-
-type Aws_alb_listener_rule_action_13_fixed_response_16 struct {
-	Content_type string
-
-	Message_body *string
-
-	Status_code *string
-}
-
-type Aws_alb_listener_rule_action_13_redirect_17 struct {
-	Host *string
-
-	Path *string
-
-	Port *string
-
-	Protocol *string
-
-	Query *string
-
-	Status_code string
-}
-
-type Aws_alb_listener_rule_action_13 struct {
-	Authenticate_cognito *[]Aws_alb_listener_rule_action_13_authenticate_cognito_14
-
-	Authenticate_oidc *[]Aws_alb_listener_rule_action_13_authenticate_oidc_15
-
-	Fixed_response *[]Aws_alb_listener_rule_action_13_fixed_response_16
-
-	Order *int
-
-	Redirect *[]Aws_alb_listener_rule_action_13_redirect_17
-
-	Target_group_arn *string
-
-	Type string
-}
-
-type Aws_alb_listener_rule_condition_18 struct {
-	Field *string
-
-	Values *[]string
-}
-
-type Aws_alb_listener_rule struct {
-	Aws_alb_listener_rule_id *string `lyra:"ignore"`
-
-	Action []Aws_alb_listener_rule_action_13
-
-	Arn *string
-
-	Condition []Aws_alb_listener_rule_condition_18
-
-	Listener_arn string
-
-	Priority *int
-}
-
-type Aws_alb_target_group_health_check_19 struct {
-	Healthy_threshold *int
-
-	Interval *int
-
-	Matcher *string
-
-	Path *string
-
-	Port *string
-
-	Protocol *string
-
-	Timeout *int
-
-	Unhealthy_threshold *int
-}
-
-type Aws_alb_target_group_stickiness_20 struct {
-	Cookie_duration *int
-
-	Enabled *bool
-
-	Type string
-}
-
-type Aws_alb_target_group struct {
-	Aws_alb_target_group_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Arn_suffix *string
-
-	Deregistration_delay *int
-
-	Health_check *[]Aws_alb_target_group_health_check_19
-
-	Name *string
-
-	Name_prefix *string
-
-	Port *int
-
-	Protocol *string
-
-	Proxy_protocol_v2 *bool
-
-	Slow_start *int
-
-	Stickiness *[]Aws_alb_target_group_stickiness_20
-
-	Tags *map[string]string
-
-	Target_type *string
-
-	Vpc_id *string
-}
-
-type Aws_alb_target_group_attachment struct {
-	Aws_alb_target_group_attachment_id *string `lyra:"ignore"`
-
-	Availability_zone *string
-
-	Port *int
-
-	Target_group_arn string
-
-	Target_id string
-}
-
-type Aws_ami_ebs_block_device_21 struct {
-	Delete_on_termination *bool
-
-	Device_name string
-
-	Encrypted *bool
-
-	Iops *int
-
-	Snapshot_id *string
-
-	Volume_size *int
-
-	Volume_type *string
-}
-
-type Aws_ami_ephemeral_block_device_22 struct {
-	Device_name string
-
-	Virtual_name string
-}
-
-type Aws_ami struct {
-	Aws_ami_id *string `lyra:"ignore"`
-
-	Architecture *string
-
-	Description *string
-
-	Ebs_block_device *[]Aws_ami_ebs_block_device_21
-
-	Ena_support *bool
-
-	Ephemeral_block_device *[]Aws_ami_ephemeral_block_device_22
-
-	Image_location *string
-
-	Kernel_id *string
-
-	Manage_ebs_snapshots *bool
-
-	Name string
-
-	Ramdisk_id *string
-
-	Root_device_name *string
-
-	Root_snapshot_id *string
-
-	Sriov_net_support *string
-
-	Tags *map[string]string
-
-	Virtualization_type *string
-}
-
-type Aws_ami_copy_ebs_block_device_23 struct {
-	Delete_on_termination *bool
-
-	Device_name *string
-
-	Encrypted *bool
-
-	Iops *int
-
-	Snapshot_id *string
-
-	Volume_size *int
-
-	Volume_type *string
-}
-
-type Aws_ami_copy_ephemeral_block_device_24 struct {
-	Device_name *string
-
-	Virtual_name *string
-}
-
-type Aws_ami_copy struct {
-	Aws_ami_copy_id *string `lyra:"ignore"`
-
-	Architecture *string
-
-	Description *string
-
-	Ebs_block_device *[]Aws_ami_copy_ebs_block_device_23
-
-	Ena_support *bool
-
-	Encrypted *bool
-
-	Ephemeral_block_device *[]Aws_ami_copy_ephemeral_block_device_24
-
-	Image_location *string
-
-	Kernel_id *string
-
-	Kms_key_id *string
-
-	Manage_ebs_snapshots *bool
-
-	Name string
-
-	Ramdisk_id *string
-
-	Root_device_name *string
-
-	Root_snapshot_id *string
-
-	Source_ami_id string
-
-	Source_ami_region string
-
-	Sriov_net_support *string
-
-	Tags *map[string]string
-
-	Virtualization_type *string
-}
-
-type Aws_ami_from_instance_ebs_block_device_25 struct {
-	Delete_on_termination *bool
-
-	Device_name *string
-
-	Encrypted *bool
-
-	Iops *int
-
-	Snapshot_id *string
-
-	Volume_size *int
-
-	Volume_type *string
-}
-
-type Aws_ami_from_instance_ephemeral_block_device_26 struct {
-	Device_name *string
-
-	Virtual_name *string
-}
-
-type Aws_ami_from_instance struct {
-	Aws_ami_from_instance_id *string `lyra:"ignore"`
-
-	Architecture *string
-
-	Description *string
-
-	Ebs_block_device *[]Aws_ami_from_instance_ebs_block_device_25
-
-	Ena_support *bool
-
-	Ephemeral_block_device *[]Aws_ami_from_instance_ephemeral_block_device_26
-
-	Image_location *string
-
-	Kernel_id *string
-
-	Manage_ebs_snapshots *bool
-
-	Name string
-
-	Ramdisk_id *string
-
-	Root_device_name *string
-
-	Root_snapshot_id *string
-
-	Snapshot_without_reboot *bool
-
-	Source_instance_id string
-
-	Sriov_net_support *string
-
-	Tags *map[string]string
-
-	Virtualization_type *string
-}
-
-type Aws_ami_launch_permission struct {
-	Aws_ami_launch_permission_id *string `lyra:"ignore"`
-
-	Account_id string
-
-	Image_id string
-}
-
-type Aws_api_gateway_account_throttle_settings_27 struct {
-	Burst_limit *int
-
-	Rate_limit *float64
-}
-
-type Aws_api_gateway_account struct {
-	Aws_api_gateway_account_id *string `lyra:"ignore"`
-
-	Cloudwatch_role_arn *string
-
-	Throttle_settings *[]Aws_api_gateway_account_throttle_settings_27
-}
-
-type Aws_api_gateway_api_key_stage_key_28 struct {
-	Rest_api_id string
-
-	Stage_name string
-}
-
-type Aws_api_gateway_api_key struct {
-	Aws_api_gateway_api_key_id *string `lyra:"ignore"`
-
-	Created_date *string
-
-	Description *string
-
-	Enabled *bool
-
-	Last_updated_date *string
-
-	Name string
-
-	Stage_key *[]Aws_api_gateway_api_key_stage_key_28
-
-	Value *string
-}
-
-type Aws_api_gateway_authorizer struct {
-	Aws_api_gateway_authorizer_id *string `lyra:"ignore"`
-
-	Authorizer_credentials *string
-
-	Authorizer_result_ttl_in_seconds *int
-
-	Authorizer_uri *string
-
-	Identity_source *string
-
-	Identity_validation_expression *string
-
-	Name string
-
-	Provider_arns *[]string
-
-	Rest_api_id string
-
-	Type *string
-}
-
-type Aws_api_gateway_base_path_mapping struct {
-	Aws_api_gateway_base_path_mapping_id *string `lyra:"ignore"`
-
-	Api_id string
-
-	Base_path *string
-
-	Domain_name string
-
-	Stage_name *string
-}
-
-type Aws_api_gateway_client_certificate struct {
-	Aws_api_gateway_client_certificate_id *string `lyra:"ignore"`
-
-	Created_date *string
-
-	Description *string
-
-	Expiration_date *string
-
-	Pem_encoded_certificate *string
-}
-
-type Aws_api_gateway_deployment struct {
-	Aws_api_gateway_deployment_id *string `lyra:"ignore"`
-
-	Created_date *string
-
-	Description *string
-
-	Execution_arn *string
-
-	Invoke_url *string
-
-	Rest_api_id string
-
-	Stage_description *string
-
-	Stage_name string
-
-	Variables *map[string]string
-}
-
-type Aws_api_gateway_documentation_part_location_29 struct {
-	Method *string
-
-	Name *string
-
-	Path *string
-
-	Status_code *string
-
-	Type string
-}
-
-type Aws_api_gateway_documentation_part struct {
-	Aws_api_gateway_documentation_part_id *string `lyra:"ignore"`
-
-	Location []Aws_api_gateway_documentation_part_location_29
-
-	Properties string
-
-	Rest_api_id string
-}
-
-type Aws_api_gateway_documentation_version struct {
-	Aws_api_gateway_documentation_version_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Rest_api_id string
-
-	Version string
-}
-
-type Aws_api_gateway_domain_name_endpoint_configuration_30 struct {
-	Types []string
-}
-
-type Aws_api_gateway_domain_name struct {
-	Aws_api_gateway_domain_name_id *string `lyra:"ignore"`
-
-	Certificate_arn *string
-
-	Certificate_body *string
-
-	Certificate_chain *string
-
-	Certificate_name *string
-
-	Certificate_private_key *string
-
-	Certificate_upload_date *string
-
-	Cloudfront_domain_name *string
-
-	Cloudfront_zone_id *string
-
-	Domain_name string
-
-	Endpoint_configuration *[]Aws_api_gateway_domain_name_endpoint_configuration_30
-
-	Regional_certificate_arn *string
-
-	Regional_certificate_name *string
-
-	Regional_domain_name *string
-
-	Regional_zone_id *string
-}
-
-type Aws_api_gateway_gateway_response struct {
-	Aws_api_gateway_gateway_response_id *string `lyra:"ignore"`
-
-	Response_parameters *map[string]string
-
-	Response_templates *map[string]string
-
-	Response_type string
-
-	Rest_api_id string
-
-	Status_code *string
-}
-
-type Aws_api_gateway_integration struct {
-	Aws_api_gateway_integration_id *string `lyra:"ignore"`
-
-	Cache_key_parameters *[]string
-
-	Cache_namespace *string
-
-	Connection_id *string
-
-	Connection_type *string
-
-	Content_handling *string
-
-	Credentials *string
-
-	Http_method string
-
-	Integration_http_method *string
-
-	Passthrough_behavior *string
-
-	Request_parameters *map[string]string
-
-	Request_parameters_in_json *string
-
-	Request_templates *map[string]string
-
-	Resource_id string
-
-	Rest_api_id string
-
-	Timeout_milliseconds *int
-
-	Type string
-
-	Uri *string
-}
-
-type Aws_api_gateway_integration_response struct {
-	Aws_api_gateway_integration_response_id *string `lyra:"ignore"`
-
-	Content_handling *string
-
-	Http_method string
-
-	Resource_id string
-
-	Response_parameters *map[string]string
-
-	Response_parameters_in_json *string
-
-	Response_templates *map[string]string
-
-	Rest_api_id string
-
-	Selection_pattern *string
-
-	Status_code string
-}
-
-type Aws_api_gateway_method struct {
-	Aws_api_gateway_method_id *string `lyra:"ignore"`
-
-	Api_key_required *bool
-
-	Authorization string
-
-	Authorization_scopes *[]string
-
-	Authorizer_id *string
-
-	Http_method string
-
-	Request_models *map[string]string
-
-	Request_parameters *map[string]string
-
-	Request_parameters_in_json *string
-
-	Request_validator_id *string
-
-	Resource_id string
-
-	Rest_api_id string
-}
-
-type Aws_api_gateway_method_response struct {
-	Aws_api_gateway_method_response_id *string `lyra:"ignore"`
-
-	Http_method string
-
-	Resource_id string
-
-	Response_models *map[string]string
-
-	Response_parameters *map[string]string
-
-	Response_parameters_in_json *string
-
-	Rest_api_id string
-
-	Status_code string
-}
-
-type Aws_api_gateway_method_settings_settings_31 struct {
-	Cache_data_encrypted *bool
-
-	Cache_ttl_in_seconds *int
-
-	Caching_enabled *bool
-
-	Data_trace_enabled *bool
-
-	Logging_level *string
-
-	Metrics_enabled *bool
-
-	Require_authorization_for_cache_control *bool
-
-	Throttling_burst_limit *int
-
-	Throttling_rate_limit *float64
-
-	Unauthorized_cache_control_header_strategy *string
-}
-
-type Aws_api_gateway_method_settings struct {
-	Aws_api_gateway_method_settings_id *string `lyra:"ignore"`
-
-	Method_path string
-
-	Rest_api_id string
-
-	Settings []Aws_api_gateway_method_settings_settings_31
-
-	Stage_name string
-}
-
-type Aws_api_gateway_model struct {
-	Aws_api_gateway_model_id *string `lyra:"ignore"`
-
-	Content_type string
-
-	Description *string
-
-	Name string
-
-	Rest_api_id string
-
-	Schema *string
-}
-
-type Aws_api_gateway_request_validator struct {
-	Aws_api_gateway_request_validator_id *string `lyra:"ignore"`
-
-	Name string
-
-	Rest_api_id string
-
-	Validate_request_body *bool
-
-	Validate_request_parameters *bool
-}
-
-type Aws_api_gateway_resource struct {
-	Aws_api_gateway_resource_id *string `lyra:"ignore"`
-
-	Parent_id string
-
-	Path *string
-
-	Path_part string
-
-	Rest_api_id string
-}
-
-type Aws_api_gateway_rest_api_endpoint_configuration_32 struct {
-	Types []string
-}
-
-type Aws_api_gateway_rest_api struct {
-	Aws_api_gateway_rest_api_id *string `lyra:"ignore"`
-
-	Api_key_source *string
-
-	Binary_media_types *[]string
-
-	Body *string
-
-	Created_date *string
-
-	Description *string
-
-	Endpoint_configuration *[]Aws_api_gateway_rest_api_endpoint_configuration_32
-
-	Execution_arn *string
-
-	Minimum_compression_size *int
-
-	Name string
-
-	Policy *string
-
-	Root_resource_id *string
-}
-
-type Aws_api_gateway_stage_access_log_settings_33 struct {
-	Destination_arn string
-
-	Format string
-}
-
-type Aws_api_gateway_stage struct {
-	Aws_api_gateway_stage_id *string `lyra:"ignore"`
-
-	Access_log_settings *[]Aws_api_gateway_stage_access_log_settings_33
-
-	Cache_cluster_enabled *bool
-
-	Cache_cluster_size *string
-
-	Client_certificate_id *string
-
-	Deployment_id string
-
-	Description *string
-
-	Documentation_version *string
-
-	Execution_arn *string
-
-	Invoke_url *string
-
-	Rest_api_id string
-
-	Stage_name string
-
-	Tags *map[string]string
-
-	Variables *map[string]string
-
-	Xray_tracing_enabled *bool
-}
-
-type Aws_api_gateway_usage_plan_api_stages_34 struct {
-	Api_id string
-
-	Stage string
-}
-
-type Aws_api_gateway_usage_plan_quota_settings_35 struct {
-	Limit int
-
-	Offset *int
-
-	Period string
-}
-
-type Aws_api_gateway_usage_plan_throttle_settings_36 struct {
-	Burst_limit *int
-
-	Rate_limit *float64
-}
-
-type Aws_api_gateway_usage_plan struct {
-	Aws_api_gateway_usage_plan_id *string `lyra:"ignore"`
-
-	Api_stages *[]Aws_api_gateway_usage_plan_api_stages_34
-
-	Description *string
-
-	Name string
-
-	Product_code *string
-
-	Quota_settings *[]Aws_api_gateway_usage_plan_quota_settings_35
-
-	Throttle_settings *[]Aws_api_gateway_usage_plan_throttle_settings_36
-}
-
-type Aws_api_gateway_usage_plan_key struct {
-	Aws_api_gateway_usage_plan_key_id *string `lyra:"ignore"`
-
-	Key_id string
-
-	Key_type string
-
-	Name *string
-
-	Usage_plan_id string
-
-	Value *string
-}
-
-type Aws_api_gateway_vpc_link struct {
-	Aws_api_gateway_vpc_link_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Name string
-
-	Target_arns []string
-}
-
-type Aws_app_cookie_stickiness_policy struct {
-	Aws_app_cookie_stickiness_policy_id *string `lyra:"ignore"`
-
-	Cookie_name string
-
-	Lb_port int
-
-	Load_balancer string
-
-	Name string
-}
-
-type Aws_appautoscaling_policy_step_adjustment_37 struct {
-	Metric_interval_lower_bound *string
-
-	Metric_interval_upper_bound *string
-
-	Scaling_adjustment int
-}
-
-type Aws_appautoscaling_policy_step_scaling_policy_configuration_38_step_adjustment_39 struct {
-	Metric_interval_lower_bound *string
-
-	Metric_interval_upper_bound *string
-
-	Scaling_adjustment int
-}
-
-type Aws_appautoscaling_policy_step_scaling_policy_configuration_38 struct {
-	Adjustment_type *string
-
-	Cooldown *int
-
-	Metric_aggregation_type *string
-
-	Min_adjustment_magnitude *int
-
-	Step_adjustment *[]Aws_appautoscaling_policy_step_scaling_policy_configuration_38_step_adjustment_39
-}
-
-type Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_customized_metric_specification_41_dimensions_42 struct {
-	Name string
-
-	Value string
-}
-
-type Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_customized_metric_specification_41 struct {
-	Dimensions *[]Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_customized_metric_specification_41_dimensions_42
-
-	Metric_name string
-
-	Namespace string
-
-	Statistic string
-
-	Unit *string
-}
-
-type Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_predefined_metric_specification_43 struct {
-	Predefined_metric_type string
-
-	Resource_label *string
-}
-
-type Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40 struct {
-	Customized_metric_specification *[]Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_customized_metric_specification_41
-
-	Disable_scale_in *bool
-
-	Predefined_metric_specification *[]Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40_predefined_metric_specification_43
-
-	Scale_in_cooldown *int
-
-	Scale_out_cooldown *int
-
-	Target_value float64
-}
-
-type Aws_appautoscaling_policy struct {
-	Aws_appautoscaling_policy_id *string `lyra:"ignore"`
-
-	Adjustment_type *string
-
-	Alarms *[]string
-
-	Arn *string
-
-	Cooldown *int
-
-	Metric_aggregation_type *string
-
-	Min_adjustment_magnitude *int
-
-	Name string
-
-	Policy_type *string
-
-	Resource_id string
-
-	Scalable_dimension string
-
-	Service_namespace string
-
-	Step_adjustment *[]Aws_appautoscaling_policy_step_adjustment_37
-
-	Step_scaling_policy_configuration *[]Aws_appautoscaling_policy_step_scaling_policy_configuration_38
-
-	Target_tracking_scaling_policy_configuration *[]Aws_appautoscaling_policy_target_tracking_scaling_policy_configuration_40
-}
-
-type Aws_appautoscaling_scheduled_action_scalable_target_action_44 struct {
-	Max_capacity *int
-
-	Min_capacity *int
-}
-
-type Aws_appautoscaling_scheduled_action struct {
-	Aws_appautoscaling_scheduled_action_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	End_time *string
-
-	Name string
-
-	Resource_id string
-
-	Scalable_dimension *string
-
-	Scalable_target_action *[]Aws_appautoscaling_scheduled_action_scalable_target_action_44
-
-	Schedule *string
-
-	Service_namespace string
-
-	Start_time *string
-}
-
-type Aws_appautoscaling_target struct {
-	Aws_appautoscaling_target_id *string `lyra:"ignore"`
-
-	Max_capacity int
-
-	Min_capacity int
-
-	Resource_id string
-
-	Role_arn *string
-
-	Scalable_dimension string
-
-	Service_namespace string
-}
-
-type Aws_appmesh_mesh struct {
-	Aws_appmesh_mesh_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Created_date *string
-
-	Last_updated_date *string
-
-	Name string
-}
-
-type Aws_appmesh_route_spec_45_http_route_46_action_47_weighted_target_48 struct {
-	Virtual_node string
-
-	Weight int
-}
-
-type Aws_appmesh_route_spec_45_http_route_46_action_47 struct {
-	Weighted_target []Aws_appmesh_route_spec_45_http_route_46_action_47_weighted_target_48
-}
-
-type Aws_appmesh_route_spec_45_http_route_46_match_49 struct {
-	Prefix string
-}
-
-type Aws_appmesh_route_spec_45_http_route_46 struct {
-	Action []Aws_appmesh_route_spec_45_http_route_46_action_47
-
-	Match []Aws_appmesh_route_spec_45_http_route_46_match_49
-}
-
-type Aws_appmesh_route_spec_45 struct {
-	Http_route *[]Aws_appmesh_route_spec_45_http_route_46
-}
-
-type Aws_appmesh_route struct {
-	Aws_appmesh_route_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Created_date *string
-
-	Last_updated_date *string
-
-	Mesh_name string
-
-	Name string
-
-	Spec []Aws_appmesh_route_spec_45
-
-	Virtual_router_name string
-}
-
-type Aws_appmesh_virtual_node_spec_50_listener_51_port_mapping_52 struct {
-	Port int
-
-	Protocol string
-}
-
-type Aws_appmesh_virtual_node_spec_50_listener_51 struct {
-	Port_mapping []Aws_appmesh_virtual_node_spec_50_listener_51_port_mapping_52
-}
-
-type Aws_appmesh_virtual_node_spec_50_service_discovery_53_dns_54 struct {
-	Service_name string
-}
-
-type Aws_appmesh_virtual_node_spec_50_service_discovery_53 struct {
-	Dns []Aws_appmesh_virtual_node_spec_50_service_discovery_53_dns_54
-}
-
-type Aws_appmesh_virtual_node_spec_50 struct {
-	Backends *[]string
-
-	Listener *[]Aws_appmesh_virtual_node_spec_50_listener_51
-
-	Service_discovery *[]Aws_appmesh_virtual_node_spec_50_service_discovery_53
-}
-
-type Aws_appmesh_virtual_node struct {
-	Aws_appmesh_virtual_node_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Created_date *string
-
-	Last_updated_date *string
-
-	Mesh_name string
-
-	Name string
-
-	Spec []Aws_appmesh_virtual_node_spec_50
-}
-
-type Aws_appmesh_virtual_router_spec_55 struct {
-	Service_names []string
-}
-
-type Aws_appmesh_virtual_router struct {
-	Aws_appmesh_virtual_router_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Created_date *string
-
-	Last_updated_date *string
-
-	Mesh_name string
-
-	Name string
-
-	Spec []Aws_appmesh_virtual_router_spec_55
-}
-
-type Aws_appsync_api_key struct {
-	Aws_appsync_api_key_id *string `lyra:"ignore"`
-
-	Api_id string
-
-	Description *string
-
-	Expires *string
-
-	Key *string
-}
-
-type Aws_appsync_datasource_dynamodb_config_56 struct {
-	Region *string
-
-	Table_name string
-
-	Use_caller_credentials *bool
-}
-
-type Aws_appsync_datasource_elasticsearch_config_57 struct {
-	Endpoint string
-
-	Region *string
-}
-
-type Aws_appsync_datasource_http_config_58 struct {
-	Endpoint string
-}
-
-type Aws_appsync_datasource_lambda_config_59 struct {
-	Function_arn string
-}
-
-type Aws_appsync_datasource struct {
-	Aws_appsync_datasource_id *string `lyra:"ignore"`
-
-	Api_id string
-
-	Arn *string
-
-	Description *string
-
-	Dynamodb_config *[]Aws_appsync_datasource_dynamodb_config_56
-
-	Elasticsearch_config *[]Aws_appsync_datasource_elasticsearch_config_57
-
-	Http_config *[]Aws_appsync_datasource_http_config_58
-
-	Lambda_config *[]Aws_appsync_datasource_lambda_config_59
-
-	Name string
-
-	Service_role_arn *string
-
-	Type string
-}
-
-type Aws_appsync_graphql_api_log_config_60 struct {
-	Cloudwatch_logs_role_arn string
-
-	Field_log_level string
-}
-
-type Aws_appsync_graphql_api_openid_connect_config_61 struct {
-	Auth_ttl *int
-
-	Client_id *string
-
-	Iat_ttl *int
-
-	Issuer string
-}
-
-type Aws_appsync_graphql_api_user_pool_config_62 struct {
-	App_id_client_regex *string
-
-	Aws_region *string
-
-	Default_action string
-
-	User_pool_id string
-}
-
-type Aws_appsync_graphql_api struct {
-	Aws_appsync_graphql_api_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Authentication_type string
-
-	Log_config *[]Aws_appsync_graphql_api_log_config_60
-
-	Name string
-
-	Openid_connect_config *[]Aws_appsync_graphql_api_openid_connect_config_61
-
-	Uris *map[string]string
-
-	User_pool_config *[]Aws_appsync_graphql_api_user_pool_config_62
-}
-
-type Aws_athena_database_encryption_configuration_63 struct {
-	Encryption_option string
-
-	Kms_key *string
-}
-
-type Aws_athena_database struct {
-	Aws_athena_database_id *string `lyra:"ignore"`
-
-	Bucket string
-
-	Encryption_configuration *[]Aws_athena_database_encryption_configuration_63
-
-	Force_destroy *bool
-
-	Name string
-}
-
-type Aws_athena_named_query struct {
-	Aws_athena_named_query_id *string `lyra:"ignore"`
-
-	Database string
-
-	Description *string
-
-	Name string
-
-	Query string
-}
-
-type Aws_autoscaling_attachment struct {
-	Aws_autoscaling_attachment_id *string `lyra:"ignore"`
-
-	Alb_target_group_arn *string
-
-	Autoscaling_group_name string
-
-	Elb *string
-}
-
-type Aws_autoscaling_group_initial_lifecycle_hook_64 struct {
-	Default_result *string
-
-	Heartbeat_timeout *int
-
-	Lifecycle_transition string
-
-	Name string
-
-	Notification_metadata *string
-
-	Notification_target_arn *string
-
-	Role_arn *string
-}
-
-type Aws_autoscaling_group_launch_template_65 struct {
-	Id *string
-
-	Name *string
-
-	Version *string
-}
-
-type Aws_autoscaling_group_mixed_instances_policy_66_instances_distribution_67 struct {
-	On_demand_allocation_strategy *string
-
-	On_demand_base_capacity *int
-
-	On_demand_percentage_above_base_capacity *int
-
-	Spot_allocation_strategy *string
-
-	Spot_instance_pools *int
-
-	Spot_max_price *string
-}
-
-type Aws_autoscaling_group_mixed_instances_policy_66_launch_template_68_launch_template_specification_69 struct {
-	Launch_template_id *string
-
-	Launch_template_name *string
-
-	Version *string
-}
-
-type Aws_autoscaling_group_mixed_instances_policy_66_launch_template_68_override_70 struct {
-	Instance_type *string
-}
-
-type Aws_autoscaling_group_mixed_instances_policy_66_launch_template_68 struct {
-	Launch_template_specification []Aws_autoscaling_group_mixed_instances_policy_66_launch_template_68_launch_template_specification_69
-
-	Override *[]Aws_autoscaling_group_mixed_instances_policy_66_launch_template_68_override_70
-}
-
-type Aws_autoscaling_group_mixed_instances_policy_66 struct {
-	Instances_distribution *[]Aws_autoscaling_group_mixed_instances_policy_66_instances_distribution_67
-
-	Launch_template []Aws_autoscaling_group_mixed_instances_policy_66_launch_template_68
-}
-
-type Aws_autoscaling_group_tag_71 struct {
-	Key string
-
-	Propagate_at_launch bool
-
-	Value string
-}
-
-type Aws_autoscaling_group struct {
-	Aws_autoscaling_group_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Availability_zones *[]string
-
-	Default_cooldown *int
-
-	Desired_capacity *int
-
-	Enabled_metrics *[]string
-
-	Force_delete *bool
-
-	Health_check_grace_period *int
-
-	Health_check_type *string
-
-	Initial_lifecycle_hook *[]Aws_autoscaling_group_initial_lifecycle_hook_64
-
-	Launch_configuration *string
-
-	Launch_template *[]Aws_autoscaling_group_launch_template_65
-
-	Load_balancers *[]string
-
-	Max_size int
-
-	Metrics_granularity *string
-
-	Min_elb_capacity *int
-
-	Min_size int
-
-	Mixed_instances_policy *[]Aws_autoscaling_group_mixed_instances_policy_66
-
-	Name *string
-
-	Name_prefix *string
-
-	Placement_group *string
-
-	Protect_from_scale_in *bool
-
-	Service_linked_role_arn *string
-
-	Suspended_processes *[]string
-
-	Tag *[]Aws_autoscaling_group_tag_71
-
-	Tags *[]map[string]string
-
-	Target_group_arns *[]string
-
-	Termination_policies *[]string
-
-	Vpc_zone_identifier *[]string
-
-	Wait_for_capacity_timeout *string
-
-	Wait_for_elb_capacity *int
-}
-
-type Aws_autoscaling_lifecycle_hook struct {
-	Aws_autoscaling_lifecycle_hook_id *string `lyra:"ignore"`
-
-	Autoscaling_group_name string
-
-	Default_result *string
-
-	Heartbeat_timeout *int
-
-	Lifecycle_transition string
-
-	Name string
-
-	Notification_metadata *string
-
-	Notification_target_arn *string
-
-	Role_arn *string
-}
-
-type Aws_autoscaling_notification struct {
-	Aws_autoscaling_notification_id *string `lyra:"ignore"`
-
-	Group_names []string
-
-	Notifications []string
-
-	Topic_arn string
-}
-
-type Aws_autoscaling_policy_step_adjustment_72 struct {
-	Metric_interval_lower_bound *string
-
-	Metric_interval_upper_bound *string
-
-	Scaling_adjustment int
-}
-
-type Aws_autoscaling_policy_target_tracking_configuration_73_customized_metric_specification_74_metric_dimension_75 struct {
-	Name string
-
-	Value string
-}
-
-type Aws_autoscaling_policy_target_tracking_configuration_73_customized_metric_specification_74 struct {
-	Metric_dimension *[]Aws_autoscaling_policy_target_tracking_configuration_73_customized_metric_specification_74_metric_dimension_75
-
-	Metric_name string
-
-	Namespace string
-
-	Statistic string
-
-	Unit *string
-}
-
-type Aws_autoscaling_policy_target_tracking_configuration_73_predefined_metric_specification_76 struct {
-	Predefined_metric_type string
-
-	Resource_label *string
-}
-
-type Aws_autoscaling_policy_target_tracking_configuration_73 struct {
-	Customized_metric_specification *[]Aws_autoscaling_policy_target_tracking_configuration_73_customized_metric_specification_74
-
-	Disable_scale_in *bool
-
-	Predefined_metric_specification *[]Aws_autoscaling_policy_target_tracking_configuration_73_predefined_metric_specification_76
-
-	Target_value float64
-}
-
-type Aws_autoscaling_policy struct {
-	Aws_autoscaling_policy_id *string `lyra:"ignore"`
-
-	Adjustment_type *string
-
-	Arn *string
-
-	Autoscaling_group_name string
-
-	Cooldown *int
-
-	Estimated_instance_warmup *int
-
-	Metric_aggregation_type *string
-
-	Min_adjustment_magnitude *int
-
-	Min_adjustment_step *int
-
-	Name string
-
-	Policy_type *string
-
-	Scaling_adjustment *int
-
-	Step_adjustment *[]Aws_autoscaling_policy_step_adjustment_72
-
-	Target_tracking_configuration *[]Aws_autoscaling_policy_target_tracking_configuration_73
-}
-
-type Aws_autoscaling_schedule struct {
-	Aws_autoscaling_schedule_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Autoscaling_group_name string
-
-	Desired_capacity *int
-
-	End_time *string
-
-	Max_size *int
-
-	Min_size *int
-
-	Recurrence *string
-
-	Scheduled_action_name string
-
-	Start_time *string
-}
-
-type Aws_batch_compute_environment_compute_resources_77 struct {
-	Bid_percentage *int
-
-	Desired_vcpus *int
-
-	Ec2_key_pair *string
-
-	Image_id *string
-
-	Instance_role string
-
-	Instance_type []string
-
-	Max_vcpus int
-
-	Min_vcpus int
-
-	Security_group_ids []string
-
-	Spot_iam_fleet_role *string
-
-	Subnets []string
-
-	Tags *map[string]string
-
-	Type string
-}
-
-type Aws_batch_compute_environment struct {
-	Aws_batch_compute_environment_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Compute_environment_name string
-
-	Compute_resources *[]Aws_batch_compute_environment_compute_resources_77
-
-	Ecc_cluster_arn *string
-
-	Ecs_cluster_arn *string
-
-	Service_role string
-
-	State *string
-
-	Status *string
-
-	Status_reason *string
-
-	Type string
-}
-
-type Aws_batch_job_definition_retry_strategy_78 struct {
-	Attempts *int
-}
-
-type Aws_batch_job_definition_timeout_79 struct {
-	Attempt_duration_seconds *int
-}
-
-type Aws_batch_job_definition struct {
-	Aws_batch_job_definition_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Container_properties *string
-
-	Name string
-
-	Parameters *map[string]string
-
-	Retry_strategy *[]Aws_batch_job_definition_retry_strategy_78
-
-	Revision *int
-
-	Timeout *[]Aws_batch_job_definition_timeout_79
-
-	Type string
-}
-
-type Aws_batch_job_queue struct {
-	Aws_batch_job_queue_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Compute_environments []string
-
-	Name string
-
-	Priority int
-
-	State string
-}
-
-type Aws_budgets_budget_cost_types_80 struct {
-	Include_credit *bool
-
-	Include_discount *bool
-
-	Include_other_subscription *bool
-
-	Include_recurring *bool
-
-	Include_refund *bool
-
-	Include_subscription *bool
-
-	Include_support *bool
-
-	Include_tax *bool
-
-	Include_upfront *bool
-
-	Use_amortized *bool
-
-	Use_blended *bool
-}
-
-type Aws_budgets_budget struct {
-	Aws_budgets_budget_id *string `lyra:"ignore"`
-
-	Account_id *string
-
-	Budget_type string
-
-	Cost_filters *map[string]string
-
-	Cost_types *[]Aws_budgets_budget_cost_types_80
-
-	Limit_amount string
-
-	Limit_unit string
-
-	Name *string
-
-	Name_prefix *string
-
-	Time_period_end *string
-
-	Time_period_start string
-
-	Time_unit string
-}
-
-type Aws_cloud9_environment_ec2 struct {
-	Aws_cloud9_environment_ec2_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Automatic_stop_time_minutes *int
-
-	Description *string
-
-	Instance_type string
-
-	Name string
-
-	Owner_arn *string
-
-	Subnet_id *string
-
-	Type *string
-}
-
-type Aws_cloudformation_stack struct {
-	Aws_cloudformation_stack_id *string `lyra:"ignore"`
-
-	Capabilities *[]string
-
-	Disable_rollback *bool
-
-	Iam_role_arn *string
-
-	Name string
-
-	Notification_arns *[]string
-
-	On_failure *string
-
-	Outputs *map[string]string
-
-	Parameters *map[string]string
-
-	Policy_body *string
-
-	Policy_url *string
-
-	Tags *map[string]string
-
-	Template_body *string
-
-	Template_url *string
-
-	Timeout_in_minutes *int
-}
-
-type Aws_cloudfront_distribution_cache_behavior_81_forwarded_values_82_cookies_83 struct {
-	Forward string
-
-	Whitelisted_names *[]string
-}
-
-type Aws_cloudfront_distribution_cache_behavior_81_forwarded_values_82 struct {
-	Cookies []Aws_cloudfront_distribution_cache_behavior_81_forwarded_values_82_cookies_83
-
-	Headers *[]string
-
-	Query_string bool
-
-	Query_string_cache_keys *[]string
-}
-
-type Aws_cloudfront_distribution_cache_behavior_81_lambda_function_association_84 struct {
-	Event_type string
-
-	Include_body *bool
-
-	Lambda_arn string
-}
-
-type Aws_cloudfront_distribution_cache_behavior_81 struct {
-	Allowed_methods []string
-
-	Cached_methods []string
-
-	Compress *bool
-
-	Default_ttl *int
-
-	Field_level_encryption_id *string
-
-	Forwarded_values []Aws_cloudfront_distribution_cache_behavior_81_forwarded_values_82
-
-	Lambda_function_association *[]Aws_cloudfront_distribution_cache_behavior_81_lambda_function_association_84
-
-	Max_ttl *int
-
-	Min_ttl *int
-
-	Path_pattern string
-
-	Smooth_streaming *bool
-
-	Target_origin_id string
-
-	Trusted_signers *[]string
-
-	Viewer_protocol_policy string
-}
-
-type Aws_cloudfront_distribution_custom_error_response_85 struct {
-	Error_caching_min_ttl *int
-
-	Error_code int
-
-	Response_code *int
-
-	Response_page_path *string
-}
-
-type Aws_cloudfront_distribution_default_cache_behavior_86_forwarded_values_87_cookies_88 struct {
-	Forward string
-
-	Whitelisted_names *[]string
-}
-
-type Aws_cloudfront_distribution_default_cache_behavior_86_forwarded_values_87 struct {
-	Cookies []Aws_cloudfront_distribution_default_cache_behavior_86_forwarded_values_87_cookies_88
-
-	Headers *[]string
-
-	Query_string bool
-
-	Query_string_cache_keys *[]string
-}
-
-type Aws_cloudfront_distribution_default_cache_behavior_86_lambda_function_association_89 struct {
-	Event_type string
-
-	Include_body *bool
-
-	Lambda_arn string
-}
-
-type Aws_cloudfront_distribution_default_cache_behavior_86 struct {
-	Allowed_methods []string
-
-	Cached_methods []string
-
-	Compress *bool
-
-	Default_ttl *int
-
-	Field_level_encryption_id *string
-
-	Forwarded_values []Aws_cloudfront_distribution_default_cache_behavior_86_forwarded_values_87
-
-	Lambda_function_association *[]Aws_cloudfront_distribution_default_cache_behavior_86_lambda_function_association_89
-
-	Max_ttl *int
-
-	Min_ttl *int
-
-	Smooth_streaming *bool
-
-	Target_origin_id string
-
-	Trusted_signers *[]string
-
-	Viewer_protocol_policy string
-}
-
-type Aws_cloudfront_distribution_logging_config_90 struct {
-	Bucket string
-
-	Include_cookies *bool
-
-	Prefix *string
-}
-
-type Aws_cloudfront_distribution_ordered_cache_behavior_91_forwarded_values_92_cookies_93 struct {
-	Forward string
-
-	Whitelisted_names *[]string
-}
-
-type Aws_cloudfront_distribution_ordered_cache_behavior_91_forwarded_values_92 struct {
-	Cookies []Aws_cloudfront_distribution_ordered_cache_behavior_91_forwarded_values_92_cookies_93
-
-	Headers *[]string
-
-	Query_string bool
-
-	Query_string_cache_keys *[]string
-}
-
-type Aws_cloudfront_distribution_ordered_cache_behavior_91_lambda_function_association_94 struct {
-	Event_type string
-
-	Include_body *bool
-
-	Lambda_arn string
-}
-
-type Aws_cloudfront_distribution_ordered_cache_behavior_91 struct {
-	Allowed_methods []string
-
-	Cached_methods []string
-
-	Compress *bool
-
-	Default_ttl *int
-
-	Field_level_encryption_id *string
-
-	Forwarded_values []Aws_cloudfront_distribution_ordered_cache_behavior_91_forwarded_values_92
-
-	Lambda_function_association *[]Aws_cloudfront_distribution_ordered_cache_behavior_91_lambda_function_association_94
-
-	Max_ttl *int
-
-	Min_ttl *int
-
-	Path_pattern string
-
-	Smooth_streaming *bool
-
-	Target_origin_id string
-
-	Trusted_signers *[]string
-
-	Viewer_protocol_policy string
-}
-
-type Aws_cloudfront_distribution_origin_95_custom_header_96 struct {
-	Name string
-
-	Value string
-}
-
-type Aws_cloudfront_distribution_origin_95_custom_origin_config_97 struct {
-	Http_port int
-
-	Https_port int
-
-	Origin_keepalive_timeout *int
-
-	Origin_protocol_policy string
-
-	Origin_read_timeout *int
-
-	Origin_ssl_protocols []string
-}
-
-type Aws_cloudfront_distribution_origin_95_s3_origin_config_98 struct {
-	Origin_access_identity string
-}
-
-type Aws_cloudfront_distribution_origin_95 struct {
-	Custom_header *[]Aws_cloudfront_distribution_origin_95_custom_header_96
-
-	Custom_origin_config *[]Aws_cloudfront_distribution_origin_95_custom_origin_config_97
-
-	Domain_name string
-
-	Origin_id string
-
-	Origin_path *string
-
-	S3_origin_config *[]Aws_cloudfront_distribution_origin_95_s3_origin_config_98
-}
-
-type Aws_cloudfront_distribution_restrictions_99_geo_restriction_100 struct {
-	Locations *[]string
-
-	Restriction_type string
-}
-
-type Aws_cloudfront_distribution_restrictions_99 struct {
-	Geo_restriction []Aws_cloudfront_distribution_restrictions_99_geo_restriction_100
-}
-
-type Aws_cloudfront_distribution_viewer_certificate_101 struct {
-	Acm_certificate_arn *string
-
-	Cloudfront_default_certificate *bool
-
-	Iam_certificate_id *string
-
-	Minimum_protocol_version *string
-
-	Ssl_support_method *string
-}
-
-type Aws_cloudfront_distribution struct {
-	Aws_cloudfront_distribution_id *string `lyra:"ignore"`
-
-	Active_trusted_signers *map[string]string
-
-	Aliases *[]string
-
-	Arn *string
-
-	Cache_behavior *[]Aws_cloudfront_distribution_cache_behavior_81
-
-	Caller_reference *string
-
-	Comment *string
-
-	Custom_error_response *[]Aws_cloudfront_distribution_custom_error_response_85
-
-	Default_cache_behavior []Aws_cloudfront_distribution_default_cache_behavior_86
-
-	Default_root_object *string
-
-	Domain_name *string
-
-	Enabled bool
-
-	Etag *string
-
-	Hosted_zone_id *string
-
-	Http_version *string
-
-	In_progress_validation_batches *int
-
-	Is_ipv6_enabled *bool
-
-	Last_modified_time *string
-
-	Logging_config *[]Aws_cloudfront_distribution_logging_config_90
-
-	Ordered_cache_behavior *[]Aws_cloudfront_distribution_ordered_cache_behavior_91
-
-	Origin []Aws_cloudfront_distribution_origin_95
-
-	Price_class *string
-
-	Restrictions []Aws_cloudfront_distribution_restrictions_99
-
-	Retain_on_delete *bool
-
-	Status *string
-
-	Tags *map[string]string
-
-	Viewer_certificate []Aws_cloudfront_distribution_viewer_certificate_101
-
-	Web_acl_id *string
-}
-
-type Aws_cloudfront_origin_access_identity struct {
-	Aws_cloudfront_origin_access_identity_id *string `lyra:"ignore"`
-
-	Caller_reference *string
-
-	Cloudfront_access_identity_path *string
-
-	Comment *string
-
-	Etag *string
-
-	Iam_arn *string
-
-	S3_canonical_user_id *string
-}
-
-type Aws_cloudfront_public_key struct {
-	Aws_cloudfront_public_key_id *string `lyra:"ignore"`
-
-	Caller_reference *string
-
-	Comment *string
-
-	Encoded_key string
-
-	Etag *string
-
-	Name *string
-
-	Name_prefix *string
-}
-
-type Aws_cloudhsm_v2_cluster_cluster_certificates_102 struct {
-	Aws_hardware_certificate *string
-
-	Cluster_certificate *string
-
-	Cluster_csr *string
-
-	Hsm_certificate *string
-
-	Manufacturer_hardware_certificate *string
-}
-
-type Aws_cloudhsm_v2_cluster struct {
-	Aws_cloudhsm_v2_cluster_id *string `lyra:"ignore"`
-
-	Cluster_certificates *[]Aws_cloudhsm_v2_cluster_cluster_certificates_102
-
-	Cluster_id *string
-
-	Cluster_state *string
-
-	Hsm_type string
-
-	Security_group_id *string
-
-	Source_backup_identifier *string
-
-	Subnet_ids []string
-
-	Tags *map[string]string
-
-	Vpc_id *string
-}
-
-type Aws_cloudhsm_v2_hsm struct {
-	Aws_cloudhsm_v2_hsm_id *string `lyra:"ignore"`
-
-	Availability_zone *string
-
-	Cluster_id string
-
-	Hsm_eni_id *string
-
-	Hsm_id *string
-
-	Hsm_state *string
-
-	Ip_address *string
-
-	Subnet_id *string
-}
-
-type Aws_cloudtrail_event_selector_103_data_resource_104 struct {
-	Type string
-
-	Values []string
-}
-
-type Aws_cloudtrail_event_selector_103 struct {
-	Data_resource *[]Aws_cloudtrail_event_selector_103_data_resource_104
-
-	Include_management_events *bool
-
-	Read_write_type *string
-}
-
-type Aws_cloudtrail struct {
-	Aws_cloudtrail_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Cloud_watch_logs_group_arn *string
-
-	Cloud_watch_logs_role_arn *string
-
-	Enable_log_file_validation *bool
-
-	Enable_logging *bool
-
-	Event_selector *[]Aws_cloudtrail_event_selector_103
-
-	Home_region *string
-
-	Include_global_service_events *bool
-
-	Is_multi_region_trail *bool
-
-	Is_organization_trail *bool
-
-	Kms_key_id *string
-
-	Name string
-
-	S3_bucket_name string
-
-	S3_key_prefix *string
-
-	Sns_topic_name *string
-
-	Tags *map[string]string
-}
-
-type Aws_cloudwatch_dashboard struct {
-	Aws_cloudwatch_dashboard_id *string `lyra:"ignore"`
-
-	Dashboard_arn *string
-
-	Dashboard_body string
-
-	Dashboard_name string
-}
-
-type Aws_cloudwatch_event_permission_condition_105 struct {
-	Key string
-
-	Type string
-
-	Value string
-}
-
-type Aws_cloudwatch_event_permission struct {
-	Aws_cloudwatch_event_permission_id *string `lyra:"ignore"`
-
-	Action *string
-
-	Condition *[]Aws_cloudwatch_event_permission_condition_105
-
-	Principal string
-
-	Statement_id string
-}
-
-type Aws_cloudwatch_event_rule struct {
-	Aws_cloudwatch_event_rule_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Description *string
-
-	Event_pattern *string
-
-	Is_enabled *bool
-
-	Name *string
-
-	Name_prefix *string
-
-	Role_arn *string
-
-	Schedule_expression *string
-}
-
-type Aws_cloudwatch_event_target_batch_target_106 struct {
-	Array_size *int
-
-	Job_attempts *int
-
-	Job_definition string
-
-	Job_name string
-}
-
-type Aws_cloudwatch_event_target_ecs_target_107_network_configuration_108 struct {
-	Assign_public_ip *bool
-
-	Security_groups *[]string
-
-	Subnets []string
-}
-
-type Aws_cloudwatch_event_target_ecs_target_107 struct {
-	Group *string
-
-	Launch_type *string
-
-	Network_configuration *[]Aws_cloudwatch_event_target_ecs_target_107_network_configuration_108
-
-	Platform_version *string
-
-	Task_count *int
-
-	Task_definition_arn string
-}
-
-type Aws_cloudwatch_event_target_input_transformer_109 struct {
-	Input_paths *map[string]string
-
-	Input_template string
-}
-
-type Aws_cloudwatch_event_target_kinesis_target_110 struct {
-	Partition_key_path *string
-}
-
-type Aws_cloudwatch_event_target_run_command_targets_111 struct {
-	Key string
-
-	Values []string
-}
-
-type Aws_cloudwatch_event_target_sqs_target_112 struct {
-	Message_group_id *string
-}
-
-type Aws_cloudwatch_event_target struct {
-	Aws_cloudwatch_event_target_id *string `lyra:"ignore"`
-
-	Arn string
-
-	Batch_target *[]Aws_cloudwatch_event_target_batch_target_106
-
-	Ecs_target *[]Aws_cloudwatch_event_target_ecs_target_107
-
-	Input *string
-
-	Input_path *string
-
-	Input_transformer *[]Aws_cloudwatch_event_target_input_transformer_109
-
-	Kinesis_target *[]Aws_cloudwatch_event_target_kinesis_target_110
-
-	Role_arn *string
-
-	Rule string
-
-	Run_command_targets *[]Aws_cloudwatch_event_target_run_command_targets_111
-
-	Sqs_target *[]Aws_cloudwatch_event_target_sqs_target_112
-
-	Target_id *string
-}
-
-type Aws_cloudwatch_log_destination struct {
-	Aws_cloudwatch_log_destination_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Name string
-
-	Role_arn string
-
-	Target_arn string
-}
-
-type Aws_cloudwatch_log_destination_policy struct {
-	Aws_cloudwatch_log_destination_policy_id *string `lyra:"ignore"`
-
-	Access_policy string
-
-	Destination_name string
-}
-
-type Aws_cloudwatch_log_group struct {
-	Aws_cloudwatch_log_group_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Kms_key_id *string
-
-	Name *string
-
-	Name_prefix *string
-
-	Retention_in_days *int
-
-	Tags *map[string]string
-}
-
-type Aws_cloudwatch_log_metric_filter_metric_transformation_113 struct {
-	Default_value *string
-
-	Name string
-
-	Namespace string
-
-	Value string
-}
-
-type Aws_cloudwatch_log_metric_filter struct {
-	Aws_cloudwatch_log_metric_filter_id *string `lyra:"ignore"`
-
-	Log_group_name string
-
-	Metric_transformation []Aws_cloudwatch_log_metric_filter_metric_transformation_113
-
-	Name string
-
-	Pattern string
-}
-
-type Aws_cloudwatch_log_resource_policy struct {
-	Aws_cloudwatch_log_resource_policy_id *string `lyra:"ignore"`
-
-	Policy_document string
-
-	Policy_name string
-}
-
-type Aws_cloudwatch_log_stream struct {
-	Aws_cloudwatch_log_stream_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Log_group_name string
-
-	Name string
-}
-
-type Aws_cloudwatch_log_subscription_filter struct {
-	Aws_cloudwatch_log_subscription_filter_id *string `lyra:"ignore"`
-
-	Destination_arn string
-
-	Distribution *string
-
-	Filter_pattern string
-
-	Log_group_name string
-
-	Name string
-
-	Role_arn *string
-}
-
-type Aws_cloudwatch_metric_alarm struct {
-	Aws_cloudwatch_metric_alarm_id *string `lyra:"ignore"`
-
-	Actions_enabled *bool
-
-	Alarm_actions *[]string
-
-	Alarm_description *string
-
-	Alarm_name string
-
-	Arn *string
-
-	Comparison_operator string
-
-	Datapoints_to_alarm *int
-
-	Dimensions *map[string]string
-
-	Evaluate_low_sample_count_percentiles *string
-
-	Evaluation_periods int
-
-	Extended_statistic *string
-
-	Insufficient_data_actions *[]string
-
-	Metric_name string
-
-	Namespace string
-
-	Ok_actions *[]string
-
-	Period int
-
-	Statistic *string
-
-	Threshold float64
-
-	Treat_missing_data *string
-
-	Unit *string
-}
-
-type Aws_codebuild_project_artifacts_114 struct {
-	Encryption_disabled *bool
-
-	Location *string
-
-	Name *string
-
-	Namespace_type *string
-
-	Packaging *string
-
-	Path *string
-
-	Type string
-}
-
-type Aws_codebuild_project_cache_115 struct {
-	Location *string
-
-	Type *string
-}
-
-type Aws_codebuild_project_environment_116_environment_variable_117 struct {
-	Name string
-
-	Type *string
-
-	Value string
-}
-
-type Aws_codebuild_project_environment_116 struct {
-	Certificate *string
-
-	Compute_type string
-
-	Environment_variable *[]Aws_codebuild_project_environment_116_environment_variable_117
-
-	Image string
-
-	Privileged_mode *bool
-
-	Type string
-}
-
-type Aws_codebuild_project_secondary_artifacts_118 struct {
-	Artifact_identifier string
-
-	Encryption_disabled *bool
-
-	Location *string
-
-	Name *string
-
-	Namespace_type *string
-
-	Packaging *string
-
-	Path *string
-
-	Type string
-}
-
-type Aws_codebuild_project_secondary_sources_119_auth_120 struct {
-	Resource *string
-
-	Type string
-}
-
-type Aws_codebuild_project_secondary_sources_119 struct {
-	Auth *[]Aws_codebuild_project_secondary_sources_119_auth_120
-
-	Buildspec *string
-
-	Git_clone_depth *int
-
-	Insecure_ssl *bool
-
-	Location *string
-
-	Report_build_status *bool
-
-	Source_identifier string
-
-	Type string
-}
-
-type Aws_codebuild_project_source_121_auth_122 struct {
-	Resource *string
-
-	Type string
-}
-
-type Aws_codebuild_project_source_121 struct {
-	Auth *[]Aws_codebuild_project_source_121_auth_122
-
-	Buildspec *string
-
-	Git_clone_depth *int
-
-	Insecure_ssl *bool
-
-	Location *string
-
-	Report_build_status *bool
-
-	Type string
-}
-
-type Aws_codebuild_project_vpc_config_123 struct {
-	Security_group_ids []string
-
-	Subnets []string
-
-	Vpc_id string
-}
-
-type Aws_codebuild_project struct {
-	Aws_codebuild_project_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Artifacts []Aws_codebuild_project_artifacts_114
-
-	Badge_enabled *bool
-
-	Badge_url *string
-
-	Build_timeout *int
-
-	Cache *[]Aws_codebuild_project_cache_115
-
-	Description *string
-
-	Encryption_key *string
-
-	Environment []Aws_codebuild_project_environment_116
-
-	Name string
-
-	Secondary_artifacts *[]Aws_codebuild_project_secondary_artifacts_118
-
-	Secondary_sources *[]Aws_codebuild_project_secondary_sources_119
-
-	Service_role string
-
-	Source []Aws_codebuild_project_source_121
-
-	Tags *map[string]string
-
-	Timeout *int
-
-	Vpc_config *[]Aws_codebuild_project_vpc_config_123
-}
-
-type Aws_codebuild_webhook struct {
-	Aws_codebuild_webhook_id *string `lyra:"ignore"`
-
-	Branch_filter *string
-
-	Payload_url *string
-
-	Project_name string
-
-	Secret *string
-
-	Url *string
-}
-
-type Aws_codecommit_repository struct {
-	Aws_codecommit_repository_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Clone_url_http *string
-
-	Clone_url_ssh *string
-
-	Default_branch *string
-
-	Description *string
-
-	Repository_id *string
-
-	Repository_name string
-}
-
-type Aws_codecommit_trigger_trigger_124 struct {
-	Branches *[]string
-
-	Custom_data *string
-
-	Destination_arn string
-
-	Events []string
-
-	Name string
-}
-
-type Aws_codecommit_trigger struct {
-	Aws_codecommit_trigger_id *string `lyra:"ignore"`
-
-	Configuration_id *string
-
-	Repository_name string
-
-	Trigger []Aws_codecommit_trigger_trigger_124
-}
-
-type Aws_codedeploy_app struct {
-	Aws_codedeploy_app_id *string `lyra:"ignore"`
-
-	Compute_platform *string
-
-	Name string
-
-	Unique_id *string
-}
-
-type Aws_codedeploy_deployment_config_minimum_healthy_hosts_125 struct {
-	Type *string
-
-	Value *int
-}
-
-type Aws_codedeploy_deployment_config_traffic_routing_config_126_time_based_canary_127 struct {
-	Interval *int
-
-	Percentage *int
-}
-
-type Aws_codedeploy_deployment_config_traffic_routing_config_126_time_based_linear_128 struct {
-	Interval *int
-
-	Percentage *int
-}
-
-type Aws_codedeploy_deployment_config_traffic_routing_config_126 struct {
-	Time_based_canary *[]Aws_codedeploy_deployment_config_traffic_routing_config_126_time_based_canary_127
-
-	Time_based_linear *[]Aws_codedeploy_deployment_config_traffic_routing_config_126_time_based_linear_128
-
-	Type *string
-}
-
-type Aws_codedeploy_deployment_config struct {
-	Aws_codedeploy_deployment_config_id *string `lyra:"ignore"`
-
-	Compute_platform *string
-
-	Deployment_config_id *string
-
-	Deployment_config_name string
-
-	Minimum_healthy_hosts *[]Aws_codedeploy_deployment_config_minimum_healthy_hosts_125
-
-	Traffic_routing_config *[]Aws_codedeploy_deployment_config_traffic_routing_config_126
-}
-
-type Aws_codedeploy_deployment_group_alarm_configuration_129 struct {
-	Alarms *[]string
-
-	Enabled *bool
-
-	Ignore_poll_alarm_failure *bool
-}
-
-type Aws_codedeploy_deployment_group_auto_rollback_configuration_130 struct {
-	Enabled *bool
-
-	Events *[]string
-}
-
-type Aws_codedeploy_deployment_group_blue_green_deployment_config_131_deployment_ready_option_132 struct {
-	Action_on_timeout *string
-
-	Wait_time_in_minutes *int
-}
-
-type Aws_codedeploy_deployment_group_blue_green_deployment_config_131_green_fleet_provisioning_option_133 struct {
-	Action *string
-}
-
-type Aws_codedeploy_deployment_group_blue_green_deployment_config_131_terminate_blue_instances_on_deployment_success_134 struct {
-	Action *string
-
-	Termination_wait_time_in_minutes *int
-}
-
-type Aws_codedeploy_deployment_group_blue_green_deployment_config_131 struct {
-	Deployment_ready_option *[]Aws_codedeploy_deployment_group_blue_green_deployment_config_131_deployment_ready_option_132
-
-	Green_fleet_provisioning_option *[]Aws_codedeploy_deployment_group_blue_green_deployment_config_131_green_fleet_provisioning_option_133
-
-	Terminate_blue_instances_on_deployment_success *[]Aws_codedeploy_deployment_group_blue_green_deployment_config_131_terminate_blue_instances_on_deployment_success_134
-}
-
-type Aws_codedeploy_deployment_group_deployment_style_135 struct {
-	Deployment_option *string
-
-	Deployment_type *string
-}
-
-type Aws_codedeploy_deployment_group_ec2_tag_filter_136 struct {
-	Key *string
-
-	Type *string
-
-	Value *string
-}
-
-type Aws_codedeploy_deployment_group_ec2_tag_set_137_ec2_tag_filter_138 struct {
-	Key *string
-
-	Type *string
-
-	Value *string
-}
-
-type Aws_codedeploy_deployment_group_ec2_tag_set_137 struct {
-	Ec2_tag_filter *[]Aws_codedeploy_deployment_group_ec2_tag_set_137_ec2_tag_filter_138
-}
-
-type Aws_codedeploy_deployment_group_ecs_service_139 struct {
-	Cluster_name string
-
-	Service_name string
-}
-
-type Aws_codedeploy_deployment_group_load_balancer_info_140_elb_info_141 struct {
-	Name *string
-}
-
-type Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_info_142 struct {
-	Name *string
-}
-
-type Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_pair_info_143_prod_traffic_route_144 struct {
-	Listener_arns []string
-}
-
-type Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_pair_info_143_target_group_145 struct {
-	Name string
-}
-
-type Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_pair_info_143_test_traffic_route_146 struct {
-	Listener_arns []string
-}
-
-type Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_pair_info_143 struct {
-	Prod_traffic_route []Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_pair_info_143_prod_traffic_route_144
-
-	Target_group []Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_pair_info_143_target_group_145
-
-	Test_traffic_route *[]Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_pair_info_143_test_traffic_route_146
-}
-
-type Aws_codedeploy_deployment_group_load_balancer_info_140 struct {
-	Elb_info *[]Aws_codedeploy_deployment_group_load_balancer_info_140_elb_info_141
-
-	Target_group_info *[]Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_info_142
-
-	Target_group_pair_info *[]Aws_codedeploy_deployment_group_load_balancer_info_140_target_group_pair_info_143
-}
-
-type Aws_codedeploy_deployment_group_on_premises_instance_tag_filter_147 struct {
-	Key *string
-
-	Type *string
-
-	Value *string
-}
-
-type Aws_codedeploy_deployment_group_trigger_configuration_148 struct {
-	Trigger_events []string
-
-	Trigger_name string
-
-	Trigger_target_arn string
-}
-
-type Aws_codedeploy_deployment_group struct {
-	Aws_codedeploy_deployment_group_id *string `lyra:"ignore"`
-
-	Alarm_configuration *[]Aws_codedeploy_deployment_group_alarm_configuration_129
-
-	App_name string
-
-	Auto_rollback_configuration *[]Aws_codedeploy_deployment_group_auto_rollback_configuration_130
-
-	Autoscaling_groups *[]string
-
-	Blue_green_deployment_config *[]Aws_codedeploy_deployment_group_blue_green_deployment_config_131
-
-	Deployment_config_name *string
-
-	Deployment_group_name string
-
-	Deployment_style *[]Aws_codedeploy_deployment_group_deployment_style_135
-
-	Ec2_tag_filter *[]Aws_codedeploy_deployment_group_ec2_tag_filter_136
-
-	Ec2_tag_set *[]Aws_codedeploy_deployment_group_ec2_tag_set_137
-
-	Ecs_service *[]Aws_codedeploy_deployment_group_ecs_service_139
-
-	Load_balancer_info *[]Aws_codedeploy_deployment_group_load_balancer_info_140
-
-	On_premises_instance_tag_filter *[]Aws_codedeploy_deployment_group_on_premises_instance_tag_filter_147
-
-	Service_role_arn string
-
-	Trigger_configuration *[]Aws_codedeploy_deployment_group_trigger_configuration_148
-}
-
-type Aws_codepipeline_artifact_store_149_encryption_key_150 struct {
-	Id string
-
-	Type string
-}
-
-type Aws_codepipeline_artifact_store_149 struct {
-	Encryption_key *[]Aws_codepipeline_artifact_store_149_encryption_key_150
-
-	Location string
-
-	Type string
-}
-
-type Aws_codepipeline_stage_151_action_152 struct {
-	Category string
-
-	Configuration *map[string]string
-
-	Input_artifacts *[]string
-
-	Name string
-
-	Output_artifacts *[]string
-
-	Owner string
-
-	Provider string
-
-	Role_arn *string
-
-	Run_order *int
-
-	Version string
-}
-
-type Aws_codepipeline_stage_151 struct {
-	Action []Aws_codepipeline_stage_151_action_152
-
-	Name string
-}
-
-type Aws_codepipeline struct {
-	Aws_codepipeline_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Artifact_store []Aws_codepipeline_artifact_store_149
-
-	Name string
-
-	Role_arn string
-
-	Stage []Aws_codepipeline_stage_151
-}
-
-type Aws_codepipeline_webhook_authentication_configuration_153 struct {
-	Allowed_ip_range *string
-
-	Secret_token *string
-}
-
-type Aws_codepipeline_webhook_filter_154 struct {
-	Json_path string
-
-	Match_equals string
-}
-
-type Aws_codepipeline_webhook struct {
-	Aws_codepipeline_webhook_id *string `lyra:"ignore"`
-
-	Authentication string
-
-	Authentication_configuration *[]Aws_codepipeline_webhook_authentication_configuration_153
-
-	Filter []Aws_codepipeline_webhook_filter_154
-
-	Name string
-
-	Target_action string
-
-	Target_pipeline string
-
-	Url *string
-}
-
-type Aws_cognito_identity_pool_cognito_identity_providers_155 struct {
-	Client_id *string
-
-	Provider_name *string
-
-	Server_side_token_check *bool
-}
-
-type Aws_cognito_identity_pool struct {
-	Aws_cognito_identity_pool_id *string `lyra:"ignore"`
-
-	Allow_unauthenticated_identities *bool
-
-	Arn *string
-
-	Cognito_identity_providers *[]Aws_cognito_identity_pool_cognito_identity_providers_155
-
-	Developer_provider_name *string
-
-	Identity_pool_name string
-
-	Openid_connect_provider_arns *[]string
-
-	Saml_provider_arns *[]string
-
-	Supported_login_providers *map[string]string
-}
-
-type Aws_cognito_identity_pool_roles_attachment_role_mapping_156_mapping_rule_157 struct {
-	Claim string
-
-	Match_type string
-
-	Role_arn string
-
-	Value string
-}
-
-type Aws_cognito_identity_pool_roles_attachment_role_mapping_156 struct {
-	Ambiguous_role_resolution *string
-
-	Identity_provider string
-
-	Mapping_rule *[]Aws_cognito_identity_pool_roles_attachment_role_mapping_156_mapping_rule_157
-
-	Type string
-}
-
-type Aws_cognito_identity_pool_roles_attachment struct {
-	Aws_cognito_identity_pool_roles_attachment_id *string `lyra:"ignore"`
-
-	Identity_pool_id string
-
-	Role_mapping *[]Aws_cognito_identity_pool_roles_attachment_role_mapping_156
-
-	Roles map[string]string
-}
-
-type Aws_cognito_identity_provider struct {
-	Aws_cognito_identity_provider_id *string `lyra:"ignore"`
-
-	Attribute_mapping *map[string]string
-
-	Idp_identifiers *[]string
-
-	Provider_details map[string]string
-
-	Provider_name string
-
-	Provider_type string
-
-	User_pool_id string
-}
-
-type Aws_cognito_resource_server_scope_158 struct {
-	Scope_description string
-
-	Scope_name string
-}
-
-type Aws_cognito_resource_server struct {
-	Aws_cognito_resource_server_id *string `lyra:"ignore"`
-
-	Identifier string
-
-	Name string
-
-	Scope *[]Aws_cognito_resource_server_scope_158
-
-	Scope_identifiers *[]string
-
-	User_pool_id string
-}
-
-type Aws_cognito_user_group struct {
-	Aws_cognito_user_group_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Name string
-
-	Precedence *int
-
-	Role_arn *string
-
-	User_pool_id string
-}
-
-type Aws_cognito_user_pool_admin_create_user_config_159_invite_message_template_160 struct {
-	Email_message *string
-
-	Email_subject *string
-
-	Sms_message *string
-}
-
-type Aws_cognito_user_pool_admin_create_user_config_159 struct {
-	Allow_admin_create_user_only *bool
-
-	Invite_message_template *[]Aws_cognito_user_pool_admin_create_user_config_159_invite_message_template_160
-
-	Unused_account_validity_days *int
-}
-
-type Aws_cognito_user_pool_device_configuration_161 struct {
-	Challenge_required_on_new_device *bool
-
-	Device_only_remembered_on_user_prompt *bool
-}
-
-type Aws_cognito_user_pool_email_configuration_162 struct {
-	Reply_to_email_address *string
-
-	Source_arn *string
-}
-
-type Aws_cognito_user_pool_lambda_config_163 struct {
-	Create_auth_challenge *string
-
-	Custom_message *string
-
-	Define_auth_challenge *string
-
-	Post_authentication *string
-
-	Post_confirmation *string
-
-	Pre_authentication *string
-
-	Pre_sign_up *string
-
-	Pre_token_generation *string
-
-	User_migration *string
-
-	Verify_auth_challenge_response *string
-}
-
-type Aws_cognito_user_pool_password_policy_164 struct {
-	Minimum_length *int
-
-	Require_lowercase *bool
-
-	Require_numbers *bool
-
-	Require_symbols *bool
-
-	Require_uppercase *bool
-}
-
-type Aws_cognito_user_pool_schema_165_number_attribute_constraints_166 struct {
-	Max_value *string
-
-	Min_value *string
-}
-
-type Aws_cognito_user_pool_schema_165_string_attribute_constraints_167 struct {
-	Max_length *string
-
-	Min_length *string
-}
-
-type Aws_cognito_user_pool_schema_165 struct {
-	Attribute_data_type string
-
-	Developer_only_attribute *bool
-
-	Mutable *bool
-
-	Name string
-
-	Number_attribute_constraints *[]Aws_cognito_user_pool_schema_165_number_attribute_constraints_166
-
-	Required *bool
-
-	String_attribute_constraints *[]Aws_cognito_user_pool_schema_165_string_attribute_constraints_167
-}
-
-type Aws_cognito_user_pool_sms_configuration_168 struct {
-	External_id string
-
-	Sns_caller_arn string
-}
-
-type Aws_cognito_user_pool_verification_message_template_169 struct {
-	Default_email_option *string
-
-	Email_message *string
-
-	Email_message_by_link *string
-
-	Email_subject *string
-
-	Email_subject_by_link *string
-
-	Sms_message *string
-}
-
-type Aws_cognito_user_pool struct {
-	Aws_cognito_user_pool_id *string `lyra:"ignore"`
-
-	Admin_create_user_config *[]Aws_cognito_user_pool_admin_create_user_config_159
-
-	Alias_attributes *[]string
-
-	Arn *string
-
-	Auto_verified_attributes *[]string
-
-	Creation_date *string
-
-	Device_configuration *[]Aws_cognito_user_pool_device_configuration_161
-
-	Email_configuration *[]Aws_cognito_user_pool_email_configuration_162
-
-	Email_verification_message *string
-
-	Email_verification_subject *string
-
-	Endpoint *string
-
-	Lambda_config *[]Aws_cognito_user_pool_lambda_config_163
-
-	Last_modified_date *string
-
-	Mfa_configuration *string
-
-	Name string
-
-	Password_policy *[]Aws_cognito_user_pool_password_policy_164
-
-	Schema *[]Aws_cognito_user_pool_schema_165
-
-	Sms_authentication_message *string
-
-	Sms_configuration *[]Aws_cognito_user_pool_sms_configuration_168
-
-	Sms_verification_message *string
-
-	Tags *map[string]string
-
-	Username_attributes *[]string
-
-	Verification_message_template *[]Aws_cognito_user_pool_verification_message_template_169
-}
-
-type Aws_cognito_user_pool_client struct {
-	Aws_cognito_user_pool_client_id *string `lyra:"ignore"`
-
-	Allowed_oauth_flows *[]string
-
-	Allowed_oauth_flows_user_pool_client *bool
-
-	Allowed_oauth_scopes *[]string
-
-	Callback_urls *[]string
-
-	Client_secret *string
-
-	Default_redirect_uri *string
-
-	Explicit_auth_flows *[]string
-
-	Generate_secret *bool
-
-	Logout_urls *[]string
-
-	Name string
-
-	Read_attributes *[]string
-
-	Refresh_token_validity *int
-
-	Supported_identity_providers *[]string
-
-	User_pool_id string
-
-	Write_attributes *[]string
-}
-
-type Aws_cognito_user_pool_domain struct {
-	Aws_cognito_user_pool_domain_id *string `lyra:"ignore"`
-
-	Aws_account_id *string
-
-	Certificate_arn *string
-
-	Cloudfront_distribution_arn *string
-
-	Domain string
-
-	S3_bucket *string
-
-	User_pool_id string
-
-	Version *string
-}
-
-type Aws_config_aggregate_authorization struct {
-	Aws_config_aggregate_authorization_id *string `lyra:"ignore"`
-
-	Account_id string
-
-	Arn *string
-
-	Region string
-}
-
-type Aws_config_config_rule_scope_170 struct {
-	Compliance_resource_id *string
-
-	Compliance_resource_types *[]string
-
-	Tag_key *string
-
-	Tag_value *string
-}
-
-type Aws_config_config_rule_source_171_source_detail_172 struct {
-	Event_source *string
-
-	Maximum_execution_frequency *string
-
-	Message_type *string
-}
-
-type Aws_config_config_rule_source_171 struct {
-	Owner string
-
-	Source_detail *[]Aws_config_config_rule_source_171_source_detail_172
-
-	Source_identifier string
-}
-
-type Aws_config_config_rule struct {
-	Aws_config_config_rule_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Description *string
-
-	Input_parameters *string
-
-	Maximum_execution_frequency *string
-
-	Name string
-
-	Rule_id *string
-
-	Scope *[]Aws_config_config_rule_scope_170
-
-	Source []Aws_config_config_rule_source_171
-}
-
-type Aws_config_configuration_aggregator_account_aggregation_source_173 struct {
-	Account_ids []string
-
-	All_regions *bool
-
-	Regions *[]string
-}
-
-type Aws_config_configuration_aggregator_organization_aggregation_source_174 struct {
-	All_regions *bool
-
-	Regions *[]string
-
-	Role_arn string
-}
-
-type Aws_config_configuration_aggregator struct {
-	Aws_config_configuration_aggregator_id *string `lyra:"ignore"`
-
-	Account_aggregation_source *[]Aws_config_configuration_aggregator_account_aggregation_source_173
-
-	Arn *string
-
-	Name string
-
-	Organization_aggregation_source *[]Aws_config_configuration_aggregator_organization_aggregation_source_174
-}
-
-type Aws_config_configuration_recorder_recording_group_175 struct {
-	All_supported *bool
-
-	Include_global_resource_types *bool
-
-	Resource_types *[]string
-}
-
-type Aws_config_configuration_recorder struct {
-	Aws_config_configuration_recorder_id *string `lyra:"ignore"`
-
-	Name *string
-
-	Recording_group *[]Aws_config_configuration_recorder_recording_group_175
-
-	Role_arn string
-}
-
-type Aws_config_configuration_recorder_status struct {
-	Aws_config_configuration_recorder_status_id *string `lyra:"ignore"`
-
-	Is_enabled bool
-
-	Name string
-}
-
-type Aws_config_delivery_channel_snapshot_delivery_properties_176 struct {
-	Delivery_frequency *string
-}
-
-type Aws_config_delivery_channel struct {
-	Aws_config_delivery_channel_id *string `lyra:"ignore"`
-
-	Name *string
-
-	S3_bucket_name string
-
-	S3_key_prefix *string
-
-	Snapshot_delivery_properties *[]Aws_config_delivery_channel_snapshot_delivery_properties_176
-
-	Sns_topic_arn *string
-}
-
-type Aws_customer_gateway struct {
-	Aws_customer_gateway_id *string `lyra:"ignore"`
-
-	Bgp_asn int
-
-	Ip_address string
-
-	Tags *map[string]string
-
-	Type string
-}
-
-type Aws_datasync_agent struct {
-	Aws_datasync_agent_id *string `lyra:"ignore"`
-
-	Activation_key *string
-
-	Arn *string
-
-	Ip_address *string
-
-	Name *string
-
-	Tags *map[string]string
-}
-
-type Aws_datasync_location_efs_ec2_config_177 struct {
-	Security_group_arns []string
-
-	Subnet_arn string
-}
-
-type Aws_datasync_location_efs struct {
-	Aws_datasync_location_efs_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Ec2_config []Aws_datasync_location_efs_ec2_config_177
-
-	Efs_file_system_arn string
-
-	Subdirectory *string
-
-	Tags *map[string]string
-
-	Uri *string
-}
-
-type Aws_datasync_location_nfs_on_prem_config_178 struct {
-	Agent_arns []string
-}
-
-type Aws_datasync_location_nfs struct {
-	Aws_datasync_location_nfs_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	On_prem_config []Aws_datasync_location_nfs_on_prem_config_178
-
-	Server_hostname string
-
-	Subdirectory string
-
-	Tags *map[string]string
-
-	Uri *string
-}
-
-type Aws_datasync_location_s3_s3_config_179 struct {
-	Bucket_access_role_arn string
-}
-
-type Aws_datasync_location_s3 struct {
-	Aws_datasync_location_s3_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	S3_bucket_arn string
-
-	S3_config []Aws_datasync_location_s3_s3_config_179
-
-	Subdirectory string
-
-	Tags *map[string]string
-
-	Uri *string
-}
-
-type Aws_datasync_task_options_180 struct {
-	Atime *string
-
-	Bytes_per_second *int
-
-	Gid *string
-
-	Mtime *string
-
-	Posix_permissions *string
-
-	Preserve_deleted_files *string
-
-	Preserve_devices *string
-
-	Uid *string
-
-	Verify_mode *string
-}
-
-type Aws_datasync_task struct {
-	Aws_datasync_task_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Cloudwatch_log_group_arn *string
-
-	Destination_location_arn string
-
-	Name *string
-
-	Options *[]Aws_datasync_task_options_180
-
-	Source_location_arn string
-
-	Tags *map[string]string
-}
-
-type Aws_dax_cluster_nodes_181 struct {
-	Address *string
-
-	Availability_zone *string
-
-	Id *string
-
-	Port *int
-}
-
-type Aws_dax_cluster_server_side_encryption_182 struct {
-	Enabled *bool
-}
-
-type Aws_dax_cluster struct {
-	Aws_dax_cluster_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Availability_zones *[]string
-
-	Cluster_address *string
-
-	Cluster_name string
-
-	Configuration_endpoint *string
-
-	Description *string
-
-	Iam_role_arn string
-
-	Maintenance_window *string
-
-	Node_type string
-
-	Nodes *[]Aws_dax_cluster_nodes_181
-
-	Notification_topic_arn *string
-
-	Parameter_group_name *string
-
-	Port *int
-
-	Replication_factor int
-
-	Security_group_ids *[]string
-
-	Server_side_encryption *[]Aws_dax_cluster_server_side_encryption_182
-
-	Subnet_group_name *string
-
-	Tags *map[string]string
-}
-
-type Aws_dax_parameter_group_parameters_183 struct {
-	Name string
-
-	Value string
-}
-
-type Aws_dax_parameter_group struct {
-	Aws_dax_parameter_group_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Name string
-
-	Parameters *[]Aws_dax_parameter_group_parameters_183
-}
-
-type Aws_dax_subnet_group struct {
-	Aws_dax_subnet_group_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Name string
-
-	Subnet_ids []string
-
-	Vpc_id *string
-}
-
-type Aws_db_cluster_snapshot struct {
-	Aws_db_cluster_snapshot_id *string `lyra:"ignore"`
-
-	Allocated_storage *int
-
-	Availability_zones *[]string
-
-	Db_cluster_identifier string
-
-	Db_cluster_snapshot_arn *string
-
-	Db_cluster_snapshot_identifier string
-
-	Engine *string
-
-	Engine_version *string
-
-	Kms_key_id *string
-
-	License_model *string
-
-	Port *int
-
-	Snapshot_type *string
-
-	Source_db_cluster_snapshot_arn *string
-
-	Status *string
-
-	Storage_encrypted *bool
-
-	Vpc_id *string
-}
-
-type Aws_db_event_subscription struct {
-	Aws_db_event_subscription_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Customer_aws_id *string
-
-	Enabled *bool
-
-	Event_categories *[]string
-
-	Name *string
-
-	Name_prefix *string
-
-	Sns_topic string
-
-	Source_ids *[]string
-
-	Source_type *string
-
-	Tags *map[string]string
-}
-
-type Aws_db_instance_s3_import_184 struct {
-	Bucket_name string
-
-	Bucket_prefix *string
-
-	Ingestion_role string
-
-	Source_engine string
-
-	Source_engine_version string
-}
-
-type Aws_db_instance struct {
-	Aws_db_instance_id *string `lyra:"ignore"`
-
-	Address *string
-
-	Allocated_storage *int
-
-	Allow_major_version_upgrade *bool
-
-	Apply_immediately *bool
-
-	Arn *string
-
-	Auto_minor_version_upgrade *bool
-
-	Availability_zone *string
-
-	Backup_retention_period *int
-
-	Backup_window *string
-
-	Ca_cert_identifier *string
-
-	Character_set_name *string
-
-	Copy_tags_to_snapshot *bool
-
-	Db_subnet_group_name *string
-
-	Deletion_protection *bool
-
-	Domain *string
-
-	Domain_iam_role_name *string
-
-	Enabled_cloudwatch_logs_exports *[]string
-
-	Endpoint *string
-
-	Engine *string
-
-	Engine_version *string
-
-	Final_snapshot_identifier *string
-
-	Hosted_zone_id *string
-
-	Iam_database_authentication_enabled *bool
-
-	Identifier *string
-
-	Identifier_prefix *string
-
-	Instance_class string
-
-	Iops *int
-
-	Kms_key_id *string
-
-	License_model *string
-
-	Maintenance_window *string
-
-	Monitoring_interval *int
-
-	Monitoring_role_arn *string
-
-	Multi_az *bool
-
-	Name *string
-
-	Option_group_name *string
-
-	Parameter_group_name *string
-
-	Password *string
-
-	Port *int
-
-	Publicly_accessible *bool
-
-	Replicas *[]string
-
-	Replicate_source_db *string
-
-	Resource_id *string
-
-	S3_import *[]Aws_db_instance_s3_import_184
-
-	Security_group_names *[]string
-
-	Skip_final_snapshot *bool
-
-	Snapshot_identifier *string
-
-	Status *string
-
-	Storage_encrypted *bool
-
-	Storage_type *string
-
-	Tags *map[string]string
-
-	Timezone *string
-
-	Username *string
-
-	Vpc_security_group_ids *[]string
-}
-
-type Aws_db_option_group_option_185_option_settings_186 struct {
-	Name string
-
-	Value string
-}
-
-type Aws_db_option_group_option_185 struct {
-	Db_security_group_memberships *[]string
-
-	Option_name string
-
-	Option_settings *[]Aws_db_option_group_option_185_option_settings_186
-
-	Port *int
-
-	Version *string
-
-	Vpc_security_group_memberships *[]string
-}
-
-type Aws_db_option_group struct {
-	Aws_db_option_group_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Engine_name string
-
-	Major_engine_version string
-
-	Name *string
-
-	Name_prefix *string
-
-	Option *[]Aws_db_option_group_option_185
-
-	Option_group_description *string
-
-	Tags *map[string]string
-}
-
-type Aws_db_parameter_group_parameter_187 struct {
-	Apply_method *string
-
-	Name string
-
-	Value string
-}
-
-type Aws_db_parameter_group struct {
-	Aws_db_parameter_group_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Description *string
-
-	Family string
-
-	Name *string
-
-	Name_prefix *string
-
-	Parameter *[]Aws_db_parameter_group_parameter_187
-
-	Tags *map[string]string
-}
-
-type Aws_db_security_group_ingress_188 struct {
-	Cidr *string
-
-	Security_group_id *string
-
-	Security_group_name *string
-
-	Security_group_owner_id *string
-}
-
-type Aws_db_security_group struct {
-	Aws_db_security_group_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Description *string
-
-	Ingress []Aws_db_security_group_ingress_188
-
-	Name string
-
-	Tags *map[string]string
-}
-
-type Aws_db_snapshot struct {
-	Aws_db_snapshot_id *string `lyra:"ignore"`
-
-	Allocated_storage *int
-
-	Availability_zone *string
-
-	Db_instance_identifier string
-
-	Db_snapshot_arn *string
-
-	Db_snapshot_identifier string
-
-	Encrypted *bool
-
-	Engine *string
-
-	Engine_version *string
-
-	Iops *int
-
-	Kms_key_id *string
-
-	License_model *string
-
-	Option_group_name *string
-
-	Port *int
-
-	Snapshot_type *string
-
-	Source_db_snapshot_identifier *string
-
-	Source_region *string
-
-	Status *string
-
-	Storage_type *string
-
-	Tags *map[string]string
-
-	Vpc_id *string
-}
-
-type Aws_db_subnet_group struct {
-	Aws_db_subnet_group_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Description *string
-
-	Name *string
-
-	Name_prefix *string
-
-	Subnet_ids []string
-
-	Tags *map[string]string
-}
-
-type Aws_default_network_acl_egress_189 struct {
-	Action string
-
-	Cidr_block *string
-
-	From_port int
-
-	Icmp_code *int
-
-	Icmp_type *int
-
-	Ipv6_cidr_block *string
-
-	Protocol string
-
-	Rule_no int
-
-	To_port int
-}
-
-type Aws_default_network_acl_ingress_190 struct {
-	Action string
-
-	Cidr_block *string
-
-	From_port int
-
-	Icmp_code *int
-
-	Icmp_type *int
-
-	Ipv6_cidr_block *string
-
-	Protocol string
-
-	Rule_no int
-
-	To_port int
-}
-
-type Aws_default_network_acl struct {
-	Aws_default_network_acl_id *string `lyra:"ignore"`
-
-	Default_network_acl_id string
-
-	Egress *[]Aws_default_network_acl_egress_189
-
-	Ingress *[]Aws_default_network_acl_ingress_190
-
-	Owner_id *string
-
-	Subnet_ids *[]string
-
-	Tags *map[string]string
-
-	Vpc_id *string
-}
-
-type Aws_default_route_table_route_191 struct {
-	Cidr_block *string
-
-	Egress_only_gateway_id *string
-
-	Gateway_id *string
-
-	Instance_id *string
-
-	Ipv6_cidr_block *string
-
-	Nat_gateway_id *string
-
-	Network_interface_id *string
-
-	Transit_gateway_id *string
-
-	Vpc_peering_connection_id *string
-}
-
-type Aws_default_route_table struct {
-	Aws_default_route_table_id *string `lyra:"ignore"`
-
-	Default_route_table_id string
-
-	Owner_id *string
-
-	Propagating_vgws *[]string
-
-	Route *[]Aws_default_route_table_route_191
-
-	Tags *map[string]string
-
-	Vpc_id *string
-}
-
-type Aws_default_security_group_egress_192 struct {
-	Cidr_blocks *[]string
-
-	Description *string
-
-	From_port int
-
-	Ipv6_cidr_blocks *[]string
-
-	Prefix_list_ids *[]string
-
-	Protocol string
-
-	Security_groups *[]string
-
-	Self *bool
-
-	To_port int
-}
-
-type Aws_default_security_group_ingress_193 struct {
-	Cidr_blocks *[]string
-
-	Description *string
-
-	From_port int
-
-	Ipv6_cidr_blocks *[]string
-
-	Prefix_list_ids *[]string
-
-	Protocol string
-
-	Security_groups *[]string
-
-	Self *bool
-
-	To_port int
-}
-
-type Aws_default_security_group struct {
-	Aws_default_security_group_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Egress *[]Aws_default_security_group_egress_192
-
-	Ingress *[]Aws_default_security_group_ingress_193
-
-	Name *string
-
-	Owner_id *string
-
-	Revoke_rules_on_delete *bool
-
-	Tags *map[string]string
-
-	Vpc_id *string
-}
-
-type Aws_default_subnet struct {
-	Aws_default_subnet_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Assign_ipv6_address_on_creation *bool
-
-	Availability_zone string
-
-	Availability_zone_id *string
-
-	Cidr_block *string
-
-	Ipv6_cidr_block *string
-
-	Ipv6_cidr_block_association_id *string
-
-	Map_public_ip_on_launch *bool
-
-	Owner_id *string
-
-	Tags *map[string]string
-
-	Vpc_id *string
-}
-
-type Aws_default_vpc struct {
-	Aws_default_vpc_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Assign_generated_ipv6_cidr_block *bool
-
-	Cidr_block *string
-
-	Default_network_acl_id *string
-
-	Default_route_table_id *string
-
-	Default_security_group_id *string
-
-	Dhcp_options_id *string
-
-	Enable_classiclink *bool
-
-	Enable_classiclink_dns_support *bool
-
-	Enable_dns_hostnames *bool
-
-	Enable_dns_support *bool
-
-	Instance_tenancy *string
-
-	Ipv6_association_id *string
-
-	Ipv6_cidr_block *string
-
-	Main_route_table_id *string
-
-	Owner_id *string
-
-	Tags *map[string]string
-}
-
-type Aws_default_vpc_dhcp_options struct {
-	Aws_default_vpc_dhcp_options_id *string `lyra:"ignore"`
-
-	Domain_name *string
-
-	Domain_name_servers *string
-
-	Netbios_name_servers *[]string
-
-	Netbios_node_type *string
-
-	Ntp_servers *string
-
-	Owner_id *string
-
-	Tags *map[string]string
-}
-
-type Aws_devicefarm_project struct {
-	Aws_devicefarm_project_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Name string
-}
-
-type Aws_directory_service_conditional_forwarder struct {
-	Aws_directory_service_conditional_forwarder_id *string `lyra:"ignore"`
-
-	Directory_id string
-
-	Dns_ips []string
-
-	Remote_domain_name string
-}
-
-type Aws_directory_service_directory_connect_settings_194 struct {
-	Customer_dns_ips []string
-
-	Customer_username string
-
-	Subnet_ids []string
-
-	Vpc_id string
-}
-
-type Aws_directory_service_directory_vpc_settings_195 struct {
-	Subnet_ids []string
-
-	Vpc_id string
-}
-
-type Aws_directory_service_directory struct {
-	Aws_directory_service_directory_id *string `lyra:"ignore"`
-
-	Access_url *string
-
-	Alias *string
-
-	Connect_settings *[]Aws_directory_service_directory_connect_settings_194
-
-	Description *string
-
-	Dns_ip_addresses *[]string
-
-	Edition *string
-
-	Enable_sso *bool
-
-	Name string
-
-	Password string
-
-	Security_group_id *string
-
-	Short_name *string
-
-	Size *string
-
-	Tags *map[string]string
-
-	Type *string
-
-	Vpc_settings *[]Aws_directory_service_directory_vpc_settings_195
-}
-
-type Aws_dlm_lifecycle_policy_policy_details_196_schedule_197_create_rule_198 struct {
-	Interval int
-
-	Interval_unit *string
-
-	Times *[]string
-}
-
-type Aws_dlm_lifecycle_policy_policy_details_196_schedule_197_retain_rule_199 struct {
-	Count int
-}
-
-type Aws_dlm_lifecycle_policy_policy_details_196_schedule_197 struct {
-	Copy_tags *bool
-
-	Create_rule []Aws_dlm_lifecycle_policy_policy_details_196_schedule_197_create_rule_198
-
-	Name string
-
-	Retain_rule []Aws_dlm_lifecycle_policy_policy_details_196_schedule_197_retain_rule_199
-
-	Tags_to_add *map[string]string
-}
-
-type Aws_dlm_lifecycle_policy_policy_details_196 struct {
-	Resource_types []string
-
-	Schedule []Aws_dlm_lifecycle_policy_policy_details_196_schedule_197
-
-	Target_tags map[string]string
-}
-
-type Aws_dlm_lifecycle_policy struct {
-	Aws_dlm_lifecycle_policy_id *string `lyra:"ignore"`
-
-	Description string
-
-	Execution_role_arn string
-
-	Policy_details []Aws_dlm_lifecycle_policy_policy_details_196
-
-	State *string
-}
-
-type Aws_dms_certificate struct {
-	Aws_dms_certificate_id *string `lyra:"ignore"`
-
-	Certificate_arn *string
-
-	Certificate_id string
-
-	Certificate_pem *string
-
-	Certificate_wallet *string
-}
-
-type Aws_dms_endpoint_mongodb_settings_200 struct {
-	Auth_mechanism *string
-
-	Auth_source *string
-
-	Auth_type *string
-
-	Docs_to_investigate *string
-
-	Extract_doc_id *string
-
-	Nesting_level *string
-}
-
-type Aws_dms_endpoint_s3_settings_201 struct {
-	Bucket_folder *string
-
-	Bucket_name *string
-
-	Compression_type *string
-
-	Csv_delimiter *string
-
-	Csv_row_delimiter *string
-
-	External_table_definition *string
-
-	Service_access_role_arn *string
-}
-
-type Aws_dms_endpoint struct {
-	Aws_dms_endpoint_id *string `lyra:"ignore"`
-
-	Certificate_arn *string
-
-	Database_name *string
-
-	Endpoint_arn *string
-
-	Endpoint_id string
-
-	Endpoint_type string
-
-	Engine_name string
-
-	Extra_connection_attributes *string
-
-	Kms_key_arn *string
-
-	Mongodb_settings *[]Aws_dms_endpoint_mongodb_settings_200
-
-	Password *string
-
-	Port *int
-
-	S3_settings *[]Aws_dms_endpoint_s3_settings_201
-
-	Server_name *string
-
-	Service_access_role *string
-
-	Ssl_mode *string
-
-	Tags *map[string]string
-
-	Username *string
-}
-
-type Aws_dms_replication_instance struct {
-	Aws_dms_replication_instance_id *string `lyra:"ignore"`
-
-	Allocated_storage *int
-
-	Apply_immediately *bool
-
-	Auto_minor_version_upgrade *bool
-
-	Availability_zone *string
-
-	Engine_version *string
-
-	Kms_key_arn *string
-
-	Multi_az *bool
-
-	Preferred_maintenance_window *string
-
-	Publicly_accessible *bool
-
-	Replication_instance_arn *string
-
-	Replication_instance_class string
-
-	Replication_instance_id string
-
-	Replication_instance_private_ips *[]string
-
-	Replication_instance_public_ips *[]string
-
-	Replication_subnet_group_id *string
-
-	Tags *map[string]string
-
-	Vpc_security_group_ids *[]string
-}
-
-type Aws_dms_replication_subnet_group struct {
-	Aws_dms_replication_subnet_group_id *string `lyra:"ignore"`
-
-	Replication_subnet_group_arn *string
-
-	Replication_subnet_group_description string
-
-	Replication_subnet_group_id string
-
-	Subnet_ids []string
-
-	Tags *map[string]string
-
-	Vpc_id *string
-}
-
-type Aws_dms_replication_task struct {
-	Aws_dms_replication_task_id *string `lyra:"ignore"`
-
-	Cdc_start_time *string
-
-	Migration_type string
-
-	Replication_instance_arn string
-
-	Replication_task_arn *string
-
-	Replication_task_id string
-
-	Replication_task_settings *string
-
-	Source_endpoint_arn string
-
-	Table_mappings string
-
-	Tags *map[string]string
-
-	Target_endpoint_arn string
-}
-
-type Aws_docdb_cluster_parameter_group_parameter_202 struct {
-	Apply_method *string
-
-	Name string
-
-	Value string
-}
-
-type Aws_docdb_cluster_parameter_group struct {
-	Aws_docdb_cluster_parameter_group_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Description *string
-
-	Family string
-
-	Name *string
-
-	Name_prefix *string
-
-	Parameter *[]Aws_docdb_cluster_parameter_group_parameter_202
-
-	Tags *map[string]string
-}
-
-type Aws_docdb_subnet_group struct {
-	Aws_docdb_subnet_group_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Description *string
-
-	Name *string
-
-	Name_prefix *string
-
-	Subnet_ids []string
-
-	Tags *map[string]string
-}
-
-type Aws_dx_bgp_peer struct {
-	Aws_dx_bgp_peer_id *string `lyra:"ignore"`
-
-	Address_family string
-
-	Amazon_address *string
-
-	Bgp_asn int
-
-	Bgp_auth_key *string
-
-	Bgp_status *string
-
-	Customer_address *string
-
-	Virtual_interface_id string
-}
-
-type Aws_dx_connection struct {
-	Aws_dx_connection_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Bandwidth string
-
-	Jumbo_frame_capable *bool
-
-	Location string
-
-	Name string
-
-	Tags *map[string]string
-}
-
-type Aws_dx_connection_association struct {
-	Aws_dx_connection_association_id *string `lyra:"ignore"`
-
-	Connection_id string
-
-	Lag_id string
-}
-
-type Aws_dx_gateway struct {
-	Aws_dx_gateway_id *string `lyra:"ignore"`
-
-	Amazon_side_asn string
-
-	Name string
-}
-
-type Aws_dx_gateway_association struct {
-	Aws_dx_gateway_association_id *string `lyra:"ignore"`
-
-	Dx_gateway_id string
-
-	Vpn_gateway_id string
-}
-
-type Aws_dx_hosted_private_virtual_interface struct {
-	Aws_dx_hosted_private_virtual_interface_id *string `lyra:"ignore"`
-
-	Address_family string
-
-	Amazon_address *string
-
-	Arn *string
-
-	Bgp_asn int
-
-	Bgp_auth_key *string
-
-	Connection_id string
-
-	Customer_address *string
-
-	Jumbo_frame_capable *bool
-
-	Mtu *int
-
-	Name string
-
-	Owner_account_id string
-
-	Vlan int
-}
-
-type Aws_dx_hosted_private_virtual_interface_accepter struct {
-	Aws_dx_hosted_private_virtual_interface_accepter_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Dx_gateway_id *string
-
-	Tags *map[string]string
-
-	Virtual_interface_id string
-
-	Vpn_gateway_id *string
-}
-
-type Aws_dx_hosted_public_virtual_interface struct {
-	Aws_dx_hosted_public_virtual_interface_id *string `lyra:"ignore"`
-
-	Address_family string
-
-	Amazon_address *string
-
-	Arn *string
-
-	Bgp_asn int
-
-	Bgp_auth_key *string
-
-	Connection_id string
-
-	Customer_address *string
-
-	Name string
-
-	Owner_account_id string
-
-	Route_filter_prefixes []string
-
-	Vlan int
-}
-
-type Aws_dx_hosted_public_virtual_interface_accepter struct {
-	Aws_dx_hosted_public_virtual_interface_accepter_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Tags *map[string]string
-
-	Virtual_interface_id string
-}
-
-type Aws_dx_lag struct {
-	Aws_dx_lag_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Connections_bandwidth string
-
-	Force_destroy *bool
-
-	Location string
-
-	Name string
-
-	Number_of_connections *int
-
-	Tags *map[string]string
-}
-
-type Aws_dx_private_virtual_interface struct {
-	Aws_dx_private_virtual_interface_id *string `lyra:"ignore"`
-
-	Address_family string
-
-	Amazon_address *string
-
-	Arn *string
-
-	Bgp_asn int
-
-	Bgp_auth_key *string
-
-	Connection_id string
-
-	Customer_address *string
-
-	Dx_gateway_id *string
-
-	Jumbo_frame_capable *bool
-
-	Mtu *int
-
-	Name string
-
-	Tags *map[string]string
-
-	Vlan int
-
-	Vpn_gateway_id *string
-}
-
-type Aws_dx_public_virtual_interface struct {
-	Aws_dx_public_virtual_interface_id *string `lyra:"ignore"`
-
-	Address_family string
-
-	Amazon_address *string
-
-	Arn *string
-
-	Bgp_asn int
-
-	Bgp_auth_key *string
-
-	Connection_id string
-
-	Customer_address *string
-
-	Name string
-
-	Route_filter_prefixes []string
-
-	Tags *map[string]string
-
-	Vlan int
-}
-
-type Aws_dynamodb_global_table_replica_203 struct {
-	Region_name string
-}
-
-type Aws_dynamodb_global_table struct {
-	Aws_dynamodb_global_table_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Name string
-
-	Replica []Aws_dynamodb_global_table_replica_203
-}
-
-type Aws_dynamodb_table_attribute_204 struct {
-	Name string
-
-	Type string
-}
-
-type Aws_dynamodb_table_global_secondary_index_205 struct {
-	Hash_key string
-
-	Name string
-
-	Non_key_attributes *[]string
-
-	Projection_type string
-
-	Range_key *string
-
-	Read_capacity *int
-
-	Write_capacity *int
-}
-
-type Aws_dynamodb_table_local_secondary_index_206 struct {
-	Name string
-
-	Non_key_attributes *[]string
-
-	Projection_type string
-
-	Range_key string
-}
-
-type Aws_dynamodb_table_point_in_time_recovery_207 struct {
-	Enabled bool
-}
-
-type Aws_dynamodb_table_server_side_encryption_208 struct {
-	Enabled bool
-}
-
-type Aws_dynamodb_table_ttl_209 struct {
-	Attribute_name string
-
-	Enabled bool
-}
-
-type Aws_dynamodb_table struct {
-	Aws_dynamodb_table_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Attribute []Aws_dynamodb_table_attribute_204
-
-	Billing_mode *string
-
-	Global_secondary_index *[]Aws_dynamodb_table_global_secondary_index_205
-
-	Hash_key string
-
-	Local_secondary_index *[]Aws_dynamodb_table_local_secondary_index_206
-
-	Name string
-
-	Point_in_time_recovery *[]Aws_dynamodb_table_point_in_time_recovery_207
-
-	Range_key *string
-
-	Read_capacity *int
-
-	Server_side_encryption *[]Aws_dynamodb_table_server_side_encryption_208
-
-	Stream_arn *string
-
-	Stream_enabled *bool
-
-	Stream_label *string
-
-	Stream_view_type *string
-
-	Tags *map[string]string
-
-	Ttl *[]Aws_dynamodb_table_ttl_209
-
-	Write_capacity *int
-}
-
-type Aws_dynamodb_table_item struct {
-	Aws_dynamodb_table_item_id *string `lyra:"ignore"`
-
-	Hash_key string
-
-	Item string
-
-	Range_key *string
-
-	Table_name string
-}
-
-type Aws_ebs_snapshot struct {
-	Aws_ebs_snapshot_id *string `lyra:"ignore"`
-
-	Data_encryption_key_id *string
-
-	Description *string
-
-	Encrypted *bool
-
-	Kms_key_id *string
-
-	Owner_alias *string
-
-	Owner_id *string
-
-	Tags *map[string]string
-
-	Volume_id string
-
-	Volume_size *int
-}
-
-type Aws_ebs_snapshot_copy struct {
-	Aws_ebs_snapshot_copy_id *string `lyra:"ignore"`
-
-	Data_encryption_key_id *string
-
-	Description *string
-
-	Encrypted *bool
-
-	Kms_key_id *string
-
-	Owner_alias *string
-
-	Owner_id *string
-
-	Source_region string
-
-	Source_snapshot_id string
-
-	Tags *map[string]string
-
-	Volume_id *string
-
-	Volume_size *int
-}
-
-type Aws_ebs_volume struct {
-	Aws_ebs_volume_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Availability_zone string
-
-	Encrypted *bool
-
-	Iops *int
-
-	Kms_key_id *string
-
-	Size *int
-
-	Snapshot_id *string
-
-	Tags *map[string]string
-
-	Type *string
-}
-
-type Aws_ec2_capacity_reservation struct {
-	Aws_ec2_capacity_reservation_id *string `lyra:"ignore"`
-
-	Availability_zone string
-
-	Ebs_optimized *bool
-
-	End_date *string
-
-	End_date_type *string
-
-	Ephemeral_storage *bool
-
-	Instance_count int
-
-	Instance_match_criteria *string
-
-	Instance_platform string
-
-	Instance_type string
-
-	Tags *map[string]string
-
-	Tenancy *string
-}
-
-type Aws_ec2_fleet_launch_template_config_210_launch_template_specification_211 struct {
-	Launch_template_id *string
-
-	Launch_template_name *string
-
-	Version string
-}
-
-type Aws_ec2_fleet_launch_template_config_210_override_212 struct {
-	Availability_zone *string
-
-	Instance_type *string
-
-	Max_price *string
-
-	Priority *float64
-
-	Subnet_id *string
-
-	Weighted_capacity *float64
-}
-
-type Aws_ec2_fleet_launch_template_config_210 struct {
-	Launch_template_specification []Aws_ec2_fleet_launch_template_config_210_launch_template_specification_211
-
-	Override *[]Aws_ec2_fleet_launch_template_config_210_override_212
-}
-
-type Aws_ec2_fleet_on_demand_options_213 struct {
-	Allocation_strategy *string
-}
-
-type Aws_ec2_fleet_spot_options_214 struct {
-	Allocation_strategy *string
-
-	Instance_interruption_behavior *string
-
-	Instance_pools_to_use_count *int
-}
-
-type Aws_ec2_fleet_target_capacity_specification_215 struct {
-	Default_target_capacity_type string
-
-	On_demand_target_capacity *int
-
-	Spot_target_capacity *int
-
-	Total_target_capacity int
-}
-
-type Aws_ec2_fleet struct {
-	Aws_ec2_fleet_id *string `lyra:"ignore"`
-
-	Excess_capacity_termination_policy *string
-
-	Launch_template_config []Aws_ec2_fleet_launch_template_config_210
-
-	On_demand_options *[]Aws_ec2_fleet_on_demand_options_213
-
-	Replace_unhealthy_instances *bool
-
-	Spot_options *[]Aws_ec2_fleet_spot_options_214
-
-	Tags *map[string]string
-
-	Target_capacity_specification []Aws_ec2_fleet_target_capacity_specification_215
-
-	Terminate_instances *bool
-
-	Terminate_instances_with_expiration *bool
-
-	Type *string
-}
-
-type Aws_ec2_transit_gateway struct {
-	Aws_ec2_transit_gateway_id *string `lyra:"ignore"`
-
-	Amazon_side_asn *int
-
-	Arn *string
-
-	Association_default_route_table_id *string
-
-	Auto_accept_shared_attachments *string
-
-	Default_route_table_association *string
-
-	Default_route_table_propagation *string
-
-	Description *string
-
-	Dns_support *string
-
-	Owner_id *string
-
-	Propagation_default_route_table_id *string
-
-	Tags *map[string]string
-
-	Vpn_ecmp_support *string
-}
-
-type Aws_ec2_transit_gateway_route struct {
-	Aws_ec2_transit_gateway_route_id *string `lyra:"ignore"`
-
-	Destination_cidr_block string
-
-	Transit_gateway_attachment_id string
-
-	Transit_gateway_route_table_id string
-}
-
-type Aws_ec2_transit_gateway_route_table struct {
-	Aws_ec2_transit_gateway_route_table_id *string `lyra:"ignore"`
-
-	Default_association_route_table *bool
-
-	Default_propagation_route_table *bool
-
-	Tags *map[string]string
-
-	Transit_gateway_id string
-}
-
-type Aws_ec2_transit_gateway_route_table_association struct {
-	Aws_ec2_transit_gateway_route_table_association_id *string `lyra:"ignore"`
-
-	Resource_id *string
-
-	Resource_type *string
-
-	Transit_gateway_attachment_id string
-
-	Transit_gateway_route_table_id string
-}
-
-type Aws_ec2_transit_gateway_route_table_propagation struct {
-	Aws_ec2_transit_gateway_route_table_propagation_id *string `lyra:"ignore"`
-
-	Resource_id *string
-
-	Resource_type *string
-
-	Transit_gateway_attachment_id string
-
-	Transit_gateway_route_table_id string
-}
-
-type Aws_ec2_transit_gateway_vpc_attachment struct {
-	Aws_ec2_transit_gateway_vpc_attachment_id *string `lyra:"ignore"`
-
-	Dns_support *string
-
-	Ipv6_support *string
-
-	Subnet_ids []string
-
-	Tags *map[string]string
-
-	Transit_gateway_default_route_table_association *bool
-
-	Transit_gateway_default_route_table_propagation *bool
-
-	Transit_gateway_id string
-
-	Vpc_id string
-
-	Vpc_owner_id *string
-}
-
-type Aws_ecr_lifecycle_policy struct {
-	Aws_ecr_lifecycle_policy_id *string `lyra:"ignore"`
-
-	Policy string
-
-	Registry_id *string
-
-	Repository string
-}
-
-type Aws_ecr_repository struct {
-	Aws_ecr_repository_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Name string
-
-	Registry_id *string
-
-	Repository_url *string
-
-	Tags *map[string]string
-}
-
-type Aws_ecr_repository_policy struct {
-	Aws_ecr_repository_policy_id *string `lyra:"ignore"`
-
-	Policy string
-
-	Registry_id *string
-
-	Repository string
-}
-
-type Aws_ecs_cluster struct {
-	Aws_ecs_cluster_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Name string
-
-	Tags *map[string]string
-}
-
-type Aws_ecs_service_deployment_controller_216 struct {
-	Type *string
-}
-
-type Aws_ecs_service_load_balancer_217 struct {
-	Container_name string
-
-	Container_port int
-
-	Elb_name *string
-
-	Target_group_arn *string
-}
-
-type Aws_ecs_service_network_configuration_218 struct {
-	Assign_public_ip *bool
-
-	Security_groups *[]string
-
-	Subnets []string
-}
-
-type Aws_ecs_service_ordered_placement_strategy_219 struct {
-	Field *string
-
-	Type string
-}
-
-type Aws_ecs_service_placement_constraints_220 struct {
-	Expression *string
-
-	Type string
-}
-
-type Aws_ecs_service_placement_strategy_221 struct {
-	Field *string
-
-	Type string
-}
-
-type Aws_ecs_service_service_registries_222 struct {
-	Container_name *string
-
-	Container_port *int
-
-	Port *int
-
-	Registry_arn string
-}
-
-type Aws_ecs_service struct {
-	Aws_ecs_service_id *string `lyra:"ignore"`
-
-	Cluster *string
-
-	Deployment_controller *[]Aws_ecs_service_deployment_controller_216
-
-	Deployment_maximum_percent *int
-
-	Deployment_minimum_healthy_percent *int
-
-	Desired_count *int
-
-	Enable_ecs_managed_tags *bool
-
-	Health_check_grace_period_seconds *int
-
-	Iam_role *string
-
-	Launch_type *string
-
-	Load_balancer *[]Aws_ecs_service_load_balancer_217
-
-	Name string
-
-	Network_configuration *[]Aws_ecs_service_network_configuration_218
-
-	Ordered_placement_strategy *[]Aws_ecs_service_ordered_placement_strategy_219
-
-	Placement_constraints *[]Aws_ecs_service_placement_constraints_220
-
-	Placement_strategy *[]Aws_ecs_service_placement_strategy_221
-
-	Platform_version *string
-
-	Propagate_tags *string
-
-	Scheduling_strategy *string
-
-	Service_registries *[]Aws_ecs_service_service_registries_222
-
-	Tags *map[string]string
-
-	Task_definition string
-}
-
-type Aws_ecs_task_definition_placement_constraints_223 struct {
-	Expression *string
-
-	Type string
-}
-
-type Aws_ecs_task_definition_volume_224_docker_volume_configuration_225 struct {
-	Autoprovision *bool
-
-	Driver *string
-
-	Driver_opts *map[string]string
-
-	Labels *map[string]string
-
-	Scope *string
-}
-
-type Aws_ecs_task_definition_volume_224 struct {
-	Docker_volume_configuration *[]Aws_ecs_task_definition_volume_224_docker_volume_configuration_225
-
-	Host_path *string
-
-	Name string
-}
-
-type Aws_ecs_task_definition struct {
-	Aws_ecs_task_definition_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Container_definitions string
-
-	Cpu *string
-
-	Execution_role_arn *string
-
-	Family string
-
-	Ipc_mode *string
-
-	Memory *string
-
-	Network_mode *string
-
-	Pid_mode *string
-
-	Placement_constraints *[]Aws_ecs_task_definition_placement_constraints_223
-
-	Requires_compatibilities *[]string
-
-	Revision *int
-
-	Tags *map[string]string
-
-	Task_role_arn *string
-
-	Volume *[]Aws_ecs_task_definition_volume_224
-}
-
-type Aws_efs_file_system struct {
-	Aws_efs_file_system_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Creation_token *string
-
-	Dns_name *string
-
-	Encrypted *bool
-
-	Kms_key_id *string
-
-	Performance_mode *string
-
-	Provisioned_throughput_in_mibps *float64
-
-	Reference_name *string
-
-	Tags *map[string]string
-
-	Throughput_mode *string
-}
-
-type Aws_efs_mount_target struct {
-	Aws_efs_mount_target_id *string `lyra:"ignore"`
-
-	Dns_name *string
-
-	File_system_arn *string
-
-	File_system_id string
-
-	Ip_address *string
-
-	Network_interface_id *string
-
-	Security_groups *[]string
-
-	Subnet_id string
-}
-
-type Aws_egress_only_internet_gateway struct {
-	Aws_egress_only_internet_gateway_id *string `lyra:"ignore"`
-
-	Vpc_id string
-}
-
-type Aws_eip struct {
-	Aws_eip_id *string `lyra:"ignore"`
-
-	Allocation_id *string
-
-	Associate_with_private_ip *string
-
-	Association_id *string
-
-	Domain *string
-
-	Instance *string
-
-	Network_interface *string
-
-	Private_ip *string
-
-	Public_ip *string
-
-	Public_ipv4_pool *string
-
-	Tags *map[string]string
-
-	Vpc *bool
-}
-
-type Aws_eip_association struct {
-	Aws_eip_association_id *string `lyra:"ignore"`
-
-	Allocation_id *string
-
-	Allow_reassociation *bool
-
-	Instance_id *string
-
-	Network_interface_id *string
-
-	Private_ip_address *string
-
-	Public_ip *string
-}
-
-type Aws_eks_cluster_certificate_authority_226 struct {
-	Data *string
-}
-
-type Aws_eks_cluster_vpc_config_227 struct {
-	Security_group_ids *[]string
-
-	Subnet_ids []string
-
-	Vpc_id *string
-}
-
-type Aws_eks_cluster struct {
-	Aws_eks_cluster_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Certificate_authority *[]Aws_eks_cluster_certificate_authority_226
-
-	Created_at *string
-
-	Endpoint *string
-
-	Name string
-
-	Platform_version *string
-
-	Role_arn string
-
-	Version *string
-
-	Vpc_config []Aws_eks_cluster_vpc_config_227
-}
-
-type Aws_elastic_beanstalk_application_appversion_lifecycle_228 struct {
-	Delete_source_from_s3 *bool
-
-	Max_age_in_days *int
-
-	Max_count *int
-
-	Service_role string
-}
-
-type Aws_elastic_beanstalk_application struct {
-	Aws_elastic_beanstalk_application_id *string `lyra:"ignore"`
-
-	Appversion_lifecycle *[]Aws_elastic_beanstalk_application_appversion_lifecycle_228
-
-	Description *string
-
-	Name string
-}
-
-type Aws_elastic_beanstalk_application_version struct {
-	Aws_elastic_beanstalk_application_version_id *string `lyra:"ignore"`
-
-	Application string
-
-	Bucket string
-
-	Description *string
-
-	Force_delete *bool
-
-	Key string
-
-	Name string
-}
-
-type Aws_elastic_beanstalk_configuration_template_setting_229 struct {
-	Name string
-
-	Namespace string
-
-	Resource *string
-
-	Value string
-}
-
-type Aws_elastic_beanstalk_configuration_template struct {
-	Aws_elastic_beanstalk_configuration_template_id *string `lyra:"ignore"`
-
-	Application string
-
-	Description *string
-
-	Environment_id *string
-
-	Name string
-
-	Setting *[]Aws_elastic_beanstalk_configuration_template_setting_229
-
-	Solution_stack_name *string
-}
-
-type Aws_elastic_beanstalk_environment_all_settings_230 struct {
-	Name string
-
-	Namespace string
-
-	Resource *string
-
-	Value string
-}
-
-type Aws_elastic_beanstalk_environment_setting_231 struct {
-	Name string
-
-	Namespace string
-
-	Resource *string
-
-	Value string
-}
-
-type Aws_elastic_beanstalk_environment struct {
-	Aws_elastic_beanstalk_environment_id *string `lyra:"ignore"`
-
-	All_settings *[]Aws_elastic_beanstalk_environment_all_settings_230
-
-	Application string
-
-	Arn *string
-
-	Autoscaling_groups *[]string
-
-	Cname *string
-
-	Cname_prefix *string
-
-	Description *string
-
-	Instances *[]string
-
-	Launch_configurations *[]string
-
-	Load_balancers *[]string
-
-	Name string
-
-	Platform_arn *string
-
-	Poll_interval *string
-
-	Queues *[]string
-
-	Setting *[]Aws_elastic_beanstalk_environment_setting_231
-
-	Solution_stack_name *string
-
-	Tags *map[string]string
-
-	Template_name *string
-
-	Tier *string
-
-	Triggers *[]string
-
-	Version_label *string
-
-	Wait_for_ready_timeout *string
-}
-
-type Aws_elasticache_cluster_cache_nodes_232 struct {
-	Address *string
-
-	Availability_zone *string
-
-	Id *string
-
-	Port *int
-}
-
-type Aws_elasticache_cluster struct {
-	Aws_elasticache_cluster_id *string `lyra:"ignore"`
-
-	Apply_immediately *bool
-
-	Availability_zone *string
-
-	Availability_zones *[]string
-
-	Az_mode *string
-
-	Cache_nodes *[]Aws_elasticache_cluster_cache_nodes_232
-
-	Cluster_address *string
-
-	Cluster_id string
-
-	Configuration_endpoint *string
-
-	Engine *string
-
-	Engine_version *string
-
-	Maintenance_window *string
-
-	Node_type *string
-
-	Notification_topic_arn *string
-
-	Num_cache_nodes *int
-
-	Parameter_group_name *string
-
-	Port *int
-
-	Preferred_availability_zones *[]string
-
-	Replication_group_id *string
-
-	Security_group_ids *[]string
-
-	Security_group_names *[]string
-
-	Snapshot_arns *[]string
-
-	Snapshot_name *string
-
-	Snapshot_retention_limit *int
-
-	Snapshot_window *string
-
-	Subnet_group_name *string
-
-	Tags *map[string]string
-}
-
-type Aws_elasticache_parameter_group_parameter_233 struct {
-	Name string
-
-	Value string
-}
-
-type Aws_elasticache_parameter_group struct {
-	Aws_elasticache_parameter_group_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Family string
-
-	Name string
-
-	Parameter *[]Aws_elasticache_parameter_group_parameter_233
-}
-
-type Aws_elasticache_replication_group_cluster_mode_234 struct {
-	Num_node_groups int
-
-	Replicas_per_node_group int
-}
-
-type Aws_elasticache_replication_group struct {
-	Aws_elasticache_replication_group_id *string `lyra:"ignore"`
-
-	Apply_immediately *bool
-
-	At_rest_encryption_enabled *bool
-
-	Auth_token *string
-
-	Auto_minor_version_upgrade *bool
-
-	Automatic_failover_enabled *bool
-
-	Availability_zones *[]string
-
-	Cluster_mode *[]Aws_elasticache_replication_group_cluster_mode_234
-
-	Configuration_endpoint_address *string
-
-	Engine *string
-
-	Engine_version *string
-
-	Maintenance_window *string
-
-	Member_clusters *[]string
-
-	Node_type *string
-
-	Notification_topic_arn *string
-
-	Number_cache_clusters *int
-
-	Parameter_group_name *string
-
-	Port *int
-
-	Primary_endpoint_address *string
-
-	Replication_group_description string
-
-	Replication_group_id string
-
-	Security_group_ids *[]string
-
-	Security_group_names *[]string
-
-	Snapshot_arns *[]string
-
-	Snapshot_name *string
-
-	Snapshot_retention_limit *int
-
-	Snapshot_window *string
-
-	Subnet_group_name *string
-
-	Tags *map[string]string
-
-	Transit_encryption_enabled *bool
-}
-
-type Aws_elasticache_security_group struct {
-	Aws_elasticache_security_group_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Name string
-
-	Security_group_names []string
-}
-
-type Aws_elasticache_subnet_group struct {
-	Aws_elasticache_subnet_group_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Name string
-
-	Subnet_ids []string
-}
-
-type Aws_elasticsearch_domain_cluster_config_235 struct {
-	Dedicated_master_count *int
-
-	Dedicated_master_enabled *bool
-
-	Dedicated_master_type *string
-
-	Instance_count *int
-
-	Instance_type *string
-
-	Zone_awareness_enabled *bool
-}
-
-type Aws_elasticsearch_domain_cognito_options_236 struct {
-	Enabled *bool
-
-	Identity_pool_id string
-
-	Role_arn string
-
-	User_pool_id string
-}
-
-type Aws_elasticsearch_domain_ebs_options_237 struct {
-	Ebs_enabled bool
-
-	Iops *int
-
-	Volume_size *int
-
-	Volume_type *string
-}
-
-type Aws_elasticsearch_domain_encrypt_at_rest_238 struct {
-	Enabled bool
-
-	Kms_key_id *string
-}
-
-type Aws_elasticsearch_domain_log_publishing_options_239 struct {
-	Cloudwatch_log_group_arn string
-
-	Enabled *bool
-
-	Log_type string
-}
-
-type Aws_elasticsearch_domain_node_to_node_encryption_240 struct {
-	Enabled bool
-}
-
-type Aws_elasticsearch_domain_snapshot_options_241 struct {
-	Automated_snapshot_start_hour int
-}
-
-type Aws_elasticsearch_domain_vpc_options_242 struct {
-	Availability_zones *[]string
-
-	Security_group_ids *[]string
-
-	Subnet_ids *[]string
-
-	Vpc_id *string
-}
-
-type Aws_elasticsearch_domain struct {
-	Aws_elasticsearch_domain_id *string `lyra:"ignore"`
-
-	Access_policies *string
-
-	Advanced_options *map[string]string
-
-	Arn *string
-
-	Cluster_config *[]Aws_elasticsearch_domain_cluster_config_235
-
-	Cognito_options *[]Aws_elasticsearch_domain_cognito_options_236
-
-	Domain_id *string
-
-	Domain_name string
-
-	Ebs_options *[]Aws_elasticsearch_domain_ebs_options_237
-
-	Elasticsearch_version *string
-
-	Encrypt_at_rest *[]Aws_elasticsearch_domain_encrypt_at_rest_238
-
-	Endpoint *string
-
-	Kibana_endpoint *string
-
-	Log_publishing_options *[]Aws_elasticsearch_domain_log_publishing_options_239
-
-	Node_to_node_encryption *[]Aws_elasticsearch_domain_node_to_node_encryption_240
-
-	Snapshot_options *[]Aws_elasticsearch_domain_snapshot_options_241
-
-	Tags *map[string]string
-
-	Vpc_options *[]Aws_elasticsearch_domain_vpc_options_242
-}
-
-type Aws_elasticsearch_domain_policy struct {
-	Aws_elasticsearch_domain_policy_id *string `lyra:"ignore"`
-
-	Access_policies string
-
-	Domain_name string
-}
-
-type Aws_elastictranscoder_pipeline_content_config_243 struct {
-	Bucket *string
-
-	Storage_class *string
-}
-
-type Aws_elastictranscoder_pipeline_content_config_permissions_244 struct {
-	Access *[]string
-
-	Grantee *string
-
-	Grantee_type *string
-}
-
-type Aws_elastictranscoder_pipeline_notifications_245 struct {
-	Completed *string
-
-	Error *string
-
-	Progressing *string
-
-	Warning *string
-}
-
-type Aws_elastictranscoder_pipeline_thumbnail_config_246 struct {
-	Bucket *string
-
-	Storage_class *string
-}
-
-type Aws_elastictranscoder_pipeline_thumbnail_config_permissions_247 struct {
-	Access *[]string
-
-	Grantee *string
-
-	Grantee_type *string
-}
-
-type Aws_elastictranscoder_pipeline struct {
-	Aws_elastictranscoder_pipeline_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Aws_kms_key_arn *string
-
-	Content_config *[]Aws_elastictranscoder_pipeline_content_config_243
-
-	Content_config_permissions *[]Aws_elastictranscoder_pipeline_content_config_permissions_244
-
-	Input_bucket string
-
-	Name *string
-
-	Notifications *[]Aws_elastictranscoder_pipeline_notifications_245
-
-	Output_bucket *string
-
-	Role string
-
-	Thumbnail_config *[]Aws_elastictranscoder_pipeline_thumbnail_config_246
-
-	Thumbnail_config_permissions *[]Aws_elastictranscoder_pipeline_thumbnail_config_permissions_247
-}
-
-type Aws_elastictranscoder_preset_audio_248 struct {
-	Audio_packing_mode *string
-
-	Bit_rate *string
-
-	Channels *string
-
-	Codec *string
-
-	Sample_rate *string
-}
-
-type Aws_elastictranscoder_preset_audio_codec_options_249 struct {
-	Bit_depth *string
-
-	Bit_order *string
-
-	Profile *string
-
-	Signed *string
-}
-
-type Aws_elastictranscoder_preset_thumbnails_250 struct {
-	Aspect_ratio *string
-
-	Format *string
-
-	Interval *string
-
-	Max_height *string
-
-	Max_width *string
-
-	Padding_policy *string
-
-	Resolution *string
-
-	Sizing_policy *string
-}
-
-type Aws_elastictranscoder_preset_video_251 struct {
-	Aspect_ratio *string
-
-	Bit_rate *string
-
-	Codec *string
-
-	Display_aspect_ratio *string
-
-	Fixed_gop *string
-
-	Frame_rate *string
-
-	Keyframes_max_dist *string
-
-	Max_frame_rate *string
-
-	Max_height *string
-
-	Max_width *string
-
-	Padding_policy *string
-
-	Resolution *string
-
-	Sizing_policy *string
-}
-
-type Aws_elastictranscoder_preset_video_watermarks_252 struct {
-	Horizontal_align *string
-
-	Horizontal_offset *string
-
-	Id *string
-
-	Max_height *string
-
-	Max_width *string
-
-	Opacity *string
-
-	Sizing_policy *string
-
-	Target *string
-
-	Vertical_align *string
-
-	Vertical_offset *string
-}
-
-type Aws_elastictranscoder_preset struct {
-	Aws_elastictranscoder_preset_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Audio *[]Aws_elastictranscoder_preset_audio_248
-
-	Audio_codec_options *[]Aws_elastictranscoder_preset_audio_codec_options_249
-
-	Container string
-
-	Description *string
-
-	Name *string
-
-	Thumbnails *[]Aws_elastictranscoder_preset_thumbnails_250
-
-	Type *string
-
-	Video *[]Aws_elastictranscoder_preset_video_251
-
-	Video_codec_options *map[string]string
-
-	Video_watermarks *[]Aws_elastictranscoder_preset_video_watermarks_252
-}
-
-type Aws_elb_access_logs_253 struct {
-	Bucket string
-
-	Bucket_prefix *string
-
-	Enabled *bool
-
-	Interval *int
-}
-
-type Aws_elb_health_check_254 struct {
-	Healthy_threshold int
-
-	Interval int
-
-	Target string
-
-	Timeout int
-
-	Unhealthy_threshold int
-}
-
-type Aws_elb_listener_255 struct {
-	Instance_port int
-
-	Instance_protocol string
-
-	Lb_port int
-
-	Lb_protocol string
-
-	Ssl_certificate_id *string
-}
-
-type Aws_elb struct {
-	Aws_elb_id *string `lyra:"ignore"`
-
-	Access_logs *[]Aws_elb_access_logs_253
-
-	Arn *string
-
-	Availability_zones *[]string
-
-	Connection_draining *bool
-
-	Connection_draining_timeout *int
-
-	Cross_zone_load_balancing *bool
-
-	Dns_name *string
-
-	Health_check *[]Aws_elb_health_check_254
-
-	Idle_timeout *int
-
-	Instances *[]string
-
-	Internal *bool
-
-	Listener []Aws_elb_listener_255
-
-	Name *string
-
-	Name_prefix *string
-
-	Security_groups *[]string
-
-	Source_security_group *string
-
-	Source_security_group_id *string
-
-	Subnets *[]string
-
-	Tags *map[string]string
-
-	Zone_id *string
-}
-
-type Aws_elb_attachment struct {
-	Aws_elb_attachment_id *string `lyra:"ignore"`
-
-	Elb string
-
-	Instance string
-}
-
-type Aws_emr_cluster_bootstrap_action_256 struct {
-	Args *[]string
-
-	Name string
-
-	Path string
-}
-
-type Aws_emr_cluster_ec2_attributes_257 struct {
-	Additional_master_security_groups *string
-
-	Additional_slave_security_groups *string
-
-	Emr_managed_master_security_group *string
-
-	Emr_managed_slave_security_group *string
-
-	Instance_profile string
-
-	Key_name *string
-
-	Service_access_security_group *string
-
-	Subnet_id *string
-}
-
-type Aws_emr_cluster_instance_group_258_ebs_config_259 struct {
-	Iops *int
-
-	Size int
-
-	Type string
-
-	Volumes_per_instance *int
-}
-
-type Aws_emr_cluster_instance_group_258 struct {
-	Autoscaling_policy *string
-
-	Bid_price *string
-
-	Ebs_config *[]Aws_emr_cluster_instance_group_258_ebs_config_259
-
-	Id *string
-
-	Instance_count *int
-
-	Instance_role string
-
-	Instance_type string
-
-	Name *string
-}
-
-type Aws_emr_cluster_kerberos_attributes_260 struct {
-	Ad_domain_join_password *string
-
-	Ad_domain_join_user *string
-
-	Cross_realm_trust_principal_password *string
-
-	Kdc_admin_password string
-
-	Realm string
-}
-
-type Aws_emr_cluster_step_261_hadoop_jar_step_262 struct {
-	Args *[]string
-
-	Jar string
-
-	Main_class *string
-
-	Properties *map[string]string
-}
-
-type Aws_emr_cluster_step_261 struct {
-	Action_on_failure string
-
-	Hadoop_jar_step []Aws_emr_cluster_step_261_hadoop_jar_step_262
-
-	Name string
-}
-
-type Aws_emr_cluster struct {
-	Aws_emr_cluster_id *string `lyra:"ignore"`
-
-	Additional_info *string
-
-	Applications *[]string
-
-	Autoscaling_role *string
-
-	Bootstrap_action *[]Aws_emr_cluster_bootstrap_action_256
-
-	Cluster_state *string
-
-	Configurations *string
-
-	Configurations_json *string
-
-	Core_instance_count *int
-
-	Core_instance_type *string
-
-	Custom_ami_id *string
-
-	Ebs_root_volume_size *int
-
-	Ec2_attributes *[]Aws_emr_cluster_ec2_attributes_257
-
-	Instance_group *[]Aws_emr_cluster_instance_group_258
-
-	Keep_job_flow_alive_when_no_steps *bool
-
-	Kerberos_attributes *[]Aws_emr_cluster_kerberos_attributes_260
-
-	Log_uri *string
-
-	Master_instance_type *string
-
-	Master_public_dns *string
-
-	Name string
-
-	Release_label string
-
-	Scale_down_behavior *string
-
-	Security_configuration *string
-
-	Service_role string
-
-	Step *[]Aws_emr_cluster_step_261
-
-	Tags *map[string]string
-
-	Termination_protection *bool
-
-	Visible_to_all_users *bool
-}
-
-type Aws_emr_instance_group_ebs_config_263 struct {
-	Iops *int
-
-	Size int
-
-	Type string
-
-	Volumes_per_instance *int
-}
-
-type Aws_emr_instance_group struct {
-	Aws_emr_instance_group_id *string `lyra:"ignore"`
-
-	Cluster_id string
-
-	Ebs_config *[]Aws_emr_instance_group_ebs_config_263
-
-	Ebs_optimized *bool
-
-	Instance_count *int
-
-	Instance_type string
-
-	Name *string
-
-	Running_instance_count *int
-
-	Status *string
-}
-
-type Aws_emr_security_configuration struct {
-	Aws_emr_security_configuration_id *string `lyra:"ignore"`
-
-	Configuration string
-
-	Creation_date *string
-
-	Name *string
-
-	Name_prefix *string
-}
-
-type Aws_flow_log struct {
-	Aws_flow_log_id *string `lyra:"ignore"`
-
-	Eni_id *string
-
-	Iam_role_arn *string
-
-	Log_destination *string
-
-	Log_destination_type *string
-
-	Log_group_name *string
-
-	Subnet_id *string
-
-	Traffic_type string
-
-	Vpc_id *string
-}
-
-type Aws_gamelift_alias_routing_strategy_264 struct {
-	Fleet_id *string
-
-	Message *string
-
-	Type string
-}
-
-type Aws_gamelift_alias struct {
-	Aws_gamelift_alias_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Description *string
-
-	Name string
-
-	Routing_strategy []Aws_gamelift_alias_routing_strategy_264
-}
-
-type Aws_gamelift_build_storage_location_265 struct {
-	Bucket string
-
-	Key string
-
-	Role_arn string
-}
-
-type Aws_gamelift_build struct {
-	Aws_gamelift_build_id *string `lyra:"ignore"`
-
-	Name string
-
-	Operating_system string
-
-	Storage_location []Aws_gamelift_build_storage_location_265
-
-	Version *string
-}
-
-type Aws_gamelift_fleet_ec2_inbound_permission_266 struct {
-	From_port int
-
-	Ip_range string
-
-	Protocol string
-
-	To_port int
-}
-
-type Aws_gamelift_fleet_resource_creation_limit_policy_267 struct {
-	New_game_sessions_per_creator *int
-
-	Policy_period_in_minutes *int
-}
-
-type Aws_gamelift_fleet_runtime_configuration_268_server_process_269 struct {
-	Concurrent_executions int
-
-	Launch_path string
-
-	Parameters *string
-}
-
-type Aws_gamelift_fleet_runtime_configuration_268 struct {
-	Game_session_activation_timeout_seconds *int
-
-	Max_concurrent_game_session_activations *int
-
-	Server_process *[]Aws_gamelift_fleet_runtime_configuration_268_server_process_269
-}
-
-type Aws_gamelift_fleet struct {
-	Aws_gamelift_fleet_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Build_id string
-
-	Description *string
-
-	Ec2_inbound_permission *[]Aws_gamelift_fleet_ec2_inbound_permission_266
-
-	Ec2_instance_type string
-
-	Log_paths *[]string
-
-	Metric_groups *[]string
-
-	Name string
-
-	New_game_session_protection_policy *string
-
-	Operating_system *string
-
-	Resource_creation_limit_policy *[]Aws_gamelift_fleet_resource_creation_limit_policy_267
-
-	Runtime_configuration *[]Aws_gamelift_fleet_runtime_configuration_268
-}
-
-type Aws_gamelift_game_session_queue_player_latency_policy_270 struct {
-	Maximum_individual_player_latency_milliseconds int
-
-	Policy_duration_seconds *int
-}
-
-type Aws_gamelift_game_session_queue struct {
-	Aws_gamelift_game_session_queue_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Destinations *[]string
-
-	Name string
-
-	Player_latency_policy *[]Aws_gamelift_game_session_queue_player_latency_policy_270
-
-	Timeout_in_seconds *int
-}
-
-type Aws_glacier_vault_notification_271 struct {
-	Events []string
-
-	Sns_topic string
-}
-
-type Aws_glacier_vault struct {
-	Aws_glacier_vault_id *string `lyra:"ignore"`
-
-	Access_policy *string
-
-	Arn *string
-
-	Location *string
-
-	Name string
-
-	Notification *[]Aws_glacier_vault_notification_271
-
-	Tags *map[string]string
-}
-
-type Aws_glacier_vault_lock struct {
-	Aws_glacier_vault_lock_id *string `lyra:"ignore"`
-
-	Complete_lock bool
-
-	Ignore_deletion_error *bool
-
-	Policy string
-
-	Vault_name string
-}
-
-type Aws_globalaccelerator_accelerator_attributes_272 struct {
-	Flow_logs_enabled *bool
-
-	Flow_logs_s3_bucket *string
-
-	Flow_logs_s3_prefix *string
-}
-
-type Aws_globalaccelerator_accelerator_ip_sets_273 struct {
-	Ip_addresses *[]string
-
-	Ip_family *string
-}
-
-type Aws_globalaccelerator_accelerator struct {
-	Aws_globalaccelerator_accelerator_id *string `lyra:"ignore"`
-
-	Attributes *[]Aws_globalaccelerator_accelerator_attributes_272
-
-	Enabled *bool
-
-	Ip_address_type *string
-
-	Ip_sets *[]Aws_globalaccelerator_accelerator_ip_sets_273
-
-	Name string
-}
-
-type Aws_glue_catalog_database struct {
-	Aws_glue_catalog_database_id *string `lyra:"ignore"`
-
-	Catalog_id *string
-
-	Description *string
-
-	Location_uri *string
-
-	Name string
-
-	Parameters *map[string]string
-}
-
-type Aws_glue_catalog_table_partition_keys_274 struct {
-	Comment *string
-
-	Name string
-
-	Type *string
-}
-
-type Aws_glue_catalog_table_storage_descriptor_275_columns_276 struct {
-	Comment *string
-
-	Name string
-
-	Type *string
-}
-
-type Aws_glue_catalog_table_storage_descriptor_275_ser_de_info_277 struct {
-	Name *string
-
-	Parameters *map[string]string
-
-	Serialization_library *string
-}
-
-type Aws_glue_catalog_table_storage_descriptor_275_skewed_info_278 struct {
-	Skewed_column_names *[]string
-
-	Skewed_column_value_location_maps *map[string]string
-
-	Skewed_column_values *[]string
-}
-
-type Aws_glue_catalog_table_storage_descriptor_275_sort_columns_279 struct {
-	Column string
-
-	Sort_order int
-}
-
-type Aws_glue_catalog_table_storage_descriptor_275 struct {
-	Bucket_columns *[]string
-
-	Columns *[]Aws_glue_catalog_table_storage_descriptor_275_columns_276
-
-	Compressed *bool
-
-	Input_format *string
-
-	Location *string
-
-	Number_of_buckets *int
-
-	Output_format *string
-
-	Parameters *map[string]string
-
-	Ser_de_info *[]Aws_glue_catalog_table_storage_descriptor_275_ser_de_info_277
-
-	Skewed_info *[]Aws_glue_catalog_table_storage_descriptor_275_skewed_info_278
-
-	Sort_columns *[]Aws_glue_catalog_table_storage_descriptor_275_sort_columns_279
-
-	Stored_as_sub_directories *bool
-}
-
-type Aws_glue_catalog_table struct {
-	Aws_glue_catalog_table_id *string `lyra:"ignore"`
-
-	Catalog_id *string
-
-	Database_name string
-
-	Description *string
-
-	Name string
-
-	Owner *string
-
-	Parameters *map[string]string
-
-	Partition_keys *[]Aws_glue_catalog_table_partition_keys_274
-
-	Retention *int
-
-	Storage_descriptor *[]Aws_glue_catalog_table_storage_descriptor_275
-
-	Table_type *string
-
-	View_expanded_text *string
-
-	View_original_text *string
-}
-
-type Aws_glue_classifier_grok_classifier_280 struct {
-	Classification string
-
-	Custom_patterns *string
-
-	Grok_pattern string
-}
-
-type Aws_glue_classifier_json_classifier_281 struct {
-	Json_path string
-}
-
-type Aws_glue_classifier_xml_classifier_282 struct {
-	Classification string
-
-	Row_tag string
-}
-
-type Aws_glue_classifier struct {
-	Aws_glue_classifier_id *string `lyra:"ignore"`
-
-	Grok_classifier *[]Aws_glue_classifier_grok_classifier_280
-
-	Json_classifier *[]Aws_glue_classifier_json_classifier_281
-
-	Name string
-
-	Xml_classifier *[]Aws_glue_classifier_xml_classifier_282
-}
-
-type Aws_glue_connection_physical_connection_requirements_283 struct {
-	Availability_zone *string
-
-	Security_group_id_list *[]string
-
-	Subnet_id *string
-}
-
-type Aws_glue_connection struct {
-	Aws_glue_connection_id *string `lyra:"ignore"`
-
-	Catalog_id *string
-
-	Connection_properties map[string]string
-
-	Connection_type *string
-
-	Description *string
-
-	Match_criteria *[]string
-
-	Name string
-
-	Physical_connection_requirements *[]Aws_glue_connection_physical_connection_requirements_283
-}
-
-type Aws_glue_crawler_dynamodb_target_284 struct {
-	Path string
-}
-
-type Aws_glue_crawler_jdbc_target_285 struct {
-	Connection_name string
-
-	Exclusions *[]string
-
-	Path string
-}
-
-type Aws_glue_crawler_s3_target_286 struct {
-	Exclusions *[]string
-
-	Path string
-}
-
-type Aws_glue_crawler_schema_change_policy_287 struct {
-	Delete_behavior *string
-
-	Update_behavior *string
-}
-
-type Aws_glue_crawler struct {
-	Aws_glue_crawler_id *string `lyra:"ignore"`
-
-	Classifiers *[]string
-
-	Configuration *string
-
-	Database_name string
-
-	Description *string
-
-	Dynamodb_target *[]Aws_glue_crawler_dynamodb_target_284
-
-	Jdbc_target *[]Aws_glue_crawler_jdbc_target_285
-
-	Name string
-
-	Role string
-
-	S3_target *[]Aws_glue_crawler_s3_target_286
-
-	Schedule *string
-
-	Schema_change_policy *[]Aws_glue_crawler_schema_change_policy_287
-
-	Security_configuration *string
-
-	Table_prefix *string
-}
-
-type Aws_glue_job_command_288 struct {
-	Name *string
-
-	Script_location string
-}
-
-type Aws_glue_job_execution_property_289 struct {
-	Max_concurrent_runs *int
-}
-
-type Aws_glue_job struct {
-	Aws_glue_job_id *string `lyra:"ignore"`
-
-	Allocated_capacity *int
-
-	Command []Aws_glue_job_command_288
-
-	Connections *[]string
-
-	Default_arguments *map[string]string
-
-	Description *string
-
-	Execution_property *[]Aws_glue_job_execution_property_289
-
-	Max_retries *int
-
-	Name string
-
-	Role_arn string
-
-	Security_configuration *string
-
-	Timeout *int
-}
-
-type Aws_glue_security_configuration_encryption_configuration_290_cloudwatch_encryption_291 struct {
-	Cloudwatch_encryption_mode *string
-
-	Kms_key_arn *string
-}
-
-type Aws_glue_security_configuration_encryption_configuration_290_job_bookmarks_encryption_292 struct {
-	Job_bookmarks_encryption_mode *string
-
-	Kms_key_arn *string
-}
-
-type Aws_glue_security_configuration_encryption_configuration_290_s3_encryption_293 struct {
-	Kms_key_arn *string
-
-	S3_encryption_mode *string
-}
-
-type Aws_glue_security_configuration_encryption_configuration_290 struct {
-	Cloudwatch_encryption []Aws_glue_security_configuration_encryption_configuration_290_cloudwatch_encryption_291
-
-	Job_bookmarks_encryption []Aws_glue_security_configuration_encryption_configuration_290_job_bookmarks_encryption_292
-
-	S3_encryption []Aws_glue_security_configuration_encryption_configuration_290_s3_encryption_293
-}
-
-type Aws_glue_security_configuration struct {
-	Aws_glue_security_configuration_id *string `lyra:"ignore"`
-
-	Encryption_configuration []Aws_glue_security_configuration_encryption_configuration_290
-
-	Name string
-}
-
-type Aws_glue_trigger_actions_294 struct {
-	Arguments *map[string]string
-
-	Job_name string
-
-	Timeout *int
-}
-
-type Aws_glue_trigger_predicate_295_conditions_296 struct {
-	Job_name string
-
-	Logical_operator *string
-
-	State string
-}
-
-type Aws_glue_trigger_predicate_295 struct {
-	Conditions []Aws_glue_trigger_predicate_295_conditions_296
-
-	Logical *string
-}
-
-type Aws_glue_trigger struct {
-	Aws_glue_trigger_id *string `lyra:"ignore"`
-
-	Actions []Aws_glue_trigger_actions_294
-
-	Description *string
-
-	Enabled *bool
-
-	Name string
-
-	Predicate *[]Aws_glue_trigger_predicate_295
-
-	Schedule *string
-
-	Type string
-}
-
-type Aws_guardduty_detector struct {
-	Aws_guardduty_detector_id *string `lyra:"ignore"`
-
-	Account_id *string
-
-	Enable *bool
-
-	Finding_publishing_frequency *string
-}
-
-type Aws_guardduty_ipset struct {
-	Aws_guardduty_ipset_id *string `lyra:"ignore"`
-
-	Activate bool
-
-	Detector_id string
-
-	Format string
-
-	Location string
-
-	Name string
-}
-
-type Aws_guardduty_member struct {
-	Aws_guardduty_member_id *string `lyra:"ignore"`
-
-	Account_id string
-
-	Detector_id string
-
-	Disable_email_notification *bool
-
-	Email string
-
-	Invitation_message *string
-
-	Invite *bool
-
-	Relationship_status *string
-}
-
-type Aws_guardduty_threatintelset struct {
-	Aws_guardduty_threatintelset_id *string `lyra:"ignore"`
-
-	Activate bool
-
-	Detector_id string
-
-	Format string
-
-	Location string
-
-	Name string
-}
-
-type Aws_iam_access_key struct {
-	Aws_iam_access_key_id *string `lyra:"ignore"`
-
-	Encrypted_secret *string
-
-	Key_fingerprint *string
-
-	Pgp_key *string
-
-	Secret *string
-
-	Ses_smtp_password *string
-
-	Status *string
-
-	User string
-}
-
-type Aws_iam_account_alias struct {
-	Aws_iam_account_alias_id *string `lyra:"ignore"`
-
-	Account_alias string
-}
-
-type Aws_iam_account_password_policy struct {
-	Aws_iam_account_password_policy_id *string `lyra:"ignore"`
-
-	Allow_users_to_change_password *bool
-
-	Expire_passwords *bool
-
-	Hard_expiry *bool
-
-	Max_password_age *int
-
-	Minimum_password_length *int
-
-	Password_reuse_prevention *int
-
-	Require_lowercase_characters *bool
-
-	Require_numbers *bool
-
-	Require_symbols *bool
-
-	Require_uppercase_characters *bool
-}
-
-type Aws_iam_group struct {
-	Aws_iam_group_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Name string
-
-	Path *string
-
-	Unique_id *string
-}
-
-type Aws_iam_group_membership struct {
-	Aws_iam_group_membership_id *string `lyra:"ignore"`
-
-	Group string
-
-	Name string
-
-	Users []string
-}
-
-type Aws_iam_group_policy struct {
-	Aws_iam_group_policy_id *string `lyra:"ignore"`
-
-	Group string
-
-	Name *string
-
-	Name_prefix *string
-
-	Policy string
-}
-
-type Aws_iam_group_policy_attachment struct {
-	Aws_iam_group_policy_attachment_id *string `lyra:"ignore"`
-
-	Group string
-
-	Policy_arn string
-}
-
-type Aws_iam_instance_profile struct {
-	Aws_iam_instance_profile_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Create_date *string
-
-	Name *string
-
-	Name_prefix *string
-
-	Path *string
-
-	Role *string
-
-	Roles *[]string
-
-	Unique_id *string
-}
-
-type Aws_iam_openid_connect_provider struct {
-	Aws_iam_openid_connect_provider_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Client_id_list []string
-
-	Thumbprint_list []string
-
-	Url string
-}
-
-type Aws_iam_policy struct {
-	Aws_iam_policy_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Description *string
-
-	Name *string
-
-	Name_prefix *string
-
-	Path *string
-
-	Policy string
-}
-
-type Aws_iam_policy_attachment struct {
-	Aws_iam_policy_attachment_id *string `lyra:"ignore"`
-
-	Groups *[]string
-
-	Name string
-
-	Policy_arn string
-
-	Roles *[]string
-
-	Users *[]string
-}
-
-type Aws_iam_role struct {
-	Aws_iam_role_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Assume_role_policy string
-
-	Create_date *string
-
-	Description *string
-
-	Force_detach_policies *bool
-
-	Max_session_duration *int
-
-	Name *string
-
-	Name_prefix *string
-
-	Path *string
-
-	Permissions_boundary *string
-
-	Tags *map[string]string
-
-	Unique_id *string
-}
-
-type Aws_iam_role_policy struct {
-	Aws_iam_role_policy_id *string `lyra:"ignore"`
-
-	Name *string
-
-	Name_prefix *string
-
-	Policy string
-
-	Role string
-}
-
-type Aws_iam_role_policy_attachment struct {
-	Aws_iam_role_policy_attachment_id *string `lyra:"ignore"`
-
-	Policy_arn string
-
-	Role string
-}
-
-type Aws_iam_saml_provider struct {
-	Aws_iam_saml_provider_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Name string
-
-	Saml_metadata_document string
-
-	Valid_until *string
-}
-
-type Aws_iam_server_certificate struct {
-	Aws_iam_server_certificate_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Certificate_body string
-
-	Certificate_chain *string
-
-	Name *string
-
-	Name_prefix *string
-
-	Path *string
-
-	Private_key string
-}
-
-type Aws_iam_service_linked_role struct {
-	Aws_iam_service_linked_role_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Aws_service_name string
-
-	Create_date *string
-
-	Custom_suffix *string
-
-	Description *string
-
-	Name *string
-
-	Path *string
-
-	Unique_id *string
-}
-
-type Aws_iam_user struct {
-	Aws_iam_user_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Force_destroy *bool
-
-	Name string
-
-	Path *string
-
-	Permissions_boundary *string
-
-	Tags *map[string]string
-
-	Unique_id *string
-}
-
-type Aws_iam_user_group_membership struct {
-	Aws_iam_user_group_membership_id *string `lyra:"ignore"`
-
-	Groups []string
-
-	User string
-}
-
-type Aws_iam_user_login_profile struct {
-	Aws_iam_user_login_profile_id *string `lyra:"ignore"`
-
-	Encrypted_password *string
-
-	Key_fingerprint *string
-
-	Password_length *int
-
-	Password_reset_required *bool
-
-	Pgp_key string
-
-	User string
-}
-
-type Aws_iam_user_policy struct {
-	Aws_iam_user_policy_id *string `lyra:"ignore"`
-
-	Name *string
-
-	Name_prefix *string
-
-	Policy string
-
-	User string
-}
-
-type Aws_iam_user_policy_attachment struct {
-	Aws_iam_user_policy_attachment_id *string `lyra:"ignore"`
-
-	Policy_arn string
-
-	User string
-}
-
-type Aws_iam_user_ssh_key struct {
-	Aws_iam_user_ssh_key_id *string `lyra:"ignore"`
-
-	Encoding string
-
-	Fingerprint *string
-
-	Public_key string
-
-	Ssh_public_key_id *string
-
-	Status *string
-
-	Username string
-}
-
-type Aws_inspector_assessment_target struct {
-	Aws_inspector_assessment_target_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Name string
-
-	Resource_group_arn *string
-}
-
-type Aws_inspector_assessment_template struct {
-	Aws_inspector_assessment_template_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Duration int
-
-	Name string
-
-	Rules_package_arns []string
-
-	Target_arn string
-}
-
-type Aws_inspector_resource_group struct {
-	Aws_inspector_resource_group_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Tags map[string]string
-}
-
-type Aws_instance_credit_specification_297 struct {
-	Cpu_credits *string
-}
-
-type Aws_instance_ebs_block_device_298 struct {
-	Delete_on_termination *bool
-
-	Device_name string
-
-	Encrypted *bool
-
-	Iops *int
-
-	Snapshot_id *string
-
-	Volume_id *string
-
-	Volume_size *int
-
-	Volume_type *string
-}
-
-type Aws_instance_ephemeral_block_device_299 struct {
-	Device_name string
-
-	No_device *bool
-
-	Virtual_name *string
-}
-
-type Aws_instance_network_interface_300 struct {
-	Delete_on_termination *bool
-
-	Device_index int
-
-	Network_interface_id string
-}
-
-type Aws_instance_root_block_device_301 struct {
-	Delete_on_termination *bool
-
-	Iops *int
-
-	Volume_id *string
-
-	Volume_size *int
-
-	Volume_type *string
-}
-
-type Aws_instance struct {
-	Aws_instance_id *string `lyra:"ignore"`
-
-	Ami string
-
-	Arn *string
-
-	Associate_public_ip_address *bool
-
-	Availability_zone *string
-
-	Block_device *map[string]string
-
-	Cpu_core_count *int
-
-	Cpu_threads_per_core *int
-
-	Credit_specification *[]Aws_instance_credit_specification_297
-
-	Disable_api_termination *bool
-
-	Ebs_block_device *[]Aws_instance_ebs_block_device_298
-
-	Ebs_optimized *bool
-
-	Ephemeral_block_device *[]Aws_instance_ephemeral_block_device_299
-
-	Get_password_data *bool
-
-	Host_id *string
-
-	Iam_instance_profile *string
-
-	Instance_initiated_shutdown_behavior *string
-
-	Instance_state *string
-
-	Instance_type string
-
-	Ipv6_address_count *int
-
-	Ipv6_addresses *[]string
-
-	Key_name *string
-
-	Monitoring *bool
-
-	Network_interface *[]Aws_instance_network_interface_300
-
-	Network_interface_id *string
-
-	Password_data *string
-
-	Placement_group *string
-
-	Primary_network_interface_id *string
-
-	Private_dns *string
-
-	Private_ip *string
-
-	Public_dns *string
-
-	Public_ip *string
-
-	Root_block_device *[]Aws_instance_root_block_device_301
-
-	Security_groups *[]string
-
-	Source_dest_check *bool
-
-	Subnet_id *string
-
-	Tags *map[string]string
-
-	Tenancy *string
-
-	User_data *string
-
-	User_data_base64 *string
-
-	Volume_tags *map[string]string
-
-	Vpc_security_group_ids *[]string
-}
-
-type Aws_internet_gateway struct {
-	Aws_internet_gateway_id *string `lyra:"ignore"`
-
-	Owner_id *string
-
-	Tags *map[string]string
-
-	Vpc_id *string
-}
-
-type Aws_iot_certificate struct {
-	Aws_iot_certificate_id *string `lyra:"ignore"`
-
-	Active bool
-
-	Arn *string
-
-	Csr string
-}
-
-type Aws_iot_policy struct {
-	Aws_iot_policy_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Default_version_id *string
-
-	Name string
-
-	Policy string
-}
-
-type Aws_iot_policy_attachment struct {
-	Aws_iot_policy_attachment_id *string `lyra:"ignore"`
-
-	Policy string
-
-	Target string
-}
-
-type Aws_iot_thing struct {
-	Aws_iot_thing_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Attributes *map[string]string
-
-	Default_client_id *string
-
-	Name string
-
-	Thing_type_name *string
-
-	Version *int
-}
-
-type Aws_iot_thing_principal_attachment struct {
-	Aws_iot_thing_principal_attachment_id *string `lyra:"ignore"`
-
-	Principal string
-
-	Thing string
-}
-
-type Aws_iot_thing_type_properties_302 struct {
-	Description *string
-
-	Searchable_attributes *[]string
-}
-
-type Aws_iot_thing_type struct {
-	Aws_iot_thing_type_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Deprecated *bool
-
-	Name string
-
-	Properties *[]Aws_iot_thing_type_properties_302
-}
-
-type Aws_iot_topic_rule_cloudwatch_alarm_303 struct {
-	Alarm_name string
-
-	Role_arn string
-
-	State_reason string
-
-	State_value string
-}
-
-type Aws_iot_topic_rule_cloudwatch_metric_304 struct {
-	Metric_name string
-
-	Metric_namespace string
-
-	Metric_timestamp *string
-
-	Metric_unit string
-
-	Metric_value string
-
-	Role_arn string
-}
-
-type Aws_iot_topic_rule_dynamodb_305 struct {
-	Hash_key_field string
-
-	Hash_key_type *string
-
-	Hash_key_value string
-
-	Payload_field *string
-
-	Range_key_field string
-
-	Range_key_type *string
-
-	Range_key_value string
-
-	Role_arn string
-
-	Table_name string
-}
-
-type Aws_iot_topic_rule_elasticsearch_306 struct {
-	Endpoint string
-
-	Id string
-
-	Index string
-
-	Role_arn string
-
-	Type string
-}
-
-type Aws_iot_topic_rule_firehose_307 struct {
-	Delivery_stream_name string
-
-	Role_arn string
-
-	Separator *string
-}
-
-type Aws_iot_topic_rule_kinesis_308 struct {
-	Partition_key *string
-
-	Role_arn string
-
-	Stream_name string
-}
-
-type Aws_iot_topic_rule_lambda_309 struct {
-	Function_arn string
-}
-
-type Aws_iot_topic_rule_republish_310 struct {
-	Role_arn string
-
-	Topic string
-}
-
-type Aws_iot_topic_rule_s3_311 struct {
-	Bucket_name string
-
-	Key string
-
-	Role_arn string
-}
-
-type Aws_iot_topic_rule_sns_312 struct {
-	Message_format *string
-
-	Role_arn string
-
-	Target_arn string
-}
-
-type Aws_iot_topic_rule_sqs_313 struct {
-	Queue_url string
-
-	Role_arn string
-
-	Use_base64 bool
-}
-
-type Aws_iot_topic_rule struct {
-	Aws_iot_topic_rule_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Cloudwatch_alarm *[]Aws_iot_topic_rule_cloudwatch_alarm_303
-
-	Cloudwatch_metric *[]Aws_iot_topic_rule_cloudwatch_metric_304
-
-	Description *string
-
-	Dynamodb *[]Aws_iot_topic_rule_dynamodb_305
-
-	Elasticsearch *[]Aws_iot_topic_rule_elasticsearch_306
-
-	Enabled bool
-
-	Firehose *[]Aws_iot_topic_rule_firehose_307
-
-	Kinesis *[]Aws_iot_topic_rule_kinesis_308
-
-	Lambda *[]Aws_iot_topic_rule_lambda_309
-
-	Name string
-
-	Republish *[]Aws_iot_topic_rule_republish_310
-
-	S3 *[]Aws_iot_topic_rule_s3_311
-
-	Sns *[]Aws_iot_topic_rule_sns_312
-
-	Sql string
-
-	Sql_version string
-
-	Sqs *[]Aws_iot_topic_rule_sqs_313
-}
-
-type Aws_key_pair struct {
-	Aws_key_pair_id *string `lyra:"ignore"`
-
-	Fingerprint *string
-
-	Key_name *string
-
-	Key_name_prefix *string
-
-	Public_key string
-}
-
-type Aws_kinesis_analytics_application_cloudwatch_logging_options_314 struct {
-	Id *string
-
-	Log_stream_arn string
-
-	Role_arn string
-}
-
-type Aws_kinesis_analytics_application_inputs_315_kinesis_firehose_316 struct {
-	Resource_arn string
-
-	Role_arn string
-}
-
-type Aws_kinesis_analytics_application_inputs_315_kinesis_stream_317 struct {
-	Resource_arn string
-
-	Role_arn string
-}
-
-type Aws_kinesis_analytics_application_inputs_315_parallelism_318 struct {
-	Count int
-}
-
-type Aws_kinesis_analytics_application_inputs_315_processing_configuration_319_lambda_320 struct {
-	Resource_arn string
-
-	Role_arn string
-}
-
-type Aws_kinesis_analytics_application_inputs_315_processing_configuration_319 struct {
-	Lambda []Aws_kinesis_analytics_application_inputs_315_processing_configuration_319_lambda_320
-}
-
-type Aws_kinesis_analytics_application_inputs_315_schema_321_record_columns_322 struct {
-	Mapping *string
-
-	Name string
-
-	Sql_type string
-}
-
-type Aws_kinesis_analytics_application_inputs_315_schema_321_record_format_323_mapping_parameters_324_csv_325 struct {
-	Record_column_delimiter string
-
-	Record_row_delimiter string
-}
-
-type Aws_kinesis_analytics_application_inputs_315_schema_321_record_format_323_mapping_parameters_324_json_326 struct {
-	Record_row_path string
-}
-
-type Aws_kinesis_analytics_application_inputs_315_schema_321_record_format_323_mapping_parameters_324 struct {
-	Csv *[]Aws_kinesis_analytics_application_inputs_315_schema_321_record_format_323_mapping_parameters_324_csv_325
-
-	Json *[]Aws_kinesis_analytics_application_inputs_315_schema_321_record_format_323_mapping_parameters_324_json_326
-}
-
-type Aws_kinesis_analytics_application_inputs_315_schema_321_record_format_323 struct {
-	Mapping_parameters *[]Aws_kinesis_analytics_application_inputs_315_schema_321_record_format_323_mapping_parameters_324
-
-	Record_format_type *string
-}
-
-type Aws_kinesis_analytics_application_inputs_315_schema_321 struct {
-	Record_columns []Aws_kinesis_analytics_application_inputs_315_schema_321_record_columns_322
-
-	Record_encoding *string
-
-	Record_format []Aws_kinesis_analytics_application_inputs_315_schema_321_record_format_323
-}
-
-type Aws_kinesis_analytics_application_inputs_315_starting_position_configuration_327 struct {
-	Starting_position *string
-}
-
-type Aws_kinesis_analytics_application_inputs_315 struct {
-	Id *string
-
-	Kinesis_firehose *[]Aws_kinesis_analytics_application_inputs_315_kinesis_firehose_316
-
-	Kinesis_stream *[]Aws_kinesis_analytics_application_inputs_315_kinesis_stream_317
-
-	Name_prefix string
-
-	Parallelism *[]Aws_kinesis_analytics_application_inputs_315_parallelism_318
-
-	Processing_configuration *[]Aws_kinesis_analytics_application_inputs_315_processing_configuration_319
-
-	Schema []Aws_kinesis_analytics_application_inputs_315_schema_321
-
-	Starting_position_configuration *[]Aws_kinesis_analytics_application_inputs_315_starting_position_configuration_327
-
-	Stream_names *[]string
-}
-
-type Aws_kinesis_analytics_application_outputs_328_kinesis_firehose_329 struct {
-	Resource_arn string
-
-	Role_arn string
-}
-
-type Aws_kinesis_analytics_application_outputs_328_kinesis_stream_330 struct {
-	Resource_arn string
-
-	Role_arn string
-}
-
-type Aws_kinesis_analytics_application_outputs_328_lambda_331 struct {
-	Resource_arn string
-
-	Role_arn string
-}
-
-type Aws_kinesis_analytics_application_outputs_328_schema_332 struct {
-	Record_format_type *string
-}
-
-type Aws_kinesis_analytics_application_outputs_328 struct {
-	Id *string
-
-	Kinesis_firehose *[]Aws_kinesis_analytics_application_outputs_328_kinesis_firehose_329
-
-	Kinesis_stream *[]Aws_kinesis_analytics_application_outputs_328_kinesis_stream_330
-
-	Lambda *[]Aws_kinesis_analytics_application_outputs_328_lambda_331
-
-	Name string
-
-	Schema []Aws_kinesis_analytics_application_outputs_328_schema_332
-}
-
-type Aws_kinesis_analytics_application_reference_data_sources_333_s3_334 struct {
-	Bucket_arn string
-
-	File_key string
-
-	Role_arn string
-}
-
-type Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_columns_336 struct {
-	Mapping *string
-
-	Name string
-
-	Sql_type string
-}
-
-type Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_format_337_mapping_parameters_338_csv_339 struct {
-	Record_column_delimiter string
-
-	Record_row_delimiter string
-}
-
-type Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_format_337_mapping_parameters_338_json_340 struct {
-	Record_row_path string
-}
-
-type Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_format_337_mapping_parameters_338 struct {
-	Csv *[]Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_format_337_mapping_parameters_338_csv_339
-
-	Json *[]Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_format_337_mapping_parameters_338_json_340
-}
-
-type Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_format_337 struct {
-	Mapping_parameters *[]Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_format_337_mapping_parameters_338
-
-	Record_format_type *string
-}
-
-type Aws_kinesis_analytics_application_reference_data_sources_333_schema_335 struct {
-	Record_columns []Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_columns_336
-
-	Record_encoding *string
-
-	Record_format []Aws_kinesis_analytics_application_reference_data_sources_333_schema_335_record_format_337
-}
-
-type Aws_kinesis_analytics_application_reference_data_sources_333 struct {
-	Id *string
-
-	S3 []Aws_kinesis_analytics_application_reference_data_sources_333_s3_334
-
-	Schema []Aws_kinesis_analytics_application_reference_data_sources_333_schema_335
-
-	Table_name string
-}
-
-type Aws_kinesis_analytics_application struct {
-	Aws_kinesis_analytics_application_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Cloudwatch_logging_options *[]Aws_kinesis_analytics_application_cloudwatch_logging_options_314
-
-	Code *string
-
-	Create_timestamp *string
-
-	Description *string
-
-	Inputs *[]Aws_kinesis_analytics_application_inputs_315
-
-	Last_update_timestamp *string
-
-	Name string
-
-	Outputs *[]Aws_kinesis_analytics_application_outputs_328
-
-	Reference_data_sources *[]Aws_kinesis_analytics_application_reference_data_sources_333
-
-	Status *string
-
-	Version *int
-}
-
-type Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_cloudwatch_logging_options_342 struct {
-	Enabled *bool
-
-	Log_group_name *string
-
-	Log_stream_name *string
-}
-
-type Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_processing_configuration_343_processors_344_parameters_345 struct {
-	Parameter_name string
-
-	Parameter_value string
-}
-
-type Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_processing_configuration_343_processors_344 struct {
-	Parameters *[]Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_processing_configuration_343_processors_344_parameters_345
-
-	Type string
-}
-
-type Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_processing_configuration_343 struct {
-	Enabled *bool
-
-	Processors *[]Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_processing_configuration_343_processors_344
-}
-
-type Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341 struct {
-	Buffering_interval *int
-
-	Buffering_size *int
-
-	Cloudwatch_logging_options *[]Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_cloudwatch_logging_options_342
-
-	Domain_arn string
-
-	Index_name string
-
-	Index_rotation_period *string
-
-	Processing_configuration *[]Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341_processing_configuration_343
-
-	Retry_duration *int
-
-	Role_arn string
-
-	S3_backup_mode *string
-
-	Type_name *string
-}
-
-type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_cloudwatch_logging_options_347 struct {
-	Enabled *bool
-
-	Log_group_name *string
-
-	Log_stream_name *string
-}
-
-type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_input_format_configuration_349_deserializer_350_hive_json_ser_de_351 struct {
-	Timestamp_formats *[]string
-}
-
-type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_input_format_configuration_349_deserializer_350_open_x_json_ser_de_352 struct {
-	Case_insensitive *bool
-
-	Column_to_json_key_mappings *map[string]string
-
-	Convert_dots_in_json_keys_to_underscores *bool
-}
-
-type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_input_format_configuration_349_deserializer_350 struct {
-	Hive_json_ser_de *[]Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_input_format_configuration_349_deserializer_350_hive_json_ser_de_351
-
-	Open_x_json_ser_de *[]Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_input_format_configuration_349_deserializer_350_open_x_json_ser_de_352
-}
-
-type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_input_format_configuration_349 struct {
-	Deserializer []Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_input_format_configuration_349_deserializer_350
-}
-
-type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_output_format_configuration_353_serializer_354_orc_ser_de_355 struct {
-	Block_size_bytes *int
-
-	Bloom_filter_columns *[]string
-
-	Bloom_filter_false_positive_probability *float64
-
-	Compression *string
-
-	Dictionary_key_threshold *float64
-
-	Enable_padding *bool
-
-	Format_version *string
-
-	Padding_tolerance *float64
-
-	Row_index_stride *int
-
-	Stripe_size_bytes *int
-}
-
-type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_output_format_configuration_353_serializer_354_parquet_ser_de_356 struct {
-	Block_size_bytes *int
-
-	Compression *string
-
-	Enable_dictionary_compression *bool
-
-	Max_padding_bytes *int
-
-	Page_size_bytes *int
-
-	Writer_version *string
-}
-
-type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_output_format_configuration_353_serializer_354 struct {
-	Orc_ser_de *[]Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_output_format_configuration_353_serializer_354_orc_ser_de_355
-
-	Parquet_ser_de *[]Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_output_format_configuration_353_serializer_354_parquet_ser_de_356
-}
-
-type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_output_format_configuration_353 struct {
-	Serializer []Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_output_format_configuration_353_serializer_354
-}
-
-type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_schema_configuration_357 struct {
-	Catalog_id *string
-
-	Database_name string
-
-	Region *string
-
-	Role_arn string
-
-	Table_name string
-
-	Version_id *string
-}
-
-type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348 struct {
-	Enabled *bool
-
-	Input_format_configuration []Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_input_format_configuration_349
-
-	Output_format_configuration []Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_output_format_configuration_353
-
-	Schema_configuration []Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348_schema_configuration_357
-}
-
-type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_processing_configuration_358_processors_359_parameters_360 struct {
-	Parameter_name string
-
-	Parameter_value string
-}
-
-type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_processing_configuration_358_processors_359 struct {
-	Parameters *[]Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_processing_configuration_358_processors_359_parameters_360
-
-	Type string
-}
-
-type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_processing_configuration_358 struct {
-	Enabled *bool
-
-	Processors *[]Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_processing_configuration_358_processors_359
-}
-
-type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_s3_backup_configuration_361_cloudwatch_logging_options_362 struct {
-	Enabled *bool
-
-	Log_group_name *string
-
-	Log_stream_name *string
-}
-
-type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_s3_backup_configuration_361 struct {
-	Bucket_arn string
-
-	Buffer_interval *int
-
-	Buffer_size *int
-
-	Cloudwatch_logging_options *[]Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_s3_backup_configuration_361_cloudwatch_logging_options_362
-
-	Compression_format *string
-
-	Kms_key_arn *string
-
-	Prefix *string
-
-	Role_arn string
-}
-
-type Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346 struct {
-	Bucket_arn string
-
-	Buffer_interval *int
-
-	Buffer_size *int
-
-	Cloudwatch_logging_options *[]Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_cloudwatch_logging_options_347
-
-	Compression_format *string
-
-	Data_format_conversion_configuration *[]Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_data_format_conversion_configuration_348
-
-	Error_output_prefix *string
-
-	Kms_key_arn *string
-
-	Prefix *string
-
-	Processing_configuration *[]Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_processing_configuration_358
-
-	Role_arn string
-
-	S3_backup_configuration *[]Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346_s3_backup_configuration_361
-
-	S3_backup_mode *string
-}
-
-type Aws_kinesis_firehose_delivery_stream_kinesis_source_configuration_363 struct {
-	Kinesis_stream_arn string
-
-	Role_arn string
-}
-
-type Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_cloudwatch_logging_options_365 struct {
-	Enabled *bool
-
-	Log_group_name *string
-
-	Log_stream_name *string
-}
-
-type Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_processing_configuration_366_processors_367_parameters_368 struct {
-	Parameter_name string
-
-	Parameter_value string
-}
-
-type Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_processing_configuration_366_processors_367 struct {
-	Parameters *[]Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_processing_configuration_366_processors_367_parameters_368
-
-	Type string
-}
-
-type Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_processing_configuration_366 struct {
-	Enabled *bool
-
-	Processors *[]Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_processing_configuration_366_processors_367
-}
-
-type Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_s3_backup_configuration_369_cloudwatch_logging_options_370 struct {
-	Enabled *bool
-
-	Log_group_name *string
-
-	Log_stream_name *string
-}
-
-type Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_s3_backup_configuration_369 struct {
-	Bucket_arn string
-
-	Buffer_interval *int
-
-	Buffer_size *int
-
-	Cloudwatch_logging_options *[]Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_s3_backup_configuration_369_cloudwatch_logging_options_370
-
-	Compression_format *string
-
-	Kms_key_arn *string
-
-	Prefix *string
-
-	Role_arn string
-}
-
-type Aws_kinesis_firehose_delivery_stream_redshift_configuration_364 struct {
-	Cloudwatch_logging_options *[]Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_cloudwatch_logging_options_365
-
-	Cluster_jdbcurl string
-
-	Copy_options *string
-
-	Data_table_columns *string
-
-	Data_table_name string
-
-	Password string
-
-	Processing_configuration *[]Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_processing_configuration_366
-
-	Retry_duration *int
-
-	Role_arn string
-
-	S3_backup_configuration *[]Aws_kinesis_firehose_delivery_stream_redshift_configuration_364_s3_backup_configuration_369
-
-	S3_backup_mode *string
-
-	Username string
-}
-
-type Aws_kinesis_firehose_delivery_stream_s3_configuration_371_cloudwatch_logging_options_372 struct {
-	Enabled *bool
-
-	Log_group_name *string
-
-	Log_stream_name *string
-}
-
-type Aws_kinesis_firehose_delivery_stream_s3_configuration_371 struct {
-	Bucket_arn string
-
-	Buffer_interval *int
-
-	Buffer_size *int
-
-	Cloudwatch_logging_options *[]Aws_kinesis_firehose_delivery_stream_s3_configuration_371_cloudwatch_logging_options_372
-
-	Compression_format *string
-
-	Kms_key_arn *string
-
-	Prefix *string
-
-	Role_arn string
-}
-
-type Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_cloudwatch_logging_options_374 struct {
-	Enabled *bool
-
-	Log_group_name *string
-
-	Log_stream_name *string
-}
-
-type Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_processing_configuration_375_processors_376_parameters_377 struct {
-	Parameter_name string
-
-	Parameter_value string
-}
-
-type Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_processing_configuration_375_processors_376 struct {
-	Parameters *[]Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_processing_configuration_375_processors_376_parameters_377
-
-	Type string
-}
-
-type Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_processing_configuration_375 struct {
-	Enabled *bool
-
-	Processors *[]Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_processing_configuration_375_processors_376
-}
-
-type Aws_kinesis_firehose_delivery_stream_splunk_configuration_373 struct {
-	Cloudwatch_logging_options *[]Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_cloudwatch_logging_options_374
-
-	Hec_acknowledgment_timeout *int
-
-	Hec_endpoint string
-
-	Hec_endpoint_type *string
-
-	Hec_token string
-
-	Processing_configuration *[]Aws_kinesis_firehose_delivery_stream_splunk_configuration_373_processing_configuration_375
-
-	Retry_duration *int
-
-	S3_backup_mode *string
-}
-
-type Aws_kinesis_firehose_delivery_stream struct {
-	Aws_kinesis_firehose_delivery_stream_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Destination string
-
-	Destination_id *string
-
-	Elasticsearch_configuration *[]Aws_kinesis_firehose_delivery_stream_elasticsearch_configuration_341
-
-	Extended_s3_configuration *[]Aws_kinesis_firehose_delivery_stream_extended_s3_configuration_346
-
-	Kinesis_source_configuration *[]Aws_kinesis_firehose_delivery_stream_kinesis_source_configuration_363
-
-	Name string
-
-	Redshift_configuration *[]Aws_kinesis_firehose_delivery_stream_redshift_configuration_364
-
-	S3_configuration *[]Aws_kinesis_firehose_delivery_stream_s3_configuration_371
-
-	Splunk_configuration *[]Aws_kinesis_firehose_delivery_stream_splunk_configuration_373
-
-	Tags *map[string]string
-
-	Version_id *string
-}
-
-type Aws_kinesis_stream struct {
-	Aws_kinesis_stream_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Encryption_type *string
-
-	Kms_key_id *string
-
-	Name string
-
-	Retention_period *int
-
-	Shard_count int
-
-	Shard_level_metrics *[]string
-
-	Tags *map[string]string
-}
-
-type Aws_kms_alias struct {
-	Aws_kms_alias_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Name *string
-
-	Name_prefix *string
-
-	Target_key_arn *string
-
-	Target_key_id string
-}
-
-type Aws_kms_grant_constraints_378 struct {
-	Encryption_context_equals *map[string]string
-
-	Encryption_context_subset *map[string]string
-}
-
-type Aws_kms_grant struct {
-	Aws_kms_grant_id *string `lyra:"ignore"`
-
-	Constraints *[]Aws_kms_grant_constraints_378
-
-	Grant_creation_tokens *[]string
-
-	Grant_id *string
-
-	Grant_token *string
-
-	Grantee_principal string
-
-	Key_id string
-
-	Name *string
-
-	Operations []string
-
-	Retire_on_delete *bool
-
-	Retiring_principal *string
-}
-
-type Aws_kms_key struct {
-	Aws_kms_key_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Deletion_window_in_days *int
-
-	Description *string
-
-	Enable_key_rotation *bool
-
-	Is_enabled *bool
-
-	Key_id *string
-
-	Key_usage *string
-
-	Policy *string
-
-	Tags *map[string]string
-}
-
-type Aws_lambda_alias_routing_config_379 struct {
-	Additional_version_weights *map[string]string
-}
-
-type Aws_lambda_alias struct {
-	Aws_lambda_alias_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Description *string
-
-	Function_name string
-
-	Function_version string
-
-	Invoke_arn *string
-
-	Name string
-
-	Routing_config *[]Aws_lambda_alias_routing_config_379
-}
-
-type Aws_lambda_event_source_mapping struct {
-	Aws_lambda_event_source_mapping_id *string `lyra:"ignore"`
-
-	Batch_size *int
-
-	Enabled *bool
-
-	Event_source_arn string
-
-	Function_arn *string
-
-	Function_name string
-
-	Last_modified *string
-
-	Last_processing_result *string
-
-	Starting_position *string
-
-	Starting_position_timestamp *string
-
-	State *string
-
-	State_transition_reason *string
-
-	Uuid *string
-}
-
-type Aws_lambda_function_dead_letter_config_380 struct {
-	Target_arn string
-}
-
-type Aws_lambda_function_environment_381 struct {
-	Variables *map[string]string
-}
-
-type Aws_lambda_function_tracing_config_382 struct {
-	Mode string
-}
-
-type Aws_lambda_function_vpc_config_383 struct {
-	Security_group_ids []string
-
-	Subnet_ids []string
-
-	Vpc_id *string
-}
-
-type Aws_lambda_function struct {
-	Aws_lambda_function_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Dead_letter_config *[]Aws_lambda_function_dead_letter_config_380
-
-	Description *string
-
-	Environment *[]Aws_lambda_function_environment_381
-
-	Filename *string
-
-	Function_name string
-
-	Handler string
-
-	Invoke_arn *string
-
-	Kms_key_arn *string
-
-	Last_modified *string
-
-	Layers *[]string
-
-	Memory_size *int
-
-	Publish *bool
-
-	Qualified_arn *string
-
-	Reserved_concurrent_executions *int
-
-	Role string
-
-	Runtime string
-
-	S3_bucket *string
-
-	S3_key *string
-
-	S3_object_version *string
-
-	Source_code_hash *string
-
-	Source_code_size *int
-
-	Tags *map[string]string
-
-	Timeout *int
-
-	Tracing_config *[]Aws_lambda_function_tracing_config_382
-
-	Version *string
-
-	Vpc_config *[]Aws_lambda_function_vpc_config_383
-}
-
-type Aws_lambda_layer_version struct {
-	Aws_lambda_layer_version_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Compatible_runtimes *[]string
-
-	Created_date *string
-
-	Description *string
-
-	Filename *string
-
-	Layer_arn *string
-
-	Layer_name string
-
-	License_info *string
-
-	S3_bucket *string
-
-	S3_key *string
-
-	S3_object_version *string
-
-	Source_code_hash *string
-
-	Source_code_size *int
-
-	Version *string
-}
-
-type Aws_lambda_permission struct {
-	Aws_lambda_permission_id *string `lyra:"ignore"`
-
-	Action string
-
-	Event_source_token *string
-
-	Function_name string
-
-	Principal string
-
-	Qualifier *string
-
-	Source_account *string
-
-	Source_arn *string
-
-	Statement_id *string
-
-	Statement_id_prefix *string
-}
-
-type Aws_launch_configuration_ebs_block_device_384 struct {
-	Delete_on_termination *bool
-
-	Device_name string
-
-	Encrypted *bool
-
-	Iops *int
-
-	No_device *bool
-
-	Snapshot_id *string
-
-	Volume_size *int
-
-	Volume_type *string
-}
-
-type Aws_launch_configuration_ephemeral_block_device_385 struct {
-	Device_name string
-
-	Virtual_name string
-}
-
-type Aws_launch_configuration_root_block_device_386 struct {
-	Delete_on_termination *bool
-
-	Iops *int
-
-	Volume_size *int
-
-	Volume_type *string
-}
-
-type Aws_launch_configuration struct {
-	Aws_launch_configuration_id *string `lyra:"ignore"`
-
-	Associate_public_ip_address *bool
-
-	Ebs_block_device *[]Aws_launch_configuration_ebs_block_device_384
-
-	Ebs_optimized *bool
-
-	Enable_monitoring *bool
-
-	Ephemeral_block_device *[]Aws_launch_configuration_ephemeral_block_device_385
-
-	Iam_instance_profile *string
-
-	Image_id string
-
-	Instance_type string
-
-	Key_name *string
-
-	Name *string
-
-	Name_prefix *string
-
-	Placement_tenancy *string
-
-	Root_block_device *[]Aws_launch_configuration_root_block_device_386
-
-	Security_groups *[]string
-
-	Spot_price *string
-
-	User_data *string
-
-	User_data_base64 *string
-
-	Vpc_classic_link_id *string
-
-	Vpc_classic_link_security_groups *[]string
-}
-
-type Aws_launch_template_block_device_mappings_387_ebs_388 struct {
-	Delete_on_termination *string
-
-	Encrypted *string
-
-	Iops *int
-
-	Kms_key_id *string
-
-	Snapshot_id *string
-
-	Volume_size *int
-
-	Volume_type *string
-}
-
-type Aws_launch_template_block_device_mappings_387 struct {
-	Device_name *string
-
-	Ebs *[]Aws_launch_template_block_device_mappings_387_ebs_388
-
-	No_device *string
-
-	Virtual_name *string
-}
-
-type Aws_launch_template_capacity_reservation_specification_389_capacity_reservation_target_390 struct {
-	Capacity_reservation_id *string
-}
-
-type Aws_launch_template_capacity_reservation_specification_389 struct {
-	Capacity_reservation_preference *string
-
-	Capacity_reservation_target *[]Aws_launch_template_capacity_reservation_specification_389_capacity_reservation_target_390
-}
-
-type Aws_launch_template_credit_specification_391 struct {
-	Cpu_credits *string
-}
-
-type Aws_launch_template_elastic_gpu_specifications_392 struct {
-	Type string
-}
-
-type Aws_launch_template_iam_instance_profile_393 struct {
-	Arn *string
-
-	Name *string
-}
-
-type Aws_launch_template_instance_market_options_394_spot_options_395 struct {
-	Block_duration_minutes *int
-
-	Instance_interruption_behavior *string
-
-	Max_price *string
-
-	Spot_instance_type *string
-
-	Valid_until *string
-}
-
-type Aws_launch_template_instance_market_options_394 struct {
-	Market_type *string
-
-	Spot_options *[]Aws_launch_template_instance_market_options_394_spot_options_395
-}
-
-type Aws_launch_template_license_specification_396 struct {
-	License_configuration_arn string
-}
-
-type Aws_launch_template_monitoring_397 struct {
-	Enabled *bool
-}
-
-type Aws_launch_template_network_interfaces_398 struct {
-	Associate_public_ip_address *bool
-
-	Delete_on_termination *bool
-
-	Description *string
-
-	Device_index *int
-
-	Ipv4_address_count *int
-
-	Ipv4_addresses *[]string
-
-	Ipv6_address_count *int
-
-	Ipv6_addresses *[]string
-
-	Network_interface_id *string
-
-	Private_ip_address *string
-
-	Security_groups *[]string
-
-	Subnet_id *string
-}
-
-type Aws_launch_template_placement_399 struct {
-	Affinity *string
-
-	Availability_zone *string
-
-	Group_name *string
-
-	Host_id *string
-
-	Spread_domain *string
-
-	Tenancy *string
-}
-
-type Aws_launch_template_tag_specifications_400 struct {
-	Resource_type *string
-
-	Tags *map[string]string
-}
-
-type Aws_launch_template struct {
-	Aws_launch_template_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Block_device_mappings *[]Aws_launch_template_block_device_mappings_387
-
-	Capacity_reservation_specification *[]Aws_launch_template_capacity_reservation_specification_389
-
-	Credit_specification *[]Aws_launch_template_credit_specification_391
-
-	Default_version *int
-
-	Description *string
-
-	Disable_api_termination *bool
-
-	Ebs_optimized *string
-
-	Elastic_gpu_specifications *[]Aws_launch_template_elastic_gpu_specifications_392
-
-	Iam_instance_profile *[]Aws_launch_template_iam_instance_profile_393
-
-	Image_id *string
-
-	Instance_initiated_shutdown_behavior *string
-
-	Instance_market_options *[]Aws_launch_template_instance_market_options_394
-
-	Instance_type *string
-
-	Kernel_id *string
-
-	Key_name *string
-
-	Latest_version *int
-
-	License_specification *[]Aws_launch_template_license_specification_396
-
-	Monitoring *[]Aws_launch_template_monitoring_397
-
-	Name *string
-
-	Name_prefix *string
-
-	Network_interfaces *[]Aws_launch_template_network_interfaces_398
-
-	Placement *[]Aws_launch_template_placement_399
-
-	Ram_disk_id *string
-
-	Security_group_names *[]string
-
-	Tag_specifications *[]Aws_launch_template_tag_specifications_400
-
-	Tags *map[string]string
-
-	User_data *string
-
-	Vpc_security_group_ids *[]string
-}
-
-type Aws_lb_access_logs_401 struct {
-	Bucket string
-
-	Enabled *bool
-
-	Prefix *string
-}
-
-type Aws_lb_subnet_mapping_402 struct {
-	Allocation_id *string
-
-	Subnet_id string
-}
-
-type Aws_lb struct {
-	Aws_lb_id *string `lyra:"ignore"`
-
-	Access_logs *[]Aws_lb_access_logs_401
-
-	Arn *string
-
-	Arn_suffix *string
-
-	Dns_name *string
-
-	Enable_cross_zone_load_balancing *bool
-
-	Enable_deletion_protection *bool
-
-	Enable_http2 *bool
-
-	Idle_timeout *int
-
-	Internal *bool
-
-	Ip_address_type *string
-
-	Load_balancer_type *string
-
-	Name *string
-
-	Name_prefix *string
-
-	Security_groups *[]string
-
-	Subnet_mapping *[]Aws_lb_subnet_mapping_402
-
-	Subnets *[]string
-
-	Tags *map[string]string
-
-	Vpc_id *string
-
-	Zone_id *string
-}
-
-type Aws_lb_cookie_stickiness_policy struct {
-	Aws_lb_cookie_stickiness_policy_id *string `lyra:"ignore"`
-
-	Cookie_expiration_period *int
-
-	Lb_port int
-
-	Load_balancer string
-
-	Name string
-}
-
-type Aws_lb_listener_default_action_403_authenticate_cognito_404 struct {
-	Authentication_request_extra_params *map[string]string
-
-	On_unauthenticated_request *string
-
-	Scope *string
-
-	Session_cookie_name *string
-
-	Session_timeout *int
-
-	User_pool_arn string
-
-	User_pool_client_id string
-
-	User_pool_domain string
-}
-
-type Aws_lb_listener_default_action_403_authenticate_oidc_405 struct {
-	Authentication_request_extra_params *map[string]string
-
-	Authorization_endpoint string
-
-	Client_id string
-
-	Client_secret string
-
-	Issuer string
-
-	On_unauthenticated_request *string
-
-	Scope *string
-
-	Session_cookie_name *string
-
-	Session_timeout *int
-
-	Token_endpoint string
-
-	User_info_endpoint string
-}
-
-type Aws_lb_listener_default_action_403_fixed_response_406 struct {
-	Content_type string
-
-	Message_body *string
-
-	Status_code *string
-}
-
-type Aws_lb_listener_default_action_403_redirect_407 struct {
-	Host *string
-
-	Path *string
-
-	Port *string
-
-	Protocol *string
-
-	Query *string
-
-	Status_code string
-}
-
-type Aws_lb_listener_default_action_403 struct {
-	Authenticate_cognito *[]Aws_lb_listener_default_action_403_authenticate_cognito_404
-
-	Authenticate_oidc *[]Aws_lb_listener_default_action_403_authenticate_oidc_405
-
-	Fixed_response *[]Aws_lb_listener_default_action_403_fixed_response_406
-
-	Order *int
-
-	Redirect *[]Aws_lb_listener_default_action_403_redirect_407
-
-	Target_group_arn *string
-
-	Type string
-}
-
-type Aws_lb_listener struct {
-	Aws_lb_listener_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Certificate_arn *string
-
-	Default_action []Aws_lb_listener_default_action_403
-
-	Load_balancer_arn string
-
-	Port int
-
-	Protocol *string
-
-	Ssl_policy *string
-}
-
-type Aws_lb_listener_certificate struct {
-	Aws_lb_listener_certificate_id *string `lyra:"ignore"`
-
-	Certificate_arn string
-
-	Listener_arn string
-}
-
-type Aws_lb_listener_rule_action_408_authenticate_cognito_409 struct {
-	Authentication_request_extra_params *map[string]string
-
-	On_unauthenticated_request *string
-
-	Scope *string
-
-	Session_cookie_name *string
-
-	Session_timeout *int
-
-	User_pool_arn string
-
-	User_pool_client_id string
-
-	User_pool_domain string
-}
-
-type Aws_lb_listener_rule_action_408_authenticate_oidc_410 struct {
-	Authentication_request_extra_params *map[string]string
-
-	Authorization_endpoint string
-
-	Client_id string
-
-	Client_secret string
-
-	Issuer string
-
-	On_unauthenticated_request *string
-
-	Scope *string
-
-	Session_cookie_name *string
-
-	Session_timeout *int
-
-	Token_endpoint string
-
-	User_info_endpoint string
-}
-
-type Aws_lb_listener_rule_action_408_fixed_response_411 struct {
-	Content_type string
-
-	Message_body *string
-
-	Status_code *string
-}
-
-type Aws_lb_listener_rule_action_408_redirect_412 struct {
-	Host *string
-
-	Path *string
-
-	Port *string
-
-	Protocol *string
-
-	Query *string
-
-	Status_code string
-}
-
-type Aws_lb_listener_rule_action_408 struct {
-	Authenticate_cognito *[]Aws_lb_listener_rule_action_408_authenticate_cognito_409
-
-	Authenticate_oidc *[]Aws_lb_listener_rule_action_408_authenticate_oidc_410
-
-	Fixed_response *[]Aws_lb_listener_rule_action_408_fixed_response_411
-
-	Order *int
-
-	Redirect *[]Aws_lb_listener_rule_action_408_redirect_412
-
-	Target_group_arn *string
-
-	Type string
-}
-
-type Aws_lb_listener_rule_condition_413 struct {
-	Field *string
-
-	Values *[]string
-}
-
-type Aws_lb_listener_rule struct {
-	Aws_lb_listener_rule_id *string `lyra:"ignore"`
-
-	Action []Aws_lb_listener_rule_action_408
-
-	Arn *string
-
-	Condition []Aws_lb_listener_rule_condition_413
-
-	Listener_arn string
-
-	Priority *int
-}
-
-type Aws_lb_ssl_negotiation_policy_attribute_414 struct {
-	Name string
-
-	Value string
-}
-
-type Aws_lb_ssl_negotiation_policy struct {
-	Aws_lb_ssl_negotiation_policy_id *string `lyra:"ignore"`
-
-	Attribute *[]Aws_lb_ssl_negotiation_policy_attribute_414
-
-	Lb_port int
-
-	Load_balancer string
-
-	Name string
-}
-
-type Aws_lb_target_group_health_check_415 struct {
-	Healthy_threshold *int
-
-	Interval *int
-
-	Matcher *string
-
-	Path *string
-
-	Port *string
-
-	Protocol *string
-
-	Timeout *int
-
-	Unhealthy_threshold *int
-}
-
-type Aws_lb_target_group_stickiness_416 struct {
-	Cookie_duration *int
-
-	Enabled *bool
-
-	Type string
-}
-
-type Aws_lb_target_group struct {
-	Aws_lb_target_group_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Arn_suffix *string
-
-	Deregistration_delay *int
-
-	Health_check *[]Aws_lb_target_group_health_check_415
-
-	Name *string
-
-	Name_prefix *string
-
-	Port *int
-
-	Protocol *string
-
-	Proxy_protocol_v2 *bool
-
-	Slow_start *int
-
-	Stickiness *[]Aws_lb_target_group_stickiness_416
-
-	Tags *map[string]string
-
-	Target_type *string
-
-	Vpc_id *string
-}
-
-type Aws_lb_target_group_attachment struct {
-	Aws_lb_target_group_attachment_id *string `lyra:"ignore"`
-
-	Availability_zone *string
-
-	Port *int
-
-	Target_group_arn string
-
-	Target_id string
-}
-
-type Aws_licensemanager_association struct {
-	Aws_licensemanager_association_id *string `lyra:"ignore"`
-
-	License_configuration_arn string
-
-	Resource_arn string
-}
-
-type Aws_licensemanager_license_configuration struct {
-	Aws_licensemanager_license_configuration_id *string `lyra:"ignore"`
-
-	Description *string
-
-	License_count *int
-
-	License_count_hard_limit *bool
-
-	License_counting_type string
-
-	License_rules *[]string
-
-	Name string
-
-	Tags *map[string]string
-}
-
-type Aws_lightsail_domain struct {
-	Aws_lightsail_domain_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Domain_name string
-}
-
-type Aws_lightsail_instance struct {
-	Aws_lightsail_instance_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Availability_zone string
-
-	Blueprint_id string
-
-	Bundle_id string
-
-	Cpu_count *int
-
-	Created_at *string
-
-	Ipv6_address *string
-
-	Is_static_ip *bool
-
-	Key_pair_name *string
-
-	Name string
-
-	Private_ip_address *string
-
-	Public_ip_address *string
-
-	Ram_size *int
-
-	User_data *string
-
-	Username *string
-}
-
-type Aws_lightsail_key_pair struct {
-	Aws_lightsail_key_pair_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Encrypted_fingerprint *string
-
-	Encrypted_private_key *string
-
-	Fingerprint *string
-
-	Name *string
-
-	Name_prefix *string
-
-	Pgp_key *string
-
-	Private_key *string
-
-	Public_key *string
-}
-
-type Aws_lightsail_static_ip struct {
-	Aws_lightsail_static_ip_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Ip_address *string
-
-	Name string
-
-	Support_code *string
-}
-
-type Aws_lightsail_static_ip_attachment struct {
-	Aws_lightsail_static_ip_attachment_id *string `lyra:"ignore"`
-
-	Instance_name string
-
-	Static_ip_name string
-}
-
-type Aws_load_balancer_backend_server_policy struct {
-	Aws_load_balancer_backend_server_policy_id *string `lyra:"ignore"`
-
-	Instance_port int
-
-	Load_balancer_name string
-
-	Policy_names *[]string
-}
-
-type Aws_load_balancer_listener_policy struct {
-	Aws_load_balancer_listener_policy_id *string `lyra:"ignore"`
-
-	Load_balancer_name string
-
-	Load_balancer_port int
-
-	Policy_names *[]string
-}
-
-type Aws_load_balancer_policy_policy_attribute_417 struct {
-	Name *string
-
-	Value *string
-}
-
-type Aws_load_balancer_policy struct {
-	Aws_load_balancer_policy_id *string `lyra:"ignore"`
-
-	Load_balancer_name string
-
-	Policy_attribute *[]Aws_load_balancer_policy_policy_attribute_417
-
-	Policy_name string
-
-	Policy_type_name string
-}
-
-type Aws_macie_member_account_association struct {
-	Aws_macie_member_account_association_id *string `lyra:"ignore"`
-
-	Member_account_id string
-}
-
-type Aws_macie_s3_bucket_association_classification_type_418 struct {
-	Continuous *string
-
-	One_time *string
-}
-
-type Aws_macie_s3_bucket_association struct {
-	Aws_macie_s3_bucket_association_id *string `lyra:"ignore"`
-
-	Bucket_name string
-
-	Classification_type *[]Aws_macie_s3_bucket_association_classification_type_418
-
-	Member_account_id *string
-
-	Prefix *string
-}
-
-type Aws_main_route_table_association struct {
-	Aws_main_route_table_association_id *string `lyra:"ignore"`
-
-	Original_route_table_id *string
-
-	Route_table_id string
-
-	Vpc_id string
-}
-
-type Aws_media_package_channel_hls_ingest_419_ingest_endpoints_420 struct {
-	Password *string
-
-	Url *string
-
-	Username *string
-}
-
-type Aws_media_package_channel_hls_ingest_419 struct {
-	Ingest_endpoints *[]Aws_media_package_channel_hls_ingest_419_ingest_endpoints_420
-}
-
-type Aws_media_package_channel struct {
-	Aws_media_package_channel_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Channel_id string
-
-	Description *string
-
-	Hls_ingest *[]Aws_media_package_channel_hls_ingest_419
-}
-
-type Aws_media_store_container struct {
-	Aws_media_store_container_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Endpoint *string
-
-	Name string
-}
-
-type Aws_media_store_container_policy struct {
-	Aws_media_store_container_policy_id *string `lyra:"ignore"`
-
-	Container_name string
-
-	Policy string
-}
-
-type Aws_mq_broker_configuration_421 struct {
-	Id *string
-
-	Revision *int
-}
-
-type Aws_mq_broker_instances_422 struct {
-	Console_url *string
-
-	Endpoints *[]string
-
-	Ip_address *string
-}
-
-type Aws_mq_broker_logs_423 struct {
-	Audit *bool
-
-	General *bool
-}
-
-type Aws_mq_broker_maintenance_window_start_time_424 struct {
-	Day_of_week string
-
-	Time_of_day string
-
-	Time_zone string
-}
-
-type Aws_mq_broker_user_425 struct {
-	Console_access *bool
-
-	Groups *[]string
-
-	Password string
-
-	Username string
-}
-
-type Aws_mq_broker struct {
-	Aws_mq_broker_id *string `lyra:"ignore"`
-
-	Apply_immediately *bool
-
-	Arn *string
-
-	Auto_minor_version_upgrade *bool
-
-	Broker_name string
-
-	Configuration *[]Aws_mq_broker_configuration_421
-
-	Deployment_mode *string
-
-	Engine_type string
-
-	Engine_version string
-
-	Host_instance_type string
-
-	Instances *[]Aws_mq_broker_instances_422
-
-	Logs *[]Aws_mq_broker_logs_423
-
-	Maintenance_window_start_time *[]Aws_mq_broker_maintenance_window_start_time_424
-
-	Publicly_accessible *bool
-
-	Security_groups []string
-
-	Subnet_ids *[]string
-
-	Tags *map[string]string
-
-	User []Aws_mq_broker_user_425
-}
-
-type Aws_mq_configuration struct {
-	Aws_mq_configuration_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Data string
-
-	Description *string
-
-	Engine_type string
-
-	Engine_version string
-
-	Latest_revision *int
-
-	Name string
-
-	Tags *map[string]string
-}
-
-type Aws_nat_gateway struct {
-	Aws_nat_gateway_id *string `lyra:"ignore"`
-
-	Allocation_id string
-
-	Network_interface_id *string
-
-	Private_ip *string
-
-	Public_ip *string
-
-	Subnet_id string
-
-	Tags *map[string]string
-}
-
-type Aws_neptune_cluster struct {
-	Aws_neptune_cluster_id *string `lyra:"ignore"`
-
-	Apply_immediately *bool
-
-	Arn *string
-
-	Availability_zones *[]string
-
-	Backup_retention_period *int
-
-	Cluster_identifier *string
-
-	Cluster_identifier_prefix *string
-
-	Cluster_members *[]string
-
-	Cluster_resource_id *string
-
-	Endpoint *string
-
-	Engine *string
-
-	Engine_version *string
-
-	Final_snapshot_identifier *string
-
-	Hosted_zone_id *string
-
-	Iam_database_authentication_enabled *bool
-
-	Iam_roles *[]string
-
-	Kms_key_arn *string
-
-	Neptune_cluster_parameter_group_name *string
-
-	Neptune_subnet_group_name *string
-
-	Port *int
-
-	Preferred_backup_window *string
-
-	Preferred_maintenance_window *string
-
-	Reader_endpoint *string
-
-	Replication_source_identifier *string
-
-	Skip_final_snapshot *bool
-
-	Snapshot_identifier *string
-
-	Storage_encrypted *bool
-
-	Tags *map[string]string
-
-	Vpc_security_group_ids *[]string
-}
-
-type Aws_neptune_cluster_instance struct {
-	Aws_neptune_cluster_instance_id *string `lyra:"ignore"`
-
-	Address *string
-
-	Apply_immediately *bool
-
-	Arn *string
-
-	Auto_minor_version_upgrade *bool
-
-	Availability_zone *string
-
-	Cluster_identifier string
-
-	Dbi_resource_id *string
-
-	Endpoint *string
-
-	Engine *string
-
-	Engine_version *string
-
-	Identifier *string
-
-	Identifier_prefix *string
-
-	Instance_class string
-
-	Kms_key_arn *string
-
-	Neptune_parameter_group_name *string
-
-	Neptune_subnet_group_name *string
-
-	Port *int
-
-	Preferred_backup_window *string
-
-	Preferred_maintenance_window *string
-
-	Promotion_tier *int
-
-	Publicly_accessible *bool
-
-	Storage_encrypted *bool
-
-	Tags *map[string]string
-
-	Writer *bool
-}
-
-type Aws_neptune_cluster_parameter_group_parameter_426 struct {
-	Apply_method *string
-
-	Name string
-
-	Value string
-}
-
-type Aws_neptune_cluster_parameter_group struct {
-	Aws_neptune_cluster_parameter_group_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Description *string
-
-	Family string
-
-	Name *string
-
-	Name_prefix *string
-
-	Parameter *[]Aws_neptune_cluster_parameter_group_parameter_426
-
-	Tags *map[string]string
-}
-
-type Aws_neptune_cluster_snapshot struct {
-	Aws_neptune_cluster_snapshot_id *string `lyra:"ignore"`
-
-	Allocated_storage *int
-
-	Availability_zones *[]string
-
-	Db_cluster_identifier string
-
-	Db_cluster_snapshot_arn *string
-
-	Db_cluster_snapshot_identifier string
-
-	Engine *string
-
-	Engine_version *string
-
-	Kms_key_id *string
-
-	License_model *string
-
-	Port *int
-
-	Snapshot_type *string
-
-	Source_db_cluster_snapshot_arn *string
-
-	Status *string
-
-	Storage_encrypted *bool
-
-	Vpc_id *string
-}
-
-type Aws_neptune_event_subscription struct {
-	Aws_neptune_event_subscription_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Customer_aws_id *string
-
-	Enabled *bool
-
-	Event_categories *[]string
-
-	Name *string
-
-	Name_prefix *string
-
-	Sns_topic_arn string
-
-	Source_ids *[]string
-
-	Source_type *string
-
-	Tags *map[string]string
-}
-
-type Aws_neptune_parameter_group_parameter_427 struct {
-	Apply_method *string
-
-	Name string
-
-	Value string
-}
-
-type Aws_neptune_parameter_group struct {
-	Aws_neptune_parameter_group_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Description *string
-
-	Family string
-
-	Name string
-
-	Parameter *[]Aws_neptune_parameter_group_parameter_427
-
-	Tags *map[string]string
-}
-
-type Aws_neptune_subnet_group struct {
-	Aws_neptune_subnet_group_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Description *string
-
-	Name *string
-
-	Name_prefix *string
-
-	Subnet_ids []string
-
-	Tags *map[string]string
-}
-
-type Aws_network_acl_egress_428 struct {
-	Action string
-
-	Cidr_block *string
-
-	From_port int
-
-	Icmp_code *int
-
-	Icmp_type *int
-
-	Ipv6_cidr_block *string
-
-	Protocol string
-
-	Rule_no int
-
-	To_port int
-}
-
-type Aws_network_acl_ingress_429 struct {
-	Action string
-
-	Cidr_block *string
-
-	From_port int
-
-	Icmp_code *int
-
-	Icmp_type *int
-
-	Ipv6_cidr_block *string
-
-	Protocol string
-
-	Rule_no int
-
-	To_port int
-}
-
-type Aws_network_acl struct {
-	Aws_network_acl_id *string `lyra:"ignore"`
-
-	Egress *[]Aws_network_acl_egress_428
-
-	Ingress *[]Aws_network_acl_ingress_429
-
-	Owner_id *string
-
-	Subnet_id *string
-
-	Subnet_ids *[]string
-
-	Tags *map[string]string
-
-	Vpc_id string
-}
-
-type Aws_network_acl_rule struct {
-	Aws_network_acl_rule_id *string `lyra:"ignore"`
-
-	Cidr_block *string
-
-	Egress *bool
-
-	From_port *int
-
-	Icmp_code *string
-
-	Icmp_type *string
-
-	Ipv6_cidr_block *string
-
-	Network_acl_id string
-
-	Protocol string
-
-	Rule_action string
-
-	Rule_number int
-
-	To_port *int
-}
-
-type Aws_network_interface_attachment_430 struct {
-	Attachment_id *string
-
-	Device_index int
-
-	Instance string
-}
-
-type Aws_network_interface struct {
-	Aws_network_interface_id *string `lyra:"ignore"`
-
-	Attachment *[]Aws_network_interface_attachment_430
-
-	Description *string
-
-	Private_dns_name *string
-
-	Private_ip *string
-
-	Private_ips *[]string
-
-	Private_ips_count *int
-
-	Security_groups *[]string
-
-	Source_dest_check *bool
-
-	Subnet_id string
-
-	Tags *map[string]string
-}
-
-type Aws_network_interface_attachment struct {
-	Aws_network_interface_attachment_id *string `lyra:"ignore"`
-
-	Attachment_id *string
-
-	Device_index int
-
-	Instance_id string
-
-	Network_interface_id string
-
-	Status *string
-}
-
-type Aws_network_interface_sg_attachment struct {
-	Aws_network_interface_sg_attachment_id *string `lyra:"ignore"`
-
-	Network_interface_id string
-
-	Security_group_id string
-}
-
-type Aws_opsworks_application_app_source_431 struct {
-	Password *string
-
-	Revision *string
-
-	Ssh_key *string
-
-	Type string
-
-	Url *string
-
-	Username *string
-}
-
-type Aws_opsworks_application_environment_432 struct {
-	Key string
-
-	Secure *bool
-
-	Value string
-}
-
-type Aws_opsworks_application_ssl_configuration_433 struct {
-	Certificate string
-
-	Chain *string
-
-	Private_key string
-}
-
-type Aws_opsworks_application struct {
-	Aws_opsworks_application_id *string `lyra:"ignore"`
-
-	App_source *[]Aws_opsworks_application_app_source_431
-
-	Auto_bundle_on_deploy *string
-
-	Aws_flow_ruby_settings *string
-
-	Data_source_arn *string
-
-	Data_source_database_name *string
-
-	Data_source_type *string
-
-	Description *string
-
-	Document_root *string
-
-	Domains *[]string
-
-	Enable_ssl *bool
-
-	Environment *[]Aws_opsworks_application_environment_432
-
-	Name string
-
-	Rails_env *string
-
-	Short_name *string
-
-	Ssl_configuration *[]Aws_opsworks_application_ssl_configuration_433
-
-	Stack_id string
-
-	Type string
-}
-
-type Aws_opsworks_custom_layer_ebs_volume_434 struct {
-	Iops *int
-
-	Mount_point string
-
-	Number_of_disks int
-
-	Raid_level *string
-
-	Size int
-
-	Type *string
-}
-
-type Aws_opsworks_custom_layer struct {
-	Aws_opsworks_custom_layer_id *string `lyra:"ignore"`
-
-	Auto_assign_elastic_ips *bool
-
-	Auto_assign_public_ips *bool
-
-	Auto_healing *bool
-
-	Custom_configure_recipes *[]string
-
-	Custom_deploy_recipes *[]string
-
-	Custom_instance_profile_arn *string
-
-	Custom_json *string
-
-	Custom_security_group_ids *[]string
-
-	Custom_setup_recipes *[]string
-
-	Custom_shutdown_recipes *[]string
-
-	Custom_undeploy_recipes *[]string
-
-	Drain_elb_on_shutdown *bool
-
-	Ebs_volume *[]Aws_opsworks_custom_layer_ebs_volume_434
-
-	Elastic_load_balancer *string
-
-	Install_updates_on_boot *bool
-
-	Instance_shutdown_timeout *int
-
-	Name string
-
-	Short_name string
-
-	Stack_id string
-
-	System_packages *[]string
-
-	Use_ebs_optimized_instances *bool
-}
-
-type Aws_opsworks_ganglia_layer_ebs_volume_435 struct {
-	Iops *int
-
-	Mount_point string
-
-	Number_of_disks int
-
-	Raid_level *string
-
-	Size int
-
-	Type *string
-}
-
-type Aws_opsworks_ganglia_layer struct {
-	Aws_opsworks_ganglia_layer_id *string `lyra:"ignore"`
-
-	Auto_assign_elastic_ips *bool
-
-	Auto_assign_public_ips *bool
-
-	Auto_healing *bool
-
-	Custom_configure_recipes *[]string
-
-	Custom_deploy_recipes *[]string
-
-	Custom_instance_profile_arn *string
-
-	Custom_json *string
-
-	Custom_security_group_ids *[]string
-
-	Custom_setup_recipes *[]string
-
-	Custom_shutdown_recipes *[]string
-
-	Custom_undeploy_recipes *[]string
-
-	Drain_elb_on_shutdown *bool
-
-	Ebs_volume *[]Aws_opsworks_ganglia_layer_ebs_volume_435
-
-	Elastic_load_balancer *string
-
-	Install_updates_on_boot *bool
-
-	Instance_shutdown_timeout *int
-
-	Name *string
-
-	Password string
-
-	Stack_id string
-
-	System_packages *[]string
-
-	Url *string
-
-	Use_ebs_optimized_instances *bool
-
-	Username *string
-}
-
-type Aws_opsworks_haproxy_layer_ebs_volume_436 struct {
-	Iops *int
-
-	Mount_point string
-
-	Number_of_disks int
-
-	Raid_level *string
-
-	Size int
-
-	Type *string
-}
-
-type Aws_opsworks_haproxy_layer struct {
-	Aws_opsworks_haproxy_layer_id *string `lyra:"ignore"`
-
-	Auto_assign_elastic_ips *bool
-
-	Auto_assign_public_ips *bool
-
-	Auto_healing *bool
-
-	Custom_configure_recipes *[]string
-
-	Custom_deploy_recipes *[]string
-
-	Custom_instance_profile_arn *string
-
-	Custom_json *string
-
-	Custom_security_group_ids *[]string
-
-	Custom_setup_recipes *[]string
-
-	Custom_shutdown_recipes *[]string
-
-	Custom_undeploy_recipes *[]string
-
-	Drain_elb_on_shutdown *bool
-
-	Ebs_volume *[]Aws_opsworks_haproxy_layer_ebs_volume_436
-
-	Elastic_load_balancer *string
-
-	Healthcheck_method *string
-
-	Healthcheck_url *string
-
-	Install_updates_on_boot *bool
-
-	Instance_shutdown_timeout *int
-
-	Name *string
-
-	Stack_id string
-
-	Stats_enabled *bool
-
-	Stats_password string
-
-	Stats_url *string
-
-	Stats_user *string
-
-	System_packages *[]string
-
-	Use_ebs_optimized_instances *bool
-}
-
-type Aws_opsworks_instance_ebs_block_device_437 struct {
-	Delete_on_termination *bool
-
-	Device_name string
-
-	Iops *int
-
-	Snapshot_id *string
-
-	Volume_size *int
-
-	Volume_type *string
-}
-
-type Aws_opsworks_instance_ephemeral_block_device_438 struct {
-	Device_name string
-
-	Virtual_name string
-}
-
-type Aws_opsworks_instance_root_block_device_439 struct {
-	Delete_on_termination *bool
-
-	Iops *int
-
-	Volume_size *int
-
-	Volume_type *string
-}
-
-type Aws_opsworks_instance struct {
-	Aws_opsworks_instance_id *string `lyra:"ignore"`
-
-	Agent_version *string
-
-	Ami_id *string
-
-	Architecture *string
-
-	Auto_scaling_type *string
-
-	Availability_zone *string
-
-	Created_at *string
-
-	Delete_ebs *bool
-
-	Delete_eip *bool
-
-	Ebs_block_device *[]Aws_opsworks_instance_ebs_block_device_437
-
-	Ebs_optimized *bool
-
-	Ec2_instance_id *string
-
-	Ecs_cluster_arn *string
-
-	Elastic_ip *string
-
-	Ephemeral_block_device *[]Aws_opsworks_instance_ephemeral_block_device_438
-
-	Hostname *string
-
-	Infrastructure_class *string
-
-	Install_updates_on_boot *bool
-
-	Instance_profile_arn *string
-
-	Instance_type *string
-
-	Last_service_error_id *string
-
-	Layer_ids []string
-
-	Os *string
-
-	Platform *string
-
-	Private_dns *string
-
-	Private_ip *string
-
-	Public_dns *string
-
-	Public_ip *string
-
-	Registered_by *string
-
-	Reported_agent_version *string
-
-	Reported_os_family *string
-
-	Reported_os_name *string
-
-	Reported_os_version *string
-
-	Root_block_device *[]Aws_opsworks_instance_root_block_device_439
-
-	Root_device_type *string
-
-	Root_device_volume_id *string
-
-	Security_group_ids *[]string
-
-	Ssh_host_dsa_key_fingerprint *string
-
-	Ssh_host_rsa_key_fingerprint *string
-
-	Ssh_key_name *string
-
-	Stack_id string
-
-	State *string
-
-	Status *string
-
-	Subnet_id *string
-
-	Tenancy *string
-
-	Virtualization_type *string
-}
-
-type Aws_opsworks_java_app_layer_ebs_volume_440 struct {
-	Iops *int
-
-	Mount_point string
-
-	Number_of_disks int
-
-	Raid_level *string
-
-	Size int
-
-	Type *string
-}
-
-type Aws_opsworks_java_app_layer struct {
-	Aws_opsworks_java_app_layer_id *string `lyra:"ignore"`
-
-	App_server *string
-
-	App_server_version *string
-
-	Auto_assign_elastic_ips *bool
-
-	Auto_assign_public_ips *bool
-
-	Auto_healing *bool
-
-	Custom_configure_recipes *[]string
-
-	Custom_deploy_recipes *[]string
-
-	Custom_instance_profile_arn *string
-
-	Custom_json *string
-
-	Custom_security_group_ids *[]string
-
-	Custom_setup_recipes *[]string
-
-	Custom_shutdown_recipes *[]string
-
-	Custom_undeploy_recipes *[]string
-
-	Drain_elb_on_shutdown *bool
-
-	Ebs_volume *[]Aws_opsworks_java_app_layer_ebs_volume_440
-
-	Elastic_load_balancer *string
-
-	Install_updates_on_boot *bool
-
-	Instance_shutdown_timeout *int
-
-	Jvm_options *string
-
-	Jvm_type *string
-
-	Jvm_version *string
-
-	Name *string
-
-	Stack_id string
-
-	System_packages *[]string
-
-	Use_ebs_optimized_instances *bool
-}
-
-type Aws_opsworks_memcached_layer_ebs_volume_441 struct {
-	Iops *int
-
-	Mount_point string
-
-	Number_of_disks int
-
-	Raid_level *string
-
-	Size int
-
-	Type *string
-}
-
-type Aws_opsworks_memcached_layer struct {
-	Aws_opsworks_memcached_layer_id *string `lyra:"ignore"`
-
-	Allocated_memory *int
-
-	Auto_assign_elastic_ips *bool
-
-	Auto_assign_public_ips *bool
-
-	Auto_healing *bool
-
-	Custom_configure_recipes *[]string
-
-	Custom_deploy_recipes *[]string
-
-	Custom_instance_profile_arn *string
-
-	Custom_json *string
-
-	Custom_security_group_ids *[]string
-
-	Custom_setup_recipes *[]string
-
-	Custom_shutdown_recipes *[]string
-
-	Custom_undeploy_recipes *[]string
-
-	Drain_elb_on_shutdown *bool
-
-	Ebs_volume *[]Aws_opsworks_memcached_layer_ebs_volume_441
-
-	Elastic_load_balancer *string
-
-	Install_updates_on_boot *bool
-
-	Instance_shutdown_timeout *int
-
-	Name *string
-
-	Stack_id string
-
-	System_packages *[]string
-
-	Use_ebs_optimized_instances *bool
-}
-
-type Aws_opsworks_mysql_layer_ebs_volume_442 struct {
-	Iops *int
-
-	Mount_point string
-
-	Number_of_disks int
-
-	Raid_level *string
-
-	Size int
-
-	Type *string
-}
-
-type Aws_opsworks_mysql_layer struct {
-	Aws_opsworks_mysql_layer_id *string `lyra:"ignore"`
-
-	Auto_assign_elastic_ips *bool
-
-	Auto_assign_public_ips *bool
-
-	Auto_healing *bool
-
-	Custom_configure_recipes *[]string
-
-	Custom_deploy_recipes *[]string
-
-	Custom_instance_profile_arn *string
-
-	Custom_json *string
-
-	Custom_security_group_ids *[]string
-
-	Custom_setup_recipes *[]string
-
-	Custom_shutdown_recipes *[]string
-
-	Custom_undeploy_recipes *[]string
-
-	Drain_elb_on_shutdown *bool
-
-	Ebs_volume *[]Aws_opsworks_mysql_layer_ebs_volume_442
-
-	Elastic_load_balancer *string
-
-	Install_updates_on_boot *bool
-
-	Instance_shutdown_timeout *int
-
-	Name *string
-
-	Root_password *string
-
-	Root_password_on_all_instances *bool
-
-	Stack_id string
-
-	System_packages *[]string
-
-	Use_ebs_optimized_instances *bool
-}
-
-type Aws_opsworks_nodejs_app_layer_ebs_volume_443 struct {
-	Iops *int
-
-	Mount_point string
-
-	Number_of_disks int
-
-	Raid_level *string
-
-	Size int
-
-	Type *string
-}
-
-type Aws_opsworks_nodejs_app_layer struct {
-	Aws_opsworks_nodejs_app_layer_id *string `lyra:"ignore"`
-
-	Auto_assign_elastic_ips *bool
-
-	Auto_assign_public_ips *bool
-
-	Auto_healing *bool
-
-	Custom_configure_recipes *[]string
-
-	Custom_deploy_recipes *[]string
-
-	Custom_instance_profile_arn *string
-
-	Custom_json *string
-
-	Custom_security_group_ids *[]string
-
-	Custom_setup_recipes *[]string
-
-	Custom_shutdown_recipes *[]string
-
-	Custom_undeploy_recipes *[]string
-
-	Drain_elb_on_shutdown *bool
-
-	Ebs_volume *[]Aws_opsworks_nodejs_app_layer_ebs_volume_443
-
-	Elastic_load_balancer *string
-
-	Install_updates_on_boot *bool
-
-	Instance_shutdown_timeout *int
-
-	Name *string
-
-	Nodejs_version *string
-
-	Stack_id string
-
-	System_packages *[]string
-
-	Use_ebs_optimized_instances *bool
-}
-
-type Aws_opsworks_permission struct {
-	Aws_opsworks_permission_id *string `lyra:"ignore"`
-
-	Allow_ssh *bool
-
-	Allow_sudo *bool
-
-	Level *string
-
-	Stack_id *string
-
-	User_arn string
-}
-
-type Aws_opsworks_php_app_layer_ebs_volume_444 struct {
-	Iops *int
-
-	Mount_point string
-
-	Number_of_disks int
-
-	Raid_level *string
-
-	Size int
-
-	Type *string
-}
-
-type Aws_opsworks_php_app_layer struct {
-	Aws_opsworks_php_app_layer_id *string `lyra:"ignore"`
-
-	Auto_assign_elastic_ips *bool
-
-	Auto_assign_public_ips *bool
-
-	Auto_healing *bool
-
-	Custom_configure_recipes *[]string
-
-	Custom_deploy_recipes *[]string
-
-	Custom_instance_profile_arn *string
-
-	Custom_json *string
-
-	Custom_security_group_ids *[]string
-
-	Custom_setup_recipes *[]string
-
-	Custom_shutdown_recipes *[]string
-
-	Custom_undeploy_recipes *[]string
-
-	Drain_elb_on_shutdown *bool
-
-	Ebs_volume *[]Aws_opsworks_php_app_layer_ebs_volume_444
-
-	Elastic_load_balancer *string
-
-	Install_updates_on_boot *bool
-
-	Instance_shutdown_timeout *int
-
-	Name *string
-
-	Stack_id string
-
-	System_packages *[]string
-
-	Use_ebs_optimized_instances *bool
-}
-
-type Aws_opsworks_rails_app_layer_ebs_volume_445 struct {
-	Iops *int
-
-	Mount_point string
-
-	Number_of_disks int
-
-	Raid_level *string
-
-	Size int
-
-	Type *string
-}
-
-type Aws_opsworks_rails_app_layer struct {
-	Aws_opsworks_rails_app_layer_id *string `lyra:"ignore"`
-
-	App_server *string
-
-	Auto_assign_elastic_ips *bool
-
-	Auto_assign_public_ips *bool
-
-	Auto_healing *bool
-
-	Bundler_version *string
-
-	Custom_configure_recipes *[]string
-
-	Custom_deploy_recipes *[]string
-
-	Custom_instance_profile_arn *string
-
-	Custom_json *string
-
-	Custom_security_group_ids *[]string
-
-	Custom_setup_recipes *[]string
-
-	Custom_shutdown_recipes *[]string
-
-	Custom_undeploy_recipes *[]string
-
-	Drain_elb_on_shutdown *bool
-
-	Ebs_volume *[]Aws_opsworks_rails_app_layer_ebs_volume_445
-
-	Elastic_load_balancer *string
-
-	Install_updates_on_boot *bool
-
-	Instance_shutdown_timeout *int
-
-	Manage_bundler *bool
-
-	Name *string
-
-	Passenger_version *string
-
-	Ruby_version *string
-
-	Rubygems_version *string
-
-	Stack_id string
-
-	System_packages *[]string
-
-	Use_ebs_optimized_instances *bool
-}
-
-type Aws_opsworks_rds_db_instance struct {
-	Aws_opsworks_rds_db_instance_id *string `lyra:"ignore"`
-
-	Db_password string
-
-	Db_user string
-
-	Rds_db_instance_arn string
-
-	Stack_id string
-}
-
-type Aws_opsworks_stack_custom_cookbooks_source_446 struct {
-	Password *string
-
-	Revision *string
-
-	Ssh_key *string
-
-	Type string
-
-	Url string
-
-	Username *string
-}
-
-type Aws_opsworks_stack struct {
-	Aws_opsworks_stack_id *string `lyra:"ignore"`
-
-	Agent_version *string
-
-	Arn *string
-
-	Berkshelf_version *string
-
-	Color *string
-
-	Configuration_manager_name *string
-
-	Configuration_manager_version *string
-
-	Custom_cookbooks_source *[]Aws_opsworks_stack_custom_cookbooks_source_446
-
-	Custom_json *string
-
-	Default_availability_zone *string
-
-	Default_instance_profile_arn string
-
-	Default_os *string
-
-	Default_root_device_type *string
-
-	Default_ssh_key_name *string
-
-	Default_subnet_id *string
-
-	Hostname_theme *string
-
-	Manage_berkshelf *bool
-
-	Name string
-
-	Region string
-
-	Service_role_arn string
-
-	Stack_endpoint *string
-
-	Tags *map[string]string
-
-	Use_custom_cookbooks *bool
-
-	Use_opsworks_security_groups *bool
-
-	Vpc_id *string
-}
-
-type Aws_opsworks_static_web_layer_ebs_volume_447 struct {
-	Iops *int
-
-	Mount_point string
-
-	Number_of_disks int
-
-	Raid_level *string
-
-	Size int
-
-	Type *string
-}
-
-type Aws_opsworks_static_web_layer struct {
-	Aws_opsworks_static_web_layer_id *string `lyra:"ignore"`
-
-	Auto_assign_elastic_ips *bool
-
-	Auto_assign_public_ips *bool
-
-	Auto_healing *bool
-
-	Custom_configure_recipes *[]string
-
-	Custom_deploy_recipes *[]string
-
-	Custom_instance_profile_arn *string
-
-	Custom_json *string
-
-	Custom_security_group_ids *[]string
-
-	Custom_setup_recipes *[]string
-
-	Custom_shutdown_recipes *[]string
-
-	Custom_undeploy_recipes *[]string
-
-	Drain_elb_on_shutdown *bool
-
-	Ebs_volume *[]Aws_opsworks_static_web_layer_ebs_volume_447
-
-	Elastic_load_balancer *string
-
-	Install_updates_on_boot *bool
-
-	Instance_shutdown_timeout *int
-
-	Name *string
-
-	Stack_id string
-
-	System_packages *[]string
-
-	Use_ebs_optimized_instances *bool
-}
-
-type Aws_opsworks_user_profile struct {
-	Aws_opsworks_user_profile_id *string `lyra:"ignore"`
-
-	Allow_self_management *bool
-
-	Ssh_public_key *string
-
-	Ssh_username string
-
-	User_arn string
-}
-
-type Aws_organizations_account struct {
-	Aws_organizations_account_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Email string
-
-	Iam_user_access_to_billing *string
-
-	Joined_method *string
-
-	Joined_timestamp *string
-
-	Name string
-
-	Role_name *string
-
-	Status *string
-}
-
-type Aws_organizations_organization struct {
-	Aws_organizations_organization_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Aws_service_access_principals *[]string
-
-	Feature_set *string
-
-	Master_account_arn *string
-
-	Master_account_email *string
-
-	Master_account_id *string
-}
-
-type Aws_organizations_policy struct {
-	Aws_organizations_policy_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Content string
-
-	Description *string
-
-	Name string
-
-	Type *string
-}
-
-type Aws_organizations_policy_attachment struct {
-	Aws_organizations_policy_attachment_id *string `lyra:"ignore"`
-
-	Policy_id string
-
-	Target_id string
-}
-
-type Aws_pinpoint_adm_channel struct {
-	Aws_pinpoint_adm_channel_id *string `lyra:"ignore"`
-
-	Application_id string
-
-	Client_id string
-
-	Client_secret string
-
-	Enabled *bool
-}
-
-type Aws_pinpoint_apns_channel struct {
-	Aws_pinpoint_apns_channel_id *string `lyra:"ignore"`
-
-	Application_id string
-
-	Bundle_id *string
-
-	Certificate *string
-
-	Default_authentication_method *string
-
-	Enabled *bool
-
-	Private_key *string
-
-	Team_id *string
-
-	Token_key *string
-
-	Token_key_id *string
-}
-
-type Aws_pinpoint_apns_sandbox_channel struct {
-	Aws_pinpoint_apns_sandbox_channel_id *string `lyra:"ignore"`
-
-	Application_id string
-
-	Bundle_id *string
-
-	Certificate *string
-
-	Default_authentication_method *string
-
-	Enabled *bool
-
-	Private_key *string
-
-	Team_id *string
-
-	Token_key *string
-
-	Token_key_id *string
-}
-
-type Aws_pinpoint_apns_voip_channel struct {
-	Aws_pinpoint_apns_voip_channel_id *string `lyra:"ignore"`
-
-	Application_id string
-
-	Bundle_id *string
-
-	Certificate *string
-
-	Default_authentication_method *string
-
-	Enabled *bool
-
-	Private_key *string
-
-	Team_id *string
-
-	Token_key *string
-
-	Token_key_id *string
-}
-
-type Aws_pinpoint_apns_voip_sandbox_channel struct {
-	Aws_pinpoint_apns_voip_sandbox_channel_id *string `lyra:"ignore"`
-
-	Application_id string
-
-	Bundle_id *string
-
-	Certificate *string
-
-	Default_authentication_method *string
-
-	Enabled *bool
-
-	Private_key *string
-
-	Team_id *string
-
-	Token_key *string
-
-	Token_key_id *string
-}
-
-type Aws_pinpoint_app_campaign_hook_448 struct {
-	Lambda_function_name *string
-
-	Mode *string
-
-	Web_url *string
-}
-
-type Aws_pinpoint_app_limits_449 struct {
-	Daily *int
-
-	Maximum_duration *int
-
-	Messages_per_second *int
-
-	Total *int
-}
-
-type Aws_pinpoint_app_quiet_time_450 struct {
-	End *string
-
-	Start *string
-}
-
-type Aws_pinpoint_app struct {
-	Aws_pinpoint_app_id *string `lyra:"ignore"`
-
-	Application_id *string
-
-	Campaign_hook *[]Aws_pinpoint_app_campaign_hook_448
-
-	Limits *[]Aws_pinpoint_app_limits_449
-
-	Name *string
-
-	Name_prefix *string
-
-	Quiet_time *[]Aws_pinpoint_app_quiet_time_450
-}
-
-type Aws_pinpoint_baidu_channel struct {
-	Aws_pinpoint_baidu_channel_id *string `lyra:"ignore"`
-
-	Api_key string
-
-	Application_id string
-
-	Enabled *bool
-
-	Secret_key string
-}
-
-type Aws_pinpoint_email_channel struct {
-	Aws_pinpoint_email_channel_id *string `lyra:"ignore"`
-
-	Application_id string
-
-	Enabled *bool
-
-	From_address string
-
-	Identity string
-
-	Messages_per_second *int
-
-	Role_arn string
-}
-
-type Aws_pinpoint_event_stream struct {
-	Aws_pinpoint_event_stream_id *string `lyra:"ignore"`
-
-	Application_id string
-
-	Destination_stream_arn string
-
-	Role_arn string
-}
-
-type Aws_pinpoint_gcm_channel struct {
-	Aws_pinpoint_gcm_channel_id *string `lyra:"ignore"`
-
-	Api_key string
-
-	Application_id string
-
-	Enabled *bool
-}
-
-type Aws_pinpoint_sms_channel struct {
-	Aws_pinpoint_sms_channel_id *string `lyra:"ignore"`
-
-	Application_id string
-
-	Enabled *bool
-
-	Promotional_messages_per_second *int
-
-	Sender_id *string
-
-	Short_code *string
-
-	Transactional_messages_per_second *int
-}
-
-type Aws_placement_group struct {
-	Aws_placement_group_id *string `lyra:"ignore"`
-
-	Name string
-
-	Strategy string
-}
-
-type Aws_proxy_protocol_policy struct {
-	Aws_proxy_protocol_policy_id *string `lyra:"ignore"`
-
-	Instance_ports []string
-
-	Load_balancer string
-}
-
-type Aws_ram_resource_share struct {
-	Aws_ram_resource_share_id *string `lyra:"ignore"`
-
-	Allow_external_principals *bool
-
-	Name string
-
-	Tags *map[string]string
-}
-
-type Aws_rds_cluster_s3_import_451 struct {
-	Bucket_name string
-
-	Bucket_prefix *string
-
-	Ingestion_role string
-
-	Source_engine string
-
-	Source_engine_version string
-}
-
-type Aws_rds_cluster_scaling_configuration_452 struct {
-	Auto_pause *bool
-
-	Max_capacity *int
-
-	Min_capacity *int
-
-	Seconds_until_auto_pause *int
-}
-
-type Aws_rds_cluster struct {
-	Aws_rds_cluster_id *string `lyra:"ignore"`
-
-	Apply_immediately *bool
-
-	Arn *string
-
-	Availability_zones *[]string
-
-	Backtrack_window *int
-
-	Backup_retention_period *int
-
-	Cluster_identifier *string
-
-	Cluster_identifier_prefix *string
-
-	Cluster_members *[]string
-
-	Cluster_resource_id *string
-
-	Database_name *string
-
-	Db_cluster_parameter_group_name *string
-
-	Db_subnet_group_name *string
-
-	Deletion_protection *bool
-
-	Enabled_cloudwatch_logs_exports *[]string
-
-	Endpoint *string
-
-	Engine *string
-
-	Engine_mode *string
-
-	Engine_version *string
-
-	Final_snapshot_identifier *string
-
-	Global_cluster_identifier *string
-
-	Hosted_zone_id *string
-
-	Iam_database_authentication_enabled *bool
-
-	Iam_roles *[]string
-
-	Kms_key_id *string
-
-	Master_password *string
-
-	Master_username *string
-
-	Port *int
-
-	Preferred_backup_window *string
-
-	Preferred_maintenance_window *string
-
-	Reader_endpoint *string
-
-	Replication_source_identifier *string
-
-	S3_import *[]Aws_rds_cluster_s3_import_451
-
-	Scaling_configuration *[]Aws_rds_cluster_scaling_configuration_452
-
-	Skip_final_snapshot *bool
-
-	Snapshot_identifier *string
-
-	Source_region *string
-
-	Storage_encrypted *bool
-
-	Tags *map[string]string
-
-	Vpc_security_group_ids *[]string
-}
-
-type Aws_rds_cluster_endpoint struct {
-	Aws_rds_cluster_endpoint_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Cluster_endpoint_identifier string
-
-	Cluster_identifier string
-
-	Custom_endpoint_type string
-
-	Endpoint *string
-
-	Excluded_members *[]string
-
-	Static_members *[]string
-}
-
-type Aws_rds_cluster_instance struct {
-	Aws_rds_cluster_instance_id *string `lyra:"ignore"`
-
-	Apply_immediately *bool
-
-	Arn *string
-
-	Auto_minor_version_upgrade *bool
-
-	Availability_zone *string
-
-	Cluster_identifier string
-
-	Copy_tags_to_snapshot *bool
-
-	Db_parameter_group_name *string
-
-	Db_subnet_group_name *string
-
-	Dbi_resource_id *string
-
-	Endpoint *string
-
-	Engine *string
-
-	Engine_version *string
-
-	Identifier *string
-
-	Identifier_prefix *string
-
-	Instance_class string
-
-	Kms_key_id *string
-
-	Monitoring_interval *int
-
-	Monitoring_role_arn *string
-
-	Performance_insights_enabled *bool
-
-	Performance_insights_kms_key_id *string
-
-	Port *int
-
-	Preferred_backup_window *string
-
-	Preferred_maintenance_window *string
-
-	Promotion_tier *int
-
-	Publicly_accessible *bool
-
-	Storage_encrypted *bool
-
-	Tags *map[string]string
-
-	Writer *bool
-}
-
-type Aws_rds_cluster_parameter_group_parameter_453 struct {
-	Apply_method *string
-
-	Name string
-
-	Value string
-}
-
-type Aws_rds_cluster_parameter_group struct {
-	Aws_rds_cluster_parameter_group_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Description *string
-
-	Family string
-
-	Name *string
-
-	Name_prefix *string
-
-	Parameter *[]Aws_rds_cluster_parameter_group_parameter_453
-
-	Tags *map[string]string
-}
-
-type Aws_rds_global_cluster struct {
-	Aws_rds_global_cluster_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Database_name *string
-
-	Deletion_protection *bool
-
-	Engine *string
-
-	Engine_version *string
-
-	Global_cluster_identifier string
-
-	Global_cluster_resource_id *string
-
-	Storage_encrypted *bool
-}
-
-type Aws_redshift_cluster_logging_454 struct {
-	Bucket_name *string
-
-	Enable bool
-
-	S3_key_prefix *string
-}
-
-type Aws_redshift_cluster_snapshot_copy_455 struct {
-	Destination_region string
-
-	Grant_name *string
-
-	Retention_period *int
-}
-
-type Aws_redshift_cluster struct {
-	Aws_redshift_cluster_id *string `lyra:"ignore"`
-
-	Allow_version_upgrade *bool
-
-	Automated_snapshot_retention_period *int
-
-	Availability_zone *string
-
-	Bucket_name *string
-
-	Cluster_identifier string
-
-	Cluster_parameter_group_name *string
-
-	Cluster_public_key *string
-
-	Cluster_revision_number *string
-
-	Cluster_security_groups *[]string
-
-	Cluster_subnet_group_name *string
-
-	Cluster_type *string
-
-	Cluster_version *string
-
-	Database_name *string
-
-	Dns_name *string
-
-	Elastic_ip *string
-
-	Enable_logging *bool
-
-	Encrypted *bool
-
-	Endpoint *string
-
-	Enhanced_vpc_routing *bool
-
-	Final_snapshot_identifier *string
-
-	Iam_roles *[]string
-
-	Kms_key_id *string
-
-	Logging *[]Aws_redshift_cluster_logging_454
-
-	Master_password *string
-
-	Master_username *string
-
-	Node_type string
-
-	Number_of_nodes *int
-
-	Owner_account *string
-
-	Port *int
-
-	Preferred_maintenance_window *string
-
-	Publicly_accessible *bool
-
-	S3_key_prefix *string
-
-	Skip_final_snapshot *bool
-
-	Snapshot_cluster_identifier *string
-
-	Snapshot_copy *[]Aws_redshift_cluster_snapshot_copy_455
-
-	Snapshot_identifier *string
-
-	Tags *map[string]string
-
-	Vpc_security_group_ids *[]string
-}
-
-type Aws_redshift_event_subscription struct {
-	Aws_redshift_event_subscription_id *string `lyra:"ignore"`
-
-	Customer_aws_id *string
-
-	Enabled *bool
-
-	Event_categories *[]string
-
-	Name string
-
-	Severity *string
-
-	Sns_topic_arn string
-
-	Source_ids *[]string
-
-	Source_type *string
-
-	Status *string
-
-	Tags *map[string]string
-}
-
-type Aws_redshift_parameter_group_parameter_456 struct {
-	Name string
-
-	Value string
-}
-
-type Aws_redshift_parameter_group struct {
-	Aws_redshift_parameter_group_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Family string
-
-	Name string
-
-	Parameter *[]Aws_redshift_parameter_group_parameter_456
-}
-
-type Aws_redshift_security_group_ingress_457 struct {
-	Cidr *string
-
-	Security_group_name *string
-
-	Security_group_owner_id *string
-}
-
-type Aws_redshift_security_group struct {
-	Aws_redshift_security_group_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Ingress []Aws_redshift_security_group_ingress_457
-
-	Name string
-}
-
-type Aws_redshift_snapshot_copy_grant struct {
-	Aws_redshift_snapshot_copy_grant_id *string `lyra:"ignore"`
-
-	Kms_key_id *string
-
-	Snapshot_copy_grant_name string
-
-	Tags *map[string]string
-}
-
-type Aws_redshift_subnet_group struct {
-	Aws_redshift_subnet_group_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Name string
-
-	Subnet_ids []string
-
-	Tags *map[string]string
-}
-
-type Aws_resourcegroups_group_resource_query_458 struct {
-	Query string
-
-	Type *string
-}
-
-type Aws_resourcegroups_group struct {
-	Aws_resourcegroups_group_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Description *string
-
-	Name string
-
-	Resource_query []Aws_resourcegroups_group_resource_query_458
-}
-
-type Aws_route struct {
-	Aws_route_id *string `lyra:"ignore"`
-
-	Destination_cidr_block *string
-
-	Destination_ipv6_cidr_block *string
-
-	Destination_prefix_list_id *string
-
-	Egress_only_gateway_id *string
-
-	Gateway_id *string
-
-	Instance_id *string
-
-	Instance_owner_id *string
-
-	Nat_gateway_id *string
-
-	Network_interface_id *string
-
-	Origin *string
-
-	Route_table_id string
-
-	State *string
-
-	Transit_gateway_id *string
-
-	Vpc_peering_connection_id *string
-}
-
-type Aws_route53_delegation_set struct {
-	Aws_route53_delegation_set_id *string `lyra:"ignore"`
-
-	Name_servers *[]string
-
-	Reference_name *string
-}
-
-type Aws_route53_health_check struct {
-	Aws_route53_health_check_id *string `lyra:"ignore"`
-
-	Child_health_threshold *int
-
-	Child_healthchecks *[]string
-
-	Cloudwatch_alarm_name *string
-
-	Cloudwatch_alarm_region *string
-
-	Enable_sni *bool
-
-	Failure_threshold *int
-
-	Fqdn *string
-
-	Insufficient_data_health_status *string
-
-	Invert_healthcheck *bool
-
-	Ip_address *string
-
-	Measure_latency *bool
-
-	Port *int
-
-	Reference_name *string
-
-	Regions *[]string
-
-	Request_interval *int
-
-	Resource_path *string
-
-	Search_string *string
-
-	Tags *map[string]string
-
-	Type string
-}
-
-type Aws_route53_query_log struct {
-	Aws_route53_query_log_id *string `lyra:"ignore"`
-
-	Cloudwatch_log_group_arn string
-
-	Zone_id string
-}
-
-type Aws_route53_record_alias_459 struct {
-	Evaluate_target_health bool
-
-	Name string
-
-	Zone_id string
-}
-
-type Aws_route53_record_failover_routing_policy_460 struct {
-	Type string
-}
-
-type Aws_route53_record_geolocation_routing_policy_461 struct {
-	Continent *string
-
-	Country *string
-
-	Subdivision *string
-}
-
-type Aws_route53_record_latency_routing_policy_462 struct {
-	Region string
-}
-
-type Aws_route53_record_weighted_routing_policy_463 struct {
-	Weight int
-}
-
-type Aws_route53_record struct {
-	Aws_route53_record_id *string `lyra:"ignore"`
-
-	Alias *[]Aws_route53_record_alias_459
-
-	Allow_overwrite *bool
-
-	Failover *string
-
-	Failover_routing_policy *[]Aws_route53_record_failover_routing_policy_460
-
-	Fqdn *string
-
-	Geolocation_routing_policy *[]Aws_route53_record_geolocation_routing_policy_461
-
-	Health_check_id *string
-
-	Latency_routing_policy *[]Aws_route53_record_latency_routing_policy_462
-
-	Multivalue_answer_routing_policy *bool
-
-	Name string
-
-	Records *[]string
-
-	Set_identifier *string
-
-	Ttl *int
-
-	Type string
-
-	Weight *int
-
-	Weighted_routing_policy *[]Aws_route53_record_weighted_routing_policy_463
-
-	Zone_id string
-}
-
-type Aws_route53_zone_vpc_464 struct {
-	Vpc_id string
-
-	Vpc_region *string
-}
-
-type Aws_route53_zone struct {
-	Aws_route53_zone_id *string `lyra:"ignore"`
-
-	Comment *string
-
-	Delegation_set_id *string
-
-	Force_destroy *bool
-
-	Name string
-
-	Name_servers *[]string
-
-	Tags *map[string]string
-
-	Vpc *[]Aws_route53_zone_vpc_464
-
-	Vpc_id *string
-
-	Vpc_region *string
-
-	Zone_id *string
-}
-
-type Aws_route53_zone_association struct {
-	Aws_route53_zone_association_id *string `lyra:"ignore"`
-
-	Vpc_id string
-
-	Vpc_region *string
-
-	Zone_id string
-}
-
-type Aws_route_table_route_465 struct {
-	Cidr_block *string
-
-	Egress_only_gateway_id *string
-
-	Gateway_id *string
-
-	Instance_id *string
-
-	Ipv6_cidr_block *string
-
-	Nat_gateway_id *string
-
-	Network_interface_id *string
-
-	Transit_gateway_id *string
-
-	Vpc_peering_connection_id *string
-}
-
-type Aws_route_table struct {
-	Aws_route_table_id *string `lyra:"ignore"`
-
-	Owner_id *string
-
-	Propagating_vgws *[]string
-
-	Route *[]Aws_route_table_route_465
-
-	Tags *map[string]string
-
-	Vpc_id string
-}
-
-type Aws_route_table_association struct {
-	Aws_route_table_association_id *string `lyra:"ignore"`
-
-	Route_table_id string
-
-	Subnet_id string
-}
-
-type Aws_s3_account_public_access_block struct {
-	Aws_s3_account_public_access_block_id *string `lyra:"ignore"`
-
-	Account_id *string
-
-	Block_public_acls *bool
-
-	Block_public_policy *bool
-
-	Ignore_public_acls *bool
-
-	Restrict_public_buckets *bool
-}
-
-type Aws_s3_bucket_cors_rule_466 struct {
-	Allowed_headers *[]string
-
-	Allowed_methods []string
-
-	Allowed_origins []string
-
-	Expose_headers *[]string
-
-	Max_age_seconds *int
-}
-
-type Aws_s3_bucket_lifecycle_rule_467_expiration_468 struct {
-	Date *string
-
-	Days *int
-
-	Expired_object_delete_marker *bool
-}
-
-type Aws_s3_bucket_lifecycle_rule_467_noncurrent_version_expiration_469 struct {
-	Days *int
-}
-
-type Aws_s3_bucket_lifecycle_rule_467_noncurrent_version_transition_470 struct {
-	Days *int
-
-	Storage_class string
-}
-
-type Aws_s3_bucket_lifecycle_rule_467_transition_471 struct {
-	Date *string
-
-	Days *int
-
-	Storage_class string
-}
-
-type Aws_s3_bucket_lifecycle_rule_467 struct {
-	Abort_incomplete_multipart_upload_days *int
-
-	Enabled bool
-
-	Expiration *[]Aws_s3_bucket_lifecycle_rule_467_expiration_468
-
-	Id *string
-
-	Noncurrent_version_expiration *[]Aws_s3_bucket_lifecycle_rule_467_noncurrent_version_expiration_469
-
-	Noncurrent_version_transition *[]Aws_s3_bucket_lifecycle_rule_467_noncurrent_version_transition_470
-
-	Prefix *string
-
-	Tags *map[string]string
-
-	Transition *[]Aws_s3_bucket_lifecycle_rule_467_transition_471
-}
-
-type Aws_s3_bucket_logging_472 struct {
-	Target_bucket string
-
-	Target_prefix *string
-}
-
-type Aws_s3_bucket_object_lock_configuration_473_rule_474_default_retention_475 struct {
-	Days *int
-
-	Mode string
-
-	Years *int
-}
-
-type Aws_s3_bucket_object_lock_configuration_473_rule_474 struct {
-	Default_retention []Aws_s3_bucket_object_lock_configuration_473_rule_474_default_retention_475
-}
-
-type Aws_s3_bucket_object_lock_configuration_473 struct {
-	Object_lock_enabled string
-
-	Rule *[]Aws_s3_bucket_object_lock_configuration_473_rule_474
-}
-
-type Aws_s3_bucket_replication_configuration_476_rules_477_destination_478_access_control_translation_479 struct {
-	Owner string
-}
-
-type Aws_s3_bucket_replication_configuration_476_rules_477_destination_478 struct {
-	Access_control_translation *[]Aws_s3_bucket_replication_configuration_476_rules_477_destination_478_access_control_translation_479
-
-	Account_id *string
-
-	Bucket string
-
-	Replica_kms_key_id *string
-
-	Storage_class *string
-}
-
-type Aws_s3_bucket_replication_configuration_476_rules_477_filter_480 struct {
-	Prefix *string
-
-	Tags *map[string]string
-}
-
-type Aws_s3_bucket_replication_configuration_476_rules_477_source_selection_criteria_481_sse_kms_encrypted_objects_482 struct {
-	Enabled bool
-}
-
-type Aws_s3_bucket_replication_configuration_476_rules_477_source_selection_criteria_481 struct {
-	Sse_kms_encrypted_objects *[]Aws_s3_bucket_replication_configuration_476_rules_477_source_selection_criteria_481_sse_kms_encrypted_objects_482
-}
-
-type Aws_s3_bucket_replication_configuration_476_rules_477 struct {
-	Destination []Aws_s3_bucket_replication_configuration_476_rules_477_destination_478
-
-	Filter *[]Aws_s3_bucket_replication_configuration_476_rules_477_filter_480
-
-	Id *string
-
-	Prefix *string
-
-	Priority *int
-
-	Source_selection_criteria *[]Aws_s3_bucket_replication_configuration_476_rules_477_source_selection_criteria_481
-
-	Status string
-}
-
-type Aws_s3_bucket_replication_configuration_476 struct {
-	Role string
-
-	Rules []Aws_s3_bucket_replication_configuration_476_rules_477
-}
-
-type Aws_s3_bucket_server_side_encryption_configuration_483_rule_484_apply_server_side_encryption_by_default_485 struct {
-	Kms_master_key_id *string
-
-	Sse_algorithm string
-}
-
-type Aws_s3_bucket_server_side_encryption_configuration_483_rule_484 struct {
-	Apply_server_side_encryption_by_default []Aws_s3_bucket_server_side_encryption_configuration_483_rule_484_apply_server_side_encryption_by_default_485
-}
-
-type Aws_s3_bucket_server_side_encryption_configuration_483 struct {
-	Rule []Aws_s3_bucket_server_side_encryption_configuration_483_rule_484
-}
-
-type Aws_s3_bucket_versioning_486 struct {
-	Enabled *bool
-
-	Mfa_delete *bool
-}
-
-type Aws_s3_bucket_website_487 struct {
-	Error_document *string
-
-	Index_document *string
-
-	Redirect_all_requests_to *string
-
-	Routing_rules *string
-}
-
-type Aws_s3_bucket struct {
-	Aws_s3_bucket_id *string `lyra:"ignore"`
-
-	Acceleration_status *string
-
-	Acl *string
-
-	Arn *string
-
-	Bucket *string
-
-	Bucket_domain_name *string
-
-	Bucket_prefix *string
-
-	Bucket_regional_domain_name *string
-
-	Cors_rule *[]Aws_s3_bucket_cors_rule_466
-
-	Force_destroy *bool
-
-	Hosted_zone_id *string
-
-	Lifecycle_rule *[]Aws_s3_bucket_lifecycle_rule_467
-
-	Logging *[]Aws_s3_bucket_logging_472
-
-	Object_lock_configuration *[]Aws_s3_bucket_object_lock_configuration_473
-
-	Policy *string
-
-	Region *string
-
-	Replication_configuration *[]Aws_s3_bucket_replication_configuration_476
-
-	Request_payer *string
-
-	Server_side_encryption_configuration *[]Aws_s3_bucket_server_side_encryption_configuration_483
-
-	Tags *map[string]string
-
-	Versioning *[]Aws_s3_bucket_versioning_486
-
-	Website *[]Aws_s3_bucket_website_487
-
-	Website_domain *string
-
-	Website_endpoint *string
-}
-
-type Aws_s3_bucket_inventory_destination_488_bucket_489_encryption_490_sse_kms_491 struct {
-	Key_id string
-}
-
-type Aws_s3_bucket_inventory_destination_488_bucket_489_encryption_490_sse_s3_492 struct {
-}
-
-type Aws_s3_bucket_inventory_destination_488_bucket_489_encryption_490 struct {
-	Sse_kms *[]Aws_s3_bucket_inventory_destination_488_bucket_489_encryption_490_sse_kms_491
-
-	Sse_s3 *[]Aws_s3_bucket_inventory_destination_488_bucket_489_encryption_490_sse_s3_492
-}
-
-type Aws_s3_bucket_inventory_destination_488_bucket_489 struct {
-	Account_id *string
-
-	Bucket_arn string
-
-	Encryption *[]Aws_s3_bucket_inventory_destination_488_bucket_489_encryption_490
-
-	Format string
-
-	Prefix *string
-}
-
-type Aws_s3_bucket_inventory_destination_488 struct {
-	Bucket []Aws_s3_bucket_inventory_destination_488_bucket_489
-}
-
-type Aws_s3_bucket_inventory_filter_493 struct {
-	Prefix *string
-}
-
-type Aws_s3_bucket_inventory_schedule_494 struct {
-	Frequency string
-}
-
-type Aws_s3_bucket_inventory struct {
-	Aws_s3_bucket_inventory_id *string `lyra:"ignore"`
-
-	Bucket string
-
-	Destination []Aws_s3_bucket_inventory_destination_488
-
-	Enabled *bool
-
-	Filter *[]Aws_s3_bucket_inventory_filter_493
-
-	Included_object_versions string
-
-	Name string
-
-	Optional_fields *[]string
-
-	Schedule []Aws_s3_bucket_inventory_schedule_494
-}
-
-type Aws_s3_bucket_metric_filter_495 struct {
-	Prefix *string
-
-	Tags *map[string]string
-}
-
-type Aws_s3_bucket_metric struct {
-	Aws_s3_bucket_metric_id *string `lyra:"ignore"`
-
-	Bucket string
-
-	Filter *[]Aws_s3_bucket_metric_filter_495
-
-	Name string
-}
-
-type Aws_s3_bucket_notification_lambda_function_496 struct {
-	Events []string
-
-	Filter_prefix *string
-
-	Filter_suffix *string
-
-	Id *string
-
-	Lambda_function_arn *string
-}
-
-type Aws_s3_bucket_notification_queue_497 struct {
-	Events []string
-
-	Filter_prefix *string
-
-	Filter_suffix *string
-
-	Id *string
-
-	Queue_arn string
-}
-
-type Aws_s3_bucket_notification_topic_498 struct {
-	Events []string
-
-	Filter_prefix *string
-
-	Filter_suffix *string
-
-	Id *string
-
-	Topic_arn string
-}
-
-type Aws_s3_bucket_notification struct {
-	Aws_s3_bucket_notification_id *string `lyra:"ignore"`
-
-	Bucket string
-
-	Lambda_function *[]Aws_s3_bucket_notification_lambda_function_496
-
-	Queue *[]Aws_s3_bucket_notification_queue_497
-
-	Topic *[]Aws_s3_bucket_notification_topic_498
-}
-
-type Aws_s3_bucket_object struct {
-	Aws_s3_bucket_object_id *string `lyra:"ignore"`
-
-	Acl *string
-
-	Bucket string
-
-	Cache_control *string
-
-	Content *string
-
-	Content_base64 *string
-
-	Content_disposition *string
-
-	Content_encoding *string
-
-	Content_language *string
-
-	Content_type *string
-
-	Etag *string
-
-	Key string
-
-	Kms_key_id *string
-
-	Server_side_encryption *string
-
-	Source *string
-
-	Storage_class *string
-
-	Tags *map[string]string
-
-	Version_id *string
-
-	Website_redirect *string
-}
-
-type Aws_s3_bucket_policy struct {
-	Aws_s3_bucket_policy_id *string `lyra:"ignore"`
-
-	Bucket string
-
-	Policy string
-}
-
-type Aws_s3_bucket_public_access_block struct {
-	Aws_s3_bucket_public_access_block_id *string `lyra:"ignore"`
-
-	Block_public_acls *bool
-
-	Block_public_policy *bool
-
-	Bucket string
-
-	Ignore_public_acls *bool
-
-	Restrict_public_buckets *bool
-}
-
-type Aws_sagemaker_notebook_instance struct {
-	Aws_sagemaker_notebook_instance_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Instance_type string
-
-	Kms_key_id *string
-
-	Name string
-
-	Role_arn string
-
-	Security_groups *[]string
-
-	Subnet_id *string
-
-	Tags *map[string]string
-}
-
-type Aws_secretsmanager_secret_rotation_rules_499 struct {
-	Automatically_after_days int
-}
-
-type Aws_secretsmanager_secret struct {
-	Aws_secretsmanager_secret_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Description *string
-
-	Kms_key_id *string
-
-	Name *string
-
-	Name_prefix *string
-
-	Policy *string
-
-	Recovery_window_in_days *int
-
-	Rotation_enabled *bool
-
-	Rotation_lambda_arn *string
-
-	Rotation_rules *[]Aws_secretsmanager_secret_rotation_rules_499
-
-	Tags *map[string]string
-}
-
-type Aws_secretsmanager_secret_version struct {
-	Aws_secretsmanager_secret_version_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Secret_binary *string
-
-	Secret_id string
-
-	Secret_string *string
-
-	Version_id *string
-
-	Version_stages *[]string
-}
-
-type Aws_security_group_egress_500 struct {
-	Cidr_blocks *[]string
-
-	Description *string
-
-	From_port int
-
-	Ipv6_cidr_blocks *[]string
-
-	Prefix_list_ids *[]string
-
-	Protocol string
-
-	Security_groups *[]string
-
-	Self *bool
-
-	To_port int
-}
-
-type Aws_security_group_ingress_501 struct {
-	Cidr_blocks *[]string
-
-	Description *string
-
-	From_port int
-
-	Ipv6_cidr_blocks *[]string
-
-	Prefix_list_ids *[]string
-
-	Protocol string
-
-	Security_groups *[]string
-
-	Self *bool
-
-	To_port int
-}
-
-type Aws_security_group struct {
-	Aws_security_group_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Description *string
-
-	Egress *[]Aws_security_group_egress_500
-
-	Ingress *[]Aws_security_group_ingress_501
-
-	Name *string
-
-	Name_prefix *string
-
-	Owner_id *string
-
-	Revoke_rules_on_delete *bool
-
-	Tags *map[string]string
-
-	Vpc_id *string
-}
-
-type Aws_security_group_rule struct {
-	Aws_security_group_rule_id *string `lyra:"ignore"`
-
-	Cidr_blocks *[]string
-
-	Description *string
-
-	From_port int
-
-	Ipv6_cidr_blocks *[]string
-
-	Prefix_list_ids *[]string
-
-	Protocol string
-
-	Security_group_id string
-
-	Self *bool
-
-	Source_security_group_id *string
-
-	To_port int
-
-	Type string
-}
-
-type Aws_securityhub_account struct {
-	Aws_securityhub_account_id *string `lyra:"ignore"`
-}
-
-type Aws_securityhub_product_subscription struct {
-	Aws_securityhub_product_subscription_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Product_arn string
-}
-
-type Aws_securityhub_standards_subscription struct {
-	Aws_securityhub_standards_subscription_id *string `lyra:"ignore"`
-
-	Standards_arn string
-}
-
-type Aws_service_discovery_http_namespace struct {
-	Aws_service_discovery_http_namespace_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Description *string
-
-	Name string
-}
-
-type Aws_service_discovery_private_dns_namespace struct {
-	Aws_service_discovery_private_dns_namespace_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Description *string
-
-	Hosted_zone *string
-
-	Name string
-
-	Vpc string
-}
-
-type Aws_service_discovery_public_dns_namespace struct {
-	Aws_service_discovery_public_dns_namespace_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Description *string
-
-	Hosted_zone *string
-
-	Name string
-}
-
-type Aws_service_discovery_service_dns_config_502_dns_records_503 struct {
-	Ttl int
-
-	Type string
-}
-
-type Aws_service_discovery_service_dns_config_502 struct {
-	Dns_records []Aws_service_discovery_service_dns_config_502_dns_records_503
-
-	Namespace_id string
-
-	Routing_policy *string
-}
-
-type Aws_service_discovery_service_health_check_config_504 struct {
-	Failure_threshold *int
-
-	Resource_path *string
-
-	Type *string
-}
-
-type Aws_service_discovery_service_health_check_custom_config_505 struct {
-	Failure_threshold *int
-}
-
-type Aws_service_discovery_service struct {
-	Aws_service_discovery_service_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Description *string
-
-	Dns_config []Aws_service_discovery_service_dns_config_502
-
-	Health_check_config *[]Aws_service_discovery_service_health_check_config_504
-
-	Health_check_custom_config *[]Aws_service_discovery_service_health_check_custom_config_505
-
-	Name string
-}
-
-type Aws_servicecatalog_portfolio struct {
-	Aws_servicecatalog_portfolio_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Created_time *string
-
-	Description *string
-
-	Name string
-
-	Provider_name *string
-
-	Tags *map[string]string
-}
-
-type Aws_ses_active_receipt_rule_set struct {
-	Aws_ses_active_receipt_rule_set_id *string `lyra:"ignore"`
-
-	Rule_set_name string
-}
-
-type Aws_ses_configuration_set struct {
-	Aws_ses_configuration_set_id *string `lyra:"ignore"`
-
-	Name string
-}
-
-type Aws_ses_domain_dkim struct {
-	Aws_ses_domain_dkim_id *string `lyra:"ignore"`
-
-	Dkim_tokens *[]string
-
-	Domain string
-}
-
-type Aws_ses_domain_identity struct {
-	Aws_ses_domain_identity_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Domain string
-
-	Verification_token *string
-}
-
-type Aws_ses_domain_identity_verification struct {
-	Aws_ses_domain_identity_verification_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Domain string
-}
-
-type Aws_ses_domain_mail_from struct {
-	Aws_ses_domain_mail_from_id *string `lyra:"ignore"`
-
-	Behavior_on_mx_failure *string
-
-	Domain string
-
-	Mail_from_domain string
-}
-
-type Aws_ses_event_destination_cloudwatch_destination_506 struct {
-	Default_value string
-
-	Dimension_name string
-
-	Value_source string
-}
-
-type Aws_ses_event_destination_kinesis_destination_507 struct {
-	Role_arn string
-
-	Stream_arn string
-}
-
-type Aws_ses_event_destination_sns_destination_508 struct {
-	Topic_arn string
-}
-
-type Aws_ses_event_destination struct {
-	Aws_ses_event_destination_id *string `lyra:"ignore"`
-
-	Cloudwatch_destination *[]Aws_ses_event_destination_cloudwatch_destination_506
-
-	Configuration_set_name string
-
-	Enabled *bool
-
-	Kinesis_destination *[]Aws_ses_event_destination_kinesis_destination_507
-
-	Matching_types []string
-
-	Name string
-
-	Sns_destination *[]Aws_ses_event_destination_sns_destination_508
-}
-
-type Aws_ses_identity_notification_topic struct {
-	Aws_ses_identity_notification_topic_id *string `lyra:"ignore"`
-
-	Identity string
-
-	Notification_type string
-
-	Topic_arn *string
-}
-
-type Aws_ses_receipt_filter struct {
-	Aws_ses_receipt_filter_id *string `lyra:"ignore"`
-
-	Cidr string
-
-	Name string
-
-	Policy string
-}
-
-type Aws_ses_receipt_rule_add_header_action_509 struct {
-	Header_name string
-
-	Header_value string
-
-	Position int
-}
-
-type Aws_ses_receipt_rule_bounce_action_510 struct {
-	Message string
-
-	Position int
-
-	Sender string
-
-	Smtp_reply_code string
-
-	Status_code *string
-
-	Topic_arn *string
-}
-
-type Aws_ses_receipt_rule_lambda_action_511 struct {
-	Function_arn string
-
-	Invocation_type *string
-
-	Position int
-
-	Topic_arn *string
-}
-
-type Aws_ses_receipt_rule_s3_action_512 struct {
-	Bucket_name string
-
-	Kms_key_arn *string
-
-	Object_key_prefix *string
-
-	Position int
-
-	Topic_arn *string
-}
-
-type Aws_ses_receipt_rule_sns_action_513 struct {
-	Position int
-
-	Topic_arn string
-}
-
-type Aws_ses_receipt_rule_stop_action_514 struct {
-	Position int
-
-	Scope string
-
-	Topic_arn *string
-}
-
-type Aws_ses_receipt_rule_workmail_action_515 struct {
-	Organization_arn string
-
-	Position int
-
-	Topic_arn *string
-}
-
-type Aws_ses_receipt_rule struct {
-	Aws_ses_receipt_rule_id *string `lyra:"ignore"`
-
-	Add_header_action *[]Aws_ses_receipt_rule_add_header_action_509
-
-	After *string
-
-	Bounce_action *[]Aws_ses_receipt_rule_bounce_action_510
-
-	Enabled *bool
-
-	Lambda_action *[]Aws_ses_receipt_rule_lambda_action_511
-
-	Name string
-
-	Recipients *[]string
-
-	Rule_set_name string
-
-	S3_action *[]Aws_ses_receipt_rule_s3_action_512
-
-	Scan_enabled *bool
-
-	Sns_action *[]Aws_ses_receipt_rule_sns_action_513
-
-	Stop_action *[]Aws_ses_receipt_rule_stop_action_514
-
-	Tls_policy *string
-
-	Workmail_action *[]Aws_ses_receipt_rule_workmail_action_515
-}
-
-type Aws_ses_receipt_rule_set struct {
-	Aws_ses_receipt_rule_set_id *string `lyra:"ignore"`
-
-	Rule_set_name string
-}
-
-type Aws_ses_template struct {
-	Aws_ses_template_id *string `lyra:"ignore"`
-
-	Html *string
-
-	Name string
-
-	Subject *string
-
-	Text *string
-}
-
-type Aws_sfn_activity struct {
-	Aws_sfn_activity_id *string `lyra:"ignore"`
-
-	Creation_date *string
-
-	Name string
-
-	Tags *map[string]string
-}
-
-type Aws_sfn_state_machine struct {
-	Aws_sfn_state_machine_id *string `lyra:"ignore"`
-
-	Creation_date *string
-
-	Definition string
-
-	Name string
-
-	Role_arn string
-
-	Status *string
-
-	Tags *map[string]string
-}
-
-type Aws_simpledb_domain struct {
-	Aws_simpledb_domain_id *string `lyra:"ignore"`
-
-	Name string
-}
-
-type Aws_snapshot_create_volume_permission struct {
-	Aws_snapshot_create_volume_permission_id *string `lyra:"ignore"`
-
-	Account_id string
-
-	Snapshot_id string
-}
-
-type Aws_sns_platform_application struct {
-	Aws_sns_platform_application_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Event_delivery_failure_topic_arn *string
-
-	Event_endpoint_created_topic_arn *string
-
-	Event_endpoint_deleted_topic_arn *string
-
-	Event_endpoint_updated_topic_arn *string
-
-	Failure_feedback_role_arn *string
-
-	Name string
-
-	Platform string
-
-	Platform_credential string
-
-	Platform_principal *string
-
-	Success_feedback_role_arn *string
-
-	Success_feedback_sample_rate *string
-}
-
-type Aws_sns_sms_preferences struct {
-	Aws_sns_sms_preferences_id *string `lyra:"ignore"`
-
-	Default_sender_id *string
-
-	Default_sms_type *string
-
-	Delivery_status_iam_role_arn *string
-
-	Delivery_status_success_sampling_rate *string
-
-	Monthly_spend_limit *string
-
-	Usage_report_s3_bucket *string
-}
-
-type Aws_sns_topic struct {
-	Aws_sns_topic_id *string `lyra:"ignore"`
-
-	Application_failure_feedback_role_arn *string
-
-	Application_success_feedback_role_arn *string
-
-	Application_success_feedback_sample_rate *int
-
-	Arn *string
-
-	Delivery_policy *string
-
-	Display_name *string
-
-	Http_failure_feedback_role_arn *string
-
-	Http_success_feedback_role_arn *string
-
-	Http_success_feedback_sample_rate *int
-
-	Kms_master_key_id *string
-
-	Lambda_failure_feedback_role_arn *string
-
-	Lambda_success_feedback_role_arn *string
-
-	Lambda_success_feedback_sample_rate *int
-
-	Name *string
-
-	Name_prefix *string
-
-	Policy *string
-
-	Sqs_failure_feedback_role_arn *string
-
-	Sqs_success_feedback_role_arn *string
-
-	Sqs_success_feedback_sample_rate *int
-}
-
-type Aws_sns_topic_policy struct {
-	Aws_sns_topic_policy_id *string `lyra:"ignore"`
-
-	Arn string
-
-	Policy string
-}
-
-type Aws_sns_topic_subscription struct {
-	Aws_sns_topic_subscription_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Confirmation_timeout_in_minutes *int
-
-	Delivery_policy *string
-
-	Endpoint string
-
-	Endpoint_auto_confirms *bool
-
-	Filter_policy *string
-
-	Protocol string
-
-	Raw_message_delivery *bool
-
-	Topic_arn string
-}
-
-type Aws_spot_datafeed_subscription struct {
-	Aws_spot_datafeed_subscription_id *string `lyra:"ignore"`
-
-	Bucket string
-
-	Prefix *string
-}
-
-type Aws_spot_fleet_request_launch_specification_516_ebs_block_device_517 struct {
-	Delete_on_termination *bool
-
-	Device_name string
-
-	Encrypted *bool
-
-	Iops *int
-
-	Snapshot_id *string
-
-	Volume_size *int
-
-	Volume_type *string
-}
-
-type Aws_spot_fleet_request_launch_specification_516_ephemeral_block_device_518 struct {
-	Device_name string
-
-	Virtual_name string
-}
-
-type Aws_spot_fleet_request_launch_specification_516_root_block_device_519 struct {
-	Delete_on_termination *bool
-
-	Iops *int
-
-	Volume_size *int
-
-	Volume_type *string
-}
-
-type Aws_spot_fleet_request_launch_specification_516 struct {
-	Ami string
-
-	Associate_public_ip_address *bool
-
-	Availability_zone *string
-
-	Ebs_block_device *[]Aws_spot_fleet_request_launch_specification_516_ebs_block_device_517
-
-	Ebs_optimized *bool
-
-	Ephemeral_block_device *[]Aws_spot_fleet_request_launch_specification_516_ephemeral_block_device_518
-
-	Iam_instance_profile *string
-
-	Iam_instance_profile_arn *string
-
-	Instance_type string
-
-	Key_name *string
-
-	Monitoring *bool
-
-	Placement_group *string
-
-	Placement_tenancy *string
-
-	Root_block_device *[]Aws_spot_fleet_request_launch_specification_516_root_block_device_519
-
-	Spot_price *string
-
-	Subnet_id *string
-
-	Tags *map[string]string
-
-	User_data *string
-
-	Vpc_security_group_ids *[]string
-
-	Weighted_capacity *string
-}
-
-type Aws_spot_fleet_request struct {
-	Aws_spot_fleet_request_id *string `lyra:"ignore"`
-
-	Allocation_strategy *string
-
-	Client_token *string
-
-	Excess_capacity_termination_policy *string
-
-	Fleet_type *string
-
-	Iam_fleet_role string
-
-	Instance_interruption_behaviour *string
-
-	Instance_pools_to_use_count *int
-
-	Launch_specification []Aws_spot_fleet_request_launch_specification_516
-
-	Load_balancers *[]string
-
-	Replace_unhealthy_instances *bool
-
-	Spot_price *string
-
-	Spot_request_state *string
-
-	Target_capacity int
-
-	Target_group_arns *[]string
-
-	Terminate_instances_with_expiration *bool
-
-	Valid_from *string
-
-	Valid_until *string
-
-	Wait_for_fulfillment *bool
-}
-
-type Aws_spot_instance_request_credit_specification_520 struct {
-	Cpu_credits *string
-}
-
-type Aws_spot_instance_request_ebs_block_device_521 struct {
-	Delete_on_termination *bool
-
-	Device_name string
-
-	Encrypted *bool
-
-	Iops *int
-
-	Snapshot_id *string
-
-	Volume_id *string
-
-	Volume_size *int
-
-	Volume_type *string
-}
-
-type Aws_spot_instance_request_ephemeral_block_device_522 struct {
-	Device_name string
-
-	No_device *bool
-
-	Virtual_name *string
-}
-
-type Aws_spot_instance_request_network_interface_523 struct {
-	Delete_on_termination *bool
-
-	Device_index int
-
-	Network_interface_id string
-}
-
-type Aws_spot_instance_request_root_block_device_524 struct {
-	Delete_on_termination *bool
-
-	Iops *int
-
-	Volume_id *string
-
-	Volume_size *int
-
-	Volume_type *string
-}
-
-type Aws_spot_instance_request struct {
-	Aws_spot_instance_request_id *string `lyra:"ignore"`
-
-	Ami string
-
-	Arn *string
-
-	Associate_public_ip_address *bool
-
-	Availability_zone *string
-
-	Block_device *map[string]string
-
-	Block_duration_minutes *int
-
-	Cpu_core_count *int
-
-	Cpu_threads_per_core *int
-
-	Credit_specification *[]Aws_spot_instance_request_credit_specification_520
-
-	Disable_api_termination *bool
-
-	Ebs_block_device *[]Aws_spot_instance_request_ebs_block_device_521
-
-	Ebs_optimized *bool
-
-	Ephemeral_block_device *[]Aws_spot_instance_request_ephemeral_block_device_522
-
-	Get_password_data *bool
-
-	Host_id *string
-
-	Iam_instance_profile *string
-
-	Instance_initiated_shutdown_behavior *string
-
-	Instance_interruption_behaviour *string
-
-	Instance_state *string
-
-	Instance_type string
-
-	Ipv6_address_count *int
-
-	Ipv6_addresses *[]string
-
-	Key_name *string
-
-	Launch_group *string
-
-	Monitoring *bool
-
-	Network_interface *[]Aws_spot_instance_request_network_interface_523
-
-	Network_interface_id *string
-
-	Password_data *string
-
-	Placement_group *string
-
-	Primary_network_interface_id *string
-
-	Private_dns *string
-
-	Private_ip *string
-
-	Public_dns *string
-
-	Public_ip *string
-
-	Root_block_device *[]Aws_spot_instance_request_root_block_device_524
-
-	Security_groups *[]string
-
-	Source_dest_check *bool
-
-	Spot_bid_status *string
-
-	Spot_instance_id *string
-
-	Spot_price *string
-
-	Spot_request_state *string
-
-	Spot_type *string
-
-	Subnet_id *string
-
-	Tags *map[string]string
-
-	Tenancy *string
-
-	User_data *string
-
-	User_data_base64 *string
-
-	Valid_from *string
-
-	Valid_until *string
-
-	Volume_tags *map[string]string
-
-	Vpc_security_group_ids *[]string
-
-	Wait_for_fulfillment *bool
-}
-
-type Aws_sqs_queue struct {
-	Aws_sqs_queue_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Content_based_deduplication *bool
-
-	Delay_seconds *int
-
-	Fifo_queue *bool
-
-	Kms_data_key_reuse_period_seconds *int
-
-	Kms_master_key_id *string
-
-	Max_message_size *int
-
-	Message_retention_seconds *int
-
-	Name *string
-
-	Name_prefix *string
-
-	Policy *string
-
-	Receive_wait_time_seconds *int
-
-	Redrive_policy *string
-
-	Tags *map[string]string
-
-	Visibility_timeout_seconds *int
-}
-
-type Aws_sqs_queue_policy struct {
-	Aws_sqs_queue_policy_id *string `lyra:"ignore"`
-
-	Policy string
-
-	Queue_url string
-}
-
-type Aws_ssm_activation struct {
-	Aws_ssm_activation_id *string `lyra:"ignore"`
-
-	Activation_code *string
-
-	Description *string
-
-	Expiration_date *string
-
-	Expired *string
-
-	Iam_role string
-
-	Name *string
-
-	Registration_count *int
-
-	Registration_limit *int
-}
-
-type Aws_ssm_association_output_location_525 struct {
-	S3_bucket_name string
-
-	S3_key_prefix *string
-}
-
-type Aws_ssm_association_targets_526 struct {
-	Key string
-
-	Values []string
-}
-
-type Aws_ssm_association struct {
-	Aws_ssm_association_id *string `lyra:"ignore"`
-
-	Association_id *string
-
-	Association_name *string
-
-	Document_version *string
-
-	Instance_id *string
-
-	Name string
-
-	Output_location *[]Aws_ssm_association_output_location_525
-
-	Parameters *map[string]string
-
-	Schedule_expression *string
-
-	Targets *[]Aws_ssm_association_targets_526
-}
-
-type Aws_ssm_document_parameter_527 struct {
-	Default_value *string
-
-	Description *string
-
-	Name *string
-
-	Type *string
-}
-
-type Aws_ssm_document struct {
-	Aws_ssm_document_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Content string
-
-	Created_date *string
-
-	Default_version *string
-
-	Description *string
-
-	Document_format *string
-
-	Document_type string
-
-	Hash *string
-
-	Hash_type *string
-
-	Latest_version *string
-
-	Name string
-
-	Owner *string
-
-	Parameter *[]Aws_ssm_document_parameter_527
-
-	Permissions *map[string]string
-
-	Platform_types *[]string
-
-	Schema_version *string
-
-	Status *string
-
-	Tags *map[string]string
-}
-
-type Aws_ssm_maintenance_window struct {
-	Aws_ssm_maintenance_window_id *string `lyra:"ignore"`
-
-	Allow_unassociated_targets *bool
-
-	Cutoff int
-
-	Duration int
-
-	Enabled *bool
-
-	End_date *string
-
-	Name string
-
-	Schedule string
-
-	Schedule_timezone *string
-
-	Start_date *string
-}
-
-type Aws_ssm_maintenance_window_target_targets_528 struct {
-	Key string
-
-	Values []string
-}
-
-type Aws_ssm_maintenance_window_target struct {
-	Aws_ssm_maintenance_window_target_id *string `lyra:"ignore"`
-
-	Owner_information *string
-
-	Resource_type string
-
-	Targets []Aws_ssm_maintenance_window_target_targets_528
-
-	Window_id string
-}
-
-type Aws_ssm_maintenance_window_task_logging_info_529 struct {
-	S3_bucket_name string
-
-	S3_bucket_prefix *string
-
-	S3_region string
-}
-
-type Aws_ssm_maintenance_window_task_targets_530 struct {
-	Key string
-
-	Values []string
-}
-
-type Aws_ssm_maintenance_window_task_task_parameters_531 struct {
-	Name string
-
-	Values []string
-}
-
-type Aws_ssm_maintenance_window_task struct {
-	Aws_ssm_maintenance_window_task_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Logging_info *[]Aws_ssm_maintenance_window_task_logging_info_529
-
-	Max_concurrency string
-
-	Max_errors string
-
-	Name *string
-
-	Priority *int
-
-	Service_role_arn string
-
-	Targets []Aws_ssm_maintenance_window_task_targets_530
-
-	Task_arn string
-
-	Task_parameters *[]Aws_ssm_maintenance_window_task_task_parameters_531
-
-	Task_type string
-
-	Window_id string
-}
-
-type Aws_ssm_parameter struct {
-	Aws_ssm_parameter_id *string `lyra:"ignore"`
-
-	Allowed_pattern *string
-
-	Arn *string
-
-	Description *string
-
-	Key_id *string
-
-	Name string
-
-	Overwrite *bool
-
-	Tags *map[string]string
-
-	Type string
-
-	Value string
-}
-
-type Aws_ssm_patch_baseline_approval_rule_532_patch_filter_533 struct {
-	Key string
-
-	Values []string
-}
-
-type Aws_ssm_patch_baseline_approval_rule_532 struct {
-	Approve_after_days int
-
-	Compliance_level *string
-
-	Enable_non_security *bool
-
-	Patch_filter []Aws_ssm_patch_baseline_approval_rule_532_patch_filter_533
-}
-
-type Aws_ssm_patch_baseline_global_filter_534 struct {
-	Key string
-
-	Values []string
-}
-
-type Aws_ssm_patch_baseline struct {
-	Aws_ssm_patch_baseline_id *string `lyra:"ignore"`
-
-	Approval_rule *[]Aws_ssm_patch_baseline_approval_rule_532
-
-	Approved_patches *[]string
-
-	Approved_patches_compliance_level *string
-
-	Description *string
-
-	Global_filter *[]Aws_ssm_patch_baseline_global_filter_534
-
-	Name string
-
-	Operating_system *string
-
-	Rejected_patches *[]string
-}
-
-type Aws_ssm_patch_group struct {
-	Aws_ssm_patch_group_id *string `lyra:"ignore"`
-
-	Baseline_id string
-
-	Patch_group string
-}
-
-type Aws_ssm_resource_data_sync_s3_destination_535 struct {
-	Bucket_name string
-
-	Kms_key_arn *string
-
-	Prefix *string
-
-	Region string
-
-	Sync_format *string
-}
-
-type Aws_ssm_resource_data_sync struct {
-	Aws_ssm_resource_data_sync_id *string `lyra:"ignore"`
-
-	Name string
-
-	S3_destination []Aws_ssm_resource_data_sync_s3_destination_535
-}
-
-type Aws_storagegateway_cache struct {
-	Aws_storagegateway_cache_id *string `lyra:"ignore"`
-
-	Disk_id string
-
-	Gateway_arn string
-}
-
-type Aws_storagegateway_cached_iscsi_volume struct {
-	Aws_storagegateway_cached_iscsi_volume_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Chap_enabled *bool
-
-	Gateway_arn string
-
-	Lun_number *int
-
-	Network_interface_id string
-
-	Network_interface_port *int
-
-	Snapshot_id *string
-
-	Source_volume_arn *string
-
-	Target_arn *string
-
-	Target_name string
-
-	Volume_arn *string
-
-	Volume_id *string
-
-	Volume_size_in_bytes int
-}
-
-type Aws_storagegateway_gateway_smb_active_directory_settings_536 struct {
-	Domain_name string
-
-	Password string
-
-	Username string
-}
-
-type Aws_storagegateway_gateway struct {
-	Aws_storagegateway_gateway_id *string `lyra:"ignore"`
-
-	Activation_key *string
-
-	Arn *string
-
-	Gateway_id *string
-
-	Gateway_ip_address *string
-
-	Gateway_name string
-
-	Gateway_timezone string
-
-	Gateway_type *string
-
-	Medium_changer_type *string
-
-	Smb_active_directory_settings *[]Aws_storagegateway_gateway_smb_active_directory_settings_536
-
-	Smb_guest_password *string
-
-	Tape_drive_type *string
-}
-
-type Aws_storagegateway_nfs_file_share_nfs_file_share_defaults_537 struct {
-	Directory_mode *string
-
-	File_mode *string
-
-	Group_id *int
-
-	Owner_id *int
-}
-
-type Aws_storagegateway_nfs_file_share struct {
-	Aws_storagegateway_nfs_file_share_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Client_list []string
-
-	Default_storage_class *string
-
-	Fileshare_id *string
-
-	Gateway_arn string
-
-	Guess_mime_type_enabled *bool
-
-	Kms_encrypted *bool
-
-	Kms_key_arn *string
-
-	Location_arn string
-
-	Nfs_file_share_defaults *[]Aws_storagegateway_nfs_file_share_nfs_file_share_defaults_537
-
-	Object_acl *string
-
-	Read_only *bool
-
-	Requester_pays *bool
-
-	Role_arn string
-
-	Squash *string
-}
-
-type Aws_storagegateway_smb_file_share struct {
-	Aws_storagegateway_smb_file_share_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Authentication *string
-
-	Default_storage_class *string
-
-	Fileshare_id *string
-
-	Gateway_arn string
-
-	Guess_mime_type_enabled *bool
-
-	Invalid_user_list *[]string
-
-	Kms_encrypted *bool
-
-	Kms_key_arn *string
-
-	Location_arn string
-
-	Object_acl *string
-
-	Read_only *bool
-
-	Requester_pays *bool
-
-	Role_arn string
-
-	Valid_user_list *[]string
-}
-
-type Aws_storagegateway_upload_buffer struct {
-	Aws_storagegateway_upload_buffer_id *string `lyra:"ignore"`
-
-	Disk_id string
-
-	Gateway_arn string
-}
-
-type Aws_storagegateway_working_storage struct {
-	Aws_storagegateway_working_storage_id *string `lyra:"ignore"`
-
-	Disk_id string
-
-	Gateway_arn string
-}
-
-type Aws_subnet struct {
-	Aws_subnet_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Assign_ipv6_address_on_creation *bool
-
-	Availability_zone *string
-
-	Availability_zone_id *string
-
-	Cidr_block string
-
-	Ipv6_cidr_block *string
-
-	Ipv6_cidr_block_association_id *string
-
-	Map_public_ip_on_launch *bool
-
-	Owner_id *string
-
-	Tags *map[string]string
-
-	Vpc_id string
-}
-
-type Aws_swf_domain struct {
-	Aws_swf_domain_id *string `lyra:"ignore"`
-
-	Description *string
-
-	Name *string
-
-	Name_prefix *string
-
-	Workflow_execution_retention_period_in_days string
-}
-
-type Aws_transfer_server struct {
-	Aws_transfer_server_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Endpoint *string
-
-	Force_destroy *bool
-
-	Identity_provider_type *string
-
-	Invocation_role *string
-
-	Logging_role *string
-
-	Tags *map[string]string
-
-	Url *string
-}
-
-type Aws_transfer_ssh_key struct {
-	Aws_transfer_ssh_key_id *string `lyra:"ignore"`
-
-	Body string
-
-	Server_id string
-
-	User_name string
-}
-
-type Aws_transfer_user struct {
-	Aws_transfer_user_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Home_directory *string
-
-	Policy *string
-
-	Role string
-
-	Server_id string
-
-	Tags *map[string]string
-
-	User_name string
-}
-
-type Aws_volume_attachment struct {
-	Aws_volume_attachment_id *string `lyra:"ignore"`
-
-	Device_name string
-
-	Force_detach *bool
-
-	Instance_id string
-
-	Skip_destroy *bool
-
-	Volume_id string
-}
-
-type Aws_vpc struct {
-	Aws_vpc_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Assign_generated_ipv6_cidr_block *bool
-
-	Cidr_block string
-
-	Default_network_acl_id *string
-
-	Default_route_table_id *string
-
-	Default_security_group_id *string
-
-	Dhcp_options_id *string
-
-	Enable_classiclink *bool
-
-	Enable_classiclink_dns_support *bool
-
-	Enable_dns_hostnames *bool
-
-	Enable_dns_support *bool
-
-	Instance_tenancy *string
-
-	Ipv6_association_id *string
-
-	Ipv6_cidr_block *string
-
-	Main_route_table_id *string
-
-	Owner_id *string
-
-	Tags *map[string]string
-}
-
-type Aws_vpc_dhcp_options struct {
-	Aws_vpc_dhcp_options_id *string `lyra:"ignore"`
-
-	Domain_name *string
-
-	Domain_name_servers *[]string
-
-	Netbios_name_servers *[]string
-
-	Netbios_node_type *string
-
-	Ntp_servers *[]string
-
-	Owner_id *string
-
-	Tags *map[string]string
-}
-
-type Aws_vpc_dhcp_options_association struct {
-	Aws_vpc_dhcp_options_association_id *string `lyra:"ignore"`
-
-	Dhcp_options_id string
-
-	Vpc_id string
-}
-
-type Aws_vpc_endpoint_dns_entry_538 struct {
-	Dns_name *string
-
-	Hosted_zone_id *string
-}
-
-type Aws_vpc_endpoint struct {
-	Aws_vpc_endpoint_id *string `lyra:"ignore"`
-
-	Auto_accept *bool
-
-	Cidr_blocks *[]string
-
-	Dns_entry *[]Aws_vpc_endpoint_dns_entry_538
-
-	Network_interface_ids *[]string
-
-	Policy *string
-
-	Prefix_list_id *string
-
-	Private_dns_enabled *bool
-
-	Route_table_ids *[]string
-
-	Security_group_ids *[]string
-
-	Service_name string
-
-	State *string
-
-	Subnet_ids *[]string
-
-	Vpc_endpoint_type *string
-
-	Vpc_id string
-}
-
-type Aws_vpc_endpoint_connection_notification struct {
-	Aws_vpc_endpoint_connection_notification_id *string `lyra:"ignore"`
-
-	Connection_events []string
-
-	Connection_notification_arn string
-
-	Notification_type *string
-
-	State *string
-
-	Vpc_endpoint_id *string
-
-	Vpc_endpoint_service_id *string
-}
-
-type Aws_vpc_endpoint_route_table_association struct {
-	Aws_vpc_endpoint_route_table_association_id *string `lyra:"ignore"`
-
-	Route_table_id string
-
-	Vpc_endpoint_id string
-}
-
-type Aws_vpc_endpoint_service struct {
-	Aws_vpc_endpoint_service_id *string `lyra:"ignore"`
-
-	Acceptance_required bool
-
-	Allowed_principals *[]string
-
-	Availability_zones *[]string
-
-	Base_endpoint_dns_names *[]string
-
-	Network_load_balancer_arns []string
-
-	Private_dns_name *string
-
-	Service_name *string
-
-	Service_type *string
-
-	State *string
-}
-
-type Aws_vpc_endpoint_service_allowed_principal struct {
-	Aws_vpc_endpoint_service_allowed_principal_id *string `lyra:"ignore"`
-
-	Principal_arn string
-
-	Vpc_endpoint_service_id string
-}
-
-type Aws_vpc_endpoint_subnet_association struct {
-	Aws_vpc_endpoint_subnet_association_id *string `lyra:"ignore"`
-
-	Subnet_id string
-
-	Vpc_endpoint_id string
-}
-
-type Aws_vpc_ipv4_cidr_block_association struct {
-	Aws_vpc_ipv4_cidr_block_association_id *string `lyra:"ignore"`
-
-	Cidr_block string
-
-	Vpc_id string
-}
-
-type Aws_vpc_peering_connection_accepter_539 struct {
-	Allow_classic_link_to_remote_vpc *bool
-
-	Allow_remote_vpc_dns_resolution *bool
-
-	Allow_vpc_to_remote_classic_link *bool
-}
-
-type Aws_vpc_peering_connection_requester_540 struct {
-	Allow_classic_link_to_remote_vpc *bool
-
-	Allow_remote_vpc_dns_resolution *bool
-
-	Allow_vpc_to_remote_classic_link *bool
-}
-
-type Aws_vpc_peering_connection struct {
-	Aws_vpc_peering_connection_id *string `lyra:"ignore"`
-
-	Accept_status *string
-
-	Accepter *[]Aws_vpc_peering_connection_accepter_539
-
-	Auto_accept *bool
-
-	Peer_owner_id *string
-
-	Peer_region *string
-
-	Peer_vpc_id string
-
-	Requester *[]Aws_vpc_peering_connection_requester_540
-
-	Tags *map[string]string
-
-	Vpc_id string
-}
-
-type Aws_vpc_peering_connection_accepter_accepter_541 struct {
-	Allow_classic_link_to_remote_vpc *bool
-
-	Allow_remote_vpc_dns_resolution *bool
-
-	Allow_vpc_to_remote_classic_link *bool
-}
-
-type Aws_vpc_peering_connection_accepter_requester_542 struct {
-	Allow_classic_link_to_remote_vpc *bool
-
-	Allow_remote_vpc_dns_resolution *bool
-
-	Allow_vpc_to_remote_classic_link *bool
-}
-
-type Aws_vpc_peering_connection_accepter struct {
-	Aws_vpc_peering_connection_accepter_id *string `lyra:"ignore"`
-
-	Accept_status *string
-
-	Accepter *[]Aws_vpc_peering_connection_accepter_accepter_541
-
-	Auto_accept *bool
-
-	Peer_owner_id *string
-
-	Peer_region *string
-
-	Peer_vpc_id *string
-
-	Requester *[]Aws_vpc_peering_connection_accepter_requester_542
-
-	Tags *map[string]string
-
-	Vpc_id *string
-
-	Vpc_peering_connection_id string
-}
-
-type Aws_vpc_peering_connection_options_accepter_543 struct {
-	Allow_classic_link_to_remote_vpc *bool
-
-	Allow_remote_vpc_dns_resolution *bool
-
-	Allow_vpc_to_remote_classic_link *bool
-}
-
-type Aws_vpc_peering_connection_options_requester_544 struct {
-	Allow_classic_link_to_remote_vpc *bool
-
-	Allow_remote_vpc_dns_resolution *bool
-
-	Allow_vpc_to_remote_classic_link *bool
-}
-
-type Aws_vpc_peering_connection_options struct {
-	Aws_vpc_peering_connection_options_id *string `lyra:"ignore"`
-
-	Accepter *[]Aws_vpc_peering_connection_options_accepter_543
-
-	Requester *[]Aws_vpc_peering_connection_options_requester_544
-
-	Vpc_peering_connection_id string
-}
-
-type Aws_vpn_connection_routes_545 struct {
-	Destination_cidr_block *string
-
-	Source *string
-
-	State *string
-}
-
-type Aws_vpn_connection_vgw_telemetry_546 struct {
-	Accepted_route_count *int
-
-	Last_status_change *string
-
-	Outside_ip_address *string
-
-	Status *string
-
-	Status_message *string
-}
-
-type Aws_vpn_connection struct {
-	Aws_vpn_connection_id *string `lyra:"ignore"`
-
-	Customer_gateway_configuration *string
-
-	Customer_gateway_id string
-
-	Routes *[]Aws_vpn_connection_routes_545
-
-	Static_routes_only *bool
-
-	Tags *map[string]string
-
-	Transit_gateway_id *string
-
-	Tunnel1_address *string
-
-	Tunnel1_bgp_asn *string
-
-	Tunnel1_bgp_holdtime *int
-
-	Tunnel1_cgw_inside_address *string
-
-	Tunnel1_inside_cidr *string
-
-	Tunnel1_preshared_key *string
-
-	Tunnel1_vgw_inside_address *string
-
-	Tunnel2_address *string
-
-	Tunnel2_bgp_asn *string
-
-	Tunnel2_bgp_holdtime *int
-
-	Tunnel2_cgw_inside_address *string
-
-	Tunnel2_inside_cidr *string
-
-	Tunnel2_preshared_key *string
-
-	Tunnel2_vgw_inside_address *string
-
-	Type string
-
-	Vgw_telemetry *[]Aws_vpn_connection_vgw_telemetry_546
-
-	Vpn_gateway_id *string
-}
-
-type Aws_vpn_connection_route struct {
-	Aws_vpn_connection_route_id *string `lyra:"ignore"`
-
-	Destination_cidr_block string
-
-	Vpn_connection_id string
-}
-
-type Aws_vpn_gateway struct {
-	Aws_vpn_gateway_id *string `lyra:"ignore"`
-
-	Amazon_side_asn *string
-
-	Availability_zone *string
-
-	Tags *map[string]string
-
-	Vpc_id *string
-}
-
-type Aws_vpn_gateway_attachment struct {
-	Aws_vpn_gateway_attachment_id *string `lyra:"ignore"`
-
-	Vpc_id string
-
-	Vpn_gateway_id string
-}
-
-type Aws_vpn_gateway_route_propagation struct {
-	Aws_vpn_gateway_route_propagation_id *string `lyra:"ignore"`
-
-	Route_table_id string
-
-	Vpn_gateway_id string
-}
-
-type Aws_waf_byte_match_set_byte_match_tuples_547_field_to_match_548 struct {
-	Data *string
-
-	Type string
-}
-
-type Aws_waf_byte_match_set_byte_match_tuples_547 struct {
-	Field_to_match []Aws_waf_byte_match_set_byte_match_tuples_547_field_to_match_548
-
-	Positional_constraint string
-
-	Target_string *string
-
-	Text_transformation string
-}
-
-type Aws_waf_byte_match_set struct {
-	Aws_waf_byte_match_set_id *string `lyra:"ignore"`
-
-	Byte_match_tuples *[]Aws_waf_byte_match_set_byte_match_tuples_547
-
-	Name string
-}
-
-type Aws_waf_geo_match_set_geo_match_constraint_549 struct {
-	Type string
-
-	Value string
-}
-
-type Aws_waf_geo_match_set struct {
-	Aws_waf_geo_match_set_id *string `lyra:"ignore"`
-
-	Geo_match_constraint *[]Aws_waf_geo_match_set_geo_match_constraint_549
-
-	Name string
-}
-
-type Aws_waf_ipset_ip_set_descriptors_550 struct {
-	Type string
-
-	Value string
-}
-
-type Aws_waf_ipset struct {
-	Aws_waf_ipset_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Ip_set_descriptors *[]Aws_waf_ipset_ip_set_descriptors_550
-
-	Name string
-}
-
-type Aws_waf_rate_based_rule_predicates_551 struct {
-	Data_id string
-
-	Negated bool
-
-	Type string
-}
-
-type Aws_waf_rate_based_rule struct {
-	Aws_waf_rate_based_rule_id *string `lyra:"ignore"`
-
-	Metric_name string
-
-	Name string
-
-	Predicates *[]Aws_waf_rate_based_rule_predicates_551
-
-	Rate_key string
-
-	Rate_limit int
-}
-
-type Aws_waf_regex_match_set_regex_match_tuple_552_field_to_match_553 struct {
-	Data *string
-
-	Type string
-}
-
-type Aws_waf_regex_match_set_regex_match_tuple_552 struct {
-	Field_to_match []Aws_waf_regex_match_set_regex_match_tuple_552_field_to_match_553
-
-	Regex_pattern_set_id string
-
-	Text_transformation string
-}
-
-type Aws_waf_regex_match_set struct {
-	Aws_waf_regex_match_set_id *string `lyra:"ignore"`
-
-	Name string
-
-	Regex_match_tuple *[]Aws_waf_regex_match_set_regex_match_tuple_552
-}
-
-type Aws_waf_regex_pattern_set struct {
-	Aws_waf_regex_pattern_set_id *string `lyra:"ignore"`
-
-	Name string
-
-	Regex_pattern_strings *[]string
-}
-
-type Aws_waf_rule_predicates_554 struct {
-	Data_id string
-
-	Negated bool
-
-	Type string
-}
-
-type Aws_waf_rule struct {
-	Aws_waf_rule_id *string `lyra:"ignore"`
-
-	Metric_name string
-
-	Name string
-
-	Predicates *[]Aws_waf_rule_predicates_554
-}
-
-type Aws_waf_rule_group_activated_rule_555_action_556 struct {
-	Type string
-}
-
-type Aws_waf_rule_group_activated_rule_555 struct {
-	Action []Aws_waf_rule_group_activated_rule_555_action_556
-
-	Priority int
-
-	Rule_id string
-
-	Type *string
-}
-
-type Aws_waf_rule_group struct {
-	Aws_waf_rule_group_id *string `lyra:"ignore"`
-
-	Activated_rule *[]Aws_waf_rule_group_activated_rule_555
-
-	Metric_name string
-
-	Name string
-}
-
-type Aws_waf_size_constraint_set_size_constraints_557_field_to_match_558 struct {
-	Data *string
-
-	Type string
-}
-
-type Aws_waf_size_constraint_set_size_constraints_557 struct {
-	Comparison_operator string
-
-	Field_to_match []Aws_waf_size_constraint_set_size_constraints_557_field_to_match_558
-
-	Size int
-
-	Text_transformation string
-}
-
-type Aws_waf_size_constraint_set struct {
-	Aws_waf_size_constraint_set_id *string `lyra:"ignore"`
-
-	Name string
-
-	Size_constraints *[]Aws_waf_size_constraint_set_size_constraints_557
-}
-
-type Aws_waf_sql_injection_match_set_sql_injection_match_tuples_559_field_to_match_560 struct {
-	Data *string
-
-	Type string
-}
-
-type Aws_waf_sql_injection_match_set_sql_injection_match_tuples_559 struct {
-	Field_to_match []Aws_waf_sql_injection_match_set_sql_injection_match_tuples_559_field_to_match_560
-
-	Text_transformation string
-}
-
-type Aws_waf_sql_injection_match_set struct {
-	Aws_waf_sql_injection_match_set_id *string `lyra:"ignore"`
-
-	Name string
-
-	Sql_injection_match_tuples *[]Aws_waf_sql_injection_match_set_sql_injection_match_tuples_559
-}
-
-type Aws_waf_web_acl_default_action_561 struct {
-	Type string
-}
-
-type Aws_waf_web_acl_rules_562_action_563 struct {
-	Type string
-}
-
-type Aws_waf_web_acl_rules_562_override_action_564 struct {
-	Type string
-}
-
-type Aws_waf_web_acl_rules_562 struct {
-	Action *[]Aws_waf_web_acl_rules_562_action_563
-
-	Override_action *[]Aws_waf_web_acl_rules_562_override_action_564
-
-	Priority int
-
-	Rule_id string
-
-	Type *string
-}
-
-type Aws_waf_web_acl struct {
-	Aws_waf_web_acl_id *string `lyra:"ignore"`
-
-	Default_action []Aws_waf_web_acl_default_action_561
-
-	Metric_name string
-
-	Name string
-
-	Rules *[]Aws_waf_web_acl_rules_562
-}
-
-type Aws_waf_xss_match_set_xss_match_tuples_565_field_to_match_566 struct {
-	Data *string
-
-	Type string
-}
-
-type Aws_waf_xss_match_set_xss_match_tuples_565 struct {
-	Field_to_match []Aws_waf_xss_match_set_xss_match_tuples_565_field_to_match_566
-
-	Text_transformation string
-}
-
-type Aws_waf_xss_match_set struct {
-	Aws_waf_xss_match_set_id *string `lyra:"ignore"`
-
-	Name string
-
-	Xss_match_tuples *[]Aws_waf_xss_match_set_xss_match_tuples_565
-}
-
-type Aws_wafregional_byte_match_set_byte_match_tuple_567_field_to_match_568 struct {
-	Data *string
-
-	Type string
-}
-
-type Aws_wafregional_byte_match_set_byte_match_tuple_567 struct {
-	Field_to_match []Aws_wafregional_byte_match_set_byte_match_tuple_567_field_to_match_568
-
-	Positional_constraint string
-
-	Target_string *string
-
-	Text_transformation string
-}
-
-type Aws_wafregional_byte_match_set_byte_match_tuples_569_field_to_match_570 struct {
-	Data *string
-
-	Type string
-}
-
-type Aws_wafregional_byte_match_set_byte_match_tuples_569 struct {
-	Field_to_match []Aws_wafregional_byte_match_set_byte_match_tuples_569_field_to_match_570
-
-	Positional_constraint string
-
-	Target_string *string
-
-	Text_transformation string
-}
-
-type Aws_wafregional_byte_match_set struct {
-	Aws_wafregional_byte_match_set_id *string `lyra:"ignore"`
-
-	Byte_match_tuple *[]Aws_wafregional_byte_match_set_byte_match_tuple_567
-
-	Byte_match_tuples *[]Aws_wafregional_byte_match_set_byte_match_tuples_569
-
-	Name string
-}
-
-type Aws_wafregional_geo_match_set_geo_match_constraint_571 struct {
-	Type string
-
-	Value string
-}
-
-type Aws_wafregional_geo_match_set struct {
-	Aws_wafregional_geo_match_set_id *string `lyra:"ignore"`
-
-	Geo_match_constraint *[]Aws_wafregional_geo_match_set_geo_match_constraint_571
-
-	Name string
-}
-
-type Aws_wafregional_ipset_ip_set_descriptor_572 struct {
-	Type string
-
-	Value string
-}
-
-type Aws_wafregional_ipset struct {
-	Aws_wafregional_ipset_id *string `lyra:"ignore"`
-
-	Arn *string
-
-	Ip_set_descriptor *[]Aws_wafregional_ipset_ip_set_descriptor_572
-
-	Name string
-}
-
-type Aws_wafregional_rate_based_rule_predicate_573 struct {
-	Data_id string
-
-	Negated bool
-
-	Type string
-}
-
-type Aws_wafregional_rate_based_rule struct {
-	Aws_wafregional_rate_based_rule_id *string `lyra:"ignore"`
-
-	Metric_name string
-
-	Name string
-
-	Predicate *[]Aws_wafregional_rate_based_rule_predicate_573
-
-	Rate_key string
-
-	Rate_limit int
-}
-
-type Aws_wafregional_regex_match_set_regex_match_tuple_574_field_to_match_575 struct {
-	Data *string
-
-	Type string
-}
-
-type Aws_wafregional_regex_match_set_regex_match_tuple_574 struct {
-	Field_to_match []Aws_wafregional_regex_match_set_regex_match_tuple_574_field_to_match_575
-
-	Regex_pattern_set_id string
-
-	Text_transformation string
-}
-
-type Aws_wafregional_regex_match_set struct {
-	Aws_wafregional_regex_match_set_id *string `lyra:"ignore"`
-
-	Name string
-
-	Regex_match_tuple *[]Aws_wafregional_regex_match_set_regex_match_tuple_574
-}
-
-type Aws_wafregional_regex_pattern_set struct {
-	Aws_wafregional_regex_pattern_set_id *string `lyra:"ignore"`
-
-	Name string
-
-	Regex_pattern_strings *[]string
-}
-
-type Aws_wafregional_rule_predicate_576 struct {
-	Data_id string
-
-	Negated bool
-
-	Type string
-}
-
-type Aws_wafregional_rule struct {
-	Aws_wafregional_rule_id *string `lyra:"ignore"`
-
-	Metric_name string
-
-	Name string
-
-	Predicate *[]Aws_wafregional_rule_predicate_576
-}
-
-type Aws_wafregional_rule_group_activated_rule_577_action_578 struct {
-	Type string
-}
-
-type Aws_wafregional_rule_group_activated_rule_577 struct {
-	Action []Aws_wafregional_rule_group_activated_rule_577_action_578
-
-	Priority int
-
-	Rule_id string
-
-	Type *string
-}
-
-type Aws_wafregional_rule_group struct {
-	Aws_wafregional_rule_group_id *string `lyra:"ignore"`
-
-	Activated_rule *[]Aws_wafregional_rule_group_activated_rule_577
-
-	Metric_name string
-
-	Name string
-}
-
-type Aws_wafregional_size_constraint_set_size_constraints_579_field_to_match_580 struct {
-	Data *string
-
-	Type string
-}
-
-type Aws_wafregional_size_constraint_set_size_constraints_579 struct {
-	Comparison_operator string
-
-	Field_to_match []Aws_wafregional_size_constraint_set_size_constraints_579_field_to_match_580
-
-	Size int
-
-	Text_transformation string
-}
-
-type Aws_wafregional_size_constraint_set struct {
-	Aws_wafregional_size_constraint_set_id *string `lyra:"ignore"`
-
-	Name string
-
-	Size_constraints *[]Aws_wafregional_size_constraint_set_size_constraints_579
-}
-
-type Aws_wafregional_sql_injection_match_set_sql_injection_match_tuple_581_field_to_match_582 struct {
-	Data *string
-
-	Type string
-}
-
-type Aws_wafregional_sql_injection_match_set_sql_injection_match_tuple_581 struct {
-	Field_to_match []Aws_wafregional_sql_injection_match_set_sql_injection_match_tuple_581_field_to_match_582
-
-	Text_transformation string
-}
-
-type Aws_wafregional_sql_injection_match_set struct {
-	Aws_wafregional_sql_injection_match_set_id *string `lyra:"ignore"`
-
-	Name string
-
-	Sql_injection_match_tuple *[]Aws_wafregional_sql_injection_match_set_sql_injection_match_tuple_581
-}
-
-type Aws_wafregional_web_acl_default_action_583 struct {
-	Type string
-}
-
-type Aws_wafregional_web_acl_rule_584_action_585 struct {
-	Type string
-}
-
-type Aws_wafregional_web_acl_rule_584_override_action_586 struct {
-	Type string
-}
-
-type Aws_wafregional_web_acl_rule_584 struct {
-	Action *[]Aws_wafregional_web_acl_rule_584_action_585
-
-	Override_action *[]Aws_wafregional_web_acl_rule_584_override_action_586
-
-	Priority int
-
-	Rule_id string
-
-	Type *string
-}
-
-type Aws_wafregional_web_acl struct {
-	Aws_wafregional_web_acl_id *string `lyra:"ignore"`
-
-	Default_action []Aws_wafregional_web_acl_default_action_583
-
-	Metric_name string
-
-	Name string
-
-	Rule *[]Aws_wafregional_web_acl_rule_584
-}
-
-type Aws_wafregional_web_acl_association struct {
-	Aws_wafregional_web_acl_association_id *string `lyra:"ignore"`
-
-	Resource_arn string
-
-	Web_acl_id string
-}
-
-type Aws_wafregional_xss_match_set_xss_match_tuple_587_field_to_match_588 struct {
-	Data *string
-
-	Type string
-}
-
-type Aws_wafregional_xss_match_set_xss_match_tuple_587 struct {
-	Field_to_match []Aws_wafregional_xss_match_set_xss_match_tuple_587_field_to_match_588
-
-	Text_transformation string
-}
-
-type Aws_wafregional_xss_match_set struct {
-	Aws_wafregional_xss_match_set_id *string `lyra:"ignore"`
-
-	Name string
-
-	Xss_match_tuple *[]Aws_wafregional_xss_match_set_xss_match_tuple_587
+	}))[0]
+	sb.RegisterHandler("TerraformAws::Wafregional_xss_match_setHandler", bridge.NewTFHandler(p, "aws_wafregional_xss_match_set", rt), rt)
+
+	// Registration of non-resource types
+	sb.RegisterTypes("TerraformAws",
+		&Acm_certificate__domain_validation_options{},
+		&Acmpca_certificate_authority__certificate_authority_configuration__subject{},
+		&Acmpca_certificate_authority__certificate_authority_configuration{},
+		&Acmpca_certificate_authority__revocation_configuration__crl_configuration{},
+		&Acmpca_certificate_authority__revocation_configuration{},
+		&Alb__access_logs{},
+		&Alb__subnet_mapping{},
+		&Alb_listener__default_action__authenticate_cognito{},
+		&Alb_listener__default_action__authenticate_oidc{},
+		&Alb_listener__default_action__fixed_response{},
+		&Alb_listener__default_action__redirect{},
+		&Alb_listener__default_action{},
+		&Alb_listener_rule__action__authenticate_cognito{},
+		&Alb_listener_rule__action__authenticate_oidc{},
+		&Alb_listener_rule__action__fixed_response{},
+		&Alb_listener_rule__action__redirect{},
+		&Alb_listener_rule__action{},
+		&Alb_listener_rule__condition{},
+		&Alb_target_group__health_check{},
+		&Alb_target_group__stickiness{},
+		&Ami__ebs_block_device{},
+		&Ami__ephemeral_block_device{},
+		&Ami_copy__ebs_block_device{},
+		&Ami_copy__ephemeral_block_device{},
+		&Ami_from_instance__ebs_block_device{},
+		&Ami_from_instance__ephemeral_block_device{},
+		&Api_gateway_account__throttle_settings{},
+		&Api_gateway_api_key__stage_key{},
+		&Api_gateway_documentation_part__location{},
+		&Api_gateway_domain_name__endpoint_configuration{},
+		&Api_gateway_method_settings__settings{},
+		&Api_gateway_rest_api__endpoint_configuration{},
+		&Api_gateway_stage__access_log_settings{},
+		&Api_gateway_usage_plan__api_stages{},
+		&Api_gateway_usage_plan__quota_settings{},
+		&Api_gateway_usage_plan__throttle_settings{},
+		&Appautoscaling_policy__step_adjustment{},
+		&Appautoscaling_policy__step_scaling_policy_configuration__step_adjustment{},
+		&Appautoscaling_policy__step_scaling_policy_configuration{},
+		&Appautoscaling_policy__target_tracking_scaling_policy_configuration__customized_metric_specification__dimensions{},
+		&Appautoscaling_policy__target_tracking_scaling_policy_configuration__customized_metric_specification{},
+		&Appautoscaling_policy__target_tracking_scaling_policy_configuration__predefined_metric_specification{},
+		&Appautoscaling_policy__target_tracking_scaling_policy_configuration{},
+		&Appautoscaling_scheduled_action__scalable_target_action{},
+		&Appmesh_route__spec__http_route__action__weighted_target{},
+		&Appmesh_route__spec__http_route__action{},
+		&Appmesh_route__spec__http_route__match{},
+		&Appmesh_route__spec__http_route{},
+		&Appmesh_route__spec{},
+		&Appmesh_virtual_node__spec__listener__port_mapping{},
+		&Appmesh_virtual_node__spec__listener{},
+		&Appmesh_virtual_node__spec__service_discovery__dns{},
+		&Appmesh_virtual_node__spec__service_discovery{},
+		&Appmesh_virtual_node__spec{},
+		&Appmesh_virtual_router__spec{},
+		&Appsync_datasource__dynamodb_config{},
+		&Appsync_datasource__elasticsearch_config{},
+		&Appsync_datasource__http_config{},
+		&Appsync_datasource__lambda_config{},
+		&Appsync_graphql_api__log_config{},
+		&Appsync_graphql_api__openid_connect_config{},
+		&Appsync_graphql_api__user_pool_config{},
+		&Athena_database__encryption_configuration{},
+		&Autoscaling_group__initial_lifecycle_hook{},
+		&Autoscaling_group__launch_template{},
+		&Autoscaling_group__mixed_instances_policy__instances_distribution{},
+		&Autoscaling_group__mixed_instances_policy__launch_template__launch_template_specification{},
+		&Autoscaling_group__mixed_instances_policy__launch_template__override{},
+		&Autoscaling_group__mixed_instances_policy__launch_template{},
+		&Autoscaling_group__mixed_instances_policy{},
+		&Autoscaling_group__tag{},
+		&Autoscaling_policy__step_adjustment{},
+		&Autoscaling_policy__target_tracking_configuration__customized_metric_specification__metric_dimension{},
+		&Autoscaling_policy__target_tracking_configuration__customized_metric_specification{},
+		&Autoscaling_policy__target_tracking_configuration__predefined_metric_specification{},
+		&Autoscaling_policy__target_tracking_configuration{},
+		&Batch_compute_environment__compute_resources{},
+		&Batch_job_definition__retry_strategy{},
+		&Batch_job_definition__timeout{},
+		&Budgets_budget__cost_types{},
+		&Cloudfront_distribution__cache_behavior__forwarded_values__cookies{},
+		&Cloudfront_distribution__cache_behavior__forwarded_values{},
+		&Cloudfront_distribution__cache_behavior__lambda_function_association{},
+		&Cloudfront_distribution__cache_behavior{},
+		&Cloudfront_distribution__custom_error_response{},
+		&Cloudfront_distribution__default_cache_behavior__forwarded_values__cookies{},
+		&Cloudfront_distribution__default_cache_behavior__forwarded_values{},
+		&Cloudfront_distribution__default_cache_behavior__lambda_function_association{},
+		&Cloudfront_distribution__default_cache_behavior{},
+		&Cloudfront_distribution__logging_config{},
+		&Cloudfront_distribution__ordered_cache_behavior__forwarded_values__cookies{},
+		&Cloudfront_distribution__ordered_cache_behavior__forwarded_values{},
+		&Cloudfront_distribution__ordered_cache_behavior__lambda_function_association{},
+		&Cloudfront_distribution__ordered_cache_behavior{},
+		&Cloudfront_distribution__origin__custom_header{},
+		&Cloudfront_distribution__origin__custom_origin_config{},
+		&Cloudfront_distribution__origin__s3_origin_config{},
+		&Cloudfront_distribution__origin{},
+		&Cloudfront_distribution__restrictions__geo_restriction{},
+		&Cloudfront_distribution__restrictions{},
+		&Cloudfront_distribution__viewer_certificate{},
+		&Cloudhsm_v2_cluster__cluster_certificates{},
+		&Cloudtrail__event_selector__data_resource{},
+		&Cloudtrail__event_selector{},
+		&Cloudwatch_event_permission__condition{},
+		&Cloudwatch_event_target__batch_target{},
+		&Cloudwatch_event_target__ecs_target__network_configuration{},
+		&Cloudwatch_event_target__ecs_target{},
+		&Cloudwatch_event_target__input_transformer{},
+		&Cloudwatch_event_target__kinesis_target{},
+		&Cloudwatch_event_target__run_command_targets{},
+		&Cloudwatch_event_target__sqs_target{},
+		&Cloudwatch_log_metric_filter__metric_transformation{},
+		&Codebuild_project__artifacts{},
+		&Codebuild_project__cache{},
+		&Codebuild_project__environment__environment_variable{},
+		&Codebuild_project__environment{},
+		&Codebuild_project__secondary_artifacts{},
+		&Codebuild_project__secondary_sources__auth{},
+		&Codebuild_project__secondary_sources{},
+		&Codebuild_project__source__auth{},
+		&Codebuild_project__source{},
+		&Codebuild_project__vpc_config{},
+		&Codecommit_trigger__trigger{},
+		&Codedeploy_deployment_config__minimum_healthy_hosts{},
+		&Codedeploy_deployment_config__traffic_routing_config__time_based_canary{},
+		&Codedeploy_deployment_config__traffic_routing_config__time_based_linear{},
+		&Codedeploy_deployment_config__traffic_routing_config{},
+		&Codedeploy_deployment_group__alarm_configuration{},
+		&Codedeploy_deployment_group__auto_rollback_configuration{},
+		&Codedeploy_deployment_group__blue_green_deployment_config__deployment_ready_option{},
+		&Codedeploy_deployment_group__blue_green_deployment_config__green_fleet_provisioning_option{},
+		&Codedeploy_deployment_group__blue_green_deployment_config__terminate_blue_instances_on_deployment_success{},
+		&Codedeploy_deployment_group__blue_green_deployment_config{},
+		&Codedeploy_deployment_group__deployment_style{},
+		&Codedeploy_deployment_group__ec2_tag_filter{},
+		&Codedeploy_deployment_group__ec2_tag_set__ec2_tag_filter{},
+		&Codedeploy_deployment_group__ec2_tag_set{},
+		&Codedeploy_deployment_group__ecs_service{},
+		&Codedeploy_deployment_group__load_balancer_info__elb_info{},
+		&Codedeploy_deployment_group__load_balancer_info__target_group_info{},
+		&Codedeploy_deployment_group__load_balancer_info__target_group_pair_info__prod_traffic_route{},
+		&Codedeploy_deployment_group__load_balancer_info__target_group_pair_info__target_group{},
+		&Codedeploy_deployment_group__load_balancer_info__target_group_pair_info__test_traffic_route{},
+		&Codedeploy_deployment_group__load_balancer_info__target_group_pair_info{},
+		&Codedeploy_deployment_group__load_balancer_info{},
+		&Codedeploy_deployment_group__on_premises_instance_tag_filter{},
+		&Codedeploy_deployment_group__trigger_configuration{},
+		&Codepipeline__artifact_store__encryption_key{},
+		&Codepipeline__artifact_store{},
+		&Codepipeline__stage__action{},
+		&Codepipeline__stage{},
+		&Codepipeline_webhook__authentication_configuration{},
+		&Codepipeline_webhook__filter{},
+		&Cognito_identity_pool__cognito_identity_providers{},
+		&Cognito_identity_pool_roles_attachment__role_mapping__mapping_rule{},
+		&Cognito_identity_pool_roles_attachment__role_mapping{},
+		&Cognito_identity_pool_roles_attachment__roles{},
+		&Cognito_resource_server__scope{},
+		&Cognito_user_pool__admin_create_user_config__invite_message_template{},
+		&Cognito_user_pool__admin_create_user_config{},
+		&Cognito_user_pool__device_configuration{},
+		&Cognito_user_pool__email_configuration{},
+		&Cognito_user_pool__lambda_config{},
+		&Cognito_user_pool__password_policy{},
+		&Cognito_user_pool__schema__number_attribute_constraints{},
+		&Cognito_user_pool__schema__string_attribute_constraints{},
+		&Cognito_user_pool__schema{},
+		&Cognito_user_pool__sms_configuration{},
+		&Cognito_user_pool__verification_message_template{},
+		&Config_config_rule__scope{},
+		&Config_config_rule__source__source_detail{},
+		&Config_config_rule__source{},
+		&Config_configuration_aggregator__account_aggregation_source{},
+		&Config_configuration_aggregator__organization_aggregation_source{},
+		&Config_configuration_recorder__recording_group{},
+		&Config_delivery_channel__snapshot_delivery_properties{},
+		&Datasync_location_efs__ec2_config{},
+		&Datasync_location_nfs__on_prem_config{},
+		&Datasync_location_s3__s3_config{},
+		&Datasync_task__options{},
+		&Dax_cluster__nodes{},
+		&Dax_cluster__server_side_encryption{},
+		&Dax_parameter_group__parameters{},
+		&Db_instance__s3_import{},
+		&Db_option_group__option__option_settings{},
+		&Db_option_group__option{},
+		&Db_parameter_group__parameter{},
+		&Db_security_group__ingress{},
+		&Default_network_acl__egress{},
+		&Default_network_acl__ingress{},
+		&Default_route_table__route{},
+		&Default_security_group__egress{},
+		&Default_security_group__ingress{},
+		&Directory_service_directory__connect_settings{},
+		&Directory_service_directory__vpc_settings{},
+		&Dlm_lifecycle_policy__policy_details__schedule__create_rule{},
+		&Dlm_lifecycle_policy__policy_details__schedule__retain_rule{},
+		&Dlm_lifecycle_policy__policy_details__schedule{},
+		&Dlm_lifecycle_policy__policy_details{},
+		&Dms_endpoint__mongodb_settings{},
+		&Dms_endpoint__s3_settings{},
+		&Docdb_cluster_parameter_group__parameter{},
+		&Dynamodb_global_table__replica{},
+		&Dynamodb_table__attribute{},
+		&Dynamodb_table__global_secondary_index{},
+		&Dynamodb_table__local_secondary_index{},
+		&Dynamodb_table__point_in_time_recovery{},
+		&Dynamodb_table__server_side_encryption{},
+		&Dynamodb_table__ttl{},
+		&Ec2_fleet__launch_template_config__launch_template_specification{},
+		&Ec2_fleet__launch_template_config__override{},
+		&Ec2_fleet__launch_template_config{},
+		&Ec2_fleet__on_demand_options{},
+		&Ec2_fleet__spot_options{},
+		&Ec2_fleet__target_capacity_specification{},
+		&Ecs_service__deployment_controller{},
+		&Ecs_service__load_balancer{},
+		&Ecs_service__network_configuration{},
+		&Ecs_service__ordered_placement_strategy{},
+		&Ecs_service__placement_constraints{},
+		&Ecs_service__placement_strategy{},
+		&Ecs_service__service_registries{},
+		&Ecs_task_definition__placement_constraints{},
+		&Ecs_task_definition__volume__docker_volume_configuration{},
+		&Ecs_task_definition__volume{},
+		&Eks_cluster__certificate_authority{},
+		&Eks_cluster__vpc_config{},
+		&Elastic_beanstalk_application__appversion_lifecycle{},
+		&Elastic_beanstalk_configuration_template__setting{},
+		&Elastic_beanstalk_environment__all_settings{},
+		&Elastic_beanstalk_environment__setting{},
+		&Elasticache_cluster__cache_nodes{},
+		&Elasticache_parameter_group__parameter{},
+		&Elasticache_replication_group__cluster_mode{},
+		&Elasticsearch_domain__cluster_config{},
+		&Elasticsearch_domain__cognito_options{},
+		&Elasticsearch_domain__ebs_options{},
+		&Elasticsearch_domain__encrypt_at_rest{},
+		&Elasticsearch_domain__log_publishing_options{},
+		&Elasticsearch_domain__node_to_node_encryption{},
+		&Elasticsearch_domain__snapshot_options{},
+		&Elasticsearch_domain__vpc_options{},
+		&Elastictranscoder_pipeline__content_config{},
+		&Elastictranscoder_pipeline__content_config_permissions{},
+		&Elastictranscoder_pipeline__notifications{},
+		&Elastictranscoder_pipeline__thumbnail_config{},
+		&Elastictranscoder_pipeline__thumbnail_config_permissions{},
+		&Elastictranscoder_preset__audio{},
+		&Elastictranscoder_preset__audio_codec_options{},
+		&Elastictranscoder_preset__thumbnails{},
+		&Elastictranscoder_preset__video{},
+		&Elastictranscoder_preset__video_watermarks{},
+		&Elb__access_logs{},
+		&Elb__health_check{},
+		&Elb__listener{},
+		&Emr_cluster__bootstrap_action{},
+		&Emr_cluster__ec2_attributes{},
+		&Emr_cluster__instance_group__ebs_config{},
+		&Emr_cluster__instance_group{},
+		&Emr_cluster__kerberos_attributes{},
+		&Emr_cluster__step__hadoop_jar_step{},
+		&Emr_cluster__step{},
+		&Emr_instance_group__ebs_config{},
+		&Gamelift_alias__routing_strategy{},
+		&Gamelift_build__storage_location{},
+		&Gamelift_fleet__ec2_inbound_permission{},
+		&Gamelift_fleet__resource_creation_limit_policy{},
+		&Gamelift_fleet__runtime_configuration__server_process{},
+		&Gamelift_fleet__runtime_configuration{},
+		&Gamelift_game_session_queue__player_latency_policy{},
+		&Glacier_vault__notification{},
+		&Globalaccelerator_accelerator__attributes{},
+		&Globalaccelerator_accelerator__ip_sets{},
+		&Glue_catalog_table__partition_keys{},
+		&Glue_catalog_table__storage_descriptor__columns{},
+		&Glue_catalog_table__storage_descriptor__ser_de_info{},
+		&Glue_catalog_table__storage_descriptor__skewed_info{},
+		&Glue_catalog_table__storage_descriptor__sort_columns{},
+		&Glue_catalog_table__storage_descriptor{},
+		&Glue_classifier__grok_classifier{},
+		&Glue_classifier__json_classifier{},
+		&Glue_classifier__xml_classifier{},
+		&Glue_connection__physical_connection_requirements{},
+		&Glue_crawler__dynamodb_target{},
+		&Glue_crawler__jdbc_target{},
+		&Glue_crawler__s3_target{},
+		&Glue_crawler__schema_change_policy{},
+		&Glue_job__command{},
+		&Glue_job__execution_property{},
+		&Glue_security_configuration__encryption_configuration__cloudwatch_encryption{},
+		&Glue_security_configuration__encryption_configuration__job_bookmarks_encryption{},
+		&Glue_security_configuration__encryption_configuration__s3_encryption{},
+		&Glue_security_configuration__encryption_configuration{},
+		&Glue_trigger__actions{},
+		&Glue_trigger__predicate__conditions{},
+		&Glue_trigger__predicate{},
+		&Instance__credit_specification{},
+		&Instance__ebs_block_device{},
+		&Instance__ephemeral_block_device{},
+		&Instance__network_interface{},
+		&Instance__root_block_device{},
+		&Iot_thing_type__properties{},
+		&Iot_topic_rule__cloudwatch_alarm{},
+		&Iot_topic_rule__cloudwatch_metric{},
+		&Iot_topic_rule__dynamodb{},
+		&Iot_topic_rule__elasticsearch{},
+		&Iot_topic_rule__firehose{},
+		&Iot_topic_rule__kinesis{},
+		&Iot_topic_rule__lambda{},
+		&Iot_topic_rule__republish{},
+		&Iot_topic_rule__s3{},
+		&Iot_topic_rule__sns{},
+		&Iot_topic_rule__sqs{},
+		&Kinesis_analytics_application__cloudwatch_logging_options{},
+		&Kinesis_analytics_application__inputs__kinesis_firehose{},
+		&Kinesis_analytics_application__inputs__kinesis_stream{},
+		&Kinesis_analytics_application__inputs__parallelism{},
+		&Kinesis_analytics_application__inputs__processing_configuration__lambda{},
+		&Kinesis_analytics_application__inputs__processing_configuration{},
+		&Kinesis_analytics_application__inputs__schema__record_columns{},
+		&Kinesis_analytics_application__inputs__schema__record_format__mapping_parameters__csv{},
+		&Kinesis_analytics_application__inputs__schema__record_format__mapping_parameters__json{},
+		&Kinesis_analytics_application__inputs__schema__record_format__mapping_parameters{},
+		&Kinesis_analytics_application__inputs__schema__record_format{},
+		&Kinesis_analytics_application__inputs__schema{},
+		&Kinesis_analytics_application__inputs__starting_position_configuration{},
+		&Kinesis_analytics_application__inputs{},
+		&Kinesis_analytics_application__outputs__kinesis_firehose{},
+		&Kinesis_analytics_application__outputs__kinesis_stream{},
+		&Kinesis_analytics_application__outputs__lambda{},
+		&Kinesis_analytics_application__outputs__schema{},
+		&Kinesis_analytics_application__outputs{},
+		&Kinesis_analytics_application__reference_data_sources__s3{},
+		&Kinesis_analytics_application__reference_data_sources__schema__record_columns{},
+		&Kinesis_analytics_application__reference_data_sources__schema__record_format__mapping_parameters__csv{},
+		&Kinesis_analytics_application__reference_data_sources__schema__record_format__mapping_parameters__json{},
+		&Kinesis_analytics_application__reference_data_sources__schema__record_format__mapping_parameters{},
+		&Kinesis_analytics_application__reference_data_sources__schema__record_format{},
+		&Kinesis_analytics_application__reference_data_sources__schema{},
+		&Kinesis_analytics_application__reference_data_sources{},
+		&Kinesis_firehose_delivery_stream__elasticsearch_configuration__cloudwatch_logging_options{},
+		&Kinesis_firehose_delivery_stream__elasticsearch_configuration__processing_configuration__processors__parameters{},
+		&Kinesis_firehose_delivery_stream__elasticsearch_configuration__processing_configuration__processors{},
+		&Kinesis_firehose_delivery_stream__elasticsearch_configuration__processing_configuration{},
+		&Kinesis_firehose_delivery_stream__elasticsearch_configuration{},
+		&Kinesis_firehose_delivery_stream__extended_s3_configuration__cloudwatch_logging_options{},
+		&Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration__input_format_configuration__deserializer__hive_json_ser_de{},
+		&Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration__input_format_configuration__deserializer__open_x_json_ser_de{},
+		&Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration__input_format_configuration__deserializer{},
+		&Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration__input_format_configuration{},
+		&Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration__output_format_configuration__serializer__orc_ser_de{},
+		&Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration__output_format_configuration__serializer__parquet_ser_de{},
+		&Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration__output_format_configuration__serializer{},
+		&Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration__output_format_configuration{},
+		&Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration__schema_configuration{},
+		&Kinesis_firehose_delivery_stream__extended_s3_configuration__data_format_conversion_configuration{},
+		&Kinesis_firehose_delivery_stream__extended_s3_configuration__processing_configuration__processors__parameters{},
+		&Kinesis_firehose_delivery_stream__extended_s3_configuration__processing_configuration__processors{},
+		&Kinesis_firehose_delivery_stream__extended_s3_configuration__processing_configuration{},
+		&Kinesis_firehose_delivery_stream__extended_s3_configuration__s3_backup_configuration__cloudwatch_logging_options{},
+		&Kinesis_firehose_delivery_stream__extended_s3_configuration__s3_backup_configuration{},
+		&Kinesis_firehose_delivery_stream__extended_s3_configuration{},
+		&Kinesis_firehose_delivery_stream__kinesis_source_configuration{},
+		&Kinesis_firehose_delivery_stream__redshift_configuration__cloudwatch_logging_options{},
+		&Kinesis_firehose_delivery_stream__redshift_configuration__processing_configuration__processors__parameters{},
+		&Kinesis_firehose_delivery_stream__redshift_configuration__processing_configuration__processors{},
+		&Kinesis_firehose_delivery_stream__redshift_configuration__processing_configuration{},
+		&Kinesis_firehose_delivery_stream__redshift_configuration__s3_backup_configuration__cloudwatch_logging_options{},
+		&Kinesis_firehose_delivery_stream__redshift_configuration__s3_backup_configuration{},
+		&Kinesis_firehose_delivery_stream__redshift_configuration{},
+		&Kinesis_firehose_delivery_stream__s3_configuration__cloudwatch_logging_options{},
+		&Kinesis_firehose_delivery_stream__s3_configuration{},
+		&Kinesis_firehose_delivery_stream__splunk_configuration__cloudwatch_logging_options{},
+		&Kinesis_firehose_delivery_stream__splunk_configuration__processing_configuration__processors__parameters{},
+		&Kinesis_firehose_delivery_stream__splunk_configuration__processing_configuration__processors{},
+		&Kinesis_firehose_delivery_stream__splunk_configuration__processing_configuration{},
+		&Kinesis_firehose_delivery_stream__splunk_configuration{},
+		&Kms_grant__constraints{},
+		&Lambda_alias__routing_config{},
+		&Lambda_function__dead_letter_config{},
+		&Lambda_function__environment{},
+		&Lambda_function__tracing_config{},
+		&Lambda_function__vpc_config{},
+		&Launch_configuration__ebs_block_device{},
+		&Launch_configuration__ephemeral_block_device{},
+		&Launch_configuration__root_block_device{},
+		&Launch_template__block_device_mappings__ebs{},
+		&Launch_template__block_device_mappings{},
+		&Launch_template__capacity_reservation_specification__capacity_reservation_target{},
+		&Launch_template__capacity_reservation_specification{},
+		&Launch_template__credit_specification{},
+		&Launch_template__elastic_gpu_specifications{},
+		&Launch_template__iam_instance_profile{},
+		&Launch_template__instance_market_options__spot_options{},
+		&Launch_template__instance_market_options{},
+		&Launch_template__license_specification{},
+		&Launch_template__monitoring{},
+		&Launch_template__network_interfaces{},
+		&Launch_template__placement{},
+		&Launch_template__tag_specifications{},
+		&Lb__access_logs{},
+		&Lb__subnet_mapping{},
+		&Lb_listener__default_action__authenticate_cognito{},
+		&Lb_listener__default_action__authenticate_oidc{},
+		&Lb_listener__default_action__fixed_response{},
+		&Lb_listener__default_action__redirect{},
+		&Lb_listener__default_action{},
+		&Lb_listener_rule__action__authenticate_cognito{},
+		&Lb_listener_rule__action__authenticate_oidc{},
+		&Lb_listener_rule__action__fixed_response{},
+		&Lb_listener_rule__action__redirect{},
+		&Lb_listener_rule__action{},
+		&Lb_listener_rule__condition{},
+		&Lb_ssl_negotiation_policy__attribute{},
+		&Lb_target_group__health_check{},
+		&Lb_target_group__stickiness{},
+		&Load_balancer_policy__policy_attribute{},
+		&Macie_s3_bucket_association__classification_type{},
+		&Media_package_channel__hls_ingest__ingest_endpoints{},
+		&Media_package_channel__hls_ingest{},
+		&Mq_broker__configuration{},
+		&Mq_broker__instances{},
+		&Mq_broker__logs{},
+		&Mq_broker__maintenance_window_start_time{},
+		&Mq_broker__user{},
+		&Neptune_cluster_parameter_group__parameter{},
+		&Neptune_parameter_group__parameter{},
+		&Network_acl__egress{},
+		&Network_acl__ingress{},
+		&Network_interface__attachment{},
+		&Opsworks_application__app_source{},
+		&Opsworks_application__environment{},
+		&Opsworks_application__ssl_configuration{},
+		&Opsworks_custom_layer__ebs_volume{},
+		&Opsworks_ganglia_layer__ebs_volume{},
+		&Opsworks_haproxy_layer__ebs_volume{},
+		&Opsworks_instance__ebs_block_device{},
+		&Opsworks_instance__ephemeral_block_device{},
+		&Opsworks_instance__root_block_device{},
+		&Opsworks_java_app_layer__ebs_volume{},
+		&Opsworks_memcached_layer__ebs_volume{},
+		&Opsworks_mysql_layer__ebs_volume{},
+		&Opsworks_nodejs_app_layer__ebs_volume{},
+		&Opsworks_php_app_layer__ebs_volume{},
+		&Opsworks_rails_app_layer__ebs_volume{},
+		&Opsworks_stack__custom_cookbooks_source{},
+		&Opsworks_static_web_layer__ebs_volume{},
+		&Pinpoint_app__campaign_hook{},
+		&Pinpoint_app__limits{},
+		&Pinpoint_app__quiet_time{},
+		&Rds_cluster__s3_import{},
+		&Rds_cluster__scaling_configuration{},
+		&Rds_cluster_parameter_group__parameter{},
+		&Redshift_cluster__logging{},
+		&Redshift_cluster__snapshot_copy{},
+		&Redshift_parameter_group__parameter{},
+		&Redshift_security_group__ingress{},
+		&Resourcegroups_group__resource_query{},
+		&Route53_record__alias{},
+		&Route53_record__failover_routing_policy{},
+		&Route53_record__geolocation_routing_policy{},
+		&Route53_record__latency_routing_policy{},
+		&Route53_record__weighted_routing_policy{},
+		&Route53_zone__vpc{},
+		&Route_table__route{},
+		&S3_bucket__cors_rule{},
+		&S3_bucket__lifecycle_rule__expiration{},
+		&S3_bucket__lifecycle_rule__noncurrent_version_expiration{},
+		&S3_bucket__lifecycle_rule__noncurrent_version_transition{},
+		&S3_bucket__lifecycle_rule__transition{},
+		&S3_bucket__lifecycle_rule{},
+		&S3_bucket__logging{},
+		&S3_bucket__object_lock_configuration__rule__default_retention{},
+		&S3_bucket__object_lock_configuration__rule{},
+		&S3_bucket__object_lock_configuration{},
+		&S3_bucket__replication_configuration__rules__destination__access_control_translation{},
+		&S3_bucket__replication_configuration__rules__destination{},
+		&S3_bucket__replication_configuration__rules__filter{},
+		&S3_bucket__replication_configuration__rules__source_selection_criteria__sse_kms_encrypted_objects{},
+		&S3_bucket__replication_configuration__rules__source_selection_criteria{},
+		&S3_bucket__replication_configuration__rules{},
+		&S3_bucket__replication_configuration{},
+		&S3_bucket__server_side_encryption_configuration__rule__apply_server_side_encryption_by_default{},
+		&S3_bucket__server_side_encryption_configuration__rule{},
+		&S3_bucket__server_side_encryption_configuration{},
+		&S3_bucket__versioning{},
+		&S3_bucket__website{},
+		&S3_bucket_inventory__destination__bucket__encryption__sse_kms{},
+		&S3_bucket_inventory__destination__bucket__encryption__sse_s3{},
+		&S3_bucket_inventory__destination__bucket__encryption{},
+		&S3_bucket_inventory__destination__bucket{},
+		&S3_bucket_inventory__destination{},
+		&S3_bucket_inventory__filter{},
+		&S3_bucket_inventory__schedule{},
+		&S3_bucket_metric__filter{},
+		&S3_bucket_notification__lambda_function{},
+		&S3_bucket_notification__queue{},
+		&S3_bucket_notification__topic{},
+		&Secretsmanager_secret__rotation_rules{},
+		&Security_group__egress{},
+		&Security_group__ingress{},
+		&Service_discovery_service__dns_config__dns_records{},
+		&Service_discovery_service__dns_config{},
+		&Service_discovery_service__health_check_config{},
+		&Service_discovery_service__health_check_custom_config{},
+		&Ses_event_destination__cloudwatch_destination{},
+		&Ses_event_destination__kinesis_destination{},
+		&Ses_event_destination__sns_destination{},
+		&Ses_receipt_rule__add_header_action{},
+		&Ses_receipt_rule__bounce_action{},
+		&Ses_receipt_rule__lambda_action{},
+		&Ses_receipt_rule__s3_action{},
+		&Ses_receipt_rule__sns_action{},
+		&Ses_receipt_rule__stop_action{},
+		&Ses_receipt_rule__workmail_action{},
+		&Spot_fleet_request__launch_specification__ebs_block_device{},
+		&Spot_fleet_request__launch_specification__ephemeral_block_device{},
+		&Spot_fleet_request__launch_specification__root_block_device{},
+		&Spot_fleet_request__launch_specification{},
+		&Spot_instance_request__credit_specification{},
+		&Spot_instance_request__ebs_block_device{},
+		&Spot_instance_request__ephemeral_block_device{},
+		&Spot_instance_request__network_interface{},
+		&Spot_instance_request__root_block_device{},
+		&Ssm_association__output_location{},
+		&Ssm_association__targets{},
+		&Ssm_document__parameter{},
+		&Ssm_document__permissions{},
+		&Ssm_maintenance_window_target__targets{},
+		&Ssm_maintenance_window_task__logging_info{},
+		&Ssm_maintenance_window_task__targets{},
+		&Ssm_maintenance_window_task__task_parameters{},
+		&Ssm_patch_baseline__approval_rule__patch_filter{},
+		&Ssm_patch_baseline__approval_rule{},
+		&Ssm_patch_baseline__global_filter{},
+		&Ssm_resource_data_sync__s3_destination{},
+		&Storagegateway_gateway__smb_active_directory_settings{},
+		&Storagegateway_nfs_file_share__nfs_file_share_defaults{},
+		&Vpc_endpoint__dns_entry{},
+		&Vpc_peering_connection__accepter{},
+		&Vpc_peering_connection__requester{},
+		&Vpc_peering_connection_accepter__accepter{},
+		&Vpc_peering_connection_accepter__requester{},
+		&Vpc_peering_connection_options__accepter{},
+		&Vpc_peering_connection_options__requester{},
+		&Vpn_connection__routes{},
+		&Vpn_connection__vgw_telemetry{},
+		&Waf_byte_match_set__byte_match_tuples__field_to_match{},
+		&Waf_byte_match_set__byte_match_tuples{},
+		&Waf_geo_match_set__geo_match_constraint{},
+		&Waf_ipset__ip_set_descriptors{},
+		&Waf_rate_based_rule__predicates{},
+		&Waf_regex_match_set__regex_match_tuple__field_to_match{},
+		&Waf_regex_match_set__regex_match_tuple{},
+		&Waf_rule__predicates{},
+		&Waf_rule_group__activated_rule__action{},
+		&Waf_rule_group__activated_rule{},
+		&Waf_size_constraint_set__size_constraints__field_to_match{},
+		&Waf_size_constraint_set__size_constraints{},
+		&Waf_sql_injection_match_set__sql_injection_match_tuples__field_to_match{},
+		&Waf_sql_injection_match_set__sql_injection_match_tuples{},
+		&Waf_web_acl__default_action{},
+		&Waf_web_acl__rules__action{},
+		&Waf_web_acl__rules__override_action{},
+		&Waf_web_acl__rules{},
+		&Waf_xss_match_set__xss_match_tuples__field_to_match{},
+		&Waf_xss_match_set__xss_match_tuples{},
+		&Wafregional_byte_match_set__byte_match_tuple__field_to_match{},
+		&Wafregional_byte_match_set__byte_match_tuple{},
+		&Wafregional_byte_match_set__byte_match_tuples__field_to_match{},
+		&Wafregional_byte_match_set__byte_match_tuples{},
+		&Wafregional_geo_match_set__geo_match_constraint{},
+		&Wafregional_ipset__ip_set_descriptor{},
+		&Wafregional_rate_based_rule__predicate{},
+		&Wafregional_regex_match_set__regex_match_tuple__field_to_match{},
+		&Wafregional_regex_match_set__regex_match_tuple{},
+		&Wafregional_rule__predicate{},
+		&Wafregional_rule_group__activated_rule__action{},
+		&Wafregional_rule_group__activated_rule{},
+		&Wafregional_size_constraint_set__size_constraints__field_to_match{},
+		&Wafregional_size_constraint_set__size_constraints{},
+		&Wafregional_sql_injection_match_set__sql_injection_match_tuple__field_to_match{},
+		&Wafregional_sql_injection_match_set__sql_injection_match_tuple{},
+		&Wafregional_web_acl__default_action{},
+		&Wafregional_web_acl__rule__action{},
+		&Wafregional_web_acl__rule__override_action{},
+		&Wafregional_web_acl__rule{},
+		&Wafregional_xss_match_set__xss_match_tuple__field_to_match{},
+		&Wafregional_xss_match_set__xss_match_tuple{})
 }
