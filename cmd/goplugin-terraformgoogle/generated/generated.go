@@ -23,25 +23,25 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformGoogle::Google_app_engine_applicationHandler", bridge.NewTFHandler(p, "google_app_engine_application", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_bigquery_dataset{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("access", "creation_time", "default_table_expiration_ms", "description", "etag", "friendly_name", "labels", "last_modified_time", "location", "project", "self_link")
+		b.ProvidedAttributes("access", "creation_time", "etag", "last_modified_time", "project", "self_link")
 		b.ImmutableAttributes("dataset_id", "location", "project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_bigquery_datasetHandler", bridge.NewTFHandler(p, "google_bigquery_dataset", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_bigquery_table{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_time", "description", "etag", "expiration_time", "friendly_name", "labels", "last_modified_time", "location", "num_bytes", "num_long_term_bytes", "num_rows", "project", "schema", "self_link", "time_partitioning", "type", "view")
+		b.ProvidedAttributes("creation_time", "etag", "expiration_time", "last_modified_time", "location", "num_bytes", "num_long_term_bytes", "num_rows", "project", "schema", "self_link", "type")
 		b.ImmutableAttributes("dataset_id", "project", "table_id")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_bigquery_tableHandler", bridge.NewTFHandler(p, "google_bigquery_table", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_bigtable_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("cluster", "cluster_id", "display_name", "instance_type", "num_nodes", "project", "storage_type", "zone")
+		b.ProvidedAttributes("display_name", "project", "zone")
 		b.ImmutableAttributes("display_name", "instance_type", "name", "project", "zone")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_bigtable_instanceHandler", bridge.NewTFHandler(p, "google_bigtable_instance", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_bigtable_table{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("project", "split_keys")
+		b.ProvidedAttributes("project")
 		b.ImmutableAttributes("instance_name", "name", "project", "split_keys")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_bigtable_tableHandler", bridge.NewTFHandler(p, "google_bigtable_table", evs[0]), evs[0])
@@ -65,127 +65,127 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformGoogle::Google_billing_account_iam_policyHandler", bridge.NewTFHandler(p, "google_billing_account_iam_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_binary_authorization_attestor{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "project")
+		b.ProvidedAttributes("project")
 		b.ImmutableAttributes("name", "project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_binary_authorization_attestorHandler", bridge.NewTFHandler(p, "google_binary_authorization_attestor", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_binary_authorization_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("admission_whitelist_patterns", "cluster_admission_rules", "description", "project")
+		b.ProvidedAttributes("project")
 		b.ImmutableAttributes("project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_binary_authorization_policyHandler", bridge.NewTFHandler(p, "google_binary_authorization_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_cloudbuild_trigger{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("build", "description", "filename", "project", "substitutions", "trigger_template")
+		b.ProvidedAttributes("project")
 		b.ImmutableAttributes("build", "description", "filename", "project", "substitutions", "trigger_template")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_cloudbuild_triggerHandler", bridge.NewTFHandler(p, "google_cloudbuild_trigger", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_cloudfunctions_function{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("available_memory_mb", "description", "entry_point", "environment_variables", "event_trigger", "https_trigger_url", "labels", "project", "region", "retry_on_failure", "runtime", "timeout", "trigger_bucket", "trigger_http", "trigger_topic")
+		b.ProvidedAttributes("event_trigger", "https_trigger_url", "project", "region", "retry_on_failure", "runtime", "trigger_bucket", "trigger_topic")
 		b.ImmutableAttributes("entry_point", "name", "project", "region", "trigger_http")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_cloudfunctions_functionHandler", bridge.NewTFHandler(p, "google_cloudfunctions_function", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_cloudiot_registry{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("credentials", "event_notification_config", "http_config", "mqtt_config", "project", "region", "state_notification_config")
+		b.ProvidedAttributes("http_config", "mqtt_config", "project", "region")
 		b.ImmutableAttributes("name", "project", "region")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_cloudiot_registryHandler", bridge.NewTFHandler(p, "google_cloudiot_registry", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_composer_environment{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("config", "labels", "project", "region")
+		b.ProvidedAttributes("config", "project")
 		b.ImmutableAttributes("name", "project", "region")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_composer_environmentHandler", bridge.NewTFHandler(p, "google_composer_environment", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_address{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("address", "address_type", "creation_timestamp", "description", "label_fingerprint", "labels", "network_tier", "project", "region", "self_link", "subnetwork", "users")
+		b.ProvidedAttributes("address", "creation_timestamp", "label_fingerprint", "network_tier", "project", "region", "self_link", "subnetwork", "users")
 		b.ImmutableAttributes("address", "address_type", "description", "name", "network_tier", "project", "region", "subnetwork")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_addressHandler", bridge.NewTFHandler(p, "google_compute_address", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_attached_disk{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("device_name", "mode", "project", "zone")
+		b.ProvidedAttributes("device_name", "project", "zone")
 		b.ImmutableAttributes("device_name", "disk", "instance", "mode", "project", "zone")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_attached_diskHandler", bridge.NewTFHandler(p, "google_compute_attached_disk", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_autoscaler{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "description", "project", "self_link", "zone")
+		b.ProvidedAttributes("creation_timestamp", "project", "self_link", "zone")
 		b.ImmutableAttributes("name", "project", "zone")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_autoscalerHandler", bridge.NewTFHandler(p, "google_compute_autoscaler", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_backend_bucket{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "description", "enable_cdn", "project", "self_link")
+		b.ProvidedAttributes("creation_timestamp", "project", "self_link")
 		b.ImmutableAttributes("name", "project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_backend_bucketHandler", bridge.NewTFHandler(p, "google_compute_backend_bucket", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_backend_service{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("backend", "cdn_policy", "connection_draining_timeout_sec", "custom_request_headers", "description", "enable_cdn", "fingerprint", "iap", "port_name", "project", "protocol", "region", "security_policy", "self_link", "session_affinity", "timeout_sec")
+		b.ProvidedAttributes("cdn_policy", "fingerprint", "port_name", "project", "protocol", "self_link", "session_affinity", "timeout_sec")
 		b.ImmutableAttributes("name", "project", "region")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_backend_serviceHandler", bridge.NewTFHandler(p, "google_compute_backend_service", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_disk{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "description", "disk_encryption_key", "disk_encryption_key_raw", "disk_encryption_key_sha256", "image", "label_fingerprint", "labels", "last_attach_timestamp", "last_detach_timestamp", "project", "self_link", "size", "snapshot", "source_image_encryption_key", "source_image_id", "source_snapshot_encryption_key", "source_snapshot_id", "type", "users", "zone")
+		b.ProvidedAttributes("creation_timestamp", "disk_encryption_key", "disk_encryption_key_sha256", "label_fingerprint", "last_attach_timestamp", "last_detach_timestamp", "project", "self_link", "size", "source_image_id", "source_snapshot_id", "users", "zone")
 		b.ImmutableAttributes("description", "disk_encryption_key", "image", "name", "project", "snapshot", "source_image_encryption_key", "source_snapshot_encryption_key", "type", "zone")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_diskHandler", bridge.NewTFHandler(p, "google_compute_disk", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_firewall{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allow", "creation_timestamp", "deny", "description", "destination_ranges", "direction", "disabled", "enable_logging", "priority", "project", "self_link", "source_ranges", "source_service_accounts", "source_tags", "target_service_accounts", "target_tags")
+		b.ProvidedAttributes("creation_timestamp", "destination_ranges", "direction", "project", "self_link", "source_ranges")
 		b.ImmutableAttributes("name", "project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_firewallHandler", bridge.NewTFHandler(p, "google_compute_firewall", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_forwarding_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("backend_service", "creation_timestamp", "description", "ip_address", "ip_protocol", "ip_version", "label_fingerprint", "labels", "load_balancing_scheme", "network", "network_tier", "port_range", "ports", "project", "region", "self_link", "service_label", "service_name", "subnetwork", "target")
+		b.ProvidedAttributes("creation_timestamp", "ip_address", "ip_protocol", "label_fingerprint", "network", "network_tier", "project", "region", "self_link", "service_name", "subnetwork")
 		b.ImmutableAttributes("backend_service", "description", "ip_address", "ip_protocol", "ip_version", "load_balancing_scheme", "name", "network", "network_tier", "port_range", "ports", "project", "region", "service_label", "subnetwork")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_forwarding_ruleHandler", bridge.NewTFHandler(p, "google_compute_forwarding_rule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_global_address{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("address", "address_type", "creation_timestamp", "description", "ip_version", "label_fingerprint", "labels", "network", "prefix_length", "project", "purpose", "self_link")
+		b.ProvidedAttributes("address", "creation_timestamp", "label_fingerprint", "project", "self_link")
 		b.ImmutableAttributes("address_type", "description", "ip_version", "name", "network", "prefix_length", "project", "purpose")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_global_addressHandler", bridge.NewTFHandler(p, "google_compute_global_address", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_global_forwarding_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "ip_address", "ip_protocol", "ip_version", "label_fingerprint", "labels", "port_range", "project", "region", "self_link")
+		b.ProvidedAttributes("ip_address", "ip_protocol", "label_fingerprint", "project", "self_link")
 		b.ImmutableAttributes("description", "ip_address", "ip_protocol", "ip_version", "name", "port_range", "project", "region")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_global_forwarding_ruleHandler", bridge.NewTFHandler(p, "google_compute_global_forwarding_rule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_health_check{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("check_interval_sec", "creation_timestamp", "description", "healthy_threshold", "http_health_check", "https_health_check", "project", "self_link", "ssl_health_check", "tcp_health_check", "timeout_sec", "type", "unhealthy_threshold")
+		b.ProvidedAttributes("creation_timestamp", "project", "self_link", "type")
 		b.ImmutableAttributes("name", "project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_health_checkHandler", bridge.NewTFHandler(p, "google_compute_health_check", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_http_health_check{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("check_interval_sec", "creation_timestamp", "description", "healthy_threshold", "host", "port", "project", "request_path", "self_link", "timeout_sec", "unhealthy_threshold")
+		b.ProvidedAttributes("creation_timestamp", "project", "self_link")
 		b.ImmutableAttributes("name", "project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_http_health_checkHandler", bridge.NewTFHandler(p, "google_compute_http_health_check", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_https_health_check{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("check_interval_sec", "creation_timestamp", "description", "healthy_threshold", "host", "port", "project", "request_path", "self_link", "timeout_sec", "unhealthy_threshold")
+		b.ProvidedAttributes("creation_timestamp", "project", "self_link")
 		b.ImmutableAttributes("name", "project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_https_health_checkHandler", bridge.NewTFHandler(p, "google_compute_https_health_check", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_image{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("create_timeout", "description", "family", "label_fingerprint", "labels", "licenses", "project", "raw_disk", "self_link", "source_disk")
+		b.ProvidedAttributes("label_fingerprint", "licenses", "project", "self_link")
 		b.ImmutableAttributes("description", "family", "licenses", "name", "project", "raw_disk", "source_disk")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_imageHandler", bridge.NewTFHandler(p, "google_compute_image", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allow_stopping_for_update", "attached_disk", "can_ip_forward", "cpu_platform", "create_timeout", "deletion_protection", "description", "disk", "guest_accelerator", "instance_id", "label_fingerprint", "labels", "metadata", "metadata_fingerprint", "metadata_startup_script", "min_cpu_platform", "network", "project", "scheduling", "scratch_disk", "self_link", "service_account", "tags", "tags_fingerprint", "zone")
+		b.ProvidedAttributes("cpu_platform", "guest_accelerator", "instance_id", "label_fingerprint", "metadata_fingerprint", "project", "scheduling", "self_link", "tags_fingerprint", "zone")
 		b.ImmutableAttributes("boot_disk", "can_ip_forward", "description", "disk", "guest_accelerator", "metadata_startup_script", "name", "network", "network_interface", "project", "scratch_disk", "zone")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_instanceHandler", bridge.NewTFHandler(p, "google_compute_instance", evs[0]), evs[0])
@@ -197,37 +197,37 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformGoogle::Google_compute_instance_from_templateHandler", bridge.NewTFHandler(p, "google_compute_instance_from_template", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_instance_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "instances", "named_port", "network", "project", "self_link", "size", "zone")
+		b.ProvidedAttributes("instances", "network", "project", "self_link", "size", "zone")
 		b.ImmutableAttributes("description", "name", "network", "project", "zone")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_instance_groupHandler", bridge.NewTFHandler(p, "google_compute_instance_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_instance_group_manager{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("auto_healing_policies", "description", "fingerprint", "instance_group", "instance_template", "named_port", "project", "rolling_update_policy", "self_link", "target_pools", "target_size", "update_strategy", "version", "wait_for_instances", "zone")
+		b.ProvidedAttributes("fingerprint", "instance_group", "project", "self_link", "target_size", "version", "zone")
 		b.ImmutableAttributes("base_instance_name", "description", "name", "project", "zone")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_instance_group_managerHandler", bridge.NewTFHandler(p, "google_compute_instance_group_manager", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_instance_template{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("automatic_restart", "can_ip_forward", "description", "guest_accelerator", "instance_description", "labels", "metadata", "metadata_fingerprint", "metadata_startup_script", "min_cpu_platform", "name", "name_prefix", "network_interface", "on_host_maintenance", "project", "region", "scheduling", "self_link", "service_account", "tags", "tags_fingerprint")
+		b.ProvidedAttributes("metadata_fingerprint", "name", "name_prefix", "project", "region", "scheduling", "self_link", "tags_fingerprint")
 		b.ImmutableAttributes("automatic_restart", "can_ip_forward", "description", "disk", "guest_accelerator", "instance_description", "labels", "machine_type", "metadata", "metadata_startup_script", "min_cpu_platform", "name", "name_prefix", "network_interface", "on_host_maintenance", "project", "region", "scheduling", "service_account", "tags")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_instance_templateHandler", bridge.NewTFHandler(p, "google_compute_instance_template", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_interconnect_attachment{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("cloud_router_ip_address", "creation_timestamp", "customer_router_ip_address", "description", "google_reference_id", "private_interconnect_info", "project", "region", "self_link")
+		b.ProvidedAttributes("cloud_router_ip_address", "creation_timestamp", "customer_router_ip_address", "google_reference_id", "private_interconnect_info", "project", "region", "self_link")
 		b.ImmutableAttributes("description", "interconnect", "name", "project", "region", "router")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_interconnect_attachmentHandler", bridge.NewTFHandler(p, "google_compute_interconnect_attachment", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_network{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("auto_create_subnetworks", "description", "gateway_ipv4", "ipv4_range", "project", "routing_mode", "self_link")
+		b.ProvidedAttributes("gateway_ipv4", "project", "routing_mode", "self_link")
 		b.ImmutableAttributes("auto_create_subnetworks", "description", "ipv4_range", "name", "project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_networkHandler", bridge.NewTFHandler(p, "google_compute_network", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_network_peering{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("auto_create_routes", "state", "state_details")
+		b.ProvidedAttributes("state", "state_details")
 		b.ImmutableAttributes("auto_create_routes", "name", "network", "peer_network")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_network_peeringHandler", bridge.NewTFHandler(p, "google_compute_network_peering", evs[0]), evs[0])
@@ -245,61 +245,61 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformGoogle::Google_compute_project_metadata_itemHandler", bridge.NewTFHandler(p, "google_compute_project_metadata_item", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_region_autoscaler{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "description", "project", "region", "self_link")
+		b.ProvidedAttributes("creation_timestamp", "project", "region", "self_link")
 		b.ImmutableAttributes("name", "project", "region")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_region_autoscalerHandler", bridge.NewTFHandler(p, "google_compute_region_autoscaler", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_region_backend_service{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("backend", "connection_draining_timeout_sec", "description", "fingerprint", "project", "protocol", "region", "self_link", "session_affinity", "timeout_sec")
+		b.ProvidedAttributes("fingerprint", "project", "protocol", "region", "self_link", "session_affinity", "timeout_sec")
 		b.ImmutableAttributes("name", "project", "region")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_region_backend_serviceHandler", bridge.NewTFHandler(p, "google_compute_region_backend_service", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_region_disk{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "description", "disk_encryption_key", "label_fingerprint", "labels", "last_attach_timestamp", "last_detach_timestamp", "project", "region", "self_link", "size", "snapshot", "source_snapshot_encryption_key", "source_snapshot_id", "type", "users")
+		b.ProvidedAttributes("creation_timestamp", "label_fingerprint", "last_attach_timestamp", "last_detach_timestamp", "project", "region", "self_link", "size", "source_snapshot_id", "users")
 		b.ImmutableAttributes("description", "disk_encryption_key", "name", "project", "region", "replica_zones", "snapshot", "source_snapshot_encryption_key", "type")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_region_diskHandler", bridge.NewTFHandler(p, "google_compute_region_disk", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_region_instance_group_manager{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("auto_healing_policies", "description", "distribution_policy_zones", "fingerprint", "instance_group", "instance_template", "named_port", "project", "rolling_update_policy", "self_link", "target_pools", "target_size", "update_strategy", "version", "wait_for_instances")
+		b.ProvidedAttributes("distribution_policy_zones", "fingerprint", "instance_group", "project", "self_link", "target_size", "version")
 		b.ImmutableAttributes("base_instance_name", "description", "distribution_policy_zones", "name", "project", "region")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_region_instance_group_managerHandler", bridge.NewTFHandler(p, "google_compute_region_instance_group_manager", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_route{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "next_hop_gateway", "next_hop_instance", "next_hop_instance_zone", "next_hop_ip", "next_hop_network", "next_hop_vpn_tunnel", "priority", "project", "self_link", "tags")
+		b.ProvidedAttributes("next_hop_network", "project", "self_link")
 		b.ImmutableAttributes("description", "dest_range", "name", "network", "next_hop_gateway", "next_hop_instance", "next_hop_instance_zone", "next_hop_ip", "next_hop_vpn_tunnel", "priority", "project", "tags")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_routeHandler", bridge.NewTFHandler(p, "google_compute_route", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_router{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("bgp", "creation_timestamp", "description", "project", "region", "self_link")
+		b.ProvidedAttributes("creation_timestamp", "project", "region", "self_link")
 		b.ImmutableAttributes("name", "network", "project", "region")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_routerHandler", bridge.NewTFHandler(p, "google_compute_router", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_router_interface{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("ip_range", "project", "region")
+		b.ProvidedAttributes("project", "region")
 		b.ImmutableAttributes("ip_range", "name", "project", "region", "router", "vpn_tunnel")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_router_interfaceHandler", bridge.NewTFHandler(p, "google_compute_router_interface", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_router_nat{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("icmp_idle_timeout_sec", "min_ports_per_vm", "nat_ips", "project", "region", "source_subnetwork_ip_ranges_to_nat", "subnetwork", "tcp_established_idle_timeout_sec", "tcp_transitory_idle_timeout_sec", "udp_idle_timeout_sec")
+		b.ProvidedAttributes("project", "region")
 		b.ImmutableAttributes("icmp_idle_timeout_sec", "min_ports_per_vm", "name", "nat_ip_allocate_option", "nat_ips", "project", "region", "router", "source_subnetwork_ip_ranges_to_nat", "subnetwork", "tcp_established_idle_timeout_sec", "tcp_transitory_idle_timeout_sec", "udp_idle_timeout_sec")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_router_natHandler", bridge.NewTFHandler(p, "google_compute_router_nat", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_router_peer{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("advertised_route_priority", "ip_address", "peer_ip_address", "project", "region")
+		b.ProvidedAttributes("ip_address", "project", "region")
 		b.ImmutableAttributes("advertised_route_priority", "interface", "name", "peer_asn", "peer_ip_address", "project", "region", "router")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_router_peerHandler", bridge.NewTFHandler(p, "google_compute_router_peer", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_security_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "fingerprint", "project", "rule", "self_link")
+		b.ProvidedAttributes("fingerprint", "project", "rule", "self_link")
 		b.ImmutableAttributes("name", "project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_security_policyHandler", bridge.NewTFHandler(p, "google_compute_security_policy", evs[0]), evs[0])
@@ -315,25 +315,25 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformGoogle::Google_compute_shared_vpc_service_projectHandler", bridge.NewTFHandler(p, "google_compute_shared_vpc_service_project", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_snapshot{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "description", "disk_size_gb", "label_fingerprint", "labels", "licenses", "project", "self_link", "snapshot_encryption_key", "snapshot_encryption_key_raw", "snapshot_encryption_key_sha256", "snapshot_id", "source_disk_encryption_key", "source_disk_encryption_key_raw", "source_disk_encryption_key_sha256", "source_disk_link", "storage_bytes", "zone")
+		b.ProvidedAttributes("creation_timestamp", "disk_size_gb", "label_fingerprint", "licenses", "project", "self_link", "snapshot_encryption_key", "snapshot_encryption_key_sha256", "snapshot_id", "source_disk_encryption_key_sha256", "source_disk_link", "storage_bytes", "zone")
 		b.ImmutableAttributes("description", "name", "project", "source_disk", "zone")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_snapshotHandler", bridge.NewTFHandler(p, "google_compute_snapshot", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_ssl_certificate{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("certificate_id", "creation_timestamp", "description", "name", "name_prefix", "project", "self_link")
+		b.ProvidedAttributes("certificate_id", "creation_timestamp", "name", "name_prefix", "project", "self_link")
 		b.ImmutableAttributes("certificate", "description", "name", "name_prefix", "private_key", "project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_ssl_certificateHandler", bridge.NewTFHandler(p, "google_compute_ssl_certificate", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_ssl_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "custom_features", "description", "enabled_features", "fingerprint", "min_tls_version", "profile", "project", "self_link")
+		b.ProvidedAttributes("creation_timestamp", "enabled_features", "fingerprint", "project", "self_link")
 		b.ImmutableAttributes("description", "name", "project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_ssl_policyHandler", bridge.NewTFHandler(p, "google_compute_ssl_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_subnetwork{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "description", "enable_flow_logs", "fingerprint", "gateway_address", "private_ip_google_access", "project", "region", "secondary_ip_range", "self_link")
+		b.ProvidedAttributes("creation_timestamp", "fingerprint", "gateway_address", "project", "region", "secondary_ip_range", "self_link")
 		b.ImmutableAttributes("description", "name", "network", "project", "region")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_subnetworkHandler", bridge.NewTFHandler(p, "google_compute_subnetwork", evs[0]), evs[0])
@@ -357,49 +357,49 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformGoogle::Google_compute_subnetwork_iam_policyHandler", bridge.NewTFHandler(p, "google_compute_subnetwork_iam_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_target_http_proxy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "description", "project", "proxy_id", "self_link")
+		b.ProvidedAttributes("creation_timestamp", "project", "proxy_id", "self_link")
 		b.ImmutableAttributes("description", "name", "project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_target_http_proxyHandler", bridge.NewTFHandler(p, "google_compute_target_http_proxy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_target_https_proxy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "description", "project", "proxy_id", "quic_override", "self_link", "ssl_policy")
+		b.ProvidedAttributes("creation_timestamp", "project", "proxy_id", "self_link")
 		b.ImmutableAttributes("description", "name", "project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_target_https_proxyHandler", bridge.NewTFHandler(p, "google_compute_target_https_proxy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_target_pool{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("backup_pool", "description", "failover_ratio", "health_checks", "instances", "project", "region", "self_link", "session_affinity")
+		b.ProvidedAttributes("instances", "project", "region", "self_link")
 		b.ImmutableAttributes("description", "failover_ratio", "name", "project", "region", "session_affinity")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_target_poolHandler", bridge.NewTFHandler(p, "google_compute_target_pool", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_target_ssl_proxy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "description", "project", "proxy_header", "proxy_id", "self_link", "ssl_policy")
+		b.ProvidedAttributes("creation_timestamp", "project", "proxy_id", "self_link")
 		b.ImmutableAttributes("description", "name", "project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_target_ssl_proxyHandler", bridge.NewTFHandler(p, "google_compute_target_ssl_proxy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_target_tcp_proxy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "description", "project", "proxy_header", "proxy_id", "self_link")
+		b.ProvidedAttributes("creation_timestamp", "project", "proxy_id", "self_link")
 		b.ImmutableAttributes("description", "name", "project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_target_tcp_proxyHandler", bridge.NewTFHandler(p, "google_compute_target_tcp_proxy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_url_map{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "fingerprint", "host_rule", "map_id", "path_matcher", "project", "self_link", "test")
+		b.ProvidedAttributes("fingerprint", "map_id", "project", "self_link")
 		b.ImmutableAttributes("name", "project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_url_mapHandler", bridge.NewTFHandler(p, "google_compute_url_map", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_vpn_gateway{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "description", "project", "region", "self_link")
+		b.ProvidedAttributes("creation_timestamp", "project", "region", "self_link")
 		b.ImmutableAttributes("description", "name", "network", "project", "region")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_vpn_gatewayHandler", bridge.NewTFHandler(p, "google_compute_vpn_gateway", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_compute_vpn_tunnel{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_timestamp", "description", "detailed_status", "ike_version", "label_fingerprint", "labels", "local_traffic_selector", "project", "region", "remote_traffic_selector", "router", "self_link", "shared_secret_hash")
+		b.ProvidedAttributes("creation_timestamp", "detailed_status", "label_fingerprint", "local_traffic_selector", "project", "region", "remote_traffic_selector", "self_link", "shared_secret_hash")
 		b.ImmutableAttributes("description", "ike_version", "local_traffic_selector", "name", "peer_ip", "project", "region", "remote_traffic_selector", "router", "shared_secret", "target_vpn_gateway")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_compute_vpn_tunnelHandler", bridge.NewTFHandler(p, "google_compute_vpn_tunnel", evs[0]), evs[0])
@@ -411,37 +411,37 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformGoogle::Google_container_analysis_noteHandler", bridge.NewTFHandler(p, "google_container_analysis_note", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_container_cluster{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("additional_zones", "addons_config", "cluster_autoscaling", "cluster_ipv4_cidr", "description", "enable_binary_authorization", "enable_kubernetes_alpha", "enable_legacy_abac", "enable_tpu", "endpoint", "initial_node_count", "instance_group_urls", "ip_allocation_policy", "logging_service", "maintenance_policy", "master_auth", "master_authorized_networks_config", "master_ipv4_cidr_block", "master_version", "min_master_version", "monitoring_service", "network", "network_policy", "node_config", "node_pool", "node_version", "pod_security_policy_config", "private_cluster", "private_cluster_config", "project", "region", "remove_default_node_pool", "resource_labels", "subnetwork", "zone")
+		b.ProvidedAttributes("additional_zones", "addons_config", "cluster_autoscaling", "cluster_ipv4_cidr", "endpoint", "instance_group_urls", "logging_service", "master_auth", "master_ipv4_cidr_block", "master_version", "monitoring_service", "network_policy", "node_config", "node_pool", "node_version", "private_cluster", "private_cluster_config", "project", "region", "subnetwork", "zone")
 		b.ImmutableAttributes("cluster_ipv4_cidr", "description", "enable_kubernetes_alpha", "enable_tpu", "initial_node_count", "ip_allocation_policy", "master_ipv4_cidr_block", "name", "network", "node_config", "node_pool", "private_cluster", "project", "region", "subnetwork", "zone")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_container_clusterHandler", bridge.NewTFHandler(p, "google_container_cluster", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_container_node_pool{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("autoscaling", "initial_node_count", "instance_group_urls", "management", "max_pods_per_node", "name", "name_prefix", "node_config", "node_count", "project", "region", "version", "zone")
+		b.ProvidedAttributes("initial_node_count", "instance_group_urls", "management", "max_pods_per_node", "name", "name_prefix", "node_config", "node_count", "project", "version", "zone")
 		b.ImmutableAttributes("cluster", "initial_node_count", "max_pods_per_node", "name", "name_prefix", "node_config", "project", "region", "zone")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_container_node_poolHandler", bridge.NewTFHandler(p, "google_container_node_pool", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_dataflow_job{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("max_workers", "on_delete", "parameters", "project", "region", "state", "zone")
+		b.ProvidedAttributes("state")
 		b.ImmutableAttributes("max_workers", "name", "on_delete", "parameters", "project", "region", "temp_gcs_location", "template_gcs_path", "zone")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_dataflow_jobHandler", bridge.NewTFHandler(p, "google_dataflow_job", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_dataproc_cluster{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("cluster_config", "labels", "project", "region")
+		b.ProvidedAttributes("cluster_config", "labels", "project")
 		b.ImmutableAttributes("name", "project", "region")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_dataproc_clusterHandler", bridge.NewTFHandler(p, "google_dataproc_cluster", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_dataproc_job{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("driver_controls_files_uri", "driver_output_resource_uri", "force_delete", "hadoop_config", "hive_config", "labels", "pig_config", "project", "pyspark_config", "reference", "region", "scheduling", "spark_config", "sparksql_config", "status")
+		b.ProvidedAttributes("driver_controls_files_uri", "driver_output_resource_uri", "project", "reference", "status")
 		b.ImmutableAttributes("hadoop_config", "hive_config", "labels", "pig_config", "project", "pyspark_config", "region", "scheduling", "spark_config", "sparksql_config")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_dataproc_jobHandler", bridge.NewTFHandler(p, "google_dataproc_job", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_dns_managed_zone{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "labels", "name_servers", "project")
+		b.ProvidedAttributes("name_servers", "project")
 		b.ImmutableAttributes("dns_name", "name", "project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_dns_managed_zoneHandler", bridge.NewTFHandler(p, "google_dns_managed_zone", evs[0]), evs[0])
@@ -453,13 +453,13 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformGoogle::Google_dns_record_setHandler", bridge.NewTFHandler(p, "google_dns_record_set", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_endpoints_service{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("apis", "config_id", "dns_address", "endpoints", "grpc_config", "openapi_config", "project", "protoc_output", "protoc_output_base64")
+		b.ProvidedAttributes("apis", "config_id", "dns_address", "endpoints", "project")
 		b.ImmutableAttributes("project", "service_name")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_endpoints_serviceHandler", bridge.NewTFHandler(p, "google_endpoints_service", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_filestore_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("create_time", "description", "etag", "labels", "project")
+		b.ProvidedAttributes("create_time", "etag", "project")
 		b.ImmutableAttributes("networks", "project", "tier", "zone")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_filestore_instanceHandler", bridge.NewTFHandler(p, "google_filestore_instance", evs[0]), evs[0])
@@ -488,13 +488,13 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformGoogle::Google_folder_iam_policyHandler", bridge.NewTFHandler(p, "google_folder_iam_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_folder_organization_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("boolean_policy", "etag", "list_policy", "restore_policy", "update_time", "version")
+		b.ProvidedAttributes("etag", "update_time", "version")
 		b.ImmutableAttributes("constraint", "folder")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_folder_organization_policyHandler", bridge.NewTFHandler(p, "google_folder_organization_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_kms_crypto_key{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("rotation_period", "self_link")
+		b.ProvidedAttributes("self_link")
 		b.ImmutableAttributes("key_ring", "name")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_kms_crypto_keyHandler", bridge.NewTFHandler(p, "google_kms_crypto_key", evs[0]), evs[0])
@@ -536,73 +536,70 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformGoogle::Google_kms_key_ring_iam_policyHandler", bridge.NewTFHandler(p, "google_kms_key_ring_iam_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_logging_billing_account_exclusion{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "disabled")
 		b.ImmutableAttributes("billing_account", "name")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_logging_billing_account_exclusionHandler", bridge.NewTFHandler(p, "google_logging_billing_account_exclusion", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_logging_billing_account_sink{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("filter", "writer_identity")
+		b.ProvidedAttributes("writer_identity")
 		b.ImmutableAttributes("billing_account", "name")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_logging_billing_account_sinkHandler", bridge.NewTFHandler(p, "google_logging_billing_account_sink", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_logging_folder_exclusion{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "disabled")
 		b.ImmutableAttributes("folder", "name")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_logging_folder_exclusionHandler", bridge.NewTFHandler(p, "google_logging_folder_exclusion", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_logging_folder_sink{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("filter", "include_children", "writer_identity")
+		b.ProvidedAttributes("writer_identity")
 		b.ImmutableAttributes("folder", "include_children", "name")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_logging_folder_sinkHandler", bridge.NewTFHandler(p, "google_logging_folder_sink", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_logging_organization_exclusion{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "disabled")
 		b.ImmutableAttributes("name", "org_id")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_logging_organization_exclusionHandler", bridge.NewTFHandler(p, "google_logging_organization_exclusion", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_logging_organization_sink{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("filter", "include_children", "writer_identity")
+		b.ProvidedAttributes("writer_identity")
 		b.ImmutableAttributes("include_children", "name")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_logging_organization_sinkHandler", bridge.NewTFHandler(p, "google_logging_organization_sink", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_logging_project_exclusion{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "disabled", "project")
+		b.ProvidedAttributes("project")
 		b.ImmutableAttributes("name", "project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_logging_project_exclusionHandler", bridge.NewTFHandler(p, "google_logging_project_exclusion", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_logging_project_sink{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("filter", "project", "unique_writer_identity", "writer_identity")
+		b.ProvidedAttributes("project", "writer_identity")
 		b.ImmutableAttributes("name", "project", "unique_writer_identity")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_logging_project_sinkHandler", bridge.NewTFHandler(p, "google_logging_project_sink", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_monitoring_alert_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_record", "labels", "name", "notification_channels", "project")
+		b.ProvidedAttributes("creation_record", "name", "project")
 		b.ImmutableAttributes("project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_monitoring_alert_policyHandler", bridge.NewTFHandler(p, "google_monitoring_alert_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_monitoring_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("is_cluster", "name", "parent_name", "project")
+		b.ProvidedAttributes("name", "project")
 		b.ImmutableAttributes("project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_monitoring_groupHandler", bridge.NewTFHandler(p, "google_monitoring_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_monitoring_notification_channel{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "enabled", "labels", "name", "project", "user_labels", "verification_status")
+		b.ProvidedAttributes("name", "project", "verification_status")
 		b.ImmutableAttributes("project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_monitoring_notification_channelHandler", bridge.NewTFHandler(p, "google_monitoring_notification_channel", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_monitoring_uptime_check_config{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("content_matchers", "http_check", "internal_checkers", "is_internal", "monitored_resource", "name", "period", "project", "resource_group", "selected_regions", "tcp_check")
+		b.ProvidedAttributes("name", "project")
 		b.ImmutableAttributes("project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_monitoring_uptime_check_configHandler", bridge.NewTFHandler(p, "google_monitoring_uptime_check_config", evs[0]), evs[0])
@@ -614,7 +611,6 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformGoogle::Google_organization_iam_bindingHandler", bridge.NewTFHandler(p, "google_organization_iam_binding", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_organization_iam_custom_role{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("deleted", "description", "stage")
 		b.ImmutableAttributes("org_id", "role_id")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_organization_iam_custom_roleHandler", bridge.NewTFHandler(p, "google_organization_iam_custom_role", evs[0]), evs[0])
@@ -632,67 +628,67 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformGoogle::Google_organization_iam_policyHandler", bridge.NewTFHandler(p, "google_organization_iam_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_organization_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("boolean_policy", "etag", "list_policy", "restore_policy", "update_time", "version")
+		b.ProvidedAttributes("etag", "update_time", "version")
 		b.ImmutableAttributes("constraint", "org_id")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_organization_policyHandler", bridge.NewTFHandler(p, "google_organization_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_project{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("app_engine", "auto_create_network", "billing_account", "folder_id", "labels", "number", "org_id", "policy_data", "policy_etag", "skip_delete")
+		b.ProvidedAttributes("app_engine", "folder_id", "number", "org_id", "policy_data", "policy_etag", "skip_delete")
 		b.ImmutableAttributes("project_id")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_projectHandler", bridge.NewTFHandler(p, "google_project", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_project_iam_binding{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "project")
+		b.ProvidedAttributes("etag")
 		b.ImmutableAttributes("project", "role")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_project_iam_bindingHandler", bridge.NewTFHandler(p, "google_project_iam_binding", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_project_iam_custom_role{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("deleted", "description", "project", "stage")
+		b.ProvidedAttributes("project")
 		b.ImmutableAttributes("project", "role_id")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_project_iam_custom_roleHandler", bridge.NewTFHandler(p, "google_project_iam_custom_role", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_project_iam_member{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "project")
+		b.ProvidedAttributes("etag")
 		b.ImmutableAttributes("member", "project", "role")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_project_iam_memberHandler", bridge.NewTFHandler(p, "google_project_iam_member", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_project_iam_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("authoritative", "disable_project", "etag", "project", "restore_policy")
+		b.ProvidedAttributes("etag", "project", "restore_policy")
 		b.ImmutableAttributes("project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_project_iam_policyHandler", bridge.NewTFHandler(p, "google_project_iam_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_project_organization_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("boolean_policy", "etag", "list_policy", "restore_policy", "update_time", "version")
+		b.ProvidedAttributes("etag", "update_time", "version")
 		b.ImmutableAttributes("constraint", "project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_project_organization_policyHandler", bridge.NewTFHandler(p, "google_project_organization_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_project_service{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("disable_on_destroy", "project")
+		b.ProvidedAttributes("project")
 		b.ImmutableAttributes("project", "service")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_project_serviceHandler", bridge.NewTFHandler(p, "google_project_service", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_project_services{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("disable_on_destroy", "project")
+		b.ProvidedAttributes("project")
 		b.ImmutableAttributes("project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_project_servicesHandler", bridge.NewTFHandler(p, "google_project_services", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_project_usage_export_bucket{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("prefix", "project")
+		b.ProvidedAttributes("project")
 		b.ImmutableAttributes("bucket_name", "prefix", "project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_project_usage_export_bucketHandler", bridge.NewTFHandler(p, "google_project_usage_export_bucket", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_pubsub_subscription{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("ack_deadline_seconds", "path", "project", "push_config")
+		b.ProvidedAttributes("ack_deadline_seconds", "path", "project")
 		b.ImmutableAttributes("ack_deadline_seconds", "name", "project", "topic")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_pubsub_subscriptionHandler", bridge.NewTFHandler(p, "google_pubsub_subscription", evs[0]), evs[0])
@@ -740,7 +736,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformGoogle::Google_pubsub_topic_iam_policyHandler", bridge.NewTFHandler(p, "google_pubsub_topic_iam_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_redis_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("alternative_location_id", "authorized_network", "create_time", "current_location_id", "display_name", "host", "labels", "location_id", "port", "project", "redis_configs", "redis_version", "region", "reserved_ip_range", "tier")
+		b.ProvidedAttributes("alternative_location_id", "authorized_network", "create_time", "current_location_id", "host", "location_id", "port", "project", "redis_version", "region", "reserved_ip_range")
 		b.ImmutableAttributes("alternative_location_id", "authorized_network", "location_id", "name", "project", "redis_version", "region", "reserved_ip_range", "tier")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_redis_instanceHandler", bridge.NewTFHandler(p, "google_redis_instance", evs[0]), evs[0])
@@ -752,19 +748,19 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformGoogle::Google_resource_manager_lienHandler", bridge.NewTFHandler(p, "google_resource_manager_lien", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_runtimeconfig_config{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "project")
+		b.ProvidedAttributes("project")
 		b.ImmutableAttributes("name", "project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_runtimeconfig_configHandler", bridge.NewTFHandler(p, "google_runtimeconfig_config", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_runtimeconfig_variable{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("project", "text", "update_time", "value")
+		b.ProvidedAttributes("project", "update_time")
 		b.ImmutableAttributes("name", "parent", "project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_runtimeconfig_variableHandler", bridge.NewTFHandler(p, "google_runtimeconfig_variable", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_service_account{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("display_name", "email", "name", "policy_data", "project", "unique_id")
+		b.ProvidedAttributes("email", "name", "project", "unique_id")
 		b.ImmutableAttributes("account_id", "project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_service_accountHandler", bridge.NewTFHandler(p, "google_service_account", evs[0]), evs[0])
@@ -788,7 +784,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformGoogle::Google_service_account_iam_policyHandler", bridge.NewTFHandler(p, "google_service_account_iam_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_service_account_key{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("key_algorithm", "name", "pgp_key", "private_key", "private_key_encrypted", "private_key_fingerprint", "private_key_type", "public_key", "public_key_type", "valid_after", "valid_before")
+		b.ProvidedAttributes("name", "private_key", "private_key_encrypted", "private_key_fingerprint", "public_key", "valid_after", "valid_before")
 		b.ImmutableAttributes("key_algorithm", "name", "pgp_key", "private_key_type", "public_key", "public_key_type", "service_account_id")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_service_account_keyHandler", bridge.NewTFHandler(p, "google_service_account_key", evs[0]), evs[0])
@@ -800,7 +796,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformGoogle::Google_sourcerepo_repositoryHandler", bridge.NewTFHandler(p, "google_sourcerepo_repository", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_spanner_database{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("ddl", "project", "state")
+		b.ProvidedAttributes("project", "state")
 		b.ImmutableAttributes("ddl", "instance", "name", "project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_spanner_databaseHandler", bridge.NewTFHandler(p, "google_spanner_database", evs[0]), evs[0])
@@ -824,7 +820,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformGoogle::Google_spanner_database_iam_policyHandler", bridge.NewTFHandler(p, "google_spanner_database_iam_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_spanner_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("labels", "name", "num_nodes", "project", "state")
+		b.ProvidedAttributes("name", "project", "state")
 		b.ImmutableAttributes("config", "name", "project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_spanner_instanceHandler", bridge.NewTFHandler(p, "google_spanner_instance", evs[0]), evs[0])
@@ -854,7 +850,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformGoogle::Google_sql_databaseHandler", bridge.NewTFHandler(p, "google_sql_database", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_sql_database_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("connection_name", "database_version", "first_ip_address", "ip_address", "master_instance_name", "name", "project", "region", "replica_configuration", "self_link", "server_ca_cert", "service_account_email_address")
+		b.ProvidedAttributes("connection_name", "first_ip_address", "ip_address", "master_instance_name", "name", "project", "replica_configuration", "self_link", "server_ca_cert", "service_account_email_address")
 		b.ImmutableAttributes("database_version", "master_instance_name", "name", "project", "region")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_sql_database_instanceHandler", bridge.NewTFHandler(p, "google_sql_database_instance", evs[0]), evs[0])
@@ -866,19 +862,19 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformGoogle::Google_sql_ssl_certHandler", bridge.NewTFHandler(p, "google_sql_ssl_cert", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_sql_user{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("host", "password", "project")
+		b.ProvidedAttributes("project")
 		b.ImmutableAttributes("host", "instance", "name", "project")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_sql_userHandler", bridge.NewTFHandler(p, "google_sql_user", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_storage_bucket{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("cors", "encryption", "force_destroy", "labels", "lifecycle_rule", "location", "logging", "predefined_acl", "project", "self_link", "storage_class", "url", "versioning", "website")
+		b.ProvidedAttributes("project", "self_link", "url")
 		b.ImmutableAttributes("location", "name", "predefined_acl", "project", "storage_class")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_storage_bucketHandler", bridge.NewTFHandler(p, "google_storage_bucket", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_storage_bucket_acl{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("default_acl", "predefined_acl", "role_entity")
+		b.ProvidedAttributes("role_entity")
 		b.ImmutableAttributes("bucket", "predefined_acl")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_storage_bucket_aclHandler", bridge.NewTFHandler(p, "google_storage_bucket_acl", evs[0]), evs[0])
@@ -902,13 +898,13 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformGoogle::Google_storage_bucket_iam_policyHandler", bridge.NewTFHandler(p, "google_storage_bucket_iam_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_storage_bucket_object{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("cache_control", "content", "content_disposition", "content_encoding", "content_language", "content_type", "crc32c", "detect_md5hash", "md5hash", "predefined_acl", "source", "storage_class")
+		b.ProvidedAttributes("content_type", "crc32c", "md5hash", "storage_class")
 		b.ImmutableAttributes("bucket", "cache_control", "content", "content_disposition", "content_encoding", "content_language", "content_type", "detect_md5hash", "name", "predefined_acl", "source", "storage_class")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_storage_bucket_objectHandler", bridge.NewTFHandler(p, "google_storage_bucket_object", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_storage_default_object_access_control{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("domain", "email", "entity_id", "generation", "object", "project_team")
+		b.ProvidedAttributes("domain", "email", "entity_id", "generation", "project_team")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_storage_default_object_access_controlHandler", bridge.NewTFHandler(p, "google_storage_default_object_access_control", evs[0]), evs[0])
 
@@ -919,7 +915,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformGoogle::Google_storage_default_object_aclHandler", bridge.NewTFHandler(p, "google_storage_default_object_acl", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_storage_notification{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("custom_attributes", "event_types", "object_name_prefix", "self_link")
+		b.ProvidedAttributes("self_link")
 		b.ImmutableAttributes("bucket", "custom_attributes", "event_types", "object_name_prefix", "payload_format", "topic")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_storage_notificationHandler", bridge.NewTFHandler(p, "google_storage_notification", evs[0]), evs[0])
@@ -930,7 +926,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformGoogle::Google_storage_object_access_controlHandler", bridge.NewTFHandler(p, "google_storage_object_access_control", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGoogle", sb.BuildResource(&Google_storage_object_acl{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("predefined_acl", "role_entity")
+		b.ProvidedAttributes("role_entity")
 		b.ImmutableAttributes("bucket", "object", "predefined_acl")
 	}))
 	sb.RegisterHandler("TerraformGoogle::Google_storage_object_aclHandler", bridge.NewTFHandler(p, "google_storage_object_acl", evs[0]), evs[0])

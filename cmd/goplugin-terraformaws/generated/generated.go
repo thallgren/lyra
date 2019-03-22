@@ -17,30 +17,29 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterAPI("TerraformAws::GenericHandler", bridge.NewTFHandler(nil, "", nil))
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_acm_certificate{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "certificate_body", "certificate_chain", "domain_name", "domain_validation_options", "private_key", "subject_alternative_names", "tags", "validation_emails", "validation_method")
+		b.ProvidedAttributes("arn", "domain_name", "domain_validation_options", "subject_alternative_names", "validation_emails", "validation_method")
 		b.ImmutableAttributes("domain_name", "subject_alternative_names", "validation_method")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_acm_certificateHandler", bridge.NewTFHandler(p, "aws_acm_certificate", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_acm_certificate_validation{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("validation_record_fqdns")
 		b.ImmutableAttributes("certificate_arn", "validation_record_fqdns")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_acm_certificate_validationHandler", bridge.NewTFHandler(p, "aws_acm_certificate_validation", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_acmpca_certificate_authority{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "certificate", "certificate_chain", "certificate_signing_request", "enabled", "not_after", "not_before", "revocation_configuration", "serial", "status", "tags", "type")
+		b.ProvidedAttributes("arn", "certificate", "certificate_chain", "certificate_signing_request", "not_after", "not_before", "serial", "status")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_acmpca_certificate_authorityHandler", bridge.NewTFHandler(p, "aws_acmpca_certificate_authority", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_alb{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("access_logs", "arn", "arn_suffix", "dns_name", "enable_cross_zone_load_balancing", "enable_deletion_protection", "enable_http2", "idle_timeout", "internal", "ip_address_type", "load_balancer_type", "name", "name_prefix", "security_groups", "subnet_mapping", "subnets", "tags", "vpc_id", "zone_id")
+		b.ProvidedAttributes("access_logs", "arn", "arn_suffix", "dns_name", "internal", "ip_address_type", "name", "security_groups", "subnet_mapping", "subnets", "vpc_id", "zone_id")
 		b.ImmutableAttributes("internal", "load_balancer_type", "name", "name_prefix", "subnet_mapping")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_albHandler", bridge.NewTFHandler(p, "aws_alb", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_alb_listener{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "certificate_arn", "protocol", "ssl_policy")
+		b.ProvidedAttributes("arn", "ssl_policy")
 		b.ImmutableAttributes("load_balancer_arn")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_alb_listenerHandler", bridge.NewTFHandler(p, "aws_alb_listener", evs[0]), evs[0])
@@ -57,31 +56,30 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_alb_listener_ruleHandler", bridge.NewTFHandler(p, "aws_alb_listener_rule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_alb_target_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "arn_suffix", "deregistration_delay", "health_check", "name", "name_prefix", "port", "protocol", "proxy_protocol_v2", "slow_start", "stickiness", "tags", "target_type", "vpc_id")
+		b.ProvidedAttributes("arn", "arn_suffix", "health_check", "name", "stickiness")
 		b.ImmutableAttributes("name", "name_prefix", "port", "protocol", "target_type", "vpc_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_alb_target_groupHandler", bridge.NewTFHandler(p, "aws_alb_target_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_alb_target_group_attachment{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("availability_zone", "port")
 		b.ImmutableAttributes("availability_zone", "port", "target_group_arn", "target_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_alb_target_group_attachmentHandler", bridge.NewTFHandler(p, "aws_alb_target_group_attachment", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ami{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("architecture", "description", "ebs_block_device", "ena_support", "ephemeral_block_device", "image_location", "kernel_id", "manage_ebs_snapshots", "ramdisk_id", "root_device_name", "root_snapshot_id", "sriov_net_support", "tags", "virtualization_type")
+		b.ProvidedAttributes("ebs_block_device", "ephemeral_block_device", "image_location", "manage_ebs_snapshots", "root_snapshot_id")
 		b.ImmutableAttributes("architecture", "ena_support", "ephemeral_block_device", "image_location", "kernel_id", "manage_ebs_snapshots", "name", "ramdisk_id", "root_device_name", "sriov_net_support", "virtualization_type")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_amiHandler", bridge.NewTFHandler(p, "aws_ami", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ami_copy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("architecture", "description", "ebs_block_device", "ena_support", "encrypted", "ephemeral_block_device", "image_location", "kernel_id", "kms_key_id", "manage_ebs_snapshots", "ramdisk_id", "root_device_name", "root_snapshot_id", "sriov_net_support", "tags", "virtualization_type")
+		b.ProvidedAttributes("architecture", "ebs_block_device", "ena_support", "ephemeral_block_device", "image_location", "kernel_id", "kms_key_id", "manage_ebs_snapshots", "ramdisk_id", "root_device_name", "root_snapshot_id", "sriov_net_support", "virtualization_type")
 		b.ImmutableAttributes("encrypted", "ephemeral_block_device", "kms_key_id", "manage_ebs_snapshots", "name", "source_ami_id", "source_ami_region")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ami_copyHandler", bridge.NewTFHandler(p, "aws_ami_copy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ami_from_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("architecture", "description", "ebs_block_device", "ena_support", "ephemeral_block_device", "image_location", "kernel_id", "manage_ebs_snapshots", "ramdisk_id", "root_device_name", "root_snapshot_id", "snapshot_without_reboot", "sriov_net_support", "tags", "virtualization_type")
+		b.ProvidedAttributes("architecture", "ebs_block_device", "ena_support", "ephemeral_block_device", "image_location", "kernel_id", "manage_ebs_snapshots", "ramdisk_id", "root_device_name", "root_snapshot_id", "sriov_net_support", "virtualization_type")
 		b.ImmutableAttributes("ephemeral_block_device", "manage_ebs_snapshots", "name", "snapshot_without_reboot", "source_instance_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ami_from_instanceHandler", bridge.NewTFHandler(p, "aws_ami_from_instance", evs[0]), evs[0])
@@ -92,35 +90,33 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_ami_launch_permissionHandler", bridge.NewTFHandler(p, "aws_ami_launch_permission", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_account{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("cloudwatch_role_arn", "throttle_settings")
+		b.ProvidedAttributes("throttle_settings")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_api_gateway_accountHandler", bridge.NewTFHandler(p, "aws_api_gateway_account", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_api_key{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("created_date", "description", "enabled", "last_updated_date", "stage_key", "value")
+		b.ProvidedAttributes("created_date", "last_updated_date", "value")
 		b.ImmutableAttributes("name", "value")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_api_gateway_api_keyHandler", bridge.NewTFHandler(p, "aws_api_gateway_api_key", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_authorizer{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("authorizer_credentials", "authorizer_result_ttl_in_seconds", "authorizer_uri", "identity_source", "identity_validation_expression", "provider_arns", "type")
 		b.ImmutableAttributes("rest_api_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_api_gateway_authorizerHandler", bridge.NewTFHandler(p, "aws_api_gateway_authorizer", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_base_path_mapping{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("base_path", "stage_name")
 		b.ImmutableAttributes("api_id", "base_path", "domain_name", "stage_name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_api_gateway_base_path_mappingHandler", bridge.NewTFHandler(p, "aws_api_gateway_base_path_mapping", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_client_certificate{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("created_date", "description", "expiration_date", "pem_encoded_certificate")
+		b.ProvidedAttributes("created_date", "expiration_date", "pem_encoded_certificate")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_api_gateway_client_certificateHandler", bridge.NewTFHandler(p, "aws_api_gateway_client_certificate", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_deployment{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("created_date", "description", "execution_arn", "invoke_url", "stage_description", "variables")
+		b.ProvidedAttributes("created_date", "execution_arn", "invoke_url")
 		b.ImmutableAttributes("rest_api_id", "stage_description", "stage_name", "variables")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_api_gateway_deploymentHandler", bridge.NewTFHandler(p, "aws_api_gateway_deployment", evs[0]), evs[0])
@@ -131,43 +127,38 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_api_gateway_documentation_partHandler", bridge.NewTFHandler(p, "aws_api_gateway_documentation_part", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_documentation_version{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description")
 		b.ImmutableAttributes("rest_api_id", "version")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_api_gateway_documentation_versionHandler", bridge.NewTFHandler(p, "aws_api_gateway_documentation_version", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_domain_name{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("certificate_arn", "certificate_body", "certificate_chain", "certificate_name", "certificate_private_key", "certificate_upload_date", "cloudfront_domain_name", "cloudfront_zone_id", "endpoint_configuration", "regional_certificate_arn", "regional_certificate_name", "regional_domain_name", "regional_zone_id")
+		b.ProvidedAttributes("certificate_upload_date", "cloudfront_domain_name", "cloudfront_zone_id", "endpoint_configuration", "regional_domain_name", "regional_zone_id")
 		b.ImmutableAttributes("certificate_body", "certificate_chain", "certificate_private_key", "domain_name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_api_gateway_domain_nameHandler", bridge.NewTFHandler(p, "aws_api_gateway_domain_name", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_gateway_response{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("response_parameters", "response_templates", "status_code")
 		b.ImmutableAttributes("response_type", "rest_api_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_api_gateway_gateway_responseHandler", bridge.NewTFHandler(p, "aws_api_gateway_gateway_response", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_integration{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("cache_key_parameters", "cache_namespace", "connection_id", "connection_type", "content_handling", "credentials", "integration_http_method", "passthrough_behavior", "request_parameters", "request_parameters_in_json", "request_templates", "timeout_milliseconds", "uri")
+		b.ProvidedAttributes("cache_namespace", "passthrough_behavior")
 		b.ImmutableAttributes("credentials", "http_method", "integration_http_method", "passthrough_behavior", "resource_id", "rest_api_id", "type")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_api_gateway_integrationHandler", bridge.NewTFHandler(p, "aws_api_gateway_integration", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_integration_response{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("content_handling", "response_parameters", "response_parameters_in_json", "response_templates", "selection_pattern")
 		b.ImmutableAttributes("http_method", "resource_id", "rest_api_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_api_gateway_integration_responseHandler", bridge.NewTFHandler(p, "aws_api_gateway_integration_response", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_method{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("api_key_required", "authorization_scopes", "authorizer_id", "request_models", "request_parameters", "request_parameters_in_json", "request_validator_id")
 		b.ImmutableAttributes("http_method", "resource_id", "rest_api_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_api_gateway_methodHandler", bridge.NewTFHandler(p, "aws_api_gateway_method", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_method_response{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("response_models", "response_parameters", "response_parameters_in_json")
 		b.ImmutableAttributes("http_method", "resource_id", "rest_api_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_api_gateway_method_responseHandler", bridge.NewTFHandler(p, "aws_api_gateway_method_response", evs[0]), evs[0])
@@ -178,13 +169,11 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_api_gateway_method_settingsHandler", bridge.NewTFHandler(p, "aws_api_gateway_method_settings", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_model{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "schema")
 		b.ImmutableAttributes("content_type", "name", "rest_api_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_api_gateway_modelHandler", bridge.NewTFHandler(p, "aws_api_gateway_model", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_request_validator{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("validate_request_body", "validate_request_parameters")
 		b.ImmutableAttributes("rest_api_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_api_gateway_request_validatorHandler", bridge.NewTFHandler(p, "aws_api_gateway_request_validator", evs[0]), evs[0])
@@ -196,18 +185,17 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_api_gateway_resourceHandler", bridge.NewTFHandler(p, "aws_api_gateway_resource", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_rest_api{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("api_key_source", "binary_media_types", "body", "created_date", "description", "endpoint_configuration", "execution_arn", "minimum_compression_size", "policy", "root_resource_id")
+		b.ProvidedAttributes("created_date", "endpoint_configuration", "execution_arn", "root_resource_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_api_gateway_rest_apiHandler", bridge.NewTFHandler(p, "aws_api_gateway_rest_api", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_stage{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("access_log_settings", "cache_cluster_enabled", "cache_cluster_size", "client_certificate_id", "description", "documentation_version", "execution_arn", "invoke_url", "tags", "variables", "xray_tracing_enabled")
+		b.ProvidedAttributes("execution_arn", "invoke_url")
 		b.ImmutableAttributes("rest_api_id", "stage_name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_api_gateway_stageHandler", bridge.NewTFHandler(p, "aws_api_gateway_stage", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_usage_plan{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("api_stages", "description", "product_code", "quota_settings", "throttle_settings")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_api_gateway_usage_planHandler", bridge.NewTFHandler(p, "aws_api_gateway_usage_plan", evs[0]), evs[0])
 
@@ -218,7 +206,6 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_api_gateway_usage_plan_keyHandler", bridge.NewTFHandler(p, "aws_api_gateway_usage_plan_key", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_api_gateway_vpc_link{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description")
 		b.ImmutableAttributes("target_arns")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_api_gateway_vpc_linkHandler", bridge.NewTFHandler(p, "aws_api_gateway_vpc_link", evs[0]), evs[0])
@@ -229,13 +216,13 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_app_cookie_stickiness_policyHandler", bridge.NewTFHandler(p, "aws_app_cookie_stickiness_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_appautoscaling_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("adjustment_type", "alarms", "arn", "cooldown", "metric_aggregation_type", "min_adjustment_magnitude", "policy_type", "step_adjustment", "step_scaling_policy_configuration", "target_tracking_scaling_policy_configuration")
+		b.ProvidedAttributes("arn")
 		b.ImmutableAttributes("alarms", "name", "scalable_dimension", "service_namespace")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_appautoscaling_policyHandler", bridge.NewTFHandler(p, "aws_appautoscaling_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_appautoscaling_scheduled_action{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "end_time", "scalable_dimension", "scalable_target_action", "schedule", "start_time")
+		b.ProvidedAttributes("arn")
 		b.ImmutableAttributes("end_time", "name", "resource_id", "scalable_dimension", "scalable_target_action", "schedule", "service_namespace", "start_time")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_appautoscaling_scheduled_actionHandler", bridge.NewTFHandler(p, "aws_appautoscaling_scheduled_action", evs[0]), evs[0])
@@ -271,46 +258,43 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_appmesh_virtual_routerHandler", bridge.NewTFHandler(p, "aws_appmesh_virtual_router", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_appsync_api_key{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "expires", "key")
+		b.ProvidedAttributes("key")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_appsync_api_keyHandler", bridge.NewTFHandler(p, "aws_appsync_api_key", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_appsync_datasource{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "description", "dynamodb_config", "elasticsearch_config", "http_config", "lambda_config", "service_role_arn")
+		b.ProvidedAttributes("arn")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_appsync_datasourceHandler", bridge.NewTFHandler(p, "aws_appsync_datasource", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_appsync_graphql_api{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "log_config", "openid_connect_config", "uris", "user_pool_config")
+		b.ProvidedAttributes("arn", "uris")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_appsync_graphql_apiHandler", bridge.NewTFHandler(p, "aws_appsync_graphql_api", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_athena_database{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("encryption_configuration", "force_destroy")
 		b.ImmutableAttributes("bucket", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_athena_databaseHandler", bridge.NewTFHandler(p, "aws_athena_database", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_athena_named_query{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description")
 		b.ImmutableAttributes("database", "description", "name", "query")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_athena_named_queryHandler", bridge.NewTFHandler(p, "aws_athena_named_query", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_autoscaling_attachment{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("alb_target_group_arn", "elb")
 		b.ImmutableAttributes("alb_target_group_arn", "autoscaling_group_name", "elb")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_autoscaling_attachmentHandler", bridge.NewTFHandler(p, "aws_autoscaling_attachment", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_autoscaling_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "availability_zones", "default_cooldown", "desired_capacity", "enabled_metrics", "force_delete", "health_check_grace_period", "health_check_type", "initial_lifecycle_hook", "launch_configuration", "launch_template", "load_balancers", "metrics_granularity", "min_elb_capacity", "mixed_instances_policy", "name", "name_prefix", "placement_group", "protect_from_scale_in", "service_linked_role_arn", "suspended_processes", "tag", "tags", "target_group_arns", "termination_policies", "vpc_zone_identifier", "wait_for_capacity_timeout", "wait_for_elb_capacity")
+		b.ProvidedAttributes("arn", "availability_zones", "default_cooldown", "desired_capacity", "health_check_type", "load_balancers", "name", "service_linked_role_arn", "target_group_arns", "vpc_zone_identifier")
 		b.ImmutableAttributes("name", "name_prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_autoscaling_groupHandler", bridge.NewTFHandler(p, "aws_autoscaling_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_autoscaling_lifecycle_hook{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("default_result", "heartbeat_timeout", "notification_metadata", "notification_target_arn", "role_arn")
+		b.ProvidedAttributes("default_result")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_autoscaling_lifecycle_hookHandler", bridge.NewTFHandler(p, "aws_autoscaling_lifecycle_hook", evs[0]), evs[0])
@@ -321,7 +305,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_autoscaling_notificationHandler", bridge.NewTFHandler(p, "aws_autoscaling_notification", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_autoscaling_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("adjustment_type", "arn", "cooldown", "estimated_instance_warmup", "metric_aggregation_type", "min_adjustment_magnitude", "min_adjustment_step", "policy_type", "scaling_adjustment", "step_adjustment", "target_tracking_configuration")
+		b.ProvidedAttributes("arn", "metric_aggregation_type")
 		b.ImmutableAttributes("autoscaling_group_name", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_autoscaling_policyHandler", bridge.NewTFHandler(p, "aws_autoscaling_policy", evs[0]), evs[0])
@@ -333,13 +317,13 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_autoscaling_scheduleHandler", bridge.NewTFHandler(p, "aws_autoscaling_schedule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_batch_compute_environment{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "compute_resources", "ecc_cluster_arn", "ecs_cluster_arn", "state", "status", "status_reason")
+		b.ProvidedAttributes("arn", "ecc_cluster_arn", "ecs_cluster_arn", "status", "status_reason")
 		b.ImmutableAttributes("compute_environment_name", "type")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_batch_compute_environmentHandler", bridge.NewTFHandler(p, "aws_batch_compute_environment", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_batch_job_definition{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "container_properties", "parameters", "retry_strategy", "revision", "timeout")
+		b.ProvidedAttributes("arn", "revision")
 		b.ImmutableAttributes("container_properties", "name", "parameters", "retry_strategy", "timeout", "type")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_batch_job_definitionHandler", bridge.NewTFHandler(p, "aws_batch_job_definition", evs[0]), evs[0])
@@ -350,41 +334,41 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_batch_job_queueHandler", bridge.NewTFHandler(p, "aws_batch_job_queue", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_budgets_budget{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("account_id", "cost_filters", "cost_types", "name", "name_prefix", "time_period_end")
+		b.ProvidedAttributes("account_id", "cost_filters", "cost_types", "name", "name_prefix")
 		b.ImmutableAttributes("account_id", "name", "name_prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_budgets_budgetHandler", bridge.NewTFHandler(p, "aws_budgets_budget", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloud9_environment_ec2{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "automatic_stop_time_minutes", "description", "owner_arn", "subnet_id", "type")
+		b.ProvidedAttributes("arn", "owner_arn", "type")
 		b.ImmutableAttributes("automatic_stop_time_minutes", "instance_type", "owner_arn", "subnet_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_cloud9_environment_ec2Handler", bridge.NewTFHandler(p, "aws_cloud9_environment_ec2", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudformation_stack{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("capabilities", "disable_rollback", "iam_role_arn", "notification_arns", "on_failure", "outputs", "parameters", "policy_body", "policy_url", "tags", "template_body", "template_url", "timeout_in_minutes")
+		b.ProvidedAttributes("outputs", "parameters", "policy_body", "template_body")
 		b.ImmutableAttributes("disable_rollback", "name", "on_failure", "timeout_in_minutes")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_cloudformation_stackHandler", bridge.NewTFHandler(p, "aws_cloudformation_stack", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudfront_distribution{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("active_trusted_signers", "aliases", "arn", "cache_behavior", "caller_reference", "comment", "custom_error_response", "default_root_object", "domain_name", "etag", "hosted_zone_id", "http_version", "in_progress_validation_batches", "is_ipv6_enabled", "last_modified_time", "logging_config", "ordered_cache_behavior", "price_class", "retain_on_delete", "status", "tags", "web_acl_id")
+		b.ProvidedAttributes("active_trusted_signers", "arn", "caller_reference", "domain_name", "etag", "hosted_zone_id", "in_progress_validation_batches", "last_modified_time", "status")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_cloudfront_distributionHandler", bridge.NewTFHandler(p, "aws_cloudfront_distribution", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudfront_origin_access_identity{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("caller_reference", "cloudfront_access_identity_path", "comment", "etag", "iam_arn", "s3_canonical_user_id")
+		b.ProvidedAttributes("caller_reference", "cloudfront_access_identity_path", "etag", "iam_arn", "s3_canonical_user_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_cloudfront_origin_access_identityHandler", bridge.NewTFHandler(p, "aws_cloudfront_origin_access_identity", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudfront_public_key{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("caller_reference", "comment", "etag", "name", "name_prefix")
+		b.ProvidedAttributes("caller_reference", "etag", "name", "name_prefix")
 		b.ImmutableAttributes("encoded_key", "name", "name_prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_cloudfront_public_keyHandler", bridge.NewTFHandler(p, "aws_cloudfront_public_key", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudhsm_v2_cluster{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("cluster_certificates", "cluster_id", "cluster_state", "security_group_id", "source_backup_identifier", "tags", "vpc_id")
+		b.ProvidedAttributes("cluster_certificates", "cluster_id", "cluster_state", "security_group_id", "vpc_id")
 		b.ImmutableAttributes("hsm_type", "source_backup_identifier", "subnet_ids")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_cloudhsm_v2_clusterHandler", bridge.NewTFHandler(p, "aws_cloudhsm_v2_cluster", evs[0]), evs[0])
@@ -396,7 +380,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_cloudhsm_v2_hsmHandler", bridge.NewTFHandler(p, "aws_cloudhsm_v2_hsm", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudtrail{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "cloud_watch_logs_group_arn", "cloud_watch_logs_role_arn", "enable_log_file_validation", "enable_logging", "event_selector", "home_region", "include_global_service_events", "is_multi_region_trail", "is_organization_trail", "kms_key_id", "s3_key_prefix", "sns_topic_name", "tags")
+		b.ProvidedAttributes("arn", "home_region")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_cloudtrailHandler", bridge.NewTFHandler(p, "aws_cloudtrail", evs[0]), evs[0])
@@ -407,19 +391,18 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_cloudwatch_dashboardHandler", bridge.NewTFHandler(p, "aws_cloudwatch_dashboard", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudwatch_event_permission{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("action", "condition")
 		b.ImmutableAttributes("statement_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_cloudwatch_event_permissionHandler", bridge.NewTFHandler(p, "aws_cloudwatch_event_permission", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudwatch_event_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "description", "event_pattern", "is_enabled", "name", "name_prefix", "role_arn", "schedule_expression")
+		b.ProvidedAttributes("arn", "name")
 		b.ImmutableAttributes("name", "name_prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_cloudwatch_event_ruleHandler", bridge.NewTFHandler(p, "aws_cloudwatch_event_rule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudwatch_event_target{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("batch_target", "ecs_target", "input", "input_path", "input_transformer", "kinesis_target", "role_arn", "run_command_targets", "sqs_target", "target_id")
+		b.ProvidedAttributes("target_id")
 		b.ImmutableAttributes("rule", "target_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_cloudwatch_event_targetHandler", bridge.NewTFHandler(p, "aws_cloudwatch_event_target", evs[0]), evs[0])
@@ -436,7 +419,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_cloudwatch_log_destination_policyHandler", bridge.NewTFHandler(p, "aws_cloudwatch_log_destination_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudwatch_log_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "kms_key_id", "name", "name_prefix", "retention_in_days", "tags")
+		b.ProvidedAttributes("arn", "name")
 		b.ImmutableAttributes("name", "name_prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_cloudwatch_log_groupHandler", bridge.NewTFHandler(p, "aws_cloudwatch_log_group", evs[0]), evs[0])
@@ -458,31 +441,31 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_cloudwatch_log_streamHandler", bridge.NewTFHandler(p, "aws_cloudwatch_log_stream", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudwatch_log_subscription_filter{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("distribution", "role_arn")
+		b.ProvidedAttributes("role_arn")
 		b.ImmutableAttributes("destination_arn", "log_group_name", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_cloudwatch_log_subscription_filterHandler", bridge.NewTFHandler(p, "aws_cloudwatch_log_subscription_filter", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cloudwatch_metric_alarm{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("actions_enabled", "alarm_actions", "alarm_description", "arn", "datapoints_to_alarm", "dimensions", "evaluate_low_sample_count_percentiles", "extended_statistic", "insufficient_data_actions", "ok_actions", "statistic", "treat_missing_data", "unit")
+		b.ProvidedAttributes("arn", "evaluate_low_sample_count_percentiles")
 		b.ImmutableAttributes("alarm_name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_cloudwatch_metric_alarmHandler", bridge.NewTFHandler(p, "aws_cloudwatch_metric_alarm", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_codebuild_project{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "badge_enabled", "badge_url", "build_timeout", "cache", "description", "encryption_key", "secondary_artifacts", "secondary_sources", "tags", "timeout", "vpc_config")
+		b.ProvidedAttributes("arn", "badge_url", "description", "encryption_key")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_codebuild_projectHandler", bridge.NewTFHandler(p, "aws_codebuild_project", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_codebuild_webhook{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("branch_filter", "payload_url", "secret", "url")
+		b.ProvidedAttributes("payload_url", "secret", "url")
 		b.ImmutableAttributes("project_name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_codebuild_webhookHandler", bridge.NewTFHandler(p, "aws_codebuild_webhook", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_codecommit_repository{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "clone_url_http", "clone_url_ssh", "default_branch", "description", "repository_id")
+		b.ProvidedAttributes("arn", "clone_url_http", "clone_url_ssh", "repository_id")
 		b.ImmutableAttributes("repository_name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_codecommit_repositoryHandler", bridge.NewTFHandler(p, "aws_codecommit_repository", evs[0]), evs[0])
@@ -494,19 +477,19 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_codecommit_triggerHandler", bridge.NewTFHandler(p, "aws_codecommit_trigger", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_codedeploy_app{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("compute_platform", "unique_id")
+		b.ProvidedAttributes("unique_id")
 		b.ImmutableAttributes("compute_platform", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_codedeploy_appHandler", bridge.NewTFHandler(p, "aws_codedeploy_app", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_codedeploy_deployment_config{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("compute_platform", "deployment_config_id", "minimum_healthy_hosts", "traffic_routing_config")
+		b.ProvidedAttributes("deployment_config_id")
 		b.ImmutableAttributes("compute_platform", "deployment_config_name", "minimum_healthy_hosts", "traffic_routing_config")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_codedeploy_deployment_configHandler", bridge.NewTFHandler(p, "aws_codedeploy_deployment_config", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_codedeploy_deployment_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("alarm_configuration", "auto_rollback_configuration", "autoscaling_groups", "blue_green_deployment_config", "deployment_config_name", "deployment_style", "ec2_tag_filter", "ec2_tag_set", "ecs_service", "load_balancer_info", "on_premises_instance_tag_filter", "trigger_configuration")
+		b.ProvidedAttributes("blue_green_deployment_config", "deployment_style", "load_balancer_info")
 		b.ImmutableAttributes("deployment_group_name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_codedeploy_deployment_groupHandler", bridge.NewTFHandler(p, "aws_codedeploy_deployment_group", evs[0]), evs[0])
@@ -518,55 +501,52 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_codepipelineHandler", bridge.NewTFHandler(p, "aws_codepipeline", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_codepipeline_webhook{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("authentication_configuration", "url")
+		b.ProvidedAttributes("url")
 		b.ImmutableAttributes("authentication", "authentication_configuration", "filter", "name", "target_action", "target_pipeline")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_codepipeline_webhookHandler", bridge.NewTFHandler(p, "aws_codepipeline_webhook", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cognito_identity_pool{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allow_unauthenticated_identities", "arn", "cognito_identity_providers", "developer_provider_name", "openid_connect_provider_arns", "saml_provider_arns", "supported_login_providers")
+		b.ProvidedAttributes("arn")
 		b.ImmutableAttributes("developer_provider_name", "identity_pool_name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_cognito_identity_poolHandler", bridge.NewTFHandler(p, "aws_cognito_identity_pool", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cognito_identity_pool_roles_attachment{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("role_mapping")
 		b.ImmutableAttributes("identity_pool_id", "roles")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_cognito_identity_pool_roles_attachmentHandler", bridge.NewTFHandler(p, "aws_cognito_identity_pool_roles_attachment", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cognito_identity_provider{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("attribute_mapping", "idp_identifiers")
 		b.ImmutableAttributes("user_pool_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_cognito_identity_providerHandler", bridge.NewTFHandler(p, "aws_cognito_identity_provider", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cognito_resource_server{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("scope", "scope_identifiers")
+		b.ProvidedAttributes("scope_identifiers")
 		b.ImmutableAttributes("identifier", "name", "user_pool_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_cognito_resource_serverHandler", bridge.NewTFHandler(p, "aws_cognito_resource_server", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cognito_user_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "precedence", "role_arn")
 		b.ImmutableAttributes("name", "user_pool_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_cognito_user_groupHandler", bridge.NewTFHandler(p, "aws_cognito_user_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cognito_user_pool{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("admin_create_user_config", "alias_attributes", "arn", "auto_verified_attributes", "creation_date", "device_configuration", "email_configuration", "email_verification_message", "email_verification_subject", "endpoint", "lambda_config", "last_modified_date", "mfa_configuration", "password_policy", "schema", "sms_authentication_message", "sms_configuration", "sms_verification_message", "tags", "username_attributes", "verification_message_template")
+		b.ProvidedAttributes("admin_create_user_config", "arn", "creation_date", "email_verification_message", "email_verification_subject", "endpoint", "lambda_config", "last_modified_date", "password_policy", "verification_message_template")
 		b.ImmutableAttributes("alias_attributes", "name", "schema", "username_attributes")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_cognito_user_poolHandler", bridge.NewTFHandler(p, "aws_cognito_user_pool", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cognito_user_pool_client{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allowed_oauth_flows", "allowed_oauth_flows_user_pool_client", "allowed_oauth_scopes", "callback_urls", "client_secret", "default_redirect_uri", "explicit_auth_flows", "generate_secret", "logout_urls", "read_attributes", "refresh_token_validity", "supported_identity_providers", "write_attributes")
+		b.ProvidedAttributes("client_secret")
 		b.ImmutableAttributes("generate_secret", "user_pool_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_cognito_user_pool_clientHandler", bridge.NewTFHandler(p, "aws_cognito_user_pool_client", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_cognito_user_pool_domain{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("aws_account_id", "certificate_arn", "cloudfront_distribution_arn", "s3_bucket", "version")
+		b.ProvidedAttributes("aws_account_id", "cloudfront_distribution_arn", "s3_bucket", "version")
 		b.ImmutableAttributes("certificate_arn", "domain", "user_pool_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_cognito_user_pool_domainHandler", bridge.NewTFHandler(p, "aws_cognito_user_pool_domain", evs[0]), evs[0])
@@ -578,18 +558,18 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_config_aggregate_authorizationHandler", bridge.NewTFHandler(p, "aws_config_aggregate_authorization", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_config_config_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "description", "input_parameters", "maximum_execution_frequency", "rule_id", "scope")
+		b.ProvidedAttributes("arn", "rule_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_config_config_ruleHandler", bridge.NewTFHandler(p, "aws_config_config_rule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_config_configuration_aggregator{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("account_aggregation_source", "arn", "organization_aggregation_source")
+		b.ProvidedAttributes("arn")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_config_configuration_aggregatorHandler", bridge.NewTFHandler(p, "aws_config_configuration_aggregator", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_config_configuration_recorder{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("name", "recording_group")
+		b.ProvidedAttributes("recording_group")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_config_configuration_recorderHandler", bridge.NewTFHandler(p, "aws_config_configuration_recorder", evs[0]), evs[0])
@@ -599,61 +579,59 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_config_configuration_recorder_statusHandler", bridge.NewTFHandler(p, "aws_config_configuration_recorder_status", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_config_delivery_channel{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("name", "s3_key_prefix", "snapshot_delivery_properties", "sns_topic_arn")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_config_delivery_channelHandler", bridge.NewTFHandler(p, "aws_config_delivery_channel", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_customer_gateway{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags")
 		b.ImmutableAttributes("bgp_asn", "ip_address", "type")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_customer_gatewayHandler", bridge.NewTFHandler(p, "aws_customer_gateway", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_datasync_agent{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("activation_key", "arn", "ip_address", "name", "tags")
+		b.ProvidedAttributes("activation_key", "arn", "ip_address")
 		b.ImmutableAttributes("activation_key", "ip_address")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_datasync_agentHandler", bridge.NewTFHandler(p, "aws_datasync_agent", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_datasync_location_efs{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "subdirectory", "tags", "uri")
+		b.ProvidedAttributes("arn", "uri")
 		b.ImmutableAttributes("ec2_config", "efs_file_system_arn", "subdirectory")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_datasync_location_efsHandler", bridge.NewTFHandler(p, "aws_datasync_location_efs", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_datasync_location_nfs{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "tags", "uri")
+		b.ProvidedAttributes("arn", "uri")
 		b.ImmutableAttributes("on_prem_config", "server_hostname", "subdirectory")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_datasync_location_nfsHandler", bridge.NewTFHandler(p, "aws_datasync_location_nfs", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_datasync_location_s3{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "tags", "uri")
+		b.ProvidedAttributes("arn", "uri")
 		b.ImmutableAttributes("s3_bucket_arn", "s3_config", "subdirectory")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_datasync_location_s3Handler", bridge.NewTFHandler(p, "aws_datasync_location_s3", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_datasync_task{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "cloudwatch_log_group_arn", "name", "options", "tags")
+		b.ProvidedAttributes("arn")
 		b.ImmutableAttributes("cloudwatch_log_group_arn", "destination_location_arn", "source_location_arn")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_datasync_taskHandler", bridge.NewTFHandler(p, "aws_datasync_task", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dax_cluster{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "availability_zones", "cluster_address", "configuration_endpoint", "description", "maintenance_window", "nodes", "notification_topic_arn", "parameter_group_name", "port", "security_group_ids", "server_side_encryption", "subnet_group_name", "tags")
+		b.ProvidedAttributes("arn", "cluster_address", "configuration_endpoint", "maintenance_window", "nodes", "parameter_group_name", "port", "security_group_ids", "subnet_group_name")
 		b.ImmutableAttributes("availability_zones", "cluster_name", "iam_role_arn", "node_type", "subnet_group_name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_dax_clusterHandler", bridge.NewTFHandler(p, "aws_dax_cluster", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dax_parameter_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "parameters")
+		b.ProvidedAttributes("parameters")
 		b.ImmutableAttributes("description", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_dax_parameter_groupHandler", bridge.NewTFHandler(p, "aws_dax_parameter_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dax_subnet_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "vpc_id")
+		b.ProvidedAttributes("vpc_id")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_dax_subnet_groupHandler", bridge.NewTFHandler(p, "aws_dax_subnet_group", evs[0]), evs[0])
@@ -665,77 +643,77 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_db_cluster_snapshotHandler", bridge.NewTFHandler(p, "aws_db_cluster_snapshot", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_db_event_subscription{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "customer_aws_id", "enabled", "event_categories", "name", "name_prefix", "source_ids", "source_type", "tags")
+		b.ProvidedAttributes("arn", "customer_aws_id", "name")
 		b.ImmutableAttributes("name", "name_prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_db_event_subscriptionHandler", bridge.NewTFHandler(p, "aws_db_event_subscription", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_db_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("address", "allocated_storage", "allow_major_version_upgrade", "apply_immediately", "arn", "auto_minor_version_upgrade", "availability_zone", "backup_retention_period", "backup_window", "ca_cert_identifier", "character_set_name", "copy_tags_to_snapshot", "db_subnet_group_name", "deletion_protection", "domain", "domain_iam_role_name", "enabled_cloudwatch_logs_exports", "endpoint", "engine", "engine_version", "final_snapshot_identifier", "hosted_zone_id", "iam_database_authentication_enabled", "identifier", "identifier_prefix", "iops", "kms_key_id", "license_model", "maintenance_window", "monitoring_interval", "monitoring_role_arn", "multi_az", "name", "option_group_name", "parameter_group_name", "password", "port", "publicly_accessible", "replicas", "replicate_source_db", "resource_id", "s3_import", "security_group_names", "skip_final_snapshot", "snapshot_identifier", "status", "storage_encrypted", "storage_type", "tags", "timezone", "username", "vpc_security_group_ids")
+		b.ProvidedAttributes("address", "allocated_storage", "apply_immediately", "arn", "availability_zone", "backup_retention_period", "backup_window", "ca_cert_identifier", "character_set_name", "db_subnet_group_name", "endpoint", "engine", "engine_version", "hosted_zone_id", "identifier", "identifier_prefix", "kms_key_id", "license_model", "maintenance_window", "monitoring_role_arn", "multi_az", "name", "option_group_name", "parameter_group_name", "port", "replicas", "resource_id", "status", "storage_type", "timezone", "username", "vpc_security_group_ids")
 		b.ImmutableAttributes("availability_zone", "character_set_name", "engine", "identifier", "identifier_prefix", "kms_key_id", "name", "snapshot_identifier", "storage_encrypted", "timezone", "username")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_db_instanceHandler", bridge.NewTFHandler(p, "aws_db_instance", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_db_option_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "name", "name_prefix", "option", "option_group_description", "tags")
+		b.ProvidedAttributes("arn", "name", "name_prefix")
 		b.ImmutableAttributes("engine_name", "major_engine_version", "name", "name_prefix", "option_group_description")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_db_option_groupHandler", bridge.NewTFHandler(p, "aws_db_option_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_db_parameter_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "description", "name", "name_prefix", "parameter", "tags")
+		b.ProvidedAttributes("arn", "name", "name_prefix")
 		b.ImmutableAttributes("description", "family", "name", "name_prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_db_parameter_groupHandler", bridge.NewTFHandler(p, "aws_db_parameter_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_db_security_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "description", "tags")
+		b.ProvidedAttributes("arn")
 		b.ImmutableAttributes("description", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_db_security_groupHandler", bridge.NewTFHandler(p, "aws_db_security_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_db_snapshot{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allocated_storage", "availability_zone", "db_snapshot_arn", "encrypted", "engine", "engine_version", "iops", "kms_key_id", "license_model", "option_group_name", "port", "snapshot_type", "source_db_snapshot_identifier", "source_region", "status", "storage_type", "tags", "vpc_id")
+		b.ProvidedAttributes("allocated_storage", "availability_zone", "db_snapshot_arn", "encrypted", "engine", "engine_version", "iops", "kms_key_id", "license_model", "option_group_name", "port", "snapshot_type", "source_db_snapshot_identifier", "source_region", "status", "storage_type", "vpc_id")
 		b.ImmutableAttributes("db_instance_identifier", "db_snapshot_identifier")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_db_snapshotHandler", bridge.NewTFHandler(p, "aws_db_snapshot", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_db_subnet_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "description", "name", "name_prefix", "tags")
+		b.ProvidedAttributes("arn", "name", "name_prefix")
 		b.ImmutableAttributes("name", "name_prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_db_subnet_groupHandler", bridge.NewTFHandler(p, "aws_db_subnet_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_default_network_acl{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("egress", "ingress", "owner_id", "subnet_ids", "tags", "vpc_id")
+		b.ProvidedAttributes("owner_id", "vpc_id")
 		b.ImmutableAttributes("default_network_acl_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_default_network_aclHandler", bridge.NewTFHandler(p, "aws_default_network_acl", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_default_route_table{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("owner_id", "propagating_vgws", "route", "tags", "vpc_id")
+		b.ProvidedAttributes("owner_id", "route", "vpc_id")
 		b.ImmutableAttributes("default_route_table_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_default_route_tableHandler", bridge.NewTFHandler(p, "aws_default_route_table", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_default_security_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "egress", "ingress", "name", "owner_id", "revoke_rules_on_delete", "tags", "vpc_id")
+		b.ProvidedAttributes("arn", "name", "owner_id", "vpc_id")
 		b.ImmutableAttributes("vpc_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_default_security_groupHandler", bridge.NewTFHandler(p, "aws_default_security_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_default_subnet{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "assign_ipv6_address_on_creation", "availability_zone_id", "cidr_block", "ipv6_cidr_block", "ipv6_cidr_block_association_id", "map_public_ip_on_launch", "owner_id", "tags", "vpc_id")
+		b.ProvidedAttributes("arn", "assign_ipv6_address_on_creation", "availability_zone_id", "cidr_block", "ipv6_cidr_block", "ipv6_cidr_block_association_id", "map_public_ip_on_launch", "owner_id", "vpc_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_default_subnetHandler", bridge.NewTFHandler(p, "aws_default_subnet", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_default_vpc{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "assign_generated_ipv6_cidr_block", "cidr_block", "default_network_acl_id", "default_route_table_id", "default_security_group_id", "dhcp_options_id", "enable_classiclink", "enable_classiclink_dns_support", "enable_dns_hostnames", "enable_dns_support", "instance_tenancy", "ipv6_association_id", "ipv6_cidr_block", "main_route_table_id", "owner_id", "tags")
+		b.ProvidedAttributes("arn", "assign_generated_ipv6_cidr_block", "cidr_block", "default_network_acl_id", "default_route_table_id", "default_security_group_id", "dhcp_options_id", "enable_classiclink", "enable_classiclink_dns_support", "enable_dns_hostnames", "instance_tenancy", "ipv6_association_id", "ipv6_cidr_block", "main_route_table_id", "owner_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_default_vpcHandler", bridge.NewTFHandler(p, "aws_default_vpc", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_default_vpc_dhcp_options{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("domain_name", "domain_name_servers", "netbios_name_servers", "netbios_node_type", "ntp_servers", "owner_id", "tags")
+		b.ProvidedAttributes("domain_name", "domain_name_servers", "ntp_servers", "owner_id")
 		b.ImmutableAttributes("netbios_name_servers", "netbios_node_type")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_default_vpc_dhcp_optionsHandler", bridge.NewTFHandler(p, "aws_default_vpc_dhcp_options", evs[0]), evs[0])
@@ -751,54 +729,53 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_directory_service_conditional_forwarderHandler", bridge.NewTFHandler(p, "aws_directory_service_conditional_forwarder", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_directory_service_directory{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("access_url", "alias", "connect_settings", "description", "dns_ip_addresses", "edition", "enable_sso", "security_group_id", "short_name", "size", "tags", "type", "vpc_settings")
+		b.ProvidedAttributes("access_url", "alias", "dns_ip_addresses", "edition", "security_group_id", "short_name", "size")
 		b.ImmutableAttributes("alias", "connect_settings", "description", "edition", "name", "password", "short_name", "size", "type", "vpc_settings")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_directory_service_directoryHandler", bridge.NewTFHandler(p, "aws_directory_service_directory", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dlm_lifecycle_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("state")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_dlm_lifecycle_policyHandler", bridge.NewTFHandler(p, "aws_dlm_lifecycle_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dms_certificate{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("certificate_arn", "certificate_pem", "certificate_wallet")
+		b.ProvidedAttributes("certificate_arn")
 		b.ImmutableAttributes("certificate_id", "certificate_pem", "certificate_wallet")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_dms_certificateHandler", bridge.NewTFHandler(p, "aws_dms_certificate", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dms_endpoint{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("certificate_arn", "database_name", "endpoint_arn", "extra_connection_attributes", "kms_key_arn", "mongodb_settings", "password", "port", "s3_settings", "server_name", "service_access_role", "ssl_mode", "tags", "username")
+		b.ProvidedAttributes("certificate_arn", "endpoint_arn", "extra_connection_attributes", "kms_key_arn", "ssl_mode")
 		b.ImmutableAttributes("endpoint_id", "kms_key_arn")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_dms_endpointHandler", bridge.NewTFHandler(p, "aws_dms_endpoint", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dms_replication_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allocated_storage", "apply_immediately", "auto_minor_version_upgrade", "availability_zone", "engine_version", "kms_key_arn", "multi_az", "preferred_maintenance_window", "publicly_accessible", "replication_instance_arn", "replication_instance_private_ips", "replication_instance_public_ips", "replication_subnet_group_id", "tags", "vpc_security_group_ids")
+		b.ProvidedAttributes("allocated_storage", "auto_minor_version_upgrade", "availability_zone", "engine_version", "kms_key_arn", "multi_az", "preferred_maintenance_window", "publicly_accessible", "replication_instance_arn", "replication_instance_private_ips", "replication_instance_public_ips", "replication_subnet_group_id", "vpc_security_group_ids")
 		b.ImmutableAttributes("availability_zone", "kms_key_arn", "publicly_accessible", "replication_instance_id", "replication_subnet_group_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_dms_replication_instanceHandler", bridge.NewTFHandler(p, "aws_dms_replication_instance", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dms_replication_subnet_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("replication_subnet_group_arn", "tags", "vpc_id")
+		b.ProvidedAttributes("replication_subnet_group_arn", "vpc_id")
 		b.ImmutableAttributes("replication_subnet_group_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_dms_replication_subnet_groupHandler", bridge.NewTFHandler(p, "aws_dms_replication_subnet_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dms_replication_task{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("cdc_start_time", "replication_task_arn", "replication_task_settings", "tags")
+		b.ProvidedAttributes("replication_task_arn")
 		b.ImmutableAttributes("replication_instance_arn", "replication_task_id", "source_endpoint_arn", "target_endpoint_arn")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_dms_replication_taskHandler", bridge.NewTFHandler(p, "aws_dms_replication_task", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_docdb_cluster_parameter_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "description", "name", "name_prefix", "parameter", "tags")
+		b.ProvidedAttributes("arn", "name", "name_prefix")
 		b.ImmutableAttributes("description", "family", "name", "name_prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_docdb_cluster_parameter_groupHandler", bridge.NewTFHandler(p, "aws_docdb_cluster_parameter_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_docdb_subnet_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "description", "name", "name_prefix", "tags")
+		b.ProvidedAttributes("arn", "name", "name_prefix")
 		b.ImmutableAttributes("name", "name_prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_docdb_subnet_groupHandler", bridge.NewTFHandler(p, "aws_docdb_subnet_group", evs[0]), evs[0])
@@ -810,7 +787,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_dx_bgp_peerHandler", bridge.NewTFHandler(p, "aws_dx_bgp_peer", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dx_connection{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "jumbo_frame_capable", "tags")
+		b.ProvidedAttributes("arn", "jumbo_frame_capable")
 		b.ImmutableAttributes("bandwidth", "location", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_dx_connectionHandler", bridge.NewTFHandler(p, "aws_dx_connection", evs[0]), evs[0])
@@ -831,13 +808,13 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_dx_gateway_associationHandler", bridge.NewTFHandler(p, "aws_dx_gateway_association", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dx_hosted_private_virtual_interface{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("amazon_address", "arn", "bgp_auth_key", "customer_address", "jumbo_frame_capable", "mtu")
+		b.ProvidedAttributes("amazon_address", "arn", "bgp_auth_key", "customer_address", "jumbo_frame_capable")
 		b.ImmutableAttributes("address_family", "amazon_address", "bgp_asn", "bgp_auth_key", "connection_id", "customer_address", "mtu", "name", "owner_account_id", "vlan")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_dx_hosted_private_virtual_interfaceHandler", bridge.NewTFHandler(p, "aws_dx_hosted_private_virtual_interface", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dx_hosted_private_virtual_interface_accepter{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "dx_gateway_id", "tags", "vpn_gateway_id")
+		b.ProvidedAttributes("arn")
 		b.ImmutableAttributes("dx_gateway_id", "virtual_interface_id", "vpn_gateway_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_dx_hosted_private_virtual_interface_accepterHandler", bridge.NewTFHandler(p, "aws_dx_hosted_private_virtual_interface_accepter", evs[0]), evs[0])
@@ -849,25 +826,25 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_dx_hosted_public_virtual_interfaceHandler", bridge.NewTFHandler(p, "aws_dx_hosted_public_virtual_interface", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dx_hosted_public_virtual_interface_accepter{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "tags")
+		b.ProvidedAttributes("arn")
 		b.ImmutableAttributes("virtual_interface_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_dx_hosted_public_virtual_interface_accepterHandler", bridge.NewTFHandler(p, "aws_dx_hosted_public_virtual_interface_accepter", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dx_lag{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "force_destroy", "number_of_connections", "tags")
+		b.ProvidedAttributes("arn", "number_of_connections")
 		b.ImmutableAttributes("connections_bandwidth", "location", "number_of_connections")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_dx_lagHandler", bridge.NewTFHandler(p, "aws_dx_lag", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dx_private_virtual_interface{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("amazon_address", "arn", "bgp_auth_key", "customer_address", "dx_gateway_id", "jumbo_frame_capable", "mtu", "tags", "vpn_gateway_id")
+		b.ProvidedAttributes("amazon_address", "arn", "bgp_auth_key", "customer_address", "jumbo_frame_capable")
 		b.ImmutableAttributes("address_family", "amazon_address", "bgp_asn", "bgp_auth_key", "connection_id", "customer_address", "dx_gateway_id", "name", "vlan", "vpn_gateway_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_dx_private_virtual_interfaceHandler", bridge.NewTFHandler(p, "aws_dx_private_virtual_interface", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dx_public_virtual_interface{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("amazon_address", "arn", "bgp_auth_key", "customer_address", "tags")
+		b.ProvidedAttributes("amazon_address", "arn", "bgp_auth_key", "customer_address")
 		b.ImmutableAttributes("address_family", "amazon_address", "bgp_asn", "bgp_auth_key", "connection_id", "customer_address", "name", "route_filter_prefixes", "vlan")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_dx_public_virtual_interfaceHandler", bridge.NewTFHandler(p, "aws_dx_public_virtual_interface", evs[0]), evs[0])
@@ -879,49 +856,46 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_dynamodb_global_tableHandler", bridge.NewTFHandler(p, "aws_dynamodb_global_table", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dynamodb_table{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "billing_mode", "global_secondary_index", "local_secondary_index", "point_in_time_recovery", "range_key", "read_capacity", "server_side_encryption", "stream_arn", "stream_enabled", "stream_label", "stream_view_type", "tags", "ttl", "write_capacity")
+		b.ProvidedAttributes("arn", "point_in_time_recovery", "server_side_encryption", "stream_arn", "stream_label", "stream_view_type")
 		b.ImmutableAttributes("hash_key", "local_secondary_index", "name", "range_key")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_dynamodb_tableHandler", bridge.NewTFHandler(p, "aws_dynamodb_table", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_dynamodb_table_item{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("range_key")
 		b.ImmutableAttributes("hash_key", "range_key", "table_name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_dynamodb_table_itemHandler", bridge.NewTFHandler(p, "aws_dynamodb_table_item", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ebs_snapshot{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("data_encryption_key_id", "description", "encrypted", "kms_key_id", "owner_alias", "owner_id", "tags", "volume_size")
+		b.ProvidedAttributes("data_encryption_key_id", "encrypted", "kms_key_id", "owner_alias", "owner_id", "volume_size")
 		b.ImmutableAttributes("description", "tags", "volume_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ebs_snapshotHandler", bridge.NewTFHandler(p, "aws_ebs_snapshot", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ebs_snapshot_copy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("data_encryption_key_id", "description", "encrypted", "kms_key_id", "owner_alias", "owner_id", "tags", "volume_id", "volume_size")
+		b.ProvidedAttributes("data_encryption_key_id", "owner_alias", "owner_id", "volume_id", "volume_size")
 		b.ImmutableAttributes("description", "encrypted", "kms_key_id", "source_region", "source_snapshot_id", "tags")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ebs_snapshot_copyHandler", bridge.NewTFHandler(p, "aws_ebs_snapshot_copy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ebs_volume{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "encrypted", "iops", "kms_key_id", "size", "snapshot_id", "tags", "type")
+		b.ProvidedAttributes("arn", "encrypted", "iops", "kms_key_id", "size", "snapshot_id", "type")
 		b.ImmutableAttributes("availability_zone", "encrypted", "kms_key_id", "snapshot_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ebs_volumeHandler", bridge.NewTFHandler(p, "aws_ebs_volume", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ec2_capacity_reservation{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("ebs_optimized", "end_date", "end_date_type", "ephemeral_storage", "instance_match_criteria", "tags", "tenancy")
 		b.ImmutableAttributes("availability_zone", "ebs_optimized", "ephemeral_storage", "instance_match_criteria", "instance_platform", "instance_type", "tenancy")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ec2_capacity_reservationHandler", bridge.NewTFHandler(p, "aws_ec2_capacity_reservation", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ec2_fleet{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("excess_capacity_termination_policy", "on_demand_options", "replace_unhealthy_instances", "spot_options", "tags", "terminate_instances", "terminate_instances_with_expiration", "type")
 		b.ImmutableAttributes("launch_template_config", "replace_unhealthy_instances", "tags", "terminate_instances_with_expiration", "type")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ec2_fleetHandler", bridge.NewTFHandler(p, "aws_ec2_fleet", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ec2_transit_gateway{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("amazon_side_asn", "arn", "association_default_route_table_id", "auto_accept_shared_attachments", "default_route_table_association", "default_route_table_propagation", "description", "dns_support", "owner_id", "propagation_default_route_table_id", "tags", "vpn_ecmp_support")
+		b.ProvidedAttributes("arn", "association_default_route_table_id", "owner_id", "propagation_default_route_table_id")
 		b.ImmutableAttributes("amazon_side_asn", "auto_accept_shared_attachments", "default_route_table_association", "default_route_table_propagation", "description", "dns_support", "vpn_ecmp_support")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ec2_transit_gatewayHandler", bridge.NewTFHandler(p, "aws_ec2_transit_gateway", evs[0]), evs[0])
@@ -932,7 +906,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_ec2_transit_gateway_routeHandler", bridge.NewTFHandler(p, "aws_ec2_transit_gateway_route", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ec2_transit_gateway_route_table{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("default_association_route_table", "default_propagation_route_table", "tags")
+		b.ProvidedAttributes("default_association_route_table", "default_propagation_route_table")
 		b.ImmutableAttributes("transit_gateway_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ec2_transit_gateway_route_tableHandler", bridge.NewTFHandler(p, "aws_ec2_transit_gateway_route_table", evs[0]), evs[0])
@@ -950,7 +924,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_ec2_transit_gateway_route_table_propagationHandler", bridge.NewTFHandler(p, "aws_ec2_transit_gateway_route_table_propagation", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ec2_transit_gateway_vpc_attachment{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("dns_support", "ipv6_support", "tags", "transit_gateway_default_route_table_association", "transit_gateway_default_route_table_propagation", "vpc_owner_id")
+		b.ProvidedAttributes("vpc_owner_id")
 		b.ImmutableAttributes("transit_gateway_id", "vpc_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ec2_transit_gateway_vpc_attachmentHandler", bridge.NewTFHandler(p, "aws_ec2_transit_gateway_vpc_attachment", evs[0]), evs[0])
@@ -962,7 +936,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_ecr_lifecycle_policyHandler", bridge.NewTFHandler(p, "aws_ecr_lifecycle_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ecr_repository{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "registry_id", "repository_url", "tags")
+		b.ProvidedAttributes("arn", "registry_id", "repository_url")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ecr_repositoryHandler", bridge.NewTFHandler(p, "aws_ecr_repository", evs[0]), evs[0])
@@ -974,25 +948,25 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_ecr_repository_policyHandler", bridge.NewTFHandler(p, "aws_ecr_repository_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ecs_cluster{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "tags")
+		b.ProvidedAttributes("arn")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ecs_clusterHandler", bridge.NewTFHandler(p, "aws_ecs_cluster", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ecs_service{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("cluster", "deployment_controller", "deployment_maximum_percent", "deployment_minimum_healthy_percent", "desired_count", "enable_ecs_managed_tags", "health_check_grace_period_seconds", "iam_role", "launch_type", "load_balancer", "network_configuration", "ordered_placement_strategy", "placement_constraints", "placement_strategy", "platform_version", "propagate_tags", "scheduling_strategy", "service_registries", "tags")
+		b.ProvidedAttributes("cluster", "iam_role", "platform_version")
 		b.ImmutableAttributes("cluster", "iam_role", "launch_type", "load_balancer", "name", "ordered_placement_strategy", "placement_constraints", "placement_strategy", "propagate_tags", "scheduling_strategy", "service_registries")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ecs_serviceHandler", bridge.NewTFHandler(p, "aws_ecs_service", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ecs_task_definition{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "cpu", "execution_role_arn", "ipc_mode", "memory", "network_mode", "pid_mode", "placement_constraints", "requires_compatibilities", "revision", "tags", "task_role_arn", "volume")
+		b.ProvidedAttributes("arn", "network_mode", "revision")
 		b.ImmutableAttributes("container_definitions", "cpu", "execution_role_arn", "family", "ipc_mode", "memory", "network_mode", "pid_mode", "placement_constraints", "requires_compatibilities", "task_role_arn", "volume")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ecs_task_definitionHandler", bridge.NewTFHandler(p, "aws_ecs_task_definition", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_efs_file_system{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "creation_token", "dns_name", "encrypted", "kms_key_id", "performance_mode", "provisioned_throughput_in_mibps", "reference_name", "tags", "throughput_mode")
+		b.ProvidedAttributes("arn", "creation_token", "dns_name", "encrypted", "kms_key_id", "performance_mode", "reference_name")
 		b.ImmutableAttributes("creation_token", "encrypted", "kms_key_id", "performance_mode")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_efs_file_systemHandler", bridge.NewTFHandler(p, "aws_efs_file_system", evs[0]), evs[0])
@@ -1009,13 +983,13 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_egress_only_internet_gatewayHandler", bridge.NewTFHandler(p, "aws_egress_only_internet_gateway", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_eip{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allocation_id", "associate_with_private_ip", "association_id", "domain", "instance", "network_interface", "private_ip", "public_ip", "public_ipv4_pool", "tags", "vpc")
+		b.ProvidedAttributes("allocation_id", "association_id", "domain", "instance", "network_interface", "private_ip", "public_ip", "public_ipv4_pool", "vpc")
 		b.ImmutableAttributes("public_ipv4_pool", "vpc")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_eipHandler", bridge.NewTFHandler(p, "aws_eip", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_eip_association{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allocation_id", "allow_reassociation", "instance_id", "network_interface_id", "private_ip_address", "public_ip")
+		b.ProvidedAttributes("allocation_id", "instance_id", "network_interface_id", "private_ip_address", "public_ip")
 		b.ImmutableAttributes("allocation_id", "allow_reassociation", "instance_id", "network_interface_id", "private_ip_address", "public_ip")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_eip_associationHandler", bridge.NewTFHandler(p, "aws_eip_association", evs[0]), evs[0])
@@ -1027,61 +1001,56 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_eks_clusterHandler", bridge.NewTFHandler(p, "aws_eks_cluster", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elastic_beanstalk_application{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("appversion_lifecycle", "description")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_elastic_beanstalk_applicationHandler", bridge.NewTFHandler(p, "aws_elastic_beanstalk_application", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elastic_beanstalk_application_version{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "force_delete")
 		b.ImmutableAttributes("application", "bucket", "key", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_elastic_beanstalk_application_versionHandler", bridge.NewTFHandler(p, "aws_elastic_beanstalk_application_version", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elastic_beanstalk_configuration_template{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "environment_id", "setting", "solution_stack_name")
+		b.ProvidedAttributes("setting")
 		b.ImmutableAttributes("application", "environment_id", "name", "solution_stack_name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_elastic_beanstalk_configuration_templateHandler", bridge.NewTFHandler(p, "aws_elastic_beanstalk_configuration_template", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elastic_beanstalk_environment{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("all_settings", "arn", "autoscaling_groups", "cname", "cname_prefix", "description", "instances", "launch_configurations", "load_balancers", "platform_arn", "poll_interval", "queues", "setting", "solution_stack_name", "tags", "template_name", "tier", "triggers", "version_label", "wait_for_ready_timeout")
+		b.ProvidedAttributes("all_settings", "arn", "autoscaling_groups", "cname", "cname_prefix", "instances", "launch_configurations", "load_balancers", "platform_arn", "queues", "solution_stack_name", "triggers", "version_label")
 		b.ImmutableAttributes("cname_prefix", "name", "tier")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_elastic_beanstalk_environmentHandler", bridge.NewTFHandler(p, "aws_elastic_beanstalk_environment", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elasticache_cluster{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("apply_immediately", "availability_zone", "availability_zones", "az_mode", "cache_nodes", "cluster_address", "configuration_endpoint", "engine", "engine_version", "maintenance_window", "node_type", "notification_topic_arn", "num_cache_nodes", "parameter_group_name", "port", "preferred_availability_zones", "replication_group_id", "security_group_ids", "security_group_names", "snapshot_arns", "snapshot_name", "snapshot_retention_limit", "snapshot_window", "subnet_group_name", "tags")
+		b.ProvidedAttributes("apply_immediately", "availability_zone", "az_mode", "cache_nodes", "cluster_address", "configuration_endpoint", "engine", "engine_version", "maintenance_window", "node_type", "num_cache_nodes", "parameter_group_name", "replication_group_id", "security_group_ids", "security_group_names", "snapshot_window", "subnet_group_name")
 		b.ImmutableAttributes("availability_zone", "availability_zones", "cluster_id", "engine", "port", "replication_group_id", "security_group_names", "snapshot_arns", "snapshot_name", "subnet_group_name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_elasticache_clusterHandler", bridge.NewTFHandler(p, "aws_elasticache_cluster", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elasticache_parameter_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "parameter")
 		b.ImmutableAttributes("description", "family", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_elasticache_parameter_groupHandler", bridge.NewTFHandler(p, "aws_elasticache_parameter_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elasticache_replication_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("apply_immediately", "at_rest_encryption_enabled", "auth_token", "auto_minor_version_upgrade", "automatic_failover_enabled", "availability_zones", "cluster_mode", "configuration_endpoint_address", "engine", "engine_version", "maintenance_window", "member_clusters", "node_type", "notification_topic_arn", "number_cache_clusters", "parameter_group_name", "port", "primary_endpoint_address", "security_group_ids", "security_group_names", "snapshot_arns", "snapshot_name", "snapshot_retention_limit", "snapshot_window", "subnet_group_name", "tags", "transit_encryption_enabled")
+		b.ProvidedAttributes("apply_immediately", "cluster_mode", "configuration_endpoint_address", "engine_version", "maintenance_window", "member_clusters", "node_type", "number_cache_clusters", "parameter_group_name", "primary_endpoint_address", "security_group_ids", "security_group_names", "snapshot_window", "subnet_group_name")
 		b.ImmutableAttributes("at_rest_encryption_enabled", "auth_token", "availability_zones", "engine", "port", "replication_group_id", "security_group_names", "snapshot_arns", "snapshot_name", "subnet_group_name", "transit_encryption_enabled")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_elasticache_replication_groupHandler", bridge.NewTFHandler(p, "aws_elasticache_replication_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elasticache_security_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description")
 		b.ImmutableAttributes("description", "name", "security_group_names")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_elasticache_security_groupHandler", bridge.NewTFHandler(p, "aws_elasticache_security_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elasticache_subnet_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_elasticache_subnet_groupHandler", bridge.NewTFHandler(p, "aws_elasticache_subnet_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elasticsearch_domain{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("access_policies", "advanced_options", "arn", "cluster_config", "cognito_options", "domain_id", "ebs_options", "elasticsearch_version", "encrypt_at_rest", "endpoint", "kibana_endpoint", "log_publishing_options", "node_to_node_encryption", "snapshot_options", "tags", "vpc_options")
+		b.ProvidedAttributes("access_policies", "advanced_options", "arn", "cluster_config", "domain_id", "ebs_options", "encrypt_at_rest", "endpoint", "kibana_endpoint", "node_to_node_encryption")
 		b.ImmutableAttributes("domain_name", "vpc_options")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_elasticsearch_domainHandler", bridge.NewTFHandler(p, "aws_elasticsearch_domain", evs[0]), evs[0])
@@ -1091,19 +1060,19 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_elasticsearch_domain_policyHandler", bridge.NewTFHandler(p, "aws_elasticsearch_domain_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elastictranscoder_pipeline{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "aws_kms_key_arn", "content_config", "content_config_permissions", "name", "notifications", "output_bucket", "thumbnail_config", "thumbnail_config_permissions")
+		b.ProvidedAttributes("arn", "content_config", "name", "output_bucket", "thumbnail_config")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_elastictranscoder_pipelineHandler", bridge.NewTFHandler(p, "aws_elastictranscoder_pipeline", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elastictranscoder_preset{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "audio", "audio_codec_options", "description", "name", "thumbnails", "type", "video", "video_codec_options", "video_watermarks")
+		b.ProvidedAttributes("arn", "name", "type")
 		b.ImmutableAttributes("audio", "audio_codec_options", "container", "description", "name", "thumbnails", "video", "video_codec_options", "video_watermarks")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_elastictranscoder_presetHandler", bridge.NewTFHandler(p, "aws_elastictranscoder_preset", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_elb{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("access_logs", "arn", "availability_zones", "connection_draining", "connection_draining_timeout", "cross_zone_load_balancing", "dns_name", "health_check", "idle_timeout", "instances", "internal", "name", "name_prefix", "security_groups", "source_security_group", "source_security_group_id", "subnets", "tags", "zone_id")
+		b.ProvidedAttributes("arn", "availability_zones", "dns_name", "health_check", "instances", "internal", "name", "security_groups", "source_security_group", "source_security_group_id", "subnets", "zone_id")
 		b.ImmutableAttributes("internal", "name", "name_prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_elbHandler", bridge.NewTFHandler(p, "aws_elb", evs[0]), evs[0])
@@ -1114,101 +1083,97 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_elb_attachmentHandler", bridge.NewTFHandler(p, "aws_elb_attachment", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_emr_cluster{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("additional_info", "applications", "autoscaling_role", "bootstrap_action", "cluster_state", "configurations", "configurations_json", "core_instance_count", "core_instance_type", "custom_ami_id", "ebs_root_volume_size", "ec2_attributes", "instance_group", "keep_job_flow_alive_when_no_steps", "kerberos_attributes", "log_uri", "master_instance_type", "master_public_dns", "scale_down_behavior", "security_configuration", "step", "tags", "termination_protection", "visible_to_all_users")
+		b.ProvidedAttributes("cluster_state", "core_instance_count", "core_instance_type", "instance_group", "keep_job_flow_alive_when_no_steps", "master_instance_type", "master_public_dns", "scale_down_behavior", "step", "termination_protection")
 		b.ImmutableAttributes("additional_info", "applications", "autoscaling_role", "bootstrap_action", "configurations", "configurations_json", "core_instance_type", "custom_ami_id", "ebs_root_volume_size", "ec2_attributes", "instance_group", "keep_job_flow_alive_when_no_steps", "kerberos_attributes", "log_uri", "master_instance_type", "name", "release_label", "scale_down_behavior", "security_configuration", "service_role", "step")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_emr_clusterHandler", bridge.NewTFHandler(p, "aws_emr_cluster", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_emr_instance_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("ebs_config", "ebs_optimized", "instance_count", "name", "running_instance_count", "status")
+		b.ProvidedAttributes("running_instance_count", "status")
 		b.ImmutableAttributes("cluster_id", "ebs_config", "ebs_optimized", "instance_type", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_emr_instance_groupHandler", bridge.NewTFHandler(p, "aws_emr_instance_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_emr_security_configuration{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_date", "name", "name_prefix")
+		b.ProvidedAttributes("creation_date", "name")
 		b.ImmutableAttributes("configuration", "name", "name_prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_emr_security_configurationHandler", bridge.NewTFHandler(p, "aws_emr_security_configuration", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_flow_log{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("eni_id", "iam_role_arn", "log_destination", "log_destination_type", "log_group_name", "subnet_id", "vpc_id")
+		b.ProvidedAttributes("log_destination", "log_group_name")
 		b.ImmutableAttributes("eni_id", "iam_role_arn", "log_destination", "log_destination_type", "log_group_name", "subnet_id", "traffic_type", "vpc_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_flow_logHandler", bridge.NewTFHandler(p, "aws_flow_log", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_gamelift_alias{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "description")
+		b.ProvidedAttributes("arn")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_gamelift_aliasHandler", bridge.NewTFHandler(p, "aws_gamelift_alias", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_gamelift_build{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("version")
 		b.ImmutableAttributes("operating_system", "storage_location")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_gamelift_buildHandler", bridge.NewTFHandler(p, "aws_gamelift_build", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_gamelift_fleet{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "description", "ec2_inbound_permission", "log_paths", "metric_groups", "new_game_session_protection_policy", "operating_system", "resource_creation_limit_policy", "runtime_configuration")
+		b.ProvidedAttributes("arn", "log_paths", "metric_groups", "operating_system")
 		b.ImmutableAttributes("build_id", "ec2_instance_type")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_gamelift_fleetHandler", bridge.NewTFHandler(p, "aws_gamelift_fleet", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_gamelift_game_session_queue{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "destinations", "player_latency_policy", "timeout_in_seconds")
+		b.ProvidedAttributes("arn")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_gamelift_game_session_queueHandler", bridge.NewTFHandler(p, "aws_gamelift_game_session_queue", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_glacier_vault{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("access_policy", "arn", "location", "notification", "tags")
+		b.ProvidedAttributes("arn", "location")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_glacier_vaultHandler", bridge.NewTFHandler(p, "aws_glacier_vault", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_glacier_vault_lock{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("ignore_deletion_error")
 		b.ImmutableAttributes("complete_lock", "policy", "vault_name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_glacier_vault_lockHandler", bridge.NewTFHandler(p, "aws_glacier_vault_lock", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_globalaccelerator_accelerator{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("attributes", "enabled", "ip_address_type", "ip_sets")
+		b.ProvidedAttributes("ip_sets")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_globalaccelerator_acceleratorHandler", bridge.NewTFHandler(p, "aws_globalaccelerator_accelerator", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_glue_catalog_database{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("catalog_id", "description", "location_uri", "parameters")
+		b.ProvidedAttributes("catalog_id")
 		b.ImmutableAttributes("catalog_id", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_glue_catalog_databaseHandler", bridge.NewTFHandler(p, "aws_glue_catalog_database", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_glue_catalog_table{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("catalog_id", "description", "owner", "parameters", "partition_keys", "retention", "storage_descriptor", "table_type", "view_expanded_text", "view_original_text")
+		b.ProvidedAttributes("catalog_id")
 		b.ImmutableAttributes("catalog_id", "database_name", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_glue_catalog_tableHandler", bridge.NewTFHandler(p, "aws_glue_catalog_table", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_glue_classifier{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("grok_classifier", "json_classifier", "xml_classifier")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_glue_classifierHandler", bridge.NewTFHandler(p, "aws_glue_classifier", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_glue_connection{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("catalog_id", "connection_type", "description", "match_criteria", "physical_connection_requirements")
+		b.ProvidedAttributes("catalog_id")
 		b.ImmutableAttributes("catalog_id", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_glue_connectionHandler", bridge.NewTFHandler(p, "aws_glue_connection", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_glue_crawler{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("classifiers", "configuration", "description", "dynamodb_target", "jdbc_target", "s3_target", "schedule", "schema_change_policy", "security_configuration", "table_prefix")
 		b.ImmutableAttributes("database_name", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_glue_crawlerHandler", bridge.NewTFHandler(p, "aws_glue_crawler", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_glue_job{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allocated_capacity", "connections", "default_arguments", "description", "execution_property", "max_retries", "security_configuration", "timeout")
+		b.ProvidedAttributes("execution_property")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_glue_jobHandler", bridge.NewTFHandler(p, "aws_glue_job", evs[0]), evs[0])
@@ -1219,13 +1184,12 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_glue_security_configurationHandler", bridge.NewTFHandler(p, "aws_glue_security_configuration", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_glue_trigger{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "enabled", "predicate", "schedule")
 		b.ImmutableAttributes("name", "type")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_glue_triggerHandler", bridge.NewTFHandler(p, "aws_glue_trigger", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_guardduty_detector{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("account_id", "enable", "finding_publishing_frequency")
+		b.ProvidedAttributes("account_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_guardduty_detectorHandler", bridge.NewTFHandler(p, "aws_guardduty_detector", evs[0]), evs[0])
 
@@ -1235,7 +1199,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_guardduty_ipsetHandler", bridge.NewTFHandler(p, "aws_guardduty_ipset", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_guardduty_member{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("disable_email_notification", "invitation_message", "invite", "relationship_status")
+		b.ProvidedAttributes("relationship_status")
 		b.ImmutableAttributes("account_id", "detector_id", "disable_email_notification", "email", "invitation_message")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_guardduty_memberHandler", bridge.NewTFHandler(p, "aws_guardduty_member", evs[0]), evs[0])
@@ -1246,7 +1210,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_guardduty_threatintelsetHandler", bridge.NewTFHandler(p, "aws_guardduty_threatintelset", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_access_key{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("encrypted_secret", "key_fingerprint", "pgp_key", "secret", "ses_smtp_password", "status")
+		b.ProvidedAttributes("encrypted_secret", "key_fingerprint", "secret", "ses_smtp_password", "status")
 		b.ImmutableAttributes("pgp_key", "user")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_iam_access_keyHandler", bridge.NewTFHandler(p, "aws_iam_access_key", evs[0]), evs[0])
@@ -1257,12 +1221,12 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_iam_account_aliasHandler", bridge.NewTFHandler(p, "aws_iam_account_alias", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_account_password_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allow_users_to_change_password", "expire_passwords", "hard_expiry", "max_password_age", "minimum_password_length", "password_reuse_prevention", "require_lowercase_characters", "require_numbers", "require_symbols", "require_uppercase_characters")
+		b.ProvidedAttributes("expire_passwords", "hard_expiry", "max_password_age", "password_reuse_prevention", "require_lowercase_characters", "require_numbers", "require_symbols", "require_uppercase_characters")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_iam_account_password_policyHandler", bridge.NewTFHandler(p, "aws_iam_account_password_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "path", "unique_id")
+		b.ProvidedAttributes("arn", "unique_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_iam_groupHandler", bridge.NewTFHandler(p, "aws_iam_group", evs[0]), evs[0])
 
@@ -1272,7 +1236,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_iam_group_membershipHandler", bridge.NewTFHandler(p, "aws_iam_group_membership", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_group_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("name", "name_prefix")
+		b.ProvidedAttributes("name")
 		b.ImmutableAttributes("group", "name", "name_prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_iam_group_policyHandler", bridge.NewTFHandler(p, "aws_iam_group_policy", evs[0]), evs[0])
@@ -1283,7 +1247,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_iam_group_policy_attachmentHandler", bridge.NewTFHandler(p, "aws_iam_group_policy_attachment", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_instance_profile{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "create_date", "name", "name_prefix", "path", "role", "roles", "unique_id")
+		b.ProvidedAttributes("arn", "create_date", "name", "role", "roles", "unique_id")
 		b.ImmutableAttributes("name", "name_prefix", "path")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_iam_instance_profileHandler", bridge.NewTFHandler(p, "aws_iam_instance_profile", evs[0]), evs[0])
@@ -1295,25 +1259,24 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_iam_openid_connect_providerHandler", bridge.NewTFHandler(p, "aws_iam_openid_connect_provider", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "description", "name", "name_prefix", "path")
+		b.ProvidedAttributes("arn", "name")
 		b.ImmutableAttributes("description", "name", "name_prefix", "path")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_iam_policyHandler", bridge.NewTFHandler(p, "aws_iam_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_policy_attachment{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("groups", "roles", "users")
 		b.ImmutableAttributes("name", "policy_arn")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_iam_policy_attachmentHandler", bridge.NewTFHandler(p, "aws_iam_policy_attachment", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_role{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "create_date", "description", "force_detach_policies", "max_session_duration", "name", "name_prefix", "path", "permissions_boundary", "tags", "unique_id")
+		b.ProvidedAttributes("arn", "create_date", "name", "unique_id")
 		b.ImmutableAttributes("name", "name_prefix", "path")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_iam_roleHandler", bridge.NewTFHandler(p, "aws_iam_role", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_role_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("name", "name_prefix")
+		b.ProvidedAttributes("name")
 		b.ImmutableAttributes("name", "name_prefix", "role")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_iam_role_policyHandler", bridge.NewTFHandler(p, "aws_iam_role_policy", evs[0]), evs[0])
@@ -1330,19 +1293,19 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_iam_saml_providerHandler", bridge.NewTFHandler(p, "aws_iam_saml_provider", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_server_certificate{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "certificate_chain", "name", "name_prefix", "path")
+		b.ProvidedAttributes("arn", "name")
 		b.ImmutableAttributes("certificate_body", "certificate_chain", "name", "name_prefix", "path", "private_key")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_iam_server_certificateHandler", bridge.NewTFHandler(p, "aws_iam_server_certificate", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_service_linked_role{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "create_date", "custom_suffix", "description", "name", "path", "unique_id")
+		b.ProvidedAttributes("arn", "create_date", "name", "path", "unique_id")
 		b.ImmutableAttributes("aws_service_name", "custom_suffix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_iam_service_linked_roleHandler", bridge.NewTFHandler(p, "aws_iam_service_linked_role", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_user{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "force_destroy", "path", "permissions_boundary", "tags", "unique_id")
+		b.ProvidedAttributes("arn", "unique_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_iam_userHandler", bridge.NewTFHandler(p, "aws_iam_user", evs[0]), evs[0])
 
@@ -1352,12 +1315,12 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_iam_user_group_membershipHandler", bridge.NewTFHandler(p, "aws_iam_user_group_membership", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_user_login_profile{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("encrypted_password", "key_fingerprint", "password_length", "password_reset_required")
+		b.ProvidedAttributes("encrypted_password", "key_fingerprint")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_iam_user_login_profileHandler", bridge.NewTFHandler(p, "aws_iam_user_login_profile", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iam_user_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("name", "name_prefix")
+		b.ProvidedAttributes("name")
 		b.ImmutableAttributes("name", "name_prefix", "user")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_iam_user_policyHandler", bridge.NewTFHandler(p, "aws_iam_user_policy", evs[0]), evs[0])
@@ -1374,7 +1337,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_iam_user_ssh_keyHandler", bridge.NewTFHandler(p, "aws_iam_user_ssh_key", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_inspector_assessment_target{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "resource_group_arn")
+		b.ProvidedAttributes("arn")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_inspector_assessment_targetHandler", bridge.NewTFHandler(p, "aws_inspector_assessment_target", evs[0]), evs[0])
@@ -1392,13 +1355,13 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_inspector_resource_groupHandler", bridge.NewTFHandler(p, "aws_inspector_resource_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "associate_public_ip_address", "availability_zone", "block_device", "cpu_core_count", "cpu_threads_per_core", "credit_specification", "disable_api_termination", "ebs_block_device", "ebs_optimized", "ephemeral_block_device", "get_password_data", "host_id", "iam_instance_profile", "instance_initiated_shutdown_behavior", "instance_state", "ipv6_address_count", "ipv6_addresses", "key_name", "monitoring", "network_interface", "network_interface_id", "password_data", "placement_group", "primary_network_interface_id", "private_dns", "private_ip", "public_dns", "public_ip", "root_block_device", "security_groups", "source_dest_check", "subnet_id", "tags", "tenancy", "user_data", "user_data_base64", "volume_tags", "vpc_security_group_ids")
+		b.ProvidedAttributes("arn", "associate_public_ip_address", "availability_zone", "cpu_core_count", "cpu_threads_per_core", "ebs_block_device", "ephemeral_block_device", "host_id", "instance_state", "ipv6_address_count", "ipv6_addresses", "key_name", "network_interface", "network_interface_id", "password_data", "placement_group", "primary_network_interface_id", "private_dns", "private_ip", "public_dns", "public_ip", "root_block_device", "security_groups", "subnet_id", "tenancy", "volume_tags", "vpc_security_group_ids")
 		b.ImmutableAttributes("ami", "associate_public_ip_address", "availability_zone", "cpu_core_count", "cpu_threads_per_core", "ebs_optimized", "ephemeral_block_device", "host_id", "ipv6_address_count", "ipv6_addresses", "key_name", "placement_group", "private_ip", "security_groups", "subnet_id", "tenancy", "user_data", "user_data_base64")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_instanceHandler", bridge.NewTFHandler(p, "aws_instance", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_internet_gateway{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("owner_id", "tags", "vpc_id")
+		b.ProvidedAttributes("owner_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_internet_gatewayHandler", bridge.NewTFHandler(p, "aws_internet_gateway", evs[0]), evs[0])
 
@@ -1419,7 +1382,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_iot_policy_attachmentHandler", bridge.NewTFHandler(p, "aws_iot_policy_attachment", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iot_thing{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "attributes", "default_client_id", "thing_type_name", "version")
+		b.ProvidedAttributes("arn", "default_client_id", "version")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_iot_thingHandler", bridge.NewTFHandler(p, "aws_iot_thing", evs[0]), evs[0])
@@ -1430,114 +1393,113 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_iot_thing_principal_attachmentHandler", bridge.NewTFHandler(p, "aws_iot_thing_principal_attachment", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iot_thing_type{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "deprecated", "properties")
+		b.ProvidedAttributes("arn")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_iot_thing_typeHandler", bridge.NewTFHandler(p, "aws_iot_thing_type", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_iot_topic_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "cloudwatch_alarm", "cloudwatch_metric", "description", "dynamodb", "elasticsearch", "firehose", "kinesis", "lambda", "republish", "s3", "sns", "sqs")
+		b.ProvidedAttributes("arn")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_iot_topic_ruleHandler", bridge.NewTFHandler(p, "aws_iot_topic_rule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_key_pair{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("fingerprint", "key_name", "key_name_prefix")
+		b.ProvidedAttributes("fingerprint", "key_name")
 		b.ImmutableAttributes("key_name", "key_name_prefix", "public_key")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_key_pairHandler", bridge.NewTFHandler(p, "aws_key_pair", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_kinesis_analytics_application{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "cloudwatch_logging_options", "code", "create_timestamp", "description", "inputs", "last_update_timestamp", "outputs", "reference_data_sources", "status", "version")
+		b.ProvidedAttributes("arn", "create_timestamp", "last_update_timestamp", "status", "version")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_kinesis_analytics_applicationHandler", bridge.NewTFHandler(p, "aws_kinesis_analytics_application", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_kinesis_firehose_delivery_stream{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "destination_id", "elasticsearch_configuration", "extended_s3_configuration", "kinesis_source_configuration", "redshift_configuration", "s3_configuration", "splunk_configuration", "tags", "version_id")
+		b.ProvidedAttributes("arn", "destination_id", "version_id")
 		b.ImmutableAttributes("destination", "kinesis_source_configuration", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_kinesis_firehose_delivery_streamHandler", bridge.NewTFHandler(p, "aws_kinesis_firehose_delivery_stream", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_kinesis_stream{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "encryption_type", "kms_key_id", "retention_period", "shard_level_metrics", "tags")
+		b.ProvidedAttributes("arn")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_kinesis_streamHandler", bridge.NewTFHandler(p, "aws_kinesis_stream", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_kms_alias{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "name", "name_prefix", "target_key_arn")
+		b.ProvidedAttributes("arn", "target_key_arn")
 		b.ImmutableAttributes("name", "name_prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_kms_aliasHandler", bridge.NewTFHandler(p, "aws_kms_alias", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_kms_grant{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("constraints", "grant_creation_tokens", "grant_id", "grant_token", "name", "retire_on_delete", "retiring_principal")
+		b.ProvidedAttributes("grant_id", "grant_token")
 		b.ImmutableAttributes("constraints", "grant_creation_tokens", "grantee_principal", "key_id", "name", "operations", "retire_on_delete", "retiring_principal")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_kms_grantHandler", bridge.NewTFHandler(p, "aws_kms_grant", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_kms_key{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "deletion_window_in_days", "description", "enable_key_rotation", "is_enabled", "key_id", "key_usage", "policy", "tags")
+		b.ProvidedAttributes("arn", "description", "key_id", "key_usage", "policy")
 		b.ImmutableAttributes("key_usage")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_kms_keyHandler", bridge.NewTFHandler(p, "aws_kms_key", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lambda_alias{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "description", "invoke_arn", "routing_config")
+		b.ProvidedAttributes("arn", "invoke_arn")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_lambda_aliasHandler", bridge.NewTFHandler(p, "aws_lambda_alias", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lambda_event_source_mapping{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("batch_size", "enabled", "function_arn", "last_modified", "last_processing_result", "starting_position", "starting_position_timestamp", "state", "state_transition_reason", "uuid")
+		b.ProvidedAttributes("function_arn", "last_modified", "last_processing_result", "state", "state_transition_reason", "uuid")
 		b.ImmutableAttributes("event_source_arn", "starting_position", "starting_position_timestamp")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_lambda_event_source_mappingHandler", bridge.NewTFHandler(p, "aws_lambda_event_source_mapping", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lambda_function{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "dead_letter_config", "description", "environment", "filename", "invoke_arn", "kms_key_arn", "last_modified", "layers", "memory_size", "publish", "qualified_arn", "reserved_concurrent_executions", "s3_bucket", "s3_key", "s3_object_version", "source_code_hash", "source_code_size", "tags", "timeout", "tracing_config", "version", "vpc_config")
+		b.ProvidedAttributes("arn", "invoke_arn", "last_modified", "qualified_arn", "source_code_hash", "source_code_size", "tracing_config", "version")
 		b.ImmutableAttributes("function_name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_lambda_functionHandler", bridge.NewTFHandler(p, "aws_lambda_function", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lambda_layer_version{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "compatible_runtimes", "created_date", "description", "filename", "layer_arn", "license_info", "s3_bucket", "s3_key", "s3_object_version", "source_code_hash", "source_code_size", "version")
+		b.ProvidedAttributes("arn", "created_date", "layer_arn", "source_code_hash", "source_code_size", "version")
 		b.ImmutableAttributes("compatible_runtimes", "description", "filename", "layer_name", "license_info", "s3_bucket", "s3_key", "s3_object_version", "source_code_hash")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_lambda_layer_versionHandler", bridge.NewTFHandler(p, "aws_lambda_layer_version", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lambda_permission{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("event_source_token", "qualifier", "source_account", "source_arn", "statement_id", "statement_id_prefix")
+		b.ProvidedAttributes("statement_id")
 		b.ImmutableAttributes("action", "event_source_token", "function_name", "principal", "qualifier", "source_account", "source_arn", "statement_id", "statement_id_prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_lambda_permissionHandler", bridge.NewTFHandler(p, "aws_lambda_permission", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_launch_configuration{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("associate_public_ip_address", "ebs_block_device", "ebs_optimized", "enable_monitoring", "ephemeral_block_device", "iam_instance_profile", "key_name", "name", "name_prefix", "placement_tenancy", "root_block_device", "security_groups", "spot_price", "user_data", "user_data_base64", "vpc_classic_link_id", "vpc_classic_link_security_groups")
+		b.ProvidedAttributes("ebs_block_device", "ebs_optimized", "key_name", "name", "root_block_device")
 		b.ImmutableAttributes("associate_public_ip_address", "ebs_optimized", "enable_monitoring", "ephemeral_block_device", "iam_instance_profile", "image_id", "instance_type", "key_name", "name", "name_prefix", "placement_tenancy", "security_groups", "spot_price", "user_data", "user_data_base64", "vpc_classic_link_id", "vpc_classic_link_security_groups")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_launch_configurationHandler", bridge.NewTFHandler(p, "aws_launch_configuration", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_launch_template{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "block_device_mappings", "capacity_reservation_specification", "credit_specification", "default_version", "description", "disable_api_termination", "ebs_optimized", "elastic_gpu_specifications", "iam_instance_profile", "image_id", "instance_initiated_shutdown_behavior", "instance_market_options", "instance_type", "kernel_id", "key_name", "latest_version", "license_specification", "monitoring", "name", "name_prefix", "network_interfaces", "placement", "ram_disk_id", "security_group_names", "tag_specifications", "tags", "user_data", "vpc_security_group_ids")
+		b.ProvidedAttributes("arn", "default_version", "latest_version", "name")
 		b.ImmutableAttributes("name", "name_prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_launch_templateHandler", bridge.NewTFHandler(p, "aws_launch_template", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lb{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("access_logs", "arn", "arn_suffix", "dns_name", "enable_cross_zone_load_balancing", "enable_deletion_protection", "enable_http2", "idle_timeout", "internal", "ip_address_type", "load_balancer_type", "name", "name_prefix", "security_groups", "subnet_mapping", "subnets", "tags", "vpc_id", "zone_id")
+		b.ProvidedAttributes("access_logs", "arn", "arn_suffix", "dns_name", "internal", "ip_address_type", "name", "security_groups", "subnet_mapping", "subnets", "vpc_id", "zone_id")
 		b.ImmutableAttributes("internal", "load_balancer_type", "name", "name_prefix", "subnet_mapping")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_lbHandler", bridge.NewTFHandler(p, "aws_lb", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lb_cookie_stickiness_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("cookie_expiration_period")
 		b.ImmutableAttributes("cookie_expiration_period", "lb_port", "load_balancer", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_lb_cookie_stickiness_policyHandler", bridge.NewTFHandler(p, "aws_lb_cookie_stickiness_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lb_listener{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "certificate_arn", "protocol", "ssl_policy")
+		b.ProvidedAttributes("arn", "ssl_policy")
 		b.ImmutableAttributes("load_balancer_arn")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_lb_listenerHandler", bridge.NewTFHandler(p, "aws_lb_listener", evs[0]), evs[0])
@@ -1554,19 +1516,17 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_lb_listener_ruleHandler", bridge.NewTFHandler(p, "aws_lb_listener_rule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lb_ssl_negotiation_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("attribute")
 		b.ImmutableAttributes("attribute", "lb_port", "load_balancer", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_lb_ssl_negotiation_policyHandler", bridge.NewTFHandler(p, "aws_lb_ssl_negotiation_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lb_target_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "arn_suffix", "deregistration_delay", "health_check", "name", "name_prefix", "port", "protocol", "proxy_protocol_v2", "slow_start", "stickiness", "tags", "target_type", "vpc_id")
+		b.ProvidedAttributes("arn", "arn_suffix", "health_check", "name", "stickiness")
 		b.ImmutableAttributes("name", "name_prefix", "port", "protocol", "target_type", "vpc_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_lb_target_groupHandler", bridge.NewTFHandler(p, "aws_lb_target_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lb_target_group_attachment{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("availability_zone", "port")
 		b.ImmutableAttributes("availability_zone", "port", "target_group_arn", "target_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_lb_target_group_attachmentHandler", bridge.NewTFHandler(p, "aws_lb_target_group_attachment", evs[0]), evs[0])
@@ -1577,7 +1537,6 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_licensemanager_associationHandler", bridge.NewTFHandler(p, "aws_licensemanager_association", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_licensemanager_license_configuration{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "license_count", "license_count_hard_limit", "license_rules", "tags")
 		b.ImmutableAttributes("license_counting_type", "license_rules")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_licensemanager_license_configurationHandler", bridge.NewTFHandler(p, "aws_licensemanager_license_configuration", evs[0]), evs[0])
@@ -1589,13 +1548,13 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_lightsail_domainHandler", bridge.NewTFHandler(p, "aws_lightsail_domain", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lightsail_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "cpu_count", "created_at", "ipv6_address", "is_static_ip", "key_pair_name", "private_ip_address", "public_ip_address", "ram_size", "user_data", "username")
+		b.ProvidedAttributes("arn", "cpu_count", "created_at", "ipv6_address", "is_static_ip", "private_ip_address", "public_ip_address", "ram_size", "username")
 		b.ImmutableAttributes("availability_zone", "blueprint_id", "bundle_id", "key_pair_name", "name", "user_data")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_lightsail_instanceHandler", bridge.NewTFHandler(p, "aws_lightsail_instance", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_lightsail_key_pair{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "encrypted_fingerprint", "encrypted_private_key", "fingerprint", "name", "name_prefix", "pgp_key", "private_key", "public_key")
+		b.ProvidedAttributes("arn", "encrypted_fingerprint", "encrypted_private_key", "fingerprint", "name", "private_key", "public_key")
 		b.ImmutableAttributes("name", "name_prefix", "pgp_key", "public_key")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_lightsail_key_pairHandler", bridge.NewTFHandler(p, "aws_lightsail_key_pair", evs[0]), evs[0])
@@ -1612,17 +1571,14 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_lightsail_static_ip_attachmentHandler", bridge.NewTFHandler(p, "aws_lightsail_static_ip_attachment", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_load_balancer_backend_server_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("policy_names")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_load_balancer_backend_server_policyHandler", bridge.NewTFHandler(p, "aws_load_balancer_backend_server_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_load_balancer_listener_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("policy_names")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_load_balancer_listener_policyHandler", bridge.NewTFHandler(p, "aws_load_balancer_listener_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_load_balancer_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("policy_attribute")
 		b.ImmutableAttributes("load_balancer_name", "policy_name", "policy_type_name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_load_balancer_policyHandler", bridge.NewTFHandler(p, "aws_load_balancer_policy", evs[0]), evs[0])
@@ -1633,7 +1589,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_macie_member_account_associationHandler", bridge.NewTFHandler(p, "aws_macie_member_account_association", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_macie_s3_bucket_association{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("classification_type", "member_account_id", "prefix")
+		b.ProvidedAttributes("classification_type")
 		b.ImmutableAttributes("bucket_name", "member_account_id", "prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_macie_s3_bucket_associationHandler", bridge.NewTFHandler(p, "aws_macie_s3_bucket_association", evs[0]), evs[0])
@@ -1644,7 +1600,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_main_route_table_associationHandler", bridge.NewTFHandler(p, "aws_main_route_table_association", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_media_package_channel{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "description", "hls_ingest")
+		b.ProvidedAttributes("arn", "hls_ingest")
 		b.ImmutableAttributes("channel_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_media_package_channelHandler", bridge.NewTFHandler(p, "aws_media_package_channel", evs[0]), evs[0])
@@ -1661,37 +1617,37 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_media_store_container_policyHandler", bridge.NewTFHandler(p, "aws_media_store_container_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_mq_broker{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("apply_immediately", "arn", "auto_minor_version_upgrade", "configuration", "deployment_mode", "instances", "logs", "maintenance_window_start_time", "publicly_accessible", "subnet_ids", "tags")
+		b.ProvidedAttributes("arn", "configuration", "instances", "maintenance_window_start_time", "subnet_ids")
 		b.ImmutableAttributes("auto_minor_version_upgrade", "broker_name", "deployment_mode", "engine_type", "engine_version", "host_instance_type", "maintenance_window_start_time", "publicly_accessible", "security_groups", "subnet_ids")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_mq_brokerHandler", bridge.NewTFHandler(p, "aws_mq_broker", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_mq_configuration{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "description", "latest_revision", "tags")
+		b.ProvidedAttributes("arn", "latest_revision")
 		b.ImmutableAttributes("engine_type", "engine_version", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_mq_configurationHandler", bridge.NewTFHandler(p, "aws_mq_configuration", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_nat_gateway{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("network_interface_id", "private_ip", "public_ip", "tags")
+		b.ProvidedAttributes("network_interface_id", "private_ip", "public_ip")
 		b.ImmutableAttributes("allocation_id", "subnet_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_nat_gatewayHandler", bridge.NewTFHandler(p, "aws_nat_gateway", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_neptune_cluster{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("apply_immediately", "arn", "availability_zones", "backup_retention_period", "cluster_identifier", "cluster_identifier_prefix", "cluster_members", "cluster_resource_id", "endpoint", "engine", "engine_version", "final_snapshot_identifier", "hosted_zone_id", "iam_database_authentication_enabled", "iam_roles", "kms_key_arn", "neptune_cluster_parameter_group_name", "neptune_subnet_group_name", "port", "preferred_backup_window", "preferred_maintenance_window", "reader_endpoint", "replication_source_identifier", "skip_final_snapshot", "snapshot_identifier", "storage_encrypted", "tags", "vpc_security_group_ids")
+		b.ProvidedAttributes("apply_immediately", "arn", "availability_zones", "cluster_identifier", "cluster_identifier_prefix", "cluster_members", "cluster_resource_id", "endpoint", "engine_version", "hosted_zone_id", "kms_key_arn", "neptune_subnet_group_name", "preferred_backup_window", "preferred_maintenance_window", "reader_endpoint", "vpc_security_group_ids")
 		b.ImmutableAttributes("availability_zones", "cluster_identifier", "cluster_identifier_prefix", "engine", "engine_version", "kms_key_arn", "neptune_subnet_group_name", "port", "storage_encrypted")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_neptune_clusterHandler", bridge.NewTFHandler(p, "aws_neptune_cluster", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_neptune_cluster_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("address", "apply_immediately", "arn", "auto_minor_version_upgrade", "availability_zone", "dbi_resource_id", "endpoint", "engine", "engine_version", "identifier", "identifier_prefix", "kms_key_arn", "neptune_parameter_group_name", "neptune_subnet_group_name", "port", "preferred_backup_window", "preferred_maintenance_window", "promotion_tier", "publicly_accessible", "storage_encrypted", "tags", "writer")
+		b.ProvidedAttributes("address", "apply_immediately", "arn", "availability_zone", "dbi_resource_id", "endpoint", "engine_version", "identifier", "identifier_prefix", "kms_key_arn", "neptune_subnet_group_name", "preferred_backup_window", "preferred_maintenance_window", "storage_encrypted", "writer")
 		b.ImmutableAttributes("availability_zone", "cluster_identifier", "engine", "engine_version", "identifier", "identifier_prefix", "neptune_subnet_group_name", "port", "publicly_accessible")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_neptune_cluster_instanceHandler", bridge.NewTFHandler(p, "aws_neptune_cluster_instance", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_neptune_cluster_parameter_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "description", "name", "name_prefix", "parameter", "tags")
+		b.ProvidedAttributes("arn", "name", "name_prefix")
 		b.ImmutableAttributes("description", "family", "name", "name_prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_neptune_cluster_parameter_groupHandler", bridge.NewTFHandler(p, "aws_neptune_cluster_parameter_group", evs[0]), evs[0])
@@ -1703,37 +1659,36 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_neptune_cluster_snapshotHandler", bridge.NewTFHandler(p, "aws_neptune_cluster_snapshot", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_neptune_event_subscription{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "customer_aws_id", "enabled", "event_categories", "name", "name_prefix", "source_ids", "source_type", "tags")
+		b.ProvidedAttributes("arn", "customer_aws_id", "name", "name_prefix")
 		b.ImmutableAttributes("name", "name_prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_neptune_event_subscriptionHandler", bridge.NewTFHandler(p, "aws_neptune_event_subscription", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_neptune_parameter_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "description", "parameter", "tags")
+		b.ProvidedAttributes("arn")
 		b.ImmutableAttributes("description", "family", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_neptune_parameter_groupHandler", bridge.NewTFHandler(p, "aws_neptune_parameter_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_neptune_subnet_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "description", "name", "name_prefix", "tags")
+		b.ProvidedAttributes("arn", "name", "name_prefix")
 		b.ImmutableAttributes("name", "name_prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_neptune_subnet_groupHandler", bridge.NewTFHandler(p, "aws_neptune_subnet_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_network_acl{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("egress", "ingress", "owner_id", "subnet_id", "subnet_ids", "tags")
+		b.ProvidedAttributes("egress", "ingress", "owner_id", "subnet_ids")
 		b.ImmutableAttributes("subnet_id", "vpc_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_network_aclHandler", bridge.NewTFHandler(p, "aws_network_acl", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_network_acl_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("cidr_block", "egress", "from_port", "icmp_code", "icmp_type", "ipv6_cidr_block", "to_port")
 		b.ImmutableAttributes("cidr_block", "egress", "from_port", "icmp_code", "icmp_type", "ipv6_cidr_block", "network_acl_id", "protocol", "rule_action", "rule_number", "to_port")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_network_acl_ruleHandler", bridge.NewTFHandler(p, "aws_network_acl_rule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_network_interface{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("attachment", "description", "private_dns_name", "private_ip", "private_ips", "private_ips_count", "security_groups", "source_dest_check", "tags")
+		b.ProvidedAttributes("attachment", "private_dns_name", "private_ip", "private_ips", "private_ips_count", "security_groups")
 		b.ImmutableAttributes("subnet_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_network_interfaceHandler", bridge.NewTFHandler(p, "aws_network_interface", evs[0]), evs[0])
@@ -1750,55 +1705,48 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_network_interface_sg_attachmentHandler", bridge.NewTFHandler(p, "aws_network_interface_sg_attachment", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_application{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("app_source", "auto_bundle_on_deploy", "aws_flow_ruby_settings", "data_source_arn", "data_source_database_name", "data_source_type", "description", "document_root", "domains", "enable_ssl", "environment", "rails_env", "short_name", "ssl_configuration")
+		b.ProvidedAttributes("app_source", "short_name")
 		b.ImmutableAttributes("short_name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_opsworks_applicationHandler", bridge.NewTFHandler(p, "aws_opsworks_application", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_custom_layer{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("auto_assign_elastic_ips", "auto_assign_public_ips", "auto_healing", "custom_configure_recipes", "custom_deploy_recipes", "custom_instance_profile_arn", "custom_json", "custom_security_group_ids", "custom_setup_recipes", "custom_shutdown_recipes", "custom_undeploy_recipes", "drain_elb_on_shutdown", "ebs_volume", "elastic_load_balancer", "install_updates_on_boot", "instance_shutdown_timeout", "system_packages", "use_ebs_optimized_instances")
 		b.ImmutableAttributes("stack_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_opsworks_custom_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_custom_layer", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_ganglia_layer{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("auto_assign_elastic_ips", "auto_assign_public_ips", "auto_healing", "custom_configure_recipes", "custom_deploy_recipes", "custom_instance_profile_arn", "custom_json", "custom_security_group_ids", "custom_setup_recipes", "custom_shutdown_recipes", "custom_undeploy_recipes", "drain_elb_on_shutdown", "ebs_volume", "elastic_load_balancer", "install_updates_on_boot", "instance_shutdown_timeout", "name", "system_packages", "url", "use_ebs_optimized_instances", "username")
 		b.ImmutableAttributes("stack_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_opsworks_ganglia_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_ganglia_layer", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_haproxy_layer{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("auto_assign_elastic_ips", "auto_assign_public_ips", "auto_healing", "custom_configure_recipes", "custom_deploy_recipes", "custom_instance_profile_arn", "custom_json", "custom_security_group_ids", "custom_setup_recipes", "custom_shutdown_recipes", "custom_undeploy_recipes", "drain_elb_on_shutdown", "ebs_volume", "elastic_load_balancer", "healthcheck_method", "healthcheck_url", "install_updates_on_boot", "instance_shutdown_timeout", "name", "stats_enabled", "stats_url", "stats_user", "system_packages", "use_ebs_optimized_instances")
 		b.ImmutableAttributes("stack_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_opsworks_haproxy_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_haproxy_layer", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("agent_version", "ami_id", "architecture", "auto_scaling_type", "availability_zone", "created_at", "delete_ebs", "delete_eip", "ebs_block_device", "ebs_optimized", "ec2_instance_id", "ecs_cluster_arn", "elastic_ip", "ephemeral_block_device", "hostname", "infrastructure_class", "install_updates_on_boot", "instance_profile_arn", "instance_type", "last_service_error_id", "os", "platform", "private_dns", "private_ip", "public_dns", "public_ip", "registered_by", "reported_agent_version", "reported_os_family", "reported_os_name", "reported_os_version", "root_block_device", "root_device_type", "root_device_volume_id", "security_group_ids", "ssh_host_dsa_key_fingerprint", "ssh_host_rsa_key_fingerprint", "ssh_key_name", "state", "status", "subnet_id", "tenancy", "virtualization_type")
+		b.ProvidedAttributes("ami_id", "availability_zone", "created_at", "ebs_block_device", "ec2_instance_id", "ecs_cluster_arn", "elastic_ip", "ephemeral_block_device", "hostname", "infrastructure_class", "instance_profile_arn", "last_service_error_id", "os", "platform", "private_dns", "private_ip", "public_dns", "public_ip", "registered_by", "reported_agent_version", "reported_os_family", "reported_os_name", "reported_os_version", "root_block_device", "root_device_type", "root_device_volume_id", "security_group_ids", "ssh_host_dsa_key_fingerprint", "ssh_host_rsa_key_fingerprint", "ssh_key_name", "status", "subnet_id", "tenancy", "virtualization_type")
 		b.ImmutableAttributes("ami_id", "availability_zone", "ebs_block_device", "ebs_optimized", "ephemeral_block_device", "hostname", "os", "root_block_device", "root_device_type", "stack_id", "subnet_id", "tenancy", "virtualization_type")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_opsworks_instanceHandler", bridge.NewTFHandler(p, "aws_opsworks_instance", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_java_app_layer{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("app_server", "app_server_version", "auto_assign_elastic_ips", "auto_assign_public_ips", "auto_healing", "custom_configure_recipes", "custom_deploy_recipes", "custom_instance_profile_arn", "custom_json", "custom_security_group_ids", "custom_setup_recipes", "custom_shutdown_recipes", "custom_undeploy_recipes", "drain_elb_on_shutdown", "ebs_volume", "elastic_load_balancer", "install_updates_on_boot", "instance_shutdown_timeout", "jvm_options", "jvm_type", "jvm_version", "name", "system_packages", "use_ebs_optimized_instances")
 		b.ImmutableAttributes("stack_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_opsworks_java_app_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_java_app_layer", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_memcached_layer{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allocated_memory", "auto_assign_elastic_ips", "auto_assign_public_ips", "auto_healing", "custom_configure_recipes", "custom_deploy_recipes", "custom_instance_profile_arn", "custom_json", "custom_security_group_ids", "custom_setup_recipes", "custom_shutdown_recipes", "custom_undeploy_recipes", "drain_elb_on_shutdown", "ebs_volume", "elastic_load_balancer", "install_updates_on_boot", "instance_shutdown_timeout", "name", "system_packages", "use_ebs_optimized_instances")
 		b.ImmutableAttributes("stack_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_opsworks_memcached_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_memcached_layer", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_mysql_layer{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("auto_assign_elastic_ips", "auto_assign_public_ips", "auto_healing", "custom_configure_recipes", "custom_deploy_recipes", "custom_instance_profile_arn", "custom_json", "custom_security_group_ids", "custom_setup_recipes", "custom_shutdown_recipes", "custom_undeploy_recipes", "drain_elb_on_shutdown", "ebs_volume", "elastic_load_balancer", "install_updates_on_boot", "instance_shutdown_timeout", "name", "root_password", "root_password_on_all_instances", "system_packages", "use_ebs_optimized_instances")
 		b.ImmutableAttributes("stack_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_opsworks_mysql_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_mysql_layer", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_nodejs_app_layer{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("auto_assign_elastic_ips", "auto_assign_public_ips", "auto_healing", "custom_configure_recipes", "custom_deploy_recipes", "custom_instance_profile_arn", "custom_json", "custom_security_group_ids", "custom_setup_recipes", "custom_shutdown_recipes", "custom_undeploy_recipes", "drain_elb_on_shutdown", "ebs_volume", "elastic_load_balancer", "install_updates_on_boot", "instance_shutdown_timeout", "name", "nodejs_version", "system_packages", "use_ebs_optimized_instances")
 		b.ImmutableAttributes("stack_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_opsworks_nodejs_app_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_nodejs_app_layer", evs[0]), evs[0])
@@ -1809,13 +1757,11 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_opsworks_permissionHandler", bridge.NewTFHandler(p, "aws_opsworks_permission", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_php_app_layer{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("auto_assign_elastic_ips", "auto_assign_public_ips", "auto_healing", "custom_configure_recipes", "custom_deploy_recipes", "custom_instance_profile_arn", "custom_json", "custom_security_group_ids", "custom_setup_recipes", "custom_shutdown_recipes", "custom_undeploy_recipes", "drain_elb_on_shutdown", "ebs_volume", "elastic_load_balancer", "install_updates_on_boot", "instance_shutdown_timeout", "name", "system_packages", "use_ebs_optimized_instances")
 		b.ImmutableAttributes("stack_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_opsworks_php_app_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_php_app_layer", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_rails_app_layer{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("app_server", "auto_assign_elastic_ips", "auto_assign_public_ips", "auto_healing", "bundler_version", "custom_configure_recipes", "custom_deploy_recipes", "custom_instance_profile_arn", "custom_json", "custom_security_group_ids", "custom_setup_recipes", "custom_shutdown_recipes", "custom_undeploy_recipes", "drain_elb_on_shutdown", "ebs_volume", "elastic_load_balancer", "install_updates_on_boot", "instance_shutdown_timeout", "manage_bundler", "name", "passenger_version", "ruby_version", "rubygems_version", "system_packages", "use_ebs_optimized_instances")
 		b.ImmutableAttributes("stack_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_opsworks_rails_app_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_rails_app_layer", evs[0]), evs[0])
@@ -1826,37 +1772,35 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_opsworks_rds_db_instanceHandler", bridge.NewTFHandler(p, "aws_opsworks_rds_db_instance", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_stack{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("agent_version", "arn", "berkshelf_version", "color", "configuration_manager_name", "configuration_manager_version", "custom_cookbooks_source", "custom_json", "default_availability_zone", "default_os", "default_root_device_type", "default_ssh_key_name", "default_subnet_id", "hostname_theme", "manage_berkshelf", "stack_endpoint", "tags", "use_custom_cookbooks", "use_opsworks_security_groups", "vpc_id")
+		b.ProvidedAttributes("agent_version", "arn", "custom_cookbooks_source", "default_availability_zone", "default_subnet_id", "stack_endpoint", "vpc_id")
 		b.ImmutableAttributes("region", "service_role_arn", "vpc_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_opsworks_stackHandler", bridge.NewTFHandler(p, "aws_opsworks_stack", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_static_web_layer{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("auto_assign_elastic_ips", "auto_assign_public_ips", "auto_healing", "custom_configure_recipes", "custom_deploy_recipes", "custom_instance_profile_arn", "custom_json", "custom_security_group_ids", "custom_setup_recipes", "custom_shutdown_recipes", "custom_undeploy_recipes", "drain_elb_on_shutdown", "ebs_volume", "elastic_load_balancer", "install_updates_on_boot", "instance_shutdown_timeout", "name", "system_packages", "use_ebs_optimized_instances")
 		b.ImmutableAttributes("stack_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_opsworks_static_web_layerHandler", bridge.NewTFHandler(p, "aws_opsworks_static_web_layer", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_opsworks_user_profile{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allow_self_management", "ssh_public_key")
 		b.ImmutableAttributes("user_arn")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_opsworks_user_profileHandler", bridge.NewTFHandler(p, "aws_opsworks_user_profile", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_organizations_account{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "iam_user_access_to_billing", "joined_method", "joined_timestamp", "role_name", "status")
+		b.ProvidedAttributes("arn", "joined_method", "joined_timestamp", "status")
 		b.ImmutableAttributes("email", "iam_user_access_to_billing", "name", "role_name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_organizations_accountHandler", bridge.NewTFHandler(p, "aws_organizations_account", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_organizations_organization{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "aws_service_access_principals", "feature_set", "master_account_arn", "master_account_email", "master_account_id")
+		b.ProvidedAttributes("arn", "master_account_arn", "master_account_email", "master_account_id")
 		b.ImmutableAttributes("feature_set")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_organizations_organizationHandler", bridge.NewTFHandler(p, "aws_organizations_organization", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_organizations_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "description", "type")
+		b.ProvidedAttributes("arn")
 		b.ImmutableAttributes("type")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_organizations_policyHandler", bridge.NewTFHandler(p, "aws_organizations_policy", evs[0]), evs[0])
@@ -1867,49 +1811,43 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_organizations_policy_attachmentHandler", bridge.NewTFHandler(p, "aws_organizations_policy_attachment", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_pinpoint_adm_channel{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("enabled")
 		b.ImmutableAttributes("application_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_pinpoint_adm_channelHandler", bridge.NewTFHandler(p, "aws_pinpoint_adm_channel", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_pinpoint_apns_channel{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("bundle_id", "certificate", "default_authentication_method", "enabled", "private_key", "team_id", "token_key", "token_key_id")
 		b.ImmutableAttributes("application_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_pinpoint_apns_channelHandler", bridge.NewTFHandler(p, "aws_pinpoint_apns_channel", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_pinpoint_apns_sandbox_channel{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("bundle_id", "certificate", "default_authentication_method", "enabled", "private_key", "team_id", "token_key", "token_key_id")
 		b.ImmutableAttributes("application_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_pinpoint_apns_sandbox_channelHandler", bridge.NewTFHandler(p, "aws_pinpoint_apns_sandbox_channel", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_pinpoint_apns_voip_channel{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("bundle_id", "certificate", "default_authentication_method", "enabled", "private_key", "team_id", "token_key", "token_key_id")
 		b.ImmutableAttributes("application_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_pinpoint_apns_voip_channelHandler", bridge.NewTFHandler(p, "aws_pinpoint_apns_voip_channel", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_pinpoint_apns_voip_sandbox_channel{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("bundle_id", "certificate", "default_authentication_method", "enabled", "private_key", "team_id", "token_key", "token_key_id")
 		b.ImmutableAttributes("application_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_pinpoint_apns_voip_sandbox_channelHandler", bridge.NewTFHandler(p, "aws_pinpoint_apns_voip_sandbox_channel", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_pinpoint_app{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("application_id", "campaign_hook", "limits", "name", "name_prefix", "quiet_time")
+		b.ProvidedAttributes("application_id", "name")
 		b.ImmutableAttributes("name", "name_prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_pinpoint_appHandler", bridge.NewTFHandler(p, "aws_pinpoint_app", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_pinpoint_baidu_channel{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("enabled")
 		b.ImmutableAttributes("application_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_pinpoint_baidu_channelHandler", bridge.NewTFHandler(p, "aws_pinpoint_baidu_channel", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_pinpoint_email_channel{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("enabled", "messages_per_second")
+		b.ProvidedAttributes("messages_per_second")
 		b.ImmutableAttributes("application_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_pinpoint_email_channelHandler", bridge.NewTFHandler(p, "aws_pinpoint_email_channel", evs[0]), evs[0])
@@ -1920,13 +1858,12 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_pinpoint_event_streamHandler", bridge.NewTFHandler(p, "aws_pinpoint_event_stream", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_pinpoint_gcm_channel{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("enabled")
 		b.ImmutableAttributes("application_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_pinpoint_gcm_channelHandler", bridge.NewTFHandler(p, "aws_pinpoint_gcm_channel", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_pinpoint_sms_channel{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("enabled", "promotional_messages_per_second", "sender_id", "short_code", "transactional_messages_per_second")
+		b.ProvidedAttributes("promotional_messages_per_second", "transactional_messages_per_second")
 		b.ImmutableAttributes("application_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_pinpoint_sms_channelHandler", bridge.NewTFHandler(p, "aws_pinpoint_sms_channel", evs[0]), evs[0])
@@ -1941,96 +1878,92 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_proxy_protocol_policyHandler", bridge.NewTFHandler(p, "aws_proxy_protocol_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ram_resource_share{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allow_external_principals", "tags")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ram_resource_shareHandler", bridge.NewTFHandler(p, "aws_ram_resource_share", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_rds_cluster{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("apply_immediately", "arn", "availability_zones", "backtrack_window", "backup_retention_period", "cluster_identifier", "cluster_identifier_prefix", "cluster_members", "cluster_resource_id", "database_name", "db_cluster_parameter_group_name", "db_subnet_group_name", "deletion_protection", "enabled_cloudwatch_logs_exports", "endpoint", "engine", "engine_mode", "engine_version", "final_snapshot_identifier", "global_cluster_identifier", "hosted_zone_id", "iam_database_authentication_enabled", "iam_roles", "kms_key_id", "master_password", "master_username", "port", "preferred_backup_window", "preferred_maintenance_window", "reader_endpoint", "replication_source_identifier", "s3_import", "scaling_configuration", "skip_final_snapshot", "snapshot_identifier", "source_region", "storage_encrypted", "tags", "vpc_security_group_ids")
+		b.ProvidedAttributes("apply_immediately", "arn", "availability_zones", "cluster_identifier", "cluster_identifier_prefix", "cluster_members", "cluster_resource_id", "database_name", "db_cluster_parameter_group_name", "db_subnet_group_name", "endpoint", "engine_version", "hosted_zone_id", "kms_key_id", "master_username", "port", "preferred_backup_window", "preferred_maintenance_window", "reader_endpoint", "vpc_security_group_ids")
 		b.ImmutableAttributes("availability_zones", "cluster_identifier", "cluster_identifier_prefix", "database_name", "db_subnet_group_name", "engine", "engine_mode", "kms_key_id", "master_username", "port", "source_region", "storage_encrypted")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_rds_clusterHandler", bridge.NewTFHandler(p, "aws_rds_cluster", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_rds_cluster_endpoint{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "endpoint", "excluded_members", "static_members")
+		b.ProvidedAttributes("arn", "endpoint")
 		b.ImmutableAttributes("cluster_endpoint_identifier", "cluster_identifier")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_rds_cluster_endpointHandler", bridge.NewTFHandler(p, "aws_rds_cluster_endpoint", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_rds_cluster_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("apply_immediately", "arn", "auto_minor_version_upgrade", "availability_zone", "copy_tags_to_snapshot", "db_parameter_group_name", "db_subnet_group_name", "dbi_resource_id", "endpoint", "engine", "engine_version", "identifier", "identifier_prefix", "kms_key_id", "monitoring_interval", "monitoring_role_arn", "performance_insights_enabled", "performance_insights_kms_key_id", "port", "preferred_backup_window", "preferred_maintenance_window", "promotion_tier", "publicly_accessible", "storage_encrypted", "tags", "writer")
+		b.ProvidedAttributes("apply_immediately", "arn", "availability_zone", "db_parameter_group_name", "db_subnet_group_name", "dbi_resource_id", "endpoint", "engine_version", "identifier", "identifier_prefix", "kms_key_id", "monitoring_role_arn", "performance_insights_enabled", "performance_insights_kms_key_id", "port", "preferred_backup_window", "preferred_maintenance_window", "storage_encrypted", "writer")
 		b.ImmutableAttributes("availability_zone", "cluster_identifier", "db_subnet_group_name", "engine", "engine_version", "identifier", "identifier_prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_rds_cluster_instanceHandler", bridge.NewTFHandler(p, "aws_rds_cluster_instance", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_rds_cluster_parameter_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "description", "name", "name_prefix", "parameter", "tags")
+		b.ProvidedAttributes("arn", "name", "name_prefix")
 		b.ImmutableAttributes("description", "family", "name", "name_prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_rds_cluster_parameter_groupHandler", bridge.NewTFHandler(p, "aws_rds_cluster_parameter_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_rds_global_cluster{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "database_name", "deletion_protection", "engine", "engine_version", "global_cluster_resource_id", "storage_encrypted")
+		b.ProvidedAttributes("arn", "engine_version", "global_cluster_resource_id")
 		b.ImmutableAttributes("database_name", "engine", "engine_version", "global_cluster_identifier", "storage_encrypted")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_rds_global_clusterHandler", bridge.NewTFHandler(p, "aws_rds_global_cluster", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_redshift_cluster{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allow_version_upgrade", "automated_snapshot_retention_period", "availability_zone", "bucket_name", "cluster_parameter_group_name", "cluster_public_key", "cluster_revision_number", "cluster_security_groups", "cluster_subnet_group_name", "cluster_type", "cluster_version", "database_name", "dns_name", "elastic_ip", "enable_logging", "encrypted", "endpoint", "enhanced_vpc_routing", "final_snapshot_identifier", "iam_roles", "kms_key_id", "logging", "master_password", "master_username", "number_of_nodes", "owner_account", "port", "preferred_maintenance_window", "publicly_accessible", "s3_key_prefix", "skip_final_snapshot", "snapshot_cluster_identifier", "snapshot_copy", "snapshot_identifier", "tags", "vpc_security_group_ids")
+		b.ProvidedAttributes("availability_zone", "bucket_name", "cluster_parameter_group_name", "cluster_public_key", "cluster_revision_number", "cluster_security_groups", "cluster_subnet_group_name", "cluster_type", "database_name", "dns_name", "enable_logging", "endpoint", "enhanced_vpc_routing", "iam_roles", "kms_key_id", "preferred_maintenance_window", "s3_key_prefix", "vpc_security_group_ids")
 		b.ImmutableAttributes("availability_zone", "cluster_identifier", "cluster_subnet_group_name", "master_username", "snapshot_cluster_identifier", "snapshot_identifier")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_redshift_clusterHandler", bridge.NewTFHandler(p, "aws_redshift_cluster", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_redshift_event_subscription{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("customer_aws_id", "enabled", "event_categories", "severity", "source_ids", "source_type", "status", "tags")
+		b.ProvidedAttributes("customer_aws_id", "status")
 		b.ImmutableAttributes("name", "tags")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_redshift_event_subscriptionHandler", bridge.NewTFHandler(p, "aws_redshift_event_subscription", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_redshift_parameter_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "parameter")
 		b.ImmutableAttributes("description", "family", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_redshift_parameter_groupHandler", bridge.NewTFHandler(p, "aws_redshift_parameter_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_redshift_security_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description")
 		b.ImmutableAttributes("description", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_redshift_security_groupHandler", bridge.NewTFHandler(p, "aws_redshift_security_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_redshift_snapshot_copy_grant{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("kms_key_id", "tags")
+		b.ProvidedAttributes("kms_key_id")
 		b.ImmutableAttributes("kms_key_id", "snapshot_copy_grant_name", "tags")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_redshift_snapshot_copy_grantHandler", bridge.NewTFHandler(p, "aws_redshift_snapshot_copy_grant", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_redshift_subnet_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "tags")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_redshift_subnet_groupHandler", bridge.NewTFHandler(p, "aws_redshift_subnet_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_resourcegroups_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "description")
+		b.ProvidedAttributes("arn")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_resourcegroups_groupHandler", bridge.NewTFHandler(p, "aws_resourcegroups_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_route{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("destination_cidr_block", "destination_ipv6_cidr_block", "destination_prefix_list_id", "egress_only_gateway_id", "gateway_id", "instance_id", "instance_owner_id", "nat_gateway_id", "network_interface_id", "origin", "state", "transit_gateway_id", "vpc_peering_connection_id")
+		b.ProvidedAttributes("destination_prefix_list_id", "egress_only_gateway_id", "gateway_id", "instance_id", "instance_owner_id", "nat_gateway_id", "network_interface_id", "origin", "state")
 		b.ImmutableAttributes("destination_cidr_block", "destination_ipv6_cidr_block", "route_table_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_routeHandler", bridge.NewTFHandler(p, "aws_route", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_route53_delegation_set{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("name_servers", "reference_name")
+		b.ProvidedAttributes("name_servers")
 		b.ImmutableAttributes("reference_name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_route53_delegation_setHandler", bridge.NewTFHandler(p, "aws_route53_delegation_set", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_route53_health_check{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("child_health_threshold", "child_healthchecks", "cloudwatch_alarm_name", "cloudwatch_alarm_region", "enable_sni", "failure_threshold", "fqdn", "insufficient_data_health_status", "invert_healthcheck", "ip_address", "measure_latency", "port", "reference_name", "regions", "request_interval", "resource_path", "search_string", "tags")
+		b.ProvidedAttributes("enable_sni")
 		b.ImmutableAttributes("ip_address", "measure_latency", "reference_name", "request_interval", "type")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_route53_health_checkHandler", bridge.NewTFHandler(p, "aws_route53_health_check", evs[0]), evs[0])
@@ -2041,13 +1974,13 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_route53_query_logHandler", bridge.NewTFHandler(p, "aws_route53_query_log", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_route53_record{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("alias", "allow_overwrite", "failover", "failover_routing_policy", "fqdn", "geolocation_routing_policy", "health_check_id", "latency_routing_policy", "multivalue_answer_routing_policy", "records", "set_identifier", "ttl", "weight", "weighted_routing_policy")
+		b.ProvidedAttributes("fqdn")
 		b.ImmutableAttributes("name", "zone_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_route53_recordHandler", bridge.NewTFHandler(p, "aws_route53_record", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_route53_zone{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("comment", "delegation_set_id", "force_destroy", "name_servers", "tags", "vpc", "vpc_id", "vpc_region", "zone_id")
+		b.ProvidedAttributes("name_servers", "vpc", "vpc_id", "vpc_region", "zone_id")
 		b.ImmutableAttributes("delegation_set_id", "name", "vpc_id", "vpc_region")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_route53_zoneHandler", bridge.NewTFHandler(p, "aws_route53_zone", evs[0]), evs[0])
@@ -2058,7 +1991,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_route53_zone_associationHandler", bridge.NewTFHandler(p, "aws_route53_zone_association", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_route_table{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("owner_id", "propagating_vgws", "route", "tags")
+		b.ProvidedAttributes("owner_id", "propagating_vgws", "route")
 		b.ImmutableAttributes("vpc_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_route_tableHandler", bridge.NewTFHandler(p, "aws_route_table", evs[0]), evs[0])
@@ -2069,37 +2002,34 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_route_table_associationHandler", bridge.NewTFHandler(p, "aws_route_table_association", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_s3_account_public_access_block{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("account_id", "block_public_acls", "block_public_policy", "ignore_public_acls", "restrict_public_buckets")
+		b.ProvidedAttributes("account_id")
 		b.ImmutableAttributes("account_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_s3_account_public_access_blockHandler", bridge.NewTFHandler(p, "aws_s3_account_public_access_block", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_s3_bucket{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("acceleration_status", "acl", "arn", "bucket", "bucket_domain_name", "bucket_prefix", "bucket_regional_domain_name", "cors_rule", "force_destroy", "hosted_zone_id", "lifecycle_rule", "logging", "object_lock_configuration", "policy", "region", "replication_configuration", "request_payer", "server_side_encryption_configuration", "tags", "versioning", "website", "website_domain", "website_endpoint")
+		b.ProvidedAttributes("acceleration_status", "arn", "bucket", "bucket_domain_name", "bucket_regional_domain_name", "hosted_zone_id", "region", "request_payer", "versioning", "website_domain", "website_endpoint")
 		b.ImmutableAttributes("bucket", "bucket_prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_s3_bucketHandler", bridge.NewTFHandler(p, "aws_s3_bucket", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_s3_bucket_inventory{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("enabled", "filter", "optional_fields")
 		b.ImmutableAttributes("bucket", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_s3_bucket_inventoryHandler", bridge.NewTFHandler(p, "aws_s3_bucket_inventory", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_s3_bucket_metric{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("filter")
 		b.ImmutableAttributes("bucket", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_s3_bucket_metricHandler", bridge.NewTFHandler(p, "aws_s3_bucket_metric", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_s3_bucket_notification{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("lambda_function", "queue", "topic")
 		b.ImmutableAttributes("bucket")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_s3_bucket_notificationHandler", bridge.NewTFHandler(p, "aws_s3_bucket_notification", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_s3_bucket_object{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("acl", "cache_control", "content", "content_base64", "content_disposition", "content_encoding", "content_language", "content_type", "etag", "kms_key_id", "server_side_encryption", "source", "storage_class", "tags", "version_id", "website_redirect")
+		b.ProvidedAttributes("content_type", "etag", "server_side_encryption", "storage_class", "version_id")
 		b.ImmutableAttributes("bucket", "key")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_s3_bucket_objectHandler", bridge.NewTFHandler(p, "aws_s3_bucket_object", evs[0]), evs[0])
@@ -2110,37 +2040,36 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_s3_bucket_policyHandler", bridge.NewTFHandler(p, "aws_s3_bucket_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_s3_bucket_public_access_block{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("block_public_acls", "block_public_policy", "ignore_public_acls", "restrict_public_buckets")
 		b.ImmutableAttributes("bucket")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_s3_bucket_public_access_blockHandler", bridge.NewTFHandler(p, "aws_s3_bucket_public_access_block", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_sagemaker_notebook_instance{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "kms_key_id", "security_groups", "subnet_id", "tags")
+		b.ProvidedAttributes("arn", "security_groups")
 		b.ImmutableAttributes("kms_key_id", "name", "security_groups", "subnet_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_sagemaker_notebook_instanceHandler", bridge.NewTFHandler(p, "aws_sagemaker_notebook_instance", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_secretsmanager_secret{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "description", "kms_key_id", "name", "name_prefix", "policy", "recovery_window_in_days", "rotation_enabled", "rotation_lambda_arn", "rotation_rules", "tags")
+		b.ProvidedAttributes("arn", "name", "name_prefix", "rotation_enabled")
 		b.ImmutableAttributes("name", "name_prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_secretsmanager_secretHandler", bridge.NewTFHandler(p, "aws_secretsmanager_secret", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_secretsmanager_secret_version{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "secret_binary", "secret_string", "version_id", "version_stages")
+		b.ProvidedAttributes("arn", "version_id", "version_stages")
 		b.ImmutableAttributes("secret_binary", "secret_id", "secret_string")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_secretsmanager_secret_versionHandler", bridge.NewTFHandler(p, "aws_secretsmanager_secret_version", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_security_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "description", "egress", "ingress", "name", "name_prefix", "owner_id", "revoke_rules_on_delete", "tags", "vpc_id")
+		b.ProvidedAttributes("arn", "egress", "ingress", "name", "owner_id", "vpc_id")
 		b.ImmutableAttributes("description", "name", "name_prefix", "vpc_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_security_groupHandler", bridge.NewTFHandler(p, "aws_security_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_security_group_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("cidr_blocks", "description", "ipv6_cidr_blocks", "prefix_list_ids", "self", "source_security_group_id")
+		b.ProvidedAttributes("source_security_group_id")
 		b.ImmutableAttributes("cidr_blocks", "from_port", "ipv6_cidr_blocks", "prefix_list_ids", "protocol", "security_group_id", "self", "source_security_group_id", "to_port", "type")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_security_group_ruleHandler", bridge.NewTFHandler(p, "aws_security_group_rule", evs[0]), evs[0])
@@ -2161,31 +2090,31 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_securityhub_standards_subscriptionHandler", bridge.NewTFHandler(p, "aws_securityhub_standards_subscription", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_service_discovery_http_namespace{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "description")
+		b.ProvidedAttributes("arn")
 		b.ImmutableAttributes("description", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_service_discovery_http_namespaceHandler", bridge.NewTFHandler(p, "aws_service_discovery_http_namespace", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_service_discovery_private_dns_namespace{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "description", "hosted_zone")
+		b.ProvidedAttributes("arn", "hosted_zone")
 		b.ImmutableAttributes("description", "name", "vpc")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_service_discovery_private_dns_namespaceHandler", bridge.NewTFHandler(p, "aws_service_discovery_private_dns_namespace", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_service_discovery_public_dns_namespace{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "description", "hosted_zone")
+		b.ProvidedAttributes("arn", "hosted_zone")
 		b.ImmutableAttributes("description", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_service_discovery_public_dns_namespaceHandler", bridge.NewTFHandler(p, "aws_service_discovery_public_dns_namespace", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_service_discovery_service{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "description", "health_check_config", "health_check_custom_config")
+		b.ProvidedAttributes("arn")
 		b.ImmutableAttributes("health_check_custom_config", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_service_discovery_serviceHandler", bridge.NewTFHandler(p, "aws_service_discovery_service", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_servicecatalog_portfolio{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "created_time", "description", "provider_name", "tags")
+		b.ProvidedAttributes("arn", "created_time", "description")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_servicecatalog_portfolioHandler", bridge.NewTFHandler(p, "aws_servicecatalog_portfolio", evs[0]), evs[0])
 
@@ -2217,19 +2146,16 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_ses_domain_identity_verificationHandler", bridge.NewTFHandler(p, "aws_ses_domain_identity_verification", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ses_domain_mail_from{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("behavior_on_mx_failure")
 		b.ImmutableAttributes("domain")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ses_domain_mail_fromHandler", bridge.NewTFHandler(p, "aws_ses_domain_mail_from", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ses_event_destination{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("cloudwatch_destination", "enabled", "kinesis_destination", "sns_destination")
 		b.ImmutableAttributes("cloudwatch_destination", "configuration_set_name", "enabled", "kinesis_destination", "matching_types", "name", "sns_destination")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ses_event_destinationHandler", bridge.NewTFHandler(p, "aws_ses_event_destination", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ses_identity_notification_topic{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("topic_arn")
 		b.ImmutableAttributes("identity", "notification_type")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ses_identity_notification_topicHandler", bridge.NewTFHandler(p, "aws_ses_identity_notification_topic", evs[0]), evs[0])
@@ -2239,8 +2165,9 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ses_receipt_filterHandler", bridge.NewTFHandler(p, "aws_ses_receipt_filter", evs[0]), evs[0])
 
+
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ses_receipt_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("add_header_action", "after", "bounce_action", "enabled", "lambda_action", "recipients", "s3_action", "scan_enabled", "sns_action", "stop_action", "tls_policy", "workmail_action")
+		b.ProvidedAttributes("enabled", "scan_enabled", "tls_policy")
 		b.ImmutableAttributes("name", "rule_set_name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ses_receipt_ruleHandler", bridge.NewTFHandler(p, "aws_ses_receipt_rule", evs[0]), evs[0])
@@ -2251,19 +2178,18 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_ses_receipt_rule_setHandler", bridge.NewTFHandler(p, "aws_ses_receipt_rule_set", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ses_template{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("html", "subject", "text")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ses_templateHandler", bridge.NewTFHandler(p, "aws_ses_template", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_sfn_activity{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_date", "tags")
+		b.ProvidedAttributes("creation_date")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_sfn_activityHandler", bridge.NewTFHandler(p, "aws_sfn_activity", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_sfn_state_machine{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("creation_date", "status", "tags")
+		b.ProvidedAttributes("creation_date", "status")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_sfn_state_machineHandler", bridge.NewTFHandler(p, "aws_sfn_state_machine", evs[0]), evs[0])
@@ -2279,18 +2205,17 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_snapshot_create_volume_permissionHandler", bridge.NewTFHandler(p, "aws_snapshot_create_volume_permission", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_sns_platform_application{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "event_delivery_failure_topic_arn", "event_endpoint_created_topic_arn", "event_endpoint_deleted_topic_arn", "event_endpoint_updated_topic_arn", "failure_feedback_role_arn", "platform_principal", "success_feedback_role_arn", "success_feedback_sample_rate")
+		b.ProvidedAttributes("arn")
 		b.ImmutableAttributes("name", "platform")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_sns_platform_applicationHandler", bridge.NewTFHandler(p, "aws_sns_platform_application", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_sns_sms_preferences{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("default_sender_id", "default_sms_type", "delivery_status_iam_role_arn", "delivery_status_success_sampling_rate", "monthly_spend_limit", "usage_report_s3_bucket")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_sns_sms_preferencesHandler", bridge.NewTFHandler(p, "aws_sns_sms_preferences", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_sns_topic{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("application_failure_feedback_role_arn", "application_success_feedback_role_arn", "application_success_feedback_sample_rate", "arn", "delivery_policy", "display_name", "http_failure_feedback_role_arn", "http_success_feedback_role_arn", "http_success_feedback_sample_rate", "kms_master_key_id", "lambda_failure_feedback_role_arn", "lambda_success_feedback_role_arn", "lambda_success_feedback_sample_rate", "name", "name_prefix", "policy", "sqs_failure_feedback_role_arn", "sqs_success_feedback_role_arn", "sqs_success_feedback_sample_rate")
+		b.ProvidedAttributes("arn", "name", "policy")
 		b.ImmutableAttributes("name", "name_prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_sns_topicHandler", bridge.NewTFHandler(p, "aws_sns_topic", evs[0]), evs[0])
@@ -2301,31 +2226,30 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_sns_topic_policyHandler", bridge.NewTFHandler(p, "aws_sns_topic_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_sns_topic_subscription{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "confirmation_timeout_in_minutes", "delivery_policy", "endpoint_auto_confirms", "filter_policy", "raw_message_delivery")
+		b.ProvidedAttributes("arn")
 		b.ImmutableAttributes("endpoint", "protocol", "topic_arn")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_sns_topic_subscriptionHandler", bridge.NewTFHandler(p, "aws_sns_topic_subscription", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_spot_datafeed_subscription{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("prefix")
 		b.ImmutableAttributes("bucket", "prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_spot_datafeed_subscriptionHandler", bridge.NewTFHandler(p, "aws_spot_datafeed_subscription", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_spot_fleet_request{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allocation_strategy", "client_token", "excess_capacity_termination_policy", "fleet_type", "instance_interruption_behaviour", "instance_pools_to_use_count", "load_balancers", "replace_unhealthy_instances", "spot_price", "spot_request_state", "target_group_arns", "terminate_instances_with_expiration", "valid_from", "valid_until", "wait_for_fulfillment")
+		b.ProvidedAttributes("client_token", "load_balancers", "spot_request_state", "target_group_arns")
 		b.ImmutableAttributes("allocation_strategy", "fleet_type", "iam_fleet_role", "instance_interruption_behaviour", "instance_pools_to_use_count", "launch_specification", "load_balancers", "replace_unhealthy_instances", "spot_price", "target_group_arns", "terminate_instances_with_expiration", "valid_from", "valid_until")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_spot_fleet_requestHandler", bridge.NewTFHandler(p, "aws_spot_fleet_request", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_spot_instance_request{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "associate_public_ip_address", "availability_zone", "block_device", "block_duration_minutes", "cpu_core_count", "cpu_threads_per_core", "credit_specification", "disable_api_termination", "ebs_block_device", "ebs_optimized", "ephemeral_block_device", "get_password_data", "host_id", "iam_instance_profile", "instance_initiated_shutdown_behavior", "instance_interruption_behaviour", "instance_state", "ipv6_address_count", "ipv6_addresses", "key_name", "launch_group", "monitoring", "network_interface", "network_interface_id", "password_data", "placement_group", "primary_network_interface_id", "private_dns", "private_ip", "public_dns", "public_ip", "root_block_device", "security_groups", "source_dest_check", "spot_bid_status", "spot_instance_id", "spot_price", "spot_request_state", "spot_type", "subnet_id", "tags", "tenancy", "user_data", "user_data_base64", "valid_from", "valid_until", "volume_tags", "vpc_security_group_ids", "wait_for_fulfillment")
+		b.ProvidedAttributes("arn", "associate_public_ip_address", "availability_zone", "cpu_core_count", "cpu_threads_per_core", "ebs_block_device", "ephemeral_block_device", "host_id", "instance_state", "ipv6_address_count", "ipv6_addresses", "key_name", "network_interface", "network_interface_id", "password_data", "placement_group", "primary_network_interface_id", "private_dns", "private_ip", "public_dns", "public_ip", "root_block_device", "security_groups", "spot_bid_status", "spot_instance_id", "spot_request_state", "subnet_id", "tenancy", "valid_from", "valid_until", "vpc_security_group_ids")
 		b.ImmutableAttributes("ami", "arn", "associate_public_ip_address", "availability_zone", "block_device", "block_duration_minutes", "cpu_core_count", "cpu_threads_per_core", "credit_specification", "disable_api_termination", "ebs_block_device", "ebs_optimized", "ephemeral_block_device", "get_password_data", "host_id", "iam_instance_profile", "instance_initiated_shutdown_behavior", "instance_interruption_behaviour", "instance_state", "instance_type", "ipv6_address_count", "ipv6_addresses", "key_name", "launch_group", "monitoring", "network_interface", "network_interface_id", "password_data", "placement_group", "primary_network_interface_id", "private_dns", "private_ip", "public_dns", "public_ip", "root_block_device", "security_groups", "source_dest_check", "spot_price", "subnet_id", "tenancy", "user_data", "user_data_base64", "valid_from", "valid_until", "vpc_security_group_ids")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_spot_instance_requestHandler", bridge.NewTFHandler(p, "aws_spot_instance_request", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_sqs_queue{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "content_based_deduplication", "delay_seconds", "fifo_queue", "kms_data_key_reuse_period_seconds", "kms_master_key_id", "max_message_size", "message_retention_seconds", "name", "name_prefix", "policy", "receive_wait_time_seconds", "redrive_policy", "tags", "visibility_timeout_seconds")
+		b.ProvidedAttributes("arn", "kms_data_key_reuse_period_seconds", "name", "policy")
 		b.ImmutableAttributes("fifo_queue", "name", "name_prefix")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_sqs_queueHandler", bridge.NewTFHandler(p, "aws_sqs_queue", evs[0]), evs[0])
@@ -2336,47 +2260,43 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_sqs_queue_policyHandler", bridge.NewTFHandler(p, "aws_sqs_queue_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ssm_activation{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("activation_code", "description", "expiration_date", "expired", "name", "registration_count", "registration_limit")
+		b.ProvidedAttributes("activation_code", "expired", "registration_count")
 		b.ImmutableAttributes("description", "expiration_date", "iam_role", "name", "registration_limit")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ssm_activationHandler", bridge.NewTFHandler(p, "aws_ssm_activation", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ssm_association{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("association_id", "association_name", "document_version", "instance_id", "output_location", "parameters", "schedule_expression", "targets")
+		b.ProvidedAttributes("association_id", "document_version", "parameters", "targets")
 		b.ImmutableAttributes("instance_id", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ssm_associationHandler", bridge.NewTFHandler(p, "aws_ssm_association", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ssm_document{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "created_date", "default_version", "description", "document_format", "hash", "hash_type", "latest_version", "owner", "parameter", "permissions", "platform_types", "schema_version", "status", "tags")
+		b.ProvidedAttributes("arn", "created_date", "default_version", "description", "hash", "hash_type", "latest_version", "owner", "parameter", "platform_types", "schema_version", "status")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ssm_documentHandler", bridge.NewTFHandler(p, "aws_ssm_document", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ssm_maintenance_window{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allow_unassociated_targets", "enabled", "end_date", "schedule_timezone", "start_date")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ssm_maintenance_windowHandler", bridge.NewTFHandler(p, "aws_ssm_maintenance_window", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ssm_maintenance_window_target{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("owner_information")
 		b.ImmutableAttributes("resource_type", "window_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ssm_maintenance_window_targetHandler", bridge.NewTFHandler(p, "aws_ssm_maintenance_window_target", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ssm_maintenance_window_task{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "logging_info", "name", "priority", "task_parameters")
 		b.ImmutableAttributes("description", "logging_info", "max_concurrency", "max_errors", "name", "priority", "service_role_arn", "targets", "task_arn", "task_parameters", "task_type", "window_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ssm_maintenance_window_taskHandler", bridge.NewTFHandler(p, "aws_ssm_maintenance_window_task", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ssm_parameter{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allowed_pattern", "arn", "description", "key_id", "overwrite", "tags")
+		b.ProvidedAttributes("arn", "key_id")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ssm_parameterHandler", bridge.NewTFHandler(p, "aws_ssm_parameter", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_ssm_patch_baseline{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("approval_rule", "approved_patches", "approved_patches_compliance_level", "description", "global_filter", "operating_system", "rejected_patches")
 		b.ImmutableAttributes("operating_system")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_ssm_patch_baselineHandler", bridge.NewTFHandler(p, "aws_ssm_patch_baseline", evs[0]), evs[0])
@@ -2397,25 +2317,25 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_storagegateway_cacheHandler", bridge.NewTFHandler(p, "aws_storagegateway_cache", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_storagegateway_cached_iscsi_volume{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "chap_enabled", "lun_number", "network_interface_port", "snapshot_id", "source_volume_arn", "target_arn", "volume_arn", "volume_id")
+		b.ProvidedAttributes("arn", "chap_enabled", "lun_number", "network_interface_port", "target_arn", "volume_arn", "volume_id")
 		b.ImmutableAttributes("gateway_arn", "network_interface_id", "snapshot_id", "source_volume_arn", "target_name", "volume_size_in_bytes")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_storagegateway_cached_iscsi_volumeHandler", bridge.NewTFHandler(p, "aws_storagegateway_cached_iscsi_volume", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_storagegateway_gateway{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("activation_key", "arn", "gateway_id", "gateway_ip_address", "gateway_type", "medium_changer_type", "smb_active_directory_settings", "smb_guest_password", "tape_drive_type")
+		b.ProvidedAttributes("activation_key", "arn", "gateway_id", "gateway_ip_address")
 		b.ImmutableAttributes("activation_key", "gateway_ip_address", "gateway_type", "medium_changer_type", "tape_drive_type")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_storagegateway_gatewayHandler", bridge.NewTFHandler(p, "aws_storagegateway_gateway", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_storagegateway_nfs_file_share{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "default_storage_class", "fileshare_id", "guess_mime_type_enabled", "kms_encrypted", "kms_key_arn", "nfs_file_share_defaults", "object_acl", "read_only", "requester_pays", "squash")
+		b.ProvidedAttributes("arn", "fileshare_id")
 		b.ImmutableAttributes("gateway_arn", "location_arn", "role_arn")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_storagegateway_nfs_file_shareHandler", bridge.NewTFHandler(p, "aws_storagegateway_nfs_file_share", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_storagegateway_smb_file_share{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "authentication", "default_storage_class", "fileshare_id", "guess_mime_type_enabled", "invalid_user_list", "kms_encrypted", "kms_key_arn", "object_acl", "read_only", "requester_pays", "valid_user_list")
+		b.ProvidedAttributes("arn", "fileshare_id")
 		b.ImmutableAttributes("authentication", "gateway_arn", "location_arn", "role_arn")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_storagegateway_smb_file_shareHandler", bridge.NewTFHandler(p, "aws_storagegateway_smb_file_share", evs[0]), evs[0])
@@ -2431,19 +2351,19 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_storagegateway_working_storageHandler", bridge.NewTFHandler(p, "aws_storagegateway_working_storage", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_subnet{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "assign_ipv6_address_on_creation", "availability_zone", "availability_zone_id", "ipv6_cidr_block", "ipv6_cidr_block_association_id", "map_public_ip_on_launch", "owner_id", "tags")
+		b.ProvidedAttributes("arn", "availability_zone", "availability_zone_id", "ipv6_cidr_block", "ipv6_cidr_block_association_id", "owner_id")
 		b.ImmutableAttributes("availability_zone", "availability_zone_id", "cidr_block", "vpc_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_subnetHandler", bridge.NewTFHandler(p, "aws_subnet", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_swf_domain{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "name", "name_prefix")
+		b.ProvidedAttributes("name")
 		b.ImmutableAttributes("description", "name", "name_prefix", "workflow_execution_retention_period_in_days")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_swf_domainHandler", bridge.NewTFHandler(p, "aws_swf_domain", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_transfer_server{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "endpoint", "force_destroy", "identity_provider_type", "invocation_role", "logging_role", "tags", "url")
+		b.ProvidedAttributes("arn", "endpoint")
 		b.ImmutableAttributes("identity_provider_type")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_transfer_serverHandler", bridge.NewTFHandler(p, "aws_transfer_server", evs[0]), evs[0])
@@ -2454,25 +2374,24 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_transfer_ssh_keyHandler", bridge.NewTFHandler(p, "aws_transfer_ssh_key", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_transfer_user{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "home_directory", "policy", "tags")
+		b.ProvidedAttributes("arn")
 		b.ImmutableAttributes("server_id", "user_name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_transfer_userHandler", bridge.NewTFHandler(p, "aws_transfer_user", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_volume_attachment{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("force_detach", "skip_destroy")
 		b.ImmutableAttributes("device_name", "instance_id", "volume_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_volume_attachmentHandler", bridge.NewTFHandler(p, "aws_volume_attachment", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_vpc{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "assign_generated_ipv6_cidr_block", "default_network_acl_id", "default_route_table_id", "default_security_group_id", "dhcp_options_id", "enable_classiclink", "enable_classiclink_dns_support", "enable_dns_hostnames", "enable_dns_support", "instance_tenancy", "ipv6_association_id", "ipv6_cidr_block", "main_route_table_id", "owner_id", "tags")
+		b.ProvidedAttributes("arn", "default_network_acl_id", "default_route_table_id", "default_security_group_id", "dhcp_options_id", "enable_classiclink", "enable_classiclink_dns_support", "enable_dns_hostnames", "ipv6_association_id", "ipv6_cidr_block", "main_route_table_id", "owner_id")
 		b.ImmutableAttributes("cidr_block")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_vpcHandler", bridge.NewTFHandler(p, "aws_vpc", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_vpc_dhcp_options{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("domain_name", "domain_name_servers", "netbios_name_servers", "netbios_node_type", "ntp_servers", "owner_id", "tags")
+		b.ProvidedAttributes("owner_id")
 		b.ImmutableAttributes("domain_name", "domain_name_servers", "netbios_name_servers", "netbios_node_type", "ntp_servers")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_vpc_dhcp_optionsHandler", bridge.NewTFHandler(p, "aws_vpc_dhcp_options", evs[0]), evs[0])
@@ -2482,13 +2401,13 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_vpc_dhcp_options_associationHandler", bridge.NewTFHandler(p, "aws_vpc_dhcp_options_association", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_vpc_endpoint{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("auto_accept", "cidr_blocks", "dns_entry", "network_interface_ids", "policy", "prefix_list_id", "private_dns_enabled", "route_table_ids", "security_group_ids", "state", "subnet_ids", "vpc_endpoint_type")
+		b.ProvidedAttributes("cidr_blocks", "dns_entry", "network_interface_ids", "policy", "prefix_list_id", "route_table_ids", "security_group_ids", "state", "subnet_ids")
 		b.ImmutableAttributes("service_name", "vpc_endpoint_type", "vpc_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_vpc_endpointHandler", bridge.NewTFHandler(p, "aws_vpc_endpoint", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_vpc_endpoint_connection_notification{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("notification_type", "state", "vpc_endpoint_id", "vpc_endpoint_service_id")
+		b.ProvidedAttributes("notification_type", "state")
 		b.ImmutableAttributes("vpc_endpoint_id", "vpc_endpoint_service_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_vpc_endpoint_connection_notificationHandler", bridge.NewTFHandler(p, "aws_vpc_endpoint_connection_notification", evs[0]), evs[0])
@@ -2519,13 +2438,13 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_vpc_ipv4_cidr_block_associationHandler", bridge.NewTFHandler(p, "aws_vpc_ipv4_cidr_block_association", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_vpc_peering_connection{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("accept_status", "accepter", "auto_accept", "peer_owner_id", "peer_region", "requester", "tags")
+		b.ProvidedAttributes("accept_status", "accepter", "peer_owner_id", "peer_region", "requester")
 		b.ImmutableAttributes("peer_owner_id", "peer_region", "peer_vpc_id", "vpc_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_vpc_peering_connectionHandler", bridge.NewTFHandler(p, "aws_vpc_peering_connection", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_vpc_peering_connection_accepter{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("accept_status", "accepter", "auto_accept", "peer_owner_id", "peer_region", "peer_vpc_id", "requester", "tags", "vpc_id")
+		b.ProvidedAttributes("accept_status", "accepter", "peer_owner_id", "peer_region", "peer_vpc_id", "requester", "vpc_id")
 		b.ImmutableAttributes("vpc_peering_connection_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_vpc_peering_connection_accepterHandler", bridge.NewTFHandler(p, "aws_vpc_peering_connection_accepter", evs[0]), evs[0])
@@ -2537,7 +2456,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_vpc_peering_connection_optionsHandler", bridge.NewTFHandler(p, "aws_vpc_peering_connection_options", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_vpn_connection{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("customer_gateway_configuration", "routes", "static_routes_only", "tags", "transit_gateway_id", "tunnel1_address", "tunnel1_bgp_asn", "tunnel1_bgp_holdtime", "tunnel1_cgw_inside_address", "tunnel1_inside_cidr", "tunnel1_preshared_key", "tunnel1_vgw_inside_address", "tunnel2_address", "tunnel2_bgp_asn", "tunnel2_bgp_holdtime", "tunnel2_cgw_inside_address", "tunnel2_inside_cidr", "tunnel2_preshared_key", "tunnel2_vgw_inside_address", "vgw_telemetry", "vpn_gateway_id")
+		b.ProvidedAttributes("customer_gateway_configuration", "routes", "static_routes_only", "tunnel1_address", "tunnel1_bgp_asn", "tunnel1_bgp_holdtime", "tunnel1_cgw_inside_address", "tunnel1_inside_cidr", "tunnel1_preshared_key", "tunnel1_vgw_inside_address", "tunnel2_address", "tunnel2_bgp_asn", "tunnel2_bgp_holdtime", "tunnel2_cgw_inside_address", "tunnel2_inside_cidr", "tunnel2_preshared_key", "tunnel2_vgw_inside_address", "vgw_telemetry")
 		b.ImmutableAttributes("customer_gateway_id", "static_routes_only", "transit_gateway_id", "tunnel1_inside_cidr", "tunnel1_preshared_key", "tunnel2_inside_cidr", "tunnel2_preshared_key", "type", "vpn_gateway_id")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_vpn_connectionHandler", bridge.NewTFHandler(p, "aws_vpn_connection", evs[0]), evs[0])
@@ -2548,7 +2467,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_vpn_connection_routeHandler", bridge.NewTFHandler(p, "aws_vpn_connection_route", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_vpn_gateway{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("amazon_side_asn", "availability_zone", "tags", "vpc_id")
+		b.ProvidedAttributes("amazon_side_asn", "vpc_id")
 		b.ImmutableAttributes("amazon_side_asn", "availability_zone")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_vpn_gatewayHandler", bridge.NewTFHandler(p, "aws_vpn_gateway", evs[0]), evs[0])
@@ -2564,139 +2483,118 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_vpn_gateway_route_propagationHandler", bridge.NewTFHandler(p, "aws_vpn_gateway_route_propagation", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_waf_byte_match_set{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("byte_match_tuples")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_waf_byte_match_setHandler", bridge.NewTFHandler(p, "aws_waf_byte_match_set", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_waf_geo_match_set{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("geo_match_constraint")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_waf_geo_match_setHandler", bridge.NewTFHandler(p, "aws_waf_geo_match_set", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_waf_ipset{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "ip_set_descriptors")
+		b.ProvidedAttributes("arn")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_waf_ipsetHandler", bridge.NewTFHandler(p, "aws_waf_ipset", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_waf_rate_based_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("predicates")
 		b.ImmutableAttributes("metric_name", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_waf_rate_based_ruleHandler", bridge.NewTFHandler(p, "aws_waf_rate_based_rule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_waf_regex_match_set{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("regex_match_tuple")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_waf_regex_match_setHandler", bridge.NewTFHandler(p, "aws_waf_regex_match_set", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_waf_regex_pattern_set{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("regex_pattern_strings")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_waf_regex_pattern_setHandler", bridge.NewTFHandler(p, "aws_waf_regex_pattern_set", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_waf_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("predicates")
 		b.ImmutableAttributes("metric_name", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_waf_ruleHandler", bridge.NewTFHandler(p, "aws_waf_rule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_waf_rule_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("activated_rule")
 		b.ImmutableAttributes("metric_name", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_waf_rule_groupHandler", bridge.NewTFHandler(p, "aws_waf_rule_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_waf_size_constraint_set{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("size_constraints")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_waf_size_constraint_setHandler", bridge.NewTFHandler(p, "aws_waf_size_constraint_set", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_waf_sql_injection_match_set{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("sql_injection_match_tuples")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_waf_sql_injection_match_setHandler", bridge.NewTFHandler(p, "aws_waf_sql_injection_match_set", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_waf_web_acl{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("rules")
 		b.ImmutableAttributes("metric_name", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_waf_web_aclHandler", bridge.NewTFHandler(p, "aws_waf_web_acl", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_waf_xss_match_set{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("xss_match_tuples")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_waf_xss_match_setHandler", bridge.NewTFHandler(p, "aws_waf_xss_match_set", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_wafregional_byte_match_set{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("byte_match_tuple", "byte_match_tuples")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_wafregional_byte_match_setHandler", bridge.NewTFHandler(p, "aws_wafregional_byte_match_set", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_wafregional_geo_match_set{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("geo_match_constraint")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_wafregional_geo_match_setHandler", bridge.NewTFHandler(p, "aws_wafregional_geo_match_set", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_wafregional_ipset{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("arn", "ip_set_descriptor")
+		b.ProvidedAttributes("arn")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_wafregional_ipsetHandler", bridge.NewTFHandler(p, "aws_wafregional_ipset", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_wafregional_rate_based_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("predicate")
 		b.ImmutableAttributes("metric_name", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_wafregional_rate_based_ruleHandler", bridge.NewTFHandler(p, "aws_wafregional_rate_based_rule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_wafregional_regex_match_set{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("regex_match_tuple")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_wafregional_regex_match_setHandler", bridge.NewTFHandler(p, "aws_wafregional_regex_match_set", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_wafregional_regex_pattern_set{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("regex_pattern_strings")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_wafregional_regex_pattern_setHandler", bridge.NewTFHandler(p, "aws_wafregional_regex_pattern_set", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_wafregional_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("predicate")
 		b.ImmutableAttributes("metric_name", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_wafregional_ruleHandler", bridge.NewTFHandler(p, "aws_wafregional_rule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_wafregional_rule_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("activated_rule")
 		b.ImmutableAttributes("metric_name", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_wafregional_rule_groupHandler", bridge.NewTFHandler(p, "aws_wafregional_rule_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_wafregional_size_constraint_set{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("size_constraints")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_wafregional_size_constraint_setHandler", bridge.NewTFHandler(p, "aws_wafregional_size_constraint_set", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_wafregional_sql_injection_match_set{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("sql_injection_match_tuple")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_wafregional_sql_injection_match_setHandler", bridge.NewTFHandler(p, "aws_wafregional_sql_injection_match_set", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_wafregional_web_acl{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("rule")
 		b.ImmutableAttributes("metric_name", "name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_wafregional_web_aclHandler", bridge.NewTFHandler(p, "aws_wafregional_web_acl", evs[0]), evs[0])
@@ -2707,7 +2605,6 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAws::Aws_wafregional_web_acl_associationHandler", bridge.NewTFHandler(p, "aws_wafregional_web_acl_association", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAws", sb.BuildResource(&Aws_wafregional_xss_match_set{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("xss_match_tuple")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAws::Aws_wafregional_xss_match_setHandler", bridge.NewTFHandler(p, "aws_wafregional_xss_match_set", evs[0]), evs[0])

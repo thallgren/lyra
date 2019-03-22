@@ -24,7 +24,7 @@ type TerraformGitHub = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['branch', 'repository'],
-          'providedAttributes' => ['enforce_admins', 'etag', 'required_pull_request_reviews', 'required_status_checks', 'restrictions']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {
@@ -131,7 +131,7 @@ type TerraformGitHub = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['repository'],
-          'providedAttributes' => ['description', 'etag', 'url']
+          'providedAttributes' => ['etag', 'url']
         }
       },
       attributes => {
@@ -179,7 +179,7 @@ type TerraformGitHub = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['username'],
-          'providedAttributes' => ['etag', 'role']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {
@@ -220,7 +220,7 @@ type TerraformGitHub = TypeSet[{
     Github_organization_project => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['body', 'etag', 'url']
+          'providedAttributes' => ['etag', 'url']
         }
       },
       attributes => {
@@ -266,7 +266,7 @@ type TerraformGitHub = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name'],
-          'providedAttributes' => ['active', 'configuration', 'etag', 'url']
+          'providedAttributes' => ['etag', 'url']
         }
       },
       attributes => {
@@ -373,7 +373,7 @@ type TerraformGitHub = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['auto_init', 'gitignore_template', 'license_template', 'name'],
-          'providedAttributes' => ['allow_merge_commit', 'allow_rebase_merge', 'allow_squash_merge', 'archived', 'auto_init', 'default_branch', 'description', 'etag', 'full_name', 'git_clone_url', 'gitignore_template', 'has_downloads', 'has_issues', 'has_projects', 'has_wiki', 'homepage_url', 'html_url', 'http_clone_url', 'license_template', 'private', 'ssh_clone_url', 'svn_url', 'topics']
+          'providedAttributes' => ['default_branch', 'etag', 'full_name', 'git_clone_url', 'html_url', 'http_clone_url', 'ssh_clone_url', 'svn_url']
         }
       },
       attributes => {
@@ -498,8 +498,7 @@ type TerraformGitHub = TypeSet[{
     Github_repository_collaborator => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['permission', 'repository', 'username'],
-          'providedAttributes' => ['permission']
+          'immutableAttributes' => ['permission', 'repository', 'username']
         }
       },
       attributes => {
@@ -538,7 +537,7 @@ type TerraformGitHub = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['key', 'read_only', 'repository', 'title'],
-          'providedAttributes' => ['etag', 'read_only']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {
@@ -582,7 +581,7 @@ type TerraformGitHub = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['repository'],
-          'providedAttributes' => ['body', 'etag', 'url']
+          'providedAttributes' => ['etag', 'url']
         }
       },
       attributes => {
@@ -629,7 +628,7 @@ type TerraformGitHub = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'repository'],
-          'providedAttributes' => ['active', 'configuration', 'etag', 'url']
+          'providedAttributes' => ['etag', 'url']
         }
       },
       attributes => {
@@ -697,7 +696,7 @@ type TerraformGitHub = TypeSet[{
     Github_team => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['description', 'etag', 'ldap_dn', 'parent_team_id', 'privacy', 'slug']
+          'providedAttributes' => ['etag', 'slug']
         }
       },
       attributes => {
@@ -755,7 +754,7 @@ type TerraformGitHub = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['team_id', 'username'],
-          'providedAttributes' => ['etag', 'role']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {
@@ -798,7 +797,7 @@ type TerraformGitHub = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['repository', 'team_id'],
-          'providedAttributes' => ['etag', 'permission']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {

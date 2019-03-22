@@ -122,7 +122,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['dataset_id', 'location', 'project'],
-          'providedAttributes' => ['access', 'creation_time', 'default_table_expiration_ms', 'description', 'etag', 'friendly_name', 'labels', 'last_modified_time', 'location', 'project', 'self_link']
+          'providedAttributes' => ['access', 'creation_time', 'etag', 'last_modified_time', 'project', 'self_link']
         }
       },
       attributes => {
@@ -235,7 +235,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['dataset_id', 'project', 'table_id'],
-          'providedAttributes' => ['creation_time', 'description', 'etag', 'expiration_time', 'friendly_name', 'labels', 'last_modified_time', 'location', 'num_bytes', 'num_long_term_bytes', 'num_rows', 'project', 'schema', 'self_link', 'time_partitioning', 'type', 'view']
+          'providedAttributes' => ['creation_time', 'etag', 'expiration_time', 'last_modified_time', 'location', 'num_bytes', 'num_long_term_bytes', 'num_rows', 'project', 'schema', 'self_link', 'type']
         }
       },
       attributes => {
@@ -360,7 +360,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['display_name', 'instance_type', 'name', 'project', 'zone'],
-          'providedAttributes' => ['cluster', 'cluster_id', 'display_name', 'instance_type', 'num_nodes', 'project', 'storage_type', 'zone']
+          'providedAttributes' => ['display_name', 'project', 'zone']
         }
       },
       attributes => {
@@ -446,7 +446,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['instance_name', 'name', 'project', 'split_keys'],
-          'providedAttributes' => ['project', 'split_keys']
+          'providedAttributes' => ['project']
         }
       },
       attributes => {
@@ -608,7 +608,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['description', 'project']
+          'providedAttributes' => ['project']
         }
       },
       attributes => {
@@ -677,7 +677,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project'],
-          'providedAttributes' => ['admission_whitelist_patterns', 'cluster_admission_rules', 'description', 'project']
+          'providedAttributes' => ['project']
         }
       },
       attributes => {
@@ -762,7 +762,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['build', 'description', 'filename', 'project', 'substitutions', 'trigger_template'],
-          'providedAttributes' => ['build', 'description', 'filename', 'project', 'substitutions', 'trigger_template']
+          'providedAttributes' => ['project']
         }
       },
       attributes => {
@@ -875,7 +875,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['entry_point', 'name', 'project', 'region', 'trigger_http'],
-          'providedAttributes' => ['available_memory_mb', 'description', 'entry_point', 'environment_variables', 'event_trigger', 'https_trigger_url', 'labels', 'project', 'region', 'retry_on_failure', 'runtime', 'timeout', 'trigger_bucket', 'trigger_http', 'trigger_topic']
+          'providedAttributes' => ['event_trigger', 'https_trigger_url', 'project', 'region', 'retry_on_failure', 'runtime', 'trigger_bucket', 'trigger_topic']
         }
       },
       attributes => {
@@ -986,7 +986,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project', 'region'],
-          'providedAttributes' => ['credentials', 'event_notification_config', 'http_config', 'mqtt_config', 'project', 'region', 'state_notification_config']
+          'providedAttributes' => ['http_config', 'mqtt_config', 'project', 'region']
         }
       },
       attributes => {
@@ -1056,7 +1056,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project', 'region'],
-          'providedAttributes' => ['config', 'labels', 'project', 'region']
+          'providedAttributes' => ['config', 'project']
         }
       },
       attributes => {
@@ -1190,7 +1190,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['address', 'address_type', 'description', 'name', 'network_tier', 'project', 'region', 'subnetwork'],
-          'providedAttributes' => ['address', 'address_type', 'creation_timestamp', 'description', 'label_fingerprint', 'labels', 'network_tier', 'project', 'region', 'self_link', 'subnetwork', 'users']
+          'providedAttributes' => ['address', 'creation_timestamp', 'label_fingerprint', 'network_tier', 'project', 'region', 'self_link', 'subnetwork', 'users']
         }
       },
       attributes => {
@@ -1272,7 +1272,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['device_name', 'disk', 'instance', 'mode', 'project', 'zone'],
-          'providedAttributes' => ['device_name', 'mode', 'project', 'zone']
+          'providedAttributes' => ['device_name', 'project', 'zone']
         }
       },
       attributes => {
@@ -1323,7 +1323,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project', 'zone'],
-          'providedAttributes' => ['creation_timestamp', 'description', 'project', 'self_link', 'zone']
+          'providedAttributes' => ['creation_timestamp', 'project', 'self_link', 'zone']
         }
       },
       attributes => {
@@ -1418,7 +1418,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['creation_timestamp', 'description', 'enable_cdn', 'project', 'self_link']
+          'providedAttributes' => ['creation_timestamp', 'project', 'self_link']
         }
       },
       attributes => {
@@ -1473,7 +1473,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project', 'region'],
-          'providedAttributes' => ['backend', 'cdn_policy', 'connection_draining_timeout_sec', 'custom_request_headers', 'description', 'enable_cdn', 'fingerprint', 'iap', 'port_name', 'project', 'protocol', 'region', 'security_policy', 'self_link', 'session_affinity', 'timeout_sec']
+          'providedAttributes' => ['cdn_policy', 'fingerprint', 'port_name', 'project', 'protocol', 'self_link', 'session_affinity', 'timeout_sec']
         }
       },
       attributes => {
@@ -1650,7 +1650,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'disk_encryption_key', 'image', 'name', 'project', 'snapshot', 'source_image_encryption_key', 'source_snapshot_encryption_key', 'type', 'zone'],
-          'providedAttributes' => ['creation_timestamp', 'description', 'disk_encryption_key', 'disk_encryption_key_raw', 'disk_encryption_key_sha256', 'image', 'label_fingerprint', 'labels', 'last_attach_timestamp', 'last_detach_timestamp', 'project', 'self_link', 'size', 'snapshot', 'source_image_encryption_key', 'source_image_id', 'source_snapshot_encryption_key', 'source_snapshot_id', 'type', 'users', 'zone']
+          'providedAttributes' => ['creation_timestamp', 'disk_encryption_key', 'disk_encryption_key_sha256', 'label_fingerprint', 'last_attach_timestamp', 'last_detach_timestamp', 'project', 'self_link', 'size', 'source_image_id', 'source_snapshot_id', 'users', 'zone']
         }
       },
       attributes => {
@@ -1804,7 +1804,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['allow', 'creation_timestamp', 'deny', 'description', 'destination_ranges', 'direction', 'disabled', 'enable_logging', 'priority', 'project', 'self_link', 'source_ranges', 'source_service_accounts', 'source_tags', 'target_service_accounts', 'target_tags']
+          'providedAttributes' => ['creation_timestamp', 'destination_ranges', 'direction', 'project', 'self_link', 'source_ranges']
         }
       },
       attributes => {
@@ -1921,7 +1921,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['backend_service', 'description', 'ip_address', 'ip_protocol', 'ip_version', 'load_balancing_scheme', 'name', 'network', 'network_tier', 'port_range', 'ports', 'project', 'region', 'service_label', 'subnetwork'],
-          'providedAttributes' => ['backend_service', 'creation_timestamp', 'description', 'ip_address', 'ip_protocol', 'ip_version', 'label_fingerprint', 'labels', 'load_balancing_scheme', 'network', 'network_tier', 'port_range', 'ports', 'project', 'region', 'self_link', 'service_label', 'service_name', 'subnetwork', 'target']
+          'providedAttributes' => ['creation_timestamp', 'ip_address', 'ip_protocol', 'label_fingerprint', 'network', 'network_tier', 'project', 'region', 'self_link', 'service_name', 'subnetwork']
         }
       },
       attributes => {
@@ -2035,7 +2035,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['address_type', 'description', 'ip_version', 'name', 'network', 'prefix_length', 'project', 'purpose'],
-          'providedAttributes' => ['address', 'address_type', 'creation_timestamp', 'description', 'ip_version', 'label_fingerprint', 'labels', 'network', 'prefix_length', 'project', 'purpose', 'self_link']
+          'providedAttributes' => ['address', 'creation_timestamp', 'label_fingerprint', 'project', 'self_link']
         }
       },
       attributes => {
@@ -2117,7 +2117,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'ip_address', 'ip_protocol', 'ip_version', 'name', 'port_range', 'project', 'region'],
-          'providedAttributes' => ['description', 'ip_address', 'ip_protocol', 'ip_version', 'label_fingerprint', 'labels', 'port_range', 'project', 'region', 'self_link']
+          'providedAttributes' => ['ip_address', 'ip_protocol', 'label_fingerprint', 'project', 'self_link']
         }
       },
       attributes => {
@@ -2192,7 +2192,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['check_interval_sec', 'creation_timestamp', 'description', 'healthy_threshold', 'http_health_check', 'https_health_check', 'project', 'self_link', 'ssl_health_check', 'tcp_health_check', 'timeout_sec', 'type', 'unhealthy_threshold']
+          'providedAttributes' => ['creation_timestamp', 'project', 'self_link', 'type']
         }
       },
       attributes => {
@@ -2366,7 +2366,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['check_interval_sec', 'creation_timestamp', 'description', 'healthy_threshold', 'host', 'port', 'project', 'request_path', 'self_link', 'timeout_sec', 'unhealthy_threshold']
+          'providedAttributes' => ['creation_timestamp', 'project', 'self_link']
         }
       },
       attributes => {
@@ -2444,7 +2444,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['check_interval_sec', 'creation_timestamp', 'description', 'healthy_threshold', 'host', 'port', 'project', 'request_path', 'self_link', 'timeout_sec', 'unhealthy_threshold']
+          'providedAttributes' => ['creation_timestamp', 'project', 'self_link']
         }
       },
       attributes => {
@@ -2522,7 +2522,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'family', 'licenses', 'name', 'project', 'raw_disk', 'source_disk'],
-          'providedAttributes' => ['create_timeout', 'description', 'family', 'label_fingerprint', 'labels', 'licenses', 'project', 'raw_disk', 'self_link', 'source_disk']
+          'providedAttributes' => ['label_fingerprint', 'licenses', 'project', 'self_link']
         }
       },
       attributes => {
@@ -2609,7 +2609,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['boot_disk', 'can_ip_forward', 'description', 'disk', 'guest_accelerator', 'metadata_startup_script', 'name', 'network', 'network_interface', 'project', 'scratch_disk', 'zone'],
-          'providedAttributes' => ['allow_stopping_for_update', 'attached_disk', 'can_ip_forward', 'cpu_platform', 'create_timeout', 'deletion_protection', 'description', 'disk', 'guest_accelerator', 'instance_id', 'label_fingerprint', 'labels', 'metadata', 'metadata_fingerprint', 'metadata_startup_script', 'min_cpu_platform', 'network', 'project', 'scheduling', 'scratch_disk', 'self_link', 'service_account', 'tags', 'tags_fingerprint', 'zone']
+          'providedAttributes' => ['cpu_platform', 'guest_accelerator', 'instance_id', 'label_fingerprint', 'metadata_fingerprint', 'project', 'scheduling', 'self_link', 'tags_fingerprint', 'zone']
         }
       },
       attributes => {
@@ -3155,7 +3155,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'network', 'project', 'zone'],
-          'providedAttributes' => ['description', 'instances', 'named_port', 'network', 'project', 'self_link', 'size', 'zone']
+          'providedAttributes' => ['instances', 'network', 'project', 'self_link', 'size', 'zone']
         }
       },
       attributes => {
@@ -3221,7 +3221,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['base_instance_name', 'description', 'name', 'project', 'zone'],
-          'providedAttributes' => ['auto_healing_policies', 'description', 'fingerprint', 'instance_group', 'instance_template', 'named_port', 'project', 'rolling_update_policy', 'self_link', 'target_pools', 'target_size', 'update_strategy', 'version', 'wait_for_instances', 'zone']
+          'providedAttributes' => ['fingerprint', 'instance_group', 'project', 'self_link', 'target_size', 'version', 'zone']
         }
       },
       attributes => {
@@ -3507,7 +3507,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['automatic_restart', 'can_ip_forward', 'description', 'disk', 'guest_accelerator', 'instance_description', 'labels', 'machine_type', 'metadata', 'metadata_startup_script', 'min_cpu_platform', 'name', 'name_prefix', 'network_interface', 'on_host_maintenance', 'project', 'region', 'scheduling', 'service_account', 'tags'],
-          'providedAttributes' => ['automatic_restart', 'can_ip_forward', 'description', 'guest_accelerator', 'instance_description', 'labels', 'metadata', 'metadata_fingerprint', 'metadata_startup_script', 'min_cpu_platform', 'name', 'name_prefix', 'network_interface', 'on_host_maintenance', 'project', 'region', 'scheduling', 'self_link', 'service_account', 'tags', 'tags_fingerprint']
+          'providedAttributes' => ['metadata_fingerprint', 'name', 'name_prefix', 'project', 'region', 'scheduling', 'self_link', 'tags_fingerprint']
         }
       },
       attributes => {
@@ -3774,7 +3774,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'interconnect', 'name', 'project', 'region', 'router'],
-          'providedAttributes' => ['cloud_router_ip_address', 'creation_timestamp', 'customer_router_ip_address', 'description', 'google_reference_id', 'private_interconnect_info', 'project', 'region', 'self_link']
+          'providedAttributes' => ['cloud_router_ip_address', 'creation_timestamp', 'customer_router_ip_address', 'google_reference_id', 'private_interconnect_info', 'project', 'region', 'self_link']
         }
       },
       attributes => {
@@ -3854,7 +3854,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['auto_create_subnetworks', 'description', 'ipv4_range', 'name', 'project'],
-          'providedAttributes' => ['auto_create_subnetworks', 'description', 'gateway_ipv4', 'ipv4_range', 'project', 'routing_mode', 'self_link']
+          'providedAttributes' => ['gateway_ipv4', 'project', 'routing_mode', 'self_link']
         }
       },
       attributes => {
@@ -3916,7 +3916,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['auto_create_routes', 'name', 'network', 'peer_network'],
-          'providedAttributes' => ['auto_create_routes', 'state', 'state_details']
+          'providedAttributes' => ['state', 'state_details']
         }
       },
       attributes => {
@@ -4041,7 +4041,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project', 'region'],
-          'providedAttributes' => ['creation_timestamp', 'description', 'project', 'region', 'self_link']
+          'providedAttributes' => ['creation_timestamp', 'project', 'region', 'self_link']
         }
       },
       attributes => {
@@ -4136,7 +4136,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project', 'region'],
-          'providedAttributes' => ['backend', 'connection_draining_timeout_sec', 'description', 'fingerprint', 'project', 'protocol', 'region', 'self_link', 'session_affinity', 'timeout_sec']
+          'providedAttributes' => ['fingerprint', 'project', 'protocol', 'region', 'self_link', 'session_affinity', 'timeout_sec']
         }
       },
       attributes => {
@@ -4223,7 +4223,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'disk_encryption_key', 'name', 'project', 'region', 'replica_zones', 'snapshot', 'source_snapshot_encryption_key', 'type'],
-          'providedAttributes' => ['creation_timestamp', 'description', 'disk_encryption_key', 'label_fingerprint', 'labels', 'last_attach_timestamp', 'last_detach_timestamp', 'project', 'region', 'self_link', 'size', 'snapshot', 'source_snapshot_encryption_key', 'source_snapshot_id', 'type', 'users']
+          'providedAttributes' => ['creation_timestamp', 'label_fingerprint', 'last_attach_timestamp', 'last_detach_timestamp', 'project', 'region', 'self_link', 'size', 'source_snapshot_id', 'users']
         }
       },
       attributes => {
@@ -4346,7 +4346,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['base_instance_name', 'description', 'distribution_policy_zones', 'name', 'project', 'region'],
-          'providedAttributes' => ['auto_healing_policies', 'description', 'distribution_policy_zones', 'fingerprint', 'instance_group', 'instance_template', 'named_port', 'project', 'rolling_update_policy', 'self_link', 'target_pools', 'target_size', 'update_strategy', 'version', 'wait_for_instances']
+          'providedAttributes' => ['distribution_policy_zones', 'fingerprint', 'instance_group', 'project', 'self_link', 'target_size', 'version']
         }
       },
       attributes => {
@@ -4502,7 +4502,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'dest_range', 'name', 'network', 'next_hop_gateway', 'next_hop_instance', 'next_hop_instance_zone', 'next_hop_ip', 'next_hop_vpn_tunnel', 'priority', 'project', 'tags'],
-          'providedAttributes' => ['description', 'next_hop_gateway', 'next_hop_instance', 'next_hop_instance_zone', 'next_hop_ip', 'next_hop_network', 'next_hop_vpn_tunnel', 'priority', 'project', 'self_link', 'tags']
+          'providedAttributes' => ['next_hop_network', 'project', 'self_link']
         }
       },
       attributes => {
@@ -4582,7 +4582,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'network', 'project', 'region'],
-          'providedAttributes' => ['bgp', 'creation_timestamp', 'description', 'project', 'region', 'self_link']
+          'providedAttributes' => ['creation_timestamp', 'project', 'region', 'self_link']
         }
       },
       attributes => {
@@ -4670,7 +4670,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['ip_range', 'name', 'project', 'region', 'router', 'vpn_tunnel'],
-          'providedAttributes' => ['ip_range', 'project', 'region']
+          'providedAttributes' => ['project', 'region']
         }
       },
       attributes => {
@@ -4718,7 +4718,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['icmp_idle_timeout_sec', 'min_ports_per_vm', 'name', 'nat_ip_allocate_option', 'nat_ips', 'project', 'region', 'router', 'source_subnetwork_ip_ranges_to_nat', 'subnetwork', 'tcp_established_idle_timeout_sec', 'tcp_transitory_idle_timeout_sec', 'udp_idle_timeout_sec'],
-          'providedAttributes' => ['icmp_idle_timeout_sec', 'min_ports_per_vm', 'nat_ips', 'project', 'region', 'source_subnetwork_ip_ranges_to_nat', 'subnetwork', 'tcp_established_idle_timeout_sec', 'tcp_transitory_idle_timeout_sec', 'udp_idle_timeout_sec']
+          'providedAttributes' => ['project', 'region']
         }
       },
       attributes => {
@@ -4807,7 +4807,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['advertised_route_priority', 'interface', 'name', 'peer_asn', 'peer_ip_address', 'project', 'region', 'router'],
-          'providedAttributes' => ['advertised_route_priority', 'ip_address', 'peer_ip_address', 'project', 'region']
+          'providedAttributes' => ['ip_address', 'project', 'region']
         }
       },
       attributes => {
@@ -4864,7 +4864,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['description', 'fingerprint', 'project', 'rule', 'self_link']
+          'providedAttributes' => ['fingerprint', 'project', 'rule', 'self_link']
         }
       },
       attributes => {
@@ -5011,7 +5011,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'project', 'source_disk', 'zone'],
-          'providedAttributes' => ['creation_timestamp', 'description', 'disk_size_gb', 'label_fingerprint', 'labels', 'licenses', 'project', 'self_link', 'snapshot_encryption_key', 'snapshot_encryption_key_raw', 'snapshot_encryption_key_sha256', 'snapshot_id', 'source_disk_encryption_key', 'source_disk_encryption_key_raw', 'source_disk_encryption_key_sha256', 'source_disk_link', 'storage_bytes', 'zone']
+          'providedAttributes' => ['creation_timestamp', 'disk_size_gb', 'label_fingerprint', 'licenses', 'project', 'self_link', 'snapshot_encryption_key', 'snapshot_encryption_key_sha256', 'snapshot_id', 'source_disk_encryption_key_sha256', 'source_disk_link', 'storage_bytes', 'zone']
         }
       },
       attributes => {
@@ -5138,7 +5138,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['certificate', 'description', 'name', 'name_prefix', 'private_key', 'project'],
-          'providedAttributes' => ['certificate_id', 'creation_timestamp', 'description', 'name', 'name_prefix', 'project', 'self_link']
+          'providedAttributes' => ['certificate_id', 'creation_timestamp', 'name', 'name_prefix', 'project', 'self_link']
         }
       },
       attributes => {
@@ -5201,7 +5201,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'project'],
-          'providedAttributes' => ['creation_timestamp', 'custom_features', 'description', 'enabled_features', 'fingerprint', 'min_tls_version', 'profile', 'project', 'self_link']
+          'providedAttributes' => ['creation_timestamp', 'enabled_features', 'fingerprint', 'project', 'self_link']
         }
       },
       attributes => {
@@ -5271,7 +5271,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'network', 'project', 'region'],
-          'providedAttributes' => ['creation_timestamp', 'description', 'enable_flow_logs', 'fingerprint', 'gateway_address', 'private_ip_google_access', 'project', 'region', 'secondary_ip_range', 'self_link']
+          'providedAttributes' => ['creation_timestamp', 'fingerprint', 'gateway_address', 'project', 'region', 'secondary_ip_range', 'self_link']
         }
       },
       attributes => {
@@ -5496,7 +5496,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'project'],
-          'providedAttributes' => ['creation_timestamp', 'description', 'project', 'proxy_id', 'self_link']
+          'providedAttributes' => ['creation_timestamp', 'project', 'proxy_id', 'self_link']
         }
       },
       attributes => {
@@ -5551,7 +5551,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'project'],
-          'providedAttributes' => ['creation_timestamp', 'description', 'project', 'proxy_id', 'quic_override', 'self_link', 'ssl_policy']
+          'providedAttributes' => ['creation_timestamp', 'project', 'proxy_id', 'self_link']
         }
       },
       attributes => {
@@ -5615,7 +5615,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'failover_ratio', 'name', 'project', 'region', 'session_affinity'],
-          'providedAttributes' => ['backup_pool', 'description', 'failover_ratio', 'health_checks', 'instances', 'project', 'region', 'self_link', 'session_affinity']
+          'providedAttributes' => ['instances', 'project', 'region', 'self_link']
         }
       },
       attributes => {
@@ -5685,7 +5685,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'project'],
-          'providedAttributes' => ['creation_timestamp', 'description', 'project', 'proxy_header', 'proxy_id', 'self_link', 'ssl_policy']
+          'providedAttributes' => ['creation_timestamp', 'project', 'proxy_id', 'self_link']
         }
       },
       attributes => {
@@ -5749,7 +5749,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'project'],
-          'providedAttributes' => ['creation_timestamp', 'description', 'project', 'proxy_header', 'proxy_id', 'self_link']
+          'providedAttributes' => ['creation_timestamp', 'project', 'proxy_id', 'self_link']
         }
       },
       attributes => {
@@ -5808,7 +5808,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['description', 'fingerprint', 'host_rule', 'map_id', 'path_matcher', 'project', 'self_link', 'test']
+          'providedAttributes' => ['fingerprint', 'map_id', 'project', 'self_link']
         }
       },
       attributes => {
@@ -5916,7 +5916,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'name', 'network', 'project', 'region'],
-          'providedAttributes' => ['creation_timestamp', 'description', 'project', 'region', 'self_link']
+          'providedAttributes' => ['creation_timestamp', 'project', 'region', 'self_link']
         }
       },
       attributes => {
@@ -5971,7 +5971,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['description', 'ike_version', 'local_traffic_selector', 'name', 'peer_ip', 'project', 'region', 'remote_traffic_selector', 'router', 'shared_secret', 'target_vpn_gateway'],
-          'providedAttributes' => ['creation_timestamp', 'description', 'detailed_status', 'ike_version', 'label_fingerprint', 'labels', 'local_traffic_selector', 'project', 'region', 'remote_traffic_selector', 'router', 'self_link', 'shared_secret_hash']
+          'providedAttributes' => ['creation_timestamp', 'detailed_status', 'label_fingerprint', 'local_traffic_selector', 'project', 'region', 'remote_traffic_selector', 'self_link', 'shared_secret_hash']
         }
       },
       attributes => {
@@ -6109,7 +6109,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['cluster_ipv4_cidr', 'description', 'enable_kubernetes_alpha', 'enable_tpu', 'initial_node_count', 'ip_allocation_policy', 'master_ipv4_cidr_block', 'name', 'network', 'node_config', 'node_pool', 'private_cluster', 'project', 'region', 'subnetwork', 'zone'],
-          'providedAttributes' => ['additional_zones', 'addons_config', 'cluster_autoscaling', 'cluster_ipv4_cidr', 'description', 'enable_binary_authorization', 'enable_kubernetes_alpha', 'enable_legacy_abac', 'enable_tpu', 'endpoint', 'initial_node_count', 'instance_group_urls', 'ip_allocation_policy', 'logging_service', 'maintenance_policy', 'master_auth', 'master_authorized_networks_config', 'master_ipv4_cidr_block', 'master_version', 'min_master_version', 'monitoring_service', 'network', 'network_policy', 'node_config', 'node_pool', 'node_version', 'pod_security_policy_config', 'private_cluster', 'private_cluster_config', 'project', 'region', 'remove_default_node_pool', 'resource_labels', 'subnetwork', 'zone']
+          'providedAttributes' => ['additional_zones', 'addons_config', 'cluster_autoscaling', 'cluster_ipv4_cidr', 'endpoint', 'instance_group_urls', 'logging_service', 'master_auth', 'master_ipv4_cidr_block', 'master_version', 'monitoring_service', 'network_policy', 'node_config', 'node_pool', 'node_version', 'private_cluster', 'private_cluster_config', 'project', 'region', 'subnetwork', 'zone']
         }
       },
       attributes => {
@@ -6710,7 +6710,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['cluster', 'initial_node_count', 'max_pods_per_node', 'name', 'name_prefix', 'node_config', 'project', 'region', 'zone'],
-          'providedAttributes' => ['autoscaling', 'initial_node_count', 'instance_group_urls', 'management', 'max_pods_per_node', 'name', 'name_prefix', 'node_config', 'node_count', 'project', 'region', 'version', 'zone']
+          'providedAttributes' => ['initial_node_count', 'instance_group_urls', 'management', 'max_pods_per_node', 'name', 'name_prefix', 'node_config', 'node_count', 'project', 'version', 'zone']
         }
       },
       attributes => {
@@ -6896,7 +6896,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['max_workers', 'name', 'on_delete', 'parameters', 'project', 'region', 'temp_gcs_location', 'template_gcs_path', 'zone'],
-          'providedAttributes' => ['max_workers', 'on_delete', 'parameters', 'project', 'region', 'state', 'zone']
+          'providedAttributes' => ['state']
         }
       },
       attributes => {
@@ -6960,7 +6960,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project', 'region'],
-          'providedAttributes' => ['cluster_config', 'labels', 'project', 'region']
+          'providedAttributes' => ['cluster_config', 'labels', 'project']
         }
       },
       attributes => {
@@ -7207,7 +7207,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['hadoop_config', 'hive_config', 'labels', 'pig_config', 'project', 'pyspark_config', 'region', 'scheduling', 'spark_config', 'sparksql_config'],
-          'providedAttributes' => ['driver_controls_files_uri', 'driver_output_resource_uri', 'force_delete', 'hadoop_config', 'hive_config', 'labels', 'pig_config', 'project', 'pyspark_config', 'reference', 'region', 'scheduling', 'spark_config', 'sparksql_config', 'status']
+          'providedAttributes' => ['driver_controls_files_uri', 'driver_output_resource_uri', 'project', 'reference', 'status']
         }
       },
       attributes => {
@@ -7579,7 +7579,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['dns_name', 'name', 'project'],
-          'providedAttributes' => ['description', 'labels', 'name_servers', 'project']
+          'providedAttributes' => ['name_servers', 'project']
         }
       },
       attributes => {
@@ -7672,7 +7672,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project', 'service_name'],
-          'providedAttributes' => ['apis', 'config_id', 'dns_address', 'endpoints', 'grpc_config', 'openapi_config', 'project', 'protoc_output', 'protoc_output_base64']
+          'providedAttributes' => ['apis', 'config_id', 'dns_address', 'endpoints', 'project']
         }
       },
       attributes => {
@@ -7794,7 +7794,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['networks', 'project', 'tier', 'zone'],
-          'providedAttributes' => ['create_time', 'description', 'etag', 'labels', 'project']
+          'providedAttributes' => ['create_time', 'etag', 'project']
         }
       },
       attributes => {
@@ -8037,7 +8037,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['constraint', 'folder'],
-          'providedAttributes' => ['boolean_policy', 'etag', 'list_policy', 'restore_policy', 'update_time', 'version']
+          'providedAttributes' => ['etag', 'update_time', 'version']
         }
       },
       attributes => {
@@ -8146,7 +8146,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['key_ring', 'name'],
-          'providedAttributes' => ['rotation_period', 'self_link']
+          'providedAttributes' => ['self_link']
         }
       },
       attributes => {
@@ -8430,8 +8430,7 @@ type TerraformGoogle = TypeSet[{
     Google_logging_billing_account_exclusion => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['billing_account', 'name'],
-          'providedAttributes' => ['description', 'disabled']
+          'immutableAttributes' => ['billing_account', 'name']
         }
       },
       attributes => {
@@ -8475,7 +8474,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['billing_account', 'name'],
-          'providedAttributes' => ['filter', 'writer_identity']
+          'providedAttributes' => ['writer_identity']
         }
       },
       attributes => {
@@ -8518,8 +8517,7 @@ type TerraformGoogle = TypeSet[{
     Google_logging_folder_exclusion => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['folder', 'name'],
-          'providedAttributes' => ['description', 'disabled']
+          'immutableAttributes' => ['folder', 'name']
         }
       },
       attributes => {
@@ -8563,7 +8561,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['folder', 'include_children', 'name'],
-          'providedAttributes' => ['filter', 'include_children', 'writer_identity']
+          'providedAttributes' => ['writer_identity']
         }
       },
       attributes => {
@@ -8610,8 +8608,7 @@ type TerraformGoogle = TypeSet[{
     Google_logging_organization_exclusion => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['name', 'org_id'],
-          'providedAttributes' => ['description', 'disabled']
+          'immutableAttributes' => ['name', 'org_id']
         }
       },
       attributes => {
@@ -8655,7 +8652,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['include_children', 'name'],
-          'providedAttributes' => ['filter', 'include_children', 'writer_identity']
+          'providedAttributes' => ['writer_identity']
         }
       },
       attributes => {
@@ -8703,7 +8700,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['description', 'disabled', 'project']
+          'providedAttributes' => ['project']
         }
       },
       attributes => {
@@ -8750,7 +8747,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project', 'unique_writer_identity'],
-          'providedAttributes' => ['filter', 'project', 'unique_writer_identity', 'writer_identity']
+          'providedAttributes' => ['project', 'writer_identity']
         }
       },
       attributes => {
@@ -8801,7 +8798,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project'],
-          'providedAttributes' => ['creation_record', 'labels', 'name', 'notification_channels', 'project']
+          'providedAttributes' => ['creation_record', 'name', 'project']
         }
       },
       attributes => {
@@ -9018,7 +9015,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project'],
-          'providedAttributes' => ['is_cluster', 'name', 'parent_name', 'project']
+          'providedAttributes' => ['name', 'project']
         }
       },
       attributes => {
@@ -9069,7 +9066,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project'],
-          'providedAttributes' => ['description', 'enabled', 'labels', 'name', 'project', 'user_labels', 'verification_status']
+          'providedAttributes' => ['name', 'project', 'verification_status']
         }
       },
       attributes => {
@@ -9132,7 +9129,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project'],
-          'providedAttributes' => ['content_matchers', 'http_check', 'internal_checkers', 'is_internal', 'monitored_resource', 'name', 'period', 'project', 'resource_group', 'selected_regions', 'tcp_check']
+          'providedAttributes' => ['name', 'project']
         }
       },
       attributes => {
@@ -9345,8 +9342,7 @@ type TerraformGoogle = TypeSet[{
     Google_organization_iam_custom_role => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['org_id', 'role_id'],
-          'providedAttributes' => ['deleted', 'description', 'stage']
+          'immutableAttributes' => ['org_id', 'role_id']
         }
       },
       attributes => {
@@ -9474,7 +9470,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['constraint', 'org_id'],
-          'providedAttributes' => ['boolean_policy', 'etag', 'list_policy', 'restore_policy', 'update_time', 'version']
+          'providedAttributes' => ['etag', 'update_time', 'version']
         }
       },
       attributes => {
@@ -9583,7 +9579,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project_id'],
-          'providedAttributes' => ['app_engine', 'auto_create_network', 'billing_account', 'folder_id', 'labels', 'number', 'org_id', 'policy_data', 'policy_etag', 'skip_delete']
+          'providedAttributes' => ['app_engine', 'folder_id', 'number', 'org_id', 'policy_data', 'policy_etag', 'skip_delete']
         }
       },
       attributes => {
@@ -9726,7 +9722,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project', 'role'],
-          'providedAttributes' => ['etag', 'project']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {
@@ -9769,7 +9765,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project', 'role_id'],
-          'providedAttributes' => ['deleted', 'description', 'project', 'stage']
+          'providedAttributes' => ['project']
         }
       },
       attributes => {
@@ -9821,7 +9817,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['member', 'project', 'role'],
-          'providedAttributes' => ['etag', 'project']
+          'providedAttributes' => ['etag']
         }
       },
       attributes => {
@@ -9864,7 +9860,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project'],
-          'providedAttributes' => ['authoritative', 'disable_project', 'etag', 'project', 'restore_policy']
+          'providedAttributes' => ['etag', 'project', 'restore_policy']
         }
       },
       attributes => {
@@ -9918,7 +9914,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['constraint', 'project'],
-          'providedAttributes' => ['boolean_policy', 'etag', 'list_policy', 'restore_policy', 'update_time', 'version']
+          'providedAttributes' => ['etag', 'update_time', 'version']
         }
       },
       attributes => {
@@ -10027,7 +10023,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project', 'service'],
-          'providedAttributes' => ['disable_on_destroy', 'project']
+          'providedAttributes' => ['project']
         }
       },
       attributes => {
@@ -10069,7 +10065,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['project'],
-          'providedAttributes' => ['disable_on_destroy', 'project']
+          'providedAttributes' => ['project']
         }
       },
       attributes => {
@@ -10111,7 +10107,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bucket_name', 'prefix', 'project'],
-          'providedAttributes' => ['prefix', 'project']
+          'providedAttributes' => ['project']
         }
       },
       attributes => {
@@ -10153,7 +10149,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['ack_deadline_seconds', 'name', 'project', 'topic'],
-          'providedAttributes' => ['ack_deadline_seconds', 'path', 'project', 'push_config']
+          'providedAttributes' => ['ack_deadline_seconds', 'path', 'project']
         }
       },
       attributes => {
@@ -10513,7 +10509,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['alternative_location_id', 'authorized_network', 'location_id', 'name', 'project', 'redis_version', 'region', 'reserved_ip_range', 'tier'],
-          'providedAttributes' => ['alternative_location_id', 'authorized_network', 'create_time', 'current_location_id', 'display_name', 'host', 'labels', 'location_id', 'port', 'project', 'redis_configs', 'redis_version', 'region', 'reserved_ip_range', 'tier']
+          'providedAttributes' => ['alternative_location_id', 'authorized_network', 'create_time', 'current_location_id', 'host', 'location_id', 'port', 'project', 'redis_version', 'region', 'reserved_ip_range']
         }
       },
       attributes => {
@@ -10653,7 +10649,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'project'],
-          'providedAttributes' => ['description', 'project']
+          'providedAttributes' => ['project']
         }
       },
       attributes => {
@@ -10695,7 +10691,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'parent', 'project'],
-          'providedAttributes' => ['project', 'text', 'update_time', 'value']
+          'providedAttributes' => ['project', 'update_time']
         }
       },
       attributes => {
@@ -10746,7 +10742,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['account_id', 'project'],
-          'providedAttributes' => ['display_name', 'email', 'name', 'policy_data', 'project', 'unique_id']
+          'providedAttributes' => ['email', 'name', 'project', 'unique_id']
         }
       },
       attributes => {
@@ -10923,7 +10919,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['key_algorithm', 'name', 'pgp_key', 'private_key_type', 'public_key', 'public_key_type', 'service_account_id'],
-          'providedAttributes' => ['key_algorithm', 'name', 'pgp_key', 'private_key', 'private_key_encrypted', 'private_key_fingerprint', 'private_key_type', 'public_key', 'public_key_type', 'valid_after', 'valid_before']
+          'providedAttributes' => ['name', 'private_key', 'private_key_encrypted', 'private_key_fingerprint', 'public_key', 'valid_after', 'valid_before']
         }
       },
       attributes => {
@@ -11047,7 +11043,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['ddl', 'instance', 'name', 'project'],
-          'providedAttributes' => ['ddl', 'project', 'state']
+          'providedAttributes' => ['project', 'state']
         }
       },
       attributes => {
@@ -11228,7 +11224,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['config', 'name', 'project'],
-          'providedAttributes' => ['labels', 'name', 'num_nodes', 'project', 'state']
+          'providedAttributes' => ['name', 'project', 'state']
         }
       },
       attributes => {
@@ -11465,7 +11461,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['database_version', 'master_instance_name', 'name', 'project', 'region'],
-          'providedAttributes' => ['connection_name', 'database_version', 'first_ip_address', 'ip_address', 'master_instance_name', 'name', 'project', 'region', 'replica_configuration', 'self_link', 'server_ca_cert', 'service_account_email_address']
+          'providedAttributes' => ['connection_name', 'first_ip_address', 'ip_address', 'master_instance_name', 'name', 'project', 'replica_configuration', 'self_link', 'server_ca_cert', 'service_account_email_address']
         }
       },
       attributes => {
@@ -11855,7 +11851,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['host', 'instance', 'name', 'project'],
-          'providedAttributes' => ['host', 'password', 'project']
+          'providedAttributes' => ['project']
         }
       },
       attributes => {
@@ -11902,7 +11898,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'predefined_acl', 'project', 'storage_class'],
-          'providedAttributes' => ['cors', 'encryption', 'force_destroy', 'labels', 'lifecycle_rule', 'location', 'logging', 'predefined_acl', 'project', 'self_link', 'storage_class', 'url', 'versioning', 'website']
+          'providedAttributes' => ['project', 'self_link', 'url']
         }
       },
       attributes => {
@@ -11992,7 +11988,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bucket', 'predefined_acl'],
-          'providedAttributes' => ['default_acl', 'predefined_acl', 'role_entity']
+          'providedAttributes' => ['role_entity']
         }
       },
       attributes => {
@@ -12230,7 +12226,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bucket', 'cache_control', 'content', 'content_disposition', 'content_encoding', 'content_language', 'content_type', 'detect_md5hash', 'name', 'predefined_acl', 'source', 'storage_class'],
-          'providedAttributes' => ['cache_control', 'content', 'content_disposition', 'content_encoding', 'content_language', 'content_type', 'crc32c', 'detect_md5hash', 'md5hash', 'predefined_acl', 'source', 'storage_class']
+          'providedAttributes' => ['content_type', 'crc32c', 'md5hash', 'storage_class']
         }
       },
       attributes => {
@@ -12332,7 +12328,7 @@ type TerraformGoogle = TypeSet[{
     Google_storage_default_object_access_control => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['domain', 'email', 'entity_id', 'generation', 'object', 'project_team']
+          'providedAttributes' => ['domain', 'email', 'entity_id', 'generation', 'project_team']
         }
       },
       attributes => {
@@ -12442,7 +12438,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bucket', 'custom_attributes', 'event_types', 'object_name_prefix', 'payload_format', 'topic'],
-          'providedAttributes' => ['custom_attributes', 'event_types', 'object_name_prefix', 'self_link']
+          'providedAttributes' => ['self_link']
         }
       },
       attributes => {
@@ -12562,7 +12558,7 @@ type TerraformGoogle = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['bucket', 'object', 'predefined_acl'],
-          'providedAttributes' => ['predefined_acl', 'role_entity']
+          'providedAttributes' => ['role_entity']
         }
       },
       attributes => {

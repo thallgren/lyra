@@ -22,7 +22,6 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformKubernetes::Kubernetes_cluster_role_bindingHandler", bridge.NewTFHandler(p, "kubernetes_cluster_role_binding", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformKubernetes", sb.BuildResource(&Kubernetes_config_map{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("data")
 	}))
 	sb.RegisterHandler("TerraformKubernetes::Kubernetes_config_mapHandler", bridge.NewTFHandler(p, "kubernetes_config_map", evs[0]), evs[0])
 
@@ -35,7 +34,6 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformKubernetes::Kubernetes_horizontal_pod_autoscalerHandler", bridge.NewTFHandler(p, "kubernetes_horizontal_pod_autoscaler", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformKubernetes", sb.BuildResource(&Kubernetes_limit_range{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("spec")
 	}))
 	sb.RegisterHandler("TerraformKubernetes::Kubernetes_limit_rangeHandler", bridge.NewTFHandler(p, "kubernetes_limit_range", evs[0]), evs[0])
 
@@ -52,7 +50,6 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformKubernetes::Kubernetes_persistent_volumeHandler", bridge.NewTFHandler(p, "kubernetes_persistent_volume", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformKubernetes", sb.BuildResource(&Kubernetes_persistent_volume_claim{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("wait_until_bound")
 		b.ImmutableAttributes("spec")
 	}))
 	sb.RegisterHandler("TerraformKubernetes::Kubernetes_persistent_volume_claimHandler", bridge.NewTFHandler(p, "kubernetes_persistent_volume_claim", evs[0]), evs[0])
@@ -66,7 +63,6 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformKubernetes::Kubernetes_replication_controllerHandler", bridge.NewTFHandler(p, "kubernetes_replication_controller", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformKubernetes", sb.BuildResource(&Kubernetes_resource_quota{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("spec")
 	}))
 	sb.RegisterHandler("TerraformKubernetes::Kubernetes_resource_quotaHandler", bridge.NewTFHandler(p, "kubernetes_resource_quota", evs[0]), evs[0])
 
@@ -80,7 +76,6 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformKubernetes::Kubernetes_role_bindingHandler", bridge.NewTFHandler(p, "kubernetes_role_binding", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformKubernetes", sb.BuildResource(&Kubernetes_secret{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("data", "type")
 		b.ImmutableAttributes("type")
 	}))
 	sb.RegisterHandler("TerraformKubernetes::Kubernetes_secretHandler", bridge.NewTFHandler(p, "kubernetes_secret", evs[0]), evs[0])
@@ -91,7 +86,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformKubernetes::Kubernetes_serviceHandler", bridge.NewTFHandler(p, "kubernetes_service", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformKubernetes", sb.BuildResource(&Kubernetes_service_account{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("automount_service_account_token", "default_secret_name", "image_pull_secret", "secret")
+		b.ProvidedAttributes("default_secret_name")
 	}))
 	sb.RegisterHandler("TerraformKubernetes::Kubernetes_service_accountHandler", bridge.NewTFHandler(p, "kubernetes_service_account", evs[0]), evs[0])
 
@@ -101,7 +96,6 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformKubernetes::Kubernetes_stateful_setHandler", bridge.NewTFHandler(p, "kubernetes_stateful_set", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformKubernetes", sb.BuildResource(&Kubernetes_storage_class{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("parameters", "reclaim_policy", "volume_binding_mode")
 		b.ImmutableAttributes("parameters", "storage_provisioner")
 	}))
 	sb.RegisterHandler("TerraformKubernetes::Kubernetes_storage_classHandler", bridge.NewTFHandler(p, "kubernetes_storage_class", evs[0]), evs[0])

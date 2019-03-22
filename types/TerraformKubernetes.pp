@@ -102,11 +102,6 @@ type TerraformKubernetes = TypeSet[{
       }
     },
     Kubernetes_config_map => {
-      annotations => {
-        Lyra::Resource => {
-          'providedAttributes' => ['data']
-        }
-      },
       attributes => {
         'kubernetes_config_map_id' => {
           'annotations' => {
@@ -2413,11 +2408,6 @@ type TerraformKubernetes = TypeSet[{
       }
     },
     Kubernetes_limit_range => {
-      annotations => {
-        Lyra::Resource => {
-          'providedAttributes' => ['spec']
-        }
-      },
       attributes => {
         'kubernetes_limit_range_id' => {
           'annotations' => {
@@ -2948,8 +2938,7 @@ type TerraformKubernetes = TypeSet[{
     Kubernetes_persistent_volume_claim => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['spec'],
-          'providedAttributes' => ['wait_until_bound']
+          'immutableAttributes' => ['spec']
         }
       },
       attributes => {
@@ -9585,11 +9574,6 @@ type TerraformKubernetes = TypeSet[{
       }
     },
     Kubernetes_resource_quota => {
-      annotations => {
-        Lyra::Resource => {
-          'providedAttributes' => ['spec']
-        }
-      },
       attributes => {
         'kubernetes_resource_quota_id' => {
           'annotations' => {
@@ -9841,8 +9825,7 @@ type TerraformKubernetes = TypeSet[{
     Kubernetes_secret => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['type'],
-          'providedAttributes' => ['data', 'type']
+          'immutableAttributes' => ['type']
         }
       },
       attributes => {
@@ -9961,7 +9944,7 @@ type TerraformKubernetes = TypeSet[{
     Kubernetes_service_account => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['automount_service_account_token', 'default_secret_name', 'image_pull_secret', 'secret']
+          'providedAttributes' => ['default_secret_name']
         }
       },
       attributes => {
@@ -12418,8 +12401,7 @@ type TerraformKubernetes = TypeSet[{
     Kubernetes_storage_class => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['parameters', 'storage_provisioner'],
-          'providedAttributes' => ['parameters', 'reclaim_policy', 'volume_binding_mode']
+          'immutableAttributes' => ['parameters', 'storage_provisioner']
         }
       },
       attributes => {

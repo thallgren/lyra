@@ -2,12 +2,11 @@ package bridge
 
 import (
 	"fmt"
-	"strconv"
-	"strings"
-
 	"github.com/lyraproj/lyra/pkg/logger"
 	"github.com/lyraproj/pcore/px"
 	"github.com/lyraproj/pcore/types"
+	"strings"
+	"time"
 )
 
 // TerraformMarshal converts a PuppetObject into its Terraform representation
@@ -37,20 +36,23 @@ func TerraformMarshal(c px.Context, s px.PuppetObject) map[string]interface{} {
 	return m
 }
 
-// Why does this convert all primitives to strings? Is Terraform incapable of using
-// bool, int, and float ?
 func marshal(c px.Context, v px.Value) interface{} {
+	if v.Equals(px.Undef, nil) {
+		return nil
+	}
 	switch v := v.(type) {
 	case px.PuppetObject:
 		return TerraformMarshal(c, v)
 	case px.StringValue:
 		return v.String()
 	case px.Integer:
-		return strconv.FormatInt(v.Int(), 10)
+		return v.Int()
 	case px.Boolean:
-		return strconv.FormatBool(v.Bool())
+		return v.Bool()
 	case px.Float:
-		return strconv.FormatFloat(v.Float(), 'G', -1, 64)
+		return v.Float()
+	case *types.Timestamp:
+		return v.Format(time.RFC3339)
 	case px.OrderedMap:
 		nested := map[string]interface{}{}
 		v.EachPair(func(k, v px.Value) { nested[k.String()] = marshal(c, v) })

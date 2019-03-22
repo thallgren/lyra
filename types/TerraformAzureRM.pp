@@ -10,7 +10,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['additional_location', 'certificate', 'gateway_regional_url', 'gateway_url', 'hostname_configuration', 'identity', 'management_api_url', 'notification_sender_email', 'portal_url', 'public_ip_addresses', 'scm_url', 'security', 'tags']
+          'providedAttributes' => ['gateway_regional_url', 'gateway_url', 'hostname_configuration', 'management_api_url', 'notification_sender_email', 'portal_url', 'public_ip_addresses', 'scm_url', 'security', 'tags']
         }
       },
       attributes => {
@@ -280,7 +280,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['app_service_plan_id', 'location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['app_settings', 'client_affinity_enabled', 'connection_string', 'default_site_hostname', 'enabled', 'https_only', 'identity', 'outbound_ip_addresses', 'possible_outbound_ip_addresses', 'site_config', 'site_credential', 'source_control', 'tags']
+          'providedAttributes' => ['app_settings', 'client_affinity_enabled', 'connection_string', 'default_site_hostname', 'identity', 'outbound_ip_addresses', 'possible_outbound_ip_addresses', 'site_config', 'site_credential', 'source_control', 'tags']
         }
       },
       attributes => {
@@ -459,7 +459,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['app_service_environment_id', 'kind', 'location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['app_service_environment_id', 'kind', 'maximum_number_of_workers', 'per_site_scaling', 'properties', 'reserved', 'tags']
+          'providedAttributes' => ['app_service_environment_id', 'maximum_number_of_workers', 'per_site_scaling', 'properties', 'reserved', 'tags']
         }
       },
       attributes => {
@@ -663,7 +663,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['app_service_name', 'app_service_plan_id', 'identity', 'location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['app_settings', 'client_affinity_enabled', 'connection_string', 'default_site_hostname', 'enabled', 'https_only', 'identity', 'site_config', 'tags']
+          'providedAttributes' => ['app_settings', 'client_affinity_enabled', 'connection_string', 'default_site_hostname', 'site_config', 'tags']
         }
       },
       attributes => {
@@ -870,7 +870,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['authentication_certificate', 'disabled_ssl_protocols', 'probe', 'ssl_certificate', 'tags', 'url_path_map', 'waf_configuration']
+          'providedAttributes' => ['tags']
         }
       },
       attributes => {
@@ -1283,7 +1283,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['application_insights_id', 'name', 'read_permissions', 'write_permissions'],
-          'providedAttributes' => ['api_key', 'read_permissions', 'write_permissions']
+          'providedAttributes' => ['api_key']
         }
       },
       attributes => {
@@ -1430,8 +1430,7 @@ type TerraformAzureRM = TypeSet[{
     Azurerm_automation_credential => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['account_name', 'name', 'resource_group_name'],
-          'providedAttributes' => ['description']
+          'immutableAttributes' => ['account_name', 'name', 'resource_group_name']
         }
       },
       attributes => {
@@ -1473,7 +1472,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['automation_account_name', 'location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['description', 'log_verbose', 'state']
+          'providedAttributes' => ['state']
         }
       },
       attributes => {
@@ -1615,7 +1614,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['account_name', 'location', 'name', 'resource_group_name', 'runbook_type'],
-          'providedAttributes' => ['content', 'description', 'tags']
+          'providedAttributes' => ['content', 'tags']
         }
       },
       attributes => {
@@ -1687,7 +1686,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'resource_group_name'],
-          'providedAttributes' => ['account_name', 'automation_account_name', 'description', 'expiry_time', 'interval', 'month_days', 'monthly_occurrence', 'start_time', 'timezone', 'week_days']
+          'providedAttributes' => ['account_name', 'automation_account_name', 'expiry_time', 'interval', 'start_time']
         }
       },
       attributes => {
@@ -1769,7 +1768,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'resource_group_name', 'target_resource_id'],
-          'providedAttributes' => ['enabled', 'notification', 'tags']
+          'providedAttributes' => ['tags']
         }
       },
       attributes => {
@@ -1928,7 +1927,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'managed', 'name', 'platform_fault_domain_count', 'platform_update_domain_count', 'resource_group_name'],
-          'providedAttributes' => ['managed', 'platform_fault_domain_count', 'platform_update_domain_count', 'tags']
+          'providedAttributes' => ['tags']
         }
       },
       attributes => {
@@ -1979,7 +1978,7 @@ type TerraformAzureRM = TypeSet[{
     Azurerm_azuread_application => {
       annotations => {
         Lyra::Resource => {
-          'providedAttributes' => ['application_id', 'available_to_other_tenants', 'homepage', 'identifier_uris', 'oauth2_allow_implicit_flow', 'reply_urls']
+          'providedAttributes' => ['application_id', 'homepage', 'identifier_uris', 'reply_urls']
         }
       },
       attributes => {
@@ -2119,7 +2118,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['pool_allocation_mode', 'storage_account_id', 'tags']
+          'providedAttributes' => ['storage_account_id', 'tags']
         }
       },
       attributes => {
@@ -2166,8 +2165,7 @@ type TerraformAzureRM = TypeSet[{
     Azurerm_batch_pool => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['account_name', 'display_name', 'name', 'node_agent_sku_id', 'resource_group_name', 'storage_image_reference', 'vm_size'],
-          'providedAttributes' => ['auto_scale', 'display_name', 'fixed_scale', 'start_task', 'stop_pending_resize_operation']
+          'immutableAttributes' => ['account_name', 'display_name', 'name', 'node_agent_sku_id', 'resource_group_name', 'storage_image_reference', 'vm_size']
         }
       },
       attributes => {
@@ -2305,7 +2303,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'origin', 'profile_name', 'resource_group_name'],
-          'providedAttributes' => ['content_types_to_compress', 'geo_filter', 'host_name', 'is_compression_enabled', 'is_http_allowed', 'is_https_allowed', 'optimization_type', 'origin_host_header', 'origin_path', 'probe_path', 'querystring_caching_behaviour', 'tags']
+          'providedAttributes' => ['content_types_to_compress', 'host_name', 'origin_host_header', 'origin_path', 'probe_path', 'tags']
         }
       },
       attributes => {
@@ -2505,7 +2503,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['container', 'dns_name_label', 'image_registry_credential', 'ip_address_type', 'location', 'name', 'os_type', 'resource_group_name', 'restart_policy', 'tags'],
-          'providedAttributes' => ['dns_name_label', 'fqdn', 'image_registry_credential', 'ip_address', 'ip_address_type', 'restart_policy', 'tags']
+          'providedAttributes' => ['fqdn', 'ip_address', 'tags']
         }
       },
       attributes => {
@@ -2643,7 +2641,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['admin_enabled', 'admin_password', 'admin_username', 'georeplication_locations', 'login_server', 'sku', 'storage_account', 'storage_account_id', 'tags']
+          'providedAttributes' => ['admin_password', 'admin_username', 'login_server', 'tags']
         }
       },
       attributes => {
@@ -2721,7 +2719,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'orchestration_platform', 'resource_group_name'],
-          'providedAttributes' => ['service_principal', 'tags']
+          'providedAttributes' => ['tags']
         }
       },
       attributes => {
@@ -2824,7 +2822,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['kind', 'location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['capabilities', 'connection_strings', 'enable_automatic_failover', 'enable_multiple_write_locations', 'endpoint', 'failover_policy', 'geo_location', 'ip_range_filter', 'is_virtual_network_filter_enabled', 'kind', 'primary_master_key', 'primary_readonly_master_key', 'read_endpoints', 'secondary_master_key', 'secondary_readonly_master_key', 'tags', 'virtual_network_rule', 'write_endpoints']
+          'providedAttributes' => ['connection_strings', 'endpoint', 'geo_location', 'primary_master_key', 'primary_readonly_master_key', 'read_endpoints', 'secondary_master_key', 'secondary_readonly_master_key', 'tags', 'write_endpoints']
         }
       },
       attributes => {
@@ -2981,7 +2979,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['default_store_account_name', 'location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['tags', 'tier']
+          'providedAttributes' => ['tags']
         }
       },
       attributes => {
@@ -3063,7 +3061,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['encryption_state', 'encryption_type', 'location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['encryption_state', 'encryption_type', 'endpoint', 'firewall_allow_azure_ips', 'firewall_state', 'tags', 'tier']
+          'providedAttributes' => ['encryption_type', 'endpoint', 'tags']
         }
       },
       attributes => {
@@ -3248,7 +3246,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['artifacts_storage_account_id', 'default_premium_storage_account_id', 'default_storage_account_id', 'key_vault_id', 'premium_data_disk_storage_account_id', 'storage_type', 'tags', 'unique_identifier']
+          'providedAttributes' => ['artifacts_storage_account_id', 'default_premium_storage_account_id', 'default_storage_account_id', 'key_vault_id', 'premium_data_disk_storage_account_id', 'tags', 'unique_identifier']
         }
       },
       attributes => {
@@ -3316,7 +3314,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['disallow_public_ip_address', 'inbound_nat_rule', 'lab_name', 'lab_subnet_name', 'lab_virtual_network_id', 'location', 'name', 'password', 'resource_group_name', 'size', 'ssh_key', 'username'],
-          'providedAttributes' => ['allow_claim', 'disallow_public_ip_address', 'fqdn', 'inbound_nat_rule', 'notes', 'password', 'ssh_key', 'tags', 'unique_identifier']
+          'providedAttributes' => ['fqdn', 'tags', 'unique_identifier']
         }
       },
       attributes => {
@@ -3413,7 +3411,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['evaluator_type', 'lab_name', 'name', 'policy_set_name', 'resource_group_name'],
-          'providedAttributes' => ['description', 'fact_data', 'tags']
+          'providedAttributes' => ['tags']
         }
       },
       attributes => {
@@ -3464,7 +3462,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['lab_name', 'name', 'resource_group_name'],
-          'providedAttributes' => ['description', 'subnet', 'tags', 'unique_identifier']
+          'providedAttributes' => ['subnet', 'tags', 'unique_identifier']
         }
       },
       attributes => {
@@ -3532,7 +3530,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['disallow_public_ip_address', 'inbound_nat_rule', 'lab_name', 'lab_subnet_name', 'lab_virtual_network_id', 'location', 'name', 'password', 'resource_group_name', 'size', 'username'],
-          'providedAttributes' => ['allow_claim', 'disallow_public_ip_address', 'fqdn', 'inbound_nat_rule', 'notes', 'tags', 'unique_identifier']
+          'providedAttributes' => ['fqdn', 'tags', 'unique_identifier']
         }
       },
       attributes => {
@@ -3809,7 +3807,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'resource_group_name'],
-          'providedAttributes' => ['records', 'tags']
+          'providedAttributes' => ['tags']
         }
       },
       attributes => {
@@ -4096,7 +4094,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'resource_group_name'],
-          'providedAttributes' => ['max_number_of_record_sets', 'name_servers', 'number_of_record_sets', 'registration_virtual_network_ids', 'resolution_virtual_network_ids', 'tags', 'zone_type']
+          'providedAttributes' => ['max_number_of_record_sets', 'name_servers', 'number_of_record_sets', 'tags']
         }
       },
       attributes => {
@@ -4211,7 +4209,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'namespace_name', 'partition_count', 'resource_group_name'],
-          'providedAttributes' => ['capture_description', 'location', 'partition_ids']
+          'providedAttributes' => ['partition_ids']
         }
       },
       attributes => {
@@ -4261,7 +4259,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['eventhub_name', 'location', 'name', 'namespace_name', 'resource_group_name'],
-          'providedAttributes' => ['listen', 'location', 'manage', 'primary_connection_string', 'primary_key', 'secondary_connection_string', 'secondary_key', 'send']
+          'providedAttributes' => ['primary_connection_string', 'primary_key', 'secondary_connection_string', 'secondary_key']
         }
       },
       attributes => {
@@ -4352,8 +4350,7 @@ type TerraformAzureRM = TypeSet[{
     Azurerm_eventhub_consumer_group => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['eventhub_name', 'location', 'name', 'namespace_name', 'resource_group_name'],
-          'providedAttributes' => ['location', 'user_metadata']
+          'immutableAttributes' => ['eventhub_name', 'location', 'name', 'namespace_name', 'resource_group_name']
         }
       },
       attributes => {
@@ -4398,7 +4395,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['auto_inflate_enabled', 'capacity', 'default_primary_connection_string', 'default_primary_key', 'default_secondary_connection_string', 'default_secondary_key', 'kafka_enabled', 'maximum_throughput_units', 'tags']
+          'providedAttributes' => ['default_primary_connection_string', 'default_primary_key', 'default_secondary_connection_string', 'default_secondary_key', 'maximum_throughput_units', 'tags']
         }
       },
       attributes => {
@@ -4471,7 +4468,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'namespace_name', 'resource_group_name'],
-          'providedAttributes' => ['listen', 'location', 'manage', 'primary_connection_string', 'primary_key', 'secondary_connection_string', 'secondary_key', 'send']
+          'providedAttributes' => ['primary_connection_string', 'primary_key', 'secondary_connection_string', 'secondary_key']
         }
       },
       attributes => {
@@ -4539,7 +4536,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'peering_location', 'resource_group_name', 'service_provider_name'],
-          'providedAttributes' => ['allow_classic_operations', 'service_key', 'service_provider_provisioning_state', 'tags']
+          'providedAttributes' => ['service_key', 'service_provider_provisioning_state', 'tags']
         }
       },
       attributes => {
@@ -4639,7 +4636,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['express_route_circuit_name', 'resource_group_name'],
-          'providedAttributes' => ['azure_asn', 'microsoft_peering_config', 'peer_asn', 'primary_azure_port', 'secondary_azure_port', 'shared_key']
+          'providedAttributes' => ['azure_asn', 'peer_asn', 'primary_azure_port', 'secondary_azure_port']
         }
       },
       attributes => {
@@ -4892,7 +4889,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['app_service_plan_id', 'location', 'name', 'resource_group_name', 'storage_connection_string'],
-          'providedAttributes' => ['app_settings', 'client_affinity_enabled', 'connection_string', 'default_hostname', 'enable_builtin_logging', 'enabled', 'https_only', 'identity', 'outbound_ip_addresses', 'site_config', 'site_credential', 'tags', 'version']
+          'providedAttributes' => ['client_affinity_enabled', 'connection_string', 'default_hostname', 'identity', 'outbound_ip_addresses', 'site_config', 'site_credential', 'tags']
         }
       },
       attributes => {
@@ -5030,7 +5027,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'os_disk', 'resource_group_name'],
-          'providedAttributes' => ['data_disk', 'os_disk', 'source_virtual_machine_id', 'tags']
+          'providedAttributes' => ['tags']
         }
       },
       attributes => {
@@ -5134,7 +5131,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['endpoint', 'event_hub_events_endpoint', 'event_hub_events_path', 'event_hub_operations_endpoint', 'event_hub_operations_path', 'hostname', 'route', 'shared_access_policy', 'tags', 'type']
+          'providedAttributes' => ['event_hub_events_endpoint', 'event_hub_events_path', 'event_hub_operations_endpoint', 'event_hub_operations_path', 'hostname', 'shared_access_policy', 'tags', 'type']
         }
       },
       attributes => {
@@ -5313,7 +5310,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['access_policy', 'enabled_for_deployment', 'enabled_for_disk_encryption', 'enabled_for_template_deployment', 'network_acls', 'tags', 'vault_uri']
+          'providedAttributes' => ['access_policy', 'tags', 'vault_uri']
         }
       },
       attributes => {
@@ -5378,8 +5375,7 @@ type TerraformAzureRM = TypeSet[{
     Azurerm_key_vault_access_policy => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['application_id', 'object_id', 'resource_group_name', 'tenant_id', 'vault_name'],
-          'providedAttributes' => ['application_id', 'certificate_permissions', 'key_permissions', 'secret_permissions']
+          'immutableAttributes' => ['application_id', 'object_id', 'resource_group_name', 'tenant_id', 'vault_name']
         }
       },
       attributes => {
@@ -5454,7 +5450,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['certificate', 'certificate_policy', 'name', 'vault_uri'],
-          'providedAttributes' => ['certificate', 'certificate_data', 'secret_id', 'tags', 'thumbprint', 'version']
+          'providedAttributes' => ['certificate_data', 'secret_id', 'tags', 'thumbprint', 'version']
         }
       },
       attributes => {
@@ -5678,7 +5674,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'vault_uri'],
-          'providedAttributes' => ['content_type', 'tags', 'version']
+          'providedAttributes' => ['tags', 'version']
         }
       },
       attributes => {
@@ -5731,7 +5727,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['dns_prefix', 'location', 'name', 'network_profile', 'resource_group_name', 'role_based_access_control'],
-          'providedAttributes' => ['addon_profile', 'fqdn', 'kube_admin_config', 'kube_admin_config_raw', 'kube_config', 'kube_config_raw', 'kubernetes_version', 'linux_profile', 'network_profile', 'node_resource_group', 'role_based_access_control', 'tags']
+          'providedAttributes' => ['addon_profile', 'fqdn', 'kube_admin_config', 'kube_admin_config_raw', 'kube_config', 'kube_config_raw', 'kubernetes_version', 'network_profile', 'node_resource_group', 'role_based_access_control', 'tags']
         }
       },
       attributes => {
@@ -6003,7 +5999,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'resource_group_name', 'sku'],
-          'providedAttributes' => ['frontend_ip_configuration', 'private_ip_address', 'private_ip_addresses', 'sku', 'tags']
+          'providedAttributes' => ['private_ip_address', 'private_ip_addresses', 'tags']
         }
       },
       attributes => {
@@ -6059,7 +6055,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['loadbalancer_id', 'location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['backend_ip_configurations', 'load_balancing_rules', 'location']
+          'providedAttributes' => ['backend_ip_configurations', 'load_balancing_rules']
         }
       },
       attributes => {
@@ -6140,7 +6136,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['loadbalancer_id', 'location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['frontend_ip_configuration_id', 'location']
+          'providedAttributes' => ['frontend_ip_configuration_id']
         }
       },
       attributes => {
@@ -6189,7 +6185,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['loadbalancer_id', 'location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['backend_ip_configuration_id', 'enable_floating_ip', 'frontend_ip_configuration_id', 'location']
+          'providedAttributes' => ['backend_ip_configuration_id', 'enable_floating_ip', 'frontend_ip_configuration_id']
         }
       },
       attributes => {
@@ -6245,7 +6241,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['loadbalancer_id', 'location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['interval_in_seconds', 'load_balancer_rules', 'location', 'number_of_probes', 'protocol', 'request_path']
+          'providedAttributes' => ['load_balancer_rules', 'protocol']
         }
       },
       attributes => {
@@ -6306,7 +6302,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['loadbalancer_id', 'location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['backend_address_pool_id', 'enable_floating_ip', 'frontend_ip_configuration_id', 'idle_timeout_in_minutes', 'load_distribution', 'location', 'probe_id']
+          'providedAttributes' => ['backend_address_pool_id', 'frontend_ip_configuration_id', 'idle_timeout_in_minutes', 'load_distribution', 'probe_id']
         }
       },
       attributes => {
@@ -6374,7 +6370,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['bgp_settings', 'tags']
+          'providedAttributes' => ['tags']
         }
       },
       attributes => {
@@ -6543,7 +6539,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['linked_service_name', 'linked_service_properties', 'resource_group_name', 'workspace_name'],
-          'providedAttributes' => ['linked_service_name', 'name', 'tags']
+          'providedAttributes' => ['name', 'tags']
         }
       },
       attributes => {
@@ -6625,8 +6621,7 @@ type TerraformAzureRM = TypeSet[{
     Azurerm_logic_app_action_http => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['logic_app_id', 'name'],
-          'providedAttributes' => ['body', 'headers']
+          'immutableAttributes' => ['logic_app_id', 'name']
         }
       },
       attributes => {
@@ -6705,8 +6700,7 @@ type TerraformAzureRM = TypeSet[{
     Azurerm_logic_app_trigger_http_request => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['logic_app_id', 'name'],
-          'providedAttributes' => ['method', 'relative_path']
+          'immutableAttributes' => ['logic_app_id', 'name']
         }
       },
       attributes => {
@@ -6786,7 +6780,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'resource_group_name', 'workflow_schema', 'workflow_version'],
-          'providedAttributes' => ['access_endpoint', 'parameters', 'tags', 'workflow_schema', 'workflow_version']
+          'providedAttributes' => ['access_endpoint', 'tags']
         }
       },
       attributes => {
@@ -6842,7 +6836,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['create_option', 'image_reference_id', 'location', 'name', 'resource_group_name', 'source_resource_id', 'source_uri', 'zones'],
-          'providedAttributes' => ['disk_size_gb', 'encryption_settings', 'image_reference_id', 'os_type', 'source_resource_id', 'source_uri', 'tags', 'zones']
+          'providedAttributes' => ['disk_size_gb', 'source_uri', 'tags']
         }
       },
       attributes => {
@@ -6937,7 +6931,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['group_id'],
-          'providedAttributes' => ['display_name', 'group_id', 'parent_management_group_id', 'subscription_ids']
+          'providedAttributes' => ['display_name', 'group_id', 'parent_management_group_id']
         }
       },
       attributes => {
@@ -6985,8 +6979,7 @@ type TerraformAzureRM = TypeSet[{
     Azurerm_management_lock => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['lock_level', 'name', 'notes', 'scope'],
-          'providedAttributes' => ['notes']
+          'immutableAttributes' => ['lock_level', 'name', 'notes', 'scope']
         }
       },
       attributes => {
@@ -7134,7 +7127,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['description', 'email_action', 'enabled', 'tags', 'webhook_action']
+          'providedAttributes' => ['description', 'email_action', 'tags', 'webhook_action']
         }
       },
       attributes => {
@@ -7217,7 +7210,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'resource_group_name'],
-          'providedAttributes' => ['email_receiver', 'enabled', 'sms_receiver', 'tags', 'webhook_receiver']
+          'providedAttributes' => ['tags']
         }
       },
       attributes => {
@@ -7292,7 +7285,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'resource_group_name'],
-          'providedAttributes' => ['action', 'description', 'enabled', 'tags']
+          'providedAttributes' => ['tags']
         }
       },
       attributes => {
@@ -7394,8 +7387,7 @@ type TerraformAzureRM = TypeSet[{
     Azurerm_monitor_diagnostic_setting => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['eventhub_authorization_rule_id', 'eventhub_name', 'log_analytics_workspace_id', 'name', 'storage_account_id', 'target_resource_id'],
-          'providedAttributes' => ['eventhub_authorization_rule_id', 'eventhub_name', 'log', 'log_analytics_workspace_id', 'metric', 'storage_account_id']
+          'immutableAttributes' => ['eventhub_authorization_rule_id', 'eventhub_name', 'log_analytics_workspace_id', 'name', 'storage_account_id', 'target_resource_id']
         }
       },
       attributes => {
@@ -7491,8 +7483,7 @@ type TerraformAzureRM = TypeSet[{
     Azurerm_monitor_log_profile => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['name'],
-          'providedAttributes' => ['servicebus_rule_id', 'storage_account_id']
+          'immutableAttributes' => ['name']
         }
       },
       attributes => {
@@ -7546,7 +7537,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'resource_group_name'],
-          'providedAttributes' => ['action', 'auto_mitigate', 'description', 'enabled', 'frequency', 'severity', 'tags', 'window_size']
+          'providedAttributes' => ['tags']
         }
       },
       attributes => {
@@ -7957,7 +7948,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['applied_dns_servers', 'dns_servers', 'enable_accelerated_networking', 'enable_ip_forwarding', 'internal_dns_name_label', 'internal_fqdn', 'mac_address', 'network_security_group_id', 'private_ip_address', 'private_ip_addresses', 'tags', 'virtual_machine_id']
+          'providedAttributes' => ['applied_dns_servers', 'dns_servers', 'internal_dns_name_label', 'internal_fqdn', 'mac_address', 'private_ip_address', 'private_ip_addresses', 'tags', 'virtual_machine_id']
         }
       },
       attributes => {
@@ -8285,8 +8276,7 @@ type TerraformAzureRM = TypeSet[{
     Azurerm_network_security_rule => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['name', 'network_security_group_name', 'resource_group_name'],
-          'providedAttributes' => ['description', 'destination_address_prefix', 'destination_address_prefixes', 'destination_application_security_group_ids', 'destination_port_range', 'destination_port_ranges', 'source_address_prefix', 'source_address_prefixes', 'source_application_security_group_ids', 'source_port_range', 'source_port_ranges']
+          'immutableAttributes' => ['name', 'network_security_group_name', 'resource_group_name']
         }
       },
       attributes => {
@@ -8409,8 +8399,7 @@ type TerraformAzureRM = TypeSet[{
     Azurerm_notification_hub => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['location', 'name', 'namespace_name', 'resource_group_name'],
-          'providedAttributes' => ['apns_credential', 'gcm_credential']
+          'immutableAttributes' => ['location', 'name', 'namespace_name', 'resource_group_name']
         }
       },
       attributes => {
@@ -8464,7 +8453,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'namespace_name', 'notification_hub_name', 'resource_group_name'],
-          'providedAttributes' => ['listen', 'manage', 'primary_access_key', 'secondary_access_key', 'send']
+          'providedAttributes' => ['primary_access_key', 'secondary_access_key']
         }
       },
       attributes => {
@@ -8526,7 +8515,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['enabled', 'servicebus_endpoint']
+          'providedAttributes' => ['servicebus_endpoint']
         }
       },
       attributes => {
@@ -8576,8 +8565,7 @@ type TerraformAzureRM = TypeSet[{
     Azurerm_packet_capture => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['filter', 'maximum_bytes_per_packet', 'maximum_bytes_per_session', 'maximum_capture_duration', 'name', 'network_watcher_name', 'resource_group_name', 'storage_location', 'target_resource_id'],
-          'providedAttributes' => ['filter', 'maximum_bytes_per_packet', 'maximum_bytes_per_session', 'maximum_capture_duration']
+          'immutableAttributes' => ['filter', 'maximum_bytes_per_packet', 'maximum_bytes_per_session', 'maximum_capture_duration', 'name', 'network_watcher_name', 'resource_group_name', 'storage_location', 'target_resource_id']
         }
       },
       attributes => {
@@ -8668,7 +8656,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'parameters', 'policy_definition_id', 'scope'],
-          'providedAttributes' => ['description', 'display_name', 'identity', 'location', 'not_scopes', 'parameters']
+          'providedAttributes' => ['identity']
         }
       },
       attributes => {
@@ -8743,8 +8731,7 @@ type TerraformAzureRM = TypeSet[{
     Azurerm_policy_definition => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['management_group_id', 'mode', 'name', 'policy_type'],
-          'providedAttributes' => ['description', 'management_group_id', 'metadata', 'parameters', 'policy_rule']
+          'immutableAttributes' => ['management_group_id', 'mode', 'name', 'policy_type']
         }
       },
       attributes => {
@@ -8800,8 +8787,7 @@ type TerraformAzureRM = TypeSet[{
     Azurerm_policy_set_definition => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['management_group_id', 'name', 'policy_type'],
-          'providedAttributes' => ['description', 'management_group_id', 'metadata', 'parameters', 'policy_definitions']
+          'immutableAttributes' => ['management_group_id', 'name', 'policy_type']
         }
       },
       attributes => {
@@ -9037,8 +9023,7 @@ type TerraformAzureRM = TypeSet[{
     Azurerm_postgresql_virtual_network_rule => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['name', 'resource_group_name', 'server_name'],
-          'providedAttributes' => ['ignore_missing_vnet_service_endpoint']
+          'immutableAttributes' => ['name', 'resource_group_name', 'server_name']
         }
       },
       attributes => {
@@ -9079,7 +9064,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['ip_version', 'location', 'name', 'resource_group_name', 'sku', 'zones'],
-          'providedAttributes' => ['allocation_method', 'domain_name_label', 'fqdn', 'idle_timeout_in_minutes', 'ip_address', 'ip_version', 'public_ip_address_allocation', 'reverse_fqdn', 'sku', 'tags', 'zones']
+          'providedAttributes' => ['allocation_method', 'fqdn', 'ip_address', 'public_ip_address_allocation', 'tags']
         }
       },
       attributes => {
@@ -9200,7 +9185,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'recovery_vault_name', 'resource_group_name'],
-          'providedAttributes' => ['retention_daily', 'retention_monthly', 'retention_weekly', 'retention_yearly', 'tags', 'timezone']
+          'providedAttributes' => ['tags']
         }
       },
       attributes => {
@@ -9338,7 +9323,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'private_static_ip_address', 'resource_group_name', 'subnet_id', 'zones'],
-          'providedAttributes' => ['enable_non_ssl_port', 'hostname', 'patch_schedule', 'port', 'primary_access_key', 'private_static_ip_address', 'secondary_access_key', 'shard_count', 'ssl_port', 'subnet_id', 'tags', 'zones']
+          'providedAttributes' => ['hostname', 'port', 'primary_access_key', 'private_static_ip_address', 'secondary_access_key', 'ssl_port', 'tags']
         }
       },
       attributes => {
@@ -9664,7 +9649,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['role_definition_id', 'scope'],
-          'providedAttributes' => ['description', 'role_definition_id']
+          'providedAttributes' => ['role_definition_id']
         }
       },
       attributes => {
@@ -9728,8 +9713,7 @@ type TerraformAzureRM = TypeSet[{
     Azurerm_route => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['name', 'resource_group_name', 'route_table_name'],
-          'providedAttributes' => ['next_hop_in_ip_address']
+          'immutableAttributes' => ['name', 'resource_group_name', 'route_table_name']
         }
       },
       attributes => {
@@ -9771,7 +9755,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['disable_bgp_route_propagation', 'route', 'subnets', 'tags']
+          'providedAttributes' => ['route', 'subnets', 'tags']
         }
       },
       attributes => {
@@ -9834,7 +9818,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['job_collection_name', 'name', 'resource_group_name'],
-          'providedAttributes' => ['action_storage_queue', 'action_web', 'error_action_storage_queue', 'error_action_web', 'recurrence', 'retry', 'start_time', 'state']
+          'providedAttributes' => ['start_time', 'state']
         }
       },
       attributes => {
@@ -9971,7 +9955,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['quota', 'state', 'tags']
+          'providedAttributes' => ['tags']
         }
       },
       attributes => {
@@ -10306,7 +10290,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['azure_active_directory', 'diagnostics_config', 'location', 'management_endpoint', 'name', 'resource_group_name', 'vm_image'],
-          'providedAttributes' => ['add_on_features', 'azure_active_directory', 'certificate', 'client_certificate_thumbprint', 'cluster_code_version', 'cluster_endpoint', 'diagnostics_config', 'fabric_settings', 'reverse_proxy_certificate', 'tags']
+          'providedAttributes' => ['cluster_code_version', 'cluster_endpoint', 'tags']
         }
       },
       attributes => {
@@ -10475,7 +10459,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'resource_group_name', 'sku'],
-          'providedAttributes' => ['capacity', 'default_primary_connection_string', 'default_primary_key', 'default_secondary_connection_string', 'default_secondary_key', 'tags']
+          'providedAttributes' => ['default_primary_connection_string', 'default_primary_key', 'default_secondary_connection_string', 'default_secondary_key', 'tags']
         }
       },
       attributes => {
@@ -10536,7 +10520,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'namespace_name', 'resource_group_name'],
-          'providedAttributes' => ['listen', 'manage', 'primary_connection_string', 'primary_key', 'secondary_connection_string', 'secondary_key', 'send']
+          'providedAttributes' => ['primary_connection_string', 'primary_key', 'secondary_connection_string', 'secondary_key']
         }
       },
       attributes => {
@@ -10600,7 +10584,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['enable_partitioning', 'location', 'name', 'namespace_name', 'requires_duplicate_detection', 'requires_session', 'resource_group_name'],
-          'providedAttributes' => ['auto_delete_on_idle', 'dead_lettering_on_message_expiration', 'default_message_ttl', 'duplicate_detection_history_time_window', 'enable_batched_operations', 'enable_express', 'enable_partitioning', 'location', 'lock_duration', 'max_delivery_count', 'max_size_in_megabytes', 'requires_duplicate_detection', 'requires_session', 'support_ordering']
+          'providedAttributes' => ['auto_delete_on_idle', 'default_message_ttl', 'duplicate_detection_history_time_window', 'lock_duration', 'max_size_in_megabytes']
         }
       },
       attributes => {
@@ -10692,7 +10676,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'namespace_name', 'queue_name', 'resource_group_name'],
-          'providedAttributes' => ['listen', 'manage', 'primary_connection_string', 'primary_key', 'secondary_connection_string', 'secondary_key', 'send']
+          'providedAttributes' => ['primary_connection_string', 'primary_key', 'secondary_connection_string', 'secondary_key']
         }
       },
       attributes => {
@@ -10757,7 +10741,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'namespace_name', 'requires_session', 'resource_group_name', 'topic_name'],
-          'providedAttributes' => ['auto_delete_on_idle', 'dead_lettering_on_filter_evaluation_exceptions', 'dead_lettering_on_message_expiration', 'default_message_ttl', 'enable_batched_operations', 'forward_to', 'location', 'lock_duration', 'requires_session']
+          'providedAttributes' => ['auto_delete_on_idle', 'default_message_ttl', 'lock_duration']
         }
       },
       attributes => {
@@ -10830,8 +10814,7 @@ type TerraformAzureRM = TypeSet[{
     Azurerm_servicebus_subscription_rule => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['name', 'namespace_name', 'resource_group_name', 'subscription_name', 'topic_name'],
-          'providedAttributes' => ['action', 'correlation_filter', 'sql_filter']
+          'immutableAttributes' => ['name', 'namespace_name', 'resource_group_name', 'subscription_name', 'topic_name']
         }
       },
       attributes => {
@@ -10918,7 +10901,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['enable_partitioning', 'location', 'name', 'namespace_name', 'requires_duplicate_detection', 'resource_group_name'],
-          'providedAttributes' => ['auto_delete_on_idle', 'default_message_ttl', 'duplicate_detection_history_time_window', 'enable_batched_operations', 'enable_express', 'enable_filtering_messages_before_publishing', 'enable_partitioning', 'location', 'max_size_in_megabytes', 'requires_duplicate_detection', 'status', 'support_ordering']
+          'providedAttributes' => ['auto_delete_on_idle', 'default_message_ttl', 'duplicate_detection_history_time_window', 'max_size_in_megabytes']
         }
       },
       attributes => {
@@ -11002,7 +10985,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'namespace_name', 'resource_group_name', 'topic_name'],
-          'providedAttributes' => ['listen', 'manage', 'primary_connection_string', 'primary_key', 'secondary_connection_string', 'secondary_key', 'send']
+          'providedAttributes' => ['primary_connection_string', 'primary_key', 'secondary_connection_string', 'secondary_key']
         }
       },
       attributes => {
@@ -11067,7 +11050,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['gallery_name', 'location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['description', 'eula', 'privacy_statement_uri', 'release_note_uri', 'tags']
+          'providedAttributes' => ['tags']
         }
       },
       attributes => {
@@ -11126,7 +11109,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['description', 'tags', 'unique_name']
+          'providedAttributes' => ['tags', 'unique_name']
         }
       },
       attributes => {
@@ -11181,7 +11164,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['gallery_name', 'image_name', 'location', 'managed_image_id', 'name', 'resource_group_name'],
-          'providedAttributes' => ['exclude_from_latest', 'tags']
+          'providedAttributes' => ['tags']
         }
       },
       attributes => {
@@ -11298,7 +11281,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'resource_group_name', 'source_resource_id', 'source_uri', 'storage_account_id'],
-          'providedAttributes' => ['disk_size_gb', 'encryption_settings', 'source_resource_id', 'source_uri', 'storage_account_id', 'tags']
+          'providedAttributes' => ['disk_size_gb', 'tags']
         }
       },
       attributes => {
@@ -11421,7 +11404,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['collation', 'location', 'name', 'resource_group_name', 'server_name'],
-          'providedAttributes' => ['collation', 'create_mode', 'creation_date', 'default_secondary_location', 'edition', 'elastic_pool_name', 'encryption', 'import', 'max_size_bytes', 'requested_service_objective_id', 'requested_service_objective_name', 'restore_point_in_time', 'source_database_deletion_date', 'source_database_id', 'tags', 'threat_detection_policy']
+          'providedAttributes' => ['collation', 'creation_date', 'default_secondary_location', 'edition', 'elastic_pool_name', 'encryption', 'max_size_bytes', 'requested_service_objective_id', 'requested_service_objective_name', 'restore_point_in_time', 'source_database_deletion_date', 'source_database_id', 'tags', 'threat_detection_policy']
         }
       },
       attributes => {
@@ -11714,8 +11697,7 @@ type TerraformAzureRM = TypeSet[{
     Azurerm_sql_virtual_network_rule => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['name', 'resource_group_name', 'server_name'],
-          'providedAttributes' => ['ignore_missing_vnet_service_endpoint']
+          'immutableAttributes' => ['name', 'resource_group_name', 'server_name']
         }
       },
       attributes => {
@@ -11756,7 +11738,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['account_kind', 'account_tier', 'location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['access_tier', 'account_encryption_source', 'account_kind', 'account_type', 'custom_domain', 'enable_blob_encryption', 'enable_file_encryption', 'enable_https_traffic_only', 'identity', 'network_rules', 'primary_access_key', 'primary_blob_connection_string', 'primary_blob_endpoint', 'primary_connection_string', 'primary_file_endpoint', 'primary_location', 'primary_queue_endpoint', 'primary_table_endpoint', 'secondary_access_key', 'secondary_blob_connection_string', 'secondary_blob_endpoint', 'secondary_connection_string', 'secondary_location', 'secondary_queue_endpoint', 'secondary_table_endpoint', 'tags']
+          'providedAttributes' => ['access_tier', 'account_type', 'identity', 'primary_access_key', 'primary_blob_connection_string', 'primary_blob_endpoint', 'primary_connection_string', 'primary_file_endpoint', 'primary_location', 'primary_queue_endpoint', 'primary_table_endpoint', 'secondary_access_key', 'secondary_blob_connection_string', 'secondary_blob_endpoint', 'secondary_connection_string', 'secondary_location', 'secondary_queue_endpoint', 'secondary_table_endpoint', 'tags']
         }
       },
       attributes => {
@@ -11936,7 +11918,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['attempts', 'name', 'parallelism', 'resource_group_name', 'size', 'source', 'source_uri', 'storage_account_name', 'storage_container_name', 'type'],
-          'providedAttributes' => ['attempts', 'content_type', 'parallelism', 'size', 'source', 'source_uri', 'type', 'url']
+          'providedAttributes' => ['url']
         }
       },
       attributes => {
@@ -12005,7 +11987,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'resource_group_name', 'storage_account_name'],
-          'providedAttributes' => ['container_access_type', 'properties']
+          'providedAttributes' => ['properties']
         }
       },
       attributes => {
@@ -12084,7 +12066,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'resource_group_name', 'storage_account_name'],
-          'providedAttributes' => ['quota', 'url']
+          'providedAttributes' => ['url']
         }
       },
       attributes => {
@@ -12163,7 +12145,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'resource_group_name', 'virtual_network_name'],
-          'providedAttributes' => ['delegation', 'ip_configurations', 'network_security_group_id', 'route_table_id', 'service_endpoints']
+          'providedAttributes' => ['ip_configurations']
         }
       },
       attributes => {
@@ -12303,7 +12285,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'resource_group_name'],
-          'providedAttributes' => ['outputs', 'parameters', 'parameters_body', 'template_body']
+          'providedAttributes' => ['outputs', 'template_body']
         }
       },
       attributes => {
@@ -12355,7 +12337,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['name', 'profile_name', 'resource_group_name', 'type'],
-          'providedAttributes' => ['endpoint_location', 'endpoint_monitor_status', 'endpoint_status', 'geo_mappings', 'min_child_endpoints', 'priority', 'target', 'target_resource_id', 'weight']
+          'providedAttributes' => ['endpoint_location', 'endpoint_monitor_status', 'endpoint_status', 'priority', 'target', 'weight']
         }
       },
       attributes => {
@@ -12542,7 +12524,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['availability_set_id', 'location', 'name', 'resource_group_name', 'storage_image_reference', 'zones'],
-          'providedAttributes' => ['availability_set_id', 'boot_diagnostics', 'delete_data_disks_on_termination', 'delete_os_disk_on_termination', 'identity', 'license_type', 'os_profile', 'os_profile_linux_config', 'os_profile_secrets', 'os_profile_windows_config', 'plan', 'primary_network_interface_id', 'storage_data_disk', 'storage_image_reference', 'tags', 'zones']
+          'providedAttributes' => ['availability_set_id', 'identity', 'license_type', 'storage_data_disk', 'storage_image_reference', 'tags']
         }
       },
       attributes => {
@@ -12650,8 +12632,7 @@ type TerraformAzureRM = TypeSet[{
     Azurerm_virtual_machine_data_disk_attachment => {
       annotations => {
         Lyra::Resource => {
-          'immutableAttributes' => ['create_option', 'lun', 'managed_disk_id', 'virtual_machine_id'],
-          'providedAttributes' => ['create_option', 'write_accelerator_enabled']
+          'immutableAttributes' => ['create_option', 'lun', 'managed_disk_id', 'virtual_machine_id']
         }
       },
       attributes => {
@@ -12696,7 +12677,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'resource_group_name', 'virtual_machine_name'],
-          'providedAttributes' => ['auto_upgrade_minor_version', 'protected_settings', 'settings', 'tags']
+          'providedAttributes' => ['tags']
         }
       },
       attributes => {
@@ -12860,7 +12841,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['eviction_policy', 'location', 'name', 'priority', 'resource_group_name', 'single_placement_group', 'zones'],
-          'providedAttributes' => ['automatic_os_upgrade', 'boot_diagnostics', 'eviction_policy', 'extension', 'health_probe_id', 'identity', 'license_type', 'os_profile_linux_config', 'os_profile_secrets', 'os_profile_windows_config', 'overprovision', 'plan', 'priority', 'rolling_upgrade_policy', 'single_placement_group', 'storage_profile_data_disk', 'storage_profile_image_reference', 'tags', 'zones']
+          'providedAttributes' => ['identity', 'license_type', 'os_profile_linux_config', 'storage_profile_image_reference', 'tags']
         }
       },
       attributes => {
@@ -13372,7 +13353,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'resource_group_name'],
-          'providedAttributes' => ['dns_servers', 'subnet', 'tags']
+          'providedAttributes' => ['subnet', 'tags']
         }
       },
       attributes => {
@@ -13421,7 +13402,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['location', 'name', 'resource_group_name', 'type', 'vpn_type'],
-          'providedAttributes' => ['active_active', 'bgp_settings', 'default_local_network_gateway_id', 'enable_bgp', 'tags', 'vpn_client_configuration', 'vpn_type']
+          'providedAttributes' => ['active_active', 'bgp_settings', 'enable_bgp', 'tags']
         }
       },
       attributes => {
@@ -13504,7 +13485,7 @@ type TerraformAzureRM = TypeSet[{
       annotations => {
         Lyra::Resource => {
           'immutableAttributes' => ['express_route_circuit_id', 'location', 'name', 'peer_virtual_network_gateway_id', 'resource_group_name', 'type', 'virtual_network_gateway_id'],
-          'providedAttributes' => ['authorization_key', 'enable_bgp', 'express_route_circuit_id', 'ipsec_policy', 'local_network_gateway_id', 'peer_virtual_network_gateway_id', 'routing_weight', 'shared_key', 'tags', 'use_policy_based_traffic_selectors']
+          'providedAttributes' => ['enable_bgp', 'routing_weight', 'tags', 'use_policy_based_traffic_selectors']
         }
       },
       attributes => {

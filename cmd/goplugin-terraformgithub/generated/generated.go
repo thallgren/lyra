@@ -17,30 +17,30 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterAPI("TerraformGitHub::GenericHandler", bridge.NewTFHandler(nil, "", nil))
 
 	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_branch_protection{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("enforce_admins", "etag", "required_pull_request_reviews", "required_status_checks", "restrictions")
+		b.ProvidedAttributes("etag")
 		b.ImmutableAttributes("branch", "repository")
 	}))
 	sb.RegisterHandler("TerraformGitHub::Github_branch_protectionHandler", bridge.NewTFHandler(p, "github_branch_protection", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_issue_label{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "etag", "url")
+		b.ProvidedAttributes("etag", "url")
 		b.ImmutableAttributes("repository")
 	}))
 	sb.RegisterHandler("TerraformGitHub::Github_issue_labelHandler", bridge.NewTFHandler(p, "github_issue_label", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_membership{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "role")
+		b.ProvidedAttributes("etag")
 		b.ImmutableAttributes("username")
 	}))
 	sb.RegisterHandler("TerraformGitHub::Github_membershipHandler", bridge.NewTFHandler(p, "github_membership", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_organization_project{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("body", "etag", "url")
+		b.ProvidedAttributes("etag", "url")
 	}))
 	sb.RegisterHandler("TerraformGitHub::Github_organization_projectHandler", bridge.NewTFHandler(p, "github_organization_project", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_organization_webhook{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("active", "configuration", "etag", "url")
+		b.ProvidedAttributes("etag", "url")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformGitHub::Github_organization_webhookHandler", bridge.NewTFHandler(p, "github_organization_webhook", evs[0]), evs[0])
@@ -52,48 +52,47 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformGitHub::Github_project_columnHandler", bridge.NewTFHandler(p, "github_project_column", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_repository{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allow_merge_commit", "allow_rebase_merge", "allow_squash_merge", "archived", "auto_init", "default_branch", "description", "etag", "full_name", "git_clone_url", "gitignore_template", "has_downloads", "has_issues", "has_projects", "has_wiki", "homepage_url", "html_url", "http_clone_url", "license_template", "private", "ssh_clone_url", "svn_url", "topics")
+		b.ProvidedAttributes("default_branch", "etag", "full_name", "git_clone_url", "html_url", "http_clone_url", "ssh_clone_url", "svn_url")
 		b.ImmutableAttributes("auto_init", "gitignore_template", "license_template", "name")
 	}))
 	sb.RegisterHandler("TerraformGitHub::Github_repositoryHandler", bridge.NewTFHandler(p, "github_repository", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_repository_collaborator{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("permission")
 		b.ImmutableAttributes("permission", "repository", "username")
 	}))
 	sb.RegisterHandler("TerraformGitHub::Github_repository_collaboratorHandler", bridge.NewTFHandler(p, "github_repository_collaborator", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_repository_deploy_key{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "read_only")
+		b.ProvidedAttributes("etag")
 		b.ImmutableAttributes("key", "read_only", "repository", "title")
 	}))
 	sb.RegisterHandler("TerraformGitHub::Github_repository_deploy_keyHandler", bridge.NewTFHandler(p, "github_repository_deploy_key", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_repository_project{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("body", "etag", "url")
+		b.ProvidedAttributes("etag", "url")
 		b.ImmutableAttributes("repository")
 	}))
 	sb.RegisterHandler("TerraformGitHub::Github_repository_projectHandler", bridge.NewTFHandler(p, "github_repository_project", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_repository_webhook{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("active", "configuration", "etag", "url")
+		b.ProvidedAttributes("etag", "url")
 		b.ImmutableAttributes("name", "repository")
 	}))
 	sb.RegisterHandler("TerraformGitHub::Github_repository_webhookHandler", bridge.NewTFHandler(p, "github_repository_webhook", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_team{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "etag", "ldap_dn", "parent_team_id", "privacy", "slug")
+		b.ProvidedAttributes("etag", "slug")
 	}))
 	sb.RegisterHandler("TerraformGitHub::Github_teamHandler", bridge.NewTFHandler(p, "github_team", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_team_membership{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "role")
+		b.ProvidedAttributes("etag")
 		b.ImmutableAttributes("team_id", "username")
 	}))
 	sb.RegisterHandler("TerraformGitHub::Github_team_membershipHandler", bridge.NewTFHandler(p, "github_team_membership", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformGitHub", sb.BuildResource(&Github_team_repository{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("etag", "permission")
+		b.ProvidedAttributes("etag")
 		b.ImmutableAttributes("repository", "team_id")
 	}))
 	sb.RegisterHandler("TerraformGitHub::Github_team_repositoryHandler", bridge.NewTFHandler(p, "github_team_repository", evs[0]), evs[0])

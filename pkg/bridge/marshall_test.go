@@ -160,65 +160,65 @@ func init() {
 	expected = map[string]interface{}{
 		"firstname": "John",
 		"lastname":  "Smith",
-		"age":       "23",
-		"cool":      "false",
-		"cooler":    "true",
-		"uncool":    "true",
-		"up":        "1.234",
-		"down":      "5.678",
+		"age":       23,
+		"cool":      false,
+		"cooler":    true,
+		"uncool":    true,
+		"up":        1.234,
+		"down":      5.678,
 		"petdog": map[string]interface{}{
 			"colour": "red",
-			"size":   "12",
+			"size":   12,
 			"home": map[string]interface{}{
-				"height": "3",
-				"width":  "4",
+				"height": 3,
+				"width":  4,
 			},
 		},
 		"petdoggy": map[string]interface{}{
 			"colour": "yellow",
-			"size":   "23",
+			"size":   23,
 			"home": map[string]interface{}{
-				"height": "4",
-				"width":  "3",
+				"height": 4,
+				"width":  3,
 			},
 		},
 		"petcats": []interface{}{
 			map[string]interface{}{
-				"tail":   "15",
+				"tail":   15,
 				"colour": "brownish",
 			},
 			map[string]interface{}{
-				"tail":   "16",
+				"tail":   16,
 				"colour": "brown",
 			},
 		},
 		"petmoggies": []interface{}{
 			map[string]interface{}{
-				"tail":   "17",
+				"tail":   17,
 				"colour": "browny",
 			},
 			map[string]interface{}{
-				"tail":   "18",
+				"tail":   18,
 				"colour": "brownish",
 			},
 		},
 		"petfelines": []interface{}{
 			map[string]interface{}{
-				"tail":   "27",
+				"tail":   27,
 				"colour": "browny",
 			},
 			map[string]interface{}{
-				"tail":   "28",
+				"tail":   28,
 				"colour": "brownish",
 			},
 		},
 		"petkitties": []interface{}{
 			map[string]interface{}{
-				"tail":   "19",
+				"tail":   19,
 				"colour": "brown",
 			},
 			map[string]interface{}{
-				"tail":   "20",
+				"tail":   20,
 				"colour": "browny",
 			},
 		},

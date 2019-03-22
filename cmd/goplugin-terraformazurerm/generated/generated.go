@@ -17,13 +17,13 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterAPI("TerraformAzureRM::GenericHandler", bridge.NewTFHandler(nil, "", nil))
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_api_management{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("additional_location", "certificate", "gateway_regional_url", "gateway_url", "hostname_configuration", "identity", "management_api_url", "notification_sender_email", "portal_url", "public_ip_addresses", "scm_url", "security", "tags")
+		b.ProvidedAttributes("gateway_regional_url", "gateway_url", "hostname_configuration", "management_api_url", "notification_sender_email", "portal_url", "public_ip_addresses", "scm_url", "security", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_api_managementHandler", bridge.NewTFHandler(p, "azurerm_api_management", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_app_service{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("app_settings", "client_affinity_enabled", "connection_string", "default_site_hostname", "enabled", "https_only", "identity", "outbound_ip_addresses", "possible_outbound_ip_addresses", "site_config", "site_credential", "source_control", "tags")
+		b.ProvidedAttributes("app_settings", "client_affinity_enabled", "connection_string", "default_site_hostname", "identity", "outbound_ip_addresses", "possible_outbound_ip_addresses", "site_config", "site_credential", "source_control", "tags")
 		b.ImmutableAttributes("app_service_plan_id", "location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_app_serviceHandler", bridge.NewTFHandler(p, "azurerm_app_service", evs[0]), evs[0])
@@ -39,19 +39,19 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_app_service_custom_hostname_bindingHandler", bridge.NewTFHandler(p, "azurerm_app_service_custom_hostname_binding", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_app_service_plan{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("app_service_environment_id", "kind", "maximum_number_of_workers", "per_site_scaling", "properties", "reserved", "tags")
+		b.ProvidedAttributes("app_service_environment_id", "maximum_number_of_workers", "per_site_scaling", "properties", "reserved", "tags")
 		b.ImmutableAttributes("app_service_environment_id", "kind", "location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_app_service_planHandler", bridge.NewTFHandler(p, "azurerm_app_service_plan", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_app_service_slot{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("app_settings", "client_affinity_enabled", "connection_string", "default_site_hostname", "enabled", "https_only", "identity", "site_config", "tags")
+		b.ProvidedAttributes("app_settings", "client_affinity_enabled", "connection_string", "default_site_hostname", "site_config", "tags")
 		b.ImmutableAttributes("app_service_name", "app_service_plan_id", "identity", "location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_app_service_slotHandler", bridge.NewTFHandler(p, "azurerm_app_service_slot", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_application_gateway{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("authentication_certificate", "disabled_ssl_protocols", "probe", "ssl_certificate", "tags", "url_path_map", "waf_configuration")
+		b.ProvidedAttributes("tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_application_gatewayHandler", bridge.NewTFHandler(p, "azurerm_application_gateway", evs[0]), evs[0])
@@ -63,7 +63,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_application_insightsHandler", bridge.NewTFHandler(p, "azurerm_application_insights", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_application_insights_api_key{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("api_key", "read_permissions", "write_permissions")
+		b.ProvidedAttributes("api_key")
 		b.ImmutableAttributes("application_insights_id", "name", "read_permissions", "write_permissions")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_application_insights_api_keyHandler", bridge.NewTFHandler(p, "azurerm_application_insights_api_key", evs[0]), evs[0])
@@ -81,13 +81,12 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_automation_accountHandler", bridge.NewTFHandler(p, "azurerm_automation_account", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_automation_credential{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description")
 		b.ImmutableAttributes("account_name", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_automation_credentialHandler", bridge.NewTFHandler(p, "azurerm_automation_credential", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_automation_dsc_configuration{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "log_verbose", "state")
+		b.ProvidedAttributes("state")
 		b.ImmutableAttributes("automation_account_name", "location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_automation_dsc_configurationHandler", bridge.NewTFHandler(p, "azurerm_automation_dsc_configuration", evs[0]), evs[0])
@@ -104,31 +103,31 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_automation_moduleHandler", bridge.NewTFHandler(p, "azurerm_automation_module", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_automation_runbook{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("content", "description", "tags")
+		b.ProvidedAttributes("content", "tags")
 		b.ImmutableAttributes("account_name", "location", "name", "resource_group_name", "runbook_type")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_automation_runbookHandler", bridge.NewTFHandler(p, "azurerm_automation_runbook", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_automation_schedule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("account_name", "automation_account_name", "description", "expiry_time", "interval", "month_days", "monthly_occurrence", "start_time", "timezone", "week_days")
+		b.ProvidedAttributes("account_name", "automation_account_name", "expiry_time", "interval", "start_time")
 		b.ImmutableAttributes("name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_automation_scheduleHandler", bridge.NewTFHandler(p, "azurerm_automation_schedule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_autoscale_setting{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("enabled", "notification", "tags")
+		b.ProvidedAttributes("tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name", "target_resource_id")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_autoscale_settingHandler", bridge.NewTFHandler(p, "azurerm_autoscale_setting", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_availability_set{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("managed", "platform_fault_domain_count", "platform_update_domain_count", "tags")
+		b.ProvidedAttributes("tags")
 		b.ImmutableAttributes("location", "managed", "name", "platform_fault_domain_count", "platform_update_domain_count", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_availability_setHandler", bridge.NewTFHandler(p, "azurerm_availability_set", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_azuread_application{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("application_id", "available_to_other_tenants", "homepage", "identifier_uris", "oauth2_allow_implicit_flow", "reply_urls")
+		b.ProvidedAttributes("application_id", "homepage", "identifier_uris", "reply_urls")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_azuread_applicationHandler", bridge.NewTFHandler(p, "azurerm_azuread_application", evs[0]), evs[0])
 
@@ -145,19 +144,18 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_azuread_service_principal_passwordHandler", bridge.NewTFHandler(p, "azurerm_azuread_service_principal_password", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_batch_account{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("pool_allocation_mode", "storage_account_id", "tags")
+		b.ProvidedAttributes("storage_account_id", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_batch_accountHandler", bridge.NewTFHandler(p, "azurerm_batch_account", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_batch_pool{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("auto_scale", "display_name", "fixed_scale", "start_task", "stop_pending_resize_operation")
 		b.ImmutableAttributes("account_name", "display_name", "name", "node_agent_sku_id", "resource_group_name", "storage_image_reference", "vm_size")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_batch_poolHandler", bridge.NewTFHandler(p, "azurerm_batch_pool", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_cdn_endpoint{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("content_types_to_compress", "geo_filter", "host_name", "is_compression_enabled", "is_http_allowed", "is_https_allowed", "optimization_type", "origin_host_header", "origin_path", "probe_path", "querystring_caching_behaviour", "tags")
+		b.ProvidedAttributes("content_types_to_compress", "host_name", "origin_host_header", "origin_path", "probe_path", "tags")
 		b.ImmutableAttributes("location", "name", "origin", "profile_name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_cdn_endpointHandler", bridge.NewTFHandler(p, "azurerm_cdn_endpoint", evs[0]), evs[0])
@@ -175,31 +173,31 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_cognitive_accountHandler", bridge.NewTFHandler(p, "azurerm_cognitive_account", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_container_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("dns_name_label", "fqdn", "image_registry_credential", "ip_address", "ip_address_type", "restart_policy", "tags")
+		b.ProvidedAttributes("fqdn", "ip_address", "tags")
 		b.ImmutableAttributes("container", "dns_name_label", "image_registry_credential", "ip_address_type", "location", "name", "os_type", "resource_group_name", "restart_policy", "tags")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_container_groupHandler", bridge.NewTFHandler(p, "azurerm_container_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_container_registry{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("admin_enabled", "admin_password", "admin_username", "georeplication_locations", "login_server", "sku", "storage_account", "storage_account_id", "tags")
+		b.ProvidedAttributes("admin_password", "admin_username", "login_server", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_container_registryHandler", bridge.NewTFHandler(p, "azurerm_container_registry", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_container_service{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("service_principal", "tags")
+		b.ProvidedAttributes("tags")
 		b.ImmutableAttributes("location", "name", "orchestration_platform", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_container_serviceHandler", bridge.NewTFHandler(p, "azurerm_container_service", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_cosmosdb_account{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("capabilities", "connection_strings", "enable_automatic_failover", "enable_multiple_write_locations", "endpoint", "failover_policy", "geo_location", "ip_range_filter", "is_virtual_network_filter_enabled", "kind", "primary_master_key", "primary_readonly_master_key", "read_endpoints", "secondary_master_key", "secondary_readonly_master_key", "tags", "virtual_network_rule", "write_endpoints")
+		b.ProvidedAttributes("connection_strings", "endpoint", "geo_location", "primary_master_key", "primary_readonly_master_key", "read_endpoints", "secondary_master_key", "secondary_readonly_master_key", "tags", "write_endpoints")
 		b.ImmutableAttributes("kind", "location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_cosmosdb_accountHandler", bridge.NewTFHandler(p, "azurerm_cosmosdb_account", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_data_lake_analytics_account{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("tags", "tier")
+		b.ProvidedAttributes("tags")
 		b.ImmutableAttributes("default_store_account_name", "location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_data_lake_analytics_accountHandler", bridge.NewTFHandler(p, "azurerm_data_lake_analytics_account", evs[0]), evs[0])
@@ -210,7 +208,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_data_lake_analytics_firewall_ruleHandler", bridge.NewTFHandler(p, "azurerm_data_lake_analytics_firewall_rule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_data_lake_store{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("encryption_state", "encryption_type", "endpoint", "firewall_allow_azure_ips", "firewall_state", "tags", "tier")
+		b.ProvidedAttributes("encryption_type", "endpoint", "tags")
 		b.ImmutableAttributes("encryption_state", "encryption_type", "location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_data_lake_storeHandler", bridge.NewTFHandler(p, "azurerm_data_lake_store", evs[0]), evs[0])
@@ -232,31 +230,31 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_databricks_workspaceHandler", bridge.NewTFHandler(p, "azurerm_databricks_workspace", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_dev_test_lab{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("artifacts_storage_account_id", "default_premium_storage_account_id", "default_storage_account_id", "key_vault_id", "premium_data_disk_storage_account_id", "storage_type", "tags", "unique_identifier")
+		b.ProvidedAttributes("artifacts_storage_account_id", "default_premium_storage_account_id", "default_storage_account_id", "key_vault_id", "premium_data_disk_storage_account_id", "tags", "unique_identifier")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_dev_test_labHandler", bridge.NewTFHandler(p, "azurerm_dev_test_lab", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_dev_test_linux_virtual_machine{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allow_claim", "disallow_public_ip_address", "fqdn", "inbound_nat_rule", "notes", "password", "ssh_key", "tags", "unique_identifier")
+		b.ProvidedAttributes("fqdn", "tags", "unique_identifier")
 		b.ImmutableAttributes("disallow_public_ip_address", "inbound_nat_rule", "lab_name", "lab_subnet_name", "lab_virtual_network_id", "location", "name", "password", "resource_group_name", "size", "ssh_key", "username")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_dev_test_linux_virtual_machineHandler", bridge.NewTFHandler(p, "azurerm_dev_test_linux_virtual_machine", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_dev_test_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "fact_data", "tags")
+		b.ProvidedAttributes("tags")
 		b.ImmutableAttributes("evaluator_type", "lab_name", "name", "policy_set_name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_dev_test_policyHandler", bridge.NewTFHandler(p, "azurerm_dev_test_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_dev_test_virtual_network{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "subnet", "tags", "unique_identifier")
+		b.ProvidedAttributes("subnet", "tags", "unique_identifier")
 		b.ImmutableAttributes("lab_name", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_dev_test_virtual_networkHandler", bridge.NewTFHandler(p, "azurerm_dev_test_virtual_network", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_dev_test_windows_virtual_machine{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allow_claim", "disallow_public_ip_address", "fqdn", "inbound_nat_rule", "notes", "tags", "unique_identifier")
+		b.ProvidedAttributes("fqdn", "tags", "unique_identifier")
 		b.ImmutableAttributes("disallow_public_ip_address", "inbound_nat_rule", "lab_name", "lab_subnet_name", "lab_virtual_network_id", "location", "name", "password", "resource_group_name", "size", "username")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_dev_test_windows_virtual_machineHandler", bridge.NewTFHandler(p, "azurerm_dev_test_windows_virtual_machine", evs[0]), evs[0])
@@ -286,7 +284,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_caa_recordHandler", bridge.NewTFHandler(p, "azurerm_dns_caa_record", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_dns_cname_record{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("records", "tags")
+		b.ProvidedAttributes("tags")
 		b.ImmutableAttributes("name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_cname_recordHandler", bridge.NewTFHandler(p, "azurerm_dns_cname_record", evs[0]), evs[0])
@@ -322,7 +320,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_txt_recordHandler", bridge.NewTFHandler(p, "azurerm_dns_txt_record", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_dns_zone{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("max_number_of_record_sets", "name_servers", "number_of_record_sets", "registration_virtual_network_ids", "resolution_virtual_network_ids", "tags", "zone_type")
+		b.ProvidedAttributes("max_number_of_record_sets", "name_servers", "number_of_record_sets", "tags")
 		b.ImmutableAttributes("name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_dns_zoneHandler", bridge.NewTFHandler(p, "azurerm_dns_zone", evs[0]), evs[0])
@@ -334,37 +332,36 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_eventgrid_topicHandler", bridge.NewTFHandler(p, "azurerm_eventgrid_topic", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_eventhub{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("capture_description", "location", "partition_ids")
+		b.ProvidedAttributes("partition_ids")
 		b.ImmutableAttributes("location", "name", "namespace_name", "partition_count", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_eventhubHandler", bridge.NewTFHandler(p, "azurerm_eventhub", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_eventhub_authorization_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("listen", "location", "manage", "primary_connection_string", "primary_key", "secondary_connection_string", "secondary_key", "send")
+		b.ProvidedAttributes("primary_connection_string", "primary_key", "secondary_connection_string", "secondary_key")
 		b.ImmutableAttributes("eventhub_name", "location", "name", "namespace_name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_eventhub_authorization_ruleHandler", bridge.NewTFHandler(p, "azurerm_eventhub_authorization_rule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_eventhub_consumer_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("location", "user_metadata")
 		b.ImmutableAttributes("eventhub_name", "location", "name", "namespace_name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_eventhub_consumer_groupHandler", bridge.NewTFHandler(p, "azurerm_eventhub_consumer_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_eventhub_namespace{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("auto_inflate_enabled", "capacity", "default_primary_connection_string", "default_primary_key", "default_secondary_connection_string", "default_secondary_key", "kafka_enabled", "maximum_throughput_units", "tags")
+		b.ProvidedAttributes("default_primary_connection_string", "default_primary_key", "default_secondary_connection_string", "default_secondary_key", "maximum_throughput_units", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_eventhub_namespaceHandler", bridge.NewTFHandler(p, "azurerm_eventhub_namespace", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_eventhub_namespace_authorization_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("listen", "location", "manage", "primary_connection_string", "primary_key", "secondary_connection_string", "secondary_key", "send")
+		b.ProvidedAttributes("primary_connection_string", "primary_key", "secondary_connection_string", "secondary_key")
 		b.ImmutableAttributes("location", "name", "namespace_name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_eventhub_namespace_authorization_ruleHandler", bridge.NewTFHandler(p, "azurerm_eventhub_namespace_authorization_rule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_express_route_circuit{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allow_classic_operations", "service_key", "service_provider_provisioning_state", "tags")
+		b.ProvidedAttributes("service_key", "service_provider_provisioning_state", "tags")
 		b.ImmutableAttributes("location", "name", "peering_location", "resource_group_name", "service_provider_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_express_route_circuitHandler", bridge.NewTFHandler(p, "azurerm_express_route_circuit", evs[0]), evs[0])
@@ -376,7 +373,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_express_route_circuit_authorizationHandler", bridge.NewTFHandler(p, "azurerm_express_route_circuit_authorization", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_express_route_circuit_peering{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("azure_asn", "microsoft_peering_config", "peer_asn", "primary_azure_port", "secondary_azure_port", "shared_key")
+		b.ProvidedAttributes("azure_asn", "peer_asn", "primary_azure_port", "secondary_azure_port")
 		b.ImmutableAttributes("express_route_circuit_name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_express_route_circuit_peeringHandler", bridge.NewTFHandler(p, "azurerm_express_route_circuit_peering", evs[0]), evs[0])
@@ -398,19 +395,19 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_firewall_network_rule_collectionHandler", bridge.NewTFHandler(p, "azurerm_firewall_network_rule_collection", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_function_app{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("app_settings", "client_affinity_enabled", "connection_string", "default_hostname", "enable_builtin_logging", "enabled", "https_only", "identity", "outbound_ip_addresses", "site_config", "site_credential", "tags", "version")
+		b.ProvidedAttributes("client_affinity_enabled", "connection_string", "default_hostname", "identity", "outbound_ip_addresses", "site_config", "site_credential", "tags")
 		b.ImmutableAttributes("app_service_plan_id", "location", "name", "resource_group_name", "storage_connection_string")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_function_appHandler", bridge.NewTFHandler(p, "azurerm_function_app", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_image{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("data_disk", "os_disk", "source_virtual_machine_id", "tags")
+		b.ProvidedAttributes("tags")
 		b.ImmutableAttributes("location", "name", "os_disk", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_imageHandler", bridge.NewTFHandler(p, "azurerm_image", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_iothub{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("endpoint", "event_hub_events_endpoint", "event_hub_events_path", "event_hub_operations_endpoint", "event_hub_operations_path", "hostname", "route", "shared_access_policy", "tags", "type")
+		b.ProvidedAttributes("event_hub_events_endpoint", "event_hub_events_path", "event_hub_operations_endpoint", "event_hub_operations_path", "hostname", "shared_access_policy", "tags", "type")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_iothubHandler", bridge.NewTFHandler(p, "azurerm_iothub", evs[0]), evs[0])
@@ -421,19 +418,18 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_iothub_consumer_groupHandler", bridge.NewTFHandler(p, "azurerm_iothub_consumer_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_key_vault{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("access_policy", "enabled_for_deployment", "enabled_for_disk_encryption", "enabled_for_template_deployment", "network_acls", "tags", "vault_uri")
+		b.ProvidedAttributes("access_policy", "tags", "vault_uri")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_key_vaultHandler", bridge.NewTFHandler(p, "azurerm_key_vault", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_key_vault_access_policy{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("application_id", "certificate_permissions", "key_permissions", "secret_permissions")
 		b.ImmutableAttributes("application_id", "object_id", "resource_group_name", "tenant_id", "vault_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_key_vault_access_policyHandler", bridge.NewTFHandler(p, "azurerm_key_vault_access_policy", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_key_vault_certificate{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("certificate", "certificate_data", "secret_id", "tags", "thumbprint", "version")
+		b.ProvidedAttributes("certificate_data", "secret_id", "tags", "thumbprint", "version")
 		b.ImmutableAttributes("certificate", "certificate_policy", "name", "vault_uri")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_key_vault_certificateHandler", bridge.NewTFHandler(p, "azurerm_key_vault_certificate", evs[0]), evs[0])
@@ -445,55 +441,55 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_key_vault_keyHandler", bridge.NewTFHandler(p, "azurerm_key_vault_key", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_key_vault_secret{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("content_type", "tags", "version")
+		b.ProvidedAttributes("tags", "version")
 		b.ImmutableAttributes("name", "vault_uri")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_key_vault_secretHandler", bridge.NewTFHandler(p, "azurerm_key_vault_secret", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_kubernetes_cluster{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("addon_profile", "fqdn", "kube_admin_config", "kube_admin_config_raw", "kube_config", "kube_config_raw", "kubernetes_version", "linux_profile", "network_profile", "node_resource_group", "role_based_access_control", "tags")
+		b.ProvidedAttributes("addon_profile", "fqdn", "kube_admin_config", "kube_admin_config_raw", "kube_config", "kube_config_raw", "kubernetes_version", "network_profile", "node_resource_group", "role_based_access_control", "tags")
 		b.ImmutableAttributes("dns_prefix", "location", "name", "network_profile", "resource_group_name", "role_based_access_control")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_kubernetes_clusterHandler", bridge.NewTFHandler(p, "azurerm_kubernetes_cluster", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_lb{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("frontend_ip_configuration", "private_ip_address", "private_ip_addresses", "sku", "tags")
+		b.ProvidedAttributes("private_ip_address", "private_ip_addresses", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name", "sku")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_lbHandler", bridge.NewTFHandler(p, "azurerm_lb", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_lb_backend_address_pool{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("backend_ip_configurations", "load_balancing_rules", "location")
+		b.ProvidedAttributes("backend_ip_configurations", "load_balancing_rules")
 		b.ImmutableAttributes("loadbalancer_id", "location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_lb_backend_address_poolHandler", bridge.NewTFHandler(p, "azurerm_lb_backend_address_pool", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_lb_nat_pool{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("frontend_ip_configuration_id", "location")
+		b.ProvidedAttributes("frontend_ip_configuration_id")
 		b.ImmutableAttributes("loadbalancer_id", "location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_lb_nat_poolHandler", bridge.NewTFHandler(p, "azurerm_lb_nat_pool", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_lb_nat_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("backend_ip_configuration_id", "enable_floating_ip", "frontend_ip_configuration_id", "location")
+		b.ProvidedAttributes("backend_ip_configuration_id", "enable_floating_ip", "frontend_ip_configuration_id")
 		b.ImmutableAttributes("loadbalancer_id", "location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_lb_nat_ruleHandler", bridge.NewTFHandler(p, "azurerm_lb_nat_rule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_lb_probe{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("interval_in_seconds", "load_balancer_rules", "location", "number_of_probes", "protocol", "request_path")
+		b.ProvidedAttributes("load_balancer_rules", "protocol")
 		b.ImmutableAttributes("loadbalancer_id", "location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_lb_probeHandler", bridge.NewTFHandler(p, "azurerm_lb_probe", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_lb_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("backend_address_pool_id", "enable_floating_ip", "frontend_ip_configuration_id", "idle_timeout_in_minutes", "load_distribution", "location", "probe_id")
+		b.ProvidedAttributes("backend_address_pool_id", "frontend_ip_configuration_id", "idle_timeout_in_minutes", "load_distribution", "probe_id")
 		b.ImmutableAttributes("loadbalancer_id", "location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_lb_ruleHandler", bridge.NewTFHandler(p, "azurerm_lb_rule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_local_network_gateway{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("bgp_settings", "tags")
+		b.ProvidedAttributes("tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_local_network_gatewayHandler", bridge.NewTFHandler(p, "azurerm_local_network_gateway", evs[0]), evs[0])
@@ -510,7 +506,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_log_analytics_workspaceHandler", bridge.NewTFHandler(p, "azurerm_log_analytics_workspace", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_log_analytics_workspace_linked_service{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("linked_service_name", "name", "tags")
+		b.ProvidedAttributes("name", "tags")
 		b.ImmutableAttributes("linked_service_name", "linked_service_properties", "resource_group_name", "workspace_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_log_analytics_workspace_linked_serviceHandler", bridge.NewTFHandler(p, "azurerm_log_analytics_workspace_linked_service", evs[0]), evs[0])
@@ -521,7 +517,6 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_logic_app_action_customHandler", bridge.NewTFHandler(p, "azurerm_logic_app_action_custom", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_logic_app_action_http{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("body", "headers")
 		b.ImmutableAttributes("logic_app_id", "name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_logic_app_action_httpHandler", bridge.NewTFHandler(p, "azurerm_logic_app_action_http", evs[0]), evs[0])
@@ -532,7 +527,6 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_logic_app_trigger_customHandler", bridge.NewTFHandler(p, "azurerm_logic_app_trigger_custom", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_logic_app_trigger_http_request{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("method", "relative_path")
 		b.ImmutableAttributes("logic_app_id", "name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_logic_app_trigger_http_requestHandler", bridge.NewTFHandler(p, "azurerm_logic_app_trigger_http_request", evs[0]), evs[0])
@@ -543,25 +537,24 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_logic_app_trigger_recurrenceHandler", bridge.NewTFHandler(p, "azurerm_logic_app_trigger_recurrence", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_logic_app_workflow{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("access_endpoint", "parameters", "tags", "workflow_schema", "workflow_version")
+		b.ProvidedAttributes("access_endpoint", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name", "workflow_schema", "workflow_version")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_logic_app_workflowHandler", bridge.NewTFHandler(p, "azurerm_logic_app_workflow", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_managed_disk{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("disk_size_gb", "encryption_settings", "image_reference_id", "os_type", "source_resource_id", "source_uri", "tags", "zones")
+		b.ProvidedAttributes("disk_size_gb", "source_uri", "tags")
 		b.ImmutableAttributes("create_option", "image_reference_id", "location", "name", "resource_group_name", "source_resource_id", "source_uri", "zones")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_managed_diskHandler", bridge.NewTFHandler(p, "azurerm_managed_disk", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_management_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("display_name", "group_id", "parent_management_group_id", "subscription_ids")
+		b.ProvidedAttributes("display_name", "group_id", "parent_management_group_id")
 		b.ImmutableAttributes("group_id")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_management_groupHandler", bridge.NewTFHandler(p, "azurerm_management_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_management_lock{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("notes")
 		b.ImmutableAttributes("lock_level", "name", "notes", "scope")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_management_lockHandler", bridge.NewTFHandler(p, "azurerm_management_lock", evs[0]), evs[0])
@@ -578,37 +571,35 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_mariadb_serverHandler", bridge.NewTFHandler(p, "azurerm_mariadb_server", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_metric_alertrule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "email_action", "enabled", "tags", "webhook_action")
+		b.ProvidedAttributes("description", "email_action", "tags", "webhook_action")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_metric_alertruleHandler", bridge.NewTFHandler(p, "azurerm_metric_alertrule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_monitor_action_group{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("email_receiver", "enabled", "sms_receiver", "tags", "webhook_receiver")
+		b.ProvidedAttributes("tags")
 		b.ImmutableAttributes("name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_monitor_action_groupHandler", bridge.NewTFHandler(p, "azurerm_monitor_action_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_monitor_activity_log_alert{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("action", "description", "enabled", "tags")
+		b.ProvidedAttributes("tags")
 		b.ImmutableAttributes("name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_monitor_activity_log_alertHandler", bridge.NewTFHandler(p, "azurerm_monitor_activity_log_alert", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_monitor_diagnostic_setting{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("eventhub_authorization_rule_id", "eventhub_name", "log", "log_analytics_workspace_id", "metric", "storage_account_id")
 		b.ImmutableAttributes("eventhub_authorization_rule_id", "eventhub_name", "log_analytics_workspace_id", "name", "storage_account_id", "target_resource_id")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_monitor_diagnostic_settingHandler", bridge.NewTFHandler(p, "azurerm_monitor_diagnostic_setting", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_monitor_log_profile{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("servicebus_rule_id", "storage_account_id")
 		b.ImmutableAttributes("name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_monitor_log_profileHandler", bridge.NewTFHandler(p, "azurerm_monitor_log_profile", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_monitor_metric_alert{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("action", "auto_mitigate", "description", "enabled", "frequency", "severity", "tags", "window_size")
+		b.ProvidedAttributes("tags")
 		b.ImmutableAttributes("name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_monitor_metric_alertHandler", bridge.NewTFHandler(p, "azurerm_monitor_metric_alert", evs[0]), evs[0])
@@ -646,7 +637,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_mysql_virtual_network_ruleHandler", bridge.NewTFHandler(p, "azurerm_mysql_virtual_network_rule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_network_interface{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("applied_dns_servers", "dns_servers", "enable_accelerated_networking", "enable_ip_forwarding", "internal_dns_name_label", "internal_fqdn", "mac_address", "network_security_group_id", "private_ip_address", "private_ip_addresses", "tags", "virtual_machine_id")
+		b.ProvidedAttributes("applied_dns_servers", "dns_servers", "internal_dns_name_label", "internal_fqdn", "mac_address", "private_ip_address", "private_ip_addresses", "tags", "virtual_machine_id")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_network_interfaceHandler", bridge.NewTFHandler(p, "azurerm_network_interface", evs[0]), evs[0])
@@ -673,7 +664,6 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_network_security_groupHandler", bridge.NewTFHandler(p, "azurerm_network_security_group", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_network_security_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "destination_address_prefix", "destination_address_prefixes", "destination_application_security_group_ids", "destination_port_range", "destination_port_ranges", "source_address_prefix", "source_address_prefixes", "source_application_security_group_ids", "source_port_range", "source_port_ranges")
 		b.ImmutableAttributes("name", "network_security_group_name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_network_security_ruleHandler", bridge.NewTFHandler(p, "azurerm_network_security_rule", evs[0]), evs[0])
@@ -685,43 +675,39 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_network_watcherHandler", bridge.NewTFHandler(p, "azurerm_network_watcher", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_notification_hub{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("apns_credential", "gcm_credential")
 		b.ImmutableAttributes("location", "name", "namespace_name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_notification_hubHandler", bridge.NewTFHandler(p, "azurerm_notification_hub", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_notification_hub_authorization_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("listen", "manage", "primary_access_key", "secondary_access_key", "send")
+		b.ProvidedAttributes("primary_access_key", "secondary_access_key")
 		b.ImmutableAttributes("name", "namespace_name", "notification_hub_name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_notification_hub_authorization_ruleHandler", bridge.NewTFHandler(p, "azurerm_notification_hub_authorization_rule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_notification_hub_namespace{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("enabled", "servicebus_endpoint")
+		b.ProvidedAttributes("servicebus_endpoint")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_notification_hub_namespaceHandler", bridge.NewTFHandler(p, "azurerm_notification_hub_namespace", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_packet_capture{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("filter", "maximum_bytes_per_packet", "maximum_bytes_per_session", "maximum_capture_duration")
 		b.ImmutableAttributes("filter", "maximum_bytes_per_packet", "maximum_bytes_per_session", "maximum_capture_duration", "name", "network_watcher_name", "resource_group_name", "storage_location", "target_resource_id")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_packet_captureHandler", bridge.NewTFHandler(p, "azurerm_packet_capture", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_policy_assignment{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "display_name", "identity", "location", "not_scopes", "parameters")
+		b.ProvidedAttributes("identity")
 		b.ImmutableAttributes("location", "name", "parameters", "policy_definition_id", "scope")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_policy_assignmentHandler", bridge.NewTFHandler(p, "azurerm_policy_assignment", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_policy_definition{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "management_group_id", "metadata", "parameters", "policy_rule")
 		b.ImmutableAttributes("management_group_id", "mode", "name", "policy_type")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_policy_definitionHandler", bridge.NewTFHandler(p, "azurerm_policy_definition", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_policy_set_definition{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "management_group_id", "metadata", "parameters", "policy_definitions")
 		b.ImmutableAttributes("management_group_id", "name", "policy_type")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_policy_set_definitionHandler", bridge.NewTFHandler(p, "azurerm_policy_set_definition", evs[0]), evs[0])
@@ -748,13 +734,12 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_postgresql_serverHandler", bridge.NewTFHandler(p, "azurerm_postgresql_server", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_postgresql_virtual_network_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("ignore_missing_vnet_service_endpoint")
 		b.ImmutableAttributes("name", "resource_group_name", "server_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_postgresql_virtual_network_ruleHandler", bridge.NewTFHandler(p, "azurerm_postgresql_virtual_network_rule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_public_ip{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("allocation_method", "domain_name_label", "fqdn", "idle_timeout_in_minutes", "ip_address", "ip_version", "public_ip_address_allocation", "reverse_fqdn", "sku", "tags", "zones")
+		b.ProvidedAttributes("allocation_method", "fqdn", "ip_address", "public_ip_address_allocation", "tags")
 		b.ImmutableAttributes("ip_version", "location", "name", "resource_group_name", "sku", "zones")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_public_ipHandler", bridge.NewTFHandler(p, "azurerm_public_ip", evs[0]), evs[0])
@@ -766,7 +751,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_recovery_services_protected_vmHandler", bridge.NewTFHandler(p, "azurerm_recovery_services_protected_vm", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_recovery_services_protection_policy_vm{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("retention_daily", "retention_monthly", "retention_weekly", "retention_yearly", "tags", "timezone")
+		b.ProvidedAttributes("tags")
 		b.ImmutableAttributes("name", "recovery_vault_name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_recovery_services_protection_policy_vmHandler", bridge.NewTFHandler(p, "azurerm_recovery_services_protection_policy_vm", evs[0]), evs[0])
@@ -778,7 +763,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_recovery_services_vaultHandler", bridge.NewTFHandler(p, "azurerm_recovery_services_vault", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_redis_cache{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("enable_non_ssl_port", "hostname", "patch_schedule", "port", "primary_access_key", "private_static_ip_address", "secondary_access_key", "shard_count", "ssl_port", "subnet_id", "tags", "zones")
+		b.ProvidedAttributes("hostname", "port", "primary_access_key", "private_static_ip_address", "secondary_access_key", "ssl_port", "tags")
 		b.ImmutableAttributes("location", "name", "private_static_ip_address", "resource_group_name", "subnet_id", "zones")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_redis_cacheHandler", bridge.NewTFHandler(p, "azurerm_redis_cache", evs[0]), evs[0])
@@ -807,31 +792,30 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_role_assignmentHandler", bridge.NewTFHandler(p, "azurerm_role_assignment", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_role_definition{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "role_definition_id")
+		b.ProvidedAttributes("role_definition_id")
 		b.ImmutableAttributes("role_definition_id", "scope")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_role_definitionHandler", bridge.NewTFHandler(p, "azurerm_role_definition", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_route{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("next_hop_in_ip_address")
 		b.ImmutableAttributes("name", "resource_group_name", "route_table_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_routeHandler", bridge.NewTFHandler(p, "azurerm_route", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_route_table{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("disable_bgp_route_propagation", "route", "subnets", "tags")
+		b.ProvidedAttributes("route", "subnets", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_route_tableHandler", bridge.NewTFHandler(p, "azurerm_route_table", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_scheduler_job{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("action_storage_queue", "action_web", "error_action_storage_queue", "error_action_web", "recurrence", "retry", "start_time", "state")
+		b.ProvidedAttributes("start_time", "state")
 		b.ImmutableAttributes("job_collection_name", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_scheduler_jobHandler", bridge.NewTFHandler(p, "azurerm_scheduler_job", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_scheduler_job_collection{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("quota", "state", "tags")
+		b.ProvidedAttributes("tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_scheduler_job_collectionHandler", bridge.NewTFHandler(p, "azurerm_scheduler_job_collection", evs[0]), evs[0])
@@ -855,73 +839,72 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_security_center_workspaceHandler", bridge.NewTFHandler(p, "azurerm_security_center_workspace", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_service_fabric_cluster{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("add_on_features", "azure_active_directory", "certificate", "client_certificate_thumbprint", "cluster_code_version", "cluster_endpoint", "diagnostics_config", "fabric_settings", "reverse_proxy_certificate", "tags")
+		b.ProvidedAttributes("cluster_code_version", "cluster_endpoint", "tags")
 		b.ImmutableAttributes("azure_active_directory", "diagnostics_config", "location", "management_endpoint", "name", "resource_group_name", "vm_image")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_service_fabric_clusterHandler", bridge.NewTFHandler(p, "azurerm_service_fabric_cluster", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_servicebus_namespace{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("capacity", "default_primary_connection_string", "default_primary_key", "default_secondary_connection_string", "default_secondary_key", "tags")
+		b.ProvidedAttributes("default_primary_connection_string", "default_primary_key", "default_secondary_connection_string", "default_secondary_key", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name", "sku")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_namespaceHandler", bridge.NewTFHandler(p, "azurerm_servicebus_namespace", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_servicebus_namespace_authorization_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("listen", "manage", "primary_connection_string", "primary_key", "secondary_connection_string", "secondary_key", "send")
+		b.ProvidedAttributes("primary_connection_string", "primary_key", "secondary_connection_string", "secondary_key")
 		b.ImmutableAttributes("name", "namespace_name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_namespace_authorization_ruleHandler", bridge.NewTFHandler(p, "azurerm_servicebus_namespace_authorization_rule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_servicebus_queue{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("auto_delete_on_idle", "dead_lettering_on_message_expiration", "default_message_ttl", "duplicate_detection_history_time_window", "enable_batched_operations", "enable_express", "enable_partitioning", "location", "lock_duration", "max_delivery_count", "max_size_in_megabytes", "requires_duplicate_detection", "requires_session", "support_ordering")
+		b.ProvidedAttributes("auto_delete_on_idle", "default_message_ttl", "duplicate_detection_history_time_window", "lock_duration", "max_size_in_megabytes")
 		b.ImmutableAttributes("enable_partitioning", "location", "name", "namespace_name", "requires_duplicate_detection", "requires_session", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_queueHandler", bridge.NewTFHandler(p, "azurerm_servicebus_queue", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_servicebus_queue_authorization_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("listen", "manage", "primary_connection_string", "primary_key", "secondary_connection_string", "secondary_key", "send")
+		b.ProvidedAttributes("primary_connection_string", "primary_key", "secondary_connection_string", "secondary_key")
 		b.ImmutableAttributes("name", "namespace_name", "queue_name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_queue_authorization_ruleHandler", bridge.NewTFHandler(p, "azurerm_servicebus_queue_authorization_rule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_servicebus_subscription{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("auto_delete_on_idle", "dead_lettering_on_filter_evaluation_exceptions", "dead_lettering_on_message_expiration", "default_message_ttl", "enable_batched_operations", "forward_to", "location", "lock_duration", "requires_session")
+		b.ProvidedAttributes("auto_delete_on_idle", "default_message_ttl", "lock_duration")
 		b.ImmutableAttributes("location", "name", "namespace_name", "requires_session", "resource_group_name", "topic_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_subscriptionHandler", bridge.NewTFHandler(p, "azurerm_servicebus_subscription", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_servicebus_subscription_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("action", "correlation_filter", "sql_filter")
 		b.ImmutableAttributes("name", "namespace_name", "resource_group_name", "subscription_name", "topic_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_subscription_ruleHandler", bridge.NewTFHandler(p, "azurerm_servicebus_subscription_rule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_servicebus_topic{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("auto_delete_on_idle", "default_message_ttl", "duplicate_detection_history_time_window", "enable_batched_operations", "enable_express", "enable_filtering_messages_before_publishing", "enable_partitioning", "location", "max_size_in_megabytes", "requires_duplicate_detection", "status", "support_ordering")
+		b.ProvidedAttributes("auto_delete_on_idle", "default_message_ttl", "duplicate_detection_history_time_window", "max_size_in_megabytes")
 		b.ImmutableAttributes("enable_partitioning", "location", "name", "namespace_name", "requires_duplicate_detection", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_topicHandler", bridge.NewTFHandler(p, "azurerm_servicebus_topic", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_servicebus_topic_authorization_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("listen", "manage", "primary_connection_string", "primary_key", "secondary_connection_string", "secondary_key", "send")
+		b.ProvidedAttributes("primary_connection_string", "primary_key", "secondary_connection_string", "secondary_key")
 		b.ImmutableAttributes("name", "namespace_name", "resource_group_name", "topic_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_servicebus_topic_authorization_ruleHandler", bridge.NewTFHandler(p, "azurerm_servicebus_topic_authorization_rule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_shared_image{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "eula", "privacy_statement_uri", "release_note_uri", "tags")
+		b.ProvidedAttributes("tags")
 		b.ImmutableAttributes("gallery_name", "location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_shared_imageHandler", bridge.NewTFHandler(p, "azurerm_shared_image", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_shared_image_gallery{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("description", "tags", "unique_name")
+		b.ProvidedAttributes("tags", "unique_name")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_shared_image_galleryHandler", bridge.NewTFHandler(p, "azurerm_shared_image_gallery", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_shared_image_version{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("exclude_from_latest", "tags")
+		b.ProvidedAttributes("tags")
 		b.ImmutableAttributes("gallery_name", "image_name", "location", "managed_image_id", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_shared_image_versionHandler", bridge.NewTFHandler(p, "azurerm_shared_image_version", evs[0]), evs[0])
@@ -933,7 +916,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_signalr_serviceHandler", bridge.NewTFHandler(p, "azurerm_signalr_service", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_snapshot{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("disk_size_gb", "encryption_settings", "source_resource_id", "source_uri", "storage_account_id", "tags")
+		b.ProvidedAttributes("disk_size_gb", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name", "source_resource_id", "source_uri", "storage_account_id")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_snapshotHandler", bridge.NewTFHandler(p, "azurerm_snapshot", evs[0]), evs[0])
@@ -944,7 +927,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_sql_active_directory_administratorHandler", bridge.NewTFHandler(p, "azurerm_sql_active_directory_administrator", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_sql_database{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("collation", "create_mode", "creation_date", "default_secondary_location", "edition", "elastic_pool_name", "encryption", "import", "max_size_bytes", "requested_service_objective_id", "requested_service_objective_name", "restore_point_in_time", "source_database_deletion_date", "source_database_id", "tags", "threat_detection_policy")
+		b.ProvidedAttributes("collation", "creation_date", "default_secondary_location", "edition", "elastic_pool_name", "encryption", "max_size_bytes", "requested_service_objective_id", "requested_service_objective_name", "restore_point_in_time", "source_database_deletion_date", "source_database_id", "tags", "threat_detection_policy")
 		b.ImmutableAttributes("collation", "location", "name", "resource_group_name", "server_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_sql_databaseHandler", bridge.NewTFHandler(p, "azurerm_sql_database", evs[0]), evs[0])
@@ -967,25 +950,24 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_sql_serverHandler", bridge.NewTFHandler(p, "azurerm_sql_server", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_sql_virtual_network_rule{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("ignore_missing_vnet_service_endpoint")
 		b.ImmutableAttributes("name", "resource_group_name", "server_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_sql_virtual_network_ruleHandler", bridge.NewTFHandler(p, "azurerm_sql_virtual_network_rule", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_storage_account{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("access_tier", "account_encryption_source", "account_kind", "account_type", "custom_domain", "enable_blob_encryption", "enable_file_encryption", "enable_https_traffic_only", "identity", "network_rules", "primary_access_key", "primary_blob_connection_string", "primary_blob_endpoint", "primary_connection_string", "primary_file_endpoint", "primary_location", "primary_queue_endpoint", "primary_table_endpoint", "secondary_access_key", "secondary_blob_connection_string", "secondary_blob_endpoint", "secondary_connection_string", "secondary_location", "secondary_queue_endpoint", "secondary_table_endpoint", "tags")
+		b.ProvidedAttributes("access_tier", "account_type", "identity", "primary_access_key", "primary_blob_connection_string", "primary_blob_endpoint", "primary_connection_string", "primary_file_endpoint", "primary_location", "primary_queue_endpoint", "primary_table_endpoint", "secondary_access_key", "secondary_blob_connection_string", "secondary_blob_endpoint", "secondary_connection_string", "secondary_location", "secondary_queue_endpoint", "secondary_table_endpoint", "tags")
 		b.ImmutableAttributes("account_kind", "account_tier", "location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_storage_accountHandler", bridge.NewTFHandler(p, "azurerm_storage_account", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_storage_blob{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("attempts", "content_type", "parallelism", "size", "source", "source_uri", "type", "url")
+		b.ProvidedAttributes("url")
 		b.ImmutableAttributes("attempts", "name", "parallelism", "resource_group_name", "size", "source", "source_uri", "storage_account_name", "storage_container_name", "type")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_storage_blobHandler", bridge.NewTFHandler(p, "azurerm_storage_blob", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_storage_container{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("container_access_type", "properties")
+		b.ProvidedAttributes("properties")
 		b.ImmutableAttributes("name", "resource_group_name", "storage_account_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_storage_containerHandler", bridge.NewTFHandler(p, "azurerm_storage_container", evs[0]), evs[0])
@@ -996,7 +978,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_storage_queueHandler", bridge.NewTFHandler(p, "azurerm_storage_queue", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_storage_share{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("quota", "url")
+		b.ProvidedAttributes("url")
 		b.ImmutableAttributes("name", "resource_group_name", "storage_account_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_storage_shareHandler", bridge.NewTFHandler(p, "azurerm_storage_share", evs[0]), evs[0])
@@ -1007,7 +989,7 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_storage_tableHandler", bridge.NewTFHandler(p, "azurerm_storage_table", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_subnet{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("delegation", "ip_configurations", "network_security_group_id", "route_table_id", "service_endpoints")
+		b.ProvidedAttributes("ip_configurations")
 		b.ImmutableAttributes("name", "resource_group_name", "virtual_network_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_subnetHandler", bridge.NewTFHandler(p, "azurerm_subnet", evs[0]), evs[0])
@@ -1023,13 +1005,13 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_subnet_route_table_associationHandler", bridge.NewTFHandler(p, "azurerm_subnet_route_table_association", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_template_deployment{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("outputs", "parameters", "parameters_body", "template_body")
+		b.ProvidedAttributes("outputs", "template_body")
 		b.ImmutableAttributes("name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_template_deploymentHandler", bridge.NewTFHandler(p, "azurerm_template_deployment", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_traffic_manager_endpoint{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("endpoint_location", "endpoint_monitor_status", "endpoint_status", "geo_mappings", "min_child_endpoints", "priority", "target", "target_resource_id", "weight")
+		b.ProvidedAttributes("endpoint_location", "endpoint_monitor_status", "endpoint_status", "priority", "target", "weight")
 		b.ImmutableAttributes("name", "profile_name", "resource_group_name", "type")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_traffic_manager_endpointHandler", bridge.NewTFHandler(p, "azurerm_traffic_manager_endpoint", evs[0]), evs[0])
@@ -1047,43 +1029,42 @@ func Initialize(sb *service.Builder, p *schema.Provider) {
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_user_assigned_identityHandler", bridge.NewTFHandler(p, "azurerm_user_assigned_identity", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_virtual_machine{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("availability_set_id", "boot_diagnostics", "delete_data_disks_on_termination", "delete_os_disk_on_termination", "identity", "license_type", "os_profile", "os_profile_linux_config", "os_profile_secrets", "os_profile_windows_config", "plan", "primary_network_interface_id", "storage_data_disk", "storage_image_reference", "tags", "zones")
+		b.ProvidedAttributes("availability_set_id", "identity", "license_type", "storage_data_disk", "storage_image_reference", "tags")
 		b.ImmutableAttributes("availability_set_id", "location", "name", "resource_group_name", "storage_image_reference", "zones")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_machineHandler", bridge.NewTFHandler(p, "azurerm_virtual_machine", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_virtual_machine_data_disk_attachment{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("create_option", "write_accelerator_enabled")
 		b.ImmutableAttributes("create_option", "lun", "managed_disk_id", "virtual_machine_id")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_machine_data_disk_attachmentHandler", bridge.NewTFHandler(p, "azurerm_virtual_machine_data_disk_attachment", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_virtual_machine_extension{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("auto_upgrade_minor_version", "protected_settings", "settings", "tags")
+		b.ProvidedAttributes("tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name", "virtual_machine_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_machine_extensionHandler", bridge.NewTFHandler(p, "azurerm_virtual_machine_extension", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_virtual_machine_scale_set{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("automatic_os_upgrade", "boot_diagnostics", "eviction_policy", "extension", "health_probe_id", "identity", "license_type", "os_profile_linux_config", "os_profile_secrets", "os_profile_windows_config", "overprovision", "plan", "priority", "rolling_upgrade_policy", "single_placement_group", "storage_profile_data_disk", "storage_profile_image_reference", "tags", "zones")
+		b.ProvidedAttributes("identity", "license_type", "os_profile_linux_config", "storage_profile_image_reference", "tags")
 		b.ImmutableAttributes("eviction_policy", "location", "name", "priority", "resource_group_name", "single_placement_group", "zones")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_machine_scale_setHandler", bridge.NewTFHandler(p, "azurerm_virtual_machine_scale_set", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_virtual_network{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("dns_servers", "subnet", "tags")
+		b.ProvidedAttributes("subnet", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_networkHandler", bridge.NewTFHandler(p, "azurerm_virtual_network", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_virtual_network_gateway{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("active_active", "bgp_settings", "default_local_network_gateway_id", "enable_bgp", "tags", "vpn_client_configuration", "vpn_type")
+		b.ProvidedAttributes("active_active", "bgp_settings", "enable_bgp", "tags")
 		b.ImmutableAttributes("location", "name", "resource_group_name", "type", "vpn_type")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_network_gatewayHandler", bridge.NewTFHandler(p, "azurerm_virtual_network_gateway", evs[0]), evs[0])
 
 	evs = sb.RegisterTypes("TerraformAzureRM", sb.BuildResource(&Azurerm_virtual_network_gateway_connection{}, func(b service.ResourceTypeBuilder) {
-		b.ProvidedAttributes("authorization_key", "enable_bgp", "express_route_circuit_id", "ipsec_policy", "local_network_gateway_id", "peer_virtual_network_gateway_id", "routing_weight", "shared_key", "tags", "use_policy_based_traffic_selectors")
+		b.ProvidedAttributes("enable_bgp", "routing_weight", "tags", "use_policy_based_traffic_selectors")
 		b.ImmutableAttributes("express_route_circuit_id", "location", "name", "peer_virtual_network_gateway_id", "resource_group_name", "type", "virtual_network_gateway_id")
 	}))
 	sb.RegisterHandler("TerraformAzureRM::Azurerm_virtual_network_gateway_connectionHandler", bridge.NewTFHandler(p, "azurerm_virtual_network_gateway_connection", evs[0]), evs[0])
