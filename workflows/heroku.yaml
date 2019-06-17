@@ -1,11 +1,10 @@
 steps:
   heroku_app:
-    returns:
-      appID: ID
-    Heroku::App:
+    returns: appID
+    resource: Heroku::App
+    value:
       locked: false
-      name: "lyra-test"
-      organization: "lyra-heroku"
+      name: "lyra-test2"
       personal: false
       region: "us"
       stack: "heroku-16"
